@@ -105,7 +105,6 @@ const sneakers = [
         </div>
       `,
 
-
       en: `
         <p>
           While the commercial Jordan 1 'Bloodline'
@@ -170,7 +169,6 @@ const sneakers = [
       `
     }
   },
-
 
 
   /* =====================================================
@@ -303,7 +301,6 @@ const sneakers = [
         </div>
       `,
 
-
       en: `
         <p>
           Created in celebration of Quai 54,
@@ -392,7 +389,6 @@ const sneakers = [
       `
     }
   },
-
 
 
   /* =====================================================
@@ -490,7 +486,6 @@ const sneakers = [
         </p>
       `,
 
-
       en: `
         <p>
           Following the success
@@ -539,7 +534,6 @@ const sneakers = [
       `
     }
   },
-
 
 
   /* =====================================================
@@ -633,7 +627,6 @@ const sneakers = [
         </p>
       `,
 
-
       en: `
         <p>
           Carrying forward
@@ -685,7 +678,6 @@ const sneakers = [
       `
     }
   },
-
 
 
   /* =====================================================
@@ -743,12 +735,7 @@ const sneakers = [
       en: "Sample"
     },
 
-    /*
-      Thay N/A bằng size thực tế
-      khi có thông tin.
-    */
-
-    size: "N/A",
+    size: "12 US",
 
     image:
       "jordan1_fragmentunion_sample.png",
@@ -872,6 +859,10 @@ const sneakers = [
           giữa Jordan Brand,
           Fragment
           và Union LA.
+
+          Tác phẩm trong bộ sưu tập
+          có size
+          <b>12 US</b>.
         </p>
 
         <div class="exhibition-note">
@@ -908,7 +899,6 @@ const sneakers = [
 
         </div>
       `,
-
 
       en: `
         <p>
@@ -1026,6 +1016,10 @@ const sneakers = [
           between Jordan Brand,
           Fragment,
           and Union LA.
+
+          The piece preserved in the collection
+          is size
+          <b>12 US</b>.
         </p>
 
         <div class="exhibition-note">
