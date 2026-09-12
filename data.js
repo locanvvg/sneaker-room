@@ -1090,7 +1090,7 @@ const sneakers = [
 
     size: "9 US",
 
-    image: "pictures/bape_stussy_camo_canvas_hi_top_green.png",
+    image: "pictures/bapesta_stussy.png",
 
     story: {
 
@@ -1241,23 +1241,6 @@ const sneakers = [
           Đợt phát hành tiếp theo
           của dự án
           diễn ra trong tháng 12 năm 2010.
-        </p>
-
-        <p>
-          Tem sản phẩm của
-          A Bathing Ape
-          ghi nhận mã
-          <b>191-030</b>
-          cho mẫu
-          Green Camo.
-
-          Đây là mã
-          <b>Item No.</b>
-          của sản phẩm
-          và được sử dụng
-          làm mã SKU lưu trữ
-          trong
-          <b>Lộc An Sneaker Collection</b>.
         </p>
 
         <p>
@@ -1430,20 +1413,6 @@ const sneakers = [
           A second release group
           from the broader project
           followed in December 2010.
-        </p>
-
-        <p>
-          The A Bathing Ape
-          product label identifies
-          the Green Camo model
-          with
-          <b>Item No. 191-030</b>.
-
-          This number is therefore
-          preserved as the product SKU
-          within the
-          <b>Lộc An Sneaker Collection</b>
-          archive.
         </p>
 
         <p>
