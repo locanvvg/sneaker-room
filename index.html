@@ -3,56 +3,65 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lộc An Sneaker Collection - Exhibition Catalog</title>
+  <title>Lộc An Vault - Secure Archive</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>LỘC AN SNEAKER COLLECTION</h1>
-      <p>Không gian lưu trữ & Bảo tàng Sneaker Kỹ thuật số</p>
-    </header>
 
-    <main>
-      <div id="sneaker-grid" class="grid">
-        <!-- Danh sách giày tự động load từ data.js -->
-      </div>
-    </main>
+  <main class="vault-gate-container">
+    <div class="vault-header">
+      <h1>Lộc An Vault</h1>
+      <p>SECURE DIGITAL ARCHIVE & COLLECTION</p>
+    </div>
 
-    <footer>
-      <p>&copy; 2026 Lộc An Sneaker Collection. All Rights Reserved.</p>
-    </footer>
-  </div>
-
-  <script src="data.js"></script>
-  <script>
-    const grid = document.getElementById('sneaker-grid');
-
-    if (typeof sneakers !== 'undefined' && sneakers.length > 0) {
-      const sortedSneakers = [...sneakers].sort((a, b) => 
-        a.title.localeCompare(b.title, 'en', { sensitivity: 'base' })
-      );
-
-      grid.innerHTML = sortedSneakers.map(shoe => `
-        <a href="shoe.html?id=${shoe.id}" class="card-link">
-          <div class="card">
-            <div class="card-img-wrapper">
-              <img src="${shoe.image}" alt="${shoe.title}">
-            </div>
-            <div class="card-info">
-              <h3>${shoe.title}</h3>
-              <p class="subtitle">${shoe.subtitle}</p>
-              <div class="card-meta">
-                <span class="badge">${shoe.editionType || 'Limited'}</span>
-                <span class="size">${shoe.size || ''}</span>
-              </div>
-            </div>
+    <!-- Khu vực bánh xoay lựa chọn bộ sưu tập -->
+    <div class="vault-dial-wrapper">
+      <div class="vault-dial-track">
+        
+        <!-- Mục 1: Sneaker Collection (Đã mở khóa) -->
+        <a href="sneakers.html" class="vault-slot">
+          <!-- Bạn có thể thay hình nền đại diện bằng một đôi giày nổi bật trong bộ sưu tập -->
+          <img src="jordan1_pe_bloodline_friendsandfamily_sample.png" alt="Sneaker Collection">
+          <div class="vault-slot-info">
+            <h3>Sneakers</h3>
+            <span>[ UNLOCKED ]</span>
           </div>
         </a>
-      `).join('');
-    } else {
-      grid.innerHTML = '<p style="color: #888; text-align: center; grid-column: 1/-1;">Đang cập nhật dữ liệu bộ sưu tập...</p>';
-    }
-  </script>
+
+        <!-- Mục 2: Lego Collection (Đang chuẩn bị / Khóa) -->
+        <div class="vault-slot locked">
+          <img src="" alt="Lego Collection" style="background: #111;">
+          <div class="vault-slot-info">
+            <h3>Lego Models</h3>
+            <span>[ LOCKED / COMING SOON ]</span>
+          </div>
+        </div>
+
+        <!-- Mục 3: Vintage Audio (Đang chuẩn bị / Khóa) -->
+        <div class="vault-slot locked">
+          <img src="" alt="Vintage Audio" style="background: #111;">
+          <div class="vault-slot-info">
+            <h3>Vintage Audio</h3>
+            <span>[ LOCKED / COMING SOON ]</span>
+          </div>
+        </div>
+
+        <!-- Mục 4: Cameras & Tech (Đang chuẩn bị / Khóa) -->
+        <div class="vault-slot locked">
+          <img src="" alt="Cameras & Tech" style="background: #111;">
+          <div class="vault-slot-info">
+            <h3>Cameras & Tech</h3>
+            <span>[ LOCKED / COMING SOON ]</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="vault-status-indicator">
+      ROTATE / SELECT VAULT WING TO ACCESS
+    </div>
+  </main>
+
 </body>
 </html>
