@@ -48,6 +48,12 @@
           <span id="shoe-size" class="spec-value size-highlight"></span>
         </div>
       </div>
+
+      <!-- Khung ghi chú lưu trữ màu vàng -->
+      <div id="exhibition-note-box" class="exhibition-note-card" style="display: none;">
+        <h3>Ghi chú lưu trữ (Exhibition Note)</h3>
+        <p id="shoe-exhibition-note"></p>
+      </div>
     </div>
   </main>
 
@@ -75,6 +81,16 @@
       document.getElementById('shoe-image').src = sneaker.image;
       document.getElementById('shoe-image').alt = sneaker.title;
       document.getElementById('shoe-story').innerHTML = sneaker.story;
+
+      // Xử lý hiển thị khung ghi chú vàng nếu có dữ liệu
+      const noteBox = document.getElementById('exhibition-note-box');
+      const noteElement = document.getElementById('shoe-exhibition-note');
+      if (sneaker.exhibitionNote) {
+        noteElement.innerText = sneaker.exhibitionNote;
+        noteBox.style.display = 'block';
+      } else {
+        noteBox.style.display = 'none';
+      }
     } else {
       document.querySelector('main').innerHTML = '<p style="text-align:center; width:100%; grid-column: 1 / -1; padding: 50px;">Không tìm thấy thông tin tác phẩm này.</p>';
     }
