@@ -34,14 +34,14 @@
 .vault-dial-wrapper {
   position: relative;
   width: 100%;
-  max-width: 800px;
+  max-width: 900px;
   overflow-x: auto;
   padding: 20px 0;
-  scrollbar-width: none; /* Ẩn thanh cuộn trên Firefox */
+  scrollbar-width: none;
 }
 
 .vault-dial-wrapper::-webkit-scrollbar {
-  display: none; /* Ẩn thanh cuộn trên Chrome/Safari */
+  display: none;
 }
 
 .vault-dial-track {
@@ -111,12 +111,13 @@
   font-size: 1.2rem;
   margin: 0 0 5px 0;
   letter-spacing: 1px;
+  color: #fff;
 }
 
 .vault-slot-info span {
   font-size: 0.75rem;
   color: #ffcc00;
-  letter-spacing: 2text;
+  letter-spacing: 2px;
   text-transform: uppercase;
 }
 
@@ -141,4 +142,18 @@
   font-size: 0.85rem;
   color: #666;
   letter-spacing: 2px;
+  text-align: center;
+}
+
+.back-to-vault {
+  display: inline-block;
+  margin-bottom: 15px;
+  color: #aaa;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s;
+}
+
+.back-to-vault:hover {
+  color: #ffcc00;
 }
