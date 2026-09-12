@@ -17,7 +17,8 @@ const sneakers = [
       <p>Điểm ăn tiền tạo nên giá trị sưu tầm độc bản của dòng PE chính thức nằm ở việc chỉ có đúng 93 đôi được sản xuất trên toàn thế giới, đi kèm thiệp chúc mừng riêng từ Jordan Brand và tem hộp stamped tên định danh của từng vận động viên. Đôi giày sở hữu lớp da màu đen cao cấp bao phủ toàn bộ thân upper, được làm nổi bật bởi các đường viền chỉ đỏ (Gym Red piping) sắc nét chạy dọc theo đường cắt và bao quanh dấu Swoosh kinh điển, hoàn thiện trên nền đế giữa màu trắng và bộ đế ngoài đỏ rực.</p>
 
       <p>Tuy nhiên, tác phẩm hiện đang ngự trị trong bộ sưu tập cá nhân của Lộc An lại mang một ý nghĩa lịch sử sâu sắc hơn gấp bội: thay vì chỉ dừng lại ở 93 đôi PE thương mại thông thường, đây chính là một đôi <b>Sample (bản mẫu thử nghiệm) chính thức của dòng PE này</b>. Việc sở hữu một nguyên mẫu thử nghiệm thậm chí còn độc bản và khó tìm hơn gấp nhiều lần so với bản phát hành chính thức đã biến đôi giày size 7 US này thành một bảo vật lưu trữ vô giá trong không gian Lộc An Sneaker Collection.</p>
-    `
+    `,
+    exhibitionNote: "Tác phẩm thuộc phiên bản Player Exclusive (PE) kết hợp dạng Sample nguyên mẫu thử nghiệm tối hiếm. Những phiên bản này vượt trội hơn cả các bản phát hành giới hạn thông thường, vốn chỉ được sản xuất cho nội bộ vận động viên đỉnh cao. Sự hiện diện của bản Sample này mang giá trị nghiên cứu lịch sử và sưu tầm đỉnh cao trong bảo tàng kỹ thuật số."
   },
   {
     id: "jordan-1-quai54-ff",
