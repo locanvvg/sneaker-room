@@ -64,3 +64,7 @@ function renderGrid() {
     grid.innerHTML = `<p style="color: #888; text-align: center; grid-column: 1/-1;">${translations[currentLang].loading}</p>`;
   }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  setLanguage(currentLang);
+});
