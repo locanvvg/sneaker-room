@@ -50,7 +50,7 @@
       border: 1px solid #262626;
       border-radius: 12px;
       padding: 20px;
-      margin-bottom: 35px;
+      margin-bottom: 20px;
     }
     .spec-item h4 {
       margin: 0 0 4px 0;
@@ -64,6 +64,19 @@
       color: #fff;
       font-weight: 500;
       font-size: 0.95rem;
+    }
+    .edition-note {
+      background: rgba(255, 215, 0, 0.05);
+      border-left: 3px solid #FFD700;
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 35px;
+      font-size: 0.88rem;
+      color: #d1d1d1;
+      line-height: 1.6;
+    }
+    .edition-note strong {
+      color: #FFD700;
     }
     .story-section {
       line-height: 1.8;
@@ -93,6 +106,16 @@
     if (typeof sneakers !== 'undefined' && shoeId) {
       const shoe = sneakers.find(s => s.id === shoeId);
       if (shoe) {
+        
+        let noteHtml = '';
+        if (shoe.retailPrice === 'N/A' || ['F&F', 'PE', 'Sample'].includes(shoe.editionType)) {
+          noteHtml = `
+            <div class="edition-note">
+              <strong>Ghi chú lưu trữ (Exhibition Note):</strong> Tác phẩm thuộc phiên bản đặc biệt (<b>${shoe.editionType || 'Exclusive / Promo'}</b>). Các phiên bản dạng này (như Promo Sample, Player Exclusive hoặc Friends & Family) chỉ được sản xuất giới hạn để dành riêng cho vận động viên, người thân hoặc nội bộ thương hiệu. Do không được phát hành thương mại tại các cửa hàng bán lẻ, tác phẩm không có giá niêm yết gốc (Retail Price: N/A) và sở hữu giá trị sưu tầm đặc biệt trên thị trường quốc tế.
+            </div>
+          `;
+        }
+
         container.innerHTML = `
           <div class="shoe-header">
             <h1>${shoe.title}</h1>
@@ -127,6 +150,8 @@
               <p style="color: #FFD700;">${shoe.size || 'N/A'}</p>
             </div>
           </div>
+
+          ${noteHtml}
 
           <div class="story-section">
             <h3 style="color: #fff; margin-bottom: 15px;">Câu chuyện & Bối cảnh thiết kế</h3>
