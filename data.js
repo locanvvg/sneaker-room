@@ -10,7 +10,7 @@ const sneakers = [
     editionType: "F&F",
     condition: "Deadstock (Brand New)",
     size: "12.5 US",
-    image: "1.webp",
+    image: "jordan_quai54_friendsandfamily.png",
     story: `
       <p>Nhằm tôn vinh Quai 54 – giải đấu bóng rổ đường phố danh giá nhất thế giới diễn ra thường niên tại thành phố Paris, Jordan Brand đã tạo ra hai phiên bản Air Jordan 1 Retro High OG đặc biệt cho mùa hè năm 2017. Trong khi bản phối màu đen truyền thống được phát hành thương mại rộng rãi vào ngày 8 tháng 7 năm 2017 với mức giá niêm yết $160, thì phiên bản xẻ màu (Split) độc bản này lại mang vị thế của một siêu phẩm tuyệt đối: dành riêng cho dàn khách mời <b>Friends & Family (F&F)</b>.</p>
 
@@ -30,7 +30,7 @@ const sneakers = [
     editionType: "Signature Signed",
     condition: "Deadstock (Signed)",
     size: "12 US",
-    image: "matcha.jpg", // Đảm bảo tên file ảnh trên GitHub khớp với tên này
+    image: "sbdunk_yutohorigome_matcha.png",
     story: `
       <p>Tiếp nối tiếng vang chấn động từ phiên bản hợp tác đầu tiên năm 2023, tượng đài trượt ván thế giới và nhà vô địch Huy chương Vàng Olympic Yuto Horigome tiếp tục bắt tay cùng Nike SB để cho ra mắt siêu phẩm <b>Nike SB Dunk Low Yuto Horigome 'Matcha'</b> vào ngày 5 tháng 4 năm 2025. Nếu bản phát hành đầu tiên mang màu sắc đô thị tối giản, thì phiên bản 'Matcha' lần này lại đưa người xem chìm đắm vào không gian thiên nhiên tĩnh lặng thông qua các sắc thái tinh tế của bột trà xanh truyền thống Nhật Bản.</p>
 
