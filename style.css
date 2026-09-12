@@ -250,6 +250,23 @@ header p {
   margin-bottom: 15px;
 }
 
+.exhibition-note {
+  margin-top: 25px;
+  background: #222226;
+  border-left: 4px solid #ffcc00;
+  padding: 15px 20px;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.9rem;
+  color: #ccc;
+  line-height: 1.6;
+}
+
+.exhibition-note strong {
+  color: #ffcc00;
+  display: block;
+  margin-bottom: 5px;
+}
+
 footer {
   text-align: center;
   margin-top: 60px;
