@@ -66,10 +66,14 @@
   </div>
 
   <script src="data.js"></script>
+  <script src="main.js"></script>
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const shoeId = urlParams.get('id');
-    let currentLang = urlParams.get('lang') || localStorage.getItem('locan_lang') || 'vi';
+    if (urlParams.has('lang')) {
+      currentLang = urlParams.get('lang');
+      localStorage.setItem('locan_lang', currentLang);
+    }
 
     const labels = {
       vi: {
@@ -104,9 +108,13 @@
     }
 
     function loadShoeDetails() {
-      document.getElementById('btn-vi').classList.toggle('active', currentLang === 'vi');
-      document.getElementById('btn-en').classList.toggle('active', currentLang === 'en');
-      document.getElementById('back-link').innerText = labels[currentLang].back;
+      const btnVi = document.getElementById('btn-vi');
+      const btnEn = document.getElementById('btn-en');
+      if (btnVi) btnVi.classList.toggle('active', currentLang === 'vi');
+      if (btnEn) btnEn.classList.toggle('active', currentLang === 'en');
+      
+      const backLink = document.getElementById('back-link');
+      if (backLink) backLink.innerText = labels[currentLang].back;
 
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
@@ -124,8 +132,11 @@
         document.getElementById('shoe-date').innerText = sneaker.releaseDate;
         document.getElementById('shoe-condition').innerText = sneaker.condition[currentLang];
         document.getElementById('shoe-size').innerText = sneaker.size;
-        document.getElementById('shoe-image').src = sneaker.image;
-        document.getElementById('shoe-image').alt = sneaker.title[currentLang];
+        
+        const imgEl = document.getElementById('shoe-image');
+        imgEl.src = sneaker.image;
+        imgEl.alt = sneaker.title[currentLang];
+        
         document.getElementById('shoe-story').innerHTML = sneaker.story[currentLang];
       } else {
         document.querySelector('main').innerHTML = `<p style="text-align:center; width:100%; grid-column: 1 / -1; padding: 50px;">${labels[currentLang].notFound}</p>`;
