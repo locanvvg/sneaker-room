@@ -510,8 +510,8 @@ const sneakers = [
     releaseDate: "2026-04-03",
 
     editionType: {
-      vi: "",
-      en: ""
+      vi: "GR",
+      en: "GR"
     },
 
     condition: {
@@ -877,8 +877,8 @@ const sneakers = [
     releaseDate: "2009-08-31",
 
     editionType: {
-      vi: "",
-      en: ""
+      vi: "GR",
+      en: "GR"
     },
 
     condition: {
