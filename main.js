@@ -1,35 +1,92 @@
-const SUPPORTED_LANGUAGES = ['vi', 'en'];
+/* =========================================================
+   SUPPORTED LANGUAGES
+========================================================= */
+
+const SUPPORTED_LANGUAGES = [
+  "vi",
+  "en"
+];
 
 
 /* =========================================================
-   LANGUAGE
+   NORMALIZE LANGUAGE
 ========================================================= */
 
 function normalizeLanguage(lang) {
+
   return SUPPORTED_LANGUAGES.includes(lang)
     ? lang
-    : 'vi';
+    : "vi";
+
 }
 
 
-const urlParams = new URLSearchParams(window.location.search);
+/* =========================================================
+   GET LANGUAGE
+========================================================= */
 
-const languageFromURL = urlParams.get('lang');
+const urlParams =
+  new URLSearchParams(
+    window.location.search
+  );
+
+
+const languageFromURL =
+  urlParams.get("lang");
+
 
 const languageFromStorage =
-  localStorage.getItem('locan_lang');
+  localStorage.getItem(
+    "locan_lang"
+  );
 
 
-let currentLang = normalizeLanguage(
-  languageFromURL ||
-  languageFromStorage ||
-  'vi'
-);
+let currentLang =
+  normalizeLanguage(
+    languageFromURL ||
+    languageFromStorage ||
+    "vi"
+  );
 
+
+/* =========================================================
+   SORT SETTINGS
+========================================================= */
+
+const VALID_SORTS = [
+  "default",
+  "az",
+  "za",
+  "size-asc",
+  "size-desc"
+];
+
+
+function normalizeSort(value) {
+
+  return VALID_SORTS.includes(value)
+    ? value
+    : "default";
+
+}
+
+
+let currentSort =
+  normalizeSort(
+    localStorage.getItem(
+      "locan_sort"
+    ) || "default"
+  );
+
+
+/* =========================================================
+   TRANSLATIONS
+========================================================= */
 
 const translations = {
 
   vi: {
+
     mainTitle:
       "LỘC AN SNEAKER COLLECTION",
 
@@ -37,11 +94,31 @@ const translations = {
       "Không gian lưu trữ & Bảo tàng Sneaker Kỹ thuật số",
 
     loading:
-      "Đang cập nhật dữ liệu bộ sưu tập..."
+      "Đang cập nhật dữ liệu bộ sưu tập...",
+
+    sortLabel:
+      "SẮP XẾP",
+
+    sortDefault:
+      "Mặc định",
+
+    sortAZ:
+      "A → Z",
+
+    sortZA:
+      "Z → A",
+
+    sortSizeAsc:
+      "Size nhỏ → lớn",
+
+    sortSizeDesc:
+      "Size lớn → nhỏ"
+
   },
 
 
   en: {
+
     mainTitle:
       "LỘC AN SNEAKER COLLECTION",
 
@@ -49,140 +126,495 @@ const translations = {
       "Digital Sneaker Archive & Museum",
 
     loading:
-      "Updating collection data..."
+      "Updating collection data...",
+
+    sortLabel:
+      "SORT BY",
+
+    sortDefault:
+      "Default",
+
+    sortAZ:
+      "A → Z",
+
+    sortZA:
+      "Z → A",
+
+    sortSizeAsc:
+      "Size: Small → Large",
+
+    sortSizeDesc:
+      "Size: Large → Small"
+
   }
 
 };
 
 
 /* =========================================================
-   LOCALIZED TEXT
+   GET LOCALIZED TEXT
 ========================================================= */
 
-function getLocalizedText(object, lang = currentLang) {
+function getLocalizedText(
+  object,
+  lang = currentLang
+) {
 
   if (!object) {
-    return '';
+    return "";
   }
 
-  if (typeof object === 'string') {
+
+  if (
+    typeof object === "string"
+  ) {
+
     return object;
+
   }
+
 
   return (
     object[lang] ??
     object.en ??
     object.vi ??
-    ''
+    ""
   );
+
 }
 
 
 /* =========================================================
-   HTML ESCAPING
+   HTML ESCAPE
 ========================================================= */
 
 function escapeHTML(value) {
 
-  return String(value ?? '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
+  return String(
+    value ?? ""
+  )
+
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+
+    .replace(
+      /</g,
+      "&lt;"
+    )
+
+    .replace(
+      />/g,
+      "&gt;"
+    )
+
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+
+    .replace(
+      /'/g,
+      "&#039;"
+    );
 
 }
 
 
 /* =========================================================
-   RELEASE DATE FORMAT
+   GET NUMERIC SHOE SIZE
+
+   Examples:
+
+   "7 US"    -> 7
+   "10 US"   -> 10
+   "12 US"   -> 12
+   "12.5 US" -> 12.5
+   "N/A"     -> null
 ========================================================= */
 
-function formatReleaseDate(dateString, lang = currentLang) {
+function getNumericSize(size) {
 
-  if (!dateString) {
-    return '';
+  if (!size) {
+    return null;
   }
 
 
-  /*
-    YYYY-MM-DD
-  */
-
-  if (/^\d{4}-\d{2}-\d{2}$/.test(dateString)) {
-
-    const [year, month, day] =
-      dateString.split('-').map(Number);
-
-
-    const date = new Date(
-      Date.UTC(
-        year,
-        month - 1,
-        day
-      )
+  const match =
+    String(size).match(
+      /(\d+(?:\.\d+)?)/
     );
 
 
-    return date.toLocaleDateString(
-      lang === 'vi'
-        ? 'vi-VN'
-        : 'en-US',
-      {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        timeZone: 'UTC'
-      }
-    );
-
+  if (!match) {
+    return null;
   }
 
 
-  /*
-    YYYY-MM
-    Used when exact release day is unknown.
-  */
-
-  if (/^\d{4}-\d{2}$/.test(dateString)) {
-
-    const [year, month] =
-      dateString.split('-').map(Number);
-
-
-    const date = new Date(
-      Date.UTC(
-        year,
-        month - 1,
-        1
-      )
+  const numericSize =
+    parseFloat(
+      match[1]
     );
 
 
-    return date.toLocaleDateString(
-      lang === 'vi'
-        ? 'vi-VN'
-        : 'en-US',
-      {
-        year: 'numeric',
-        month: 'long',
-        timeZone: 'UTC'
-      }
-    );
+  return Number.isFinite(
+    numericSize
+  )
+    ? numericSize
+    : null;
 
-  }
-
-
-  /*
-    Fallback for old data format
-  */
-
-  return dateString;
 }
 
 
 /* =========================================================
-   UPDATE LANGUAGE
+   SORT SNEAKERS
+========================================================= */
+
+function sortSneakers(items) {
+
+  /*
+    Copy array so original data.js order
+    is never modified.
+  */
+
+  const sorted =
+    [...items];
+
+
+  /* =====================================================
+     DEFAULT
+     Preserve order from data.js
+  ====================================================== */
+
+  if (
+    currentSort === "default"
+  ) {
+
+    return sorted;
+
+  }
+
+
+  /* =====================================================
+     A -> Z
+  ====================================================== */
+
+  if (
+    currentSort === "az"
+  ) {
+
+    return sorted.sort(
+      (a, b) => {
+
+        const titleA =
+          getLocalizedText(
+            a.title
+          );
+
+
+        const titleB =
+          getLocalizedText(
+            b.title
+          );
+
+
+        return titleA.localeCompare(
+          titleB,
+          currentLang === "vi"
+            ? "vi"
+            : "en",
+          {
+            sensitivity: "base",
+            numeric: true
+          }
+        );
+
+      }
+    );
+
+  }
+
+
+  /* =====================================================
+     Z -> A
+  ====================================================== */
+
+  if (
+    currentSort === "za"
+  ) {
+
+    return sorted.sort(
+      (a, b) => {
+
+        const titleA =
+          getLocalizedText(
+            a.title
+          );
+
+
+        const titleB =
+          getLocalizedText(
+            b.title
+          );
+
+
+        return titleB.localeCompare(
+          titleA,
+          currentLang === "vi"
+            ? "vi"
+            : "en",
+          {
+            sensitivity: "base",
+            numeric: true
+          }
+        );
+
+      }
+    );
+
+  }
+
+
+  /* =====================================================
+     SIZE SMALL -> LARGE
+  ====================================================== */
+
+  if (
+    currentSort === "size-asc"
+  ) {
+
+    return sorted.sort(
+      (a, b) => {
+
+        const sizeA =
+          getNumericSize(
+            a.size
+          );
+
+
+        const sizeB =
+          getNumericSize(
+            b.size
+          );
+
+
+        /*
+          Both unknown:
+          preserve original relative order.
+        */
+
+        if (
+          sizeA === null &&
+          sizeB === null
+        ) {
+
+          return 0;
+
+        }
+
+
+        /*
+          Unknown sizes always go to bottom.
+        */
+
+        if (
+          sizeA === null
+        ) {
+
+          return 1;
+
+        }
+
+
+        if (
+          sizeB === null
+        ) {
+
+          return -1;
+
+        }
+
+
+        return sizeA - sizeB;
+
+      }
+    );
+
+  }
+
+
+  /* =====================================================
+     SIZE LARGE -> SMALL
+  ====================================================== */
+
+  if (
+    currentSort === "size-desc"
+  ) {
+
+    return sorted.sort(
+      (a, b) => {
+
+        const sizeA =
+          getNumericSize(
+            a.size
+          );
+
+
+        const sizeB =
+          getNumericSize(
+            b.size
+          );
+
+
+        /*
+          Both unknown.
+        */
+
+        if (
+          sizeA === null &&
+          sizeB === null
+        ) {
+
+          return 0;
+
+        }
+
+
+        /*
+          N/A still goes to bottom.
+        */
+
+        if (
+          sizeA === null
+        ) {
+
+          return 1;
+
+        }
+
+
+        if (
+          sizeB === null
+        ) {
+
+          return -1;
+
+        }
+
+
+        return sizeB - sizeA;
+
+      }
+    );
+
+  }
+
+
+  return sorted;
+
+}
+
+
+/* =========================================================
+   CHANGE SORT
+========================================================= */
+
+function changeSort(value) {
+
+  currentSort =
+    normalizeSort(value);
+
+
+  /*
+    Remember selected sorting
+    after refresh.
+  */
+
+  localStorage.setItem(
+    "locan_sort",
+    currentSort
+  );
+
+
+  renderGrid();
+
+}
+
+
+/* =========================================================
+   UPDATE SORT INTERFACE LANGUAGE
+========================================================= */
+
+function updateSortInterface() {
+
+  const text =
+    translations[currentLang];
+
+
+  const sortLabel =
+    document.getElementById(
+      "sort-label"
+    );
+
+
+  const sortSelect =
+    document.getElementById(
+      "sort-select"
+    );
+
+
+  if (!sortSelect) {
+    return;
+  }
+
+
+  if (sortLabel) {
+
+    sortLabel.textContent =
+      text.sortLabel;
+
+  }
+
+
+  const options =
+    sortSelect.options;
+
+
+  if (
+    options.length >= 5
+  ) {
+
+    options[0].textContent =
+      text.sortDefault;
+
+
+    options[1].textContent =
+      text.sortAZ;
+
+
+    options[2].textContent =
+      text.sortZA;
+
+
+    options[3].textContent =
+      text.sortSizeAsc;
+
+
+    options[4].textContent =
+      text.sortSizeDesc;
+
+  }
+
+
+  sortSelect.value =
+    currentSort;
+
+}
+
+
+/* =========================================================
+   CHANGE LANGUAGE
 ========================================================= */
 
 function setLanguage(lang) {
@@ -192,7 +624,7 @@ function setLanguage(lang) {
 
 
   localStorage.setItem(
-    'locan_lang',
+    "locan_lang",
     currentLang
   );
 
@@ -201,300 +633,319 @@ function setLanguage(lang) {
     currentLang;
 
 
-  /*
-    Keep language in URL
-  */
+  /* =====================================================
+     UPDATE URL
+  ====================================================== */
 
   const currentURL =
-    new URL(window.location.href);
+    new URL(
+      window.location.href
+    );
 
 
   currentURL.searchParams.set(
-    'lang',
+    "lang",
     currentLang
   );
 
 
   window.history.replaceState(
     {},
-    '',
-    `${currentURL.pathname}${currentURL.search}${currentURL.hash}`
+    "",
+    currentURL.pathname +
+    currentURL.search +
+    currentURL.hash
   );
 
 
-  /*
-    Language buttons
-  */
+  /* =====================================================
+     LANGUAGE BUTTONS
+  ====================================================== */
 
-  const btnVi =
-    document.getElementById('btn-vi');
-
-  const btnEn =
-    document.getElementById('btn-en');
-
-
-  if (btnVi) {
-    btnVi.classList.toggle(
-      'active',
-      currentLang === 'vi'
+  const viButton =
+    document.getElementById(
+      "btn-vi"
     );
+
+
+  const enButton =
+    document.getElementById(
+      "btn-en"
+    );
+
+
+  if (viButton) {
+
+    viButton.classList.toggle(
+      "active",
+      currentLang === "vi"
+    );
+
   }
 
 
-  if (btnEn) {
-    btnEn.classList.toggle(
-      'active',
-      currentLang === 'en'
+  if (enButton) {
+
+    enButton.classList.toggle(
+      "active",
+      currentLang === "en"
     );
+
   }
 
 
-  /*
-    Translation
-  */
-
-  const dictionary =
-    translations[currentLang] ||
-    translations.vi;
-
+  /* =====================================================
+     GENERAL TRANSLATION
+  ====================================================== */
 
   document
-    .querySelectorAll('[data-i18n]')
-    .forEach(element => {
+    .querySelectorAll(
+      "[data-i18n]"
+    )
+    .forEach(
+      element => {
 
-      const key =
-        element.getAttribute(
-          'data-i18n'
-        );
+        const key =
+          element.getAttribute(
+            "data-i18n"
+          );
 
 
-      if (dictionary[key]) {
-        element.textContent =
-          dictionary[key];
+        if (
+          translations[currentLang][key]
+        ) {
+
+          element.textContent =
+            translations[currentLang][key];
+
+        }
+
       }
+    );
 
-    });
 
+  updateSortInterface();
 
   renderGrid();
+
 }
 
 
 /* =========================================================
-   HOME PAGE GRID
+   RENDER COLLECTION
 ========================================================= */
 
 function renderGrid() {
 
   const grid =
     document.getElementById(
-      'sneaker-grid'
+      "sneaker-grid"
     );
 
-
-  /*
-    shoe.html does not contain sneaker-grid,
-    so simply stop here.
-  */
 
   if (!grid) {
     return;
   }
 
 
-  /*
-    Check dataset
-  */
+  /* =====================================================
+     DATA NOT LOADED
+  ====================================================== */
 
   if (
-    typeof sneakers === 'undefined' ||
-    !Array.isArray(sneakers) ||
-    sneakers.length === 0
+    typeof sneakers === "undefined" ||
+    !Array.isArray(sneakers)
   ) {
 
     grid.innerHTML = `
+
       <p class="collection-message">
+
         ${escapeHTML(
-          translations[currentLang].loading
+          translations[currentLang]
+            .loading
         )}
+
       </p>
+
     `;
 
     return;
+
   }
 
 
-  /*
-    Sort according to current language
-  */
-
-  const locale =
-    currentLang === 'vi'
-      ? 'vi'
-      : 'en';
-
+  /* =====================================================
+     SORT DATA
+  ====================================================== */
 
   const sortedSneakers =
-    [...sneakers].sort(
-      (a, b) =>
-
-        getLocalizedText(a.title)
-          .localeCompare(
-            getLocalizedText(b.title),
-            locale,
-            {
-              sensitivity: 'base'
-            }
-          )
-
+    sortSneakers(
+      sneakers
     );
 
 
-  /*
-    Create cards
-  */
+  /* =====================================================
+     GENERATE CARDS
+  ====================================================== */
 
   grid.innerHTML =
     sortedSneakers
-      .map(shoe => {
 
-        const title =
-          getLocalizedText(
-            shoe.title
-          );
+      .map(
+        sneaker => {
 
-
-        const subtitle =
-          getLocalizedText(
-            shoe.subtitle
-          );
+          const title =
+            getLocalizedText(
+              sneaker.title
+            );
 
 
-        const edition =
-          getLocalizedText(
-            shoe.editionType
-          );
+          const subtitle =
+            getLocalizedText(
+              sneaker.subtitle
+            );
 
 
-        const size =
-          shoe.size || '';
+          const editionType =
+            getLocalizedText(
+              sneaker.editionType
+            );
 
 
-        const image =
-          shoe.image || '';
+          const size =
+            sneaker.size ||
+            "N/A";
 
 
-        const shoeURL =
-          `shoe.html?id=${encodeURIComponent(shoe.id)}&lang=${encodeURIComponent(currentLang)}`;
+          const image =
+            sneaker.image ||
+            "";
 
 
-        const badgeHTML =
-          edition
+          const detailURL =
 
-            ? `
-              <span class="badge">
-                ${escapeHTML(edition)}
-              </span>
-            `
+            "shoe.html?id=" +
 
-            : `
-              <span
-                class="badge badge-placeholder"
-                aria-hidden="true"
-              >
-                &nbsp;
-              </span>
-            `;
+            encodeURIComponent(
+              sneaker.id
+            ) +
+
+            "&lang=" +
+
+            encodeURIComponent(
+              currentLang
+            );
 
 
-        return `
+          /* =================================================
+             BADGE
+          ================================================= */
 
-          <a
-            href="${shoeURL}"
-            class="card-link"
-            aria-label="${escapeHTML(title)}"
-          >
+          const badgeHTML =
+            editionType
 
-            <article class="card">
+              ? `
+                <span class="badge">
+                  ${escapeHTML(
+                    editionType
+                  )}
+                </span>
+              `
 
-
-              <div class="card-img-wrapper">
-
-                <img
-                  src="${escapeHTML(image)}"
-                  alt="${escapeHTML(title)}"
-                  loading="lazy"
-                  decoding="async"
+              : `
+                <span
+                  class="badge badge-placeholder"
+                  aria-hidden="true"
                 >
+                  —
+                </span>
+              `;
 
-              </div>
+
+          /* =================================================
+             CARD
+          ================================================= */
+
+          return `
+
+            <a
+              class="card-link"
+              href="${detailURL}"
+            >
+
+              <article class="card">
 
 
-              <div class="card-info">
+                <div class="card-img-wrapper">
 
-                <div>
+                  <img
+                    src="${escapeHTML(image)}"
+                    alt="${escapeHTML(title)}"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                </div>
+
+
+                <div class="card-info">
 
                   <h3>
                     ${escapeHTML(title)}
                   </h3>
 
+
                   <p class="subtitle">
                     ${escapeHTML(subtitle)}
                   </p>
 
+
+                  <div class="card-meta">
+
+                    ${badgeHTML}
+
+
+                    <span class="size">
+                      ${escapeHTML(size)}
+                    </span>
+
+                  </div>
+
                 </div>
 
 
-                <div class="card-meta">
+              </article>
 
-                  ${badgeHTML}
+            </a>
 
-                  <span class="size">
-                    ${escapeHTML(size)}
-                  </span>
+          `;
 
-                </div>
+        }
+      )
 
-              </div>
-
-
-            </article>
-
-          </a>
-
-        `;
-
-      })
-
-      .join('');
+      .join("");
 
 }
 
 
 /* =========================================================
-   INITIALIZATION
+   INITIAL PAGE LOAD
 ========================================================= */
 
 document.addEventListener(
-  'DOMContentLoaded',
+  "DOMContentLoaded",
   () => {
-
-    document.documentElement.lang =
-      currentLang;
-
-
-    /*
-      Only initialize homepage if
-      sneaker-grid exists.
-    */
 
     if (
       document.getElementById(
-        'sneaker-grid'
+        "sneaker-grid"
       )
     ) {
 
-      setLanguage(currentLang);
+      setLanguage(
+        currentLang
+      );
 
     }
 
