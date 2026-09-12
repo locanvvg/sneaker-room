@@ -3,19 +3,51 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Lộc An Collection - LEGO Archive">
-  <meta name="theme-color" content="#0d0d0d">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Lộc An Collection - Nike x LEGO Archive"
+  >
+
+  <meta
+    name="theme-color"
+    content="#0d0d0d"
+  >
 
   <title>LEGO | Lộc An Sneaker Collection</title>
 
-  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
-  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
-  <link rel="manifest" href="./site.webmanifest">
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="./favicon.svg"
+  >
 
-  <link rel="stylesheet" href="./style.css?v=20260912-14">
-  <link rel="stylesheet" href="./collection-menu.css?v=20260912-14">
+  <link
+    rel="apple-touch-icon"
+    href="./apple-touch-icon.png"
+  >
+
+  <link
+    rel="manifest"
+    href="./site.webmanifest"
+  >
+
+  <link
+    rel="stylesheet"
+    href="./style.css?v=20260912-15"
+  >
+
+  <link
+    rel="stylesheet"
+    href="./collection-menu.css?v=20260912-15"
+  >
 </head>
+
 
 <body>
 
@@ -24,139 +56,515 @@
     <header class="home-header">
 
       <div class="lang-switcher corner-lang">
-        <button type="button" id="btn-vi" class="lang-btn active" onclick="setCategoryLanguage('vi')">
+
+        <button
+          type="button"
+          id="btn-vi"
+          class="lang-btn active"
+          onclick="setLegoLanguage('vi')"
+        >
           VI
         </button>
 
-        <button type="button" id="btn-en" class="lang-btn" onclick="setCategoryLanguage('en')">
+        <button
+          type="button"
+          id="btn-en"
+          class="lang-btn"
+          onclick="setLegoLanguage('en')"
+        >
           EN
         </button>
+
       </div>
 
-      <h1>LỘC AN SNEAKER COLLECTION</h1>
 
-      <p class="category-header-subtitle" data-vi="Không gian lưu trữ & Bảo tàng Sneaker Kỹ thuật số" data-en="Digital Sneaker Archive & Museum">
+      <h1>
+        LỘC AN SNEAKER COLLECTION
+      </h1>
+
+
+      <p
+        id="lego-main-subtitle"
+        data-vi="Không gian lưu trữ & Bảo tàng Sneaker Kỹ thuật số"
+        data-en="Digital Sneaker Archive & Museum"
+      >
         Không gian lưu trữ &amp; Bảo tàng Sneaker Kỹ thuật số
       </p>
+
 
       <nav class="museum-nav">
 
         <details class="museum-nav-dropdown">
-          <summary class="museum-nav-link active collection-nav-trigger">
+
+          <summary
+            class="museum-nav-link active collection-nav-trigger"
+          >
             <span>COLLECTION</span>
-            <span class="collection-nav-arrow" aria-hidden="true">▾</span>
+
+            <span
+              class="collection-nav-arrow"
+              aria-hidden="true"
+            >
+              ▾
+            </span>
           </summary>
 
+
           <div class="museum-nav-submenu">
-            <a href="./index.html" class="museum-nav-submenu-link">SNEAKERS</a>
-            <a href="./lego.html" class="museum-nav-submenu-link active">LEGO</a>
-            <a href="./sneaker-mask.html" class="museum-nav-submenu-link">SNEAKER MASK</a>
+
+            <a
+              href="./index.html"
+              class="museum-nav-submenu-link"
+            >
+              SNEAKERS
+            </a>
+
+            <a
+              href="./lego.html"
+              class="museum-nav-submenu-link active"
+            >
+              LEGO
+            </a>
+
+            <a
+              href="./sneaker-mask.html"
+              class="museum-nav-submenu-link"
+            >
+              SNEAKER MASK
+            </a>
+
           </div>
+
         </details>
 
-        <a href="./about.html" class="museum-nav-link">ABOUT</a>
+
+        <a
+          href="./about.html"
+          class="museum-nav-link"
+        >
+          ABOUT
+        </a>
+
       </nav>
 
     </header>
 
-    <main class="collection-category-page">
 
-      <section class="collection-category-hero category-lang-panel" data-lang="vi">
-        <p class="collection-category-eyebrow">COLLECTION / LEGO</p>
-        <h2>LEGO Nike</h2>
-        <p>
-          Khu vực lưu trữ dành cho các bộ LEGO Nike trong Lộc An Collection.
-          Hai bộ LEGO Nike của bộ sưu tập sẽ được ghi nhận tại đây theo cùng tinh thần catalogue:
-          hình ảnh, mã sản phẩm, ngày phát hành, giá retail và câu chuyện thiết kế.
+    <main>
+
+      <section
+        class="collection-category-hero"
+        style="margin-bottom: 24px;"
+      >
+
+        <p class="collection-category-eyebrow">
+          COLLECTION / LEGO
         </p>
-      </section>
 
-      <section class="collection-category-hero category-lang-panel" data-lang="en" hidden>
-        <p class="collection-category-eyebrow">COLLECTION / LEGO</p>
-        <h2>Nike LEGO</h2>
-        <p>
-          An archive for Nike LEGO objects within the Lộc An Collection.
-          The collection's two Nike LEGO sets will be documented here using the same catalogue approach:
-          imagery, product code, release date, retail price, and design story.
+
+        <h2 id="lego-page-title">
+          Nike x LEGO
+        </h2>
+
+
+        <p
+          id="lego-page-description"
+          data-vi="Kho lưu trữ dành cho các bộ Nike x LEGO trong Lộc An Sneaker Collection — nơi sneaker culture, basketball và thiết kế LEGO được kết nối trong cùng một hệ thống catalogue."
+          data-en="An archive dedicated to Nike x LEGO sets within the Lộc An Sneaker Collection — where sneaker culture, basketball and LEGO design are documented within one catalogue system."
+        >
+          Kho lưu trữ dành cho các bộ Nike x LEGO trong
+          Lộc An Sneaker Collection — nơi sneaker culture,
+          basketball và thiết kế LEGO được kết nối
+          trong cùng một hệ thống catalogue.
         </p>
+
       </section>
 
-      <section class="collection-category-status">
-        <div class="collection-category-stat">
-          <span class="collection-category-stat-label category-text" data-vi="DANH MỤC" data-en="CATEGORY">DANH MỤC</span>
-          <span class="collection-category-stat-value">LEGO</span>
-        </div>
 
-        <div class="collection-category-stat">
-          <span class="collection-category-stat-label category-text" data-vi="HIỆN CÓ" data-en="OWNED">HIỆN CÓ</span>
-          <span class="collection-category-stat-value category-text" data-vi="2 BỘ NIKE LEGO" data-en="2 NIKE LEGO SETS">2 BỘ NIKE LEGO</span>
-        </div>
+      <div
+        id="lego-count"
+        class="collection-count"
+      >
+        TỔNG SỐ: 2 BỘ
+      </div>
 
-        <div class="collection-category-stat">
-          <span class="collection-category-stat-label category-text" data-vi="TRẠNG THÁI HỒ SƠ" data-en="ARCHIVE STATUS">TRẠNG THÁI HỒ SƠ</span>
-          <span class="collection-category-stat-value category-text" data-vi="ĐANG BỔ SUNG" data-en="IN PROGRESS">ĐANG BỔ SUNG</span>
-        </div>
-      </section>
 
-      <section class="collection-category-empty category-lang-panel" data-lang="vi">
-        <strong>Hồ sơ LEGO sẽ được thêm tiếp.</strong>
-        Khi có tên chính xác, hình ảnh, SKU và thông tin của từng bộ, các item sẽ được hiển thị dạng card giống collection sneaker.
-      </section>
-
-      <section class="collection-category-empty category-lang-panel" data-lang="en" hidden>
-        <strong>LEGO records will be added next.</strong>
-        Once each set's exact name, imagery, SKU, and release information are available, the items can be displayed as archive cards like the sneaker collection.
-      </section>
+      <div
+        id="lego-grid"
+        class="grid"
+      ></div>
 
     </main>
 
+
     <footer>
-      <p>&copy; 2026 Lộc An Sneaker Collection. All Rights Reserved.</p>
+
+      <p>
+        &copy; 2026 Lộc An Sneaker Collection.
+        All Rights Reserved.
+      </p>
+
     </footer>
 
   </div>
 
-  <script>
-    const CATEGORY_LANGUAGES = ["vi", "en"];
 
-    let categoryLanguage =
-      new URLSearchParams(window.location.search).get("lang") ||
-      localStorage.getItem("locan_lang") ||
+  <script src="./lego-data.js?v=20260912-15"></script>
+
+
+  <script>
+
+    const LEGO_LANGUAGES = [
+      "vi",
+      "en"
+    ];
+
+
+    let legoLanguage =
+      new URLSearchParams(
+        window.location.search
+      ).get("lang")
+
+      ||
+
+      localStorage.getItem(
+        "locan_lang"
+      )
+
+      ||
+
       "vi";
 
-    if (!CATEGORY_LANGUAGES.includes(categoryLanguage)) {
-      categoryLanguage = "vi";
+
+    if (
+      !LEGO_LANGUAGES.includes(
+        legoLanguage
+      )
+    ) {
+      legoLanguage = "vi";
     }
 
-    function setCategoryLanguage(lang) {
-      categoryLanguage = CATEGORY_LANGUAGES.includes(lang) ? lang : "vi";
-      localStorage.setItem("locan_lang", categoryLanguage);
-      document.documentElement.lang = categoryLanguage;
 
-      document.getElementById("btn-vi").classList.toggle("active", categoryLanguage === "vi");
-      document.getElementById("btn-en").classList.toggle("active", categoryLanguage === "en");
+    function numberWithComma(value) {
 
-      document.querySelectorAll(".category-lang-panel").forEach(element => {
-        element.hidden = element.dataset.lang !== categoryLanguage;
-      });
+      return Number(value)
+        .toLocaleString("en-CA");
 
-      document.querySelectorAll(".category-text").forEach(element => {
-        element.textContent = element.dataset[categoryLanguage] || element.textContent;
-      });
+    }
 
-      const subtitle = document.querySelector(".category-header-subtitle");
-      if (subtitle) {
-        subtitle.textContent = subtitle.dataset[categoryLanguage];
+
+    function setLegoLanguage(lang) {
+
+      legoLanguage =
+        LEGO_LANGUAGES.includes(lang)
+          ? lang
+          : "vi";
+
+
+      localStorage.setItem(
+        "locan_lang",
+        legoLanguage
+      );
+
+
+      document.documentElement.lang =
+        legoLanguage;
+
+
+      document
+        .getElementById("btn-vi")
+        .classList
+        .toggle(
+          "active",
+          legoLanguage === "vi"
+        );
+
+
+      document
+        .getElementById("btn-en")
+        .classList
+        .toggle(
+          "active",
+          legoLanguage === "en"
+        );
+
+
+      document
+        .getElementById(
+          "lego-main-subtitle"
+        )
+        .textContent =
+          document
+            .getElementById(
+              "lego-main-subtitle"
+            )
+            .dataset[
+              legoLanguage
+            ];
+
+
+      document
+        .getElementById(
+          "lego-page-description"
+        )
+        .textContent =
+          document
+            .getElementById(
+              "lego-page-description"
+            )
+            .dataset[
+              legoLanguage
+            ];
+
+
+      document
+        .getElementById(
+          "lego-count"
+        )
+        .textContent =
+          legoLanguage === "vi"
+            ? `TỔNG SỐ: ${legoSets.length} BỘ`
+            : `TOTAL: ${legoSets.length} SETS`;
+
+
+      renderLegoCollection();
+
+
+      const url =
+        new URL(
+          window.location.href
+        );
+
+
+      url.searchParams.set(
+        "lang",
+        legoLanguage
+      );
+
+
+      window.history.replaceState(
+        {},
+        "",
+        url.pathname +
+        url.search +
+        url.hash
+      );
+
+    }
+
+
+    function renderLegoCollection() {
+
+      const grid =
+        document.getElementById(
+          "lego-grid"
+        );
+
+
+      grid.innerHTML = "";
+
+
+      legoSets.forEach(
+        lego => {
+
+          const link =
+            document.createElement(
+              "a"
+            );
+
+
+          link.className =
+            "card-link";
+
+
+          link.href =
+            `./lego-detail.html?id=${encodeURIComponent(lego.id)}&lang=${legoLanguage}`;
+
+
+          const card =
+            document.createElement(
+              "article"
+            );
+
+
+          card.className =
+            "card";
+
+
+          const imageWrapper =
+            document.createElement(
+              "div"
+            );
+
+
+          imageWrapper.className =
+            "card-img-wrapper";
+
+
+          const image =
+            document.createElement(
+              "img"
+            );
+
+
+          image.src =
+            lego.image;
+
+
+          image.alt =
+            lego.title[
+              legoLanguage
+            ];
+
+
+          image.loading =
+            "lazy";
+
+
+          imageWrapper.appendChild(
+            image
+          );
+
+
+          const info =
+            document.createElement(
+              "div"
+            );
+
+
+          info.className =
+            "card-info";
+
+
+          const title =
+            document.createElement(
+              "h3"
+            );
+
+
+          title.textContent =
+            lego.title[
+              legoLanguage
+            ];
+
+
+          const subtitle =
+            document.createElement(
+              "p"
+            );
+
+
+          subtitle.className =
+            "subtitle";
+
+
+          subtitle.textContent =
+            lego.subtitle[
+              legoLanguage
+            ];
+
+
+          const meta =
+            document.createElement(
+              "div"
+            );
+
+
+          meta.className =
+            "card-meta";
+
+
+          const badge =
+            document.createElement(
+              "span"
+            );
+
+
+          badge.className =
+            "badge";
+
+
+          badge.textContent =
+            "NIKE x LEGO";
+
+
+          const pieces =
+            document.createElement(
+              "span"
+            );
+
+
+          pieces.className =
+            "size";
+
+
+          pieces.textContent =
+            `${numberWithComma(
+              lego.pieces
+            )} PCS`;
+
+
+          meta.appendChild(
+            badge
+          );
+
+
+          meta.appendChild(
+            pieces
+          );
+
+
+          info.appendChild(
+            title
+          );
+
+
+          info.appendChild(
+            subtitle
+          );
+
+
+          info.appendChild(
+            meta
+          );
+
+
+          card.appendChild(
+            imageWrapper
+          );
+
+
+          card.appendChild(
+            info
+          );
+
+
+          link.appendChild(
+            card
+          );
+
+
+          grid.appendChild(
+            link
+          );
+
+        }
+      );
+
+    }
+
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      () => {
+
+        setLegoLanguage(
+          legoLanguage
+        );
+
       }
+    );
 
-      const url = new URL(window.location.href);
-      url.searchParams.set("lang", categoryLanguage);
-      window.history.replaceState({}, "", url.pathname + url.search + url.hash);
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      setCategoryLanguage(categoryLanguage);
-    });
   </script>
 
 </body>
