@@ -7,202 +7,70 @@
   <link rel="stylesheet" href="style.css">
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      background: #0a0a0c;
-      color: #fff;
+      margin: 0; padding: 0;
+      background: #0a0a0c; color: #fff;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      overflow-x: hidden;
-      touch-action: pan-y;
+      overflow-x: hidden; touch-action: pan-y;
     }
     .vault-container {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      position: relative;
+      min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; padding: 20px; position: relative;
     }
-    .vault-header {
-      text-align: center;
-      margin-bottom: 20px;
-      z-index: 2;
-    }
-    .vault-header h1 {
-      font-size: 1.8rem;
-      letter-spacing: 3px;
-      margin: 0 0 5px 0;
-      color: #fff;
-      text-transform: uppercase;
-    }
-    .vault-header p {
-      color: #777;
-      font-size: 0.75rem;
-      letter-spacing: 2px;
-      margin: 0;
-    }
+    .vault-header { text-align: center; margin-bottom: 20px; z-index: 2; }
+    .vault-header h1 { font-size: 1.8rem; letter-spacing: 3px; margin: 0 0 5px 0; text-transform: uppercase; }
+    .vault-header p { color: #777; font-size: 0.75rem; letter-spacing: 2px; margin: 0; }
     .safe-dial-container {
-      position: relative;
-      width: 240px;
-      height: 240px;
-      margin: 10px auto 25px auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 2;
+      position: relative; width: 240px; height: 240px; margin: 10px auto 25px auto;
+      display: flex; align-items: center; justify-content: center; z-index: 2;
     }
     .dial-ring-outer {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      border: 2px dashed rgba(255, 204, 0, 0.3);
-      box-shadow: 0 0 25px rgba(0,0,0,0.8) inset;
-      pointer-events: none;
+      position: absolute; width: 100%; height: 100%; border-radius: 50%;
+      border: 2px dashed rgba(255, 204, 0, 0.3); box-shadow: 0 0 25px rgba(0,0,0,0.8) inset; pointer-events: none;
     }
     .safe-dial {
-      width: 190px;
-      height: 190px;
+      width: 190px; height: 190px;
       background: radial-gradient(circle at 30% 30%, #2c2c30 0%, #121215 70%, #08080a 100%);
-      border-radius: 50%;
-      border: 4px solid #3a3a40;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.9), 
-                  inset 0 2px 5px rgba(255,255,255,0.15),
-                  inset 0 -4px 8px rgba(0,0,0,0.8);
-      position: relative;
-      cursor: grab;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      user-select: none;
-      touch-action: none;
+      border-radius: 50%; border: 4px solid #3a3a40;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.9), inset 0 2px 5px rgba(255,255,255,0.15), inset 0 -4px 8px rgba(0,0,0,0.8);
+      position: relative; cursor: grab; display: flex; align-items: center; justify-content: center;
+      user-select: none; touch-action: none; will-change: transform;
     }
-    .safe-dial:active {
-      cursor: grabbing;
-    }
+    .safe-dial:active { cursor: grabbing; }
     .dial-center-cap {
-      width: 70px;
-      height: 70px;
-      background: linear-gradient(135deg, #222 0%, #111 100%);
-      border-radius: 50%;
-      border: 2px solid #444;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.6);
-      pointer-events: none;
+      width: 70px; height: 70px; background: linear-gradient(135deg, #222 0%, #111 100%);
+      border-radius: 50%; border: 2px solid #444; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.6); pointer-events: none;
     }
-    .dial-center-cap span {
-      font-size: 0.6rem;
-      color: #777;
-      letter-spacing: 1px;
-    }
-    .dial-center-cap strong {
-      font-size: 0.8rem;
-      color: #ffcc00;
-      letter-spacing: 1px;
-    }
+    .dial-center-cap span { font-size: 0.6rem; color: #777; letter-spacing: 1px; }
+    .dial-center-cap strong { font-size: 0.8rem; color: #ffcc00; letter-spacing: 1px; }
     .dial-marker {
-      position: absolute;
-      top: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 0;
-      height: 0;
-      border-left: 7px solid transparent;
-      border-right: 7px solid transparent;
-      border-bottom: 12px solid #ffcc00;
-      z-index: 10;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+      position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+      width: 0; height: 0; border-left: 7px solid transparent; border-right: 7px solid transparent;
+      border-bottom: 12px solid #ffcc00; z-index: 10; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
     }
     .dial-notch {
-      position: absolute;
-      width: 4px;
-      height: 10px;
-      background: #555;
-      top: 5px;
-      left: calc(50% - 2px);
-      transform-origin: 50% 90px;
-      pointer-events: none;
+      position: absolute; width: 4px; height: 10px; background: #555;
+      top: 5px; left: calc(50% - 2px); transform-origin: 50% 90px; pointer-events: none;
     }
     .vault-wing-display {
-      width: 100%;
-      max-width: 360px;
-      background: #141417;
-      border: 1px solid #2a2a30;
-      border-radius: 12px;
-      padding: 15px;
-      text-align: center;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-      z-index: 2;
+      width: 100%; max-width: 360px; background: #141417; border: 1px solid #2a2a30;
+      border-radius: 12px; padding: 15px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.5); z-index: 2;
     }
-    .vault-wing-preview {
-      width: 100%;
-      height: 160px;
-      border-radius: 8px;
-      object-fit: cover;
-      margin-bottom: 12px;
-      background: #1a1a1f;
-      border: 1px solid #333;
-    }
-    .vault-wing-info h3 {
-      font-size: 1.2rem;
-      margin: 0 0 5px 0;
-      letter-spacing: 1px;
-    }
-    .status {
-      font-size: 0.75rem;
-      letter-spacing: 2px;
-      margin-bottom: 12px;
-      display: inline-block;
-      padding: 4px 10px;
-      border-radius: 4px;
-    }
-    .status.unlocked {
-      background: rgba(46, 204, 113, 0.15);
-      color: #2ecc71;
-      border: 1px solid rgba(46, 204, 113, 0.3);
-    }
-    .status.locked {
-      background: rgba(231, 76, 60, 0.15);
-      color: #e74c3c;
-      border: 1px solid rgba(231, 76, 60, 0.3);
-    }
+    .vault-wing-preview { width: 100%; height: 160px; border-radius: 8px; object-fit: cover; margin-bottom: 12px; background: #1a1a1f; border: 1px solid #333; }
+    .vault-wing-info h3 { font-size: 1.2rem; margin: 0 0 5px 0; letter-spacing: 1px; }
+    .status { font-size: 0.75rem; letter-spacing: 2px; margin-bottom: 12px; display: inline-block; padding: 4px 10px; border-radius: 4px; }
+    .status.unlocked { background: rgba(46, 204, 113, 0.15); color: #2ecc71; border: 1px solid rgba(46, 204, 113, 0.3); }
+    .status.locked { background: rgba(231, 76, 60, 0.15); color: #e74c3c; border: 1px solid rgba(231, 76, 60, 0.3); }
     .vault-action-btn {
-      display: block;
-      width: 100%;
-      padding: 12px;
-      background: #ffcc00;
-      color: #000;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 8px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      border: none;
-      cursor: pointer;
-      box-sizing: border-box;
+      display: block; width: 100%; padding: 12px; background: #ffcc00; color: #000;
+      text-decoration: none; font-weight: bold; border-radius: 8px; letter-spacing: 1px;
+      text-transform: uppercase; border: none; cursor: pointer; box-sizing: border-box;
     }
-    .vault-action-btn.disabled {
-      background: #222;
-      color: #666;
-      cursor: not-allowed;
-      pointer-events: none;
-    }
-    .vault-instruction {
-      margin-top: 20px;
-      font-size: 0.75rem;
-      color: #666;
-      letter-spacing: 1px;
-      text-align: center;
-      z-index: 2;
-    }
+    .vault-action-btn.disabled { background: #222; color: #666; cursor: not-allowed; pointer-events: none; }
+    .vault-instruction { margin-top: 20px; font-size: 0.75rem; color: #666; letter-spacing: 1px; text-align: center; z-index: 2; }
   </style>
 </head>
 <body>
-
   <main class="vault-container">
     <div class="vault-header">
       <h1>Lộc An Vault</h1>
@@ -212,7 +80,6 @@
     <div class="safe-dial-container">
       <div class="dial-marker"></div>
       <div class="dial-ring-outer"></div>
-      
       <div id="safeDial" class="safe-dial">
         <script>
           for (let i = 0; i < 12; i++) {
@@ -235,47 +102,23 @@
       </div>
     </div>
 
-    <div class="vault-instruction">
-      XOAY BÁNH XE HOẶC VUỐT ĐỂ CHUYỂN KHU VỰC
-    </div>
+    <div class="vault-instruction">XOAY BÁNH XE HOẶC VUỐT ĐỂ CHUYỂN KHU VỰC</div>
   </main>
 
   <script>
     const vaultWings = [
-      {
-        id: 1,
-        title: "Sneakers",
-        status: "unlocked",
-        statusText: "[ UNLOCKED ]",
-        image: "jordan1_pe_bloodline_friendsandfamily_sample.png",
-        link: "sneakers.html",
-        btnText: "TRUY CẬP KHO LƯU TRỮ",
-        angle: 0
-      },
-      {
-        id: 2,
-        title: "Lego",
-        status: "locked",
-        statusText: "[ LOCKED / COMING SOON ]",
-        image: "",
-        link: "#",
-        btnText: "ĐANG KHÓA BẢO MẬT",
-        angle: 120
-      },
-      {
-        id: 3,
-        title: "Cameras & Tech",
-        status: "locked",
-        statusText: "[ LOCKED / COMING SOON ]",
-        image: "",
-        link: "#",
-        btnText: "ĐANG KHÓA BẢO MẬT",
-        angle: 240
-      }
+      { id: 1, title: "Sneakers", status: "unlocked", statusText: "[ UNLOCKED ]", image: "jordan1_pe_bloodline_friendsandfamily_sample.png", link: "sneakers.html", btnText: "TRUY CẬP KHO LƯU TRỮ", angle: 0 },
+      { id: 2, title: "Lego", status: "locked", statusText: "[ LOCKED / COMING SOON ]", image: "", link: "#", btnText: "ĐANG KHÓA BẢO MẬT", angle: 120 },
+      { id: 3, title: "Cameras & Tech", status: "locked", statusText: "[ LOCKED / COMING SOON ]", image: "", link: "#", btnText: "ĐANG KHÓA BẢO MẬT", angle: 240 }
     ];
 
     let currentDialAngle = 0;
+    let targetAngle = 0;
     let currentIndex = 0;
+    let isInteracting = false;
+    let startAngle = 0;
+    let rafId = null;
+
     const dial = document.getElementById('safeDial');
     const zoneIndicator = document.getElementById('zoneIndicator');
     const wingImg = document.getElementById('wingImg');
@@ -288,7 +131,6 @@
       zoneIndicator.innerText = `0${wing.id}`;
       wingTitle.innerText = wing.title;
       wingStatus.innerText = wing.statusText;
-      
       if (wing.status === 'unlocked') {
         wingStatus.className = 'status unlocked';
         wingLink.className = 'vault-action-btn';
@@ -298,28 +140,27 @@
         wingLink.className = 'vault-action-btn disabled';
         wingLink.href = '#';
       }
-
       wingLink.innerText = wing.btnText;
-      if (wing.image) {
-        wingImg.src = wing.image;
-        wingImg.style.display = 'block';
-      } else {
-        wingImg.style.display = 'none';
+      if (wing.image) { wingImg.src = wing.image; wingImg.style.display = 'block'; }
+      else { wingImg.style.display = 'none'; }
+    }
+
+    function smoothRotate() {
+      currentDialAngle += (targetAngle - currentDialAngle) * 0.2;
+      dial.style.transform = `rotate(${currentDialAngle}deg)`;
+      if (Math.abs(targetAngle - currentDialAngle) > 0.1) {
+        rafId = requestAnimationFrame(smoothRotate);
       }
     }
 
-    let isInteracting = false;
-    let startAngle = 0;
-
     function getAngle(clientX, clientY) {
       const rect = dial.getBoundingClientRect();
-      const centerx = rect.left + rect.width / 2;
-      const centery = rect.top + rect.height / 2;
-      return Math.atan2(clientY - centery, clientX - centerx) * (180 / Math.PI);
+      return Math.atan2(clientY - (rect.top + rect.height / 2), clientX - (rect.left + rect.width / 2)) * (180 / Math.PI);
     }
 
     function startInteraction(clientX, clientY) {
       isInteracting = true;
+      cancelAnimationFrame(rafId);
       startAngle = getAngle(clientX, clientY) - currentDialAngle;
     }
 
@@ -329,22 +170,22 @@
       dial.style.transform = `rotate(${currentDialAngle}deg)`;
 
       let normalizedAngle = (currentDialAngle % 360 + 360) % 360;
-      if (normalizedAngle >= 300 || normalizedAngle < 60) {
-        if (currentIndex !== 0) { currentIndex = 0; updateVaultDisplay(currentIndex); }
-      } else if (normalizedAngle >= 60 && normalizedAngle < 180) {
-        if (currentIndex !== 1) { currentIndex = 1; updateVaultDisplay(currentIndex); }
-      } else if (normalizedAngle >= 180 && normalizedAngle < 300) {
-        if (currentIndex !== 2) { currentIndex = 2; updateVaultDisplay(currentIndex); }
+      let newIndex = 0;
+      if (normalizedAngle >= 300 || normalizedAngle < 60) newIndex = 0;
+      else if (normalizedAngle >= 60 && normalizedAngle < 180) newIndex = 1;
+      else newIndex = 2;
+
+      if (currentIndex !== newIndex) {
+        currentIndex = newIndex;
+        updateVaultDisplay(currentIndex);
       }
     }
 
     function endInteraction() {
       if (!isInteracting) return;
       isInteracting = false;
-      currentDialAngle = vaultWings[currentIndex].angle;
-      dial.style.transition = 'transform 0.4s cubic-bezier(0.15, 0.85, 0.35, 1.2)';
-      dial.style.transform = `rotate(${currentDialAngle}deg)`;
-      setTimeout(() => { dial.style.transition = 'none'; }, 400);
+      targetAngle = vaultWings[currentIndex].angle;
+      smoothRotate();
     }
 
     dial.addEventListener('mousedown', (e) => { startInteraction(e.clientX, e.clientY); e.preventDefault(); });
@@ -352,32 +193,20 @@
     window.addEventListener('mouseup', () => { endInteraction(); });
 
     dial.addEventListener('touchstart', (e) => {
-      if (e.touches.length === 1) {
-        startInteraction(e.touches[0].clientX, e.touches[0].clientY);
-        e.preventDefault();
-      }
+      if (e.touches.length === 1) { startInteraction(e.touches[0].clientX, e.touches[0].clientY); e.preventDefault(); }
     }, { passive: false });
-
     window.addEventListener('touchmove', (e) => {
-      if (isInteracting && e.touches.length === 1) {
-        moveInteraction(e.touches[0].clientX, e.touches[0].clientY);
-        e.preventDefault();
-      }
+      if (isInteracting && e.touches.length === 1) { moveInteraction(e.touches[0].clientX, e.touches[0].clientY); e.preventDefault(); }
     }, { passive: false });
-
     window.addEventListener('touchend', () => { endInteraction(); });
 
     window.addEventListener('wheel', (e) => {
-      if (e.deltaY > 0) {
-        currentIndex = (currentIndex + 1) % vaultWings.length;
-      } else {
-        currentIndex = (currentIndex - 1 + vaultWings.length) % vaultWings.length;
-      }
-      currentDialAngle = vaultWings[currentIndex].angle;
-      dial.style.transition = 'transform 0.4s cubic-bezier(0.15, 0.85, 0.35, 1.2)';
-      dial.style.transform = `rotate(${currentDialAngle}deg)`;
-      setTimeout(() => { dial.style.transition = 'none'; }, 400);
+      currentIndex = e.deltaY > 0 ? (currentIndex + 1) % vaultWings.length : (currentIndex - 1 + vaultWings.length) % vaultWings.length;
+      targetAngle = vaultWings[currentIndex].angle;
+      cancelAnimationFrame(rafId);
+      smoothRotate();
       updateVaultDisplay(currentIndex);
+      e.preventDefault();
     }, { passive: false });
 
     updateVaultDisplay(0);
