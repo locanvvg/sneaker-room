@@ -5,18 +5,15 @@
 
   <meta charset="UTF-8">
 
-
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0"
   >
 
-
   <meta
     name="description"
     content="Lộc An Sneaker Collection - Sneaker Exhibition Detail"
   >
-
 
   <title>
     Lộc An Sneaker Collection
@@ -25,7 +22,7 @@
 
   <link
     rel="stylesheet"
-    href="style.css?v=20260912-4"
+    href="style.css?v=20260912-6"
   >
 
 </head>
@@ -37,9 +34,7 @@
   <div class="container">
 
 
-    <!-- ======================================
-         HEADER
-    ======================================= -->
+    <!-- HEADER -->
 
     <header class="site-header">
 
@@ -88,17 +83,13 @@
 
 
 
-    <!-- ======================================
-         SHOE DETAIL
-    ======================================= -->
+    <!-- DETAIL -->
 
     <main
       id="shoe-detail"
       class="shoe-detail-container"
     >
 
-
-      <!-- IMAGE -->
 
       <div class="shoe-image-section">
 
@@ -112,8 +103,6 @@
       </div>
 
 
-
-      <!-- INFORMATION -->
 
       <div class="shoe-info-section">
 
@@ -248,9 +237,7 @@
 
 
 
-    <!-- ======================================
-         STORY
-    ======================================= -->
+    <!-- STORY -->
 
     <section
       class="story-section"
@@ -270,10 +257,6 @@
 
 
 
-    <!-- ======================================
-         FOOTER
-    ======================================= -->
-
     <footer>
 
       <p>
@@ -288,24 +271,11 @@
 
 
 
-  <!-- ======================================
-       DATA
-  ======================================= -->
-
-  <script src="data.js?v=20260912-3"></script>
+  <script src="data.js?v=20260912-6"></script>
 
 
-
-  <!-- ======================================
-       DETAIL PAGE JAVASCRIPT
-  ======================================= -->
 
   <script>
-
-
-    /* ==========================================
-       LANGUAGE
-    ========================================== */
 
     const supportedLanguages = [
       'vi',
@@ -322,17 +292,14 @@
     }
 
 
-
     const params =
       new URLSearchParams(
         window.location.search
       );
 
 
-
     const shoeId =
       params.get('id');
-
 
 
     let currentLang =
@@ -349,17 +316,12 @@
       );
 
 
-
     localStorage.setItem(
       'locan_lang',
       currentLang
     );
 
 
-
-    /* ==========================================
-       LABELS
-    ========================================== */
 
     const labels = {
 
@@ -394,7 +356,6 @@
           'Không tìm thấy thông tin tác phẩm này.'
 
       },
-
 
 
       en: {
@@ -433,12 +394,7 @@
 
 
 
-    /* ==========================================
-       LOCALIZED VALUE
-    ========================================== */
-
     function localized(value) {
-
 
       if (!value) {
         return '';
@@ -466,14 +422,9 @@
 
       );
 
-
     }
 
 
-
-    /* ==========================================
-       DATE FORMAT
-    ========================================== */
 
     function formatDate(value) {
 
@@ -483,10 +434,6 @@
       }
 
 
-
-      /*
-        YYYY-MM-DD
-      */
 
       if (
         /^\d{4}-\d{2}-\d{2}$/.test(value)
@@ -503,7 +450,6 @@
             .map(Number);
 
 
-
         const date =
           new Date(
 
@@ -514,7 +460,6 @@
             )
 
           );
-
 
 
         return date.toLocaleDateString(
@@ -544,14 +489,9 @@
 
         );
 
-
       }
 
 
-
-      /*
-        YYYY-MM
-      */
 
       if (
         /^\d{4}-\d{2}$/.test(value)
@@ -567,7 +507,6 @@
             .map(Number);
 
 
-
         const date =
           new Date(
 
@@ -578,7 +517,6 @@
             )
 
           );
-
 
 
         return date.toLocaleDateString(
@@ -605,21 +543,14 @@
 
         );
 
-
       }
-
 
 
       return value;
 
-
     }
 
 
-
-    /* ==========================================
-       CHANGE LANGUAGE
-    ========================================== */
 
     function changeLang(lang) {
 
@@ -628,12 +559,10 @@
         normalizeLanguage(lang);
 
 
-
       localStorage.setItem(
         'locan_lang',
         currentLang
       );
-
 
 
       const newURL =
@@ -642,12 +571,10 @@
         );
 
 
-
       newURL.searchParams.set(
         'lang',
         currentLang
       );
-
 
 
       window.history.replaceState(
@@ -663,17 +590,11 @@
       );
 
 
-
       loadShoe();
-
 
     }
 
 
-
-    /* ==========================================
-       UPDATE LANGUAGE INTERFACE
-    ========================================== */
 
     function updateLanguageInterface() {
 
@@ -682,38 +603,24 @@
         currentLang;
 
 
-
       const language =
         labels[currentLang];
 
 
-
       document
-        .getElementById(
-          'btn-vi'
-        )
+        .getElementById('btn-vi')
         .classList.toggle(
-
           'active',
-
           currentLang === 'vi'
-
         );
-
 
 
       document
-        .getElementById(
-          'btn-en'
-        )
+        .getElementById('btn-en')
         .classList.toggle(
-
           'active',
-
           currentLang === 'en'
-
         );
-
 
 
       const backLink =
@@ -722,10 +629,8 @@
         );
 
 
-
       backLink.textContent =
         language.back;
-
 
 
       backLink.href =
@@ -733,7 +638,6 @@
         encodeURIComponent(
           currentLang
         );
-
 
 
       document
@@ -744,14 +648,12 @@
         language.sku;
 
 
-
       document
         .getElementById(
           'label-colorway'
         )
         .textContent =
         language.colorway;
-
 
 
       document
@@ -762,14 +664,12 @@
         language.retail;
 
 
-
       document
         .getElementById(
           'label-date'
         )
         .textContent =
         language.date;
-
 
 
       document
@@ -780,14 +680,12 @@
         language.condition;
 
 
-
       document
         .getElementById(
           'label-size'
         )
         .textContent =
         language.size;
-
 
 
       document
@@ -797,14 +695,9 @@
         .textContent =
         language.story;
 
-
     }
 
 
-
-    /* ==========================================
-       LOAD SHOE
-    ========================================== */
 
     function loadShoe() {
 
@@ -812,26 +705,19 @@
       updateLanguageInterface();
 
 
-
       if (
 
-        typeof sneakers ===
-          'undefined' ||
+        typeof sneakers === 'undefined' ||
 
-        !Array.isArray(
-          sneakers
-        )
+        !Array.isArray(sneakers)
 
       ) {
-
 
         showNotFound();
 
         return;
 
-
       }
-
 
 
       const sneaker =
@@ -843,17 +729,13 @@
         );
 
 
-
       if (!sneaker) {
-
 
         showNotFound();
 
         return;
 
-
       }
-
 
 
       document
@@ -864,18 +746,15 @@
         'block';
 
 
-
       const title =
         localized(
           sneaker.title
         );
 
 
-
       document.title =
         title +
         ' | Lộc An Sneaker Collection';
-
 
 
       document
@@ -884,7 +763,6 @@
         )
         .textContent =
         title;
-
 
 
       document
@@ -897,7 +775,6 @@
         );
 
 
-
       document
         .getElementById(
           'shoe-sku'
@@ -905,7 +782,6 @@
         .textContent =
         sneaker.sku ||
         'N/A';
-
 
 
       document
@@ -917,7 +793,6 @@
         'N/A';
 
 
-
       document
         .getElementById(
           'shoe-retail'
@@ -925,7 +800,6 @@
         .textContent =
         sneaker.retailPrice ||
         'N/A';
-
 
 
       document
@@ -936,7 +810,6 @@
         formatDate(
           sneaker.releaseDate
         );
-
 
 
       document
@@ -950,7 +823,6 @@
         'N/A';
 
 
-
       document
         .getElementById(
           'shoe-size'
@@ -960,12 +832,10 @@
         'N/A';
 
 
-
       const image =
         document.getElementById(
           'shoe-image'
         );
-
 
 
       image.src =
@@ -973,10 +843,8 @@
         '';
 
 
-
       image.alt =
         title;
-
 
 
       document
@@ -988,14 +856,9 @@
           sneaker.story
         );
 
-
     }
 
 
-
-    /* ==========================================
-       NOT FOUND
-    ========================================== */
 
     function showNotFound() {
 
@@ -1004,7 +867,6 @@
         labels[
           currentLang
         ].notFound;
-
 
 
       document
@@ -1024,7 +886,6 @@
         `;
 
 
-
       document
         .getElementById(
           'story-section'
@@ -1032,14 +893,9 @@
         .style.display =
         'none';
 
-
     }
 
 
-
-    /* ==========================================
-       INITIALIZE
-    ========================================== */
 
     document.addEventListener(
       'DOMContentLoaded',
