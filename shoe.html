@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sneaker Detail — Exhibition Catalog</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1 id="shoe-title">SNEAKER CATALOG</h1>
+      <p id="shoe-subtitle"></p>
+    </header>
+
+    <main id="content">
+      <img id="shoe-image" class="hero-image" src="" alt="Sneaker Image">
+
+      <div class="specs-grid">
+        <div class="spec-item"><span>SKU</span><strong id="spec-sku">-</strong></div>
+        <div class="spec-item"><span>Năm phát hành</span><strong id="spec-year">-</strong></div>
+        <div class="spec-item"><span>Độ hiếm</span><strong id="spec-rarity">-</strong></div>
+        <div class="spec-item"><span>Tình trạng</span><strong id="spec-condition">-</strong></div>
+      </div>
+
+      <div class="story-section">
+        <h2>CÂU CHUYỆN & BỐI CẢNH</h2>
+        <div id="story-text" class="story-content"></div>
+      </div>
+
+      <div class="collector-note">
+        <strong>Ghi chú của Collector:</strong>
+        <p id="collector-text" style="margin-top: 5px;"></p>
+      </div>
+    </main>
+  </div>
+
+  <script src="data.js"></script>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const shoeId = urlParams.get('id');
+    const shoe = sneakers.find(s => s.id === shoeId);
+
+    if (shoe) {
+      document.getElementById('shoe-title').innerText = shoe.title;
+      document.getElementById('shoe-subtitle').innerText = shoe.subtitle;
+      document.getElementById('shoe-image').src = shoe.image;
+      document.getElementById('spec-sku').innerText = shoe.sku;
+      document.getElementById('spec-year').innerText = shoe.releaseYear;
+      document.getElementById('spec-rarity').innerText = shoe.rarity;
+      document.getElementById('spec-condition').innerText = shoe.condition;
+      document.getElementById('story-text').innerHTML = shoe.story;
+      document.getElementById('collector-text').innerText = shoe.collectorNote;
+    } else {
+      document.getElementById('content').innerHTML = '<p style="text-align:center; padding: 50px 0;">Không tìm thấy thông tin đôi giày này.</p>';
+    }
+  </script>
+</body>
+</html>
