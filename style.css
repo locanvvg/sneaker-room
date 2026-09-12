@@ -6,11 +6,9 @@
   box-sizing: border-box;
 }
 
-
 html {
   scroll-behavior: smooth;
 }
-
 
 body {
   background-color: #0d0d0d;
@@ -31,12 +29,10 @@ body {
   min-height: 100vh;
 }
 
-
 .container {
   max-width: 1200px;
   margin: 0 auto;
 }
-
 
 button,
 a {
@@ -53,7 +49,6 @@ header {
   margin-bottom: 40px;
 }
 
-
 .home-header {
   position: relative;
 
@@ -61,16 +56,13 @@ header {
   padding-right: 110px;
 }
 
-
 header h1 {
   font-size: 2rem;
-
   letter-spacing: 2px;
 
   margin-top: 0;
   margin-bottom: 8px;
 }
-
 
 header p {
   color: #888;
@@ -96,7 +88,6 @@ header p {
   margin-bottom: 15px;
 }
 
-
 .corner-lang {
   position: absolute;
 
@@ -106,11 +97,9 @@ header p {
   margin-bottom: 0;
 }
 
-
 .site-header .lang-switcher {
   margin-bottom: 0;
 }
-
 
 .lang-btn {
   appearance: none;
@@ -128,7 +117,6 @@ header p {
   cursor: pointer;
 
   font-size: 0.8rem;
-
   font-weight: 700;
 
   transition:
@@ -138,26 +126,19 @@ header p {
     transform 0.2s ease;
 }
 
-
 .lang-btn:hover {
   border-color: #555;
-
   color: #fff;
 }
 
-
 .lang-btn:focus-visible {
   outline: 2px solid #ffcc00;
-
   outline-offset: 3px;
 }
 
-
 .lang-btn.active {
   background: #ffcc00;
-
   color: #000;
-
   border-color: #ffcc00;
 }
 
@@ -180,7 +161,6 @@ header p {
   align-items: stretch;
 }
 
-
 .collection-message {
   color: #888;
 
@@ -198,21 +178,17 @@ header p {
 
 .card-link {
   text-decoration: none;
-
   color: inherit;
 
   display: flex;
 }
 
-
 .card-link:focus-visible {
   outline: 2px solid #ffcc00;
-
   outline-offset: 4px;
 
   border-radius: 12px;
 }
-
 
 .card {
   background: #161618;
@@ -224,11 +200,9 @@ header p {
   border: 1px solid #222;
 
   display: flex;
-
   flex-direction: column;
 
   width: 100%;
-
   min-width: 0;
 
   transition:
@@ -236,7 +210,6 @@ header p {
     box-shadow 0.3s ease,
     border-color 0.3s ease;
 }
-
 
 .card:hover {
   transform: translateY(-5px);
@@ -251,44 +224,43 @@ header p {
 
 /* =========================================================
    CARD IMAGE
+   KHÔNG CÒN KHUNG / MÉP DƯ
 ========================================================= */
 
 .card-img-wrapper {
   width: 100%;
 
-  height: 220px;
+  height: auto;
 
-  background: #222;
+  background: transparent;
 
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
+  display: block;
 
   overflow: hidden;
 
-  padding: 12px;
-}
+  padding: 0;
 
+  line-height: 0;
+}
 
 .card-img-wrapper img {
   width: 100%;
 
-  height: 100%;
+  height: auto;
 
   object-fit: contain;
 
   display: block;
 
+  margin: 0;
+  padding: 0;
+
   transition:
     transform 0.35s ease;
 }
 
-
-.card:hover
-.card-img-wrapper img {
-  transform: scale(1.04);
+.card:hover .card-img-wrapper img {
+  transform: scale(1.025);
 }
 
 
@@ -300,7 +272,6 @@ header p {
   padding: 20px;
 
   display: flex;
-
   flex-direction: column;
 
   flex-grow: 1;
@@ -308,10 +279,8 @@ header p {
   justify-content: space-between;
 }
 
-
 .card-info h3 {
   font-size: 1.1rem;
-
   line-height: 1.35;
 
   margin:
@@ -321,25 +290,20 @@ header p {
     0;
 }
 
-
 .subtitle {
   color: #888;
 
   font-size: 0.85rem;
-
   line-height: 1.5;
 
   margin-top: 0;
-
   margin-bottom: 15px;
 }
-
 
 .card-meta {
   display: flex;
 
   justify-content: space-between;
-
   align-items: center;
 
   gap: 10px;
@@ -348,7 +312,6 @@ header p {
 
   margin-top: auto;
 }
-
 
 .badge {
   background: #333;
@@ -362,15 +325,12 @@ header p {
   line-height: 1.3;
 }
 
-
 .badge-placeholder {
   visibility: hidden;
 }
 
-
 .size {
   color: #aaa;
-
   white-space: nowrap;
 }
 
@@ -383,32 +343,27 @@ header p {
   display: flex;
 
   align-items: center;
-
   justify-content: space-between;
 
   gap: 20px;
 
   margin-bottom: 30px;
 
-  border-bottom:
-    1px solid #222;
+  border-bottom: 1px solid #222;
 
   padding-bottom: 15px;
 
   text-align: left;
 }
 
-
 .site-header h1 {
   font-size: 1.15rem;
-
   letter-spacing: 1px;
 
   margin: 0;
 
   text-align: center;
 }
-
 
 .back-btn {
   color: #aaa;
@@ -421,16 +376,12 @@ header p {
     color 0.2s ease;
 }
 
-
 .back-btn:hover {
   color: #fff;
 }
 
-
 .back-btn:focus-visible {
-  outline:
-    2px solid #ffcc00;
-
+  outline: 2px solid #ffcc00;
   outline-offset: 4px;
 
   border-radius: 4px;
@@ -456,36 +407,46 @@ header p {
 
 /* =========================================================
    DETAIL IMAGE
+   KHÔNG CÒN NỀN ĐEN / KHOẢNG TRỐNG
 ========================================================= */
 
 .shoe-image-section {
-  background: #161618;
+  width: 100%;
 
-  border:
-    1px solid #222;
+  background: transparent;
+
+  border: none;
 
   border-radius: 12px;
 
   overflow: hidden;
 
-  min-height: 400px;
+  min-height: 0;
 
-  display: flex;
+  display: block;
 
-  align-items: center;
+  padding: 0;
 
-  justify-content: center;
+  margin: 0;
+
+  line-height: 0;
 }
-
 
 .shoe-image-section img {
   width: 100%;
 
-  max-height: 600px;
+  height: auto;
+
+  max-height: none;
 
   object-fit: contain;
 
   display: block;
+
+  margin: 0;
+  padding: 0;
+
+  border-radius: 12px;
 }
 
 
@@ -493,16 +454,17 @@ header p {
    DETAIL INFO
 ========================================================= */
 
+.shoe-info-section {
+  min-width: 0;
+}
+
 .shoe-info-section h2 {
   font-size: 1.8rem;
-
   line-height: 1.25;
 
   margin-top: 0;
-
   margin-bottom: 8px;
 }
-
 
 .detail-subtitle {
   font-size: 0.95rem;
@@ -530,10 +492,8 @@ header p {
 
   border-radius: 12px;
 
-  border:
-    1px solid #222;
+  border: 1px solid #222;
 }
-
 
 .spec-item {
   display: flex;
@@ -547,7 +507,6 @@ header p {
     0;
 }
 
-
 .spec-label {
   font-size: 0.72rem;
 
@@ -556,10 +515,8 @@ header p {
   margin-bottom: 5px;
 
   letter-spacing: 1px;
-
   line-height: 1.4;
 }
-
 
 .spec-value {
   font-size: 0.95rem;
@@ -571,11 +528,9 @@ header p {
   overflow-wrap: anywhere;
 }
 
-
 .highlight {
   color: #00ffcc;
 }
-
 
 .size-highlight {
   color: #ffcc00;
@@ -597,24 +552,19 @@ header p {
 
   border-radius: 12px;
 
-  border:
-    1px solid #222;
+  border: 1px solid #222;
 }
-
 
 .story-section h3 {
   font-size: 1.2rem;
 
   margin-top: 0;
-
   margin-bottom: 20px;
 
-  border-bottom:
-    1px solid #333;
+  border-bottom: 1px solid #333;
 
   padding-bottom: 10px;
 }
-
 
 .story-section p {
   line-height: 1.75;
@@ -622,21 +572,17 @@ header p {
   color: #ccc;
 
   margin-top: 0;
-
   margin-bottom: 17px;
 }
-
 
 .story-section p:last-child {
   margin-bottom: 0;
 }
 
-
 .story-section b,
 .story-section strong {
   color: #f5f5f7;
 }
-
 
 .story-section i {
   color: #ddd;
@@ -652,8 +598,7 @@ header p {
 
   background: #222226;
 
-  border-left:
-    4px solid #ffcc00;
+  border-left: 4px solid #ffcc00;
 
   padding: 16px 20px;
 
@@ -669,7 +614,6 @@ header p {
 
   line-height: 1.65;
 }
-
 
 .exhibition-note strong {
   color: #ffcc00;
@@ -697,8 +641,7 @@ header p {
 
   background: #161618;
 
-  border:
-    1px solid #222;
+  border: 1px solid #222;
 
   border-radius: 12px;
 }
@@ -717,11 +660,9 @@ footer {
 
   font-size: 0.85rem;
 
-  border-top:
-    1px solid #222;
+  border-top: 1px solid #222;
 
   padding-top: 20px;
-
   padding-bottom: 15px;
 }
 
@@ -739,7 +680,6 @@ footer {
 
   .home-header {
     padding-left: 0;
-
     padding-right: 0;
   }
 
@@ -765,8 +705,17 @@ footer {
   }
 
 
+  /*
+    Không đặt height cố định cho ảnh nữa.
+  */
+
   .card-img-wrapper {
-    height: 250px;
+    height: auto;
+  }
+
+
+  .card-img-wrapper img {
+    height: auto;
   }
 
 
@@ -778,7 +727,13 @@ footer {
 
 
   .shoe-image-section {
-    min-height: 300px;
+    min-height: 0;
+  }
+
+
+  .shoe-image-section img {
+    width: 100%;
+    height: auto;
   }
 
 
@@ -829,7 +784,7 @@ footer {
 
 
   .card-img-wrapper {
-    height: 220px;
+    height: auto;
   }
 
 
