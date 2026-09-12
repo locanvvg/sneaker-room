@@ -15,14 +15,32 @@
     content="Lộc An Sneaker Collection - Sneaker Exhibition Detail"
   >
 
-  <title>
-    Lộc An Sneaker Collection
-  </title>
+  <meta
+    name="theme-color"
+    content="#0d0d0d"
+  >
 
+  <title>Lộc An Sneaker Collection</title>
+
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="favicon.svg"
+  >
+
+  <link
+    rel="apple-touch-icon"
+    href="apple-touch-icon.png"
+  >
+
+  <link
+    rel="manifest"
+    href="site.webmanifest"
+  >
 
   <link
     rel="stylesheet"
-    href="style.css?v=20260912-8"
+    href="style.css?v=20260912-10"
   >
 
 </head>
@@ -30,75 +48,74 @@
 
 <body>
 
-
   <div class="container">
-
-
-    <!-- =====================================================
-         HEADER
-    ====================================================== -->
 
     <header class="site-header">
 
+      <div class="site-header-left">
 
-      <a
-        href="index.html"
-        class="back-btn"
-        id="back-link"
-      >
-        ← Quay lại Bộ sưu tập
-      </a>
-
-
-      <h1>
-        Lộc An Sneaker Collection
-      </h1>
-
-
-      <div class="lang-switcher">
-
-
-        <button
-          type="button"
-          id="btn-vi"
-          class="lang-btn"
-          onclick="changeLang('vi')"
+        <a
+          href="index.html"
+          class="back-btn"
+          id="back-link"
         >
-          VI
-        </button>
-
-
-        <button
-          type="button"
-          id="btn-en"
-          class="lang-btn"
-          onclick="changeLang('en')"
-        >
-          EN
-        </button>
-
+          ← Quay lại Bộ sưu tập
+        </a>
 
       </div>
 
 
+      <a
+        href="index.html"
+        class="site-brand"
+      >
+        Lộc An Sneaker Collection
+      </a>
+
+
+      <div class="site-header-actions">
+
+        <a
+          href="about.html"
+          class="header-about-link"
+        >
+          ABOUT
+        </a>
+
+
+        <div class="lang-switcher">
+
+          <button
+            type="button"
+            id="btn-vi"
+            class="lang-btn"
+            onclick="changeLang('vi')"
+          >
+            VI
+          </button>
+
+          <button
+            type="button"
+            id="btn-en"
+            class="lang-btn"
+            onclick="changeLang('en')"
+          >
+            EN
+          </button>
+
+        </div>
+
+      </div>
+
     </header>
 
-
-
-    <!-- =====================================================
-         DETAIL
-    ====================================================== -->
 
     <main
       id="shoe-detail"
       class="shoe-detail-container"
     >
 
-
-      <!-- IMAGE -->
-
       <div class="shoe-image-section">
-
 
         <img
           id="shoe-image"
@@ -107,18 +124,12 @@
           decoding="async"
         >
 
-
       </div>
 
 
-
-      <!-- INFORMATION -->
-
       <div class="shoe-info-section">
 
-
         <h2 id="shoe-title"></h2>
-
 
         <p
           id="shoe-subtitle"
@@ -126,9 +137,7 @@
         ></p>
 
 
-
         <div class="specs-grid">
-
 
           <div class="spec-item">
 
@@ -145,7 +154,6 @@
             ></span>
 
           </div>
-
 
 
           <div class="spec-item">
@@ -165,7 +173,6 @@
           </div>
 
 
-
           <div class="spec-item">
 
             <span
@@ -181,7 +188,6 @@
             ></span>
 
           </div>
-
 
 
           <div class="spec-item">
@@ -201,7 +207,6 @@
           </div>
 
 
-
           <div class="spec-item">
 
             <span
@@ -217,7 +222,6 @@
             ></span>
 
           </div>
-
 
 
           <div class="spec-item">
@@ -236,84 +240,49 @@
 
           </div>
 
-
         </div>
-
 
       </div>
 
-
     </main>
 
-
-
-    <!-- =====================================================
-         STORY
-    ====================================================== -->
 
     <section
       class="story-section"
       id="story-section"
     >
 
-
       <h3 id="story-title">
         Câu chuyện &amp; Bối cảnh thiết kế
       </h3>
 
-
       <div id="shoe-story"></div>
-
 
     </section>
 
 
-
-    <!-- =====================================================
-         FOOTER
-    ====================================================== -->
-
     <footer>
-
 
       <p>
         &copy; 2026 Lộc An Sneaker Collection.
         All Rights Reserved.
       </p>
 
-
     </footer>
-
 
   </div>
 
 
+  <script src="data.js?v=20260912-10"></script>
 
-  <!-- =====================================================
-       DATA
-  ====================================================== -->
-
-  <script src="data.js?v=20260912-8"></script>
-
-
-
-  <!-- =====================================================
-       DETAIL PAGE JAVASCRIPT
-  ====================================================== -->
 
   <script>
-
 
     const supportedLanguages = [
       "vi",
       "en"
     ];
 
-
-
-    /* =====================================================
-       LANGUAGE NORMALIZATION
-    ====================================================== */
 
     function normalizeLanguage(lang) {
 
@@ -323,11 +292,6 @@
 
     }
 
-
-
-    /* =====================================================
-       URL PARAMETERS
-    ====================================================== */
 
     const params =
       new URLSearchParams(
@@ -359,13 +323,7 @@
     );
 
 
-
-    /* =====================================================
-       LABELS
-    ====================================================== */
-
     const labels = {
-
 
       vi: {
 
@@ -430,22 +388,14 @@
 
       }
 
-
     };
 
 
-
-    /* =====================================================
-       LOCALIZED VALUE
-    ====================================================== */
-
     function localized(value) {
-
 
       if (!value) {
         return "";
       }
-
 
       if (
         typeof value === "string"
@@ -457,40 +407,25 @@
 
 
       return (
-
         value[currentLang] ||
-
         value.en ||
-
         value.vi ||
-
         ""
-
       );
 
     }
 
 
-
-    /* =====================================================
-       DATE FORMAT
-    ====================================================== */
-
     function formatDate(value) {
-
 
       if (!value) {
         return "N/A";
       }
 
 
-
-      /* YYYY-MM-DD */
-
       if (
         /^\d{4}-\d{2}-\d{2}$/.test(value)
       ) {
-
 
         const [
           year,
@@ -504,13 +439,11 @@
 
         const date =
           new Date(
-
             Date.UTC(
               year,
               month - 1,
               day
             )
-
           );
 
 
@@ -521,19 +454,10 @@
             : "en-US",
 
           {
-
-            year:
-              "numeric",
-
-            month:
-              "long",
-
-            day:
-              "numeric",
-
-            timeZone:
-              "UTC"
-
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            timeZone: "UTC"
           }
 
         );
@@ -541,13 +465,9 @@
       }
 
 
-
-      /* YYYY-MM */
-
       if (
         /^\d{4}-\d{2}$/.test(value)
       ) {
-
 
         const [
           year,
@@ -560,13 +480,11 @@
 
         const date =
           new Date(
-
             Date.UTC(
               year,
               month - 1,
               1
             )
-
           );
 
 
@@ -577,16 +495,9 @@
             : "en-US",
 
           {
-
-            year:
-              "numeric",
-
-            month:
-              "long",
-
-            timeZone:
-              "UTC"
-
+            year: "numeric",
+            month: "long",
+            timeZone: "UTC"
           }
 
         );
@@ -599,13 +510,7 @@
     }
 
 
-
-    /* =====================================================
-       CHANGE LANGUAGE
-    ====================================================== */
-
     function changeLang(lang) {
-
 
       currentLang =
         normalizeLanguage(lang);
@@ -630,15 +535,11 @@
 
 
       window.history.replaceState(
-
         {},
-
         "",
-
         newURL.pathname +
         newURL.search +
         newURL.hash
-
       );
 
 
@@ -647,13 +548,7 @@
     }
 
 
-
-    /* =====================================================
-       UPDATE LANGUAGE UI
-    ====================================================== */
-
     function updateLanguageInterface() {
-
 
       document.documentElement.lang =
         currentLang;
@@ -663,13 +558,8 @@
         labels[currentLang];
 
 
-
-      /* LANGUAGE BUTTONS */
-
       document
-        .getElementById(
-          "btn-vi"
-        )
+        .getElementById("btn-vi")
         .classList.toggle(
           "active",
           currentLang === "vi"
@@ -677,17 +567,12 @@
 
 
       document
-        .getElementById(
-          "btn-en"
-        )
+        .getElementById("btn-en")
         .classList.toggle(
           "active",
           currentLang === "en"
         );
 
-
-
-      /* BACK LINK */
 
       const backLink =
         document.getElementById(
@@ -706,121 +591,85 @@
         );
 
 
-
-      /* LABELS */
-
       document
-        .getElementById(
-          "label-sku"
-        )
+        .getElementById("label-sku")
         .textContent =
         language.sku;
 
 
       document
-        .getElementById(
-          "label-colorway"
-        )
+        .getElementById("label-colorway")
         .textContent =
         language.colorway;
 
 
       document
-        .getElementById(
-          "label-retail"
-        )
+        .getElementById("label-retail")
         .textContent =
         language.retail;
 
 
       document
-        .getElementById(
-          "label-date"
-        )
+        .getElementById("label-date")
         .textContent =
         language.date;
 
 
       document
-        .getElementById(
-          "label-condition"
-        )
+        .getElementById("label-condition")
         .textContent =
         language.condition;
 
 
       document
-        .getElementById(
-          "label-size"
-        )
+        .getElementById("label-size")
         .textContent =
         language.size;
 
 
       document
-        .getElementById(
-          "story-title"
-        )
+        .getElementById("story-title")
         .textContent =
         language.story;
 
     }
 
 
-
-    /* =====================================================
-       LOAD SHOE
-    ====================================================== */
-
     function loadShoe() {
-
 
       updateLanguageInterface();
 
 
       if (
-
         typeof sneakers === "undefined" ||
-
         !Array.isArray(sneakers)
-
       ) {
 
         showNotFound();
-
         return;
 
       }
 
 
-
       const sneaker =
         sneakers.find(
-
           item =>
             item.id === shoeId
-
         );
-
 
 
       if (!sneaker) {
 
         showNotFound();
-
         return;
 
       }
 
 
-
       document
-        .getElementById(
-          "story-section"
-        )
+        .getElementById("story-section")
         .style.display =
         "block";
-
 
 
       const title =
@@ -829,92 +678,56 @@
         );
 
 
-
       document.title =
         title +
         " | Lộc An Sneaker Collection";
 
 
-
-      /* TITLE */
-
       document
-        .getElementById(
-          "shoe-title"
-        )
+        .getElementById("shoe-title")
         .textContent =
         title;
 
 
-
-      /* SUBTITLE */
-
       document
-        .getElementById(
-          "shoe-subtitle"
-        )
+        .getElementById("shoe-subtitle")
         .textContent =
         localized(
           sneaker.subtitle
         );
 
 
-
-      /* SKU */
-
       document
-        .getElementById(
-          "shoe-sku"
-        )
+        .getElementById("shoe-sku")
         .textContent =
         sneaker.sku ||
         "N/A";
 
 
-
-      /* COLORWAY */
-
       document
-        .getElementById(
-          "shoe-colorway"
-        )
+        .getElementById("shoe-colorway")
         .textContent =
         sneaker.colorway ||
         "N/A";
 
 
-
-      /* RETAIL */
-
       document
-        .getElementById(
-          "shoe-retail"
-        )
+        .getElementById("shoe-retail")
         .textContent =
         sneaker.retailPrice ||
         "N/A";
 
 
-
-      /* RELEASE DATE */
-
       document
-        .getElementById(
-          "shoe-date"
-        )
+        .getElementById("shoe-date")
         .textContent =
         formatDate(
           sneaker.releaseDate
         );
 
 
-
-      /* CONDITION */
-
       document
-        .getElementById(
-          "shoe-condition"
-        )
+        .getElementById("shoe-condition")
         .textContent =
         localized(
           sneaker.condition
@@ -922,20 +735,12 @@
         "N/A";
 
 
-
-      /* SIZE */
-
       document
-        .getElementById(
-          "shoe-size"
-        )
+        .getElementById("shoe-size")
         .textContent =
         sneaker.size ||
         "N/A";
 
-
-
-      /* IMAGE */
 
       const image =
         document.getElementById(
@@ -952,13 +757,8 @@
         title;
 
 
-
-      /* STORY */
-
       document
-        .getElementById(
-          "shoe-story"
-        )
+        .getElementById("shoe-story")
         .innerHTML =
         localized(
           sneaker.story
@@ -967,57 +767,35 @@
     }
 
 
-
-    /* =====================================================
-       NOT FOUND
-    ====================================================== */
-
     function showNotFound() {
 
-
       document.title =
-        labels[
-          currentLang
-        ].notFound;
+        labels[currentLang].notFound;
 
 
       document
-        .getElementById(
-          "shoe-detail"
-        )
+        .getElementById("shoe-detail")
         .innerHTML = `
-
           <div class="not-found">
-
             <p>
               ${labels[currentLang].notFound}
             </p>
-
           </div>
-
         `;
 
 
       document
-        .getElementById(
-          "story-section"
-        )
+        .getElementById("story-section")
         .style.display =
         "none";
 
     }
 
 
-
-    /* =====================================================
-       INITIAL LOAD
-    ====================================================== */
-
     document.addEventListener(
       "DOMContentLoaded",
       loadShoe
     );
-
 
   </script>
 
