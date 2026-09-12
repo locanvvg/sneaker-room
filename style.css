@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  background-color: #0d0d0d;
+  background: #0d0d0d;
   color: #f5f5f7;
 
   font-family:
@@ -30,7 +30,9 @@ body {
 }
 
 .container {
+  width: 100%;
   max-width: 1200px;
+
   margin: 0 auto;
 }
 
@@ -57,19 +59,19 @@ header {
 }
 
 header h1 {
+  margin: 0 0 8px 0;
+
   font-size: 2rem;
   letter-spacing: 2px;
-
-  margin-top: 0;
-  margin-bottom: 8px;
+  line-height: 1.2;
 }
 
 header p {
+  margin: 0;
+
   color: #888;
 
   font-size: 0.95rem;
-
-  margin-top: 0;
 }
 
 
@@ -79,9 +81,8 @@ header p {
 
 .lang-switcher {
   display: flex;
-
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 
   gap: 8px;
 
@@ -131,28 +132,33 @@ header p {
   color: #fff;
 }
 
+.lang-btn.active {
+  background: #ffcc00;
+  border-color: #ffcc00;
+
+  color: #000;
+}
+
 .lang-btn:focus-visible {
   outline: 2px solid #ffcc00;
   outline-offset: 3px;
 }
 
-.lang-btn.active {
-  background: #ffcc00;
-  color: #000;
-  border-color: #ffcc00;
-}
-
 
 /* =========================================================
-   COLLECTION GRID
+   HOMEPAGE GRID
 ========================================================= */
 
 .grid {
   display: grid;
 
+  /*
+    Desktop luôn chia đều các card.
+    Với container 1200px, giao diện thường là 3 cột.
+  */
   grid-template-columns:
     repeat(
-      auto-fill,
+      auto-fit,
       minmax(280px, 1fr)
     );
 
@@ -162,13 +168,13 @@ header p {
 }
 
 .collection-message {
-  color: #888;
-
-  text-align: center;
-
   grid-column: 1 / -1;
 
   padding: 50px 20px;
+
+  color: #888;
+
+  text-align: center;
 }
 
 
@@ -177,12 +183,13 @@ header p {
 ========================================================= */
 
 .card-link {
-  text-decoration: none;
-  color: inherit;
-
   display: flex;
 
+  width: 100%;
   height: 100%;
+
+  color: inherit;
+  text-decoration: none;
 }
 
 .card-link:focus-visible {
@@ -198,21 +205,20 @@ header p {
 ========================================================= */
 
 .card {
+  display: flex;
+  flex-direction: column;
+
   width: 100%;
   height: 100%;
 
   min-width: 0;
 
+  overflow: hidden;
+
   background: #161618;
 
   border: 1px solid #252525;
-
   border-radius: 14px;
-
-  overflow: hidden;
-
-  display: flex;
-  flex-direction: column;
 
   transition:
     transform 0.3s ease,
@@ -232,51 +238,54 @@ header p {
 
 
 /* =========================================================
-   HOMEPAGE CARD IMAGE
-   TẤT CẢ ẢNH CÙNG TỶ LỆ 4:3
+   HOMEPAGE IMAGE
+   QUAN TRỌNG:
+   TẤT CẢ ẢNH LUÔN CÙNG TỶ LỆ 4:3
 ========================================================= */
 
-.card-img-wrapper {
+.grid .card-img-wrapper {
+  position: relative;
+
   width: 100%;
 
   /*
-    Đây là phần quan trọng nhất.
-    Tất cả hình trên homepage sẽ có cùng tỷ lệ.
+    Ép tất cả ảnh về cùng một tỷ lệ.
   */
   aspect-ratio: 4 / 3;
 
-  background: #f4f4f4;
+  flex: 0 0 auto;
 
   overflow: hidden;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 0;
   margin: 0;
+  padding: 0;
+
+  background: #f5f5f5;
 
   line-height: 0;
 }
 
-.card-img-wrapper img {
-  width: 100%;
-  height: 100%;
+.grid .card-img-wrapper img {
+  position: absolute;
 
-  /*
-    Ảnh luôn lấp đầy toàn bộ khung 4:3.
-  */
-  object-fit: cover;
+  inset: 0;
 
-  /*
-    Mặc định tập trung vào chính giữa ảnh.
-  */
-  object-position: center center;
+  width: 100% !important;
+  height: 100% !important;
 
-  display: block;
+  max-width: none;
+  max-height: none;
 
   margin: 0;
   padding: 0;
+
+  /*
+    Ảnh lấp đầy khung.
+  */
+  object-fit: cover !important;
+  object-position: center center;
+
+  display: block;
 
   transition:
     transform 0.35s ease;
@@ -288,42 +297,39 @@ header p {
 
 
 /* =========================================================
-   CARD INFORMATION
+   CARD INFO
 ========================================================= */
 
 .card-info {
-  padding: 20px;
-
   display: flex;
   flex-direction: column;
 
-  flex-grow: 1;
+  flex: 1;
+
+  width: 100%;
+
+  padding: 20px;
 
   /*
-    Giúp phần chữ của tất cả card cân đối hơn.
+    Tất cả phần thông tin đều có không gian tối thiểu giống nhau.
   */
   min-height: 190px;
 }
 
 .card-info h3 {
+  margin: 0 0 8px 0;
+
   font-size: 1.1rem;
   line-height: 1.4;
-
-  margin:
-    0
-    0
-    8px
-    0;
 }
 
 .subtitle {
+  margin: 0 0 15px 0;
+
   color: #888;
 
   font-size: 0.85rem;
   line-height: 1.5;
-
-  margin-top: 0;
-  margin-bottom: 15px;
 }
 
 
@@ -333,24 +339,23 @@ header p {
 
 .card-meta {
   display: flex;
-
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 
   gap: 10px;
 
-  font-size: 0.8rem;
-
   /*
-    Badge và size luôn nằm sát đáy card.
+    Luôn đẩy badge + size xuống đáy card.
   */
   margin-top: auto;
+
+  font-size: 0.8rem;
 }
 
 .badge {
-  background: #333;
-
   padding: 5px 9px;
+
+  background: #333;
 
   border-radius: 5px;
 
@@ -373,7 +378,7 @@ header p {
 
 
 /* =========================================================
-   DETAIL HEADER
+   DETAIL PAGE HEADER
 ========================================================= */
 
 .site-header {
@@ -386,18 +391,18 @@ header p {
 
   margin-bottom: 30px;
 
-  border-bottom: 1px solid #222;
-
   padding-bottom: 15px;
+
+  border-bottom: 1px solid #222;
 
   text-align: left;
 }
 
 .site-header h1 {
+  margin: 0;
+
   font-size: 1.15rem;
   letter-spacing: 1px;
-
-  margin: 0;
 
   text-align: center;
 }
@@ -405,12 +410,11 @@ header p {
 .back-btn {
   color: #aaa;
 
-  text-decoration: none;
-
   font-size: 0.9rem;
 
-  transition:
-    color 0.2s ease;
+  text-decoration: none;
+
+  transition: color 0.2s ease;
 }
 
 .back-btn:hover {
@@ -426,7 +430,7 @@ header p {
 
 
 /* =========================================================
-   SHOE DETAIL
+   DETAIL PAGE LAYOUT
 ========================================================= */
 
 .shoe-detail-container {
@@ -444,26 +448,21 @@ header p {
 
 /* =========================================================
    DETAIL IMAGE
-   GIỮ TỶ LỆ GỐC - KHÔNG ÉP 4:3
+   KHÔNG ÉP 4:3
 ========================================================= */
 
 .shoe-image-section {
   width: 100%;
 
+  overflow: hidden;
+
+  margin: 0;
+  padding: 0;
+
   background: transparent;
 
   border: none;
-
   border-radius: 12px;
-
-  overflow: hidden;
-
-  display: block;
-
-  min-height: 0;
-
-  padding: 0;
-  margin: 0;
 
   line-height: 0;
 }
@@ -472,21 +471,22 @@ header p {
   width: 100%;
   height: auto;
 
+  max-width: 100%;
   max-height: none;
-
-  object-fit: contain;
 
   display: block;
 
   margin: 0;
   padding: 0;
 
+  object-fit: contain;
+
   border-radius: 12px;
 }
 
 
 /* =========================================================
-   DETAIL INFO
+   DETAIL INFORMATION
 ========================================================= */
 
 .shoe-info-section {
@@ -494,11 +494,10 @@ header p {
 }
 
 .shoe-info-section h2 {
+  margin: 0 0 8px 0;
+
   font-size: 1.8rem;
   line-height: 1.25;
-
-  margin-top: 0;
-  margin-bottom: 8px;
 }
 
 .detail-subtitle {
@@ -521,41 +520,36 @@ header p {
 
   margin: 25px 0;
 
-  background: #161618;
-
   padding: 20px;
 
-  border-radius: 12px;
+  background: #161618;
 
   border: 1px solid #222;
+  border-radius: 12px;
 }
 
 .spec-item {
   display: flex;
-
   flex-direction: column;
 
   min-width: 0;
 
-  padding:
-    4px
-    0;
+  padding: 4px 0;
 }
 
 .spec-label {
-  font-size: 0.72rem;
+  margin-bottom: 5px;
 
   color: #888;
 
-  margin-bottom: 5px;
+  font-size: 0.72rem;
+  line-height: 1.4;
 
   letter-spacing: 1px;
-  line-height: 1.4;
 }
 
 .spec-value {
   font-size: 0.95rem;
-
   font-weight: 500;
 
   line-height: 1.45;
@@ -581,33 +575,30 @@ header p {
 .story-section {
   margin-top: 50px;
 
-  background: #161618;
-
   padding: 30px;
 
-  border-radius: 12px;
+  background: #161618;
 
   border: 1px solid #222;
+  border-radius: 12px;
 }
 
 .story-section h3 {
-  font-size: 1.2rem;
+  margin: 0 0 20px 0;
 
-  margin-top: 0;
-  margin-bottom: 20px;
+  padding-bottom: 10px;
 
   border-bottom: 1px solid #333;
 
-  padding-bottom: 10px;
+  font-size: 1.2rem;
 }
 
 .story-section p {
-  line-height: 1.75;
+  margin: 0 0 17px 0;
 
   color: #ccc;
 
-  margin-top: 0;
-  margin-bottom: 17px;
+  line-height: 1.75;
 }
 
 .story-section p:last-child {
@@ -631,11 +622,11 @@ header p {
 .exhibition-note {
   margin-top: 25px;
 
+  padding: 16px 20px;
+
   background: #222226;
 
   border-left: 4px solid #ffcc00;
-
-  padding: 16px 20px;
 
   border-radius:
     0
@@ -643,19 +634,18 @@ header p {
     8px
     0;
 
-  font-size: 0.9rem;
-
   color: #ccc;
 
+  font-size: 0.9rem;
   line-height: 1.65;
 }
 
 .exhibition-note strong {
-  color: #ffcc00;
-
   display: block;
 
   margin-bottom: 6px;
+
+  color: #ffcc00;
 }
 
 
@@ -664,21 +654,20 @@ header p {
 ========================================================= */
 
 .not-found {
-  width: 100%;
-
   grid-column: 1 / -1;
 
-  text-align: center;
-
-  color: #aaa;
+  width: 100%;
 
   padding: 70px 20px;
 
   background: #161618;
 
   border: 1px solid #222;
-
   border-radius: 12px;
+
+  color: #aaa;
+
+  text-align: center;
 }
 
 
@@ -687,26 +676,26 @@ header p {
 ========================================================= */
 
 footer {
-  text-align: center;
-
   margin-top: 60px;
+
+  padding-top: 20px;
+  padding-bottom: 15px;
+
+  border-top: 1px solid #222;
 
   color: #555;
 
   font-size: 0.85rem;
 
-  border-top: 1px solid #222;
-
-  padding-top: 20px;
-  padding-bottom: 15px;
+  text-align: center;
 }
 
 
 /* =========================================================
-   TABLET
+   MEDIUM DESKTOP / TABLET
 ========================================================= */
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 950px) {
 
   .grid {
     grid-template-columns:
@@ -723,7 +712,7 @@ footer {
    MOBILE
 ========================================================= */
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 650px) {
 
   body {
     padding: 15px;
@@ -758,10 +747,10 @@ footer {
 
 
   /*
-    Vẫn giữ ảnh homepage 4:3 trên điện thoại.
+    Vẫn giữ tỷ lệ 4:3.
   */
 
-  .card-img-wrapper {
+  .grid .card-img-wrapper {
     aspect-ratio: 4 / 3;
   }
 
@@ -775,17 +764,6 @@ footer {
     grid-template-columns: 1fr;
 
     gap: 25px;
-  }
-
-
-  .shoe-image-section {
-    min-height: 0;
-  }
-
-
-  .shoe-image-section img {
-    width: 100%;
-    height: auto;
   }
 
 
@@ -836,9 +814,9 @@ footer {
 
 
   .card-info {
-    padding: 16px;
-
     min-height: 165px;
+
+    padding: 16px;
   }
 
 
