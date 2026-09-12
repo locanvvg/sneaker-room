@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Lộc An Sneaker Collection">
+  <rect width="64" height="64" rx="14" fill="#0d0d0d"/>
+  <rect x="3" y="3" width="58" height="58" rx="12" fill="none" stroke="#ffcc00" stroke-width="3"/>
+  <path d="M17 17v30h16" fill="none" stroke="#ffcc00" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M37 47L47 17l10 30M41 36h12" fill="none" stroke="#f5f5f7" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

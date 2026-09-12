@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="theme-color"
+    content="#0d0d0d"
+  >
+
+  <meta
+    name="robots"
+    content="noindex"
+  >
+
+  <title>404 | Lộc An Sneaker Collection</title>
+
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="favicon.svg"
+  >
+
+  <link
+    rel="apple-touch-icon"
+    href="apple-touch-icon.png"
+  >
+
+  <link
+    rel="manifest"
+    href="site.webmanifest"
+  >
+
+  <link
+    rel="stylesheet"
+    href="style.css?v=20260912-9"
+  >
+</head>
+
+
+<body>
+
+  <div class="container error-shell">
+
+    <main class="error-page">
+
+      <div class="error-code">
+        404
+      </div>
+
+      <div class="lang-panel" data-lang="vi">
+
+        <p class="about-kicker">
+          ARCHIVE NOT FOUND
+        </p>
+
+        <h1>
+          Không tìm thấy trang này.
+        </h1>
+
+        <p>
+          Liên kết bạn mở không tồn tại,
+          đã được đổi tên,
+          hoặc hiện vật không còn nằm tại địa chỉ này.
+        </p>
+
+        <div class="error-actions">
+          <a
+            href="index.html"
+            class="primary-action"
+          >
+            VỀ BỘ SƯU TẬP
+          </a>
+
+          <a
+            href="about.html"
+            class="secondary-action"
+          >
+            ABOUT
+          </a>
+        </div>
+
+      </div>
+
+
+      <div class="lang-panel" data-lang="en">
+
+        <p class="about-kicker">
+          ARCHIVE NOT FOUND
+        </p>
+
+        <h1>
+          This page could not be found.
+        </h1>
+
+        <p>
+          The link may not exist,
+          may have been renamed,
+          or the archived piece may have moved.
+        </p>
+
+        <div class="error-actions">
+          <a
+            href="index.html"
+            class="primary-action"
+          >
+            BACK TO COLLECTION
+          </a>
+
+          <a
+            href="about.html"
+            class="secondary-action"
+          >
+            ABOUT
+          </a>
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+
+  <script>
+
+    const lang =
+      localStorage.getItem("locan_lang") === "en"
+        ? "en"
+        : "vi";
+
+
+    document.documentElement.lang =
+      lang;
+
+
+    document
+      .querySelectorAll(".lang-panel")
+      .forEach(panel => {
+
+        panel.hidden =
+          panel.dataset.lang !== lang;
+
+      });
+
+  </script>
+
+
+</body>
+
+</html>
