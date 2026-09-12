@@ -7,6 +7,7 @@ const sneakers = [
     colorway: "Black/Neutral Grey-Varsity Red",
     retailPrice: "$150",
     releaseDate: "2005",
+    editionType: "Regional Exclusive",
     condition: "Used / Collector Grade",
     size: "US Mens",
     image: "https://images.stockx.com/images/Nike-Air-Force-1-Low-Chamber-Of-Fear-Temptation.jpg",
@@ -21,11 +22,12 @@ const sneakers = [
     subtitle: "Friends & Family Exclusive (2017)",
     sku: "MNJDLS 262 767119 XC",
     colorway: "Black/Italy Blue-Black-University Red",
-    retailPrice: "$160",
+    retailPrice: "N/A",
     releaseDate: "07/01/2017",
+    editionType: "F&F",
     condition: "Deadstock (Brand New)",
     size: "12.5 US",
-    image: "https://i.ibb.co/3s3B46J/quai54-ff-split.jpg",
+    image: "https://sneakernews.com/wp-content/uploads/2017/07/air-jordan-1-quai-54-friends-and-family-1.jpg",
     story: `
       <p>Nhằm tôn vinh Quai 54 – giải đấu bóng rổ đường phố danh giá nhất thế giới diễn ra thường niên tại thành phố Paris, Jordan Brand đã tạo ra hai phiên bản Air Jordan 1 Retro High OG đặc biệt cho mùa hè năm 2017. Trong khi bản phối màu đen truyền thống được phát hành thương mại rộng rãi vào ngày 8 tháng 7 năm 2017 với mức giá niêm yết $160, thì phiên bản xẻ màu (Split) độc bản này lại mang vị thế của một siêu phẩm tuyệt đối: dành riêng cho dàn khách mời <b>Friends & Family (F&F)</b>.</p>
 
