@@ -949,9 +949,31 @@ header p {
   overflow-wrap: anywhere;
 }
 
-.highlight {
+
+/* =========================================================
+   CONDITION COLORS
+========================================================= */
+
+.condition-value {
+  font-weight: 600;
+}
+
+
+/* DEADSTOCK */
+
+.condition-deadstock {
   color: #00ffcc;
 }
+
+
+/* USED */
+
+.condition-used {
+  color: #4da3ff;
+}
+
+
+/* SIZE */
 
 .size-highlight {
   color: #ffcc00;
@@ -1184,6 +1206,11 @@ header p {
   line-height: 1.55;
 }
 
+
+/* =========================================================
+   ABOUT CONDITION KEY
+========================================================= */
+
 .condition-key {
   display: grid;
 
@@ -1217,12 +1244,46 @@ header p {
   font-weight: 800;
 }
 
+
+/* DEADSTOCK = GREEN */
+
 .condition-pill.deadstock {
   color: #00ffcc;
+
+  border-color: rgba(
+    0,
+    255,
+    204,
+    0.32
+  );
+
+  background: rgba(
+    0,
+    255,
+    204,
+    0.05
+  );
 }
 
+
+/* USED = BLUE */
+
 .condition-pill.used {
-  color: #ffcc00;
+  color: #4da3ff;
+
+  border-color: rgba(
+    77,
+    163,
+    255,
+    0.32
+  );
+
+  background: rgba(
+    77,
+    163,
+    255,
+    0.05
+  );
 }
 
 .about-small {
@@ -1232,6 +1293,11 @@ header p {
 
   font-size: 0.84rem;
 }
+
+
+/* =========================================================
+   ABOUT CATALOGUE
+========================================================= */
 
 .catalogue-section {
   margin-top: 22px;
@@ -1271,6 +1337,11 @@ header p {
 
   font-weight: 600;
 }
+
+
+/* =========================================================
+   ABOUT QUOTE
+========================================================= */
 
 .about-quote {
   margin: 22px 0 0;
