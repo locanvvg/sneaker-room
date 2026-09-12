@@ -39,12 +39,12 @@
 
   <link
     rel="stylesheet"
-    href="./style.css?v=20260912-16"
+    href="./style.css?v=20260912-17"
   >
 
   <link
     rel="stylesheet"
-    href="./collection-menu.css?v=20260912-16"
+    href="./collection-menu.css?v=20260912-17"
   >
 </head>
 
@@ -99,7 +99,10 @@
           <summary
             class="museum-nav-link active collection-nav-trigger"
           >
-            <span>COLLECTION</span>
+
+            <span>
+              COLLECTION
+            </span>
 
             <span
               class="collection-nav-arrow"
@@ -107,6 +110,7 @@
             >
               ▾
             </span>
+
           </summary>
 
 
@@ -152,6 +156,10 @@
 
     <main>
 
+      <!-- =================================================
+           SNEAKER MASK INTRO
+      ================================================== -->
+
       <section
         class="collection-category-hero"
         style="margin-bottom: 24px;"
@@ -181,6 +189,10 @@
       </section>
 
 
+      <!-- =================================================
+           TOTAL COUNT
+      ================================================== -->
+
       <div
         id="mask-count"
         class="collection-count"
@@ -188,6 +200,10 @@
         TỔNG SỐ: 2 MASK
       </div>
 
+
+      <!-- =================================================
+           MASK GRID
+      ================================================== -->
 
       <div
         id="mask-grid"
@@ -209,8 +225,18 @@
   </div>
 
 
-  <script src="./sneaker-mask-data.js?v=20260912-16"></script>
+  <!-- =====================================================
+       DATA
+  ====================================================== -->
 
+  <script
+    src="./sneaker-mask-data.js?v=20260912-17"
+  ></script>
+
+
+  <!-- =====================================================
+       SNEAKER MASK PAGE LOGIC
+  ====================================================== -->
 
   <script>
 
@@ -241,9 +267,15 @@
         maskLanguage
       )
     ) {
+
       maskLanguage = "vi";
+
     }
 
+
+    /* =====================================================
+       LANGUAGE
+    ===================================================== */
 
     function setMaskLanguage(lang) {
 
@@ -281,6 +313,8 @@
         );
 
 
+      /* HEADER SUBTITLE */
+
       const subtitle =
         document.getElementById(
           "mask-main-subtitle"
@@ -292,6 +326,8 @@
           maskLanguage
         ];
 
+
+      /* PAGE DESCRIPTION */
 
       const description =
         document.getElementById(
@@ -305,18 +341,25 @@
         ];
 
 
+      /* TOTAL */
+
       document
         .getElementById(
           "mask-count"
         )
         .textContent =
+
           maskLanguage === "vi"
+
             ? `TỔNG SỐ: ${sneakerMasks.length} MASK`
+
             : `TOTAL: ${sneakerMasks.length} MASKS`;
 
 
       renderMaskCollection();
 
+
+      /* UPDATE URL LANGUAGE */
 
       const url =
         new URL(
@@ -341,6 +384,10 @@
     }
 
 
+    /* =====================================================
+       RENDER MASK COLLECTION
+    ===================================================== */
+
     function renderMaskCollection() {
 
       const grid =
@@ -355,6 +402,11 @@
       sneakerMasks.forEach(
         mask => {
 
+
+          /* ===============================================
+             LINK
+          =============================================== */
+
           const link =
             document.createElement(
               "a"
@@ -366,8 +418,14 @@
 
 
           link.href =
-            `./sneaker-mask-detail.html?id=${encodeURIComponent(mask.id)}&lang=${maskLanguage}`;
+            `./sneaker-mask-detail.html?id=${encodeURIComponent(
+              mask.id
+            )}&lang=${maskLanguage}`;
 
+
+          /* ===============================================
+             CARD
+          =============================================== */
 
           const card =
             document.createElement(
@@ -378,6 +436,10 @@
           card.className =
             "card";
 
+
+          /* ===============================================
+             IMAGE
+          =============================================== */
 
           const imageWrapper =
             document.createElement(
@@ -414,6 +476,10 @@
           );
 
 
+          /* ===============================================
+             CARD INFO
+          =============================================== */
+
           const info =
             document.createElement(
               "div"
@@ -423,6 +489,8 @@
           info.className =
             "card-info";
 
+
+          /* TITLE */
 
           const title =
             document.createElement(
@@ -436,21 +504,27 @@
             ];
 
 
-          const subtitle =
+          /* SUBTITLE */
+
+          const maskSubtitle =
             document.createElement(
               "p"
             );
 
 
-          subtitle.className =
+          maskSubtitle.className =
             "subtitle";
 
 
-          subtitle.textContent =
+          maskSubtitle.textContent =
             mask.subtitle[
               maskLanguage
             ];
 
+
+          /* ===============================================
+             META
+          =============================================== */
 
           const meta =
             document.createElement(
@@ -461,6 +535,8 @@
           meta.className =
             "card-meta";
 
+
+          /* HANDCRAFTED BADGE */
 
           const badge =
             document.createElement(
@@ -476,31 +552,14 @@
             "HANDCRAFTED 1/1";
 
 
-          const sourceCondition =
-            document.createElement(
-              "span"
-            );
-
-
-          sourceCondition.className =
-            "mask-source-condition";
-
-
-          sourceCondition.textContent =
-            maskLanguage === "vi"
-              ? "DEADSTOCK SOURCE"
-              : "DEADSTOCK SOURCE";
-
-
           meta.appendChild(
             badge
           );
 
 
-          meta.appendChild(
-            sourceCondition
-          );
-
+          /* ===============================================
+             BUILD CARD
+          =============================================== */
 
           info.appendChild(
             title
@@ -508,7 +567,7 @@
 
 
           info.appendChild(
-            subtitle
+            maskSubtitle
           );
 
 
@@ -541,6 +600,10 @@
 
     }
 
+
+    /* =====================================================
+       INITIAL LOAD
+    ===================================================== */
 
     document.addEventListener(
       "DOMContentLoaded",
