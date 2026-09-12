@@ -32,8 +32,8 @@ const sneakers = [
     },
 
     condition: {
-      vi: "Deadstock (Sample)",
-      en: "Deadstock (Sample)"
+      vi: "Deadstock",
+      en: "Deadstock"
     },
 
     size: "7 US",
@@ -203,8 +203,8 @@ const sneakers = [
     },
 
     condition: {
-      vi: "Deadstock (Brand New)",
-      en: "Deadstock (Brand New)"
+      vi: "Deadstock",
+      en: "Deadstock"
     },
 
     size: "12.5 US",
@@ -424,8 +424,8 @@ const sneakers = [
     },
 
     condition: {
-      vi: "Deadstock (Brand New)",
-      en: "Deadstock (Brand New)"
+      vi: "Deadstock",
+      en: "Deadstock"
     },
 
     size: "12 US",
@@ -482,7 +482,8 @@ const sneakers = [
 
           Tác phẩm hiện ở size
           <b>12 US</b>
-          và tình trạng Deadstock.
+          và tình trạng
+          <b>Deadstock</b>.
         </p>
       `,
 
@@ -529,7 +530,8 @@ const sneakers = [
 
           The archived pair is size
           <b>12 US</b>
-          and remains Deadstock.
+          and remains
+          <b>Deadstock</b>.
         </p>
       `
     }
@@ -569,8 +571,8 @@ const sneakers = [
     },
 
     condition: {
-      vi: "Deadstock (Brand New)",
-      en: "Deadstock (Brand New)"
+      vi: "Deadstock",
+      en: "Deadstock"
     },
 
     size: "10 US",
@@ -621,7 +623,8 @@ const sneakers = [
           Tác phẩm size
           <b>10 US</b>
           được lưu giữ
-          ở tình trạng Deadstock
+          ở tình trạng
+          <b>Deadstock</b>
           trong
           <b>Lộc An Sneaker Collection</b>.
         </p>
@@ -671,7 +674,8 @@ const sneakers = [
 
           This size
           <b>10 US</b>
-          pair is preserved Deadstock
+          pair is preserved
+          <b>Deadstock</b>
           within the
           <b>Lộc An Sneaker Collection</b>.
         </p>
@@ -718,8 +722,8 @@ const sneakers = [
     },
 
     condition: {
-      vi: "Sample",
-      en: "Sample"
+      vi: "Deadstock",
+      en: "Deadstock"
     },
 
     size: "12 US",
@@ -849,7 +853,9 @@ const sneakers = [
 
           Tác phẩm trong bộ sưu tập
           có size
-          <b>12 US</b>.
+          <b>12 US</b>
+          và được lưu giữ ở tình trạng
+          <b>Deadstock</b>.
         </p>
 
         <div class="exhibition-note">
@@ -1006,7 +1012,9 @@ const sneakers = [
 
           The piece preserved in the collection
           is size
-          <b>12 US</b>.
+          <b>12 US</b>
+          and remains
+          <b>Deadstock</b>.
         </p>
 
         <div class="exhibition-note">
@@ -1040,6 +1048,414 @@ const sneakers = [
           should take precedence.
 
         </div>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     6. JORDAN 1 HIGH RETRO OG
+        SHADOW 2009
+  ===================================================== */
+
+  {
+    id: "jordan-1-shadow-2009",
+
+    title: {
+      vi: "Jordan 1 High Retro OG 'Shadow' 2009",
+      en: "Jordan 1 High Retro OG 'Shadow' 2009"
+    },
+
+    subtitle: {
+      vi: "First Shadow Retro Release (2009)",
+      en: "First Shadow Retro Release (2009)"
+    },
+
+    sku: "332550-001",
+
+    colorway: "Black/Shadow Grey White",
+
+    retailPrice: "$160",
+
+    releaseDate: "2009-08-31",
+
+    editionType: {
+      vi: "",
+      en: ""
+    },
+
+    condition: {
+      vi: "Used",
+      en: "Used"
+    },
+
+    size: "10.5 US",
+
+    image: "jordan1_shadow_2009.png",
+
+    story: {
+
+      vi: `
+        <p>
+          <b>Jordan 1 High Retro OG 'Shadow' 2009</b>
+          đánh dấu sự trở lại đầu tiên
+          của một trong những phối màu nguyên bản
+          kín đáo nhưng bền bỉ nhất
+          trong lịch sử Jordan 1.
+
+          Phối màu
+          <b>'Shadow'</b>
+          xuất hiện lần đầu vào năm
+          <b>1985</b>,
+          trong thế hệ đầu tiên của Air Jordan 1,
+          với bảng màu đen và xám trung tính
+          tạo nên một diện mạo hoàn toàn khác
+          so với những phối màu nổi bật hơn
+          như Chicago,
+          Bred
+          hay Royal.
+        </p>
+
+        <p>
+          Sau lần xuất hiện nguyên bản năm 1985,
+          Shadow gần như biến mất
+          khỏi lịch phát hành
+          trong gần một phần tư thế kỷ.
+
+          Phải đến năm
+          <b>2009</b>,
+          Jordan Brand mới đưa phối màu này
+          trở lại lần đầu tiên
+          dưới dạng retro.
+
+          Vì vậy,
+          bản 2009 giữ một vị trí đặc biệt:
+          đây là
+          <b>lần retro đầu tiên của Shadow</b>
+          sau khoảng 24 năm kể từ bản OG,
+          đồng thời mở ra cơ hội
+          cho một thế hệ collector mới
+          tiếp cận lại phối màu cổ điển này.
+        </p>
+
+        <p>
+          Phiên bản năm 2009
+          mang mã
+          <b>332550-001</b>
+          và sử dụng phối màu
+          <i>Black/Shadow Grey White</i>.
+
+          Upper chủ yếu sử dụng
+          da đen,
+          kết hợp các mảng
+          Shadow Grey
+          ở toe box,
+          Swoosh,
+          gót
+          và khu vực cổ giày.
+
+          Midsole trắng
+          cùng outsole đen
+          hoàn thiện một bố cục màu
+          đơn giản,
+          cân bằng
+          và rất dễ nhận diện.
+        </p>
+
+        <p>
+          Một chi tiết đáng chú ý
+          của bản 2009
+          là texture rất nhẹ
+          trên một số panel Shadow Grey.
+
+          Các nguồn sneaker
+          cùng thời điểm phát hành
+          mô tả những khu vực này
+          có hiệu ứng
+          <b>Elephant print</b>
+          mờ,
+          tạo thêm chiều sâu
+          cho một phối màu vốn chủ đích
+          được xây dựng theo hướng tối giản.
+
+          Đây cũng là một trong những yếu tố
+          giúp bản retro 2009
+          có cá tính riêng
+          khi đặt cạnh những lần tái phát hành
+          Shadow về sau.
+        </p>
+
+        <p>
+          Không có một tuyên bố chính thức
+          từ Nike hay Jordan Brand
+          giải thích riêng
+          vì sao Shadow được lựa chọn
+          để quay trở lại đúng vào năm 2009.
+
+          Tuy nhiên,
+          sự trở lại này diễn ra
+          trong giai đoạn Jordan Brand
+          đang đưa nhiều phiên bản
+          Jordan 1 trở lại thị trường.
+
+          Trong bối cảnh đó,
+          việc phục hồi
+          một phối màu OG
+          đã vắng bóng gần 24 năm
+          có thể được nhìn nhận
+          như một phần của quá trình
+          kết nối di sản năm 1985
+          với thế hệ sneaker collector
+          hiện đại.
+        </p>
+
+        <p>
+          Chính sự tiết chế
+          là yếu tố tạo nên sức sống lâu dài
+          của
+          <b>'Shadow'</b>.
+
+          Khác với nhiều colorway
+          gắn với màu sắc của Chicago Bulls,
+          một câu chuyện thi đấu
+          hay một dự án collaboration,
+          Shadow để chính cấu trúc
+          của Jordan 1 trở thành tâm điểm.
+
+          Màu đen và xám
+          làm nổi bật
+          Swoosh,
+          toe box,
+          heel panel
+          và toàn bộ kiến trúc
+          của silhouette
+          mà không cần sử dụng
+          những gam màu quá mạnh.
+        </p>
+
+        <p>
+          Sau bản retro đầu tiên năm 2009,
+          Shadow tiếp tục trở lại
+          trong những thế hệ retro sau,
+          bao gồm
+          <b>2013</b>
+          và
+          <b>2018</b>.
+
+          Điều đó giúp bản 2009
+          trở thành một mắt xích quan trọng
+          giữa Shadow OG năm 1985
+          và các phiên bản hiện đại,
+          đồng thời củng cố vị trí
+          của Black/Shadow Grey
+          như một trong những bảng màu
+          lâu bền nhất của Jordan 1.
+        </p>
+
+        <p>
+          Tác phẩm được lưu giữ trong
+          <b>Lộc An Sneaker Collection</b>
+          là phiên bản phát hành năm
+          <b>2009</b>,
+          size
+          <b>10.5 US</b>,
+          với tình trạng
+          <b>Used</b>.
+
+          Mặc dù đây là một phiên bản
+          phát hành thương mại thông thường,
+          ý nghĩa sưu tầm của đôi giày
+          nằm ở vị trí lịch sử
+          của nó:
+          <b>lần retro đầu tiên
+          của phối màu Shadow
+          kể từ bản OG năm 1985</b>.
+        </p>
+      `,
+
+      en: `
+        <p>
+          <b>Jordan 1 High Retro OG 'Shadow' 2009</b>
+          marked the first return
+          of one of the most understated
+          yet enduring original colorways
+          in Jordan 1 history.
+
+          The
+          <b>'Shadow'</b>
+          colorway first appeared in
+          <b>1985</b>
+          during the original Air Jordan 1 era,
+          using a restrained
+          black-and-grey palette
+          that stood apart
+          from more visually prominent releases
+          such as Chicago,
+          Bred,
+          and Royal.
+        </p>
+
+        <p>
+          Following its original 1985 appearance,
+          Shadow remained absent
+          from the release calendar
+          for nearly a quarter century.
+
+          It was not until
+          <b>2009</b>
+          that Jordan Brand
+          brought the colorway back
+          for the first time
+          as a retro.
+
+          This gives the 2009 edition
+          a particularly important place
+          in the lineage:
+          it represents the
+          <b>first Shadow retro</b>
+          roughly 24 years after the original,
+          introducing the colorway
+          to a new generation
+          of collectors.
+        </p>
+
+        <p>
+          The 2009 release
+          carries style code
+          <b>332550-001</b>
+          and the
+          <i>Black/Shadow Grey White</i>
+          colorway.
+
+          Its upper is built primarily
+          in black leather,
+          complemented by Shadow Grey
+          across the toe box,
+          Swoosh,
+          heel,
+          and ankle panels.
+
+          A white midsole
+          and black outsole
+          complete the restrained,
+          balanced composition.
+        </p>
+
+        <p>
+          One notable characteristic
+          of the 2009 edition
+          is the subtle texture
+          appearing across several
+          Shadow Grey panels.
+
+          Contemporary sneaker coverage
+          described these areas
+          as carrying a faint
+          <b>Elephant print</b>,
+          adding visual depth
+          to an otherwise intentionally
+          minimalist color scheme.
+
+          This treatment also helps
+          distinguish the 2009 retro
+          from later interpretations
+          of the Shadow concept.
+        </p>
+
+        <p>
+          Nike and Jordan Brand
+          did not publish
+          a specific official explanation
+          for why Shadow was selected
+          to return in 2009.
+
+          Its release,
+          however,
+          arrived during a period
+          in which Jordan Brand
+          was putting significant attention
+          back on the Jordan 1
+          through a broad range
+          of retro releases and colorways.
+
+          Within that context,
+          reviving an original 1985 colorway
+          that had been absent
+          for nearly 24 years
+          can be understood
+          as part of a broader effort
+          to reconnect Jordan heritage
+          with a new generation
+          of sneaker collectors.
+        </p>
+
+        <p>
+          Restraint is central
+          to the lasting appeal
+          of the
+          <b>'Shadow'</b>.
+
+          Unlike colorways
+          closely associated
+          with Chicago Bulls colors,
+          a particular game,
+          or a collaboration,
+          Shadow allows
+          the architecture
+          of the Jordan 1 itself
+          to remain the focus.
+
+          Black and grey
+          emphasize the Swoosh,
+          toe box,
+          heel panels,
+          and overall silhouette
+          through subtle contrast
+          rather than aggressive color.
+        </p>
+
+        <p>
+          Following the first retro
+          in 2009,
+          Shadow returned again
+          in later generations,
+          including
+          <b>2013</b>
+          and
+          <b>2018</b>.
+
+          This makes the 2009 edition
+          an important bridge
+          between the original
+          1985 Shadow
+          and the modern retros
+          that followed,
+          reinforcing Black/Shadow Grey
+          as one of the Jordan 1's
+          most enduring palettes.
+        </p>
+
+        <p>
+          The example preserved in the
+          <b>Lộc An Sneaker Collection</b>
+          is a
+          <b>2009</b>
+          release
+          in size
+          <b>10.5 US</b>,
+          with
+          <b>Used</b>
+          condition.
+
+          Although it was a standard
+          commercial release,
+          its collector significance
+          comes from its historical position
+          as the
+          <b>first retro
+          of the Shadow colorway
+          since the original 1985 edition</b>.
+        </p>
       `
     }
   }
