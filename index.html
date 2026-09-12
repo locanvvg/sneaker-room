@@ -1,32 +1,93 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lộc An Sneaker Collection - Exhibition Catalog</title>
-  <link rel="stylesheet" href="style.css">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Lộc An Sneaker Collection - Digital Sneaker Archive & Museum"
+  >
+
+  <title>Lộc An Sneaker Collection</title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
 </head>
+
+
 <body>
+
   <div class="container">
+
     <header class="home-header">
+
       <div class="lang-switcher corner-lang">
-        <button onclick="setLanguage('vi')" id="btn-vi" class="lang-btn active">VI</button>
-        <button onclick="setLanguage('en')" id="btn-en" class="lang-btn">EN</button>
+
+        <button
+          type="button"
+          onclick="setLanguage('vi')"
+          id="btn-vi"
+          class="lang-btn active"
+        >
+          VI
+        </button>
+
+        <button
+          type="button"
+          onclick="setLanguage('en')"
+          id="btn-en"
+          class="lang-btn"
+        >
+          EN
+        </button>
+
       </div>
-      <h1 data-i18n="mainTitle">LỘC AN SNEAKER COLLECTION</h1>
-      <p data-i18n="mainSubtitle">Không gian lưu trữ & Bảo tàng Sneaker Kỹ thuật số</p>
+
+
+      <h1 data-i18n="mainTitle">
+        LỘC AN SNEAKER COLLECTION
+      </h1>
+
+      <p data-i18n="mainSubtitle">
+        Không gian lưu trữ &amp; Bảo tàng Sneaker Kỹ thuật số
+      </p>
+
     </header>
 
+
     <main>
-      <div id="sneaker-grid" class="grid"></div>
+
+      <div
+        id="sneaker-grid"
+        class="grid"
+      ></div>
+
     </main>
 
+
     <footer>
-      <p>&copy; 2026 Lộc An Sneaker Collection. All Rights Reserved.</p>
+
+      <p>
+        &copy; 2026 Lộc An Sneaker Collection.
+        All Rights Reserved.
+      </p>
+
     </footer>
+
   </div>
+
 
   <script src="data.js"></script>
   <script src="main.js"></script>
+
 </body>
+
 </html>
