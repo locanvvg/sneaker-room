@@ -17,7 +17,8 @@ const sneakers = [
       <p>Sở hữu phối màu gốc <i>Black/Italy Blue-Fast/University Red</i>, điểm nhấn đột phá nhất tạo nên giá trị sưu tầm thượng thừa cho tác phẩm này chính là ngôn ngữ thiết kế "Split Colorway" bổ đôi táo bạo dọc theo thân giày. Chiếc bên phải là sự hòa quyện giữa sắc Xanh Italy rực rỡ và tông Đen huyền bí; trong khi chiếc bên trái lại tạo nên sự tương phản hoàn hảo với sắc Đỏ rực cháy. Logo biểu tượng của giải đấu Quai 54 được thêu trang trọng trên phần lưỡi gà vải dệt và in chìm tỉ mỉ ngay bên trong lót giày.</p>
 
       <p>Tương tự như di sản của hai phối màu Air Jordan 5 Retro F&F ra mắt tại giải đấu năm 2011, phiên bản Air Jordan 1 Quai 54 F&F hoàn toàn không được phân phối qua bất kỳ hệ thống bán lẻ nào trên toàn cầu. Số lượng sản xuất cực kỳ giới hạn chỉ được trao tận tay cho những vận động viên, nghệ sĩ và những cá nhân có ảnh hưởng lớn nhất tới văn hóa bóng rổ đường phố. Việc sở hữu một đôi giày ở tình trạng <b>Deadstock hoàn hảo</b> cùng bảng size hiếm <b>12.5 US</b> trong bộ sưu tập cá nhân chính là một minh chứng đỉnh cao cho niềm đam mê và giá trị lưu trữ kỹ thuật số tại Lộc An Sneaker Collection.</p>
-    `
+    `,
+    exhibitionNote: "Tác phẩm thuộc phiên bản đặc biệt (F&F). Các phiên bản dạng này (như Promo Sample, Player Exclusive hoặc Friends & Family) chỉ được sản xuất giới hạn để dành riêng cho vận động viên, người thân hoặc nội bộ thương hiệu. Do không được phát hành thương mại tại các cửa hàng bán lẻ, tác phẩm không có giá niêm yết gốc (Retail Price: N/A) và sở hữu giá trị sưu tầm đặc biệt trên thị trường quốc tế."
   },
   {
     id: "air-jordan-1-black-bloodline-pe",
@@ -32,12 +33,13 @@ const sneakers = [
     size: "7 US",
     image: "jordan1_pe_bloodline_friendsandfamily_sample.png",
     story: `
-      <p>Nếu phiên bản thương mại Air Jordan 1 'Bloodline' trắng/đen/đỏ ra mắt vào dịp Black Friday năm 2019[cite: 1] đã quá quen thuộc với cộng đồng sneakerhead toàn cầu, thì phiên bản <b>Air Jordan 1 High OG 'Black Bloodline' PE (Player Exclusive)</b> này lại vươn lên một tầm cao hoàn toàn khác biệt. Đây là món quà Giáng sinh đặc quyền[cite: 1] cực kỳ giới hạn mà Jordan Brand chế tác riêng để gửi tặng cho các vận động viên thuộc danh sách đại sứ thương hiệu vào tháng 12 năm 2019[cite: 1].</p>
+      <p>Nếu phiên bản thương mại Air Jordan 1 'Bloodline' trắng/đen/đỏ ra mắt vào dịp Black Friday năm 2019 đã quá quen thuộc với cộng đồng sneakerhead toàn cầu, thì phiên bản <b>Air Jordan 1 High OG 'Black Bloodline' PE (Player Exclusive)</b> này lại vươn lên một tầm cao hoàn toàn khác biệt. Đây là món quà Giáng sinh đặc quyền cực kỳ giới hạn mà Jordan Brand chế tác riêng để gửi tặng cho các vận động viên thuộc danh sách đại sứ thương hiệu vào tháng 12 năm 2019.</p>
 
-      <p>Điểm ăn tiền tạo nên giá trị sưu tầm độc bản của dòng PE chính thức nằm ở việc chỉ có đúng <b>93 đôi được sản xuất trên toàn thế giới</b>[cite: 1], đi kèm thiệp chúc mừng riêng từ Jordan Brand và tem hộp stamped tên định danh của từng vận động viên. Đôi giày sở hữu lớp da màu đen cao cấp bao phủ toàn bộ thân upper, được làm nổi bật bởi các đường viền chỉ đỏ (Gym Red piping) sắc nét chạy dọc theo đường cắt và bao quanh dấu Swoosh kinh điển, hoàn thiện trên nền đế giữa màu trắng và bộ đế ngoài đỏ rực[cite: 1].</p>
+      <p>Điểm ăn tiền tạo nên giá trị sưu tầm độc bản của dòng PE chính thức nằm ở việc chỉ có đúng 93 đôi được sản xuất trên toàn thế giới, đi kèm thiệp chúc mừng riêng từ Jordan Brand và tem hộp stamped tên định danh của từng vận động viên. Đôi giày sở hữu lớp da màu đen cao cấp bao phủ toàn bộ thân upper, được làm nổi bật bởi các đường viền chỉ đỏ (Gym Red piping) sắc nét chạy dọc theo đường cắt và bao quanh dấu Swoosh kinh điển, hoàn thiện trên nền đế giữa màu trắng và bộ đế ngoài đỏ rực.</p>
 
-      <p>Tuy nhiên, tác phẩm hiện đang ngự trị trong bộ sưu tập cá nhân của Lộc An lại mang một ý nghĩa lịch sử sâu sắc hơn gấp bội: thay vì chỉ dừng lại ở 93 đôi PE thương mại thông thường, đây chính là một đôi <b>Sample (bản mẫu thử nghiệm) chính thức của dòng PE này</b>. Sự hiện diện của phiên bản thử nghiệm hiếm có khó tìm này mở ra một góc nhìn độc quyền về quá trình phát triển sản phẩm trước khi đưa vào sản xuất giới hạn, biến nó thành một bảo vật lưu trữ vô giá trong không gian Lộc An Sneaker Collection.</p>
-    `
+      <p>Tuy nhiên, tác phẩm hiện đang ngự trị trong bộ sưu tập cá nhân của Lộc An lại mang một ý nghĩa lịch sử sâu sắc hơn gấp bội: thay vì chỉ dừng lại ở 93 đôi PE thương mại thông thường, đây chính là một đôi <b>Sample (bản mẫu thử nghiệm) chính thức của dòng PE này</b>. Việc sở hữu một nguyên mẫu thử nghiệm thậm chí còn độc bản và khó tìm hơn gấp nhiều lần so với bản phát hành chính thức đã biến đôi giày size 7 US này thành một bảo vật lưu trữ vô giá trong không gian Lộc An Sneaker Collection.</p>
+    `,
+    exhibitionNote: "Tác phẩm thuộc phiên bản Player Exclusive (PE) kết hợp dạng Sample nguyên mẫu thử nghiệm tối hiếm. Những phiên bản này vượt trội hơn cả các bản phát hành giới hạn thông thường, vốn chỉ được sản xuất cho nội bộ vận động viên đỉnh cao. Sự hiện diện của bản Sample này mang giá trị nghiên cứu lịch sử và sưu tầm đỉnh cao trong bảo tàng kỹ thuật số."
   },
   {
     id: "nike-sb-dunk-yuto-matcha",
@@ -57,6 +59,7 @@ const sneakers = [
       <p>Đôi giày là một bản giao hưởng màu sắc xuất sắc giữa các tông màu đất trầm ấm và sang trọng: sự hòa quyện giữa lớp nền <i>Light Khaki</i>, các mảng da lộn màu <i>Asparagus</i>, điểm xuyết sắc xanh sâu thẳm <i>Legion Green</i> cùng chi tiết <i>Burnt Sienna</i> tinh tế. Biểu tượng lông vũ chéo quen thuộc đại diện cho gia tộc và di sản của Yuto Horigome được chạm khắc dập nổi sắc nét ở phần gót giày bên ngoài, kết hợp cùng lớp đệm lót chuyên dụng dành riêng cho các vận động viên trượt ván đỉnh cao.</p>
 
       <p>Trên thị trường thương mại toàn cầu, mẫu giày này được phát hành dưới dạng một phiên bản đại trà cao cấp (General Release) với mức giá niêm yết tiêu chuẩn $135 để cộng đồng skater và giới mộ điệu dễ dàng tiếp cận. Tuy nhiên, tác phẩm hiện đang lưu trữ trong bộ sưu tập của Lộc An lại vượt xa một sản phẩm thương mại thông thường: thân giày mang <b>chữ ký trực tiếp bằng tay của chính Yuto Horigome</b>. Sự kết hợp giữa một thiết kế biểu tượng đương đại cùng chữ ký sống độc quyền của huyền thoại sống làng Skateboard đã biến đôi giày size <b>12 US</b> này thành một bảo vật lưu trữ kỹ thuật số và hiện vật độc bản vô giá.</p>
-    `
+    `,
+    exhibitionNote: "Tác phẩm thuộc phiên bản Signature Signed độc quyền. Dù sở hữu nền tảng từ dòng sản phẩm phát hành thương mại, sự hiện diện của chữ ký trực tiếp từ vận động viên huyền thoại đã nâng tầm hiện vật thành một tác phẩm nghệ thuật mang giá trị sưu tầm cá nhân độc bản và duy nhất."
   }
 ];
