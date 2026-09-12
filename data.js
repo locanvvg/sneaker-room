@@ -1,22 +1,5 @@
 const sneakers = [
   {
-    id: "af1-chamber-of-fear-temptation",
-    title: "Air Force 1 'Chamber of Fear' Temptation",
-    subtitle: "New York Exclusive (2005)",
-    sku: "311729-011",
-    colorway: "Black/Neutral Grey-Varsity Red",
-    retailPrice: "$150",
-    releaseDate: "2005",
-    editionType: "Regional Exclusive",
-    condition: "Used / Collector Grade",
-    size: "US Mens",
-    image: "https://images.stockx.com/images/Nike-Air-Force-1-Low-Chamber-Of-Fear-Temptation.jpg",
-    story: `
-      <p>Lấy cảm hứng từ những bộ phim võ thuật Hồng Kông thập niên 70, chiến dịch "Chamber of Fear" của Nike năm 2005 xoay quanh 5 trở ngại tâm lý mà LeBron James phải vượt qua để đạt tới đỉnh cao sự nghiệp. Phiên bản 'Temptation' đại diện cho cám dỗ — một trong năm thử thách tinh thần cốt lõi.</p>
-      <p>Được phát hành giới hạn độc quyền tại khu vực New York với số lượng cực kỳ hạn chế, đôi giày sở hữu chất liệu da cao cấp cùng các chi tiết thêu chữ Hán tinh xảo ở phần gót giày, biến đây trở thành một trong những đôi Air Force 1 mang giá trị lịch sử và sưu tầm cao nhất mọi thời đại.</p>
-    `
-  },
-  {
     id: "jordan-1-quai54-ff",
     title: "Air Jordan 1 High 'Quai 54' F&F",
     subtitle: "Friends & Family Exclusive (2017)",
@@ -27,7 +10,7 @@ const sneakers = [
     editionType: "F&F",
     condition: "Deadstock (Brand New)",
     size: "12.5 US",
-    image: "1.webp", // Sử dụng file ảnh trực tiếp trên GitHub
+    image: "1.webp",
     story: `
       <p>Nhằm tôn vinh Quai 54 – giải đấu bóng rổ đường phố danh giá nhất thế giới diễn ra thường niên tại thành phố Paris, Jordan Brand đã tạo ra hai phiên bản Air Jordan 1 Retro High OG đặc biệt cho mùa hè năm 2017. Trong khi bản phối màu đen truyền thống được phát hành thương mại rộng rãi vào ngày 8 tháng 7 năm 2017 với mức giá niêm yết $160, thì phiên bản xẻ màu (Split) độc bản này lại mang vị thế của một siêu phẩm tuyệt đối: dành riêng cho dàn khách mời <b>Friends & Family (F&F)</b>.</p>
 
