@@ -37,7 +37,11 @@ function renderGrid() {
 
   if (typeof sneakers !== 'undefined' && sneakers.length > 0) {
     const sortedSneakers = [...sneakers].sort((a, b) => 
-      a.title[currentLang].localeCompare(b.title[currentLang], 'en', { sensitivity: 'base' })
+     a.title[currentLang].localeCompare(
+  b.title[currentLang],
+  currentLang === 'vi' ? 'vi' : 'en',
+  { sensitivity: 'base' }
+)
     );
 
     grid.innerHTML = sortedSneakers.map(shoe => {
