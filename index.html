@@ -15,7 +15,6 @@
       overflow-x: hidden;
       touch-action: pan-y;
     }
-
     .vault-container {
       min-height: 100vh;
       display: flex;
@@ -25,13 +24,11 @@
       padding: 20px;
       position: relative;
     }
-
     .vault-header {
       text-align: center;
       margin-bottom: 20px;
       z-index: 2;
     }
-
     .vault-header h1 {
       font-size: 1.8rem;
       letter-spacing: 3px;
@@ -39,14 +36,12 @@
       color: #fff;
       text-transform: uppercase;
     }
-
     .vault-header p {
       color: #777;
       font-size: 0.75rem;
       letter-spacing: 2px;
       margin: 0;
     }
-
     .safe-dial-container {
       position: relative;
       width: 240px;
@@ -57,7 +52,6 @@
       justify-content: center;
       z-index: 2;
     }
-
     .dial-ring-outer {
       position: absolute;
       width: 100%;
@@ -67,7 +61,6 @@
       box-shadow: 0 0 25px rgba(0,0,0,0.8) inset;
       pointer-events: none;
     }
-
     .safe-dial {
       width: 190px;
       height: 190px;
@@ -85,11 +78,9 @@
       user-select: none;
       touch-action: none;
     }
-
     .safe-dial:active {
       cursor: grabbing;
     }
-
     .dial-center-cap {
       width: 70px;
       height: 70px;
@@ -103,19 +94,16 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.6);
       pointer-events: none;
     }
-
     .dial-center-cap span {
       font-size: 0.6rem;
       color: #777;
       letter-spacing: 1px;
     }
-
     .dial-center-cap strong {
       font-size: 0.8rem;
       color: #ffcc00;
       letter-spacing: 1px;
     }
-
     .dial-marker {
       position: absolute;
       top: -10px;
@@ -129,7 +117,6 @@
       z-index: 10;
       filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
     }
-
     .dial-notch {
       position: absolute;
       width: 4px;
@@ -140,7 +127,6 @@
       transform-origin: 50% 90px;
       pointer-events: none;
     }
-
     .vault-wing-display {
       width: 100%;
       max-width: 360px;
@@ -152,7 +138,6 @@
       box-shadow: 0 10px 25px rgba(0,0,0,0.5);
       z-index: 2;
     }
-
     .vault-wing-preview {
       width: 100%;
       height: 160px;
@@ -162,13 +147,11 @@
       background: #1a1a1f;
       border: 1px solid #333;
     }
-
     .vault-wing-info h3 {
       font-size: 1.2rem;
       margin: 0 0 5px 0;
       letter-spacing: 1px;
     }
-
     .status {
       font-size: 0.75rem;
       letter-spacing: 2px;
@@ -177,19 +160,16 @@
       padding: 4px 10px;
       border-radius: 4px;
     }
-
     .status.unlocked {
       background: rgba(46, 204, 113, 0.15);
       color: #2ecc71;
       border: 1px solid rgba(46, 204, 113, 0.3);
     }
-
     .status.locked {
       background: rgba(231, 76, 60, 0.15);
       color: #e74c3c;
       border: 1px solid rgba(231, 76, 60, 0.3);
     }
-
     .vault-action-btn {
       display: block;
       width: 100%;
@@ -205,14 +185,12 @@
       cursor: pointer;
       box-sizing: border-box;
     }
-
     .vault-action-btn.disabled {
       background: #222;
       color: #666;
       cursor: not-allowed;
       pointer-events: none;
     }
-
     .vault-instruction {
       margin-top: 20px;
       font-size: 0.75rem;
@@ -330,7 +308,6 @@
       }
     }
 
-    // Xử lý sự kiện chung cho cả Chuột (Mouse) và Cảm ứng điện thoại (Touch)
     let isInteracting = false;
     let startAngle = 0;
 
@@ -370,12 +347,10 @@
       setTimeout(() => { dial.style.transition = 'none'; }, 400);
     }
 
-    // Đăng ký Mouse Events
     dial.addEventListener('mousedown', (e) => { startInteraction(e.clientX, e.clientY); e.preventDefault(); });
     window.addEventListener('mousemove', (e) => { moveInteraction(e.clientX, e.clientY); });
     window.addEventListener('mouseup', () => { endInteraction(); });
 
-    // Đăng ký Touch Events cho Điện thoại
     dial.addEventListener('touchstart', (e) => {
       if (e.touches.length === 1) {
         startInteraction(e.touches[0].clientX, e.touches[0].clientY);
@@ -392,7 +367,6 @@
 
     window.addEventListener('touchend', () => { endInteraction(); });
 
-    // Hỗ trợ cuộn chuột
     window.addEventListener('wheel', (e) => {
       if (e.deltaY > 0) {
         currentIndex = (currentIndex + 1) % vaultWings.length;
