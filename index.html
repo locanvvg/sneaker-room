@@ -2,6 +2,7 @@
 <html lang="vi">
 
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -29,7 +30,10 @@
     content="black-translucent"
   >
 
-  <title>Lộc An Sneaker Collection</title>
+  <title>
+    Lộc An Sneaker Collection
+  </title>
+
 
   <link
     rel="icon"
@@ -37,20 +41,24 @@
     href="favicon.svg"
   >
 
+
   <link
     rel="apple-touch-icon"
     href="apple-touch-icon.png"
   >
+
 
   <link
     rel="manifest"
     href="site.webmanifest"
   >
 
+
   <link
     rel="stylesheet"
-    href="style.css?v=20260912-10"
+    href="style.css?v=20260912-11"
   >
+
 </head>
 
 
@@ -58,7 +66,13 @@
 
   <div class="container">
 
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
     <header class="home-header">
+
 
       <div class="lang-switcher corner-lang">
 
@@ -71,6 +85,7 @@
           VI
         </button>
 
+
         <button
           type="button"
           onclick="setLanguage('en')"
@@ -82,13 +97,16 @@
 
       </div>
 
+
       <h1 data-i18n="mainTitle">
         LỘC AN SNEAKER COLLECTION
       </h1>
 
+
       <p data-i18n="mainSubtitle">
         Không gian lưu trữ &amp; Bảo tàng Sneaker Kỹ thuật số
       </p>
+
 
       <nav
         class="museum-nav"
@@ -102,6 +120,7 @@
           COLLECTION
         </a>
 
+
         <a
           href="about.html"
           class="museum-nav-link"
@@ -114,6 +133,11 @@
     </header>
 
 
+
+    <!-- =====================================================
+         SORT
+    ====================================================== -->
+
     <section class="collection-toolbar">
 
       <div class="sort-control">
@@ -124,6 +148,7 @@
         >
           SẮP XẾP
         </label>
+
 
         <select
           id="sort-select"
@@ -142,6 +167,14 @@
             Z → A
           </option>
 
+          <option value="date-desc">
+            Ngày phát hành: Mới → Cũ
+          </option>
+
+          <option value="date-asc">
+            Ngày phát hành: Cũ → Mới
+          </option>
+
           <option value="size-asc">
             Size nhỏ → lớn
           </option>
@@ -157,15 +190,202 @@
     </section>
 
 
+
+    <!-- =====================================================
+         FILTERS
+    ====================================================== -->
+
+    <section class="filter-panel">
+
+
+      <div class="filter-panel-header">
+
+        <div>
+
+          <span
+            class="filter-main-label"
+            id="filter-title"
+          >
+            BỘ LỌC BỘ SƯU TẬP
+          </span>
+
+        </div>
+
+
+        <button
+          type="button"
+          class="clear-filter-btn"
+          id="clear-filters"
+          onclick="clearAllFilters()"
+        >
+          XÓA BỘ LỌC
+        </button>
+
+      </div>
+
+
+
+      <!-- EDITION FILTER -->
+
+      <div class="filter-group">
+
+        <div
+          class="filter-group-label"
+          id="edition-filter-label"
+        >
+          PHÂN KHÚC
+        </div>
+
+
+        <div class="filter-chips">
+
+          <button
+            type="button"
+            class="filter-chip"
+            data-group="edition"
+            data-value="PE"
+            onclick="toggleFilter('edition', 'PE')"
+          >
+            PE
+          </button>
+
+
+          <button
+            type="button"
+            class="filter-chip"
+            data-group="edition"
+            data-value="Sample"
+            onclick="toggleFilter('edition', 'Sample')"
+          >
+            SAMPLE
+          </button>
+
+
+          <button
+            type="button"
+            class="filter-chip"
+            data-group="edition"
+            data-value="F&F"
+            onclick="toggleFilter('edition', 'F&F')"
+          >
+            F&amp;F
+          </button>
+
+
+          <button
+            type="button"
+            class="filter-chip"
+            data-group="edition"
+            data-value="GR"
+            onclick="toggleFilter('edition', 'GR')"
+          >
+            GR
+          </button>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- CONDITION FILTER -->
+
+      <div class="filter-group">
+
+        <div
+          class="filter-group-label"
+          id="condition-filter-label"
+        >
+          TÌNH TRẠNG
+        </div>
+
+
+        <div class="filter-chips">
+
+          <button
+            type="button"
+            class="filter-chip"
+            data-group="condition"
+            data-value="Deadstock"
+            onclick="toggleFilter('condition', 'Deadstock')"
+          >
+            DEADSTOCK
+          </button>
+
+
+          <button
+            type="button"
+            class="filter-chip"
+            data-group="condition"
+            data-value="Used"
+            onclick="toggleFilter('condition', 'Used')"
+          >
+            USED
+          </button>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- SIZE FILTER -->
+
+      <div class="filter-group">
+
+        <div
+          class="filter-group-label"
+          id="size-filter-label"
+        >
+          KÍCH CỠ
+        </div>
+
+
+        <div
+          class="filter-chips"
+          id="size-filter-chips"
+        >
+        </div>
+
+      </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================================
+         TOTAL / FILTERED COUNT
+    ====================================================== -->
+
+    <div
+      class="collection-count"
+      id="collection-count"
+    >
+      TỔNG SỐ: 0 ĐÔI
+    </div>
+
+
+
+    <!-- =====================================================
+         COLLECTION GRID
+    ====================================================== -->
+
     <main>
 
       <div
         id="sneaker-grid"
         class="grid"
-      ></div>
+      >
+      </div>
 
     </main>
 
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
 
     <footer>
 
@@ -176,11 +396,15 @@
 
     </footer>
 
+
   </div>
 
 
-  <script src="data.js?v=20260912-10"></script>
-  <script src="main.js?v=20260912-10"></script>
+
+  <script src="data.js?v=20260912-11"></script>
+
+  <script src="main.js?v=20260912-11"></script>
+
 
 </body>
 
