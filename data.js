@@ -1,36 +1,37 @@
 const sneakers = [
   {
     id: "af1-chamber-of-fear-temptation",
-    title: "Nike Air Force 1 'Chamber of Fear - Temptation'",
+    title: "Air Force 1 'Chamber of Fear' Temptation",
     subtitle: "New York Exclusive (2005)",
-    sku: "311729-151",
-    colorway: "White / Hyacinth / Black",
-    releaseYear: "2005",
-    rarity: "Limited 150 pairs worldwide",
-    condition: "Deadstock",
-    image: "https://images.unsplash.com/photo-1552346154-21d32810aba3?w=800",
+    sku: "311729-011",
+    colorway: "Black/Neutral Grey-Varsity Red",
+    retailPrice: "$150",
+    releaseDate: "2005",
+    condition: "Used / Collector Grade",
+    size: "US Mens",
+    image: "https://images.stockx.com/images/Nike-Air-Force-1-Low-Chamber-Of-Fear-Temptation.jpg",
     story: `
-      <p>Vào năm 2004–2005, Nike ra mắt chiến dịch truyền thông "Chamber of Fear" lấy cảm hứng từ phim võ thuật Hồng Kông thập niên 70 để quảng bá dòng giày Nike Zoom LeBron II.</p>
-      <p>Nội dung xoay quanh việc LeBron James vượt qua 5 rào cản tâm lý ("5 phòng tuyến nỗi sợ") trên con đường sự nghiệp. Nike đã hiện thực hóa 5 rào cản này thành 5 phối màu Air Force 1 Low phát hành giới hạn 150 đôi/thành phố.</p>
-      <p>Phiên bản <strong>New York Exclusive</strong> này đại diện cho <em>Temptation (Sự cám dỗ)</em> — ám chỉ những cạm bẫy và sự xao nhãng tại các đô thị lớn. Phần gót ngoài được thêu tỉ mỉ chữ Hán <strong>"誘惑"</strong>.</p>
-    `,
-    collectorNote: "Một trong những bộ Grail kinh điển nhất thập niên 2000. Giá trị lịch sử và độ hiếm cực kỳ cao trong giới sưu tầm."
+      <p>Lấy cảm hứng từ những bộ phim võ thuật Hồng Kông thập niên 70, chiến dịch "Chamber of Fear" của Nike năm 2005 xoay quanh 5 trở ngại tâm lý mà LeBron James phải vượt qua để đạt tới đỉnh cao sự nghiệp. Phiên bản 'Temptation' đại diện cho cám dỗ — một trong năm thử thách tinh thần cốt lõi.</p>
+      <p>Được phát hành giới hạn độc quyền tại khu vực New York với số lượng cực kỳ hạn chế, đôi giày sở hữu chất liệu da cao cấp cùng các chi tiết thêu chữ Hán tinh xảo ở phần gót giày, biến đây trở thành một trong những đôi Air Force 1 mang giá trị lịch sử và sưu tầm cao nhất mọi thời đại.</p>
+    `
   },
   {
     id: "jordan-1-quai54-ff",
     title: "Air Jordan 1 High 'Quai 54' F&F",
     subtitle: "Friends & Family Exclusive (2017)",
-    sku: "AH1040-054",
-    colorway: "Black / Italy Blue / University Red",
-    releaseYear: "2017",
-    rarity: "Friends & Family (Non-Release)",
-    condition: "Pass~Pad / Very Near Deadstock",
-    image: "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=800",
+    sku: "MNJDLS 262 767119 XC",
+    colorway: "Black/Italy Blue-Black-University Red",
+    retailPrice: "$160",
+    releaseDate: "07/01/2017",
+    condition: "Deadstock (Brand New)",
+    size: "12.5 US",
+    image: "https://i.ibb.co/3s3B46J/quai54-ff-split.jpg",
     story: `
-      <p>Giải đấu <strong>Quai 54 World Streetball Championship</strong> diễn ra thường niên tại Paris là sự kiện bóng rổ đường phố quy mô nhất thế giới do Jordan Brand tài trợ.</p>
-      <p>Vào năm 2017, bên cạnh phiên bản thương mại, Jordan Brand chỉ sản xuất số lượng cực kỳ giới hạn phiên bản <strong>Friends & Family (F&F)</strong> này để dành tặng riêng cho các vận động viên, nghệ sĩ và nhân vật tầm ảnh hưởng tại sự kiện.</p>
-      <p>Điểm thu hút độc nhất của đôi giày là phong cách <em>Split Colorway</em> (thiết kế xẻ đôi dọc thân): chiếc bên trái phối màu Đen/Xanh Dương, trong khi chiếc bên phải phối Đen/Đỏ. Biểu tượng hình tròn Quai 54 đặc trưng được dệt sắc nét ở phần lưỡi gà.</p>
-    `,
-    collectorNote: "Phiên bản F&F tuyệt đối không mở bán thương mại. Là một trong những phối màu Jordan 1 High xẻ đôi độc đáo và giá trị nhất đối với các collector chuyên sâu."
+      <p>Nhằm tôn vinh Quai 54 – giải đấu bóng rổ đường phố danh giá nhất thế giới diễn ra thường niên tại thành phố Paris, Jordan Brand đã tạo ra hai phiên bản Air Jordan 1 Retro High OG đặc biệt cho mùa hè năm 2017. Trong khi bản phối màu đen truyền thống được phát hành thương mại rộng rãi vào ngày 8 tháng 7 năm 2017 với mức giá niêm yết $160, thì phiên bản xẻ màu (Split) độc bản này lại mang vị thế của một siêu phẩm tuyệt đối: dành riêng cho dàn khách mời <b>Friends & Family (F&F)</b>.</p>
+
+      <p>Sở hữu phối màu gốc <i>Black/Italy Blue-Black-University Red</i> (mã Style <b>MNJDLS 262 767119 XC</b>), điểm nhấn đột phá nhất tạo nên giá trị sưu tầm thượng thừa cho tác phẩm này chính là ngôn ngữ thiết kế "Split Colorway" bổ đôi táo bạo dọc theo thân giày. Chiếc bên phải là sự hòa quyện giữa sắc Xanh Italy (Italy Blue) rực rỡ và tông Đen huyền bí; trong khi chiếc bên trái lại tạo nên sự tương phản hoàn hảo với sắc Đỏ University (University Red) rực cháy. Logo biểu tượng của giải đấu Quai 54 được thêu trang trọng trên phần lưỡi gà vải dệt và in chìm tỉ mỉ ngay bên trong lót giày.</p>
+
+      <p>Tương tự như di sản của hai phối màu Air Jordan 5 Retro F&F ra mắt tại giải đấu năm 2011, phiên bản Air Jordan 1 Quai 54 F&F hoàn toàn không được phân phối qua bất kỳ hệ thống bán lẻ nào trên toàn cầu. Số lượng sản xuất cực kỳ giới hạn chỉ được trao tận tay cho những vận động viên, nghệ sĩ và những cá nhân có ảnh hưởng lớn nhất tới văn hóa bóng rổ đường phố. Việc sở hữu một đôi giày ở tình trạng <b>Deadstock hoàn hảo</b> cùng bảng size hiếm <b>12.5 US</b> trong bộ sưu tập cá nhân chính là một minh chứng đỉnh cao cho niềm đam mê và giá trị lưu trữ kỹ thuật số tại Lộc An Sneaker Collection.</p>
+    `
   }
 ];
