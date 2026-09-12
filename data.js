@@ -125,7 +125,7 @@ const sneakers = [
     retailPrice: "$230",
     releaseDate: "04/03/2026",
     editionType: {
-      vi: "", // Không hiện nhãn bên ngoài theo yêu cầu
+      vi: "", 
       en: ""
     },
     condition: {
