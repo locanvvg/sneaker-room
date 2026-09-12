@@ -5,44 +5,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lộc An Sneaker Collection</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    body { background: #0a0a0c; color: #fff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; padding: 0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+    .back-link { color: #888; text-decoration: none; font-size: 0.9rem; letter-spacing: 1px; display: inline-block; margin-bottom: 20px; }
+    .back-link:hover { color: #fff; }
+    .collection-header { text-align: center; margin-bottom: 40px; }
+    .collection-header h1 { font-size: 2rem; letter-spacing: 2px; margin: 0 0 10px 0; text-transform: uppercase; }
+    .collection-header p { color: #777; font-size: 0.85rem; letter-spacing: 1px; margin: 0; }
+    .sneaker-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
+    .sneaker-card {
+      background: #141417; border: 1px solid #222; border-radius: 12px; overflow: hidden;
+      transition: transform 0.3s ease, border-color 0.3s ease; text-decoration: none; color: #fff; display: flex; flex-direction: column;
+    }
+    .sneaker-card:hover { transform: translateY(-5px); border-color: #ffcc00; }
+    .card-img-wrapper { position: relative; width: 100%; height: 200px; background: #1a1a1f; }
+    .card-img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+    .card-badge {
+      position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.75); color: #ffcc00;
+      border: 1px solid rgba(255,204,0,0.4); padding: 4px 8px; font-size: 0.7rem; font-weight: bold; border-radius: 4px; letter-spacing: 1px;
+    }
+    .card-content { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; }
+    .card-meta { font-size: 0.75rem; color: #777; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+    .card-title { font-size: 1.1rem; font-weight: bold; margin: 0 0 10px 0; letter-spacing: 0.5px; line-height: 1.4; color: #fff; }
+    .card-desc { font-size: 0.85rem; color: #aaa; line-height: 1.5; margin: 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  </style>
 </head>
 <body>
-
-  <div class="collection-container">
-    <nav class="collection-nav">
-      <a href="index.html" class="back-link">← Quay lại Vault</a>
-    </nav>
-
-    <header class="collection-header">
+  <div class="container">
+    <a href="index.html" class="back-link">← Quay lại Vault</a>
+    
+    <div class="collection-header">
       <h1>Lộc An Sneaker Collection</h1>
       <p>Không gian lưu trữ & Bảo tàng Sneaker Kỹ thuật số</p>
-    </header>
+    </div>
 
     <div id="sneakerGrid" class="sneaker-grid">
-      <!-- Render bằng JS -->
+      <!-- Dữ liệu giày sẽ được render động từ data.js -->
     </div>
   </div>
 
   <script src="data.js"></script>
   <script>
     const grid = document.getElementById('sneakerGrid');
-
-    if (typeof sneakersData !== 'undefined' && sneakersData.length > 0) {
-      grid.innerHTML = sneakersData.map(item => `
-        <div class="sneaker-card" onclick="location.href='shoe.html?id=${item.id}'">
-          <div class="sneaker-img-wrapper">
-            <img src="${item.image}" alt="${item.name}" loading="lazy">
-            <span class="sneaker-badge">${item.badge || 'Archive'}</span>
+    if (typeof sneakersData !== 'undefined') {
+      grid.innerHTML = sneakersData.map(shoe => `
+        <a href="shoe.html?id=${shoe.id}" class="sneaker-card">
+          <div class="card-img-wrapper">
+            <img src="${shoe.image}" alt="${shoe.title}">
+            ${shoe.badge ? `<div class="card-badge">${shoe.badge}</div>` : ''}
           </div>
-          <div class="sneaker-info">
-            <span class="sneaker-brand">${item.brand}</span>
-            <h3>${item.name}</h3>
-            <p class="sneaker-desc">${item.shortDesc || ''}</p>
+          <div class="card-content">
+            <div class="card-meta">${shoe.editionType || shoe.subtitle || 'Archive Item'}</div>
+            <h2 class="card-title">${shoe.title}</h2>
+            <p class="card-desc">${shoe.shortDesc || shoe.subtitle || ''}</p>
           </div>
-        </div>
+        </a>
       `).join('');
     } else {
-      grid.innerHTML = '<p style="color: #777; text-align: center; grid-column: 1/-1; padding: 40px 0;">Đang cập nhật danh mục lưu trữ...</p>';
+      grid.innerHTML = '<p style="text-align: center; color: #777; grid-column: 1/-1;">Không thể tải dữ liệu kho lưu trữ.</p>';
     }
   </script>
 </body>
