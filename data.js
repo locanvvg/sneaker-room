@@ -38,7 +38,8 @@ const sneakers = [
       <p>Sở hữu phối màu gốc <i>Black/Italy Blue-Fast/University Red</i>, điểm nhấn đột phá nhất tạo nên giá trị sưu tầm thượng thừa cho tác phẩm này chính là ngôn ngữ thiết kế "Split Colorway" bổ đôi táo bạo dọc theo thân giày. Chiếc bên phải là sự hòa quyện giữa sắc Xanh Italy rực rỡ và tông Đen huyền bí; trong khi chiếc bên trái lại tạo nên sự tương phản hoàn hảo với sắc Đỏ rực cháy. Logo biểu tượng của giải đấu Quai 54 được thêu trang trọng trên phần lưỡi gà vải dệt và in chìm tỉ mỉ ngay bên trong lót giày.</p>
 
       <p>Tương tự như di sản của hai phối màu Air Jordan 5 Retro F&F ra mắt tại giải đấu năm 2011, phiên bản Air Jordan 1 Quai 54 F&F hoàn toàn không được phân phối qua bất kỳ hệ thống bán lẻ nào trên toàn cầu. Số lượng sản xuất cực kỳ giới hạn chỉ được trao tận tay cho những vận động viên, nghệ sĩ và những cá nhân có ảnh hưởng lớn nhất tới văn hóa bóng rổ đường phố. Việc sở hữu một đôi giày ở tình trạng <b>Deadstock hoàn hảo</b> cùng bảng size hiếm <b>12.5 US</b> trong bộ sưu tập cá nhân chính là một minh chứng đỉnh cao cho niềm đam mê và giá trị lưu trữ kỹ thuật số tại Lộc An Sneaker Collection.</p>
-    `
+    `,
+    exhibitionNote: "Tác phẩm thuộc phiên bản đặc biệt (F&F). Các phiên bản dạng này chỉ được sản xuất giới hạn để dành riêng cho vận động viên, người thân hoặc nội bộ thương hiệu. Do không được phát hành thương mại tại các cửa hàng bán lẻ, tác phẩm không có giá niêm yết gốc (Retail Price: N/A) và sở hữu giá trị sưu tầm đặc biệt trên thị trường quốc tế."
   },
   {
     id: "nike-sb-dunk-yuto-matcha",
