@@ -2,33 +2,47 @@
 <html lang="vi">
 
 <head>
+
   <meta charset="UTF-8">
+
 
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0"
   >
 
+
   <meta
     name="description"
     content="Lộc An Sneaker Collection - Sneaker Exhibition Detail"
   >
 
-  <title>Lộc An Sneaker Collection</title>
+
+  <title>
+    Lộc An Sneaker Collection
+  </title>
+
 
   <link
     rel="stylesheet"
-    href="style.css?v=20260912-3"
+    href="style.css?v=20260912-4"
   >
+
 </head>
 
 
 <body>
 
+
   <div class="container">
 
-    <!-- HEADER -->
+
+    <!-- ======================================
+         HEADER
+    ======================================= -->
+
     <header class="site-header">
+
 
       <a
         href="index.html"
@@ -46,6 +60,7 @@
 
       <div class="lang-switcher">
 
+
         <button
           type="button"
           id="btn-vi"
@@ -54,6 +69,7 @@
         >
           VI
         </button>
+
 
         <button
           type="button"
@@ -64,19 +80,26 @@
           EN
         </button>
 
+
       </div>
+
 
     </header>
 
 
 
-    <!-- SHOE DETAIL -->
+    <!-- ======================================
+         SHOE DETAIL
+    ======================================= -->
+
     <main
       id="shoe-detail"
       class="shoe-detail-container"
     >
 
+
       <!-- IMAGE -->
+
       <div class="shoe-image-section">
 
         <img
@@ -89,15 +112,20 @@
       </div>
 
 
+
       <!-- INFORMATION -->
+
       <div class="shoe-info-section">
 
+
         <h2 id="shoe-title"></h2>
+
 
         <p
           id="shoe-subtitle"
           class="subtitle detail-subtitle"
         ></p>
+
 
 
         <div class="specs-grid">
@@ -120,6 +148,7 @@
           </div>
 
 
+
           <div class="spec-item">
 
             <span
@@ -135,6 +164,7 @@
             ></span>
 
           </div>
+
 
 
           <div class="spec-item">
@@ -154,6 +184,7 @@
           </div>
 
 
+
           <div class="spec-item">
 
             <span
@@ -171,6 +202,7 @@
           </div>
 
 
+
           <div class="spec-item">
 
             <span
@@ -186,6 +218,7 @@
             ></span>
 
           </div>
+
 
 
           <div class="spec-item">
@@ -207,57 +240,87 @@
 
         </div>
 
+
       </div>
+
 
     </main>
 
 
 
-    <!-- STORY -->
+    <!-- ======================================
+         STORY
+    ======================================= -->
+
     <section
       class="story-section"
       id="story-section"
     >
 
+
       <h3 id="story-title">
         Câu chuyện &amp; Bối cảnh thiết kế
       </h3>
 
+
       <div id="shoe-story"></div>
+
 
     </section>
 
 
 
+    <!-- ======================================
+         FOOTER
+    ======================================= -->
+
     <footer>
+
       <p>
         &copy; 2026 Lộc An Sneaker Collection.
         All Rights Reserved.
       </p>
+
     </footer>
+
 
   </div>
 
 
 
-  <!-- FORCE LOAD NEWEST DATABASE -->
+  <!-- ======================================
+       DATA
+  ======================================= -->
+
   <script src="data.js?v=20260912-3"></script>
 
 
+
+  <!-- ======================================
+       DETAIL PAGE JAVASCRIPT
+  ======================================= -->
+
   <script>
 
-    /* =====================================================
-       LANGUAGE
-    ===================================================== */
 
-    const supportedLanguages = ['vi', 'en'];
+    /* ==========================================
+       LANGUAGE
+    ========================================== */
+
+    const supportedLanguages = [
+      'vi',
+      'en'
+    ];
 
 
     function normalizeLanguage(lang) {
+
       return supportedLanguages.includes(lang)
         ? lang
         : 'vi';
+
     }
+
 
 
     const params =
@@ -266,16 +329,25 @@
       );
 
 
+
     const shoeId =
       params.get('id');
 
 
+
     let currentLang =
       normalizeLanguage(
+
         params.get('lang') ||
-        localStorage.getItem('locan_lang') ||
+
+        localStorage.getItem(
+          'locan_lang'
+        ) ||
+
         'vi'
+
       );
+
 
 
     localStorage.setItem(
@@ -285,166 +357,276 @@
 
 
 
-    /* =====================================================
+    /* ==========================================
        LABELS
-    ===================================================== */
+    ========================================== */
 
     const labels = {
 
+
       vi: {
-        back: '← Quay lại Bộ sưu tập',
-        sku: 'MÃ SẢN PHẨM',
-        colorway: 'PHỐI MÀU',
-        retail: 'GIÁ PHÁT HÀNH',
-        date: 'NGÀY RA MẮT',
-        condition: 'TÌNH TRẠNG',
-        size: 'KÍCH CỠ',
-        story: 'Câu chuyện & Bối cảnh thiết kế',
-        notFound: 'Không tìm thấy thông tin tác phẩm này.'
+
+        back:
+          '← Quay lại Bộ sưu tập',
+
+        sku:
+          'MÃ SẢN PHẨM',
+
+        colorway:
+          'PHỐI MÀU',
+
+        retail:
+          'GIÁ PHÁT HÀNH',
+
+        date:
+          'NGÀY RA MẮT',
+
+        condition:
+          'TÌNH TRẠNG',
+
+        size:
+          'KÍCH CỠ',
+
+        story:
+          'Câu chuyện & Bối cảnh thiết kế',
+
+        notFound:
+          'Không tìm thấy thông tin tác phẩm này.'
+
       },
 
+
+
       en: {
-        back: '← Back to Collection',
-        sku: 'SKU',
-        colorway: 'COLORWAY',
-        retail: 'RETAIL PRICE',
-        date: 'RELEASE DATE',
-        condition: 'CONDITION',
-        size: 'SIZE',
-        story: 'Story & Design Background',
-        notFound: 'Piece information not found.'
+
+        back:
+          '← Back to Collection',
+
+        sku:
+          'SKU',
+
+        colorway:
+          'COLORWAY',
+
+        retail:
+          'RETAIL PRICE',
+
+        date:
+          'RELEASE DATE',
+
+        condition:
+          'CONDITION',
+
+        size:
+          'SIZE',
+
+        story:
+          'Story & Design Background',
+
+        notFound:
+          'Piece information not found.'
+
       }
+
 
     };
 
 
 
-    /* =====================================================
+    /* ==========================================
        LOCALIZED VALUE
-    ===================================================== */
+    ========================================== */
 
     function localized(value) {
+
 
       if (!value) {
         return '';
       }
 
-      if (typeof value === 'string') {
+
+      if (
+        typeof value === 'string'
+      ) {
+
         return value;
+
       }
 
+
       return (
+
         value[currentLang] ||
+
         value.en ||
+
         value.vi ||
+
         ''
+
       );
+
 
     }
 
 
 
-    /* =====================================================
+    /* ==========================================
        DATE FORMAT
-    ===================================================== */
+    ========================================== */
 
     function formatDate(value) {
+
 
       if (!value) {
         return 'N/A';
       }
 
 
-      /* YYYY-MM-DD */
+
+      /*
+        YYYY-MM-DD
+      */
 
       if (
         /^\d{4}-\d{2}-\d{2}$/.test(value)
       ) {
 
-        const [year, month, day] =
-          value.split('-').map(Number);
+
+        const [
+          year,
+          month,
+          day
+        ] =
+          value
+            .split('-')
+            .map(Number);
+
 
 
         const date =
           new Date(
+
             Date.UTC(
               year,
               month - 1,
               day
             )
+
           );
 
 
+
         return date.toLocaleDateString(
+
 
           currentLang === 'vi'
             ? 'vi-VN'
             : 'en-US',
 
+
           {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            timeZone: 'UTC'
+
+            year:
+              'numeric',
+
+            month:
+              'long',
+
+            day:
+              'numeric',
+
+            timeZone:
+              'UTC'
+
           }
 
+
         );
+
 
       }
 
 
 
-      /* YYYY-MM */
+      /*
+        YYYY-MM
+      */
 
       if (
         /^\d{4}-\d{2}$/.test(value)
       ) {
 
-        const [year, month] =
-          value.split('-').map(Number);
+
+        const [
+          year,
+          month
+        ] =
+          value
+            .split('-')
+            .map(Number);
+
 
 
         const date =
           new Date(
+
             Date.UTC(
               year,
               month - 1,
               1
             )
+
           );
 
 
+
         return date.toLocaleDateString(
+
 
           currentLang === 'vi'
             ? 'vi-VN'
             : 'en-US',
 
+
           {
-            year: 'numeric',
-            month: 'long',
-            timeZone: 'UTC'
+
+            year:
+              'numeric',
+
+            month:
+              'long',
+
+            timeZone:
+              'UTC'
+
           }
 
+
         );
+
 
       }
 
 
+
       return value;
+
 
     }
 
 
 
-    /* =====================================================
+    /* ==========================================
        CHANGE LANGUAGE
-    ===================================================== */
+    ========================================== */
 
     function changeLang(lang) {
 
+
       currentLang =
         normalizeLanguage(lang);
+
 
 
       localStorage.setItem(
@@ -453,10 +635,12 @@
       );
 
 
+
       const newURL =
         new URL(
           window.location.href
         );
+
 
 
       newURL.searchParams.set(
@@ -465,49 +649,71 @@
       );
 
 
+
       window.history.replaceState(
+
         {},
+
         '',
+
         newURL.pathname +
         newURL.search +
         newURL.hash
+
       );
 
 
+
       loadShoe();
+
 
     }
 
 
 
-    /* =====================================================
-       UPDATE INTERFACE
-    ===================================================== */
+    /* ==========================================
+       UPDATE LANGUAGE INTERFACE
+    ========================================== */
 
     function updateLanguageInterface() {
 
+
       document.documentElement.lang =
         currentLang;
+
 
 
       const language =
         labels[currentLang];
 
 
+
       document
-        .getElementById('btn-vi')
+        .getElementById(
+          'btn-vi'
+        )
         .classList.toggle(
+
           'active',
+
           currentLang === 'vi'
+
         );
+
 
 
       document
-        .getElementById('btn-en')
+        .getElementById(
+          'btn-en'
+        )
         .classList.toggle(
+
           'active',
+
           currentLang === 'en'
+
         );
+
 
 
       const backLink =
@@ -516,96 +722,144 @@
         );
 
 
+
       backLink.textContent =
         language.back;
 
 
+
       backLink.href =
         'index.html?lang=' +
-        encodeURIComponent(currentLang);
+        encodeURIComponent(
+          currentLang
+        );
+
 
 
       document
-        .getElementById('label-sku')
+        .getElementById(
+          'label-sku'
+        )
         .textContent =
         language.sku;
 
 
+
       document
-        .getElementById('label-colorway')
+        .getElementById(
+          'label-colorway'
+        )
         .textContent =
         language.colorway;
 
 
+
       document
-        .getElementById('label-retail')
+        .getElementById(
+          'label-retail'
+        )
         .textContent =
         language.retail;
 
 
+
       document
-        .getElementById('label-date')
+        .getElementById(
+          'label-date'
+        )
         .textContent =
         language.date;
 
 
+
       document
-        .getElementById('label-condition')
+        .getElementById(
+          'label-condition'
+        )
         .textContent =
         language.condition;
 
 
+
       document
-        .getElementById('label-size')
+        .getElementById(
+          'label-size'
+        )
         .textContent =
         language.size;
 
 
+
       document
-        .getElementById('story-title')
+        .getElementById(
+          'story-title'
+        )
         .textContent =
         language.story;
+
 
     }
 
 
 
-    /* =====================================================
+    /* ==========================================
        LOAD SHOE
-    ===================================================== */
+    ========================================== */
 
     function loadShoe() {
+
 
       updateLanguageInterface();
 
 
+
       if (
-        typeof sneakers === 'undefined' ||
-        !Array.isArray(sneakers)
+
+        typeof sneakers ===
+          'undefined' ||
+
+        !Array.isArray(
+          sneakers
+        )
+
       ) {
 
+
         showNotFound();
+
         return;
 
+
       }
+
 
 
       const sneaker =
         sneakers.find(
-          item => item.id === shoeId
+
+          item =>
+            item.id === shoeId
+
         );
+
 
 
       if (!sneaker) {
 
+
         showNotFound();
+
         return;
+
 
       }
 
 
+
       document
-        .getElementById('story-section')
+        .getElementById(
+          'story-section'
+        )
         .style.display =
         'block';
 
@@ -617,63 +871,93 @@
         );
 
 
+
       document.title =
         title +
         ' | Lộc An Sneaker Collection';
 
 
+
       document
-        .getElementById('shoe-title')
+        .getElementById(
+          'shoe-title'
+        )
         .textContent =
         title;
 
 
+
       document
-        .getElementById('shoe-subtitle')
+        .getElementById(
+          'shoe-subtitle'
+        )
         .textContent =
         localized(
           sneaker.subtitle
         );
 
 
+
       document
-        .getElementById('shoe-sku')
+        .getElementById(
+          'shoe-sku'
+        )
         .textContent =
-        sneaker.sku || 'N/A';
+        sneaker.sku ||
+        'N/A';
+
 
 
       document
-        .getElementById('shoe-colorway')
+        .getElementById(
+          'shoe-colorway'
+        )
         .textContent =
-        sneaker.colorway || 'N/A';
+        sneaker.colorway ||
+        'N/A';
+
 
 
       document
-        .getElementById('shoe-retail')
+        .getElementById(
+          'shoe-retail'
+        )
         .textContent =
-        sneaker.retailPrice || 'N/A';
+        sneaker.retailPrice ||
+        'N/A';
+
 
 
       document
-        .getElementById('shoe-date')
+        .getElementById(
+          'shoe-date'
+        )
         .textContent =
         formatDate(
           sneaker.releaseDate
         );
 
 
+
       document
-        .getElementById('shoe-condition')
+        .getElementById(
+          'shoe-condition'
+        )
         .textContent =
         localized(
           sneaker.condition
-        ) || 'N/A';
+        ) ||
+        'N/A';
+
 
 
       document
-        .getElementById('shoe-size')
+        .getElementById(
+          'shoe-size'
+        )
         .textContent =
-        sneaker.size || 'N/A';
+        sneaker.size ||
+        'N/A';
 
 
 
@@ -683,8 +967,11 @@
         );
 
 
+
       image.src =
-        sneaker.image || '';
+        sneaker.image ||
+        '';
+
 
 
       image.alt =
@@ -693,58 +980,76 @@
 
 
       document
-        .getElementById('shoe-story')
+        .getElementById(
+          'shoe-story'
+        )
         .innerHTML =
         localized(
           sneaker.story
         );
 
+
     }
 
 
 
-    /* =====================================================
+    /* ==========================================
        NOT FOUND
-    ===================================================== */
+    ========================================== */
 
     function showNotFound() {
 
+
       document.title =
-        labels[currentLang].notFound;
+        labels[
+          currentLang
+        ].notFound;
+
 
 
       document
-        .getElementById('shoe-detail')
+        .getElementById(
+          'shoe-detail'
+        )
         .innerHTML = `
 
           <div class="not-found">
+
             <p>
               ${labels[currentLang].notFound}
             </p>
+
           </div>
 
         `;
 
 
+
       document
-        .getElementById('story-section')
+        .getElementById(
+          'story-section'
+        )
         .style.display =
         'none';
+
 
     }
 
 
 
-    /* =====================================================
+    /* ==========================================
        INITIALIZE
-    ===================================================== */
+    ========================================== */
 
     document.addEventListener(
       'DOMContentLoaded',
       loadShoe
     );
 
+
   </script>
 
+
 </body>
+
 </html>
