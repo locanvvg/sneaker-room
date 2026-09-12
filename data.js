@@ -1,98 +1,82 @@
-const sneakersData = [
+const sneakers = [
   {
     id: "air-jordan-1-black-bloodline-pe",
     title: "Air Jordan 1 High OG 'Black Bloodline' PE",
-    titleEn: "Air Jordan 1 High OG 'Black Bloodline' PE",
     subtitle: "Friends & Family Sample (2019)",
-    subtitleEn: "Friends & Family Sample (2019)",
     sku: "961539 (Serial: ES007436)",
     colorway: "Black/Gym Red-White",
     retailPrice: "N/A (PE Exclusive)",
-    retailPriceEn: "N/A (PE Exclusive)",
     releaseDate: "12/2019",
     editionType: "PE Sample",
-    condition: "Deadstock (Brand New)",
-    conditionEn: "Deadstock (Brand New)",
+    condition: "Deadstock (Sample)",
     size: "7 US",
     image: "jordan1_pe_bloodline_friendsandfamily_sample.png",
-    badge: "Sample PE",
-    shortDesc: "Phiên bản giới hạn Friends & Family Sample, sở hữu chi tiết thiết kế độc bản.",
-    shortDescEn: "Limited Friends & Family Sample edition featuring unique design details.",
-    story: "<p>Nếu phiên bản thương mại Air Jordan 1 'Bloodline' trắng/đen/đỏ ra mắt vào dịp Black Friday 2019 vốn rất quen thuộc với giới mộ điệu, thì tác phẩm này lại mang một thân phận hoàn toàn khác biệt trong thế giới sưu tầm.</p><p>Đặc điểm ăn tiền tạo nên giá trị sưu tầm độc bản của dòng PE (Player Exclusive) chính thức nằm ở việc chỉ có đúng 93 đôi được sản xuất trên toàn cầu dành riêng cho nội bộ cấp cao và vận động viên thân thiết.</p><p>Tuy nhiên, tuyệt phẩm hiện đang ngự trị trong kho lưu trữ cá nhân của Lộc An lại mang một ý nghĩa lịch sử cao hơn thế: đây không chỉ là một phiên bản F&F thông thường, mà là một đôi <strong>Factory Sample</strong> nguyên bản độc nhất vô nhị từ nhà máy với các chi tiết thông số nội bộ được mã hóa cực kỳ hiếm thấy.</p><p>Sự kết hợp giữa chất liệu da cao cấp, đường viền đỏ sắc nét cùng dải serial number dập chìm bên trong cổ giày đã biến đôi giày này trở thành một báu vật thực sự, nơi ranh giới giữa giày thể thao và tác phẩm nghệ thuật đương đại bị xóa nhòa hoàn toàn.</p>",
-    storyEn: "<p>While the commercial Air Jordan 1 'Bloodline' release from Black Friday 2019 is widely recognized by sneaker enthusiasts, this specific piece holds an entirely different, highly exclusive lineage.</p><p>The true rarity lies in its strict production run of only 93 pairs worldwide, allocated exclusively for top-tier brand insiders and close family members.</p><p>Above all, the piece preserved in Lộc An's personal archive holds even greater historical significance: it is an ultra-rare factory sample pair featuring internal coded specifications.</p><p>The combination of premium leather, striking red piping, and internal serial numbering transforms this artifact into a true museum-grade piece.</p>",
-    exhibitionNote: "Tác phẩm thuộc phiên bản Player Exclusive kết hợp dạng bản mẫu thử nghiệm từ nhà máy (Factory Sample), với số lượng cực kỳ giới hạn trên toàn cầu dành riêng cho nội bộ thương hiệu. Do không phát hành thương mại, sản phẩm hoàn toàn không có giá niêm yết gốc (Retail Price: N/A) và mang giá trị lưu trữ độc bản.",
-    exhibitionNoteEn: "This piece belongs to an ultra-rare hybrid Player Exclusive and factory sample edition, strictly limited worldwide for brand insiders. Not released commercially, it carries no official retail price (Retail Price: N/A) and holds irreplaceable archive value."
+    story: `
+      <p>Nếu phiên bản thương mại Air Jordan 1 'Bloodline' trắng/đen/đỏ ra mắt vào dịp Black Friday năm 2019 đã quá quen thuộc với cộng đồng sneakerhead toàn cầu, thì phiên bản <b>Air Jordan 1 High OG 'Black Bloodline' PE (Player Exclusive)</b> này lại vươn lên một tầm cao hoàn toàn khác biệt. Đây là món quà Giáng sinh đặc quyền cực kỳ giới hạn mà Jordan Brand chế tác riêng để gửi tặng cho các vận động viên thuộc danh sách đại sứ thương hiệu vào tháng 12 năm 2019.</p>
+
+      <p>Điểm ăn tiền tạo nên giá trị sưu tầm độc bản của dòng PE chính thức nằm ở việc chỉ có đúng 93 đôi được sản xuất trên toàn thế giới, đi kèm thiệp chúc mừng riêng từ Jordan Brand và tem hộp stamped tên định danh của từng vận động viên. Đôi giày sở hữu lớp da màu đen cao cấp bao phủ toàn bộ thân upper, được làm nổi bật bởi các đường viền chỉ đỏ (Gym Red piping) sắc nét chạy dọc theo đường cắt và bao quanh dấu Swoosh kinh điển, hoàn thiện trên nền đế giữa màu trắng và bộ đế ngoài đỏ rực.</p>
+
+      <p>Tuy nhiên, tác phẩm hiện đang ngự trị trong bộ sưu tập cá nhân của Lộc An lại mang một ý nghĩa lịch sử sâu sắc hơn gấp bội: thay vì chỉ dừng lại ở 93 đôi PE thương mại thông thường, đây chính là một đôi <b>Sample (bản mẫu thử nghiệm) chính thức của dòng PE này</b>. Việc sở hữu một nguyên mẫu thử nghiệm thậm chí còn độc bản và khó tìm hơn gấp nhiều lần so với bản phát hành chính thức đã biến đôi giày size 7 US này thành một bảo vật lưu trữ vô giá trong không gian Lộc An Sneaker Collection.</p>
+    `
   },
   {
     id: "jordan-1-quai54-ff",
     title: "Air Jordan 1 High 'Quai 54' F&F",
-    titleEn: "Air Jordan 1 High 'Quai 54' F&F",
     subtitle: "Friends & Family Exclusive (2017)",
-    subtitleEn: "Friends & Family Exclusive (2017)",
     sku: "MNJDLS 262 767119 XC",
     colorway: "Black/Italy Blue-Black-University Red",
     retailPrice: "N/A",
-    retailPriceEn: "N/A",
     releaseDate: "07/01/2017",
     editionType: "F&F",
     condition: "Deadstock (Brand New)",
-    conditionEn: "Deadstock (Brand New)",
-    size: "7.5 US",
-    image: "jordan_quai54_friendsandfamily_sample.png",
-    badge: "F&F EXCLUSIVE",
-    shortDesc: "Phiên bản Friends & Family cực hiếm dành riêng cho giải đấu bóng rổ Paris.",
-    shortDescEn: "Ultra-rare Friends & Family edition dedicated to the Paris streetball tournament.",
-    story: "<p>Được thiết kế độc quyền cho giải đấu bóng rổ đường phố danh giá nhất hành tinh – Quai 54 tại Paris, phiên bản Air Jordan 1 này đứng ngoài mọi guồng quay phát hành thương mại thông thường của Nike.</p><p>Sự pha trộn màu sắc đầy nghệ thuật giữa sắc đen tuyền chủ đạo, điểm xuyết các mảng màu Italy Blue sâu thẳm và University Red rực rỡ đã tái hiện hoàn hảo năng lượng bùng nổ của những mặt sân bê tông thủ đô nước Pháp.</p><p>Những đôi giày mang mã định danh F&F (Friends & Family) này chưa bao giờ xuất hiện trên kệ hàng bán lẻ. Chúng được trao tận tay cho các huyền thoại bóng rổ khách mời và ban tổ chức giải đấu, biến mỗi đôi giày thành một nhân chứng sống cho văn hóa sát mặt đất đỉnh cao.</p><p>Việc sở hữu một siêu phẩm F&F trong bộ sưu tập không chỉ là minh chứng cho tầm nhìn sưu tầm sắc bén mà còn là sự trân trọng đối với di sản văn hóa bóng rổ đường phố toàn cầu.</p>",
-    storyEn: "<p>Designed exclusively for the world's most prestigious streetball tournament – Quai 54 in Paris, this Air Jordan 1 edition stands completely outside standard commercial retail channels.</p><p>The artistic color palette blending deep black with Italy Blue and vibrant University Red perfectly captures the explosive energy of Parisian concrete courts.</p><p>These Friends & Family (F&F) designated pairs never hit retail shelves; instead, they were gifted strictly to invited basketball legends and tournament organizers.</p><p>Owning such an F&F masterpiece represents a deep appreciation for global streetball culture and elite archival collecting.</p>",
-    exhibitionNote: "Tác phẩm thuộc phiên bản đặc biệt (F&F). Các phiên bản dạng này (như Promo Sample, Player Exclusive hoặc Friends & Family) chỉ được sản xuất giới hạn để dành riêng cho vận động viên, người thân hoặc nội bộ thương hiệu. Do không được phát hành thương mại tại các cửa hàng bán lẻ, tác phẩm không có giá niêm yết gốc (Retail Price: N/A) và sở hữu giá trị sưu tầm đặc biệt trên thị trường quốc tế.",
-    exhibitionNoteEn: "This piece belongs to a special Friends & Family (F&F) edition. Such pairs (like Promo Samples, Player Exclusives, or F&F) were strictly produced in limited numbers for athletes, relatives, or brand personnel. Not released commercially at retail, it carries no official retail price (Retail Price: N/A) and holds exceptional collectible value globally."
+    size: "12.5 US",
+    image: "jordan_quai54_friendsandfamily.png",
+    story: `
+      <p>Nhằm tôn vinh Quai 54 – giải đấu bóng rổ đường phố danh giá nhất thế giới diễn ra thường niên tại thành phố Paris, Jordan Brand đã tạo ra hai phiên bản Air Jordan 1 Retro High OG đặc biệt cho mùa hè năm 2017. Trong khi bản phối màu đen truyền thống được phát hành thương mại rộng rãi vào ngày 8 tháng 7 năm 2017 với mức giá niêm yết $160, thì phiên bản xẻ màu (Split) độc bản này lại mang vị thế của một siêu phẩm tuyệt đối: dành riêng cho dàn khách mời <b>Friends & Family (F&F)</b>.</p>
+
+      <p>Sở hữu phối màu gốc <i>Black/Italy Blue-Fast/University Red</i>, điểm nhấn đột phá nhất tạo nên giá trị sưu tầm thượng thừa cho tác phẩm này chính là ngôn ngữ thiết kế "Split Colorway" bổ đôi táo bạo dọc theo thân giày. Chiếc bên phải là sự hòa quyện giữa sắc Xanh Italy rực rỡ và tông Đen huyền bí; trong khi chiếc bên trái lại tạo nên sự tương phản hoàn hảo với sắc Đỏ rực cháy. Logo biểu tượng của giải đấu Quai 54 được thêu trang trọng trên phần lưỡi gà vải dệt và in chìm tỉ mỉ ngay bên trong lót giày.</p>
+
+      <p>Tương tự như di sản của hai phối màu Air Jordan 5 Retro F&F ra mắt tại giải đấu năm 2011, phiên bản Air Jordan 1 Quai 54 F&F hoàn toàn không được phân phối qua bất kỳ hệ thống bán lẻ nào trên toàn cầu. Số lượng sản xuất cực kỳ giới hạn chỉ được trao tận tay cho những vận động viên, nghệ sĩ và những cá nhân có ảnh hưởng lớn nhất tới văn hóa bóng rổ đường phố. Việc sở hữu một đôi giày ở tình trạng <b>Deadstock hoàn hảo</b> cùng bảng size hiếm <b>12.5 US</b> trong bộ sưu tập cá nhân chính là một minh chứng đỉnh cao cho niềm đam mê và giá trị lưu trữ kỹ thuật số tại Lộc An Sneaker Collection.</p>
+    `
   },
   {
-    id: "sbdunk-yutohorigome-matcha",
-    title: "Nike SB Dunk Low 'Yuto Horigome' Matcha",
-    titleEn: "Nike SB Dunk Low 'Yuto Horigome' Matcha",
-    subtitle: "Signed Edition (2023)",
-    subtitleEn: "Signed Edition (2023)",
-    sku: "FN1288-200",
-    colorway: "Sail/Asparagus-Malachite",
-    retailPrice: "$130 USD",
-    retailPriceEn: "$130 USD",
-    releaseDate: "08/29/2023",
-    editionType: "Signed Edition",
-    condition: "Deadstock (Brand New)",
-    conditionEn: "Deadstock (Brand New)",
-    size: "7 US",
+    id: "nike-sb-dunk-yuto-matcha",
+    title: "Nike SB Dunk Low Yuto Horigome 'Matcha'",
+    subtitle: "Signature Skateboarding Edition (2025)",
+    sku: "HF8022-300",
+    colorway: "Asparagus/Legion Green/Light Khaki/Dark Loden/Sesame/Burnt Sienna",
+    retailPrice: "$135",
+    releaseDate: "04/05/2025",
+    editionType: "Signature Signed",
+    condition: "Deadstock (Signed)",
+    size: "12 US",
     image: "sbdunk_yutohorigome_matcha.png",
-    badge: "SIGNED EDITION",
-    shortDesc: "Phiên bản chữ ký trực tiếp từ huyền thoại trượt ván Olympic Yuto Horigome.",
-    shortDescEn: "Directly signed edition from Olympic skateboarding legend Yuto Horigome.",
-    story: "<p>Đánh dấu cột mốc lịch sử khi bộ môn skateboard chính thức bước lên sân chơi Thế vận hội Olympic, màn kết hợp giữa Nike SB và thần đồng trượt ván Yuto Horigome đã tạo ra một trong những phối màu được thèm muốn nhất thập kỷ.</p><p>Lấy cảm hứng từ văn hóa trà xanh Matcha thanh bình kết hợp cùng chất liệu da lộn thượng hạng, từng chi tiết trên giày đều kể câu chuyện về sự kỷ luật và nghệ thuật đường phố Nhật Bản.</p><p>Điểm nhấn vô giá của tác phẩm lưu trữ này nằm ở chữ ký tay trực tiếp được chính Yuto Horigome thực hiện, nâng tầm đôi giày từ một thiết bị trượt ván thông thường thành một tác phẩm nghệ thuật có một không hai.</p>",
-    storyEn: "<p>Marking a historic milestone as skateboarding officially entered the Olympic stage, the collaboration between Nike SB and prodigy Yuto Horigome created one of the most coveted colorways of the decade.</p><p>Inspired by serene matcha green culture combined with premium suede, every detail tells a story of Japanese discipline and street art.</p><p>The priceless highlight of this archival piece is the direct autograph signed by Yuto Horigome himself.</p>",
-    exhibitionNote: "Sản phẩm có chữ ký xác thực trực tiếp từ Yuto Horigome.",
-    exhibitionNoteEn: "This product features verified direct autograph from Yuto Horigome."
+    story: `
+      <p>Tiếp nối tiếng vang chấn động từ phiên bản hợp tác đầu tiên năm 2023, tượng đài trượt ván thế giới và nhà vô địch Huy chương Vàng Olympic Yuto Horigome tiếp tục bắt tay cùng Nike SB để cho ra mắt siêu phẩm <b>Nike SB Dunk Low Yuto Horigome 'Matcha'</b> vào ngày 5 tháng 4 năm 2025. Nếu bản phát hành đầu tiên mang màu sắc đô thị tối giản, thì phiên bản 'Matcha' lần này lại đưa người xem chìm đắm vào không gian thiên nhiên tĩnh lặng thông qua các sắc thái tinh tế của bột trà xanh truyền thống Nhật Bản.</p>
+
+      <p>Đôi giày là một bản giao hưởng màu sắc xuất sắc giữa các tông màu đất trầm ấm và sang trọng: sự hòa quyện giữa lớp nền <i>Light Khaki</i>, các mảng da lộn màu <i>Asparagus</i>, điểm xuyết sắc xanh sâu thẳm <i>Legion Green</i> cùng chi tiết <i>Burnt Sienna</i> tinh tế. Biểu tượng lông vũ chéo quen thuộc đại diện cho gia tộc và di sản của Yuto Horigome được chạm khắc dập nổi sắc nét ở phần gót giày bên ngoài, kết hợp cùng lớp đệm lót chuyên dụng dành riêng cho các vận động viên trượt ván đỉnh cao.</p>
+
+      <p>Trên thị trường thương mại toàn cầu, mẫu giày này được phát hành dưới dạng một phiên bản đại trà cao cấp (General Release) với mức giá niêm yết tiêu chuẩn $135 để cộng đồng skater và giới mộ điệu dễ dàng tiếp cận. Tuy nhiên, tác phẩm hiện đang lưu trữ trong bộ sưu tập của Lộc An lại vượt xa một sản phẩm thương mại thông thường: thân giày mang <b>chữ ký trực tiếp bằng tay của chính Yuto Horigome</b>. Sự kết hợp giữa một thiết kế biểu tượng đương đại cùng chữ ký sống độc quyền của huyền thoại sống làng Skateboard đã biến đôi giày size <b>12 US</b> này thành một bảo vật lưu trữ kỹ thuật số và hiện vật độc bản vô giá.</p>
+    `
   },
   {
-    id: "offwhite-jordan-1-unc",
-    title: "Off-White x Air Jordan 1 'UNC'",
-    titleEn: "Off-White x Air Jordan 1 'UNC'",
-    subtitle: "Archive Edition (2018)",
-    subtitleEn: "Archive Edition (2018)",
-    sku: "AQ0818-148",
-    colorway: "White/Dark Powder Blue-Cone",
-    retailPrice: "$190 USD",
-    retailPriceEn: "$190 USD",
-    releaseDate: "06/19/2018",
-    editionType: "Archive Edition",
+    id: "virgil-abloh-archive-jordan-1-alaska",
+    title: "Virgil Abloh Archive x Air Jordan 1 Retro High OG SP 'Alaska'",
+    subtitle: "Archive Heritage Edition (2026)",
+    sku: "AA3834-100",
+    colorway: "White/White-Metallic Silver",
+    retailPrice: "$230",
+    releaseDate: "04/03/2026",
+    editionType: "Archive Special Edition",
     condition: "Deadstock (Brand New)",
-    conditionEn: "Deadstock (Brand New)",
-    size: "7 US",
+    size: "10 US",
     image: "jordan1_vaa_alaska.png",
-    badge: "ARCHIVE EDITION",
-    shortDesc: "Phiên bản đặc biệt từ quỹ lưu trữ nghệ thuật chính thức của Virgil Abloh.",
-    shortDescEn: "Special piece from Virgil Abloh's official artistic archive fund.",
-    story: "<p>Là một trong những chương cuối cùng đầy cảm xúc trong bộ sưu tập 'The Ten' huyền thoại, Off-White x Air Jordan 1 'UNC' dưới bàn tay thiên tài của Virgil Abloh đã định nghĩa lại hoàn toàn cách con người nhìn nhận về thiết kế giày thể thao.</p><p>Lấy cảm hứng từ ngôi trường đại học alma mater UNC nơi Michael Jordan từng theo học, Abloh đã giữ nguyên các đường cắt may thô, nhãn mác lộ thiên và dòng chữ Helvetica trứ danh.</p><p>Tác phẩm này không chỉ đại diện cho đỉnh cao của văn hóa sneaker thế kỷ 21 mà còn là lời tri ân vĩnh cửu đối với di sản sáng tạo mà Virgil Abloh đã để lại cho thế giới thời trang đường phố.</p>",
-    storyEn: "<p>As one of the most emotional final chapters in the legendary 'The Ten' collection, the Off-White x Air Jordan 1 'UNC' under Virgil Abloh's genius redefined sneaker design.</p><p>Inspired by Michael Jordan's alma mater, Abloh retained raw stitching, exposed foam, and signature Helvetica text.</p><p>This masterpiece represents both the peak of 21st-century sneaker culture and a permanent tribute to Virgil Abloh's legacy.</p>",
-    exhibitionNote: "Tác phẩm nghệ thuật mang tính biểu tượng trong kỷ nguyên thiết kế hiện đại.",
-    exhibitionNoteEn: "An iconic art piece of the modern design era."
+    story: `
+      <p>Mang trong mình hơi thở và di sản tư duy thiết kế vĩ đại của cố thiên tài Virgil Abloh, phiên bản <b>Virgil Abloh Archive x Air Jordan 1 Retro High OG SP 'Alaska'</b> chính thức ra mắt vào ngày 3 tháng 4 năm 2026. Đôi giày là sự hồi sinh và tái bản mang tầm lịch sử dựa trên phối màu "White" (Euro Exclusive) từng làm chấn động toàn cầu trong bộ sưu tập biểu tượng "The Ten" trước đây.</p>
+
+      <p>Điểm khác biệt định vị tầm vóc của siêu phẩm này nằm ở thương hiệu phát hành: đây không phải là một sản phẩm hợp tác thương mại Off-White thông thường, mà được bảo chứng trực tiếp bởi <b>Virgil Abloh Archive (VAA)</b> – quỹ lưu trữ nghệ thuật chính thức của nhà thiết kế. Do đó, dòng chữ quen thuộc ở phần hông giày mang dấu ấn độc quyền <i>"V.A.A. for NIKE"</i>. Tên gọi 'Alaska' vừa gợi nhắc sắc trắng băng tuyết tinh khôi, vừa là lời tri ân ngầm đến phòng thí nghiệm tư duy thiết kế <i>Alaska Alaska</i> do Virgil sáng lập.</p>
+
+      <p>Tác phẩm vẫn giữ nguyên ngôn ngữ thiết kế deconstructed (chắp vá, bóc tách) kinh điển với các lớp da trắng cao cấp, lưới mesh xanh băng lộ thiên và thẻ tag cam đỏ đặc trưng. Hộp đựng đi kèm được thiết kế đột phá với các đường cắt tròn nghệ thuật cùng cuốn sổ tay phác thảo mang thông điệp bất hủ <i>"MODERNISM IS NOT NEW"</i>. Sự hiện diện của đôi giày size <b>10 US</b> này trong bộ sưu tập chính là sự tôn vinh trọn vẹn đối với tư duy nghệ thuật vượt thời gian tại Lộc An Sneaker Collection.</p>
+    `
   }
 ];
