@@ -2,7 +2,6 @@
 <html lang="vi">
 
 <head>
-
   <meta charset="UTF-8">
 
   <meta
@@ -15,15 +14,43 @@
     content="Lộc An Sneaker Collection - Digital Sneaker Archive & Museum"
   >
 
-  <title>
-    Lộc An Sneaker Collection
-  </title>
+  <meta
+    name="theme-color"
+    content="#0d0d0d"
+  >
+
+  <meta
+    name="apple-mobile-web-app-capable"
+    content="yes"
+  >
+
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent"
+  >
+
+  <title>Lộc An Sneaker Collection</title>
+
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="favicon.svg"
+  >
+
+  <link
+    rel="apple-touch-icon"
+    href="apple-touch-icon.png"
+  >
+
+  <link
+    rel="manifest"
+    href="site.webmanifest"
+  >
 
   <link
     rel="stylesheet"
-    href="style.css?v=20260912-8"
+    href="style.css?v=20260912-10"
   >
-
 </head>
 
 
@@ -31,16 +58,9 @@
 
   <div class="container">
 
-
-    <!-- =====================================================
-         HEADER
-    ====================================================== -->
-
     <header class="home-header">
 
-
       <div class="lang-switcher corner-lang">
-
 
         <button
           type="button"
@@ -51,7 +71,6 @@
           VI
         </button>
 
-
         <button
           type="button"
           onclick="setLanguage('en')"
@@ -61,33 +80,43 @@
           EN
         </button>
 
-
       </div>
-
 
       <h1 data-i18n="mainTitle">
         LỘC AN SNEAKER COLLECTION
       </h1>
 
-
       <p data-i18n="mainSubtitle">
         Không gian lưu trữ &amp; Bảo tàng Sneaker Kỹ thuật số
       </p>
 
+      <nav
+        class="museum-nav"
+        aria-label="Primary navigation"
+      >
+
+        <a
+          href="index.html"
+          class="museum-nav-link active"
+        >
+          COLLECTION
+        </a>
+
+        <a
+          href="about.html"
+          class="museum-nav-link"
+        >
+          ABOUT
+        </a>
+
+      </nav>
 
     </header>
 
 
-
-    <!-- =====================================================
-         SORT
-    ====================================================== -->
-
     <section class="collection-toolbar">
 
-
       <div class="sort-control">
-
 
         <label
           for="sort-select"
@@ -96,93 +125,62 @@
           SẮP XẾP
         </label>
 
-
         <select
           id="sort-select"
           onchange="changeSort(this.value)"
         >
 
-
           <option value="default">
             Mặc định
           </option>
-
 
           <option value="az">
             A → Z
           </option>
 
-
           <option value="za">
             Z → A
           </option>
-
 
           <option value="size-asc">
             Size nhỏ → lớn
           </option>
 
-
           <option value="size-desc">
             Size lớn → nhỏ
           </option>
 
-
         </select>
 
-
       </div>
-
 
     </section>
 
 
-
-    <!-- =====================================================
-         COLLECTION
-    ====================================================== -->
-
     <main>
-
 
       <div
         id="sneaker-grid"
         class="grid"
       ></div>
 
-
     </main>
 
 
-
-    <!-- =====================================================
-         FOOTER
-    ====================================================== -->
-
     <footer>
-
 
       <p>
         &copy; 2026 Lộc An Sneaker Collection.
         All Rights Reserved.
       </p>
 
-
     </footer>
-
 
   </div>
 
 
-
-  <!-- =====================================================
-       JAVASCRIPT
-  ====================================================== -->
-
-  <script src="data.js?v=20260912-8"></script>
-
-  <script src="main.js?v=20260912-8"></script>
-
+  <script src="data.js?v=20260912-10"></script>
+  <script src="main.js?v=20260912-10"></script>
 
 </body>
 
