@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Nike x LEGO Archive Detail - Lộc An Sneaker Collection"
+  >
+
+  <meta
+    name="theme-color"
+    content="#0d0d0d"
+  >
+
+  <title>
+    LEGO Archive | Lộc An Sneaker Collection
+  </title>
+
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="./favicon.svg"
+  >
+
+  <link
+    rel="apple-touch-icon"
+    href="./apple-touch-icon.png"
+  >
+
+  <link
+    rel="manifest"
+    href="./site.webmanifest"
+  >
+
+  <link
+    rel="stylesheet"
+    href="./style.css?v=20260912-15"
+  >
+
+</head>
+
+
+<body>
+
+  <div class="container">
+
+
+    <header class="site-header">
+
+      <div class="site-header-left">
+
+        <a
+          id="lego-back-link"
+          href="./lego.html"
+          class="back-btn"
+        >
+          ← Quay lại LEGO
+        </a>
+
+      </div>
+
+
+      <a
+        href="./lego.html"
+        class="site-brand"
+      >
+        LỘC AN COLLECTION
+      </a>
+
+
+      <div class="site-header-actions">
+
+        <a
+          href="./about.html"
+          class="header-about-link"
+        >
+          ABOUT
+        </a>
+
+
+        <div class="lang-switcher">
+
+          <button
+            type="button"
+            id="btn-vi"
+            class="lang-btn active"
+            onclick="setDetailLanguage('vi')"
+          >
+            VI
+          </button>
+
+          <button
+            type="button"
+            id="btn-en"
+            class="lang-btn"
+            onclick="setDetailLanguage('en')"
+          >
+            EN
+          </button>
+
+        </div>
+
+      </div>
+
+    </header>
+
+
+    <main id="lego-detail-root"></main>
+
+
+    <footer>
+
+      <p>
+        &copy; 2026 Lộc An Sneaker Collection.
+        All Rights Reserved.
+      </p>
+
+    </footer>
+
+  </div>
+
+
+  <script src="./lego-data.js?v=20260912-15"></script>
+
+
+  <script>
+
+    const DETAIL_LANGUAGES = [
+      "vi",
+      "en"
+    ];
+
+
+    let detailLanguage =
+      new URLSearchParams(
+        window.location.search
+      ).get("lang")
+
+      ||
+
+      localStorage.getItem(
+        "locan_lang"
+      )
+
+      ||
+
+      "vi";
+
+
+    if (
+      !DETAIL_LANGUAGES.includes(
+        detailLanguage
+      )
+    ) {
+      detailLanguage = "vi";
+    }
+
+
+    const legoId =
+      new URLSearchParams(
+        window.location.search
+      ).get("id");
+
+
+    const lego =
+      legoSets.find(
+        item =>
+          item.id === legoId
+      );
+
+
+    function numberWithComma(value) {
+
+      return Number(value)
+        .toLocaleString(
+          "en-CA"
+        );
+
+    }
+
+
+    function formatLegoDate(
+      value,
+      lang
+    ) {
+
+      if (!value) {
+        return "N/A";
+      }
+
+
+      const date =
+        new Date(
+          `${value}T12:00:00`
+        );
+
+
+      return new Intl.DateTimeFormat(
+        lang === "vi"
+          ? "vi-VN"
+          : "en-CA",
+        {
+          day: "numeric",
+          month: "long",
+          year: "numeric"
+        }
+      ).format(date);
+
+    }
+
+
+    function setDetailLanguage(lang) {
+
+      detailLanguage =
+        DETAIL_LANGUAGES.includes(lang)
+          ? lang
+          : "vi";
+
+
+      localStorage.setItem(
+        "locan_lang",
+        detailLanguage
+      );
+
+
+      document.documentElement.lang =
+        detailLanguage;
+
+
+      document
+        .getElementById("btn-vi")
+        .classList
+        .toggle(
+          "active",
+          detailLanguage === "vi"
+        );
+
+
+      document
+        .getElementById("btn-en")
+        .classList
+        .toggle(
+          "active",
+          detailLanguage === "en"
+        );
+
+
+      const backLink =
+        document.getElementById(
+          "lego-back-link"
+        );
+
+
+      backLink.textContent =
+        detailLanguage === "vi"
+          ? "← Quay lại LEGO"
+          : "← Back to LEGO";
+
+
+      backLink.href =
+        `./lego.html?lang=${detailLanguage}`;
+
+
+      renderLegoDetail();
+
+
+      const url =
+        new URL(
+          window.location.href
+        );
+
+
+      url.searchParams.set(
+        "lang",
+        detailLanguage
+      );
+
+
+      window.history.replaceState(
+        {},
+        "",
+        url.pathname +
+        url.search +
+        url.hash
+      );
+
+    }
+
+
+    function renderLegoDetail() {
+
+      const root =
+        document.getElementById(
+          "lego-detail-root"
+        );
+
+
+      if (!lego) {
+
+        root.innerHTML = `
+          <section class="not-found">
+
+            <h2>
+              ${
+                detailLanguage === "vi"
+                  ? "Không tìm thấy bộ LEGO"
+                  : "LEGO set not found"
+              }
+            </h2>
+
+            <p>
+              ${
+                detailLanguage === "vi"
+                  ? "Hồ sơ bạn đang tìm không tồn tại."
+                  : "The archive record you requested does not exist."
+              }
+            </p>
+
+            <a
+              class="primary-action"
+              href="./lego.html?lang=${detailLanguage}"
+            >
+              ${
+                detailLanguage === "vi"
+                  ? "QUAY LẠI LEGO"
+                  : "BACK TO LEGO"
+              }
+            </a>
+
+          </section>
+        `;
+
+        return;
+      }
+
+
+      document.title =
+        `${lego.title[detailLanguage]} | Lộc An Sneaker Collection`;
+
+
+      const labels =
+        detailLanguage === "vi"
+
+          ? {
+              sku:
+                "MÃ BỘ / SKU",
+
+              pieces:
+                "SỐ MẢNH",
+
+              retail:
+                "GIÁ PHÁT HÀNH",
+
+              release:
+                "NGÀY RA MẮT",
+
+              colors:
+                "BẢNG MÀU HIỂN THỊ",
+
+              minifigures:
+                "MINIFIGURE",
+
+              story:
+                "Câu chuyện & Bối cảnh thiết kế"
+            }
+
+          : {
+              sku:
+                "SET NUMBER / SKU",
+
+              pieces:
+                "PIECES",
+
+              retail:
+                "RETAIL PRICE",
+
+              release:
+                "RELEASE DATE",
+
+              colors:
+                "DISPLAY PALETTE",
+
+              minifigures:
+                "MINIFIGURE",
+
+              story:
+                "Story & Design Context"
+            };
+
+
+      root.innerHTML = `
+
+        <div class="shoe-detail-container">
+
+
+          <section class="shoe-image-section">
+
+            <img
+              src="${lego.image}"
+              alt="${lego.title[detailLanguage]}"
+            >
+
+          </section>
+
+
+          <section class="shoe-info-section">
+
+            <h2>
+              ${lego.title[detailLanguage]}
+            </h2>
+
+
+            <p class="subtitle detail-subtitle">
+              ${lego.subtitle[detailLanguage]}
+            </p>
+
+
+            <div class="specs-grid">
+
+
+              <div class="spec-item">
+
+                <span class="spec-label">
+                  ${labels.sku}
+                </span>
+
+                <span class="spec-value">
+                  ${lego.sku}
+                </span>
+
+              </div>
+
+
+              <div class="spec-item">
+
+                <span class="spec-label">
+                  ${labels.pieces}
+                </span>
+
+                <span class="spec-value size-highlight">
+                  ${numberWithComma(
+                    lego.pieces
+                  )} PCS
+                </span>
+
+              </div>
+
+
+              <div class="spec-item">
+
+                <span class="spec-label">
+                  ${labels.retail}
+                </span>
+
+                <span class="spec-value">
+                  ${lego.retailPrice}
+                </span>
+
+              </div>
+
+
+              <div class="spec-item">
+
+                <span class="spec-label">
+                  ${labels.release}
+                </span>
+
+                <span class="spec-value">
+                  ${formatLegoDate(
+                    lego.releaseDate,
+                    detailLanguage
+                  )}
+                </span>
+
+              </div>
+
+
+              <div class="spec-item">
+
+                <span class="spec-label">
+                  ${labels.colors}
+                </span>
+
+                <span class="spec-value">
+                  ${
+                    lego.displayColors[
+                      detailLanguage
+                    ]
+                  }
+                </span>
+
+              </div>
+
+
+              <div class="spec-item">
+
+                <span class="spec-label">
+                  ${labels.minifigures}
+                </span>
+
+                <span class="spec-value">
+                  ${
+                    lego.minifigures[
+                      detailLanguage
+                    ]
+                  }
+                </span>
+
+              </div>
+
+
+            </div>
+
+          </section>
+
+
+        </div>
+
+
+        <section class="story-section">
+
+          <h3>
+            ${labels.story}
+          </h3>
+
+          ${
+            lego.story[
+              detailLanguage
+            ]
+          }
+
+        </section>
+
+      `;
+
+    }
+
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      () => {
+
+        setDetailLanguage(
+          detailLanguage
+        );
+
+      }
+    );
+
+  </script>
+
+</body>
+
+</html>
