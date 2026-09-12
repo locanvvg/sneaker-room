@@ -3,89 +3,182 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chi tiết Sneaker - Lộc An Vault</title>
+  <title>Chi tiết Sản phẩm - Lộc An Sneaker Vault</title>
   <link rel="stylesheet" href="style.css">
   <style>
     body { background: #0a0a0c; color: #fff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; padding: 0; }
-    .detail-container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
-    .back-link { color: #888; text-decoration: none; font-size: 0.9rem; letter-spacing: 1px; }
+    .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+    .back-link { color: #888; text-decoration: none; font-size: 0.9rem; letter-spacing: 1px; display: inline-block; margin-bottom: 20px; }
     .back-link:hover { color: #fff; }
-    .shoe-header { margin-top: 30px; margin-bottom: 20px; }
-    .shoe-header h1 { font-size: 1.8rem; margin: 0 0 10px 0; letter-spacing: 1px; }
-    .shoe-subtitle { color: #ffcc00; font-size: 0.95rem; letter-spacing: 1px; margin-bottom: 20px; }
-    .shoe-image-large { width: 100%; max-height: 500px; object-fit: cover; border-radius: 12px; background: #141417; border: 1px solid #222; margin-bottom: 30px; }
-    .specs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; background: #141417; padding: 20px; border-radius: 10px; border: 1px solid #222; margin-bottom: 30px; }
-    .spec-item span { display: block; font-size: 0.75rem; color: #777; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-    .spec-item strong { font-size: 0.95rem; color: #fff; }
     
-    /* Ô ghi chú lưu trữ màu vàng */
-    .exhibition-note {
-      background: rgba(255, 204, 0, 0.08);
-      border-left: 4px solid #ffcc00;
-      padding: 15px 20px;
-      border-radius: 0 8px 8px 0;
-      margin-bottom: 30px;
-      color: #ffd700;
-      font-size: 0.9rem;
-      line-height: 1.6;
+    /* Tối ưu hóa hiệu ứng xoay mượt mà, chống lag tuyệt đối bằng phần cứng (will-change & transform) */
+    .shoe-display-container {
+      width: 100%; height: 350px; background: #141417; border: 1px solid #222; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; margin-bottom: 30px;
+    }
+    .shoe-image {
+      max-width: 85%; max-height: 85%; object-fit: contain;
+      will-change: transform; transition: transform 0.1s ease-out;
     }
 
-    .story-section h2 { font-size: 1.2rem; border-bottom: 1px solid #222; padding-bottom: 10px; margin-bottom: 20px; letter-spacing: 1px; text-transform: uppercase; }
+    /* Bảng thông tin chi tiết */
+    .specs-box {
+      background: #141417; border: 1px solid #222; border-radius: 12px; padding: 25px; margin-bottom: 30px;
+    }
+    .spec-row {
+      display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #222; font-size: 0.9rem;
+    }
+    .spec-row:last-child { border-bottom: none; }
+    .spec-label { color: #777; text-transform: uppercase; letter-spacing: 1px; font-size: 0.75rem; }
+    .spec-value { color: #fff; font-weight: 500; text-align: right; }
+    .spec-value.highlight { color: #ffcc00; font-weight: bold; }
+
+    /* Ô ghi chú lưu trữ vàng (Exhibition Note) */
+    .exhibition-note-box {
+      background: rgba(255, 204, 0, 0.05); border-left: 4px solid #ffcc00; border: 1px solid rgba(255, 204, 0, 0.3);
+      border-radius: 4px; padding: 20px; margin-bottom: 30px; font-size: 0.9rem; line-height: 1.6; color: #f5f5f5;
+    }
+    .exhibition-note-title {
+      color: #ffcc00; font-weight: bold; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 8px; display: block;
+    }
+
+    /* Phần câu chuyện sản phẩm */
+    .story-section { margin-top: 40px; }
+    .story-section h2 { font-size: 1.4rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 20px; border-bottom: 1px solid #222; padding-bottom: 10px; }
     .story-content { color: #ccc; line-height: 1.8; font-size: 0.95rem; }
     .story-content p { margin-bottom: 15px; }
+
+    /* Nút chuyển đổi ngôn ngữ */
+    .lang-toggle {
+      float: right; background: #222; color: #ffcc00; border: 1px solid #444; padding: 6px 12px;
+      border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; letter-spacing: 1px;
+    }
+    .lang-toggle:hover { background: #333; }
   </style>
 </head>
 <body>
-
-  <div class="detail-container">
-    <nav>
-      <a href="sneakers.html" class="back-link">← Quay lại danh sách Sneaker</a>
-    </nav>
-
-    <div id="shoeDetailContent">
-      <!-- Dữ liệu chi tiết sẽ được render ở đây -->
+  <div class="container">
+    <a href="sneakers.html" class="back-link">← Quay lại danh sách Sneaker</a>
+    <button class="lang-toggle" id="langBtn" onclick="toggleLanguage()">EN / VI</button>
+    
+    <div id="shoeDetails">
+      <!-- Nội dung được load động qua JavaScript -->
     </div>
   </div>
 
   <script src="data.js"></script>
   <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const shoeId = urlParams.get('id');
-    const container = document.getElementById('shoeDetailContent');
+    let currentLang = 'vi';
 
-    if (typeof sneakersData !== 'undefined') {
-      const shoe = sneakersData.find(item => item.id === shoeId);
-      if (shoe) {
-        document.title = `${shoe.title} - Lộc An Vault`;
-        container.innerHTML = `
-          <div class="shoe-header">
-            <h1>${shoe.title}</h1>
-            <div class="shoe-subtitle">${shoe.subtitle}</div>
-          </div>
-          <img src="${shoe.image}" alt="${shoe.title}" class="shoe-image-large">
-          
-          <div class="specs-grid">
-            <div class="spec-item"><span>SKU / Serial</span><strong>${shoe.sku || 'N/A'}</strong></div>
-            <div class="spec-item"><span>Colorway</span><strong>${shoe.colorway || 'N/A'}</strong></div>
-            <div class="spec-item"><span>Release Date</span><strong>${shoe.releaseDate || 'N/A'}</strong></div>
-            <div class="spec-item"><span>Edition Type</span><strong>${shoe.editionType || 'N/A'}</strong></div>
-            <div class="spec-item"><span>Condition</span><strong>${shoe.condition || 'N/A'}</strong></div>
-            <div class="spec-item"><span>Archive Size</span><strong>${shoe.size || 'N/A'}</strong></div>
-          </div>
-
-          ${shoe.exhibitionNote ? `<div class="exhibition-note">${shoe.exhibitionNote}</div>` : ''}
-
-          <div class="story-section">
-            <h2>Hồ sơ lưu trữ & Câu chuyện tác phẩm</h2>
-            <div class="story-content">${shoe.story}</div>
-          </div>
-        `;
-      } else {
-        container.innerHTML = '<p style="color: #777; text-align: center; padding: 50px 0;">Không tìm thấy thông tin tác phẩm này trong hệ thống lưu trữ.</p>';
-      }
-    } else {
-      container.innerHTML = '<p style="color: #777; text-align: center; padding: 50px 0;">Lỗi tải dữ liệu kho lưu trữ.</p>';
+    function getQueryParams() {
+      const params = {};
+      window.location.search.substring(1).split("&").forEach(item => {
+        let parts = item.split("=");
+        if(parts.length === 2) params[parts[0]] = decodeURIComponent(parts[1]);
+      });
+      return params;
     }
+
+    function renderShoe() {
+      const params = getQueryParams();
+      const shoeId = params.id;
+      const shoe = sneakersData.find(s => s.id === shoeId);
+      const container = document.getElementById('shoeDetails');
+
+      if (!shoe) {
+        container.innerHTML = '<p style="text-align: center; color: #777;">Không tìm thấy sản phẩm trong cơ sở dữ liệu lưu trữ.</p>';
+        return;
+      }
+
+      const isVi = currentLang === 'vi';
+
+      container.innerHTML = `
+        <div class="collection-header" style="margin-bottom: 20px;">
+          <h1 style="font-size: 1.8rem; letter-spacing: 1px; margin: 0 0 5px 0;">${isVi ? shoe.title : shoe.titleEn}</h1>
+          <p style="color: #777; font-size: 0.85rem; letter-spacing: 1px; margin: 0;">${isVi ? shoe.subtitle : shoe.subtitleEn}</p>
+        </div>
+
+        <div class="shoe-display-container" id="displayContainer">
+          <img src="${shoe.image}" alt="${shoe.title}" class="shoe-image" id="shoeImage">
+        </div>
+
+        <div class="specs-box">
+          <div class="spec-row">
+            <span class="spec-label">${isVi ? 'Mã sản phẩm (SKU)' : 'Product Code (SKU)'}</span>
+            <span class="spec-value">${shoe.sku}</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">${isVi ? 'Phối màu (Colorway)' : 'Colorway'}</span>
+            <span class="spec-value">${shoe.colorway}</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">${isVi ? 'Giá phát hành (Retail)' : 'Retail Price'}</span>
+            <span class="spec-value">${isVi ? shoe.retailPrice : shoe.retailPriceEn}</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">${isVi ? 'Ngày ra mắt' : 'Release Date'}</span>
+            <span class="spec-value">${shoe.releaseDate}</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">${isVi ? 'Tình trạng' : 'Condition'}</span>
+            <span class="spec-value" style="color: #4cd137;">${isVi ? shoe.condition : shoe.conditionEn}</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">${isVi ? 'Kích cỡ (Size)' : 'Size'}</span>
+            <span class="spec-value highlight">${shoe.size}</span>
+          </div>
+        </div>
+
+        ${(shoe.exhibitionNote || shoe.exhibitionNoteEn) ? `
+          <div class="exhibition-note-box">
+            <span class="exhibition-note-title">${isVi ? 'Ghi chú lưu trữ (Exhibition Note):' : 'Exhibition Note:'}</span>
+            ${isVi ? shoe.exhibitionNote : shoe.exhibitionNoteEn}
+          </div>
+        ` : ''}
+
+        <div class="story-section">
+          <h2>${isVi ? 'Câu chuyện & Bối cảnh thiết kế' : 'Story & Design Background'}</h2>
+          <div class="story-content">
+            ${isVi ? shoe.story : shoe.storyEn}
+          </div>
+        </div>
+      `;
+
+      initSmoothInteraction();
+    }
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'vi' ? 'en' : 'vi';
+      renderShoe();
+    }
+
+    // Tối ưu tương tác xoay/di chuột siêu mượt bằng requestAnimationFrame chống lag tuyệt đối
+    function initSmoothInteraction() {
+      const container = document.getElementById('displayContainer');
+      const img = document.getElementById('shoeImage');
+      if (!container || !img) return;
+
+      let bounds = container.getBoundingClientRect();
+      window.addEventListener('resize', () => { bounds = container.getBoundingClientRect(); });
+
+      container.addEventListener('mousemove', (e) => {
+        window.requestAnimationFrame(() => {
+          const x = e.clientX - bounds.left;
+          const y = e.clientY - bounds.top;
+          const xPercent = (x / bounds.width - 0.5) * 20; 
+          const yPercent = (y / bounds.height - 0.5) * -20;
+          img.style.transform = `perspective(1000px) rotateY(${xPercent}deg) rotateX(${yPercent}deg) scale(1.05)`;
+        });
+      });
+
+      container.addEventListener('mouseleave', () => {
+        window.requestAnimationFrame(() => {
+          img.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1)';
+        });
+      });
+    }
+
+    renderShoe();
   </script>
 </body>
 </html>
