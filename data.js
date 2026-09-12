@@ -38,7 +38,7 @@ const sneakers = [
 
     size: "7 US",
 
-    image: "jordan1_pe_bloodline_friendsandfamily_sample.png",
+    image: "pictures/jordan1_pe_bloodline_friendsandfamily_sample.png",
 
     story: {
 
@@ -50,6 +50,7 @@ const sneakers = [
           thì phiên bản
           <b>Jordan 1 Retro High OG 'Black Bloodline' PE</b>
           lại thuộc một nhóm hoàn toàn khác biệt.
+
           Đây là phiên bản đặc biệt được Jordan Brand
           chuẩn bị dành cho các vận động viên
           và những cá nhân thuộc mạng lưới của thương hiệu
@@ -61,6 +62,7 @@ const sneakers = [
           nằm ở số lượng sản xuất cực kỳ giới hạn,
           cùng các dấu hiệu nhận diện riêng
           dành cho từng đối tượng nhận được sản phẩm.
+
           Đôi giày sở hữu lớp da màu đen
           bao phủ phần lớn upper,
           được làm nổi bật bởi các đường viền
@@ -209,7 +211,7 @@ const sneakers = [
 
     size: "12.5 US",
 
-    image: "jordan1_quai54_ff_v2.png",
+    image: "pictures/jordan1_quai54_ff_v2.png",
 
     story: {
 
@@ -269,13 +271,6 @@ const sneakers = [
           <b>Deadstock</b>
           với size
           <b>12.5 US</b>.
-
-          Thiết kế Split Colorway,
-          nguồn gốc Friends &amp; Family
-          và tình trạng bảo quản nguyên bản
-          giúp đôi giày trở thành
-          một trong những hiện vật nổi bật
-          của bộ sưu tập.
         </p>
 
         <div class="exhibition-note">
@@ -291,12 +286,6 @@ const sneakers = [
 
           Vì vậy, tác phẩm
           <b>không có giá phát hành chính thức</b>.
-
-          Giá trị sưu tầm của đôi giày
-          đến từ độ hiếm,
-          nguồn gốc,
-          thiết kế đặc biệt
-          và ý nghĩa văn hóa của Quai 54.
 
         </div>
       `,
@@ -335,35 +324,12 @@ const sneakers = [
         </p>
 
         <p>
-          The Jordan 1 Quai 54 F&amp;F
-          was not distributed
-          through retail stores.
-
-          Pairs were intended
-          for athletes,
-          artists,
-          invited guests,
-          and individuals connected
-          to Jordan Brand and Quai 54.
-
-          Its Friends &amp; Family provenance
-          is a major part
-          of its significance
-          within sneaker collecting.
-        </p>
-
-        <p>
           The pair preserved in the
           <b>Lộc An Sneaker Collection</b>
           remains
           <b>Deadstock</b>
           in size
           <b>12.5 US</b>.
-
-          Its Split Colorway design,
-          Friends &amp; Family provenance,
-          and preserved condition
-          make it a distinctive archival piece.
         </p>
 
         <div class="exhibition-note">
@@ -378,12 +344,6 @@ const sneakers = [
 
           Therefore, the artifact
           <b>does not have an official retail price</b>.
-
-          Its collector significance
-          comes primarily from rarity,
-          provenance,
-          distinctive design,
-          and its connection to Quai 54 culture.
 
         </div>
       `
@@ -430,7 +390,7 @@ const sneakers = [
 
     size: "12 US",
 
-    image: "sbdunk_yutohorigome_matcha.png",
+    image: "pictures/sbdunk_yutohorigome_matcha.png",
 
     story: {
 
@@ -577,7 +537,7 @@ const sneakers = [
 
     size: "10 US",
 
-    image: "jordan1_vaa_alaska_v2.png",
+    image: "pictures/jordan1_vaa_alaska_v2.png",
 
     story: {
 
@@ -728,8 +688,7 @@ const sneakers = [
 
     size: "12 US",
 
-    image:
-      "jordan1_fragmentunion_sample.png",
+    image: "pictures/jordan1_fragmentunion_sample.png",
 
     story: {
 
@@ -780,46 +739,6 @@ const sneakers = [
         </p>
 
         <p>
-          Các đường viền màu vàng
-          chạy quanh cấu trúc panel
-          tạo thêm chiều sâu thị giác,
-          trong khi cấu trúc nhiều lớp,
-          đường may lộ
-          và cách xử lý phần cổ
-          thể hiện rõ
-          phong cách deconstructed
-          đặc trưng của Union LA.
-
-          Biểu tượng Fragment
-          ở phần gót
-          bổ sung dấu ấn
-          của Hiroshi Fujiwara,
-          tạo nên sự cân bằng
-          giữa ngôn ngữ thiết kế tối giản
-          và cách tiếp cận tái cấu trúc
-          của Union.
-        </p>
-
-        <p>
-          Sự kết hợp này
-          vừa gợi nhắc
-          di sản của những dự án
-          Fragment x Jordan 1,
-          vừa đưa vào
-          ngôn ngữ thủ công
-          đã trở thành một phần quan trọng
-          trong bản sắc của Union LA.
-
-          Cấu trúc biểu tượng
-          của Jordan 1,
-          sự tiết chế của Fragment,
-          và tinh thần tái cấu trúc
-          của Union
-          cùng hội tụ
-          trên một thiết kế duy nhất.
-        </p>
-
-        <p>
           Tuy nhiên,
           tác phẩm được lưu giữ trong
           <b>Lộc An Sneaker Collection</b>
@@ -837,20 +756,6 @@ const sneakers = [
         </p>
 
         <p>
-          Chính nguồn gốc Sample
-          mang lại cho đôi giày
-          một ý nghĩa lưu trữ khác biệt
-          so với một đôi retail tiêu chuẩn.
-
-          Thay vì chỉ đại diện
-          cho sản phẩm hoàn thiện cuối cùng,
-          hiện vật còn phản ánh
-          một phần quá trình phát triển thiết kế
-          đứng phía sau dự án hợp tác
-          giữa Jordan Brand,
-          Fragment
-          và Union LA.
-
           Tác phẩm trong bộ sưu tập
           có size
           <b>12 US</b>
@@ -882,13 +787,6 @@ const sneakers = [
           làm mã tham chiếu
           của phiên bản thương mại
           'Varsity Red/Sport Royal'.
-
-          Nếu tem,
-          nhãn hoặc mã sản xuất
-          trên đôi Sample thực tế
-          có thông tin khác,
-          dữ liệu trên hiện vật thực tế
-          sẽ được ưu tiên.
 
         </div>
       `,
@@ -924,64 +822,8 @@ const sneakers = [
         </p>
 
         <p>
-          The design begins
-          with the iconic
-          <b>Black Toe</b>
-          architecture
-          of the Jordan 1.
-
-          Familiar black and white panels
-          establish the foundation,
-          which is then reinterpreted
-          through
-          <b>Sport Royal</b>
-          at the heel and outsole,
-          contrasted against
-          a bold
-          <b>Varsity Red</b>
-          collar.
-        </p>
-
-        <p>
-          Gold-toned piping
-          traces the panel structure
-          and introduces
-          additional visual depth,
-          while layered construction,
-          exposed stitching,
-          and the treatment of the collar
-          reflect Union LA's
-          recognizable deconstructed approach.
-
-          Fragment branding
-          at the heel
-          adds Hiroshi Fujiwara's
-          signature presence,
-          balancing minimalist design
-          with Union's visibly
-          reconstructed aesthetic.
-        </p>
-
-        <p>
-          The collaboration
-          references the legacy
-          of Fragment's previous
-          Jordan 1 projects
-          while incorporating
-          the handcrafted visual language
-          central to Union LA.
-
-          The iconic architecture
-          of the Jordan 1,
-          Fragment's restraint,
-          and Union's reconstruction
-          converge within a single piece.
-        </p>
-
-        <p>
           The artifact preserved in the
-          <b>Lộc An Sneaker Collection</b>,
-          however,
+          <b>Lộc An Sneaker Collection</b>
           is not a conventional retail pair.
 
           It is a
@@ -996,20 +838,6 @@ const sneakers = [
         </p>
 
         <p>
-          This Sample provenance
-          gives the pair
-          a different archival significance
-          from a standard retail example.
-
-          Rather than representing
-          only the final commercial product,
-          the artifact also reflects
-          part of the design-development process
-          behind the collaboration
-          between Jordan Brand,
-          Fragment,
-          and Union LA.
-
           The piece preserved in the collection
           is size
           <b>12 US</b>
@@ -1039,13 +867,6 @@ const sneakers = [
           as the reference SKU
           for the commercial
           'Varsity Red/Sport Royal' edition.
-
-          If the actual Sample tag,
-          label,
-          or production code
-          carries different information,
-          the data found on the physical artifact
-          should take precedence.
 
         </div>
       `
@@ -1091,7 +912,7 @@ const sneakers = [
 
     size: "10.5 US",
 
-    image: "jordan1_shadow_2009.png",
+    image: "pictures/jordan1_shadow_2009.png",
 
     story: {
 
@@ -1163,53 +984,6 @@ const sneakers = [
         </p>
 
         <p>
-          Một chi tiết đáng chú ý
-          của bản 2009
-          là texture rất nhẹ
-          trên một số panel Shadow Grey.
-
-          Các nguồn sneaker
-          cùng thời điểm phát hành
-          mô tả những khu vực này
-          có hiệu ứng
-          <b>Elephant print</b>
-          mờ,
-          tạo thêm chiều sâu
-          cho một phối màu vốn chủ đích
-          được xây dựng theo hướng tối giản.
-
-          Đây cũng là một trong những yếu tố
-          giúp bản retro 2009
-          có cá tính riêng
-          khi đặt cạnh những lần tái phát hành
-          Shadow về sau.
-        </p>
-
-        <p>
-          Không có một tuyên bố chính thức
-          từ Nike hay Jordan Brand
-          giải thích riêng
-          vì sao Shadow được lựa chọn
-          để quay trở lại đúng vào năm 2009.
-
-          Tuy nhiên,
-          sự trở lại này diễn ra
-          trong giai đoạn Jordan Brand
-          đang đưa nhiều phiên bản
-          Jordan 1 trở lại thị trường.
-
-          Trong bối cảnh đó,
-          việc phục hồi
-          một phối màu OG
-          đã vắng bóng gần 24 năm
-          có thể được nhìn nhận
-          như một phần của quá trình
-          kết nối di sản năm 1985
-          với thế hệ sneaker collector
-          hiện đại.
-        </p>
-
-        <p>
           Chính sự tiết chế
           là yếu tố tạo nên sức sống lâu dài
           của
@@ -1221,16 +995,6 @@ const sneakers = [
           hay một dự án collaboration,
           Shadow để chính cấu trúc
           của Jordan 1 trở thành tâm điểm.
-
-          Màu đen và xám
-          làm nổi bật
-          Swoosh,
-          toe box,
-          heel panel
-          và toàn bộ kiến trúc
-          của silhouette
-          mà không cần sử dụng
-          những gam màu quá mạnh.
         </p>
 
         <p>
@@ -1245,11 +1009,7 @@ const sneakers = [
           Điều đó giúp bản 2009
           trở thành một mắt xích quan trọng
           giữa Shadow OG năm 1985
-          và các phiên bản hiện đại,
-          đồng thời củng cố vị trí
-          của Black/Shadow Grey
-          như một trong những bảng màu
-          lâu bền nhất của Jordan 1.
+          và các phiên bản hiện đại.
         </p>
 
         <p>
@@ -1262,9 +1022,7 @@ const sneakers = [
           với tình trạng
           <b>Used</b>.
 
-          Mặc dù đây là một phiên bản
-          phát hành thương mại thông thường,
-          ý nghĩa sưu tầm của đôi giày
+          Ý nghĩa sưu tầm của đôi giày
           nằm ở vị trí lịch sử
           của nó:
           <b>lần retro đầu tiên
@@ -1313,10 +1071,7 @@ const sneakers = [
           in the lineage:
           it represents the
           <b>first Shadow retro</b>
-          roughly 24 years after the original,
-          introducing the colorway
-          to a new generation
-          of collectors.
+          roughly 24 years after the original.
         </p>
 
         <p>
@@ -1342,54 +1097,6 @@ const sneakers = [
         </p>
 
         <p>
-          One notable characteristic
-          of the 2009 edition
-          is the subtle texture
-          appearing across several
-          Shadow Grey panels.
-
-          Contemporary sneaker coverage
-          described these areas
-          as carrying a faint
-          <b>Elephant print</b>,
-          adding visual depth
-          to an otherwise intentionally
-          minimalist color scheme.
-
-          This treatment also helps
-          distinguish the 2009 retro
-          from later interpretations
-          of the Shadow concept.
-        </p>
-
-        <p>
-          Nike and Jordan Brand
-          did not publish
-          a specific official explanation
-          for why Shadow was selected
-          to return in 2009.
-
-          Its release,
-          however,
-          arrived during a period
-          in which Jordan Brand
-          was putting significant attention
-          back on the Jordan 1
-          through a broad range
-          of retro releases and colorways.
-
-          Within that context,
-          reviving an original 1985 colorway
-          that had been absent
-          for nearly 24 years
-          can be understood
-          as part of a broader effort
-          to reconnect Jordan heritage
-          with a new generation
-          of sneaker collectors.
-        </p>
-
-        <p>
           Restraint is central
           to the lasting appeal
           of the
@@ -1404,14 +1111,6 @@ const sneakers = [
           the architecture
           of the Jordan 1 itself
           to remain the focus.
-
-          Black and grey
-          emphasize the Swoosh,
-          toe box,
-          heel panels,
-          and overall silhouette
-          through subtle contrast
-          rather than aggressive color.
         </p>
 
         <p>
@@ -1429,10 +1128,7 @@ const sneakers = [
           between the original
           1985 Shadow
           and the modern retros
-          that followed,
-          reinforcing Black/Shadow Grey
-          as one of the Jordan 1's
-          most enduring palettes.
+          that followed.
         </p>
 
         <p>
@@ -1447,9 +1143,7 @@ const sneakers = [
           <b>Used</b>
           condition.
 
-          Although it was a standard
-          commercial release,
-          its collector significance
+          Its collector significance
           comes from its historical position
           as the
           <b>first retro
