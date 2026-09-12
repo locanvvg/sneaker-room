@@ -2,7 +2,6 @@
 <html lang="vi">
 
 <head>
-
   <meta charset="UTF-8">
 
   <meta
@@ -12,18 +11,12 @@
 
   <meta
     name="description"
-    content="Sneaker exhibition piece from Lộc An Sneaker Collection"
+    content="Lộc An Sneaker Collection - Sneaker Exhibition Detail"
   >
 
-  <title>
-    Chi Tiết Tác Phẩm - Lộc An Sneaker Collection
-  </title>
+  <title>Lộc An Sneaker Collection</title>
 
-  <link
-    rel="stylesheet"
-    href="style.css"
-  >
-
+  <link rel="stylesheet" href="style.css">
 </head>
 
 
@@ -31,8 +24,9 @@
 
   <div class="container">
 
-
-    <!-- HEADER -->
+    <!-- =========================
+         HEADER
+    ========================== -->
 
     <header class="site-header">
 
@@ -54,18 +48,18 @@
 
         <button
           type="button"
-          onclick="changeLang('vi')"
           id="btn-vi"
-          class="lang-btn active"
+          class="lang-btn"
+          onclick="changeLang('vi')"
         >
           VI
         </button>
 
         <button
           type="button"
-          onclick="changeLang('en')"
           id="btn-en"
           class="lang-btn"
+          onclick="changeLang('en')"
         >
           EN
         </button>
@@ -76,10 +70,14 @@
 
 
 
-    <!-- MAIN DETAIL -->
+    <!-- =========================
+         SHOE DETAIL
+    ========================== -->
 
-    <main class="shoe-detail-container">
-
+    <main
+      id="shoe-detail"
+      class="shoe-detail-container"
+    >
 
       <!-- IMAGE -->
 
@@ -88,8 +86,7 @@
         <img
           id="shoe-image"
           src=""
-          alt="Sneaker Image"
-          decoding="async"
+          alt="Sneaker"
         >
 
       </div>
@@ -100,9 +97,7 @@
 
       <div class="shoe-info-section">
 
-
         <h2 id="shoe-title"></h2>
-
 
         <p
           id="shoe-subtitle"
@@ -110,15 +105,13 @@
         ></p>
 
 
-
         <div class="specs-grid">
-
 
           <div class="spec-item">
 
             <span
               class="spec-label"
-              data-i18n="skuLabel"
+              id="label-sku"
             >
               MÃ SẢN PHẨM (SKU)
             </span>
@@ -131,12 +124,11 @@
           </div>
 
 
-
           <div class="spec-item">
 
             <span
               class="spec-label"
-              data-i18n="colorwayLabel"
+              id="label-colorway"
             >
               PHỐI MÀU (COLORWAY)
             </span>
@@ -149,12 +141,11 @@
           </div>
 
 
-
           <div class="spec-item">
 
             <span
               class="spec-label"
-              data-i18n="retailLabel"
+              id="label-retail"
             >
               GIÁ PHÁT HÀNH (RETAIL)
             </span>
@@ -167,12 +158,11 @@
           </div>
 
 
-
           <div class="spec-item">
 
             <span
               class="spec-label"
-              data-i18n="dateLabel"
+              id="label-date"
             >
               NGÀY RA MẮT
             </span>
@@ -185,12 +175,11 @@
           </div>
 
 
-
           <div class="spec-item">
 
             <span
               class="spec-label"
-              data-i18n="conditionLabel"
+              id="label-condition"
             >
               TÌNH TRẠNG
             </span>
@@ -203,12 +192,11 @@
           </div>
 
 
-
           <div class="spec-item">
 
             <span
               class="spec-label"
-              data-i18n="sizeLabel"
+              id="label-size"
             >
               KÍCH CỠ (SIZE)
             </span>
@@ -220,7 +208,6 @@
 
           </div>
 
-
         </div>
 
       </div>
@@ -229,14 +216,18 @@
 
 
 
-    <!-- STORY -->
+    <!-- =========================
+         STORY
+    ========================== -->
 
-    <section class="story-section">
+    <section
+      class="story-section"
+      id="story-section"
+    >
 
-      <h3 data-i18n="storyTitle">
+      <h3 id="story-title">
         Câu chuyện &amp; Bối cảnh thiết kế
       </h3>
-
 
       <div id="shoe-story"></div>
 
@@ -244,7 +235,9 @@
 
 
 
-    <!-- FOOTER -->
+    <!-- =========================
+         FOOTER
+    ========================== -->
 
     <footer>
 
@@ -255,43 +248,54 @@
 
     </footer>
 
-
   </div>
 
 
 
-  <!-- DATABASE -->
+  <!-- =========================
+       DATABASE
+  ========================== -->
 
   <script src="data.js"></script>
 
 
-  <!-- SHARED FUNCTIONS -->
-
-  <script src="main.js"></script>
-
-
-  <!-- DETAIL PAGE SCRIPT -->
+  <!-- =========================
+       DETAIL PAGE SCRIPT
+  ========================== -->
 
   <script>
 
-    const detailURLParams =
+    /* ==========================================
+       LANGUAGE
+    ========================================== */
+
+    const supportedLanguages = ['vi', 'en'];
+
+
+    function normalizeLanguage(lang) {
+
+      return supportedLanguages.includes(lang)
+        ? lang
+        : 'vi';
+
+    }
+
+
+    const params =
       new URLSearchParams(
         window.location.search
       );
 
 
     const shoeId =
-      detailURLParams.get('id');
+      params.get('id');
 
 
-    const requestedLanguage =
-      detailURLParams.get('lang');
-
-
-    currentLang =
+    let currentLang =
       normalizeLanguage(
-        requestedLanguage ||
-        currentLang
+        params.get('lang') ||
+        localStorage.getItem('locan_lang') ||
+        'vi'
       );
 
 
@@ -302,40 +306,40 @@
 
 
 
-    /* =====================================================
-       LABELS
-    ===================================================== */
+    /* ==========================================
+       TRANSLATIONS
+    ========================================== */
 
     const labels = {
 
       vi: {
 
         back:
-          "← Quay lại Bộ sưu tập",
+          '← Quay lại Bộ sưu tập',
 
-        skuLabel:
-          "MÃ SẢN PHẨM (SKU)",
+        sku:
+          'MÃ SẢN PHẨM (SKU)',
 
-        colorwayLabel:
-          "PHỐI MÀU (COLORWAY)",
+        colorway:
+          'PHỐI MÀU (COLORWAY)',
 
-        retailLabel:
-          "GIÁ PHÁT HÀNH (RETAIL)",
+        retail:
+          'GIÁ PHÁT HÀNH (RETAIL)',
 
-        dateLabel:
-          "NGÀY RA MẮT",
+        date:
+          'NGÀY RA MẮT',
 
-        conditionLabel:
-          "TÌNH TRẠNG",
+        condition:
+          'TÌNH TRẠNG',
 
-        sizeLabel:
-          "KÍCH CỠ (SIZE)",
+        size:
+          'KÍCH CỠ (SIZE)',
 
-        storyTitle:
-          "Câu chuyện & Bối cảnh thiết kế",
+        story:
+          'Câu chuyện & Bối cảnh thiết kế',
 
         notFound:
-          "Không tìm thấy thông tin tác phẩm này."
+          'Không tìm thấy thông tin tác phẩm này.'
 
       },
 
@@ -343,31 +347,31 @@
       en: {
 
         back:
-          "← Back to Collection",
+          '← Back to Collection',
 
-        skuLabel:
-          "SKU",
+        sku:
+          'SKU',
 
-        colorwayLabel:
-          "COLORWAY",
+        colorway:
+          'COLORWAY',
 
-        retailLabel:
-          "RETAIL PRICE",
+        retail:
+          'RETAIL PRICE',
 
-        dateLabel:
-          "RELEASE DATE",
+        date:
+          'RELEASE DATE',
 
-        conditionLabel:
-          "CONDITION",
+        condition:
+          'CONDITION',
 
-        sizeLabel:
-          "SIZE",
+        size:
+          'SIZE',
 
-        storyTitle:
-          "Story & Design Background",
+        story:
+          'Story & Design Background',
 
         notFound:
-          "Piece information not found."
+          'Piece information not found.'
 
       }
 
@@ -375,9 +379,153 @@
 
 
 
-    /* =====================================================
+    /* ==========================================
+       GET LOCALIZED VALUE
+    ========================================== */
+
+    function localized(value) {
+
+      if (!value) {
+        return '';
+      }
+
+
+      if (typeof value === 'string') {
+        return value;
+      }
+
+
+      return (
+        value[currentLang] ||
+        value.en ||
+        value.vi ||
+        ''
+      );
+
+    }
+
+
+
+    /* ==========================================
+       DATE FORMAT
+    ========================================== */
+
+    function formatDate(value) {
+
+      if (!value) {
+        return 'N/A';
+      }
+
+
+      /*
+        YYYY-MM-DD
+      */
+
+      if (
+        /^\d{4}-\d{2}-\d{2}$/.test(value)
+      ) {
+
+        const parts =
+          value.split('-');
+
+
+        const year =
+          Number(parts[0]);
+
+        const month =
+          Number(parts[1]);
+
+        const day =
+          Number(parts[2]);
+
+
+        const date =
+          new Date(
+            Date.UTC(
+              year,
+              month - 1,
+              day
+            )
+          );
+
+
+        return date.toLocaleDateString(
+
+          currentLang === 'vi'
+            ? 'vi-VN'
+            : 'en-US',
+
+          {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            timeZone: 'UTC'
+          }
+
+        );
+
+      }
+
+
+      /*
+        YYYY-MM
+      */
+
+      if (
+        /^\d{4}-\d{2}$/.test(value)
+      ) {
+
+        const parts =
+          value.split('-');
+
+
+        const year =
+          Number(parts[0]);
+
+        const month =
+          Number(parts[1]);
+
+
+        const date =
+          new Date(
+            Date.UTC(
+              year,
+              month - 1,
+              1
+            )
+          );
+
+
+        return date.toLocaleDateString(
+
+          currentLang === 'vi'
+            ? 'vi-VN'
+            : 'en-US',
+
+          {
+            year: 'numeric',
+            month: 'long',
+            timeZone: 'UTC'
+          }
+
+        );
+
+      }
+
+
+      /*
+        Old date format fallback
+      */
+
+      return value;
+
+    }
+
+
+
+    /* ==========================================
        CHANGE LANGUAGE
-    ===================================================== */
+    ========================================== */
 
     function changeLang(lang) {
 
@@ -391,94 +539,62 @@
       );
 
 
-      const currentURL =
+      const newURL =
         new URL(
           window.location.href
         );
 
 
-      currentURL.searchParams.set(
+      newURL.searchParams.set(
         'lang',
         currentLang
       );
 
 
-      if (shoeId) {
-
-        currentURL.searchParams.set(
-          'id',
-          shoeId
-        );
-
-      }
-
-
       window.history.replaceState(
         {},
         '',
-        `${currentURL.pathname}${currentURL.search}${currentURL.hash}`
+        newURL.pathname +
+        newURL.search +
+        newURL.hash
       );
 
 
-      loadShoeDetails();
+      loadShoe();
 
     }
 
 
 
-    /* =====================================================
-       LOAD SNEAKER
-    ===================================================== */
+    /* ==========================================
+       UPDATE LABELS
+    ========================================== */
 
-    function loadShoeDetails() {
-
-      currentLang =
-        normalizeLanguage(
-          currentLang
-        );
-
+    function updateLanguageInterface() {
 
       document.documentElement.lang =
         currentLang;
 
 
-
-      /* LANGUAGE BUTTONS */
-
-      const btnVi =
-        document.getElementById(
-          'btn-vi'
-        );
+      const language =
+        labels[currentLang];
 
 
-      const btnEn =
-        document.getElementById(
-          'btn-en'
-        );
-
-
-      if (btnVi) {
-
-        btnVi.classList.toggle(
+      document
+        .getElementById('btn-vi')
+        .classList.toggle(
           'active',
           currentLang === 'vi'
         );
 
-      }
 
-
-      if (btnEn) {
-
-        btnEn.classList.toggle(
+      document
+        .getElementById('btn-en')
+        .classList.toggle(
           'active',
           currentLang === 'en'
         );
 
-      }
-
-
-
-      /* BACK BUTTON */
 
       const backLink =
         document.getElementById(
@@ -486,183 +602,201 @@
         );
 
 
-      if (backLink) {
-
-        backLink.textContent =
-          labels[currentLang].back;
+      backLink.textContent =
+        language.back;
 
 
-        backLink.href =
-          `index.html?lang=${encodeURIComponent(currentLang)}`;
+      backLink.href =
+        'index.html?lang=' +
+        encodeURIComponent(currentLang);
 
-      }
-
-
-
-      /* TRANSLATE LABELS */
 
       document
-        .querySelectorAll(
-          '[data-i18n]'
-        )
-        .forEach(element => {
-
-          const key =
-            element.getAttribute(
-              'data-i18n'
-            );
+        .getElementById('label-sku')
+        .textContent =
+        language.sku;
 
 
-          if (
-            labels[currentLang][key]
-          ) {
-
-            element.textContent =
-              labels[currentLang][key];
-
-          }
-
-        });
+      document
+        .getElementById('label-colorway')
+        .textContent =
+        language.colorway;
 
 
-
-      /* FIND SNEAKER */
-
-      const sneaker =
-        Array.isArray(sneakers)
-
-          ? sneakers.find(
-              item =>
-                item.id === shoeId
-            )
-
-          : null;
+      document
+        .getElementById('label-retail')
+        .textContent =
+        language.retail;
 
 
-
-      /* NOT FOUND */
-
-      if (!sneaker) {
-
-        document.title =
-          labels[currentLang].notFound;
+      document
+        .getElementById('label-date')
+        .textContent =
+        language.date;
 
 
-        const main =
-          document.querySelector(
-            '.shoe-detail-container'
-          );
+      document
+        .getElementById('label-condition')
+        .textContent =
+        language.condition;
 
 
-        if (main) {
-
-          main.innerHTML = `
-
-            <div class="not-found">
-
-              <p>
-                ${escapeHTML(
-                  labels[currentLang].notFound
-                )}
-              </p>
-
-            </div>
-
-          `;
-
-        }
+      document
+        .getElementById('label-size')
+        .textContent =
+        language.size;
 
 
-        const storySection =
-          document.querySelector(
-            '.story-section'
-          );
+      document
+        .getElementById('story-title')
+        .textContent =
+        language.story;
+
+    }
 
 
-        if (storySection) {
 
-          storySection.style.display =
-            'none';
+    /* ==========================================
+       LOAD SHOE
+    ========================================== */
 
-        }
+    function loadShoe() {
 
+      updateLanguageInterface();
+
+
+      /*
+        Verify data.js
+      */
+
+      if (
+        typeof sneakers === 'undefined' ||
+        !Array.isArray(sneakers)
+      ) {
+
+        showNotFound();
 
         return;
 
       }
 
 
+      /*
+        Find shoe by ID
+      */
 
-      /* PAGE TITLE */
+      const sneaker =
+        sneakers.find(
+          item =>
+            item.id === shoeId
+        );
 
-      const sneakerTitle =
-        getLocalizedText(
-          sneaker.title,
-          currentLang
+
+      if (!sneaker) {
+
+        showNotFound();
+
+        return;
+
+      }
+
+
+      /*
+        Restore sections
+      */
+
+      document
+        .getElementById('story-section')
+        .style.display =
+        'block';
+
+
+
+      /* TITLE */
+
+      const title =
+        localized(
+          sneaker.title
         );
 
 
       document.title =
-        `${sneakerTitle} | Lộc An Sneaker Collection`;
+        title +
+        ' | Lộc An Sneaker Collection';
+
+
+      document
+        .getElementById('shoe-title')
+        .textContent =
+        title;
 
 
 
-      /* TEXT */
+      /* SUBTITLE */
 
-      document.getElementById(
-        'shoe-title'
-      ).textContent =
-        sneakerTitle;
-
-
-      document.getElementById(
-        'shoe-subtitle'
-      ).textContent =
-        getLocalizedText(
-          sneaker.subtitle,
-          currentLang
+      document
+        .getElementById('shoe-subtitle')
+        .textContent =
+        localized(
+          sneaker.subtitle
         );
 
 
-      document.getElementById(
-        'shoe-sku'
-      ).textContent =
+
+      /* SKU */
+
+      document
+        .getElementById('shoe-sku')
+        .textContent =
         sneaker.sku || 'N/A';
 
 
-      document.getElementById(
-        'shoe-colorway'
-      ).textContent =
+
+      /* COLORWAY */
+
+      document
+        .getElementById('shoe-colorway')
+        .textContent =
         sneaker.colorway || 'N/A';
 
 
-      document.getElementById(
-        'shoe-retail'
-      ).textContent =
+
+      /* RETAIL */
+
+      document
+        .getElementById('shoe-retail')
+        .textContent =
         sneaker.retailPrice || 'N/A';
 
 
-      document.getElementById(
-        'shoe-date'
-      ).textContent =
-        formatReleaseDate(
-          sneaker.releaseDate,
-          currentLang
+
+      /* RELEASE DATE */
+
+      document
+        .getElementById('shoe-date')
+        .textContent =
+        formatDate(
+          sneaker.releaseDate
         );
 
 
-      document.getElementById(
-        'shoe-condition'
-      ).textContent =
-        getLocalizedText(
-          sneaker.condition,
-          currentLang
-        );
+
+      /* CONDITION */
+
+      document
+        .getElementById('shoe-condition')
+        .textContent =
+        localized(
+          sneaker.condition
+        ) || 'N/A';
 
 
-      document.getElementById(
-        'shoe-size'
-      ).textContent =
+
+      /* SIZE */
+
+      document
+        .getElementById('shoe-size')
+        .textContent =
         sneaker.size || 'N/A';
 
 
@@ -676,33 +810,69 @@
 
 
       image.src =
-        sneaker.image;
+        sneaker.image || '';
 
 
       image.alt =
-        sneakerTitle;
+        title;
 
 
 
       /* STORY */
 
-      document.getElementById(
-        'shoe-story'
-      ).innerHTML =
-        getLocalizedText(
-          sneaker.story,
-          currentLang
+      document
+        .getElementById('shoe-story')
+        .innerHTML =
+        localized(
+          sneaker.story
         );
 
     }
 
 
 
-    /* =====================================================
-       INITIALIZE DETAIL PAGE
-    ===================================================== */
+    /* ==========================================
+       NOT FOUND
+    ========================================== */
 
-    loadShoeDetails();
+    function showNotFound() {
+
+      document.title =
+        labels[currentLang].notFound;
+
+
+      document
+        .getElementById('shoe-detail')
+        .innerHTML = `
+
+          <div class="not-found">
+
+            <p>
+              ${labels[currentLang].notFound}
+            </p>
+
+          </div>
+
+        `;
+
+
+      document
+        .getElementById('story-section')
+        .style.display =
+        'none';
+
+    }
+
+
+
+    /* ==========================================
+       INITIALIZE
+    ========================================== */
+
+    document.addEventListener(
+      'DOMContentLoaded',
+      loadShoe
+    );
 
   </script>
 
