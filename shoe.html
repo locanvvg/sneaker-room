@@ -22,7 +22,7 @@
 
   <link
     rel="stylesheet"
-    href="style.css?v=20260912-6"
+    href="style.css?v=20260912-8"
   >
 
 </head>
@@ -34,7 +34,9 @@
   <div class="container">
 
 
-    <!-- HEADER -->
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
 
     <header class="site-header">
 
@@ -83,7 +85,9 @@
 
 
 
-    <!-- DETAIL -->
+    <!-- =====================================================
+         DETAIL
+    ====================================================== -->
 
     <main
       id="shoe-detail"
@@ -91,7 +95,10 @@
     >
 
 
+      <!-- IMAGE -->
+
       <div class="shoe-image-section">
+
 
         <img
           id="shoe-image"
@@ -100,9 +107,12 @@
           decoding="async"
         >
 
+
       </div>
 
 
+
+      <!-- INFORMATION -->
 
       <div class="shoe-info-section">
 
@@ -237,7 +247,9 @@
 
 
 
-    <!-- STORY -->
+    <!-- =====================================================
+         STORY
+    ====================================================== -->
 
     <section
       class="story-section"
@@ -257,12 +269,18 @@
 
 
 
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
     <footer>
+
 
       <p>
         &copy; 2026 Lộc An Sneaker Collection.
         All Rights Reserved.
       </p>
+
 
     </footer>
 
@@ -271,26 +289,45 @@
 
 
 
-  <script src="data.js?v=20260912-6"></script>
+  <!-- =====================================================
+       DATA
+  ====================================================== -->
+
+  <script src="data.js?v=20260912-8"></script>
 
 
+
+  <!-- =====================================================
+       DETAIL PAGE JAVASCRIPT
+  ====================================================== -->
 
   <script>
 
+
     const supportedLanguages = [
-      'vi',
-      'en'
+      "vi",
+      "en"
     ];
 
+
+
+    /* =====================================================
+       LANGUAGE NORMALIZATION
+    ====================================================== */
 
     function normalizeLanguage(lang) {
 
       return supportedLanguages.includes(lang)
         ? lang
-        : 'vi';
+        : "vi";
 
     }
 
+
+
+    /* =====================================================
+       URL PARAMETERS
+    ====================================================== */
 
     const params =
       new URLSearchParams(
@@ -299,29 +336,33 @@
 
 
     const shoeId =
-      params.get('id');
+      params.get("id");
 
 
     let currentLang =
       normalizeLanguage(
 
-        params.get('lang') ||
+        params.get("lang") ||
 
         localStorage.getItem(
-          'locan_lang'
+          "locan_lang"
         ) ||
 
-        'vi'
+        "vi"
 
       );
 
 
     localStorage.setItem(
-      'locan_lang',
+      "locan_lang",
       currentLang
     );
 
 
+
+    /* =====================================================
+       LABELS
+    ====================================================== */
 
     const labels = {
 
@@ -329,31 +370,31 @@
       vi: {
 
         back:
-          '← Quay lại Bộ sưu tập',
+          "← Quay lại Bộ sưu tập",
 
         sku:
-          'MÃ SẢN PHẨM',
+          "MÃ SẢN PHẨM",
 
         colorway:
-          'PHỐI MÀU',
+          "PHỐI MÀU",
 
         retail:
-          'GIÁ PHÁT HÀNH',
+          "GIÁ PHÁT HÀNH",
 
         date:
-          'NGÀY RA MẮT',
+          "NGÀY RA MẮT",
 
         condition:
-          'TÌNH TRẠNG',
+          "TÌNH TRẠNG",
 
         size:
-          'KÍCH CỠ',
+          "KÍCH CỠ",
 
         story:
-          'Câu chuyện & Bối cảnh thiết kế',
+          "Câu chuyện & Bối cảnh thiết kế",
 
         notFound:
-          'Không tìm thấy thông tin tác phẩm này.'
+          "Không tìm thấy thông tin tác phẩm này."
 
       },
 
@@ -361,31 +402,31 @@
       en: {
 
         back:
-          '← Back to Collection',
+          "← Back to Collection",
 
         sku:
-          'SKU',
+          "SKU",
 
         colorway:
-          'COLORWAY',
+          "COLORWAY",
 
         retail:
-          'RETAIL PRICE',
+          "RETAIL PRICE",
 
         date:
-          'RELEASE DATE',
+          "RELEASE DATE",
 
         condition:
-          'CONDITION',
+          "CONDITION",
 
         size:
-          'SIZE',
+          "SIZE",
 
         story:
-          'Story & Design Background',
+          "Story & Design Background",
 
         notFound:
-          'Piece information not found.'
+          "Piece information not found."
 
       }
 
@@ -394,15 +435,20 @@
 
 
 
+    /* =====================================================
+       LOCALIZED VALUE
+    ====================================================== */
+
     function localized(value) {
 
+
       if (!value) {
-        return '';
+        return "";
       }
 
 
       if (
-        typeof value === 'string'
+        typeof value === "string"
       ) {
 
         return value;
@@ -418,7 +464,7 @@
 
         value.vi ||
 
-        ''
+        ""
 
       );
 
@@ -426,14 +472,20 @@
 
 
 
+    /* =====================================================
+       DATE FORMAT
+    ====================================================== */
+
     function formatDate(value) {
 
 
       if (!value) {
-        return 'N/A';
+        return "N/A";
       }
 
 
+
+      /* YYYY-MM-DD */
 
       if (
         /^\d{4}-\d{2}-\d{2}$/.test(value)
@@ -446,7 +498,7 @@
           day
         ] =
           value
-            .split('-')
+            .split("-")
             .map(Number);
 
 
@@ -464,34 +516,33 @@
 
         return date.toLocaleDateString(
 
-
-          currentLang === 'vi'
-            ? 'vi-VN'
-            : 'en-US',
-
+          currentLang === "vi"
+            ? "vi-VN"
+            : "en-US",
 
           {
 
             year:
-              'numeric',
+              "numeric",
 
             month:
-              'long',
+              "long",
 
             day:
-              'numeric',
+              "numeric",
 
             timeZone:
-              'UTC'
+              "UTC"
 
           }
-
 
         );
 
       }
 
 
+
+      /* YYYY-MM */
 
       if (
         /^\d{4}-\d{2}$/.test(value)
@@ -503,7 +554,7 @@
           month
         ] =
           value
-            .split('-')
+            .split("-")
             .map(Number);
 
 
@@ -521,25 +572,22 @@
 
         return date.toLocaleDateString(
 
-
-          currentLang === 'vi'
-            ? 'vi-VN'
-            : 'en-US',
-
+          currentLang === "vi"
+            ? "vi-VN"
+            : "en-US",
 
           {
 
             year:
-              'numeric',
+              "numeric",
 
             month:
-              'long',
+              "long",
 
             timeZone:
-              'UTC'
+              "UTC"
 
           }
-
 
         );
 
@@ -552,6 +600,10 @@
 
 
 
+    /* =====================================================
+       CHANGE LANGUAGE
+    ====================================================== */
+
     function changeLang(lang) {
 
 
@@ -560,7 +612,7 @@
 
 
       localStorage.setItem(
-        'locan_lang',
+        "locan_lang",
         currentLang
       );
 
@@ -572,7 +624,7 @@
 
 
       newURL.searchParams.set(
-        'lang',
+        "lang",
         currentLang
       );
 
@@ -581,7 +633,7 @@
 
         {},
 
-        '',
+        "",
 
         newURL.pathname +
         newURL.search +
@@ -596,6 +648,10 @@
 
 
 
+    /* =====================================================
+       UPDATE LANGUAGE UI
+    ====================================================== */
+
     function updateLanguageInterface() {
 
 
@@ -607,25 +663,35 @@
         labels[currentLang];
 
 
+
+      /* LANGUAGE BUTTONS */
+
       document
-        .getElementById('btn-vi')
+        .getElementById(
+          "btn-vi"
+        )
         .classList.toggle(
-          'active',
-          currentLang === 'vi'
+          "active",
+          currentLang === "vi"
         );
 
 
       document
-        .getElementById('btn-en')
+        .getElementById(
+          "btn-en"
+        )
         .classList.toggle(
-          'active',
-          currentLang === 'en'
+          "active",
+          currentLang === "en"
         );
 
+
+
+      /* BACK LINK */
 
       const backLink =
         document.getElementById(
-          'back-link'
+          "back-link"
         );
 
 
@@ -634,15 +700,18 @@
 
 
       backLink.href =
-        'index.html?lang=' +
+        "index.html?lang=" +
         encodeURIComponent(
           currentLang
         );
 
 
+
+      /* LABELS */
+
       document
         .getElementById(
-          'label-sku'
+          "label-sku"
         )
         .textContent =
         language.sku;
@@ -650,7 +719,7 @@
 
       document
         .getElementById(
-          'label-colorway'
+          "label-colorway"
         )
         .textContent =
         language.colorway;
@@ -658,7 +727,7 @@
 
       document
         .getElementById(
-          'label-retail'
+          "label-retail"
         )
         .textContent =
         language.retail;
@@ -666,7 +735,7 @@
 
       document
         .getElementById(
-          'label-date'
+          "label-date"
         )
         .textContent =
         language.date;
@@ -674,7 +743,7 @@
 
       document
         .getElementById(
-          'label-condition'
+          "label-condition"
         )
         .textContent =
         language.condition;
@@ -682,7 +751,7 @@
 
       document
         .getElementById(
-          'label-size'
+          "label-size"
         )
         .textContent =
         language.size;
@@ -690,7 +759,7 @@
 
       document
         .getElementById(
-          'story-title'
+          "story-title"
         )
         .textContent =
         language.story;
@@ -698,6 +767,10 @@
     }
 
 
+
+    /* =====================================================
+       LOAD SHOE
+    ====================================================== */
 
     function loadShoe() {
 
@@ -707,7 +780,7 @@
 
       if (
 
-        typeof sneakers === 'undefined' ||
+        typeof sneakers === "undefined" ||
 
         !Array.isArray(sneakers)
 
@@ -720,6 +793,7 @@
       }
 
 
+
       const sneaker =
         sneakers.find(
 
@@ -727,6 +801,7 @@
             item.id === shoeId
 
         );
+
 
 
       if (!sneaker) {
@@ -738,12 +813,14 @@
       }
 
 
+
       document
         .getElementById(
-          'story-section'
+          "story-section"
         )
         .style.display =
-        'block';
+        "block";
+
 
 
       const title =
@@ -752,22 +829,29 @@
         );
 
 
+
       document.title =
         title +
-        ' | Lộc An Sneaker Collection';
+        " | Lộc An Sneaker Collection";
 
+
+
+      /* TITLE */
 
       document
         .getElementById(
-          'shoe-title'
+          "shoe-title"
         )
         .textContent =
         title;
 
 
+
+      /* SUBTITLE */
+
       document
         .getElementById(
-          'shoe-subtitle'
+          "shoe-subtitle"
         )
         .textContent =
         localized(
@@ -775,36 +859,48 @@
         );
 
 
+
+      /* SKU */
+
       document
         .getElementById(
-          'shoe-sku'
+          "shoe-sku"
         )
         .textContent =
         sneaker.sku ||
-        'N/A';
+        "N/A";
 
+
+
+      /* COLORWAY */
 
       document
         .getElementById(
-          'shoe-colorway'
+          "shoe-colorway"
         )
         .textContent =
         sneaker.colorway ||
-        'N/A';
+        "N/A";
 
+
+
+      /* RETAIL */
 
       document
         .getElementById(
-          'shoe-retail'
+          "shoe-retail"
         )
         .textContent =
         sneaker.retailPrice ||
-        'N/A';
+        "N/A";
 
+
+
+      /* RELEASE DATE */
 
       document
         .getElementById(
-          'shoe-date'
+          "shoe-date"
         )
         .textContent =
         formatDate(
@@ -812,44 +908,56 @@
         );
 
 
+
+      /* CONDITION */
+
       document
         .getElementById(
-          'shoe-condition'
+          "shoe-condition"
         )
         .textContent =
         localized(
           sneaker.condition
         ) ||
-        'N/A';
+        "N/A";
 
+
+
+      /* SIZE */
 
       document
         .getElementById(
-          'shoe-size'
+          "shoe-size"
         )
         .textContent =
         sneaker.size ||
-        'N/A';
+        "N/A";
 
+
+
+      /* IMAGE */
 
       const image =
         document.getElementById(
-          'shoe-image'
+          "shoe-image"
         );
 
 
       image.src =
         sneaker.image ||
-        '';
+        "";
 
 
       image.alt =
         title;
 
 
+
+      /* STORY */
+
       document
         .getElementById(
-          'shoe-story'
+          "shoe-story"
         )
         .innerHTML =
         localized(
@@ -859,6 +967,10 @@
     }
 
 
+
+    /* =====================================================
+       NOT FOUND
+    ====================================================== */
 
     function showNotFound() {
 
@@ -871,7 +983,7 @@
 
       document
         .getElementById(
-          'shoe-detail'
+          "shoe-detail"
         )
         .innerHTML = `
 
@@ -888,17 +1000,21 @@
 
       document
         .getElementById(
-          'story-section'
+          "story-section"
         )
         .style.display =
-        'none';
+        "none";
 
     }
 
 
 
+    /* =====================================================
+       INITIAL LOAD
+    ====================================================== */
+
     document.addEventListener(
-      'DOMContentLoaded',
+      "DOMContentLoaded",
       loadShoe
     );
 
