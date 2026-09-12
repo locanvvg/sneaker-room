@@ -153,10 +153,10 @@ header p {
   grid-template-columns:
     repeat(
       auto-fill,
-      minmax(270px, 1fr)
+      minmax(280px, 1fr)
     );
 
-  gap: 25px;
+  gap: 28px;
 
   align-items: stretch;
 }
@@ -173,7 +173,7 @@ header p {
 
 
 /* =========================================================
-   CARD
+   CARD LINK
 ========================================================= */
 
 .card-link {
@@ -181,29 +181,38 @@ header p {
   color: inherit;
 
   display: flex;
+
+  height: 100%;
 }
 
 .card-link:focus-visible {
   outline: 2px solid #ffcc00;
   outline-offset: 4px;
 
-  border-radius: 12px;
+  border-radius: 14px;
 }
 
+
+/* =========================================================
+   CARD
+========================================================= */
+
 .card {
+  width: 100%;
+  height: 100%;
+
+  min-width: 0;
+
   background: #161618;
 
-  border-radius: 12px;
+  border: 1px solid #252525;
+
+  border-radius: 14px;
 
   overflow: hidden;
 
-  border: 1px solid #222;
-
   display: flex;
   flex-direction: column;
-
-  width: 100%;
-  min-width: 0;
 
   transition:
     transform 0.3s ease,
@@ -214,41 +223,55 @@ header p {
 .card:hover {
   transform: translateY(-5px);
 
-  border-color: #333;
+  border-color: #3a3a3a;
 
   box-shadow:
-    0 12px 28px
+    0 14px 30px
     rgba(0, 0, 0, 0.55);
 }
 
 
 /* =========================================================
-   CARD IMAGE
-   KHÔNG CÒN KHUNG / MÉP DƯ
+   HOMEPAGE CARD IMAGE
+   TẤT CẢ ẢNH CÙNG TỶ LỆ 4:3
 ========================================================= */
 
 .card-img-wrapper {
   width: 100%;
 
-  height: auto;
+  /*
+    Đây là phần quan trọng nhất.
+    Tất cả hình trên homepage sẽ có cùng tỷ lệ.
+  */
+  aspect-ratio: 4 / 3;
 
-  background: transparent;
-
-  display: block;
+  background: #f4f4f4;
 
   overflow: hidden;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   padding: 0;
+  margin: 0;
 
   line-height: 0;
 }
 
 .card-img-wrapper img {
   width: 100%;
+  height: 100%;
 
-  height: auto;
+  /*
+    Ảnh luôn lấp đầy toàn bộ khung 4:3.
+  */
+  object-fit: cover;
 
-  object-fit: contain;
+  /*
+    Mặc định tập trung vào chính giữa ảnh.
+  */
+  object-position: center center;
 
   display: block;
 
@@ -276,12 +299,15 @@ header p {
 
   flex-grow: 1;
 
-  justify-content: space-between;
+  /*
+    Giúp phần chữ của tất cả card cân đối hơn.
+  */
+  min-height: 190px;
 }
 
 .card-info h3 {
   font-size: 1.1rem;
-  line-height: 1.35;
+  line-height: 1.4;
 
   margin:
     0
@@ -300,6 +326,11 @@ header p {
   margin-bottom: 15px;
 }
 
+
+/* =========================================================
+   CARD META
+========================================================= */
+
 .card-meta {
   display: flex;
 
@@ -310,19 +341,24 @@ header p {
 
   font-size: 0.8rem;
 
+  /*
+    Badge và size luôn nằm sát đáy card.
+  */
   margin-top: auto;
 }
 
 .badge {
   background: #333;
 
-  padding: 4px 8px;
+  padding: 5px 9px;
 
-  border-radius: 4px;
+  border-radius: 5px;
 
   color: #ffcc00;
 
   line-height: 1.3;
+
+  white-space: nowrap;
 }
 
 .badge-placeholder {
@@ -331,6 +367,7 @@ header p {
 
 .size {
   color: #aaa;
+
   white-space: nowrap;
 }
 
@@ -407,7 +444,7 @@ header p {
 
 /* =========================================================
    DETAIL IMAGE
-   KHÔNG CÒN NỀN ĐEN / KHOẢNG TRỐNG
+   GIỮ TỶ LỆ GỐC - KHÔNG ÉP 4:3
 ========================================================= */
 
 .shoe-image-section {
@@ -421,12 +458,11 @@ header p {
 
   overflow: hidden;
 
-  min-height: 0;
-
   display: block;
 
-  padding: 0;
+  min-height: 0;
 
+  padding: 0;
   margin: 0;
 
   line-height: 0;
@@ -434,7 +470,6 @@ header p {
 
 .shoe-image-section img {
   width: 100%;
-
   height: auto;
 
   max-height: none;
@@ -668,7 +703,24 @@ footer {
 
 
 /* =========================================================
-   TABLET / MOBILE
+   TABLET
+========================================================= */
+
+@media screen and (max-width: 900px) {
+
+  .grid {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
 ========================================================= */
 
 @media screen and (max-width: 768px) {
@@ -701,21 +753,21 @@ footer {
   .grid {
     grid-template-columns: 1fr;
 
-    gap: 20px;
+    gap: 22px;
   }
 
 
   /*
-    Không đặt height cố định cho ảnh nữa.
+    Vẫn giữ ảnh homepage 4:3 trên điện thoại.
   */
 
   .card-img-wrapper {
-    height: auto;
+    aspect-ratio: 4 / 3;
   }
 
 
-  .card-img-wrapper img {
-    height: auto;
+  .card-info {
+    min-height: 170px;
   }
 
 
@@ -783,13 +835,15 @@ footer {
   }
 
 
-  .card-img-wrapper {
-    height: auto;
+  .card-info {
+    padding: 16px;
+
+    min-height: 165px;
   }
 
 
-  .card-info {
-    padding: 16px;
+  .card-info h3 {
+    font-size: 1.05rem;
   }
 
 
