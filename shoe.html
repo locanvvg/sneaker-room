@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chi Tiết Sneaker - Lộc An Vault</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* CSS bổ sung riêng cho trang chi tiết */
+    .detail-container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 30px;
+      background: #141416;
+      border: 1px solid #222;
+      border-radius: 16px;
+      color: #fff;
+    }
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+    .lang-switch {
+      background: #222;
+      border: 1px solid #444;
+      color: #ffcc00;
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    .lang-switch:hover {
+      background: #333;
+    }
+    .shoe-header h1 {
+      font-size: 2rem;
+      margin-bottom: 5px;
+    }
+    .shoe-header p.subtitle {
+      color: #aaa;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+    .shoe-main-img {
+      width: 100%;
+      max-height: 500px;
+      object-fit: contain;
+      background: #0d0d0f;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 30px;
+      border: 1px solid #222;
+    }
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-bottom: 30px;
+      background: #1a1a1e;
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid #333;
+    }
+    .spec-item span {
+      display: block;
+      font-size: 0.8rem;
+      color: #888;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .spec-item strong {
+      font-size: 1rem;
+      color: #fff;
+    }
+    .story-section h3 {
+      font-size: 1.3rem;
+      border-bottom: 2px solid #ffcc00;
+      padding-bottom: 8px;
+      margin-bottom: 15px;
+      color: #ffcc00;
+      letter-spacing: 1px;
+    }
+    .story-content p {
+      line-height: 1.8;
+      color: #ccc;
+      margin-bottom: 15px;
+      font-size: 1.05rem;
+    }
+    /* Khung ghi chú lưu trữ màu vàng đặc biệt */
+    .exhibition-note-box {
+      margin-top: 30px;
+      background: rgba(255, 204, 0, 0.08);
+      border-left: 4px solid #ffcc00;
+      padding: 20px;
+      border-radius: 0 8px 8px 0;
+    }
+    .exhibition-note-box h4 {
+      color: #ffcc00;
+      margin: 0 0 8px 0;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .exhibition-note-box p {
+      color: #ddd;
+      margin: 0;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="detail-container">
+    <div class="top-nav">
+      <a href="sneakers.html" class="back-to-vault">← Back to Collection</a>
+      <button id="lang-btn" class="lang-switch" onclick="toggleLanguage()">ENGLISH</button>
+    </div>
+
+    <div class="shoe-header">
+      <h1 id="shoe-title"></h1>
+      <p class="subtitle" id="shoe-subtitle"></p>
+    </div>
+
+    <img id="shoe-img" class="shoe-main-img" src="" alt="Sneaker Image">
+
+    <div class="specs-grid">
+      <div class="spec-item">
+        <span id="lbl-sku">SKU / Serial</span>
+        <strong id="shoe-sku"></strong>
+      </div>
+      <div class="spec-item">
+        <span id="lbl-colorway">Colorway</span>
+        <strong id="shoe-colorway"></strong>
+      </div>
+      <div class="spec-item">
+        <span id="lbl-price">Retail Price</span>
+        <strong id="shoe-price"></strong>
+      </div>
+      <div class="spec-item">
+        <span id="lbl-date">Release Date</span>
+        <strong id="shoe-date"></strong>
+      </div>
+      <div class="spec-item">
+        <span id="lbl-edition">Edition Type</span>
+        <strong id="shoe-edition"></strong>
+      </div>
+      <div class="spec-item">
+        <span id="lbl-condition">Condition</span>
+        <strong id="shoe-condition"></strong>
+      </div>
+      <div class="spec-item">
+        <span id="lbl-size">Size</span>
+        <strong id="shoe-size"></strong>
+      </div>
+    </div>
+
+    <div class="story-section">
+      <h3 id="story-heading">CÂU CHUYỆN LƯU TRỮ & DI SẢN</h3>
+      <div id="shoe-story" class="story-content"></div>
+    </div>
+
+    <div id="exhibition-box" class="exhibition-note-box" style="display: none;">
+      <h4 id="exhibition-title">Ghi chú lưu trữ bảo tàng</h4>
+      <p id="shoe-exhibition"></p>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script>
+    // Lấy ID giày từ URL (ví dụ: shoe.html?id=air-jordan-1-black-bloodline-pe)
+    const urlParams = new URLSearchParams(window.location.search);
+    const shoeId = urlParams.get('id');
+
+    const shoe = sneakers.find(s => s.id === shoeId);
+    let currentLang = 'vi'; // Mặc định tiếng Việt
+
+    function renderShoe() {
+      if (!shoe) {
+        document.querySelector('.detail-container').innerHTML = '<h2>Không tìm thấy dữ liệu đôi giày này!</h2><a href="sneakers.html" class="back-to-vault">Quay lại danh sách</a>';
+        return;
+      }
+
+      document.getElementById('shoe-img').src = shoe.image;
+
+      if (currentLang === 'vi') {
+        document.getElementById('shoe-title').innerText = shoe.title;
+        document.getElementById('shoe-subtitle').innerText = shoe.subtitle;
+        document.getElementById('shoe-sku').innerText = shoe.sku;
+        document.getElementById('shoe-colorway').innerText = shoe.colorway;
+        document.getElementById('shoe-price').innerText = shoe.retailPrice;
+        document.getElementById('shoe-date').innerText = shoe.releaseDate;
+        document.getElementById('shoe-edition').innerText = shoe.editionType;
+        document.getElementById('shoe-condition').innerText = shoe.condition;
+        document.getElementById('shoe-size').innerText = shoe.size;
+        document.getElementById('shoe-story').innerHTML = shoe.story;
+
+        // Nhãn giao diện
+        document.getElementById('lbl-sku').innerText = 'SKU / Mã định danh';
+        document.getElementById('lbl-colorway').innerText = 'Phối màu';
+        document.getElementById('lbl-price').innerText = 'Giá bán lẻ gốc';
+        document.getElementById('lbl-date').innerText = 'Ngày phát hành';
+        document.getElementById('lbl-edition').innerText = 'Phiên bản';
+        document.getElementById('lbl-condition').innerText = 'Tình trạng';
+        document.getElementById('lbl-size').innerText = 'Kích thước';
+        document.getElementById('story-heading').innerText = 'CÂU CHUYỆN LƯU TRỮ & DI SẢN';
+        document.getElementById('lang-btn').innerText = 'ENGLISH';
+
+        // Ghi chú bảo tàng
+        if (shoe.exhibitionNote) {
+          document.getElementById('exhibition-box').style.display = 'block';
+          document.getElementById('exhibition-title').innerText = 'Ghi chú lưu trữ bảo tàng';
+          document.getElementById('shoe-exhibition').innerText = shoe.exhibitionNote;
+        } else {
+          document.getElementById('exhibition-box').style.display = 'none';
+        }
+
+      } else {
+        document.getElementById('shoe-title').innerText = shoe.titleEn || shoe.title;
+        document.getElementById('shoe-subtitle').innerText = shoe.subtitleEn || shoe.subtitle;
+        document.getElementById('shoe-sku').innerText = shoe.sku;
+        document.getElementById('shoe-colorway').innerText = shoe.colorway;
+        document.getElementById('shoe-price').innerText = shoe.retailPrice;
+        document.getElementById('shoe-date').innerText = shoe.releaseDate;
+        document.getElementById('shoe-edition').innerText = shoe.editionType;
+        document.getElementById('shoe-condition').innerText = shoe.conditionEn || shoe.condition;
+        document.getElementById('shoe-size').innerText = shoe.size;
+        document.getElementById('shoe-story').innerHTML = shoe.storyEn || shoe.story;
+
+        // Nhãn giao diện tiếng Anh
+        document.getElementById('lbl-sku').innerText = 'SKU / Serial';
+        document.getElementById('lbl-colorway').innerText = 'Colorway';
+        document.getElementById('lbl-price').innerText = 'Retail Price';
+        document.getElementById('lbl-date').innerText = 'Release Date';
+        document.getElementById('lbl-edition').innerText = 'Edition Type';
+        document.getElementById('lbl-condition').innerText = 'Condition';
+        document.getElementById('lbl-size').innerText = 'Size';
+        document.getElementById('story-heading').innerText = 'ARCHIVAL STORY & HERITAGE';
+        document.getElementById('lang-btn').innerText = 'TIẾNG VIỆT';
+
+        // Ghi chú bảo tàng tiếng Anh
+        if (shoe.exhibitionNoteEn) {
+          document.getElementById('exhibition-box').style.display = 'block';
+          document.getElementById('exhibition-title').innerText = 'Museum Archival Note';
+          document.getElementById('shoe-exhibition').innerText = shoe.exhibitionNoteEn;
+        } else {
+          document.getElementById('exhibition-box').style.display = 'none';
+        }
+      }
+    }
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'vi' ? 'en' : 'vi';
+      renderShoe();
+    }
+
+    renderShoe();
+  </script>
+</body>
+</html>
