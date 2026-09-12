@@ -5,62 +5,412 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lộc An Vault - Secure Archive</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* CSS RIÊNG CHO HIỆU ỨNG KÉT SẮT VAULT DIAL */
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0a0a0c;
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      overflow-x: hidden;
+    }
+
+    .vault-container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      position: relative;
+    }
+
+    .vault-header {
+      text-align: center;
+      margin-bottom: 30px;
+      z-index: 2;
+    }
+
+    .vault-header h1 {
+      font-size: 2.2rem;
+      letter-spacing: 4px;
+      margin: 0 0 8px 0;
+      color: #fff;
+      text-transform: uppercase;
+    }
+
+    .vault-header p {
+      color: #777;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      margin: 0;
+    }
+
+    /* MÔ HÌNH BÁNH XE KÉT SẮT (SAFE DIAL) */
+    .safe-dial-container {
+      position: relative;
+      width: 280px;
+      height: 280px;
+      margin: 20px auto 40px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+
+    /* Vòng tròn định vị cố định bên ngoài */
+    .dial-ring-outer {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 2px dashed rgba(255, 204, 0, 0.3);
+      box-shadow: 0 0 30px rgba(0,0,0,0.8) inset;
+      pointer-events: none;
+    }
+
+    /* Vành kim loại có thể xoay */
+    .safe-dial {
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle at 30% 30%, #2c2c30 0%, #121215 70%, #08080a 100%);
+      border-radius: 50%;
+      border: 4px solid #3a3a40;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.9), 
+                  inset 0 2px 5px rgba(255,255,255,0.15),
+                  inset 0 -4px 8px rgba(0,0,0,0.8);
+      position: relative;
+      cursor: grab;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: box-shadow 0.2s ease;
+      user-select: none;
+    }
+
+    .safe-dial:active {
+      cursor: grabbing;
+    }
+
+    /* Tâm bánh xe két sắt */
+    .dial-center-cap {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #222 0%, #111 100%);
+      border-radius: 50%;
+      border: 2px solid #444;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+    }
+
+    .dial-center-cap span {
+      font-size: 0.65rem;
+      color: #777;
+      letter-spacing: 1px;
+    }
+
+    .dial-center-cap strong {
+      font-size: 0.85rem;
+      color: #ffcc00;
+      letter-spacing: 1px;
+    }
+
+    /* Vạch chỉ hướng khóa ở đỉnh (Top Marker) */
+    .dial-marker {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-bottom: 14px solid #ffcc00;
+      z-index: 10;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+    }
+
+    /* Gạch chia độ trên vành xoay */
+    .dial-notch {
+      position: absolute;
+      width: 4px;
+      height: 12px;
+      background: #555;
+      top: 6px;
+      left: calc(50% - 2px);
+      transform-origin: 50% 104px;
+    }
+
+    /* KHU VỰC HIỂN THỊ DANH MỤC ĐANG CHỌN (VAULT WING DISPLAY) */
+    .vault-wing-display {
+      width: 100%;
+      max-width: 400px;
+      background: #141417;
+      border: 1px solid #2a2a30;
+      border-radius: 14px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      transition: all 0.3s ease;
+      z-index: 2;
+    }
+
+    .vault-wing-preview {
+      width: 100%;
+      height: 180px;
+      border-radius: 8px;
+      object-fit: cover;
+      margin-bottom: 15px;
+      background: #1a1a1f;
+      border: 1px solid #333;
+    }
+
+    .vault-wing-info h3 {
+      font-size: 1.3rem;
+      margin: 0 0 5px 0;
+      letter-spacing: 1px;
+    }
+
+    .vault-wing-info .status {
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
+    .status.unlocked {
+      background: rgba(46, 204, 113, 0.15);
+      color: #2ecc71;
+      border: 1px solid rgba(46, 204, 113, 0.3);
+    }
+
+    .status.locked {
+      background: rgba(231, 76, 60, 0.15);
+      color: #e74c3c;
+      border: 1px solid rgba(231, 76, 60, 0.3);
+    }
+
+    /* Nút kích hoạt mở cửa Vault */
+    .vault-action-btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background: #ffcc00;
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 8px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: background 0.2s, transform 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .vault-action-btn:hover {
+      background: #ffdb4d;
+      transform: translateY(-2px);
+    }
+
+    .vault-action-btn.disabled {
+      background: #222;
+      color: #666;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .vault-instruction {
+      margin-top: 25px;
+      font-size: 0.8rem;
+      color: #666;
+      letter-spacing: 1.5px;
+      text-align: center;
+      z-index: 2;
+    }
+  </style>
 </head>
 <body>
 
-  <main class="vault-gate-container">
+  <main class="vault-container">
     <div class="vault-header">
       <h1>Lộc An Vault</h1>
-      <p>SECURE DIGITAL ARCHIVE & COLLECTION</p>
+      <p>SECURE DIGITAL ARCHIVE & SYSTEM</p>
     </div>
 
-    <!-- Khu vực bánh xoay lựa chọn bộ sưu tập -->
-    <div class="vault-dial-wrapper">
-      <div class="vault-dial-track">
+    <!-- Bánh xe két sắt cơ học -->
+    <div class="safe-dial-container">
+      <div class="dial-marker"></div>
+      <div class="dial-ring-outer"></div>
+      
+      <!-- Vành xoay két sắt -->
+      <div id="safeDial" class="safe-dial">
+        <!-- Các vạch chia độ trên bánh xe -->
+        <script>
+          for (let i = 0; i < 12; i++) {
+            document.write(`<div class="dial-notch" style="transform: rotate(${i * 30}deg)"></div>`);
+          }
+        </script>
         
-        <!-- Mục 1: Sneaker Collection (Đã mở khóa dẫn tới trang danh sách giày) -->
-        <a href="sneakers.html" class="vault-slot">
-          <img src="jordan1_pe_bloodline_friendsandfamily_sample.png" alt="Sneaker Collection">
-          <div class="vault-slot-info">
-            <h3>Sneakers</h3>
-            <span>[ UNLOCKED ]</span>
-          </div>
-        </a>
-
-        <!-- Mục 2: Lego Collection (Khóa) -->
-        <div class="vault-slot locked">
-          <img src="" alt="Lego Collection" style="background: #111;">
-          <div class="vault-slot-info">
-            <h3>Lego Models</h3>
-            <span>[ LOCKED / COMING SOON ]</span>
-          </div>
+        <div class="dial-center-cap">
+          <span>ZONE</span>
+          <strong id="zoneIndicator">01</strong>
         </div>
-
-        <!-- Mục 3: Vintage Audio (Khóa) -->
-        <div class="vault-slot locked">
-          <img src="" alt="Vintage Audio" style="background: #111;">
-          <div class="vault-slot-info">
-            <h3>Vintage Audio</h3>
-            <span>[ LOCKED / COMING SOON ]</span>
-          </div>
-        </div>
-
-        <!-- Mục 4: Cameras & Tech (Khóa) -->
-        <div class="vault-slot locked">
-          <img src="" alt="Cameras & Tech" style="background: #111;">
-          <div class="vault-slot-info">
-            <h3>Cameras & Tech</h3>
-            <span>[ LOCKED / COMING SOON ]</span>
-          </div>
-        </div>
-
       </div>
     </div>
 
-    <div class="vault-status-indicator">
-      ROTATE / SELECT VAULT WING TO ACCESS
+    <!-- Khu vực hiển thị ngăn tủ Vault tương ứng với vị trí xoay -->
+    <div id="vaultWingDisplay" class="vault-wing-display">
+      <img id="wingImg" class="vault-wing-preview" src="jordan1_pe_bloodline_friendsandfamily_sample.png" alt="Vault Wing">
+      <div class="vault-wing-info">
+        <h3 id="wingTitle">Sneakers</h3>
+        <div id="wingStatus" class="status unlocked">[ UNLOCKED ]</div>
+        <a id="wingLink" href="sneakers.html" class="vault-action-btn">TRUY CẬP KHO LƯU TRỮ</a>
+      </div>
+    </div>
+
+    <div class="vault-instruction">
+      XOAY BÁNH XE KÉT SẮT ĐỂ CHUYỂN ĐỔI KHU VỰC LƯU TRỮ
     </div>
   </main>
 
+  <script>
+    // Dữ liệu các ngăn tủ trong Vault (đã cập nhật bỏ Vintage Audio, đổi tên Lego)
+    const vaultWings = [
+      {
+        id: 1,
+        title: "Sneakers",
+        status: "unlocked",
+        statusText: "[ UNLOCKED ]",
+        image: "jordan1_pe_bloodline_friendsandfamily_sample.png",
+        link: "sneakers.html",
+        btnText: "TRUY CẬP KHO LƯU TRỮ",
+        angle: 0
+      },
+      {
+        id: 2,
+        title: "Lego",
+        status: "locked",
+        statusText: "[ LOCKED / COMING SOON ]",
+        image: "", // Để trống sẽ hiện khung tối
+        link: "#",
+        btnText: "ĐANG KHÓA BẢO MẬT",
+        angle: 120
+      },
+      {
+        id: 3,
+        title: "Cameras & Tech",
+        status: "locked",
+        statusText: "[ LOCKED / COMING SOON ]",
+        image: "",
+        link: "#",
+        btnText: "ĐANG KHÓA BẢO MẬT",
+        angle: 240
+      }
+    ];
+
+    let currentRotation = 0;
+    let currentIndex = 0;
+    const dial = document.getElementById('safeDial');
+    const zoneIndicator = document.getElementById('zoneIndicator');
+    
+    const wingImg = document.getElementById('wingImg');
+    const wingTitle = document.getElementById('wingTitle');
+    const wingStatus = document.getElementById('wingStatus');
+    const wingLink = document.getElementById('wingLink');
+
+    function updateVaultDisplay(index) {
+      const wing = vaultWings[index];
+      zoneIndicator.innerText = `0${wing.id}`;
+      wingTitle.innerText = wing.title;
+      wingStatus.innerText = wing.statusText;
+      
+      if (wing.status === 'unlocked') {
+        wingStatus.className = 'status unlocked';
+        wingLink.className = 'vault-action-btn';
+        wingLink.href = wing.link;
+      } else {
+        wingStatus.className = 'status locked';
+        wingLink.className = 'vault-action-btn disabled';
+        wingLink.href = '#';
+      }
+
+      wingLink.innerText = wing.btnText;
+      if (wing.image) {
+        wingImg.src = wing.image;
+        wingImg.style.display = 'block';
+      } else {
+        wingImg.style.display = 'none'; // Ẩn ảnh nếu chưa có dữ liệu hình ảnh
+      }
+    }
+
+    // Xử lý tương tác kéo xoay bánh xe két sắt bằng chuột / cảm ứng
+    let isDragging = false;
+    let startAngle = 0;
+    let currentDialAngle = 0;
+
+    dial.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      const rect = dial.getBoundingClientRect();
+      const centerx = rect.left + rect.width / 2;
+      const centery = rect.top + rect.height / 2;
+      startAngle = Math.atan2(e.clientY - centery, e.clientX - centerx) * (180 / Math.PI) - currentDialAngle;
+      e.preventDefault();
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const rect = dial.getBoundingClientRect();
+      const centerx = rect.left + rect.width / 2;
+      const centery = rect.top + rect.height / 2;
+      let angle = Math.atan2(e.clientY - centery, e.clientX - centerx) * (180 / Math.PI) - startAngle;
+      
+      currentDialAngle = angle;
+      dial.style.transform = `rotate(${currentDialAngle}deg)`;
+
+      // Tính toán vùng chọn dựa trên góc xoay (chia 360 độ thành 3 phần: mỗi phần 120 độ)
+      let normalizedAngle = (currentDialAngle % 360 + 360) % 360;
+      if (normalizedAngle >= 300 || normalizedAngle < 60) {
+        if (currentIndex !== 0) { currentIndex = 0; updateVaultDisplay(currentIndex); }
+      } else if (normalizedAngle >= 60 && normalizedAngle < 180) {
+        if (currentIndex !== 1) { currentIndex = 1; updateVaultDisplay(currentIndex); }
+      } else if (normalizedAngle >= 180 && normalizedAngle < 300) {
+        if (currentIndex !== 2) { currentIndex = 2; updateVaultDisplay(currentIndex); }
+      }
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (!isDragging) return;
+      isDragging = false;
+      // Tự động snap (hít) về đúng góc chuẩn của mục gần nhất
+      currentDialAngle = vaultWings[currentIndex].angle;
+      dial.style.transition = 'transform 0.4s cubic-bezier(0.15, 0.85, 0.35, 1.2)';
+      dial.style.transform = `rotate(${currentDialAngle}deg)`;
+      setTimeout(() => { dial.style.transition = 'none'; }, 400);
+    });
+
+    // Hỗ trợ cuộn chuột để xoay bánh xe nhanh
+    window.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      if (e.deltaY > 0) {
+        currentIndex = (currentIndex + 1) % vaultWings.length;
+      } else {
+        currentIndex = (currentIndex - 1 + vaultWings.length) % vaultWings.length;
+      }
+      currentDialAngle = vaultWings[currentIndex].angle;
+      dial.style.transition = 'transform 0.4s cubic-bezier(0.15, 0.85, 0.35, 1.2)';
+      dial.style.transform = `rotate(${currentDialAngle}deg)`;
+      setTimeout(() => { dial.style.transition = 'none'; }, 400);
+      updateVaultDisplay(currentIndex);
+    }, { passive: false });
+
+    // Khởi tạo hiển thị ban đầu
+    updateVaultDisplay(0);
+  </script>
 </body>
 </html>
