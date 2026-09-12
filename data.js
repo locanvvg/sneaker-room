@@ -1,4 +1,4 @@
-const sneakers = [
+const sneakersData = [
   {
     id: "air-jordan-1-black-bloodline-pe",
     title: "Air Jordan 1 High OG 'Black Bloodline' PE",
@@ -14,6 +14,8 @@ const sneakers = [
     conditionEn: "Deadstock (Brand New)",
     size: "7 US",
     image: "jordan1_pe_bloodline_friendsandfamily_sample.png",
+    badge: "Sample PE",
+    shortDesc: "Phiên bản giới hạn Friends & Family Sample, sở hữu chi tiết thiết kế độc bản.",
     story: `
       <p>Nếu phiên bản thương mại Air Jordan 1 'Bloodline' trắng/đen/đỏ ra mắt vào dịp Black Friday năm 2019 đã quá quen thuộc với cộng đồng sneakerhead toàn cầu, thì phiên bản <b>Air Jordan 1 High OG 'Black Bloodline' PE</b> này lại vươn lên một tầm cao hoàn toàn khác biệt. Đây là món quà Giáng sinh đặc quyền cực kỳ giới hạn mà Jordan Brand chế tác riêng để gửi tặng cho các vận động viên thuộc danh sách đại sứ thương hiệu vào tháng 12 năm 2019.</p>
       <p>Điểm ăn tiền tạo nên giá trị sưu tầm độc bản của dòng PE chính thức nằm ở việc chỉ có đúng 93 đôi được sản xuất trên toàn thế giới, đi kèm thiệp chúc mừng riêng từ Jordan Brand và tem hộp stamped tên định danh của từng vận động viên. Đôi giày sở hữu lớp da màu đen cao cấp bao phủ toàn bộ thân upper, được làm nổi bật bởi các đường viền chỉ đỏ sắc nét chạy dọc theo đường cắt và bao quanh dấu Swoosh kinh điển, hoàn thiện trên nền đế giữa màu trắng và bộ đế ngoài đỏ rực.</p>
@@ -42,6 +44,8 @@ const sneakers = [
     conditionEn: "Deadstock (Brand New)",
     size: "12.5 US",
     image: "jordan_quai54_friendsandfamily.png",
+    badge: "F&F Exclusive",
+    shortDesc: "Phiên bản Friends & Family cực hiếm dành riêng cho giải đấu bóng rổ Paris.",
     story: `
       <p>Nhằm tôn vinh giải đấu bóng rổ đường phố danh giá nhất thế giới diễn ra thường niên tại thành phố Paris, Jordan Brand đã tạo ra hai phiên bản Air Jordan 1 đặc biệt cho mùa hè năm 2017. Trong khi bản phối màu đen truyền thống được phát hành thương mại rộng rãi vào ngày 8 tháng 7 năm 2017 với mức giá niêm yết 160 đô la, thì phiên bản xẻ màu độc bản này lại mang vị thế của một siêu phẩm tuyệt đối: dành riêng cho dàn khách mời nội bộ.</p>
       <p>Sở hữu phối màu gốc đặc trưng, điểm nhấn đột phá nhất tạo nên giá trị sưu tầm thượng thừa cho tác phẩm này chính là ngôn ngữ thiết kế bổ đôi táo bạo dọc theo thân giày. Chiếc bên phải là sự hòa quyện giữa sắc xanh rực rỡ và tông đen huyền bí; trong khi chiếc bên trái lại tạo nên sự tương phản hoàn hảo với sắc đỏ rực cháy. Logo biểu tượng của giải đấu được thêu trang trọng trên phần lưỡi gà vải dệt và in chìm tỉ mỉ ngay bên trong lót giày.</p>
@@ -70,6 +74,8 @@ const sneakers = [
     conditionEn: "Deadstock (Brand New)",
     size: "12 US",
     image: "sbdunk_yutohorigome_matcha.png",
+    badge: "Signed Edition",
+    shortDesc: "Phiên bản chữ ký trực tiếp từ huyền thoại trượt ván Olympic Yuto Horigome.",
     story: `
       <p>Tiếp nối tiếng vang chấn động từ phiên bản hợp tác đầu tiên năm 2023, tượng đài trượt ván thế giới và nhà vô địch Huy chương Vàng Olympic Yuto Horigome tiếp tục bắt tay cùng Nike SB để cho ra mắt siêu phẩm vào ngày 5 tháng 4 năm 2025. Nếu bản phát hành đầu tiên mang màu sắc đô thị tối giản, thì phiên bản trà xanh lần này lại đưa người xem chìm đắm vào không gian thiên nhiên tĩnh lặng thông qua các sắc thái tinh tế của bột trà xanh truyền thống.</p>
       <p>Đôi giày là một bản giao hưởng màu sắc xuất sắc giữa các tông màu đất trầm ấm và sang trọng: sự hòa quyện giữa các mảng da lộn cao cấp, điểm xuyết sắc xanh sâu thẳm cùng các chi tiết tinh tế. Biểu tượng lông vũ chéo quen thuộc đại diện cho gia tộc và di sản của Yuto Horigome được chạm khắc dập nổi sắc nét ở phần gót giày bên ngoài, kết hợp cùng lớp đệm lót chuyên dụng dành riêng cho các vận động viên trượt ván đỉnh cao.</p>
@@ -96,6 +102,8 @@ const sneakers = [
     conditionEn: "Deadstock (Brand New)",
     size: "10 US",
     image: "jordan1_vaa_alaska.png",
+    badge: "Archive Edition",
+    shortDesc: "Phiên bản đặc biệt từ quỹ lưu trữ nghệ thuật chính thức của Virgil Abloh.",
     story: `
       <p>Mang trong mình hơi thở và di sản tư duy thiết kế vĩ đại của cố thiên tài Virgil Abloh, phiên bản này chính thức ra mắt vào ngày 3 tháng 4 năm 2026. Đôi giày là sự hồi sinh và tái bản mang tầm lịch sử dựa trên phối màu trắng từng làm chấn động toàn cầu trong bộ sưu tập biểu tượng trước đây.</p>
       <p>Điểm khác biệt định vị tầm vóc của siêu phẩm này nằm ở thương hiệu phát hành: đây không phải là một sản phẩm hợp tác thương mại thông thường, mà được bảo chứng trực tiếp bởi quỹ lưu trữ nghệ thuật chính thức của nhà thiết kế. Do đó, dòng chữ quen thuộc ở phần hông giày mang dấu ấn độc quyền. Tên gọi gợi nhắc sắc trắng băng tuyết tinh khôi, vừa là lời tri ân ngầm đến phòng thí nghiệm tư duy thiết kế do Virgil sáng lập.</p>
