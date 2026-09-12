@@ -29,7 +29,6 @@
     const grid = document.getElementById('sneaker-grid');
 
     if (typeof sneakers !== 'undefined' && sneakers.length > 0) {
-      // Sắp xếp danh sách giày theo bảng chữ cái (A-Z) dựa vào tên (title)
       const sortedSneakers = [...sneakers].sort((a, b) => 
         a.title.localeCompare(b.title, 'en', { sensitivity: 'base' })
       );
