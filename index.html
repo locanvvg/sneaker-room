@@ -69,7 +69,7 @@
         );
 
         grid.innerHTML = sortedSneakers.map(shoe => {
-          const badgeText = shoe.editionType[currentLang] ? `<span class="badge">${shoe.editionType[currentLang]}</span>` : '';
+          const badgeText = shoe.editionType[currentLang] ? `<span class="badge">${shoe.editionType[currentLang]}</span>` : `<span class="badge" style="visibility: hidden;">&nbsp;</span>`;
           return `
             <a href="shoe.html?id=${shoe.id}&lang=${currentLang}" class="card-link">
               <div class="card">
