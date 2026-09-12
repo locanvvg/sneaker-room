@@ -7,58 +7,63 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="container">
+    <header class="site-header">
+      <a href="index.html" class="back-btn" id="back-link">← Quay lại Bộ sưu tập</a>
+      <h1>Lộc An Sneaker Collection</h1>
+      <div class="lang-switcher">
+        <button onclick="changeLang('vi')" id="btn-vi" class="lang-btn active">VI</button>
+        <button onclick="changeLang('en')" id="btn-en" class="lang-btn">EN</button>
+      </div>
+    </header>
 
-  <header class="site-header">
-    <a href="index.html" class="back-btn" id="back-link">← Quay lại Bộ sưu tập</a>
-    <h1>Lộc An Sneaker Collection</h1>
-    <div class="lang-switcher">
-      <button onclick="changeLang('vi')" id="btn-vi" class="lang-btn active">VI</button>
-      <button onclick="changeLang('en')" id="btn-en" class="lang-btn">EN</button>
-    </div>
-  </header>
+    <main class="shoe-detail-container">
+      <div class="shoe-image-section">
+        <img id="shoe-image" src="" alt="Sneaker Image">
+      </div>
 
-  <main class="shoe-detail-container">
-    <div class="shoe-image-section">
-      <img id="shoe-image" src="" alt="Sneaker Image">
-    </div>
+      <div class="shoe-info-section">
+        <h2 id="shoe-title"></h2>
+        <p id="shoe-subtitle" class="subtitle"></p>
 
-    <div class="shoe-info-section">
-      <h2 id="shoe-title"></h2>
-      <p id="shoe-subtitle" class="subtitle"></p>
-
-      <div class="specs-grid">
-        <div class="spec-item">
-          <span class="spec-label" data-i18n="sku">MÃ SẢN PHẨM (SKU)</span>
-          <span id="shoe-sku" class="spec-value"></span>
-        </div>
-        <div class="spec-item">
-          <span class="spec-label" data-i18n="colorway">PHỐI MÀU (COLORWAY)</span>
-          <span id="shoe-colorway" class="spec-value"></span>
-        </div>
-        <div class="spec-item">
-          <span class="spec-label" data-i18n="retail">GIÁ PHÁT HÀNH (RETAIL)</span>
-          <span id="shoe-retail" class="spec-value"></span>
-        </div>
-        <div class="spec-item">
-          <span class="spec-label" data-i18n="date">NGÀY RA MẮT</span>
-          <span id="shoe-date" class="spec-value"></span>
-        </div>
-        <div class="spec-item">
-          <span class="spec-label" data-i18n="condition">TÌNH TRẠNG</span>
-          <span id="shoe-condition" class="spec-value highlight"></span>
-        </div>
-        <div class="spec-item">
-          <span class="spec-label" data-i18n="size">KÍCH CỠ (SIZE)</span>
-          <span id="shoe-size" class="spec-value size-highlight"></span>
+        <div class="specs-grid">
+          <div class="spec-item">
+            <span class="spec-label" data-i18n="skuLabel">MÃ SẢN PHẨM (SKU)</span>
+            <span id="shoe-sku" class="spec-value"></span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label" data-i18n="colorwayLabel">PHỐI MÀU (COLORWAY)</span>
+            <span id="shoe-colorway" class="spec-value"></span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label" data-i18n="retailLabel">GIÁ PHÁT HÀNH (RETAIL)</span>
+            <span id="shoe-retail" class="spec-value"></span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label" data-i18n="dateLabel">NGÀY RA MẮT</span>
+            <span id="shoe-date" class="spec-value"></span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label" data-i18n="conditionLabel">TÌNH TRẠNG</span>
+            <span id="shoe-condition" class="spec-value highlight"></span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label" data-i18n="sizeLabel">KÍCH CỠ (SIZE)</span>
+            <span id="shoe-size" class="spec-value size-highlight"></span>
+          </div>
         </div>
       </div>
-    </div>
-  </main>
+    </main>
 
-  <section class="story-section">
-    <h3 data-i18n="storyTitle">Câu chuyện & Bối cảnh thiết kế</h3>
-    <div id="shoe-story"></div>
-  </section>
+    <section class="story-section">
+      <h3 data-i18n="storyTitle">Câu chuyện & Bối cảnh thiết kế</h3>
+      <div id="shoe-story"></div>
+    </section>
+
+    <footer>
+      <p>&copy; 2026 Lộc An Sneaker Collection. All Rights Reserved.</p>
+    </footer>
+  </div>
 
   <script src="data.js"></script>
   <script>
@@ -69,23 +74,23 @@
     const labels = {
       vi: {
         back: "← Quay lại Bộ sưu tập",
-        sku: "MÃ SẢN PHẨM (SKU)",
-        colorway: "PHỐI MÀU (COLORWAY)",
-        retail: "GIÁ PHÁT HÀNH (RETAIL)",
-        date: "NGÀY RA MẮT",
-        condition: "TÌNH TRẠNG",
-        size: "KÍCH CỠ (SIZE)",
+        skuLabel: "MÃ SẢN PHẨM (SKU)",
+        colorwayLabel: "PHỐI MÀU (COLORWAY)",
+        retailLabel: "GIÁ PHÁT HÀNH (RETAIL)",
+        dateLabel: "NGÀY RA MẮT",
+        conditionLabel: "TÌNH TRẠNG",
+        sizeLabel: "KÍCH CỠ (SIZE)",
         storyTitle: "Câu chuyện & Bối cảnh thiết kế",
         notFound: "Không tìm thấy thông tin tác phẩm này."
       },
       en: {
         back: "← Back to Collection",
-        sku: "SKU",
-        colorway: "COLORWAY",
-        retail: "RETAIL PRICE",
-        releaseDate: "RELEASE DATE",
-        condition: "CONDITION",
-        size: "SIZE",
+        skuLabel: "SKU",
+        colorwayLabel: "COLORWAY",
+        retailLabel: "RETAIL PRICE",
+        dateLabel: "RELEASE DATE",
+        conditionLabel: "CONDITION",
+        sizeLabel: "SIZE",
         storyTitle: "Story & Design Background",
         notFound: "Piece information not found."
       }
@@ -129,6 +134,5 @@
 
     loadShoeDetails();
   </script>
-
 </body>
 </html>
