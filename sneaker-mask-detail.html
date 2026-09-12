@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Handcrafted Sneaker Mask Archive Detail - Lộc An Sneaker Collection"
+  >
+
+  <meta
+    name="theme-color"
+    content="#0d0d0d"
+  >
+
+  <title>
+    Sneaker Mask | Lộc An Sneaker Collection
+  </title>
+
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="./favicon.svg"
+  >
+
+  <link
+    rel="apple-touch-icon"
+    href="./apple-touch-icon.png"
+  >
+
+  <link
+    rel="manifest"
+    href="./site.webmanifest"
+  >
+
+  <link
+    rel="stylesheet"
+    href="./style.css?v=20260912-16"
+  >
+
+  <link
+    rel="stylesheet"
+    href="./collection-menu.css?v=20260912-16"
+  >
+
+</head>
+
+
+<body>
+
+  <div class="container">
+
+
+    <header class="site-header">
+
+      <div class="site-header-left">
+
+        <a
+          id="mask-back-link"
+          href="./sneaker-mask.html"
+          class="back-btn"
+        >
+          ← Quay lại Sneaker Mask
+        </a>
+
+      </div>
+
+
+      <a
+        href="./sneaker-mask.html"
+        class="site-brand"
+      >
+        LỘC AN COLLECTION
+      </a>
+
+
+      <div class="site-header-actions">
+
+        <a
+          href="./about.html"
+          class="header-about-link"
+        >
+          ABOUT
+        </a>
+
+
+        <div class="lang-switcher">
+
+          <button
+            type="button"
+            id="btn-vi"
+            class="lang-btn active"
+            onclick="setMaskDetailLanguage('vi')"
+          >
+            VI
+          </button>
+
+          <button
+            type="button"
+            id="btn-en"
+            class="lang-btn"
+            onclick="setMaskDetailLanguage('en')"
+          >
+            EN
+          </button>
+
+        </div>
+
+      </div>
+
+    </header>
+
+
+    <main id="mask-detail-root"></main>
+
+
+    <footer>
+
+      <p>
+        &copy; 2026 Lộc An Sneaker Collection.
+        All Rights Reserved.
+      </p>
+
+    </footer>
+
+  </div>
+
+
+  <script src="./sneaker-mask-data.js?v=20260912-16"></script>
+
+
+  <script>
+
+    const MASK_DETAIL_LANGUAGES = [
+      "vi",
+      "en"
+    ];
+
+
+    let maskDetailLanguage =
+      new URLSearchParams(
+        window.location.search
+      ).get("lang")
+
+      ||
+
+      localStorage.getItem(
+        "locan_lang"
+      )
+
+      ||
+
+      "vi";
+
+
+    if (
+      !MASK_DETAIL_LANGUAGES.includes(
+        maskDetailLanguage
+      )
+    ) {
+      maskDetailLanguage = "vi";
+    }
+
+
+    const maskId =
+      new URLSearchParams(
+        window.location.search
+      ).get("id");
+
+
+    const mask =
+      sneakerMasks.find(
+        item =>
+          item.id === maskId
+      );
+
+
+    function formatMaskDate(
+      value,
+      lang
+    ) {
+
+      if (!value) {
+        return "N/A";
+      }
+
+
+      const date =
+        new Date(
+          `${value}T12:00:00`
+        );
+
+
+      return new Intl.DateTimeFormat(
+        lang === "vi"
+          ? "vi-VN"
+          : "en-US",
+        {
+          day: "numeric",
+          month: "long",
+          year: "numeric"
+        }
+      ).format(date);
+
+    }
+
+
+    function setMaskDetailLanguage(lang) {
+
+      maskDetailLanguage =
+        MASK_DETAIL_LANGUAGES.includes(lang)
+          ? lang
+          : "vi";
+
+
+      localStorage.setItem(
+        "locan_lang",
+        maskDetailLanguage
+      );
+
+
+      document.documentElement.lang =
+        maskDetailLanguage;
+
+
+      document
+        .getElementById("btn-vi")
+        .classList
+        .toggle(
+          "active",
+          maskDetailLanguage === "vi"
+        );
+
+
+      document
+        .getElementById("btn-en")
+        .classList
+        .toggle(
+          "active",
+          maskDetailLanguage === "en"
+        );
+
+
+      const backLink =
+        document.getElementById(
+          "mask-back-link"
+        );
+
+
+      backLink.textContent =
+        maskDetailLanguage === "vi"
+          ? "← Quay lại Sneaker Mask"
+          : "← Back to Sneaker Mask";
+
+
+      backLink.href =
+        `./sneaker-mask.html?lang=${maskDetailLanguage}`;
+
+
+      renderMaskDetail();
+
+
+      const url =
+        new URL(
+          window.location.href
+        );
+
+
+      url.searchParams.set(
+        "lang",
+        maskDetailLanguage
+      );
+
+
+      window.history.replaceState(
+        {},
+        "",
+        url.pathname +
+        url.search +
+        url.hash
+      );
+
+    }
+
+
+    function renderMaskDetail() {
+
+      const root =
+        document.getElementById(
+          "mask-detail-root"
+        );
+
+
+      if (!mask) {
+
+        root.innerHTML = `
+          <section class="not-found">
+
+            <h2>
+              ${
+                maskDetailLanguage === "vi"
+                  ? "Không tìm thấy Sneaker Mask"
+                  : "Sneaker Mask not found"
+              }
+            </h2>
+
+            <p>
+              ${
+                maskDetailLanguage === "vi"
+                  ? "Hồ sơ bạn đang tìm không tồn tại."
+                  : "The archive record you requested does not exist."
+              }
+            </p>
+
+            <a
+              class="primary-action"
+              href="./sneaker-mask.html?lang=${maskDetailLanguage}"
+            >
+              ${
+                maskDetailLanguage === "vi"
+                  ? "QUAY LẠI SNEAKER MASK"
+                  : "BACK TO SNEAKER MASK"
+              }
+            </a>
+
+          </section>
+        `;
+
+        return;
+      }
+
+
+      document.title =
+        `${mask.title[maskDetailLanguage]} | Lộc An Sneaker Collection`;
+
+
+      const labels =
+        maskDetailLanguage === "vi"
+
+          ? {
+              source:
+                "GIÀY NGUỒN",
+
+              sku:
+                "SKU GIÀY NGUỒN",
+
+              colorway:
+                "PHỐI MÀU GIÀY NGUỒN",
+
+              retail:
+                "GIÁ RETAIL GỐC",
+
+              release:
+                "NGÀY PHÁT HÀNH GIÀY",
+
+              condition:
+                "TÌNH TRẠNG GIÀY NGUỒN",
+
+              artifact:
+                "LOẠI HIỆN VẬT",
+
+              construction:
+                "PHƯƠNG PHÁP CHẾ TÁC",
+
+              story:
+                "Câu chuyện & Bối cảnh thiết kế"
+            }
+
+          : {
+              source:
+                "SOURCE SHOE",
+
+              sku:
+                "SOURCE SKU",
+
+              colorway:
+                "SOURCE COLORWAY",
+
+              retail:
+                "ORIGINAL RETAIL",
+
+              release:
+                "SOURCE RELEASE DATE",
+
+              condition:
+                "SOURCE SHOE CONDITION",
+
+              artifact:
+                "ARTIFACT TYPE",
+
+              construction:
+                "CONSTRUCTION",
+
+              story:
+                "Story & Design Context"
+            };
+
+
+      root.innerHTML = `
+
+        <div class="shoe-detail-container">
+
+
+          <section class="shoe-image-section mask-detail-image">
+
+            <img
+              src="${mask.image}"
+              alt="${mask.title[maskDetailLanguage]}"
+            >
+
+          </section>
+
+
+          <section class="shoe-info-section">
+
+            <h2>
+              ${mask.title[maskDetailLanguage]}
+            </h2>
+
+
+            <p class="subtitle detail-subtitle">
+              ${mask.subtitle[maskDetailLanguage]}
+            </p>
+
+
+            <div class="specs-grid">
+
+
+              <div class="spec-item">
+
+                <span class="spec-label">
+                  ${labels.source}
+                </span>
+
+                <span class="spec-value">
+                  ${mask.sourceShoe.name}
+                </span>
+
+              </div>
+
+
+              <div class="spec-item">
+
+                <span class="spec-label">
+                  ${labels.sku}
+                </span>
+
+                <span class="spec-value">
+                  ${mask.sourceShoe.sku}
+                </span>
+
+              </div>
+
+
+              <div class="spec-item">
+
+                <span class="spec-label">
+                  ${labels.colorway}
+                </span>
+
+                <span class="spec-value">
+                  ${mask.sourceShoe.colorway}
+                </span>
+
+              </div>
+
+
+              <div class="spec-item">
+
+                <span class="spec-label">
+                  ${labels.retail}
+                </span>
+
+                <span class="spec-value">
+                  ${mask.sourceShoe.retailPrice}
+                </span>
+
+              </div>
+
+
+              <div class="spec-item">
+
+                <span class="spec-label">
+                  ${labels.release}
+                </span>
+
+                <span class="spec-value">
+                  ${formatMaskDate(
+                    mask.sourceShoe.releaseDate,
+                    maskDetailLanguage
+                  )}
+                </span>
+
+              </div>
+
+
+              <div class="spec-item">
+
+                <span class="spec-label">
+                  ${labels.condition}
+                </span>
+
+                <span
+                  class="spec-value condition-value condition-deadstock"
+                >
+                  ${mask.sourceShoe.condition}
+                </span>
+
+              </div>
+
+
+              <div class="spec-item">
+
+                <span class="spec-label">
+                  ${labels.artifact}
+                </span>
+
+                <span class="spec-value size-highlight">
+                  ${
+                    mask.artifactType[
+                      maskDetailLanguage
+                    ]
+                  }
+                </span>
+
+              </div>
+
+
+              <div class="spec-item">
+
+                <span class="spec-label">
+                  ${labels.construction}
+                </span>
+
+                <span class="spec-value">
+                  ${
+                    mask.construction[
+                      maskDetailLanguage
+                    ]
+                  }
+                </span>
+
+              </div>
+
+
+            </div>
+
+          </section>
+
+
+        </div>
+
+
+        <section class="story-section">
+
+          <h3>
+            ${labels.story}
+          </h3>
+
+          ${
+            mask.story[
+              maskDetailLanguage
+            ]
+          }
+
+        </section>
+
+      `;
+
+    }
+
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      () => {
+
+        setMaskDetailLanguage(
+          maskDetailLanguage
+        );
+
+      }
+    );
+
+  </script>
+
+</body>
+
+</html>
