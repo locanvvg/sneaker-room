@@ -50,6 +50,7 @@ const sneakers = [
           thì phiên bản
           <b>Jordan 1 Retro High OG 'Black Bloodline' PE</b>
           lại thuộc một nhóm hoàn toàn khác biệt.
+
           Đây là phiên bản đặc biệt được Jordan Brand
           chuẩn bị dành cho các vận động viên
           và những cá nhân thuộc mạng lưới của thương hiệu
@@ -61,6 +62,7 @@ const sneakers = [
           nằm ở số lượng sản xuất cực kỳ giới hạn,
           cùng các dấu hiệu nhận diện riêng
           dành cho từng đối tượng nhận được sản phẩm.
+
           Đôi giày sở hữu lớp da màu đen
           bao phủ phần lớn upper,
           được làm nổi bật bởi các đường viền
@@ -87,10 +89,7 @@ const sneakers = [
         </p>
 
         <div class="exhibition-note">
-
-          <strong>
-            Ghi chú lưu trữ:
-          </strong>
+          <strong>Ghi chú lưu trữ:</strong>
 
           Tác phẩm thuộc nhóm
           Player Exclusive / Friends &amp; Family / Sample.
@@ -101,7 +100,6 @@ const sneakers = [
 
           Vì vậy, hiện vật
           <b>không có giá phát hành chính thức</b>.
-
         </div>
       `,
 
@@ -151,10 +149,7 @@ const sneakers = [
         </p>
 
         <div class="exhibition-note">
-
-          <strong>
-            Exhibition Note:
-          </strong>
+          <strong>Exhibition Note:</strong>
 
           This piece belongs to the
           Player Exclusive / Friends &amp; Family / Sample category.
@@ -164,7 +159,6 @@ const sneakers = [
 
           Accordingly, the artifact
           <b>does not have an official retail price</b>.
-
         </div>
       `
     }
@@ -272,10 +266,7 @@ const sneakers = [
         </p>
 
         <div class="exhibition-note">
-
-          <strong>
-            Ghi chú lưu trữ:
-          </strong>
+          <strong>Ghi chú lưu trữ:</strong>
 
           Đây là phiên bản
           Friends &amp; Family
@@ -284,7 +275,6 @@ const sneakers = [
 
           Vì vậy, tác phẩm
           <b>không có giá phát hành chính thức</b>.
-
         </div>
       `,
 
@@ -331,10 +321,7 @@ const sneakers = [
         </p>
 
         <div class="exhibition-note">
-
-          <strong>
-            Exhibition Note:
-          </strong>
+          <strong>Exhibition Note:</strong>
 
           This is a Friends &amp; Family edition
           that was not commercially released
@@ -342,7 +329,6 @@ const sneakers = [
 
           Therefore, the artifact
           <b>does not have an official retail price</b>.
-
         </div>
       `
     }
@@ -762,10 +748,7 @@ const sneakers = [
         </p>
 
         <div class="exhibition-note">
-
-          <strong>
-            Ghi chú lưu trữ:
-          </strong>
+          <strong>Ghi chú lưu trữ:</strong>
 
           Tác phẩm trong
           Lộc An Sneaker Collection
@@ -785,7 +768,6 @@ const sneakers = [
           làm mã tham chiếu
           của phiên bản thương mại
           'Varsity Red/Sport Royal'.
-
         </div>
       `,
 
@@ -844,10 +826,7 @@ const sneakers = [
         </p>
 
         <div class="exhibition-note">
-
-          <strong>
-            Exhibition Note:
-          </strong>
+          <strong>Exhibition Note:</strong>
 
           The piece preserved in the
           Lộc An Sneaker Collection
@@ -865,7 +844,6 @@ const sneakers = [
           as the reference SKU
           for the commercial
           'Varsity Red/Sport Royal' edition.
-
         </div>
       `
     }
@@ -873,7 +851,7 @@ const sneakers = [
 
 
   /* =====================================================
-     6. JORDAN 1 HIGH RETRO OG
+     6. JORDAN 1 RETRO HIGH OG
         SHADOW 2009
   ===================================================== */
 
@@ -881,8 +859,8 @@ const sneakers = [
     id: "jordan-1-shadow-2009",
 
     title: {
-      vi: "Jordan 1 High Retro OG 'Shadow' 2009",
-      en: "Jordan 1 High Retro OG 'Shadow' 2009"
+      vi: "Jordan 1 Retro High OG 'Shadow' 2009",
+      en: "Jordan 1 Retro High OG 'Shadow' 2009"
     },
 
     subtitle: {
@@ -916,7 +894,7 @@ const sneakers = [
 
       vi: `
         <p>
-          <b>Jordan 1 High Retro OG 'Shadow' 2009</b>
+          <b>Jordan 1 Retro High OG 'Shadow' 2009</b>
           đánh dấu sự trở lại đầu tiên
           của một trong những phối màu nguyên bản
           kín đáo nhưng bền bỉ nhất
@@ -990,7 +968,7 @@ const sneakers = [
 
       en: `
         <p>
-          <b>Jordan 1 High Retro OG 'Shadow' 2009</b>
+          <b>Jordan 1 Retro High OG 'Shadow' 2009</b>
           marked the first return
           of one of the most understated
           yet enduring original colorways
@@ -1067,6 +1045,428 @@ const sneakers = [
           <b>first retro
           of the Shadow colorway
           since the original 1985 edition</b>.
+        </p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     7. BAPE x STUSSY
+        CAMO CANVAS HI TOP
+        GREEN CAMO
+  ===================================================== */
+
+  {
+    id: "bape-stussy-camo-canvas-hi-top-green",
+
+    title: {
+      vi: "BAPE x Stüssy Camo Canvas Hi Top 'Green Camo'",
+      en: "BAPE x Stüssy Camo Canvas Hi Top 'Green Camo'"
+    },
+
+    subtitle: {
+      vi: "Survival of the Fittest / Stüssy 30th Anniversary (2010)",
+      en: "Survival of the Fittest / Stüssy 30th Anniversary (2010)"
+    },
+
+    sku: "191-030",
+
+    colorway: "Green Camo/White-Black",
+
+    retailPrice: "¥13,440",
+
+    releaseDate: "2010-11-27",
+
+    editionType: {
+      vi: "GR",
+      en: "GR"
+    },
+
+    condition: {
+      vi: "Used",
+      en: "Used"
+    },
+
+    size: "9 US",
+
+    image: "pictures/bape_stussy_camo_canvas_hi_top_green.png",
+
+    story: {
+
+      vi: `
+        <p>
+          Ra mắt trong mùa Holiday 2010,
+          <b>BAPE x Stüssy Camo Canvas Hi Top 'Green Camo'</b>
+          là một phần của dự án hợp tác
+          <b>Survival of the Fittest</b>
+          giữa hai trong số những tên tuổi
+          có ảnh hưởng lớn nhất
+          đối với văn hóa streetwear
+          Nhật Bản và Hoa Kỳ.
+
+          Bộ sưu tập xuất hiện
+          trong năm kỷ niệm
+          <b>30 năm thành lập Stüssy</b>,
+          đồng thời đánh dấu
+          một trong những dự án hợp tác đáng chú ý
+          giữa Stüssy
+          và
+          <b>A Bathing Ape</b>.
+        </p>
+
+        <p>
+          BAPE và Stüssy
+          đại diện cho hai nền tảng quan trọng
+          của streetwear hiện đại.
+
+          Stüssy phát triển từ
+          văn hóa surf và streetwear California
+          từ đầu thập niên 1980,
+          trong khi
+          A Bathing Ape,
+          được hình thành tại Tokyo
+          trong thập niên 1990,
+          trở thành một trong những thương hiệu
+          định hình mạnh mẽ
+          Harajuku streetwear.
+
+          Việc hai thương hiệu gặp nhau
+          trong dự án năm 2010
+          vì thế không chỉ đơn thuần
+          là một capsule thời trang,
+          mà còn là sự giao thoa
+          giữa hai thế hệ và hai trung tâm
+          quan trọng của văn hóa streetwear.
+        </p>
+
+        <p>
+          Tên gọi
+          <b>Survival of the Fittest</b>
+          được xây dựng quanh ý niệm
+          về sự tiến hóa,
+          khả năng thích nghi
+          và sức sống lâu dài.
+
+          Trong bối cảnh collaboration,
+          concept này trở thành
+          một phép ẩn dụ phù hợp
+          cho hai thương hiệu
+          đã tồn tại và duy trì ảnh hưởng
+          qua nhiều giai đoạn thay đổi
+          của văn hóa streetwear.
+        </p>
+
+        <p>
+          Trên phiên bản
+          <b>Green Camo</b>,
+          ngôn ngữ hình ảnh
+          của BAPE và Stüssy
+          được hòa trộn trực tiếp
+          trên phần canvas upper.
+
+          Nền camouflage
+          đặc trưng của BAPE
+          sử dụng các sắc
+          xanh lá,
+          xanh đậm,
+          nâu
+          và beige,
+          trong khi các graphic
+          lấy cảm hứng từ
+          <b>Old Skull của Stüssy</b>
+          được tích hợp trực tiếp
+          vào cấu trúc camo.
+
+          Sự kết hợp này
+          thường được giới sưu tầm
+          gọi là
+          <b>Skull Camo</b>
+          hoặc
+          <b>ABC Skull Camo</b>.
+        </p>
+
+        <p>
+          Đôi giày sử dụng
+          cấu trúc canvas high-top cổ điển
+          với phần rubber toe cap màu trắng,
+          midsole cao su trắng
+          và đường foxing stripe màu đen.
+
+          Thiết kế đơn giản của silhouette
+          tạo ra một nền tảng trung tính
+          để họa tiết collaboration
+          trở thành điểm nhấn chính.
+        </p>
+
+        <p>
+          Một trong những chi tiết
+          quan trọng nhất
+          nằm ở phần tongue.
+
+          Nhãn collaborative
+          kết hợp
+          <b>A Bathing Ape</b>
+          và
+          <b>Stüssy</b>
+          cùng dòng chữ
+          <b>Survival of the Fittest</b>
+          xác định trực tiếp
+          đôi giày là một phần
+          của capsule Holiday 2010.
+
+          Branding BAPE
+          tiếp tục xuất hiện
+          ở phần heel,
+          giúp hoàn thiện
+          ngôn ngữ thiết kế
+          của phiên bản.
+        </p>
+
+        <p>
+          Mẫu
+          <b>Camo Canvas Hi Top</b>
+          nằm trong đợt phát hành đầu tiên
+          của dự án
+          <b>Survival of the Fittest</b>
+          và được đưa ra thị trường
+          vào ngày
+          <b>27 tháng 11 năm 2010</b>.
+
+          Giá bán lẻ tại Nhật Bản
+          vào thời điểm phát hành
+          là
+          <b>¥13,440</b>.
+
+          Đợt phát hành tiếp theo
+          của dự án
+          diễn ra trong tháng 12 năm 2010.
+        </p>
+
+        <p>
+          Tem sản phẩm của
+          A Bathing Ape
+          ghi nhận mã
+          <b>191-030</b>
+          cho mẫu
+          Green Camo.
+
+          Đây là mã
+          <b>Item No.</b>
+          của sản phẩm
+          và được sử dụng
+          làm mã SKU lưu trữ
+          trong
+          <b>Lộc An Sneaker Collection</b>.
+        </p>
+
+        <p>
+          Tác phẩm được lưu giữ trong
+          <b>Lộc An Sneaker Collection</b>
+          là phiên bản
+          <b>Green Camo</b>,
+          size
+          <b>9 US</b>,
+          với tình trạng
+          <b>Used</b>.
+
+          Đây là một phiên bản
+          <b>GR</b>
+          được phát hành thương mại
+          trong capsule
+          BAPE x Stüssy
+          Holiday 2010,
+          đại diện cho một giai đoạn
+          đáng chú ý trong lịch sử
+          collaboration giữa
+          streetwear Nhật Bản
+          và Hoa Kỳ.
+        </p>
+      `,
+
+      en: `
+        <p>
+          Released during Holiday 2010,
+          the
+          <b>BAPE x Stüssy Camo Canvas Hi Top 'Green Camo'</b>
+          formed part of the
+          <b>Survival of the Fittest</b>
+          project between
+          two of the most influential names
+          in Japanese and American
+          streetwear culture.
+
+          The collection arrived
+          during
+          <b>Stüssy's 30th anniversary year</b>
+          and represented
+          one of the notable collaborative projects
+          between Stüssy
+          and
+          <b>A Bathing Ape</b>.
+        </p>
+
+        <p>
+          BAPE and Stüssy
+          represent two important foundations
+          of modern streetwear.
+
+          Stüssy emerged from
+          California surf and street culture
+          during the early 1980s,
+          while
+          A Bathing Ape,
+          established in Tokyo
+          during the 1990s,
+          became one of the defining names
+          of Harajuku streetwear.
+
+          Their 2010 collaboration
+          therefore represented more than
+          a simple fashion capsule;
+          it brought together
+          two generations
+          and two major centers
+          of global streetwear culture.
+        </p>
+
+        <p>
+          The
+          <b>Survival of the Fittest</b>
+          concept drew upon ideas
+          of evolution,
+          adaptation,
+          and longevity.
+
+          Within the collaboration,
+          the theme functioned
+          as an appropriate metaphor
+          for two brands
+          that had continued
+          to maintain cultural relevance
+          through multiple generations
+          of streetwear.
+        </p>
+
+        <p>
+          On the
+          <b>Green Camo</b>
+          edition,
+          the visual identities
+          of both BAPE and Stüssy
+          are merged directly
+          across the canvas upper.
+
+          BAPE's recognizable
+          camouflage language
+          combines green,
+          dark green,
+          brown,
+          and beige tones,
+          while graphics inspired by
+          Stüssy's
+          <b>Old Skull</b>
+          imagery
+          are integrated into the pattern.
+
+          Collectors commonly refer
+          to this collaborative graphic
+          as
+          <b>Skull Camo</b>
+          or
+          <b>ABC Skull Camo</b>.
+        </p>
+
+        <p>
+          The sneaker uses
+          a classic canvas
+          high-top construction
+          with a white rubber toe cap,
+          white rubber midsole,
+          and black foxing stripe.
+
+          The restrained silhouette
+          provides a neutral foundation
+          for the collaborative
+          camouflage artwork.
+        </p>
+
+        <p>
+          One of the most important
+          identifying elements
+          appears on the tongue.
+
+          The collaborative label
+          combines
+          <b>A Bathing Ape</b>
+          and
+          <b>Stüssy</b>
+          branding
+          with the phrase
+          <b>Survival of the Fittest</b>,
+          directly linking the sneaker
+          to the Holiday 2010 project.
+
+          BAPE branding
+          also appears on the heel,
+          completing the collaborative
+          design language.
+        </p>
+
+        <p>
+          The
+          <b>Camo Canvas Hi Top</b>
+          formed part of the first release group
+          from the
+          <b>Survival of the Fittest</b>
+          project
+          and launched on
+          <b>November 27, 2010</b>.
+
+          Its original Japanese retail price
+          was
+          <b>¥13,440</b>.
+
+          A second release group
+          from the broader project
+          followed in December 2010.
+        </p>
+
+        <p>
+          The A Bathing Ape
+          product label identifies
+          the Green Camo model
+          with
+          <b>Item No. 191-030</b>.
+
+          This number is therefore
+          preserved as the product SKU
+          within the
+          <b>Lộc An Sneaker Collection</b>
+          archive.
+        </p>
+
+        <p>
+          The example preserved in the
+          <b>Lộc An Sneaker Collection</b>
+          is the
+          <b>Green Camo</b>
+          edition
+          in size
+          <b>9 US</b>,
+          with
+          <b>Used</b>
+          condition.
+
+          This is a
+          <b>GR</b>
+          commercially released edition
+          from the BAPE x Stüssy
+          Holiday 2010 capsule,
+          representing a notable moment
+          in the history
+          of Japanese-American
+          streetwear collaboration.
         </p>
       `
     }
