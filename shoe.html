@@ -1,805 +1,1465 @@
-<!DOCTYPE html>
-<html lang="vi">
+/* =========================================================
+   LỘC AN SNEAKER COLLECTION
+   HOMEPAGE CONTROLLER
+========================================================= */
 
-<head>
 
-  <meta charset="UTF-8">
+/* =========================================================
+   LANGUAGE
+========================================================= */
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+const SUPPORTED_LANGUAGES = ["vi", "en"];
 
-  <meta
-    name="description"
-    content="Lộc An Sneaker Collection - Sneaker Exhibition Detail"
-  >
+function normalizeLanguage(lang) {
+  return SUPPORTED_LANGUAGES.includes(lang)
+    ? lang
+    : "vi";
+}
 
-  <meta
-    name="theme-color"
-    content="#0d0d0d"
-  >
+const urlParams =
+  new URLSearchParams(window.location.search);
 
-  <title>Lộc An Sneaker Collection</title>
+let currentLang =
+  normalizeLanguage(
+    urlParams.get("lang") ||
+    localStorage.getItem("locan_lang") ||
+    "vi"
+  );
 
-  <link
-    rel="icon"
-    type="image/svg+xml"
-    href="favicon.svg"
-  >
+localStorage.setItem(
+  "locan_lang",
+  currentLang
+);
 
-  <link
-    rel="apple-touch-icon"
-    href="apple-touch-icon.png"
-  >
 
-  <link
-    rel="manifest"
-    href="site.webmanifest"
-  >
+/* =========================================================
+   SORT
+========================================================= */
 
-  <link
-    rel="stylesheet"
-    href="style.css?v=20260912-10"
-  >
+const VALID_SORTS = [
+  "default",
+  "az",
+  "za",
+  "date-desc",
+  "date-asc",
+  "size-asc",
+  "size-desc"
+];
 
-</head>
+let currentSort =
+  localStorage.getItem("locan_sort") ||
+  "default";
 
+if (!VALID_SORTS.includes(currentSort)) {
+  currentSort = "default";
+}
 
-<body>
 
-  <div class="container">
+/* =========================================================
+   FILTER STATE
+========================================================= */
 
-    <header class="site-header">
+const activeFilters = {
+  edition: new Set(),
+  condition: new Set(),
+  size: new Set()
+};
 
-      <div class="site-header-left">
 
-        <a
-          href="index.html"
-          class="back-btn"
-          id="back-link"
-        >
-          ← Quay lại Bộ sưu tập
-        </a>
+/* =========================================================
+   TRANSLATIONS
+========================================================= */
 
-      </div>
+const translations = {
 
+  vi: {
 
-      <a
-        href="index.html"
-        class="site-brand"
-      >
-        Lộc An Sneaker Collection
-      </a>
+    mainTitle:
+      "LỘC AN SNEAKER COLLECTION",
 
+    mainSubtitle:
+      "Không gian lưu trữ & Bảo tàng Sneaker Kỹ thuật số",
 
-      <div class="site-header-actions">
+    sortLabel:
+      "SẮP XẾP",
 
-        <a
-          href="about.html"
-          class="header-about-link"
-        >
-          ABOUT
-        </a>
+    sortDefault:
+      "Mặc định",
 
+    sortAZ:
+      "A → Z",
 
-        <div class="lang-switcher">
+    sortZA:
+      "Z → A",
 
-          <button
-            type="button"
-            id="btn-vi"
-            class="lang-btn"
-            onclick="changeLang('vi')"
-          >
-            VI
-          </button>
+    sortDateDesc:
+      "Ngày phát hành: Mới → Cũ",
 
-          <button
-            type="button"
-            id="btn-en"
-            class="lang-btn"
-            onclick="changeLang('en')"
-          >
-            EN
-          </button>
+    sortDateAsc:
+      "Ngày phát hành: Cũ → Mới",
 
-        </div>
+    sortSizeAsc:
+      "Size nhỏ → lớn",
 
-      </div>
+    sortSizeDesc:
+      "Size lớn → nhỏ",
 
-    </header>
+    filterTitle:
+      "BỘ LỌC BỘ SƯU TẬP",
 
+    filterEdition:
+      "PHÂN KHÚC",
 
-    <main
-      id="shoe-detail"
-      class="shoe-detail-container"
-    >
+    filterCondition:
+      "TÌNH TRẠNG",
 
-      <div class="shoe-image-section">
+    filterSize:
+      "KÍCH CỠ",
 
-        <img
-          id="shoe-image"
-          src=""
-          alt="Sneaker"
-          decoding="async"
-        >
+    clearFilters:
+      "XÓA BỘ LỌC",
 
-      </div>
+    noResults:
+      "Không có đôi giày nào phù hợp với bộ lọc hiện tại.",
 
+    total:
+      total =>
+        `TỔNG SỐ: ${total} ĐÔI`
+  },
 
-      <div class="shoe-info-section">
 
-        <h2 id="shoe-title"></h2>
+  en: {
 
-        <p
-          id="shoe-subtitle"
-          class="subtitle detail-subtitle"
-        ></p>
+    mainTitle:
+      "LỘC AN SNEAKER COLLECTION",
 
+    mainSubtitle:
+      "Digital Sneaker Archive & Museum",
 
-        <div class="specs-grid">
+    sortLabel:
+      "SORT",
 
-          <div class="spec-item">
+    sortDefault:
+      "Default",
 
-            <span
-              class="spec-label"
-              id="label-sku"
-            >
-              MÃ SẢN PHẨM
-            </span>
+    sortAZ:
+      "A → Z",
 
-            <span
-              id="shoe-sku"
-              class="spec-value"
-            ></span>
+    sortZA:
+      "Z → A",
 
-          </div>
+    sortDateDesc:
+      "Release Date: Newest → Oldest",
 
+    sortDateAsc:
+      "Release Date: Oldest → Newest",
 
-          <div class="spec-item">
+    sortSizeAsc:
+      "Size: Small → Large",
 
-            <span
-              class="spec-label"
-              id="label-colorway"
-            >
-              PHỐI MÀU
-            </span>
+    sortSizeDesc:
+      "Size: Large → Small",
 
-            <span
-              id="shoe-colorway"
-              class="spec-value"
-            ></span>
+    filterTitle:
+      "COLLECTION FILTERS",
 
-          </div>
+    filterEdition:
+      "EDITION",
 
+    filterCondition:
+      "CONDITION",
 
-          <div class="spec-item">
+    filterSize:
+      "SIZE",
 
-            <span
-              class="spec-label"
-              id="label-retail"
-            >
-              GIÁ PHÁT HÀNH
-            </span>
+    clearFilters:
+      "CLEAR FILTERS",
 
-            <span
-              id="shoe-retail"
-              class="spec-value"
-            ></span>
+    noResults:
+      "No sneakers match the current filters.",
 
-          </div>
+    total:
+      total =>
+        `TOTAL: ${total} ${total === 1 ? "PAIR" : "PAIRS"}`
+  }
 
+};
 
-          <div class="spec-item">
 
-            <span
-              class="spec-label"
-              id="label-date"
-            >
-              NGÀY RA MẮT
-            </span>
+/* =========================================================
+   LOCALIZED TEXT
+========================================================= */
 
-            <span
-              id="shoe-date"
-              class="spec-value"
-            ></span>
+function getLocalizedText(value) {
 
-          </div>
+  if (!value) {
+    return "";
+  }
 
+  if (typeof value === "string") {
+    return value;
+  }
 
-          <div class="spec-item">
+  return (
+    value[currentLang] ||
+    value.en ||
+    value.vi ||
+    ""
+  );
+}
 
-            <span
-              class="spec-label"
-              id="label-condition"
-            >
-              TÌNH TRẠNG
-            </span>
 
-            <span
-              id="shoe-condition"
-              class="spec-value highlight"
-            ></span>
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
 
-          </div>
+function escapeHTML(value) {
 
+  return String(value ?? "")
 
-          <div class="spec-item">
+    .replaceAll("&", "&amp;")
 
-            <span
-              class="spec-label"
-              id="label-size"
-            >
-              KÍCH CỠ
-            </span>
+    .replaceAll("<", "&lt;")
 
-            <span
-              id="shoe-size"
-              class="spec-value size-highlight"
-            ></span>
+    .replaceAll(">", "&gt;")
 
-          </div>
+    .replaceAll('"', "&quot;")
 
-        </div>
+    .replaceAll("'", "&#039;");
+}
 
-      </div>
 
-    </main>
+/* =========================================================
+   SIZE HELPERS
+========================================================= */
 
+function getNumericSize(size) {
 
-    <section
-      class="story-section"
-      id="story-section"
-    >
+  if (!size) {
+    return null;
+  }
 
-      <h3 id="story-title">
-        Câu chuyện &amp; Bối cảnh thiết kế
-      </h3>
+  const match =
+    String(size).match(
+      /(\d+(?:\.\d+)?)/
+    );
 
-      <div id="shoe-story"></div>
+  if (!match) {
+    return null;
+  }
 
-    </section>
+  const value =
+    Number(match[1]);
 
+  return Number.isFinite(value)
+    ? value
+    : null;
+}
 
-    <footer>
 
-      <p>
-        &copy; 2026 Lộc An Sneaker Collection.
-        All Rights Reserved.
-      </p>
+function normalizeSizeValue(size) {
 
-    </footer>
+  const numericSize =
+    getNumericSize(size);
 
-  </div>
+  if (numericSize === null) {
+    return "";
+  }
 
+  return String(numericSize);
+}
 
-  <script src="data.js?v=20260912-10"></script>
 
+function getAvailableSizes() {
 
-  <script>
+  if (
+    typeof sneakers === "undefined" ||
+    !Array.isArray(sneakers)
+  ) {
+    return [];
+  }
 
-    const supportedLanguages = [
-      "vi",
-      "en"
-    ];
+  const sizes =
+    sneakers
+      .map(
+        sneaker =>
+          getNumericSize(sneaker.size)
+      )
+      .filter(
+        size =>
+          size !== null
+      );
 
+  const uniqueSizes =
+    [...new Set(sizes)];
 
-    function normalizeLanguage(lang) {
+  uniqueSizes.sort(
+    (a, b) =>
+      a - b
+  );
 
-      return supportedLanguages.includes(lang)
-        ? lang
-        : "vi";
+  return uniqueSizes;
+}
 
+
+/* =========================================================
+   RELEASE DATE
+========================================================= */
+
+function getReleaseDateValue(releaseDate) {
+
+  if (!releaseDate) {
+    return null;
+  }
+
+  const value =
+    String(releaseDate);
+
+
+  /* YYYY-MM-DD */
+
+  if (
+    /^\d{4}-\d{2}-\d{2}$/.test(value)
+  ) {
+
+    const [
+      year,
+      month,
+      day
+    ] =
+      value
+        .split("-")
+        .map(Number);
+
+    return Date.UTC(
+      year,
+      month - 1,
+      day
+    );
+  }
+
+
+  /* YYYY-MM */
+
+  if (
+    /^\d{4}-\d{2}$/.test(value)
+  ) {
+
+    const [
+      year,
+      month
+    ] =
+      value
+        .split("-")
+        .map(Number);
+
+    return Date.UTC(
+      year,
+      month - 1,
+      1
+    );
+  }
+
+
+  /* YYYY */
+
+  if (
+    /^\d{4}$/.test(value)
+  ) {
+
+    return Date.UTC(
+      Number(value),
+      0,
+      1
+    );
+  }
+
+
+  const parsed =
+    Date.parse(value);
+
+  return Number.isNaN(parsed)
+    ? null
+    : parsed;
+}
+
+
+/* =========================================================
+   EDITION CLASSIFICATION
+========================================================= */
+
+function getEditionCategories(sneaker) {
+
+  const categories =
+    new Set();
+
+
+  const corpus = [
+
+    getLocalizedText(
+      sneaker.title
+    ),
+
+    getLocalizedText(
+      sneaker.subtitle
+    ),
+
+    getLocalizedText(
+      sneaker.editionType
+    ),
+
+    sneaker.title?.vi,
+
+    sneaker.title?.en,
+
+    sneaker.subtitle?.vi,
+
+    sneaker.subtitle?.en,
+
+    sneaker.editionType?.vi,
+
+    sneaker.editionType?.en
+
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toUpperCase();
+
+
+  /* PE */
+
+  if (
+    /\bPE\b/.test(corpus) ||
+    corpus.includes(
+      "PLAYER EXCLUSIVE"
+    )
+  ) {
+
+    categories.add("PE");
+  }
+
+
+  /* SAMPLE */
+
+  if (
+    corpus.includes("SAMPLE")
+  ) {
+
+    categories.add("Sample");
+  }
+
+
+  /* FRIENDS & FAMILY */
+
+  if (
+    corpus.includes("F&F") ||
+    corpus.includes(
+      "FRIENDS & FAMILY"
+    )
+  ) {
+
+    categories.add("F&F");
+  }
+
+
+  /* GENERAL RELEASE */
+
+  if (categories.size === 0) {
+
+    categories.add("GR");
+  }
+
+
+  return categories;
+}
+
+
+/* =========================================================
+   CONDITION
+========================================================= */
+
+function getConditionCategory(sneaker) {
+
+  const condition =
+    getLocalizedText(
+      sneaker.condition
+    )
+      .trim()
+      .toLowerCase();
+
+
+  if (
+    condition === "deadstock"
+  ) {
+
+    return "Deadstock";
+  }
+
+
+  if (
+    condition === "used"
+  ) {
+
+    return "Used";
+  }
+
+
+  return "";
+}
+
+
+/* =========================================================
+   SORT
+========================================================= */
+
+function sortSneakers(items) {
+
+  const sorted =
+    [...items];
+
+
+  switch (currentSort) {
+
+
+    /* A → Z */
+
+    case "az":
+
+      sorted.sort(
+        (a, b) =>
+          getLocalizedText(
+            a.title
+          ).localeCompare(
+            getLocalizedText(
+              b.title
+            ),
+            currentLang === "vi"
+              ? "vi"
+              : "en",
+            {
+              sensitivity: "base",
+              numeric: true
+            }
+          )
+      );
+
+      break;
+
+
+    /* Z → A */
+
+    case "za":
+
+      sorted.sort(
+        (a, b) =>
+          getLocalizedText(
+            b.title
+          ).localeCompare(
+            getLocalizedText(
+              a.title
+            ),
+            currentLang === "vi"
+              ? "vi"
+              : "en",
+            {
+              sensitivity: "base",
+              numeric: true
+            }
+          )
+      );
+
+      break;
+
+
+    /* NEWEST → OLDEST */
+
+    case "date-desc":
+
+      sorted.sort(
+        (a, b) => {
+
+          const dateA =
+            getReleaseDateValue(
+              a.releaseDate
+            );
+
+          const dateB =
+            getReleaseDateValue(
+              b.releaseDate
+            );
+
+
+          if (
+            dateA === null &&
+            dateB === null
+          ) {
+            return 0;
+          }
+
+          if (dateA === null) {
+            return 1;
+          }
+
+          if (dateB === null) {
+            return -1;
+          }
+
+          return dateB - dateA;
+        }
+      );
+
+      break;
+
+
+    /* OLDEST → NEWEST */
+
+    case "date-asc":
+
+      sorted.sort(
+        (a, b) => {
+
+          const dateA =
+            getReleaseDateValue(
+              a.releaseDate
+            );
+
+          const dateB =
+            getReleaseDateValue(
+              b.releaseDate
+            );
+
+
+          if (
+            dateA === null &&
+            dateB === null
+          ) {
+            return 0;
+          }
+
+          if (dateA === null) {
+            return 1;
+          }
+
+          if (dateB === null) {
+            return -1;
+          }
+
+          return dateA - dateB;
+        }
+      );
+
+      break;
+
+
+    /* SIZE SMALL → LARGE */
+
+    case "size-asc":
+
+      sorted.sort(
+        (a, b) => {
+
+          const sizeA =
+            getNumericSize(
+              a.size
+            );
+
+          const sizeB =
+            getNumericSize(
+              b.size
+            );
+
+
+          if (
+            sizeA === null &&
+            sizeB === null
+          ) {
+            return 0;
+          }
+
+          if (sizeA === null) {
+            return 1;
+          }
+
+          if (sizeB === null) {
+            return -1;
+          }
+
+          return sizeA - sizeB;
+        }
+      );
+
+      break;
+
+
+    /* SIZE LARGE → SMALL */
+
+    case "size-desc":
+
+      sorted.sort(
+        (a, b) => {
+
+          const sizeA =
+            getNumericSize(
+              a.size
+            );
+
+          const sizeB =
+            getNumericSize(
+              b.size
+            );
+
+
+          if (
+            sizeA === null &&
+            sizeB === null
+          ) {
+            return 0;
+          }
+
+          if (sizeA === null) {
+            return 1;
+          }
+
+          if (sizeB === null) {
+            return -1;
+          }
+
+          return sizeB - sizeA;
+        }
+      );
+
+      break;
+
+
+    default:
+
+      break;
+  }
+
+
+  return sorted;
+}
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+function filterSneakers(items) {
+
+  return items.filter(
+    sneaker => {
+
+
+      /* EDITION */
+
+      if (
+        activeFilters.edition.size > 0
+      ) {
+
+        const sneakerCategories =
+          getEditionCategories(
+            sneaker
+          );
+
+        const editionMatches =
+          [...activeFilters.edition]
+            .some(
+              category =>
+                sneakerCategories.has(
+                  category
+                )
+            );
+
+        if (!editionMatches) {
+          return false;
+        }
+      }
+
+
+      /* CONDITION */
+
+      if (
+        activeFilters.condition.size > 0
+      ) {
+
+        const condition =
+          getConditionCategory(
+            sneaker
+          );
+
+        if (
+          !activeFilters.condition.has(
+            condition
+          )
+        ) {
+          return false;
+        }
+      }
+
+
+      /* SIZE */
+
+      if (
+        activeFilters.size.size > 0
+      ) {
+
+        const size =
+          normalizeSizeValue(
+            sneaker.size
+          );
+
+        if (
+          !activeFilters.size.has(
+            size
+          )
+        ) {
+          return false;
+        }
+      }
+
+
+      return true;
     }
+  );
+}
 
 
-    const params =
-      new URLSearchParams(
-        window.location.search
-      );
+/* =========================================================
+   FILTER ACTIONS
+========================================================= */
+
+function toggleFilter(
+  group,
+  value
+) {
+
+  if (
+    !activeFilters[group]
+  ) {
+    return;
+  }
 
 
-    const shoeId =
-      params.get("id");
+  if (
+    activeFilters[group].has(
+      value
+    )
+  ) {
+
+    activeFilters[group].delete(
+      value
+    );
+
+  } else {
+
+    activeFilters[group].add(
+      value
+    );
+  }
 
 
-    let currentLang =
-      normalizeLanguage(
+  updateFilterInterface();
 
-        params.get("lang") ||
-
-        localStorage.getItem(
-          "locan_lang"
-        ) ||
-
-        "vi"
-
-      );
+  renderGrid();
+}
 
 
-    localStorage.setItem(
-      "locan_lang",
+function clearAllFilters() {
+
+  activeFilters.edition.clear();
+
+  activeFilters.condition.clear();
+
+  activeFilters.size.clear();
+
+  updateFilterInterface();
+
+  renderGrid();
+}
+
+
+function hasActiveFilters() {
+
+  return (
+    activeFilters.edition.size > 0 ||
+    activeFilters.condition.size > 0 ||
+    activeFilters.size.size > 0
+  );
+}
+
+
+/* =========================================================
+   SIZE FILTER BUTTONS
+========================================================= */
+
+function renderSizeFilterButtons() {
+
+  const container =
+    document.getElementById(
+      "size-filter-chips"
+    );
+
+  if (!container) {
+    return;
+  }
+
+
+  const sizes =
+    getAvailableSizes();
+
+
+  container.innerHTML =
+    sizes
+      .map(
+        size => {
+
+          const value =
+            String(size);
+
+          const active =
+            activeFilters.size.has(
+              value
+            );
+
+
+          return `
+            <button
+              type="button"
+              class="filter-chip ${active ? "active" : ""}"
+              data-group="size"
+              data-value="${escapeHTML(value)}"
+              onclick="toggleFilter('size', '${escapeHTML(value)}')"
+            >
+              ${escapeHTML(value)} US
+            </button>
+          `;
+        }
+      )
+      .join("");
+}
+
+
+/* =========================================================
+   FILTER INTERFACE
+========================================================= */
+
+function updateFilterInterface() {
+
+  const t =
+    translations[currentLang];
+
+
+  const filterTitle =
+    document.getElementById(
+      "filter-title"
+    );
+
+  const editionLabel =
+    document.getElementById(
+      "edition-filter-label"
+    );
+
+  const conditionLabel =
+    document.getElementById(
+      "condition-filter-label"
+    );
+
+  const sizeLabel =
+    document.getElementById(
+      "size-filter-label"
+    );
+
+  const clearButton =
+    document.getElementById(
+      "clear-filters"
+    );
+
+
+  if (filterTitle) {
+    filterTitle.textContent =
+      t.filterTitle;
+  }
+
+  if (editionLabel) {
+    editionLabel.textContent =
+      t.filterEdition;
+  }
+
+  if (conditionLabel) {
+    conditionLabel.textContent =
+      t.filterCondition;
+  }
+
+  if (sizeLabel) {
+    sizeLabel.textContent =
+      t.filterSize;
+  }
+
+  if (clearButton) {
+
+    clearButton.textContent =
+      t.clearFilters;
+
+    clearButton.classList.toggle(
+      "visible",
+      hasActiveFilters()
+    );
+  }
+
+
+  document
+    .querySelectorAll(
+      ".filter-chip[data-group='edition'], .filter-chip[data-group='condition']"
+    )
+    .forEach(
+      button => {
+
+        const group =
+          button.dataset.group;
+
+        const value =
+          button.dataset.value;
+
+        button.classList.toggle(
+          "active",
+          activeFilters[group].has(
+            value
+          )
+        );
+      }
+    );
+
+
+  renderSizeFilterButtons();
+}
+
+
+/* =========================================================
+   SORT ACTION
+========================================================= */
+
+function changeSort(value) {
+
+  if (
+    !VALID_SORTS.includes(value)
+  ) {
+
+    value =
+      "default";
+  }
+
+
+  currentSort =
+    value;
+
+  localStorage.setItem(
+    "locan_sort",
+    currentSort
+  );
+
+  renderGrid();
+}
+
+
+/* =========================================================
+   SORT INTERFACE
+========================================================= */
+
+function updateSortInterface() {
+
+  const t =
+    translations[currentLang];
+
+  const label =
+    document.getElementById(
+      "sort-label"
+    );
+
+  const select =
+    document.getElementById(
+      "sort-select"
+    );
+
+
+  if (!select) {
+    return;
+  }
+
+
+  if (label) {
+    label.textContent =
+      t.sortLabel;
+  }
+
+
+  const optionMap = {
+
+    default:
+      t.sortDefault,
+
+    az:
+      t.sortAZ,
+
+    za:
+      t.sortZA,
+
+    "date-desc":
+      t.sortDateDesc,
+
+    "date-asc":
+      t.sortDateAsc,
+
+    "size-asc":
+      t.sortSizeAsc,
+
+    "size-desc":
+      t.sortSizeDesc
+  };
+
+
+  Array
+    .from(select.options)
+    .forEach(
+      option => {
+
+        if (
+          optionMap[
+            option.value
+          ]
+        ) {
+
+          option.textContent =
+            optionMap[
+              option.value
+            ];
+        }
+      }
+    );
+
+
+  select.value =
+    currentSort;
+}
+
+
+/* =========================================================
+   TOTAL COUNT
+
+   QUAN TRỌNG:
+   total ở đây chính là số card ĐANG HIỂN THỊ.
+========================================================= */
+
+function updateCollectionCount(
+  visibleCount
+) {
+
+  const element =
+    document.getElementById(
+      "collection-count"
+    );
+
+  if (!element) {
+    return;
+  }
+
+
+  const t =
+    translations[currentLang];
+
+
+  element.textContent =
+    t.total(
+      visibleCount
+    );
+}
+
+
+/* =========================================================
+   LANGUAGE CHANGE
+========================================================= */
+
+function setLanguage(lang) {
+
+  currentLang =
+    normalizeLanguage(lang);
+
+
+  localStorage.setItem(
+    "locan_lang",
+    currentLang
+  );
+
+
+  document.documentElement.lang =
+    currentLang;
+
+
+  const url =
+    new URL(
+      window.location.href
+    );
+
+
+  url.searchParams.set(
+    "lang",
+    currentLang
+  );
+
+
+  window.history.replaceState(
+    {},
+    "",
+    url.pathname +
+    url.search +
+    url.hash
+  );
+
+
+  document
+    .getElementById("btn-vi")
+    ?.classList.toggle(
+      "active",
+      currentLang === "vi"
+    );
+
+
+  document
+    .getElementById("btn-en")
+    ?.classList.toggle(
+      "active",
+      currentLang === "en"
+    );
+
+
+  const t =
+    translations[currentLang];
+
+
+  document
+    .querySelectorAll(
+      "[data-i18n]"
+    )
+    .forEach(
+      element => {
+
+        const key =
+          element.dataset.i18n;
+
+        if (t[key]) {
+
+          element.textContent =
+            t[key];
+        }
+      }
+    );
+
+
+  updateSortInterface();
+
+  updateFilterInterface();
+
+  renderGrid();
+}
+
+
+/* =========================================================
+   CARD RENDERER
+========================================================= */
+
+function renderCard(sneaker) {
+
+  const title =
+    getLocalizedText(
+      sneaker.title
+    );
+
+  const subtitle =
+    getLocalizedText(
+      sneaker.subtitle
+    );
+
+  const editionType =
+    getLocalizedText(
+      sneaker.editionType
+    );
+
+  const size =
+    sneaker.size || "";
+
+  const image =
+    sneaker.image || "";
+
+
+  const detailURL =
+    `shoe.html?id=${encodeURIComponent(sneaker.id)}` +
+    `&lang=${encodeURIComponent(currentLang)}`;
+
+
+  const badgeHTML =
+    editionType
+      ? `
+        <span class="badge">
+          ${escapeHTML(editionType)}
+        </span>
+      `
+      : `
+        <span class="badge badge-placeholder">
+          &nbsp;
+        </span>
+      `;
+
+
+  return `
+    <a
+      href="${detailURL}"
+      class="card-link"
+      aria-label="${escapeHTML(title)}"
+    >
+
+      <article class="card">
+
+        <div class="card-img-wrapper">
+
+          <img
+            src="${escapeHTML(image)}"
+            alt="${escapeHTML(title)}"
+            loading="lazy"
+            decoding="async"
+          >
+
+        </div>
+
+
+        <div class="card-info">
+
+          <h3>
+            ${escapeHTML(title)}
+          </h3>
+
+          <p class="subtitle">
+            ${escapeHTML(subtitle)}
+          </p>
+
+          <div class="card-meta">
+
+            ${badgeHTML}
+
+            <span class="size">
+              ${escapeHTML(size)}
+            </span>
+
+          </div>
+
+        </div>
+
+      </article>
+
+    </a>
+  `;
+}
+
+
+/* =========================================================
+   GRID RENDERER
+========================================================= */
+
+function renderGrid() {
+
+  const grid =
+    document.getElementById(
+      "sneaker-grid"
+    );
+
+  if (!grid) {
+    return;
+  }
+
+
+  if (
+    typeof sneakers === "undefined" ||
+    !Array.isArray(sneakers)
+  ) {
+
+    grid.innerHTML = `
+      <div class="collection-message">
+        Collection data unavailable.
+      </div>
+    `;
+
+    updateCollectionCount(0);
+
+    return;
+  }
+
+
+  /* FILTER */
+
+  const filtered =
+    filterSneakers(
+      sneakers
+    );
+
+
+  /* SORT */
+
+  const sorted =
+    sortSneakers(
+      filtered
+    );
+
+
+  /* TOTAL = CURRENTLY VISIBLE */
+
+  updateCollectionCount(
+    sorted.length
+  );
+
+
+  /* EMPTY RESULT */
+
+  if (
+    sorted.length === 0
+  ) {
+
+    grid.innerHTML = `
+      <div class="collection-message">
+        ${escapeHTML(
+          translations[
+            currentLang
+          ].noResults
+        )}
+      </div>
+    `;
+
+    return;
+  }
+
+
+  /* CARDS */
+
+  grid.innerHTML =
+    sorted
+      .map(
+        sneaker =>
+          renderCard(
+            sneaker
+          )
+      )
+      .join("");
+}
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    setLanguage(
       currentLang
     );
-
-
-    const labels = {
-
-      vi: {
-
-        back:
-          "← Quay lại Bộ sưu tập",
-
-        sku:
-          "MÃ SẢN PHẨM",
-
-        colorway:
-          "PHỐI MÀU",
-
-        retail:
-          "GIÁ PHÁT HÀNH",
-
-        date:
-          "NGÀY RA MẮT",
-
-        condition:
-          "TÌNH TRẠNG",
-
-        size:
-          "KÍCH CỠ",
-
-        story:
-          "Câu chuyện & Bối cảnh thiết kế",
-
-        notFound:
-          "Không tìm thấy thông tin tác phẩm này."
-
-      },
-
-
-      en: {
-
-        back:
-          "← Back to Collection",
-
-        sku:
-          "SKU",
-
-        colorway:
-          "COLORWAY",
-
-        retail:
-          "RETAIL PRICE",
-
-        date:
-          "RELEASE DATE",
-
-        condition:
-          "CONDITION",
-
-        size:
-          "SIZE",
-
-        story:
-          "Story & Design Background",
-
-        notFound:
-          "Piece information not found."
-
-      }
-
-    };
-
-
-    function localized(value) {
-
-      if (!value) {
-        return "";
-      }
-
-      if (
-        typeof value === "string"
-      ) {
-
-        return value;
-
-      }
-
-
-      return (
-        value[currentLang] ||
-        value.en ||
-        value.vi ||
-        ""
-      );
-
-    }
-
-
-    function formatDate(value) {
-
-      if (!value) {
-        return "N/A";
-      }
-
-
-      if (
-        /^\d{4}-\d{2}-\d{2}$/.test(value)
-      ) {
-
-        const [
-          year,
-          month,
-          day
-        ] =
-          value
-            .split("-")
-            .map(Number);
-
-
-        const date =
-          new Date(
-            Date.UTC(
-              year,
-              month - 1,
-              day
-            )
-          );
-
-
-        return date.toLocaleDateString(
-
-          currentLang === "vi"
-            ? "vi-VN"
-            : "en-US",
-
-          {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-            timeZone: "UTC"
-          }
-
-        );
-
-      }
-
-
-      if (
-        /^\d{4}-\d{2}$/.test(value)
-      ) {
-
-        const [
-          year,
-          month
-        ] =
-          value
-            .split("-")
-            .map(Number);
-
-
-        const date =
-          new Date(
-            Date.UTC(
-              year,
-              month - 1,
-              1
-            )
-          );
-
-
-        return date.toLocaleDateString(
-
-          currentLang === "vi"
-            ? "vi-VN"
-            : "en-US",
-
-          {
-            year: "numeric",
-            month: "long",
-            timeZone: "UTC"
-          }
-
-        );
-
-      }
-
-
-      return value;
-
-    }
-
-
-    function changeLang(lang) {
-
-      currentLang =
-        normalizeLanguage(lang);
-
-
-      localStorage.setItem(
-        "locan_lang",
-        currentLang
-      );
-
-
-      const newURL =
-        new URL(
-          window.location.href
-        );
-
-
-      newURL.searchParams.set(
-        "lang",
-        currentLang
-      );
-
-
-      window.history.replaceState(
-        {},
-        "",
-        newURL.pathname +
-        newURL.search +
-        newURL.hash
-      );
-
-
-      loadShoe();
-
-    }
-
-
-    function updateLanguageInterface() {
-
-      document.documentElement.lang =
-        currentLang;
-
-
-      const language =
-        labels[currentLang];
-
-
-      document
-        .getElementById("btn-vi")
-        .classList.toggle(
-          "active",
-          currentLang === "vi"
-        );
-
-
-      document
-        .getElementById("btn-en")
-        .classList.toggle(
-          "active",
-          currentLang === "en"
-        );
-
-
-      const backLink =
-        document.getElementById(
-          "back-link"
-        );
-
-
-      backLink.textContent =
-        language.back;
-
-
-      backLink.href =
-        "index.html?lang=" +
-        encodeURIComponent(
-          currentLang
-        );
-
-
-      document
-        .getElementById("label-sku")
-        .textContent =
-        language.sku;
-
-
-      document
-        .getElementById("label-colorway")
-        .textContent =
-        language.colorway;
-
-
-      document
-        .getElementById("label-retail")
-        .textContent =
-        language.retail;
-
-
-      document
-        .getElementById("label-date")
-        .textContent =
-        language.date;
-
-
-      document
-        .getElementById("label-condition")
-        .textContent =
-        language.condition;
-
-
-      document
-        .getElementById("label-size")
-        .textContent =
-        language.size;
-
-
-      document
-        .getElementById("story-title")
-        .textContent =
-        language.story;
-
-    }
-
-
-    function loadShoe() {
-
-      updateLanguageInterface();
-
-
-      if (
-        typeof sneakers === "undefined" ||
-        !Array.isArray(sneakers)
-      ) {
-
-        showNotFound();
-        return;
-
-      }
-
-
-      const sneaker =
-        sneakers.find(
-          item =>
-            item.id === shoeId
-        );
-
-
-      if (!sneaker) {
-
-        showNotFound();
-        return;
-
-      }
-
-
-      document
-        .getElementById("story-section")
-        .style.display =
-        "block";
-
-
-      const title =
-        localized(
-          sneaker.title
-        );
-
-
-      document.title =
-        title +
-        " | Lộc An Sneaker Collection";
-
-
-      document
-        .getElementById("shoe-title")
-        .textContent =
-        title;
-
-
-      document
-        .getElementById("shoe-subtitle")
-        .textContent =
-        localized(
-          sneaker.subtitle
-        );
-
-
-      document
-        .getElementById("shoe-sku")
-        .textContent =
-        sneaker.sku ||
-        "N/A";
-
-
-      document
-        .getElementById("shoe-colorway")
-        .textContent =
-        sneaker.colorway ||
-        "N/A";
-
-
-      document
-        .getElementById("shoe-retail")
-        .textContent =
-        sneaker.retailPrice ||
-        "N/A";
-
-
-      document
-        .getElementById("shoe-date")
-        .textContent =
-        formatDate(
-          sneaker.releaseDate
-        );
-
-
-      document
-        .getElementById("shoe-condition")
-        .textContent =
-        localized(
-          sneaker.condition
-        ) ||
-        "N/A";
-
-
-      document
-        .getElementById("shoe-size")
-        .textContent =
-        sneaker.size ||
-        "N/A";
-
-
-      const image =
-        document.getElementById(
-          "shoe-image"
-        );
-
-
-      image.src =
-        sneaker.image ||
-        "";
-
-
-      image.alt =
-        title;
-
-
-      document
-        .getElementById("shoe-story")
-        .innerHTML =
-        localized(
-          sneaker.story
-        );
-
-    }
-
-
-    function showNotFound() {
-
-      document.title =
-        labels[currentLang].notFound;
-
-
-      document
-        .getElementById("shoe-detail")
-        .innerHTML = `
-          <div class="not-found">
-            <p>
-              ${labels[currentLang].notFound}
-            </p>
-          </div>
-        `;
-
-
-      document
-        .getElementById("story-section")
-        .style.display =
-        "none";
-
-    }
-
-
-    document.addEventListener(
-      "DOMContentLoaded",
-      loadShoe
-    );
-
-  </script>
-
-
-</body>
-
-</html>
+  }
+);
