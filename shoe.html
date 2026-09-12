@@ -16,7 +16,10 @@
 
   <title>Lộc An Sneaker Collection</title>
 
-  <link rel="stylesheet" href="style.css">
+  <link
+    rel="stylesheet"
+    href="style.css?v=20260912-3"
+  >
 </head>
 
 
@@ -24,10 +27,7 @@
 
   <div class="container">
 
-    <!-- =========================
-         HEADER
-    ========================== -->
-
+    <!-- HEADER -->
     <header class="site-header">
 
       <a
@@ -70,17 +70,13 @@
 
 
 
-    <!-- =========================
-         SHOE DETAIL
-    ========================== -->
-
+    <!-- SHOE DETAIL -->
     <main
       id="shoe-detail"
       class="shoe-detail-container"
     >
 
       <!-- IMAGE -->
-
       <div class="shoe-image-section">
 
         <img
@@ -93,9 +89,7 @@
       </div>
 
 
-
       <!-- INFORMATION -->
-
       <div class="shoe-info-section">
 
         <h2 id="shoe-title"></h2>
@@ -107,6 +101,7 @@
 
 
         <div class="specs-grid">
+
 
           <div class="spec-item">
 
@@ -209,6 +204,7 @@
 
           </div>
 
+
         </div>
 
       </div>
@@ -217,10 +213,7 @@
 
 
 
-    <!-- =========================
-         STORY
-    ========================== -->
-
+    <!-- STORY -->
     <section
       class="story-section"
       id="story-section"
@@ -236,49 +229,34 @@
 
 
 
-    <!-- =========================
-         FOOTER
-    ========================== -->
-
     <footer>
-
       <p>
         &copy; 2026 Lộc An Sneaker Collection.
         All Rights Reserved.
       </p>
-
     </footer>
 
   </div>
 
 
 
-  <!-- =========================
-       DATABASE
-  ========================== -->
+  <!-- FORCE LOAD NEWEST DATABASE -->
+  <script src="data.js?v=20260912-3"></script>
 
-  <script src="data.js"></script>
-
-
-  <!-- =========================
-       DETAIL PAGE SCRIPT
-  ========================== -->
 
   <script>
 
-    /* ==========================================
+    /* =====================================================
        LANGUAGE
-    ========================================== */
+    ===================================================== */
 
     const supportedLanguages = ['vi', 'en'];
 
 
     function normalizeLanguage(lang) {
-
       return supportedLanguages.includes(lang)
         ? lang
         : 'vi';
-
     }
 
 
@@ -307,82 +285,43 @@
 
 
 
-    /* ==========================================
-       TRANSLATIONS
-    ========================================== */
+    /* =====================================================
+       LABELS
+    ===================================================== */
 
     const labels = {
 
       vi: {
-
-        back:
-          '← Quay lại Bộ sưu tập',
-
-        sku:
-          'MÃ SẢN PHẨM',
-
-        colorway:
-          'PHỐI MÀU',
-
-        retail:
-          'GIÁ PHÁT HÀNH',
-
-        date:
-          'NGÀY RA MẮT',
-
-        condition:
-          'TÌNH TRẠNG',
-
-        size:
-          'KÍCH CỠ',
-
-        story:
-          'Câu chuyện & Bối cảnh thiết kế',
-
-        notFound:
-          'Không tìm thấy thông tin tác phẩm này.'
-
+        back: '← Quay lại Bộ sưu tập',
+        sku: 'MÃ SẢN PHẨM',
+        colorway: 'PHỐI MÀU',
+        retail: 'GIÁ PHÁT HÀNH',
+        date: 'NGÀY RA MẮT',
+        condition: 'TÌNH TRẠNG',
+        size: 'KÍCH CỠ',
+        story: 'Câu chuyện & Bối cảnh thiết kế',
+        notFound: 'Không tìm thấy thông tin tác phẩm này.'
       },
 
-
       en: {
-
-        back:
-          '← Back to Collection',
-
-        sku:
-          'SKU',
-
-        colorway:
-          'COLORWAY',
-
-        retail:
-          'RETAIL PRICE',
-
-        date:
-          'RELEASE DATE',
-
-        condition:
-          'CONDITION',
-
-        size:
-          'SIZE',
-
-        story:
-          'Story & Design Background',
-
-        notFound:
-          'Piece information not found.'
-
+        back: '← Back to Collection',
+        sku: 'SKU',
+        colorway: 'COLORWAY',
+        retail: 'RETAIL PRICE',
+        date: 'RELEASE DATE',
+        condition: 'CONDITION',
+        size: 'SIZE',
+        story: 'Story & Design Background',
+        notFound: 'Piece information not found.'
       }
 
     };
 
 
 
-    /* ==========================================
-       GET LOCALIZED VALUE
-    ========================================== */
+    /* =====================================================
+       LOCALIZED VALUE
+    ===================================================== */
 
     function localized(value) {
 
@@ -390,11 +329,9 @@
         return '';
       }
 
-
       if (typeof value === 'string') {
         return value;
       }
-
 
       return (
         value[currentLang] ||
@@ -407,9 +344,9 @@
 
 
 
-    /* ==========================================
+    /* =====================================================
        DATE FORMAT
-    ========================================== */
+    ===================================================== */
 
     function formatDate(value) {
 
@@ -418,26 +355,14 @@
       }
 
 
-      /*
-        YYYY-MM-DD
-      */
+      /* YYYY-MM-DD */
 
       if (
         /^\d{4}-\d{2}-\d{2}$/.test(value)
       ) {
 
-        const parts =
-          value.split('-');
-
-
-        const year =
-          Number(parts[0]);
-
-        const month =
-          Number(parts[1]);
-
-        const day =
-          Number(parts[2]);
+        const [year, month, day] =
+          value.split('-').map(Number);
 
 
         const date =
@@ -468,23 +393,15 @@
       }
 
 
-      /*
-        YYYY-MM
-      */
+
+      /* YYYY-MM */
 
       if (
         /^\d{4}-\d{2}$/.test(value)
       ) {
 
-        const parts =
-          value.split('-');
-
-
-        const year =
-          Number(parts[0]);
-
-        const month =
-          Number(parts[1]);
+        const [year, month] =
+          value.split('-').map(Number);
 
 
         const date =
@@ -520,9 +437,9 @@
 
 
 
-    /* ==========================================
+    /* =====================================================
        CHANGE LANGUAGE
-    ========================================== */
+    ===================================================== */
 
     function changeLang(lang) {
 
@@ -563,9 +480,9 @@
 
 
 
-    /* ==========================================
-       UPDATE LANGUAGE INTERFACE
-    ========================================== */
+    /* =====================================================
+       UPDATE INTERFACE
+    ===================================================== */
 
     function updateLanguageInterface() {
 
@@ -653,9 +570,9 @@
 
 
 
-    /* ==========================================
+    /* =====================================================
        LOAD SHOE
-    ========================================== */
+    ===================================================== */
 
     function loadShoe() {
 
@@ -668,7 +585,6 @@
       ) {
 
         showNotFound();
-
         return;
 
       }
@@ -676,15 +592,13 @@
 
       const sneaker =
         sneakers.find(
-          item =>
-            item.id === shoeId
+          item => item.id === shoeId
         );
 
 
       if (!sneaker) {
 
         showNotFound();
-
         return;
 
       }
@@ -696,8 +610,6 @@
         'block';
 
 
-
-      /* TITLE */
 
       const title =
         localized(
@@ -716,9 +628,6 @@
         title;
 
 
-
-      /* SUBTITLE */
-
       document
         .getElementById('shoe-subtitle')
         .textContent =
@@ -727,17 +636,11 @@
         );
 
 
-
-      /* SKU */
-
       document
         .getElementById('shoe-sku')
         .textContent =
         sneaker.sku || 'N/A';
 
-
-
-      /* COLORWAY */
 
       document
         .getElementById('shoe-colorway')
@@ -745,17 +648,11 @@
         sneaker.colorway || 'N/A';
 
 
-
-      /* RETAIL */
-
       document
         .getElementById('shoe-retail')
         .textContent =
         sneaker.retailPrice || 'N/A';
 
-
-
-      /* RELEASE DATE */
 
       document
         .getElementById('shoe-date')
@@ -765,9 +662,6 @@
         );
 
 
-
-      /* CONDITION */
-
       document
         .getElementById('shoe-condition')
         .textContent =
@@ -776,17 +670,12 @@
         ) || 'N/A';
 
 
-
-      /* SIZE */
-
       document
         .getElementById('shoe-size')
         .textContent =
         sneaker.size || 'N/A';
 
 
-
-      /* IMAGE */
 
       const image =
         document.getElementById(
@@ -803,8 +692,6 @@
 
 
 
-      /* STORY */
-
       document
         .getElementById('shoe-story')
         .innerHTML =
@@ -816,9 +703,9 @@
 
 
 
-    /* ==========================================
+    /* =====================================================
        NOT FOUND
-    ========================================== */
+    ===================================================== */
 
     function showNotFound() {
 
@@ -831,11 +718,9 @@
         .innerHTML = `
 
           <div class="not-found">
-
             <p>
               ${labels[currentLang].notFound}
             </p>
-
           </div>
 
         `;
@@ -850,9 +735,9 @@
 
 
 
-    /* ==========================================
+    /* =====================================================
        INITIALIZE
-    ========================================== */
+    ===================================================== */
 
     document.addEventListener(
       'DOMContentLoaded',
@@ -862,5 +747,4 @@
   </script>
 
 </body>
-
 </html>
