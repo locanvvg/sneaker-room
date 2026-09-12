@@ -3,167 +3,96 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thông tin chi tiết - Sneaker Museum</title>
+  <title>Chi Tiết Tác Phẩm - Lộc An Sneaker Collection</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    .shoe-detail-container {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 20px;
-    }
-    .back-btn {
-      display: inline-block;
-      margin-bottom: 20px;
-      color: #aaa;
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.2s;
-    }
-    .back-btn:hover {
-      color: #fff;
-    }
-    .shoe-header {
-      margin-bottom: 25px;
-    }
-    .shoe-header h1 {
-      font-size: 2rem;
-      margin-bottom: 6px;
-      color: #fff;
-    }
-    .shoe-header p {
-      color: #888;
-      font-size: 1rem;
-    }
-    .shoe-hero-img {
-      width: 100%;
-      max-height: 520px;
-      object-fit: cover;
-      border-radius: 12px;
-      border: 1px solid #262626;
-      margin-bottom: 30px;
-    }
-    .specs-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
-      background: #141414;
-      border: 1px solid #262626;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 20px;
-    }
-    .spec-item h4 {
-      margin: 0 0 4px 0;
-      color: #777;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .spec-item p {
-      margin: 0;
-      color: #fff;
-      font-weight: 500;
-      font-size: 0.95rem;
-    }
-    .edition-note {
-      background: rgba(255, 215, 0, 0.05);
-      border-left: 3px solid #FFD700;
-      padding: 14px 18px;
-      border-radius: 0 8px 8px 0;
-      margin-bottom: 35px;
-      font-size: 0.88rem;
-      color: #d1d1d1;
-      line-height: 1.6;
-    }
-    .edition-note strong {
-      color: #FFD700;
-    }
-    .story-section {
-      line-height: 1.8;
-      color: #ccc;
-      font-size: 1.05rem;
-    }
-    .story-section p {
-      margin-bottom: 18px;
-    }
-  </style>
 </head>
 <body>
-  <div class="container shoe-detail-container">
-    <a href="index.html" class="back-btn">← Quay lại danh mục triển lãm</a>
-    
-    <div id="shoe-content">
-      <p style="color: #666;">Đang tải thông tin tác phẩm...</p>
-    </div>
-  </div>
 
-  <script src="data.js"></script>
+  <header class="site-header">
+    <a href="index.html" class="back-btn">← Quay lại Bộ sưu tập</a>
+    <h1>Lộc An Sneaker Collection</h1>
+  </header>
+
+  <main class="shoe-detail-container">
+    <div class="shoe-image-section">
+      <img id="shoe-image" src="" alt="Sneaker Image">
+    </div>
+
+    <div class="shoe-info-section">
+      <h2 id="shoe-title"></h2>
+      <p id="shoe-subtitle" class="subtitle"></p>
+
+      <div class="specs-grid">
+        <div class="spec-item">
+          <span class="spec-label">MÃ SẢN PHẨM (SKU)</span>
+          <span id="shoe-sku" class="spec-value"></span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">PHỐI MÀU (COLORWAY)</span>
+          <span id="shoe-colorway" class="spec-value"></span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">GIÁ PHÁT HÀNH (RETAIL)</span>
+          <span id="shoe-retail" class="spec-value"></span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">NGÀY RA MẮT</span>
+          <span id="shoe-date" class="spec-value"></span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">TÌNH TRẠNG</span>
+          <span id="shoe-condition" class="spec-value highlight"></span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">KÍCH CỠ (SIZE)</span>
+          <span id="shoe-size" class="spec-value size-highlight"></span>
+        </div>
+      </div>
+
+      <!-- KHUNG HIỂN THỊ GHI CHÚ LƯU TRỮ - LUÔN HIỆN -->
+      <div id="exhibition-note-box" class="exhibition-note-card" style="display: block !important;">
+        <h3>Ghi chú lưu trữ (Exhibition Note)</h3>
+        <p id="shoe-exhibition-note"></p>
+      </div>
+    </div>
+  </main>
+
+  <section class="story-section">
+    <h3>Câu chuyện & Bối cảnh thiết kế</h3>
+    <div id="shoe-story"></div>
+  </section>
+
+  <script src="data.js?v=999"></script>
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const shoeId = urlParams.get('id');
-    const container = document.getElementById('shoe-content');
 
-    if (typeof sneakers !== 'undefined' && shoeId) {
-      const shoe = sneakers.find(s => s.id === shoeId);
-      if (shoe) {
-        
-        let noteHtml = '';
-        if (shoe.retailPrice === 'N/A' || ['F&F', 'PE', 'Sample'].includes(shoe.editionType)) {
-          noteHtml = `
-            <div class="edition-note">
-              <strong>Ghi chú lưu trữ (Exhibition Note):</strong> Tác phẩm thuộc phiên bản đặc biệt (<b>${shoe.editionType || 'Exclusive / Promo'}</b>). Các phiên bản dạng này (như Promo Sample, Player Exclusive hoặc Friends & Family) chỉ được sản xuất giới hạn để dành riêng cho vận động viên, người thân hoặc nội bộ thương hiệu. Do không được phát hành thương mại tại các cửa hàng bán lẻ, tác phẩm không có giá niêm yết gốc (Retail Price: N/A) và sở hữu giá trị sưu tầm đặc biệt trên thị trường quốc tế.
-            </div>
-          `;
-        }
+    const sneaker = sneakers.find(item => item.id === shoeId);
 
-        container.innerHTML = `
-          <div class="shoe-header">
-            <h1>${shoe.title}</h1>
-            <p>${shoe.subtitle}</p>
-          </div>
-          
-          <img src="${shoe.image}" alt="${shoe.title}" class="shoe-hero-img">
+    if (sneaker) {
+      document.getElementById('shoe-title').innerText = sneaker.title;
+      document.getElementById('shoe-subtitle').innerText = sneaker.subtitle;
+      document.getElementById('shoe-sku').innerText = sneaker.sku;
+      document.getElementById('shoe-colorway').innerText = sneaker.colorway;
+      document.getElementById('shoe-retail').innerText = sneaker.retailPrice;
+      document.getElementById('shoe-date').innerText = sneaker.releaseDate;
+      document.getElementById('shoe-condition').innerText = sneaker.condition;
+      document.getElementById('shoe-size').innerText = sneaker.size;
+      document.getElementById('shoe-image').src = sneaker.image;
+      document.getElementById('shoe-image').alt = sneaker.title;
+      document.getElementById('shoe-story').innerHTML = sneaker.story;
 
-          <div class="specs-grid">
-            <div class="spec-item">
-              <h4>Mã sản phẩm (SKU)</h4>
-              <p>${shoe.sku || 'N/A'}</p>
-            </div>
-            <div class="spec-item">
-              <h4>Phối màu (Colorway)</h4>
-              <p>${shoe.colorway || 'N/A'}</p>
-            </div>
-            <div class="spec-item">
-              <h4>Giá phát hành (Retail)</h4>
-              <p>${shoe.retailPrice || 'N/A'}</p>
-            </div>
-            <div class="spec-item">
-              <h4>Ngày ra mắt</h4>
-              <p>${shoe.releaseDate || 'N/A'}</p>
-            </div>
-            <div class="spec-item">
-              <h4>Tình trạng</h4>
-              <p style="color: #4CAF50;">${shoe.condition || 'N/A'}</p>
-            </div>
-            <div class="spec-item">
-              <h4>Kích cỡ (Size)</h4>
-              <p style="color: #FFD700;">${shoe.size || 'N/A'}</p>
-            </div>
-          </div>
-
-          ${noteHtml}
-
-          <div class="story-section">
-            <h3 style="color: #fff; margin-bottom: 15px;">Câu chuyện & Bối cảnh thiết kế</h3>
-            ${shoe.story}
-          </div>
-        `;
+      // Gán trực tiếp nội dung ghi chú lưu trữ
+      const noteElement = document.getElementById('shoe-exhibition-note');
+      if (sneaker.exhibitionNote) {
+        noteElement.innerText = sneaker.exhibitionNote;
       } else {
-        container.innerHTML = '<h2>Không tìm thấy thông tin đôi giày này.</h2>';
+        noteElement.innerText = "Tác phẩm thuộc bộ sưu tập lưu trữ độc bản tại Lộc An Sneaker Collection.";
       }
     } else {
-      container.innerHTML = '<h2>Dữ liệu không khả thi hoặc thiếu tham số ID.</h2>';
+      document.querySelector('main').innerHTML = '<p style="text-align:center; width:100%; grid-column: 1 / -1; padding: 50px;">Không tìm thấy thông tin tác phẩm này.</p>';
     }
   </script>
+
 </body>
 </html>
