@@ -1,15 +1,16 @@
 const sneakers = [
 
   /* =====================================================
-     1. AIR JORDAN 1 BLACK BLOODLINE PE SAMPLE
+     1. JORDAN 1 RETRO HIGH OG
+        BLACK BLOODLINE PE SAMPLE
   ===================================================== */
 
   {
     id: "air-jordan-1-black-bloodline-pe",
 
     title: {
-      vi: "Air Jordan 1 High OG 'Black Bloodline' PE",
-      en: "Air Jordan 1 High OG 'Black Bloodline' PE"
+      vi: "Jordan 1 Retro High OG 'Black Bloodline' PE Sample",
+      en: "Jordan 1 Retro High OG 'Black Bloodline' PE Sample"
     },
 
     subtitle: {
@@ -43,79 +44,95 @@ const sneakers = [
 
       vi: `
         <p>
-          Nếu phiên bản thương mại Air Jordan 1 'Bloodline'
+          Nếu phiên bản thương mại Jordan 1 'Bloodline'
           trắng/đen/đỏ ra mắt vào dịp Black Friday năm 2019
           đã quá quen thuộc với cộng đồng sneakerhead toàn cầu,
           thì phiên bản
-          <b>Air Jordan 1 High OG 'Black Bloodline' PE
-          (Player Exclusive)</b>
-          này lại vươn lên một tầm cao hoàn toàn khác biệt.
-          Đây là món quà Giáng sinh đặc quyền cực kỳ giới hạn
-          mà Jordan Brand chế tác riêng để gửi tặng cho các vận động viên
-          thuộc danh sách đại sứ thương hiệu vào tháng 12 năm 2019.
+          <b>Jordan 1 Retro High OG 'Black Bloodline' PE</b>
+          lại thuộc một nhóm hoàn toàn khác biệt.
+          Đây là phiên bản đặc biệt được Jordan Brand
+          chuẩn bị dành cho các vận động viên
+          và những cá nhân thuộc mạng lưới của thương hiệu
+          vào cuối năm 2019.
         </p>
 
         <p>
           Điểm tạo nên giá trị sưu tầm đặc biệt của dòng PE
           nằm ở số lượng sản xuất cực kỳ giới hạn,
-          đi kèm các tài liệu và dấu hiệu nhận diện riêng
-          dành cho những cá nhân nhận được phiên bản này.
-          Đôi giày sở hữu lớp da màu đen cao cấp bao phủ toàn bộ upper,
-          được làm nổi bật bởi các đường viền đỏ Gym Red
-          chạy dọc theo cấu trúc panel và bao quanh dấu Swoosh,
+          cùng các dấu hiệu nhận diện riêng
+          dành cho từng đối tượng nhận được sản phẩm.
+          Đôi giày sở hữu lớp da màu đen
+          bao phủ phần lớn upper,
+          được làm nổi bật bởi các đường viền
+          <i>Gym Red</i>
+          chạy dọc theo cấu trúc panel
+          và bao quanh dấu Swoosh,
           hoàn thiện với đế giữa màu trắng
-          và bộ đế ngoài màu đỏ.
+          và outsole màu đỏ.
         </p>
 
         <p>
-          Tuy nhiên, tác phẩm được lưu giữ trong
+          Tuy nhiên, tác phẩm đang được lưu giữ trong
           <b>Lộc An Sneaker Collection</b>
-          còn mang ý nghĩa đặc biệt hơn khi đây là một
-          <b>Sample chính thức của dòng PE</b>.
-          Việc sở hữu một nguyên mẫu thử nghiệm
-          khiến đôi giày size <b>7 US</b>
-          trở thành một hiện vật lưu trữ đặc biệt
-          trong bộ sưu tập.
+          còn mang ý nghĩa đặc biệt hơn:
+          đây là một
+          <b>Sample của dòng PE</b>.
+
+          Chính nguồn gốc Sample
+          khiến đôi giày size
+          <b>7 US</b>
+          trở thành một hiện vật lưu trữ đặc biệt,
+          phản ánh một giai đoạn nằm ngoài
+          hệ thống phát hành thương mại thông thường.
         </p>
 
         <div class="exhibition-note">
-          <strong>Ghi chú lưu trữ:</strong>
 
-          Tác phẩm thuộc nhóm phiên bản đặc biệt
+          <strong>
+            Ghi chú lưu trữ:
+          </strong>
+
+          Tác phẩm thuộc nhóm
           Player Exclusive / Friends &amp; Family / Sample.
 
-          Các phiên bản dạng này không được phát hành thương mại
+          Đây không phải là một đôi
+          được phát hành thương mại
           qua hệ thống bán lẻ thông thường.
 
           Vì vậy, hiện vật
           <b>không có giá phát hành chính thức</b>.
+
         </div>
       `,
 
+
       en: `
         <p>
-          While the commercial Air Jordan 1 'Bloodline'
+          While the commercial Jordan 1 'Bloodline'
           released during Black Friday 2019
           is familiar to sneaker collectors worldwide,
-          this
-          <b>Air Jordan 1 High OG 'Black Bloodline' PE
-          (Player Exclusive)</b>
-          belongs to an entirely different category.
+          the
+          <b>Jordan 1 Retro High OG 'Black Bloodline' PE</b>
+          belongs to a distinctly different category.
 
-          It was created as an extremely limited holiday edition
-          intended for Jordan Brand athletes
-          in December 2019.
+          This special edition was prepared by Jordan Brand
+          for athletes and individuals
+          within the brand's network
+          toward the end of 2019.
         </p>
 
         <p>
-          The significance of the PE line comes from
-          its extremely limited production
-          and the individual identifying materials
-          associated with recipients.
+          The significance of the PE line
+          comes from its extremely limited production
+          and the identifying details
+          associated with its intended recipients.
 
-          The sneaker features a premium black leather upper
-          accented by Gym Red piping around the panel structure
-          and classic Swoosh,
+          The sneaker features a predominantly
+          black leather upper,
+          accented by
+          <i>Gym Red</i>
+          piping around the panel structure
+          and Swoosh,
           finished with a white midsole
           and red outsole.
         </p>
@@ -124,43 +141,49 @@ const sneakers = [
           The piece preserved in the
           <b>Lộc An Sneaker Collection</b>
           carries an additional level of significance:
-          it is an
-          <b>official Sample from this PE line</b>.
+          it is a
+          <b>Sample from the PE line</b>.
 
-          As a prototype,
-          this size <b>7 US</b> pair represents
-          a particularly unusual archival artifact.
+          Its Sample provenance
+          makes this size
+          <b>7 US</b>
+          pair a distinctive archival artifact
+          outside the conventional retail system.
         </p>
 
         <div class="exhibition-note">
-          <strong>Exhibition Note:</strong>
+
+          <strong>
+            Exhibition Note:
+          </strong>
 
           This piece belongs to the
           Player Exclusive / Friends &amp; Family / Sample category.
 
-          Such editions were not commercially distributed
+          It was not commercially distributed
           through conventional retail channels.
 
           Accordingly, the artifact
           <b>does not have an official retail price</b>.
+
         </div>
       `
-
     }
   },
 
 
 
   /* =====================================================
-     2. AIR JORDAN 1 QUAI 54 FRIENDS & FAMILY
+     2. JORDAN 1 RETRO HIGH OG
+        QUAI 54 FRIENDS & FAMILY
   ===================================================== */
 
   {
     id: "jordan-1-quai54-ff",
 
     title: {
-      vi: "Air Jordan 1 High 'Quai 54' F&F",
-      en: "Air Jordan 1 High 'Quai 54' F&F"
+      vi: "Jordan 1 Retro High OG 'Quai 54' F&F",
+      en: "Jordan 1 Retro High OG 'Quai 54' F&F"
     },
 
     subtitle: {
@@ -198,8 +221,8 @@ const sneakers = [
           giải đấu bóng rổ đường phố nổi tiếng
           được tổ chức thường niên tại Paris,
           Jordan Brand đã tạo ra phiên bản
-          <b>Air Jordan 1 High 'Quai 54' F&amp;F</b>
-          đặc biệt dành riêng cho nhóm
+          <b>Jordan 1 Retro High OG 'Quai 54' F&amp;F</b>
+          dành riêng cho nhóm
           <b>Friends &amp; Family</b>.
 
           Đây là phiên bản không được phát hành thương mại
@@ -209,23 +232,26 @@ const sneakers = [
         <p>
           Sở hữu phối màu
           <i>Black/Italy Blue-Fast/University Red</i>,
-          điểm nhấn nổi bật nhất của tác phẩm
+          điểm nhấn nổi bật nhất
           là ngôn ngữ thiết kế
           <b>Split Colorway</b>.
 
-          Chiếc bên phải kết hợp sắc Italy Blue với màu đen,
-          trong khi chiếc bên trái tạo nên sự tương phản
-          bằng University Red.
+          Một bên sử dụng Italy Blue
+          kết hợp với màu đen,
+          trong khi bên còn lại
+          tạo sự tương phản bằng University Red.
 
-          Logo Quai 54 xuất hiện trên phần lưỡi gà
+          Logo Quai 54 xuất hiện
+          trên phần lưỡi gà
           và các chi tiết bên trong,
           kết nối trực tiếp đôi giày
           với văn hóa bóng rổ đường phố Paris.
         </p>
 
         <p>
-          Phiên bản Air Jordan 1 Quai 54 F&amp;F
-          không được phân phối qua các cửa hàng bán lẻ.
+          Phiên bản Jordan 1 Quai 54 F&amp;F
+          không được phân phối
+          qua các cửa hàng bán lẻ.
 
           Những đôi thuộc phiên bản này
           được dành cho vận động viên,
@@ -250,13 +276,18 @@ const sneakers = [
           nguồn gốc Friends &amp; Family
           và tình trạng bảo quản nguyên bản
           giúp đôi giày trở thành
-          một trong những hiện vật nổi bật của bộ sưu tập.
+          một trong những hiện vật nổi bật
+          của bộ sưu tập.
         </p>
 
         <div class="exhibition-note">
-          <strong>Ghi chú lưu trữ:</strong>
 
-          Đây là phiên bản Friends &amp; Family
+          <strong>
+            Ghi chú lưu trữ:
+          </strong>
+
+          Đây là phiên bản
+          Friends &amp; Family
           không được phát hành thương mại
           tại các cửa hàng bán lẻ.
 
@@ -268,8 +299,10 @@ const sneakers = [
           nguồn gốc,
           thiết kế đặc biệt
           và ý nghĩa văn hóa của Quai 54.
+
         </div>
       `,
+
 
       en: `
         <p>
@@ -277,7 +310,7 @@ const sneakers = [
           the renowned streetball tournament
           held annually in Paris,
           the
-          <b>Air Jordan 1 High 'Quai 54' F&amp;F</b>
+          <b>Jordan 1 Retro High OG 'Quai 54' F&amp;F</b>
           was produced specifically for
           <b>Friends &amp; Family</b>.
 
@@ -293,27 +326,32 @@ const sneakers = [
           is its bold
           <b>Split Colorway</b>.
 
-          One shoe combines Italy Blue with black,
+          One side combines
+          Italy Blue with black,
           while the other introduces
           a strong University Red contrast.
 
-          Quai 54 branding appears on the tongue
-          and interior details,
+          Quai 54 branding appears
+          on the tongue and interior details,
           connecting the sneaker directly
           to Paris streetball culture.
         </p>
 
         <p>
-          The Air Jordan 1 Quai 54 F&amp;F
-          was not distributed through retail stores.
+          The Jordan 1 Quai 54 F&amp;F
+          was not distributed
+          through retail stores.
 
-          Pairs were intended for athletes,
-          artists, invited guests,
+          Pairs were intended
+          for athletes,
+          artists,
+          invited guests,
           and individuals connected
           to Jordan Brand and Quai 54.
 
           Its Friends &amp; Family provenance
-          is a major part of its significance
+          is a major part
+          of its significance
           within sneaker collecting.
         </p>
 
@@ -332,7 +370,10 @@ const sneakers = [
         </p>
 
         <div class="exhibition-note">
-          <strong>Exhibition Note:</strong>
+
+          <strong>
+            Exhibition Note:
+          </strong>
 
           This is a Friends &amp; Family edition
           that was not commercially released
@@ -346,16 +387,17 @@ const sneakers = [
           provenance,
           distinctive design,
           and its connection to Quai 54 culture.
+
         </div>
       `
-
     }
   },
 
 
 
   /* =====================================================
-     3. NIKE SB DUNK LOW YUTO HORIGOME MATCHA
+     3. NIKE SB DUNK LOW
+        YUTO HORIGOME MATCHA
   ===================================================== */
 
   {
@@ -398,7 +440,8 @@ const sneakers = [
 
       vi: `
         <p>
-          Tiếp nối thành công từ phiên bản hợp tác đầu tiên năm 2023,
+          Tiếp nối thành công
+          từ phiên bản hợp tác đầu tiên năm 2023,
           nhà vô địch Olympic
           <b>Yuto Horigome</b>
           tiếp tục hợp tác cùng Nike SB
@@ -433,8 +476,8 @@ const sneakers = [
           có giá phát hành
           <b>$135</b>.
 
-          Tuy nhiên, tác phẩm được lưu giữ
-          trong
+          Tuy nhiên,
+          tác phẩm được lưu giữ trong
           <b>Lộc An Sneaker Collection</b>
           mang thêm giá trị đặc biệt
           nhờ có
@@ -447,9 +490,11 @@ const sneakers = [
         </p>
       `,
 
+
       en: `
         <p>
-          Following the success of their first collaboration in 2023,
+          Following the success
+          of their first collaboration in 2023,
           Olympic champion
           <b>Yuto Horigome</b>
           teamed up with Nike SB again
@@ -470,9 +515,10 @@ const sneakers = [
           and touches of
           <i>Burnt Sienna</i>.
 
-          Yuto Horigome's distinctive feather emblem
-          appears on the heel,
-          providing a recognizable signature element.
+          Yuto Horigome's distinctive
+          feather emblem appears on the heel,
+          providing a recognizable
+          signature element.
         </p>
 
         <p>
@@ -491,24 +537,23 @@ const sneakers = [
           and remains Deadstock.
         </p>
       `
-
     }
   },
 
 
 
   /* =====================================================
-     4. VIRGIL ABLOH ARCHIVE AIR JORDAN 1 ALASKA
+     4. JORDAN 1 RETRO HIGH OG
+        x VIRGIL ABLOH ARCHIVE
+        ALASKA
   ===================================================== */
 
   {
     id: "virgil-abloh-archive-jordan-1-alaska",
 
     title: {
-      vi:
-        "Virgil Abloh Archive x Air Jordan 1 Retro High OG SP 'Alaska'",
-      en:
-        "Virgil Abloh Archive x Air Jordan 1 Retro High OG SP 'Alaska'"
+      vi: "Jordan 1 Retro High OG x Virgil Abloh Archive 'Alaska'",
+      en: "Jordan 1 Retro High OG x Virgil Abloh Archive 'Alaska'"
     },
 
     subtitle: {
@@ -545,8 +590,8 @@ const sneakers = [
           Mang dấu ấn di sản thiết kế
           của Virgil Abloh,
           phiên bản
-          <b>Virgil Abloh Archive x Air Jordan 1 Retro High OG SP
-          'Alaska'</b>
+          <b>Jordan 1 Retro High OG
+          x Virgil Abloh Archive 'Alaska'</b>
           ra mắt vào ngày 3 tháng 4 năm 2026.
 
           Thiết kế gợi lại phối màu trắng
@@ -562,9 +607,12 @@ const sneakers = [
           <i>"V.A.A. for NIKE"</i>
           trên thân giày.
 
-          Tên gọi Alaska
-          gợi liên tưởng đến bảng màu trắng lạnh,
-          đồng thời liên hệ với studio sáng tạo
+          Tên gọi
+          <b>'Alaska'</b>
+          gợi liên tưởng
+          đến bảng màu trắng lạnh,
+          đồng thời liên hệ
+          với studio sáng tạo
           <i>Alaska Alaska</i>.
         </p>
 
@@ -578,24 +626,28 @@ const sneakers = [
 
           Tác phẩm size
           <b>10 US</b>
-          được lưu giữ ở tình trạng Deadstock
+          được lưu giữ
+          ở tình trạng Deadstock
           trong
           <b>Lộc An Sneaker Collection</b>.
         </p>
       `,
 
+
       en: `
         <p>
-          Carrying forward the design legacy
-          of Virgil Abloh,
+          Carrying forward
+          the design legacy of Virgil Abloh,
           the
-          <b>Virgil Abloh Archive x Air Jordan 1 Retro High OG SP
-          'Alaska'</b>
+          <b>Jordan 1 Retro High OG
+          x Virgil Abloh Archive 'Alaska'</b>
           launched on April 3, 2026.
 
-          The design revisits the white visual language
+          The design revisits
+          the white visual language
           and deconstructed approach
-          associated with Virgil Abloh's creative legacy.
+          associated with Virgil Abloh's
+          creative legacy.
         </p>
 
         <p>
@@ -606,9 +658,12 @@ const sneakers = [
           <i>"V.A.A. for NIKE"</i>
           text on the sneaker.
 
-          The Alaska name evokes
+          The
+          <b>'Alaska'</b>
+          name evokes
           its cold white palette
-          while also referencing the
+          while also referencing
+          the
           <i>Alaska Alaska</i>
           creative studio.
         </p>
@@ -628,14 +683,14 @@ const sneakers = [
           <b>Lộc An Sneaker Collection</b>.
         </p>
       `
-
     }
   },
 
 
 
   /* =====================================================
-     5. FRAGMENT DESIGN x UNION LA x AIR JORDAN 1
+     5. JORDAN 1 RETRO HIGH OG
+        x FRAGMENT x UNION LA
         VARSITY RED / SPORT ROYAL SAMPLE
   ===================================================== */
 
@@ -645,9 +700,10 @@ const sneakers = [
 
     title: {
       vi:
-        "fragment design x Union LA x Air Jordan 1 High OG 'Varsity Red/Sport Royal' Sample",
+        "Jordan 1 Retro High OG x Fragment x Union LA 'Varsity Red/Sport Royal' Sample",
+
       en:
-        "fragment design x Union LA x Air Jordan 1 High OG 'Varsity Red/Sport Royal' Sample"
+        "Jordan 1 Retro High OG x Fragment x Union LA 'Varsity Red/Sport Royal' Sample"
     },
 
     subtitle: {
@@ -657,20 +713,22 @@ const sneakers = [
 
     /*
       IO7847-002 là mã tham chiếu
-      của phiên bản thương mại tương ứng.
+      của phiên bản retail tương ứng.
 
-      Nếu tem Sample thực tế có mã khác,
-      hãy thay trường này bằng mã trên hiện vật.
+      Nếu tem trên đôi Sample có SKU khác,
+      thay SKU bên dưới bằng mã trên hiện vật.
     */
+
     sku: "IO7847-002",
 
     colorway:
       "Black/White-Varsity Red-Sport Royal",
 
     /*
-      Đôi trong collection là Sample,
+      Đây là Sample trong collection,
       không phải retail pair.
     */
+
     retailPrice: "N/A",
 
     releaseDate: "2026-02-14",
@@ -686,8 +744,10 @@ const sneakers = [
     },
 
     /*
-      Chưa có thông tin size của hiện vật.
+      Thay N/A bằng size thực tế
+      khi có thông tin.
     */
+
     size: "N/A",
 
     image:
@@ -697,87 +757,96 @@ const sneakers = [
 
       vi: `
         <p>
-          Là sự hội tụ của ba tên tuổi có ảnh hưởng sâu rộng
+          Là sự hội tụ của ba tên tuổi
+          có ảnh hưởng sâu rộng
           trong văn hóa sneaker,
-          <b>fragment design x Union LA x Air Jordan 1 High OG
+          <b>Jordan 1 Retro High OG
+          x Fragment
+          x Union LA
           'Varsity Red/Sport Royal'</b>
-          kết nối di sản của Air Jordan
+          kết nối di sản của Jordan 1
           với hai ngôn ngữ thiết kế đặc trưng:
           sự tinh giản và cách sử dụng màu sắc
-          mang tính nhận diện cao của
-          <b>fragment design</b>,
+          mang tính nhận diện cao
+          của
+          <b>Fragment</b>,
           cùng tư duy tái cấu trúc thủ công
           của
           <b>Union Los Angeles</b>.
+        </p>
 
+        <p>
           Phiên bản thương mại tương ứng
-          được giới thiệu trong mùa NBA All-Star 2026,
+          được giới thiệu trong năm 2026,
           sử dụng phối màu
           <i>Black/White-Varsity Red-Sport Royal</i>
           với mã tham chiếu
           <b>IO7847-002</b>.
         </p>
 
-
         <p>
-          Thiết kế bắt đầu từ cấu trúc
+          Thiết kế bắt đầu
+          từ cấu trúc
           <b>Black Toe</b>
-          kinh điển của Air Jordan 1.
+          kinh điển của Jordan 1.
 
           Các panel màu trắng và đen
           tạo nên nền tảng quen thuộc,
           sau đó được tái diễn giải
           bằng sắc
           <b>Sport Royal</b>
-          ở phần gót và đế ngoài,
+          ở phần gót và outsole,
           kết hợp cùng cổ giày
           <b>Varsity Red</b>
           tạo nên sự tương phản mạnh mẽ.
         </p>
 
-
         <p>
-          Những đường viền màu vàng
-          chạy quanh các panel
+          Các đường viền màu vàng
+          chạy quanh cấu trúc panel
           tạo thêm chiều sâu thị giác,
           trong khi cấu trúc nhiều lớp,
-          các đường may lộ
-          và cách xử lý phần cổ giày
-          thể hiện rõ phong cách
-          deconstructed đặc trưng của Union LA.
+          đường may lộ
+          và cách xử lý phần cổ
+          thể hiện rõ
+          phong cách deconstructed
+          đặc trưng của Union LA.
 
-          Biểu tượng fragment
+          Biểu tượng Fragment
           ở phần gót
-          bổ sung dấu ấn của Hiroshi Fujiwara,
+          bổ sung dấu ấn
+          của Hiroshi Fujiwara,
           tạo nên sự cân bằng
-          giữa tinh thần tối giản
-          và cách tiếp cận tái cấu trúc.
+          giữa ngôn ngữ thiết kế tối giản
+          và cách tiếp cận tái cấu trúc
+          của Union.
         </p>
-
 
         <p>
           Sự kết hợp này
-          vừa gợi nhắc di sản
-          fragment design x Air Jordan 1,
+          vừa gợi nhắc
+          di sản của những dự án
+          Fragment x Jordan 1,
           vừa đưa vào
           ngôn ngữ thủ công
           đã trở thành một phần quan trọng
-          trong bản sắc thiết kế của Union.
+          trong bản sắc của Union LA.
 
-          Ba cách tiếp cận khác nhau —
-          cấu trúc biểu tượng của Air Jordan 1,
-          sự tiết chế của fragment design,
-          và tinh thần tái cấu trúc của Union —
-          cùng xuất hiện trên một tác phẩm duy nhất.
+          Cấu trúc biểu tượng
+          của Jordan 1,
+          sự tiết chế của Fragment,
+          và tinh thần tái cấu trúc
+          của Union
+          cùng hội tụ
+          trên một thiết kế duy nhất.
         </p>
-
 
         <p>
           Tuy nhiên,
-          hiện vật được lưu giữ trong
+          tác phẩm được lưu giữ trong
           <b>Lộc An Sneaker Collection</b>
-          không phải là một đôi
-          phát hành bán lẻ thông thường.
+          không phải là
+          một đôi phát hành bán lẻ thông thường.
 
           Đây là một
           <b>Sample</b>
@@ -786,9 +855,8 @@ const sneakers = [
           thuộc giai đoạn phát triển
           và chuẩn bị sản phẩm
           trước khi phiên bản thương mại
-          chính thức được đưa ra thị trường.
+          được đưa ra thị trường.
         </p>
-
 
         <p>
           Chính nguồn gốc Sample
@@ -802,10 +870,9 @@ const sneakers = [
           một phần quá trình phát triển thiết kế
           đứng phía sau dự án hợp tác
           giữa Jordan Brand,
-          fragment design
+          Fragment
           và Union LA.
         </p>
-
 
         <div class="exhibition-note">
 
@@ -817,7 +884,8 @@ const sneakers = [
           Lộc An Sneaker Collection
           là phiên bản
           <b>Sample</b>,
-          không phải đôi được phát hành thương mại
+          không phải đôi
+          được phát hành thương mại
           tại các cửa hàng bán lẻ.
 
           Vì vậy,
@@ -826,7 +894,7 @@ const sneakers = [
 
           Mã
           <b>IO7847-002</b>
-          được sử dụng tại đây
+          được sử dụng
           làm mã tham chiếu
           của phiên bản thương mại
           'Varsity Red/Sport Royal'.
@@ -835,7 +903,7 @@ const sneakers = [
           nhãn hoặc mã sản xuất
           trên đôi Sample thực tế
           có thông tin khác,
-          dữ liệu của hiện vật thực tế
+          dữ liệu trên hiện vật thực tế
           sẽ được ưu tiên.
 
         </div>
@@ -844,37 +912,40 @@ const sneakers = [
 
       en: `
         <p>
-          Bringing together three highly influential names
+          Bringing together
+          three highly influential names
           in sneaker culture,
           the
-          <b>fragment design x Union LA x Air Jordan 1 High OG
+          <b>Jordan 1 Retro High OG
+          x Fragment
+          x Union LA
           'Varsity Red/Sport Royal'</b>
-          connects the heritage of Air Jordan
+          connects the heritage
+          of the Jordan 1
           with two distinctive design philosophies:
-          the restrained visual language
-          and recognizable color sensibility
-          of
-          <b>fragment design</b>,
-          and the reconstructed,
-          handcrafted character
-          associated with
-          <b>Union Los Angeles</b>.
+          Fragment's restrained visual language
+          and recognizable use of color,
+          together with
+          Union Los Angeles'
+          reconstructed and handcrafted aesthetic.
+        </p>
 
+        <p>
           The corresponding commercial edition
-          was introduced during the
-          2026 NBA All-Star season
+          was introduced in 2026
           in a
           <i>Black/White-Varsity Red-Sport Royal</i>
-          colorway under reference SKU
+          colorway
+          under reference SKU
           <b>IO7847-002</b>.
         </p>
 
-
         <p>
-          The design begins with
-          the iconic
+          The design begins
+          with the iconic
           <b>Black Toe</b>
-          architecture of the Air Jordan 1.
+          architecture
+          of the Jordan 1.
 
           Familiar black and white panels
           establish the foundation,
@@ -882,46 +953,47 @@ const sneakers = [
           through
           <b>Sport Royal</b>
           at the heel and outsole,
-          contrasted against a bold
+          contrasted against
+          a bold
           <b>Varsity Red</b>
           collar.
         </p>
 
-
         <p>
           Gold-toned piping
           traces the panel structure
-          and introduces additional visual depth,
+          and introduces
+          additional visual depth,
           while layered construction,
           exposed stitching,
           and the treatment of the collar
-          reflect Union LA's recognizable
-          deconstructed approach.
+          reflect Union LA's
+          recognizable deconstructed approach.
 
-          Fragment branding at the heel
-          adds Hiroshi Fujiwara's signature presence,
+          Fragment branding
+          at the heel
+          adds Hiroshi Fujiwara's
+          signature presence,
           balancing minimalist design
-          with Union's more visibly reconstructed aesthetic.
+          with Union's visibly
+          reconstructed aesthetic.
         </p>
-
 
         <p>
           The collaboration
-          simultaneously references
-          the legacy of
-          fragment design's Air Jordan 1 work
+          references the legacy
+          of Fragment's previous
+          Jordan 1 projects
           while incorporating
           the handcrafted visual language
-          that has become central
-          to Union's collaborative projects.
+          central to Union LA.
 
-          Three distinct approaches —
-          the iconic architecture of the Air Jordan 1,
-          fragment design's restraint,
-          and Union's reconstruction —
+          The iconic architecture
+          of the Jordan 1,
+          Fragment's restraint,
+          and Union's reconstruction
           converge within a single piece.
         </p>
-
 
         <p>
           The artifact preserved in the
@@ -934,11 +1006,11 @@ const sneakers = [
           of the
           'Varsity Red/Sport Royal'
           edition,
-          associated with the product-development
+          associated with
+          the product-development
           and pre-release stage
           preceding the commercial launch.
         </p>
-
 
         <p>
           This Sample provenance
@@ -952,10 +1024,9 @@ const sneakers = [
           part of the design-development process
           behind the collaboration
           between Jordan Brand,
-          fragment design,
+          Fragment,
           and Union LA.
         </p>
-
 
         <div class="exhibition-note">
 
@@ -989,7 +1060,6 @@ const sneakers = [
 
         </div>
       `
-
     }
   }
 
