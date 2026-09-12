@@ -955,44 +955,6 @@ const sneakers = [
         </p>
 
         <p>
-          Phiên bản năm 2009
-          mang mã
-          <b>332550-001</b>
-          và sử dụng phối màu
-          <i>Black/Shadow Grey White</i>.
-
-          Upper chủ yếu sử dụng
-          da đen,
-          kết hợp các mảng
-          Shadow Grey
-          ở toe box,
-          Swoosh,
-          gót
-          và khu vực cổ giày.
-
-          Midsole trắng
-          cùng outsole đen
-          hoàn thiện một bố cục màu
-          đơn giản,
-          cân bằng
-          và rất dễ nhận diện.
-        </p>
-
-        <p>
-          Chính sự tiết chế
-          là yếu tố tạo nên sức sống lâu dài
-          của
-          <b>'Shadow'</b>.
-
-          Khác với nhiều colorway
-          gắn với màu sắc của Chicago Bulls,
-          một câu chuyện thi đấu
-          hay một dự án collaboration,
-          Shadow để chính cấu trúc
-          của Jordan 1 trở thành tâm điểm.
-        </p>
-
-        <p>
           Sau bản retro đầu tiên năm 2009,
           Shadow tiếp tục trở lại
           trong những thế hệ retro sau,
@@ -1067,45 +1029,6 @@ const sneakers = [
           it represents the
           <b>first Shadow retro</b>
           roughly 24 years after the original.
-        </p>
-
-        <p>
-          The 2009 release
-          carries style code
-          <b>332550-001</b>
-          and the
-          <i>Black/Shadow Grey White</i>
-          colorway.
-
-          Its upper is built primarily
-          in black leather,
-          complemented by Shadow Grey
-          across the toe box,
-          Swoosh,
-          heel,
-          and ankle panels.
-
-          A white midsole
-          and black outsole
-          complete the restrained,
-          balanced composition.
-        </p>
-
-        <p>
-          Restraint is central
-          to the lasting appeal
-          of the
-          <b>'Shadow'</b>.
-
-          Unlike colorways
-          closely associated
-          with Chicago Bulls colors,
-          a particular game,
-          or a collaboration,
-          Shadow allows
-          the architecture
-          of the Jordan 1 itself
-          to remain the focus.
         </p>
 
         <p>
