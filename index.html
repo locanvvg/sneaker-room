@@ -228,6 +228,16 @@
             type="button"
             class="filter-chip"
             data-group="edition"
+            data-value="Signature Signed"
+            onclick="toggleFilter('edition', 'Signature Signed')"
+          >
+            SIGNATURE SIGNED
+          </button>
+
+          <button
+            type="button"
+            class="filter-chip"
+            data-group="edition"
             data-value="GR"
             onclick="toggleFilter('edition', 'GR')"
           >
@@ -334,6 +344,104 @@
 
   <script src="./data.js?v=20260912-13"></script>
   <script src="./main.js?v=20260912-13"></script>
+
+
+  <!--
+    SIGNATURE SIGNED FILTER
+
+    main.js hiện tại phân loại:
+    PE / Sample / F&F / GR.
+
+    Đoạn này mở rộng classifier hiện tại
+    để Signature Signed trở thành
+    một phân khúc riêng thay vì bị đưa vào GR.
+  -->
+
+  <script>
+
+    const originalGetEditionCategories =
+      getEditionCategories;
+
+
+    getEditionCategories =
+      function (sneaker) {
+
+        const categories =
+          originalGetEditionCategories(
+            sneaker
+          );
+
+
+        const values = [
+
+          sneaker.title?.vi,
+          sneaker.title?.en,
+
+          sneaker.subtitle?.vi,
+          sneaker.subtitle?.en,
+
+          sneaker.editionType?.vi,
+          sneaker.editionType?.en,
+
+          sneaker.title,
+          sneaker.subtitle,
+          sneaker.editionType
+
+        ];
+
+
+        const corpus =
+          values
+
+            .filter(
+              value =>
+                typeof value === "string"
+            )
+
+            .join(" ")
+
+            .toUpperCase();
+
+
+        const isSignatureSigned =
+
+          corpus.includes(
+            "SIGNATURE SIGNED"
+          )
+
+          ||
+
+          (
+            corpus.includes("SIGNATURE") &&
+            corpus.includes("SIGNED")
+          );
+
+
+        if (isSignatureSigned) {
+
+          /*
+            main.js cũ sẽ xem đôi này là GR
+            vì nó không phải PE/Sample/F&F.
+
+            Khi phát hiện Signature Signed,
+            bỏ GR và đưa sang category riêng.
+          */
+
+          categories.delete("GR");
+
+          categories.add(
+            "Signature Signed"
+          );
+
+        }
+
+
+        return categories;
+
+      };
+
+  </script>
+
 
 </body>
 
