@@ -9,8 +9,12 @@
 <body>
   <div class="container">
     <header>
-      <h1>LỘC AN SNEAKER COLLECTION</h1>
-      <p>Không gian lưu trữ & Bảo tàng Sneaker Kỹ thuật số</p>
+      <div class="lang-switcher">
+        <button onclick="setLanguage('vi')" id="btn-vi" class="lang-btn active">VI</button>
+        <button onclick="setLanguage('en')" id="btn-en" class="lang-btn">EN</button>
+      </div>
+      <h1 data-i18n="mainTitle">LỘC AN SNEAKER COLLECTION</h1>
+      <p data-i18n="mainSubtitle">Không gian lưu trữ & Bảo tàng Sneaker Kỹ thuật số</p>
     </header>
 
     <main>
@@ -26,33 +30,70 @@
 
   <script src="data.js"></script>
   <script>
-    const grid = document.getElementById('sneaker-grid');
+    let currentLang = localStorage.getItem('locan_lang') || 'vi';
 
-    if (typeof sneakers !== 'undefined' && sneakers.length > 0) {
-      const sortedSneakers = [...sneakers].sort((a, b) => 
-        a.title.localeCompare(b.title, 'en', { sensitivity: 'base' })
-      );
+    const translations = {
+      vi: {
+        mainTitle: "LỘC AN SNEAKER COLLECTION",
+        mainSubtitle: "Không gian lưu trữ & Bảo tàng Sneaker Kỹ thuật số",
+        loading: "Đang cập nhật dữ liệu bộ sưu tập..."
+      },
+      en: {
+        mainTitle: "LỘC AN SNEAKER COLLECTION",
+        mainSubtitle: "Digital Sneaker Archive & Museum",
+        loading: "Updating collection data..."
+      }
+    };
 
-      grid.innerHTML = sortedSneakers.map(shoe => `
-        <a href="shoe.html?id=${shoe.id}" class="card-link">
-          <div class="card">
-            <div class="card-img-wrapper">
-              <img src="${shoe.image}" alt="${shoe.title}">
-            </div>
-            <div class="card-info">
-              <h3>${shoe.title}</h3>
-              <p class="subtitle">${shoe.subtitle}</p>
-              <div class="card-meta">
-                <span class="badge">${shoe.editionType || 'Limited'}</span>
-                <span class="size">${shoe.size || ''}</span>
-              </div>
-            </div>
-          </div>
-        </a>
-      `).join('');
-    } else {
-      grid.innerHTML = '<p style="color: #888; text-align: center; grid-column: 1/-1;">Đang cập nhật dữ liệu bộ sưu tập...</p>';
+    function setLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem('locan_lang', lang);
+      
+      document.getElementById('btn-vi').classList.toggle('active', lang === 'vi');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+          el.innerText = translations[lang][key];
+        }
+      });
+      renderGrid();
     }
+
+    function renderGrid() {
+      const grid = document.getElementById('sneaker-grid');
+      if (typeof sneakers !== 'undefined' && sneakers.length > 0) {
+        const sortedSneakers = [...sneakers].sort((a, b) => 
+          a.title[currentLang].localeCompare(b.title[currentLang], 'en', { sensitivity: 'base' })
+        );
+
+        grid.innerHTML = sortedSneakers.map(shoe => {
+          const badgeText = shoe.editionType[currentLang] ? `<span class="badge">${shoe.editionType[currentLang]}</span>` : '';
+          return `
+            <a href="shoe.html?id=${shoe.id}&lang=${currentLang}" class="card-link">
+              <div class="card">
+                <div class="card-img-wrapper">
+                  <img src="${shoe.image}" alt="${shoe.title[currentLang]}">
+                </div>
+                <div class="card-info">
+                  <h3>${shoe.title[currentLang]}</h3>
+                  <p class="subtitle">${shoe.subtitle[currentLang]}</p>
+                  <div class="card-meta">
+                    ${badgeText}
+                    <span class="size">${shoe.size || ''}</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          `;
+        }).join('');
+      } else {
+        grid.innerHTML = `<p style="color: #888; text-align: center; grid-column: 1/-1;">${translations[currentLang].loading}</p>`;
+      }
+    }
+
+    setLanguage(currentLang);
   </script>
 </body>
 </html>
