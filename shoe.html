@@ -3,56 +3,141 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sneaker Detail — Exhibition Catalog</title>
+  <title>Thông tin chi tiết - Sneaker Museum</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .shoe-detail-container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: #aaa;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .back-btn:hover {
+      color: #fff;
+    }
+    .shoe-header {
+      margin-bottom: 25px;
+    }
+    .shoe-header h1 {
+      font-size: 2rem;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+    .shoe-header p {
+      color: #888;
+      font-size: 1rem;
+    }
+    .shoe-hero-img {
+      width: 100%;
+      max-height: 520px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid #262626;
+      margin-bottom: 30px;
+    }
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      background: #141414;
+      border: 1px solid #262626;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 35px;
+    }
+    .spec-item h4 {
+      margin: 0 0 4px 0;
+      color: #777;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .spec-item p {
+      margin: 0;
+      color: #fff;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+    .story-section {
+      line-height: 1.8;
+      color: #ccc;
+      font-size: 1.05rem;
+    }
+    .story-section p {
+      margin-bottom: 18px;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1 id="shoe-title">SNEAKER CATALOG</h1>
-      <p id="shoe-subtitle"></p>
-    </header>
-
-    <main id="content">
-      <img id="shoe-image" class="hero-image" src="" alt="Sneaker Image">
-
-      <div class="specs-grid">
-        <div class="spec-item"><span>SKU</span><strong id="spec-sku">-</strong></div>
-        <div class="spec-item"><span>Năm phát hành</span><strong id="spec-year">-</strong></div>
-        <div class="spec-item"><span>Độ hiếm</span><strong id="spec-rarity">-</strong></div>
-        <div class="spec-item"><span>Tình trạng</span><strong id="spec-condition">-</strong></div>
-      </div>
-
-      <div class="story-section">
-        <h2>CÂU CHUYỆN & BỐI CẢNH</h2>
-        <div id="story-text" class="story-content"></div>
-      </div>
-
-      <div class="collector-note">
-        <strong>Ghi chú của Collector:</strong>
-        <p id="collector-text" style="margin-top: 5px;"></p>
-      </div>
-    </main>
+  <div class="container shoe-detail-container">
+    <a href="index.html" class="back-btn">← Quay lại danh mục triển lãm</a>
+    
+    <div id="shoe-content">
+      <p style="color: #666;">Đang tải thông tin tác phẩm...</p>
+    </div>
   </div>
 
   <script src="data.js"></script>
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const shoeId = urlParams.get('id');
-    const shoe = sneakers.find(s => s.id === shoeId);
+    const container = document.getElementById('shoe-content');
 
-    if (shoe) {
-      document.getElementById('shoe-title').innerText = shoe.title;
-      document.getElementById('shoe-subtitle').innerText = shoe.subtitle;
-      document.getElementById('shoe-image').src = shoe.image;
-      document.getElementById('spec-sku').innerText = shoe.sku;
-      document.getElementById('spec-year').innerText = shoe.releaseYear;
-      document.getElementById('spec-rarity').innerText = shoe.rarity;
-      document.getElementById('spec-condition').innerText = shoe.condition;
-      document.getElementById('story-text').innerHTML = shoe.story;
-      document.getElementById('collector-text').innerText = shoe.collectorNote;
+    if (typeof sneakers !== 'undefined' && shoeId) {
+      const shoe = sneakers.find(s => s.id === shoeId);
+      if (shoe) {
+        container.innerHTML = `
+          <div class="shoe-header">
+            <h1>${shoe.title}</h1>
+            <p>${shoe.subtitle}</p>
+          </div>
+          
+          <img src="${shoe.image}" alt="${shoe.title}" class="shoe-hero-img">
+
+          <div class="specs-grid">
+            <div class="spec-item">
+              <h4>Mã sản phẩm (SKU)</h4>
+              <p>${shoe.sku || 'N/A'}</p>
+            </div>
+            <div class="spec-item">
+              <h4>Phối màu (Colorway)</h4>
+              <p>${shoe.colorway || 'N/A'}</p>
+            </div>
+            <div class="spec-item">
+              <h4>Giá phát hành (Retail)</h4>
+              <p>${shoe.retailPrice || 'N/A'}</p>
+            </div>
+            <div class="spec-item">
+              <h4>Ngày ra mắt</h4>
+              <p>${shoe.releaseDate || 'N/A'}</p>
+            </div>
+            <div class="spec-item">
+              <h4>Tình trạng</h4>
+              <p style="color: #4CAF50;">${shoe.condition || 'N/A'}</p>
+            </div>
+            <div class="spec-item">
+              <h4>Kích cỡ (Size)</h4>
+              <p style="color: #FFD700;">${shoe.size || 'N/A'}</p>
+            </div>
+          </div>
+
+          <div class="story-section">
+            <h3 style="color: #fff; margin-bottom: 15px;">Câu chuyện & Bối cảnh thiết kế</h3>
+            ${shoe.story}
+          </div>
+        `;
+      } else {
+        container.innerHTML = '<h2>Không tìm thấy thông tin đôi giày này.</h2>';
+      }
     } else {
-      document.getElementById('content').innerHTML = '<p style="text-align:center; padding: 50px 0;">Không tìm thấy thông tin đôi giày này.</p>';
+      container.innerHTML = '<h2>Dữ liệu không khả thi hoặc thiếu tham số ID.</h2>';
     }
   </script>
 </body>
