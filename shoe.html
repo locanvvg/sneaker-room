@@ -49,8 +49,8 @@
         </div>
       </div>
 
-      <!-- KHUNG HIỂN THỊ GHI CHÚ LƯU TRỮ - LUÔN HIỆN -->
-      <div id="exhibition-note-box" class="exhibition-note-card" style="display: block !important;">
+      <!-- Khung ghi chú lưu trữ -->
+      <div id="exhibition-note-box" class="exhibition-note-card">
         <h3>Ghi chú lưu trữ (Exhibition Note)</h3>
         <p id="shoe-exhibition-note"></p>
       </div>
@@ -62,7 +62,7 @@
     <div id="shoe-story"></div>
   </section>
 
-  <script src="data.js?v=999"></script>
+  <script src="data.js"></script>
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const shoeId = urlParams.get('id');
@@ -82,12 +82,11 @@
       document.getElementById('shoe-image').alt = sneaker.title;
       document.getElementById('shoe-story').innerHTML = sneaker.story;
 
-      // Gán trực tiếp nội dung ghi chú lưu trữ
       const noteElement = document.getElementById('shoe-exhibition-note');
       if (sneaker.exhibitionNote) {
         noteElement.innerText = sneaker.exhibitionNote;
       } else {
-        noteElement.innerText = "Tác phẩm thuộc bộ sưu tập lưu trữ độc bản tại Lộc An Sneaker Collection.";
+        document.getElementById('exhibition-note-box').style.display = 'none';
       }
     } else {
       document.querySelector('main').innerHTML = '<p style="text-align:center; width:100%; grid-column: 1 / -1; padding: 50px;">Không tìm thấy thông tin tác phẩm này.</p>';
