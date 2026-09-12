@@ -9,27 +9,22 @@
 <body>
 
   <div class="collection-container">
-    <!-- Nút quay về Vault -->
     <nav class="collection-nav">
       <a href="index.html" class="back-link">← Quay lại Vault</a>
     </nav>
 
-    <!-- Tiêu đề bộ sưu tập -->
     <header class="collection-header">
       <h1>Lộc An Sneaker Collection</h1>
       <p>Không gian lưu trữ & Bảo tàng Sneaker Kỹ thuật số</p>
     </header>
 
-    <!-- Khu vực hiển thị danh sách giày (Render tự động từ data.js) -->
     <div id="sneakerGrid" class="sneaker-grid">
-      <!-- Các card giày sẽ được chèn tự động bằng JavaScript -->
+      <!-- Render bằng JS -->
     </div>
   </div>
 
-  <!-- Nhúng file dữ liệu -->
   <script src="data.js"></script>
   <script>
-    // Load danh sách giày từ data.js ra giao diện dạng lưới (Grid)
     const grid = document.getElementById('sneakerGrid');
 
     if (typeof sneakersData !== 'undefined' && sneakersData.length > 0) {
@@ -42,12 +37,12 @@
           <div class="sneaker-info">
             <span class="sneaker-brand">${item.brand}</span>
             <h3>${item.name}</h3>
-            <p class="sneaker-desc">${item.shortDesc || item.description || ''}</p>
+            <p class="sneaker-desc">${item.shortDesc || ''}</p>
           </div>
         </div>
       `).join('');
     } else {
-      grid.innerHTML = '<p style="color: #777; text-align: center; grid-column: 1/-1;">Không tìm thấy dữ liệu sneaker nào.</p>';
+      grid.innerHTML = '<p style="color: #777; text-align: center; grid-column: 1/-1; padding: 40px 0;">Đang cập nhật danh mục lưu trữ...</p>';
     }
   </script>
 </body>
