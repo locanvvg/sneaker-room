@@ -1,26 +1,5 @@
 const sneakers = [
   {
-    id: "jordan-1-quai54-ff",
-    title: "Air Jordan 1 High 'Quai 54' F&F",
-    subtitle: "Friends & Family Exclusive (2017)",
-    sku: "MNJDLS 262 767119 XC",
-    colorway: "Black/Italy Blue-Black-University Red",
-    retailPrice: "N/A",
-    releaseDate: "07/01/2017",
-    editionType: "F&F",
-    condition: "Deadstock (Brand New)",
-    size: "12.5 US",
-    image: "jordan_quai54_friendsandfamily.png",
-    story: `
-      <p>Nhằm tôn vinh Quai 54 – giải đấu bóng rổ đường phố danh giá nhất thế giới diễn ra thường niên tại thành phố Paris, Jordan Brand đã tạo ra hai phiên bản Air Jordan 1 Retro High OG đặc biệt cho mùa hè năm 2017. Trong khi bản phối màu đen truyền thống được phát hành thương mại rộng rãi vào ngày 8 tháng 7 năm 2017 với mức giá niêm yết $160, thì phiên bản xẻ màu (Split) độc bản này lại mang vị thế của một siêu phẩm tuyệt đối: dành riêng cho dàn khách mời <b>Friends & Family (F&F)</b>.</p>
-
-      <p>Sở hữu phối màu gốc <i>Black/Italy Blue-Fast/University Red</i>, điểm nhấn đột phá nhất tạo nên giá trị sưu tầm thượng thừa cho tác phẩm này chính là ngôn ngữ thiết kế "Split Colorway" bổ đôi táo bạo dọc theo thân giày. Chiếc bên phải là sự hòa quyện giữa sắc Xanh Italy rực rỡ và tông Đen huyền bí; trong khi chiếc bên trái lại tạo nên sự tương phản hoàn hảo với sắc Đỏ rực cháy. Logo biểu tượng của giải đấu Quai 54 được thêu trang trọng trên phần lưỡi gà vải dệt và in chìm tỉ mỉ ngay bên trong lót giày.</p>
-
-      <p>Tương tự như di sản của hai phối màu Air Jordan 5 Retro F&F ra mắt tại giải đấu năm 2011, phiên bản Air Jordan 1 Quai 54 F&F hoàn toàn không được phân phối qua bất kỳ hệ thống bán lẻ nào trên toàn cầu. Số lượng sản xuất cực kỳ giới hạn chỉ được trao tận tay cho những vận động viên, nghệ sĩ và những cá nhân có ảnh hưởng lớn nhất tới văn hóa bóng rổ đường phố. Việc sở hữu một đôi giày ở tình trạng <b>Deadstock hoàn hảo</b> cùng bảng size hiếm <b>12.5 US</b> trong bộ sưu tập cá nhân chính là một minh chứng đỉnh cao cho niềm đam mê và giá trị lưu trữ kỹ thuật số tại Lộc An Sneaker Collection.</p>
-    `,
-    exhibitionNote: "Tác phẩm thuộc phiên bản đặc biệt (F&F). Các phiên bản dạng này (như Promo Sample, Player Exclusive hoặc Friends & Family) chỉ được sản xuất giới hạn để dành riêng cho vận động viên, người thân hoặc nội bộ thương hiệu. Do không được phát hành thương mại tại các cửa hàng bán lẻ, tác phẩm không có giá niêm yết gốc (Retail Price: N/A) và sở hữu giá trị sưu tầm đặc biệt trên thị trường quốc tế."
-  },
-  {
     id: "air-jordan-1-black-bloodline-pe",
     title: "Air Jordan 1 High OG 'Black Bloodline' PE",
     subtitle: "Friends & Family Sample (2019)",
@@ -40,6 +19,27 @@ const sneakers = [
       <p>Tuy nhiên, tác phẩm hiện đang ngự trị trong bộ sưu tập cá nhân của Lộc An lại mang một ý nghĩa lịch sử sâu sắc hơn gấp bội: thay vì chỉ dừng lại ở 93 đôi PE thương mại thông thường, đây chính là một đôi <b>Sample (bản mẫu thử nghiệm) chính thức của dòng PE này</b>. Việc sở hữu một nguyên mẫu thử nghiệm thậm chí còn độc bản và khó tìm hơn gấp nhiều lần so với bản phát hành chính thức đã biến đôi giày size 7 US này thành một bảo vật lưu trữ vô giá trong không gian Lộc An Sneaker Collection.</p>
     `,
     exhibitionNote: "Tác phẩm thuộc phiên bản Player Exclusive (PE) kết hợp dạng Sample nguyên mẫu thử nghiệm tối hiếm. Những phiên bản này vượt trội hơn cả các bản phát hành giới hạn thông thường, vốn chỉ được sản xuất cho nội bộ vận động viên đỉnh cao. Sự hiện diện của bản Sample này mang giá trị nghiên cứu lịch sử và sưu tầm đỉnh cao trong bảo tàng kỹ thuật số."
+  },
+  {
+    id: "jordan-1-quai54-ff",
+    title: "Air Jordan 1 High 'Quai 54' F&F",
+    subtitle: "Friends & Family Exclusive (2017)",
+    sku: "MNJDLS 262 767119 XC",
+    colorway: "Black/Italy Blue-Black-University Red",
+    retailPrice: "N/A",
+    releaseDate: "07/01/2017",
+    editionType: "F&F",
+    condition: "Deadstock (Brand New)",
+    size: "12.5 US",
+    image: "jordan_quai54_friendsandfamily.png",
+    story: `
+      <p>Nhằm tôn vinh Quai 54 – giải đấu bóng rổ đường phố danh giá nhất thế giới diễn ra thường niên tại thành phố Paris, Jordan Brand đã tạo ra hai phiên bản Air Jordan 1 Retro High OG đặc biệt cho mùa hè năm 2017. Trong khi bản phối màu đen truyền thống được phát hành thương mại rộng rãi vào ngày 8 tháng 7 năm 2017 với mức giá niêm yết $160, thì phiên bản xẻ màu (Split) độc bản này lại mang vị thế của một siêu phẩm tuyệt đối: dành riêng cho dàn khách mời <b>Friends & Family (F&F)</b>.</p>
+
+      <p>Sở hữu phối màu gốc <i>Black/Italy Blue-Fast/University Red</i>, điểm nhấn đột phá nhất tạo nên giá trị sưu tầm thượng thừa cho tác phẩm này chính là ngôn ngữ thiết kế "Split Colorway" bổ đôi táo bạo dọc theo thân giày. Chiếc bên phải là sự hòa quyện giữa sắc Xanh Italy rực rỡ và tông Đen huyền bí; trong khi chiếc bên trái lại tạo nên sự tương phản hoàn hảo với sắc Đỏ rực cháy. Logo biểu tượng của giải đấu Quai 54 được thêu trang trọng trên phần lưỡi gà vải dệt và in chìm tỉ mỉ ngay bên trong lót giày.</p>
+
+      <p>Tương tự như di sản của hai phối màu Air Jordan 5 Retro F&F ra mắt tại giải đấu năm 2011, phiên bản Air Jordan 1 Quai 54 F&F hoàn toàn không được phân phối qua bất kỳ hệ thống bán lẻ nào trên toàn cầu. Số lượng sản xuất cực kỳ giới hạn chỉ được trao tận tay cho những vận động viên, nghệ sĩ và những cá nhân có ảnh hưởng lớn nhất tới văn hóa bóng rổ đường phố. Việc sở hữu một đôi giày ở tình trạng <b>Deadstock hoàn hảo</b> cùng bảng size hiếm <b>12.5 US</b> trong bộ sưu tập cá nhân chính là một minh chứng đỉnh cao cho niềm đam mê và giá trị lưu trữ kỹ thuật số tại Lộc An Sneaker Collection.</p>
+    `,
+    exhibitionNote: "Tác phẩm thuộc phiên bản đặc biệt (F&F). Các phiên bản dạng này (như Promo Sample, Player Exclusive hoặc Friends & Family) chỉ được sản xuất giới hạn để dành riêng cho vận động viên, người thân hoặc nội bộ thương hiệu. Do không được phát hành thương mại tại các cửa hàng bán lẻ, tác phẩm không có giá niêm yết gốc (Retail Price: N/A) và sở hữu giá trị sưu tầm đặc biệt trên thị trường quốc tế."
   },
   {
     id: "nike-sb-dunk-yuto-matcha",
