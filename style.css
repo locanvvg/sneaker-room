@@ -27,7 +27,6 @@ header p {
   font-size: 0.95rem;
 }
 
-/* Nút chuyển đổi ngôn ngữ */
 .lang-switcher {
   display: flex;
   justify-content: center;
@@ -62,7 +61,6 @@ header p {
   border-color: #ffcc00;
 }
 
-/* Grid trang chủ & Cố định chiều cao card đồng đều */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -145,7 +143,6 @@ header p {
   color: #aaa;
 }
 
-/* Trang chi tiết sản phẩm */
 .site-header {
   display: flex;
   align-items: center;
@@ -221,7 +218,6 @@ header p {
   font-weight: bold;
 }
 
-/* Phần câu chuyện */
 .story-section {
   margin-top: 50px;
   background: #161618;
@@ -252,7 +248,6 @@ footer {
   padding-top: 20px;
 }
 
-/* Responsive cơ bản */
 @media screen and (max-width: 768px) {
   .shoe-detail-container {
     grid-template-columns: 1fr;
