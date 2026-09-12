@@ -108,6 +108,8 @@ header p {
   margin-bottom: 30px;
   border-bottom: 1px solid #222;
   padding-bottom: 15px;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
 .back-btn {
@@ -118,6 +120,38 @@ header p {
 
 .back-btn:hover {
   color: #fff;
+}
+
+/* Nút chuyển đổi ngôn ngữ VI / EN */
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.9rem;
+}
+
+.lang-switcher button {
+  background: transparent;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: color 0.2s, background 0.2s;
+}
+
+.lang-switcher button.active {
+  color: #0d0d0d;
+  background: #ffcc00;
+}
+
+.lang-switcher button:hover {
+  color: #fff;
+}
+
+.lang-switcher span {
+  color: #444;
 }
 
 .shoe-detail-container {
@@ -174,6 +208,29 @@ header p {
 .size-highlight {
   color: #ffcc00;
   font-weight: bold;
+}
+
+/* Khung ghi chú lưu trữ vàng */
+.exhibition-note-card {
+  background: rgba(255, 204, 0, 0.08);
+  border-left: 4px solid #ffcc00;
+  padding: 15px 20px;
+  border-radius: 0 8px 8px 0;
+  margin-top: 25px;
+}
+
+.exhibition-note-card h3 {
+  color: #ffcc00;
+  font-size: 0.95rem;
+  margin: 0 0 8px 0;
+  letter-spacing: 0.5px;
+}
+
+.exhibition-note-card p {
+  color: #ddd;
+  font-size: 0.9rem;
+  margin: 0;
+  line-height: 1.5;
 }
 
 /* Phần câu chuyện */
