@@ -50,7 +50,6 @@ const sneakers = [
           thì phiên bản
           <b>Jordan 1 Retro High OG 'Black Bloodline' PE</b>
           lại thuộc một nhóm hoàn toàn khác biệt.
-
           Đây là phiên bản đặc biệt được Jordan Brand
           chuẩn bị dành cho các vận động viên
           và những cá nhân thuộc mạng lưới của thương hiệu
@@ -62,7 +61,6 @@ const sneakers = [
           nằm ở số lượng sản xuất cực kỳ giới hạn,
           cùng các dấu hiệu nhận diện riêng
           dành cho từng đối tượng nhận được sản phẩm.
-
           Đôi giày sở hữu lớp da màu đen
           bao phủ phần lớn upper,
           được làm nổi bật bởi các đường viền
@@ -953,10 +951,7 @@ const sneakers = [
           bản 2009 giữ một vị trí đặc biệt:
           đây là
           <b>lần retro đầu tiên của Shadow</b>
-          sau khoảng 24 năm kể từ bản OG,
-          đồng thời mở ra cơ hội
-          cho một thế hệ collector mới
-          tiếp cận lại phối màu cổ điển này.
+          sau khoảng 24 năm kể từ bản OG.
         </p>
 
         <p>
