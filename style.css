@@ -16,6 +16,17 @@ header {
   margin-bottom: 40px;
 }
 
+.home-header {
+  position: relative;
+}
+
+.corner-lang {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-bottom: 0;
+}
+
 header h1 {
   font-size: 2rem;
   letter-spacing: 2px;
@@ -249,6 +260,11 @@ footer {
 }
 
 @media screen and (max-width: 768px) {
+  .corner-lang {
+    position: static;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+  }
   .shoe-detail-container {
     grid-template-columns: 1fr;
   }
