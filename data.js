@@ -20,6 +20,26 @@ const sneakers = [
     `
   },
   {
+    id: "air-jordan-1-black-bloodline-pe",
+    title: "Air Jordan 1 High OG 'Black Bloodline' PE",
+    subtitle: "Friends & Family Sample (2019)",
+    sku: "961539 (Serial: ES007436)",
+    colorway: "Black/Gym Red-White",
+    retailPrice: "N/A (PE Exclusive)",
+    releaseDate: "12/2019",
+    editionType: "PE Sample",
+    condition: "Deadstock (Sample)",
+    size: "7 US",
+    image: "jordan1_pe_bloodline_friendsandfamily_sample.png",
+    story: `
+      <p>Nếu phiên bản thương mại Air Jordan 1 'Bloodline' trắng/đen/đỏ ra mắt vào dịp Black Friday năm 2019[cite: 1] đã quá quen thuộc với cộng đồng sneakerhead toàn cầu, thì phiên bản <b>Air Jordan 1 High OG 'Black Bloodline' PE (Player Exclusive)</b> này lại vươn lên một tầm cao hoàn toàn khác biệt. Đây là món quà Giáng sinh đặc quyền[cite: 1] cực kỳ giới hạn mà Jordan Brand chế tác riêng để gửi tặng cho các vận động viên thuộc danh sách đại sứ thương hiệu vào tháng 12 năm 2019[cite: 1].</p>
+
+      <p>Điểm ăn tiền tạo nên giá trị sưu tầm độc bản của dòng PE chính thức nằm ở việc chỉ có đúng <b>93 đôi được sản xuất trên toàn thế giới</b>[cite: 1], đi kèm thiệp chúc mừng riêng từ Jordan Brand và tem hộp stamped tên định danh của từng vận động viên. Đôi giày sở hữu lớp da màu đen cao cấp bao phủ toàn bộ thân upper, được làm nổi bật bởi các đường viền chỉ đỏ (Gym Red piping) sắc nét chạy dọc theo đường cắt và bao quanh dấu Swoosh kinh điển, hoàn thiện trên nền đế giữa màu trắng và bộ đế ngoài đỏ rực[cite: 1].</p>
+
+      <p>Tuy nhiên, tác phẩm hiện đang ngự trị trong bộ sưu tập cá nhân của Lộc An lại mang một ý nghĩa lịch sử sâu sắc hơn gấp bội: thay vì chỉ dừng lại ở 93 đôi PE thương mại thông thường, đây chính là một đôi <b>Sample (bản mẫu thử nghiệm) chính thức của dòng PE này</b>. Sự hiện diện của phiên bản thử nghiệm hiếm có khó tìm này mở ra một góc nhìn độc quyền về quá trình phát triển sản phẩm trước khi đưa vào sản xuất giới hạn, biến nó thành một bảo vật lưu trữ vô giá trong không gian Lộc An Sneaker Collection.</p>
+    `
+  },
+  {
     id: "nike-sb-dunk-yuto-matcha",
     title: "Nike SB Dunk Low Yuto Horigome 'Matcha'",
     subtitle: "Signature Skateboarding Edition (2025)",
