@@ -1,149 +1,711 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chi Tiết Tác Phẩm - Lộc An Sneaker Collection</title>
-  <link rel="stylesheet" href="style.css">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Sneaker exhibition piece from Lộc An Sneaker Collection"
+  >
+
+  <title>
+    Chi Tiết Tác Phẩm - Lộc An Sneaker Collection
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
 </head>
+
+
 <body>
+
   <div class="container">
+
+
+    <!-- HEADER -->
+
     <header class="site-header">
-      <a href="index.html" class="back-btn" id="back-link">← Quay lại Bộ sưu tập</a>
-      <h1>Lộc An Sneaker Collection</h1>
+
+      <a
+        href="index.html"
+        class="back-btn"
+        id="back-link"
+      >
+        ← Quay lại Bộ sưu tập
+      </a>
+
+
+      <h1>
+        Lộc An Sneaker Collection
+      </h1>
+
+
       <div class="lang-switcher">
-        <button onclick="changeLang('vi')" id="btn-vi" class="lang-btn active">VI</button>
-        <button onclick="changeLang('en')" id="btn-en" class="lang-btn">EN</button>
+
+        <button
+          type="button"
+          onclick="changeLang('vi')"
+          id="btn-vi"
+          class="lang-btn active"
+        >
+          VI
+        </button>
+
+        <button
+          type="button"
+          onclick="changeLang('en')"
+          id="btn-en"
+          class="lang-btn"
+        >
+          EN
+        </button>
+
       </div>
+
     </header>
 
+
+
+    <!-- MAIN DETAIL -->
+
     <main class="shoe-detail-container">
+
+
+      <!-- IMAGE -->
+
       <div class="shoe-image-section">
-        <img id="shoe-image" src="" alt="Sneaker Image">
+
+        <img
+          id="shoe-image"
+          src=""
+          alt="Sneaker Image"
+          decoding="async"
+        >
+
       </div>
+
+
+
+      <!-- INFORMATION -->
 
       <div class="shoe-info-section">
+
+
         <h2 id="shoe-title"></h2>
-        <p id="shoe-subtitle" class="subtitle"></p>
+
+
+        <p
+          id="shoe-subtitle"
+          class="subtitle detail-subtitle"
+        ></p>
+
+
 
         <div class="specs-grid">
+
+
           <div class="spec-item">
-            <span class="spec-label" data-i18n="skuLabel">MÃ SẢN PHẨM (SKU)</span>
-            <span id="shoe-sku" class="spec-value"></span>
+
+            <span
+              class="spec-label"
+              data-i18n="skuLabel"
+            >
+              MÃ SẢN PHẨM (SKU)
+            </span>
+
+            <span
+              id="shoe-sku"
+              class="spec-value"
+            ></span>
+
           </div>
+
+
+
           <div class="spec-item">
-            <span class="spec-label" data-i18n="colorwayLabel">PHỐI MÀU (COLORWAY)</span>
-            <span id="shoe-colorway" class="spec-value"></span>
+
+            <span
+              class="spec-label"
+              data-i18n="colorwayLabel"
+            >
+              PHỐI MÀU (COLORWAY)
+            </span>
+
+            <span
+              id="shoe-colorway"
+              class="spec-value"
+            ></span>
+
           </div>
+
+
+
           <div class="spec-item">
-            <span class="spec-label" data-i18n="retailLabel">GIÁ PHÁT HÀNH (RETAIL)</span>
-            <span id="shoe-retail" class="spec-value"></span>
+
+            <span
+              class="spec-label"
+              data-i18n="retailLabel"
+            >
+              GIÁ PHÁT HÀNH (RETAIL)
+            </span>
+
+            <span
+              id="shoe-retail"
+              class="spec-value"
+            ></span>
+
           </div>
+
+
+
           <div class="spec-item">
-            <span class="spec-label" data-i18n="dateLabel">NGÀY RA MẮT</span>
-            <span id="shoe-date" class="spec-value"></span>
+
+            <span
+              class="spec-label"
+              data-i18n="dateLabel"
+            >
+              NGÀY RA MẮT
+            </span>
+
+            <span
+              id="shoe-date"
+              class="spec-value"
+            ></span>
+
           </div>
+
+
+
           <div class="spec-item">
-            <span class="spec-label" data-i18n="conditionLabel">TÌNH TRẠNG</span>
-            <span id="shoe-condition" class="spec-value highlight"></span>
+
+            <span
+              class="spec-label"
+              data-i18n="conditionLabel"
+            >
+              TÌNH TRẠNG
+            </span>
+
+            <span
+              id="shoe-condition"
+              class="spec-value highlight"
+            ></span>
+
           </div>
+
+
+
           <div class="spec-item">
-            <span class="spec-label" data-i18n="sizeLabel">KÍCH CỠ (SIZE)</span>
-            <span id="shoe-size" class="spec-value size-highlight"></span>
+
+            <span
+              class="spec-label"
+              data-i18n="sizeLabel"
+            >
+              KÍCH CỠ (SIZE)
+            </span>
+
+            <span
+              id="shoe-size"
+              class="spec-value size-highlight"
+            ></span>
+
           </div>
+
+
         </div>
+
       </div>
+
     </main>
 
+
+
+    <!-- STORY -->
+
     <section class="story-section">
-      <h3 data-i18n="storyTitle">Câu chuyện & Bối cảnh thiết kế</h3>
+
+      <h3 data-i18n="storyTitle">
+        Câu chuyện &amp; Bối cảnh thiết kế
+      </h3>
+
+
       <div id="shoe-story"></div>
+
     </section>
 
+
+
+    <!-- FOOTER -->
+
     <footer>
-      <p>&copy; 2026 Lộc An Sneaker Collection. All Rights Reserved.</p>
+
+      <p>
+        &copy; 2026 Lộc An Sneaker Collection.
+        All Rights Reserved.
+      </p>
+
     </footer>
+
+
   </div>
 
+
+
+  <!-- DATABASE -->
+
   <script src="data.js"></script>
+
+
+  <!-- SHARED FUNCTIONS -->
+
   <script src="main.js"></script>
+
+
+  <!-- DETAIL PAGE SCRIPT -->
+
   <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const shoeId = urlParams.get('id');
-    if (urlParams.has('lang')) {
-      currentLang = urlParams.get('lang');
-      localStorage.setItem('locan_lang', currentLang);
-    }
+
+    const detailURLParams =
+      new URLSearchParams(
+        window.location.search
+      );
+
+
+    const shoeId =
+      detailURLParams.get('id');
+
+
+    const requestedLanguage =
+      detailURLParams.get('lang');
+
+
+    currentLang =
+      normalizeLanguage(
+        requestedLanguage ||
+        currentLang
+      );
+
+
+    localStorage.setItem(
+      'locan_lang',
+      currentLang
+    );
+
+
+
+    /* =====================================================
+       LABELS
+    ===================================================== */
 
     const labels = {
+
       vi: {
-        back: "← Quay lại Bộ sưu tập",
-        skuLabel: "MÃ SẢN PHẨM (SKU)",
-        colorwayLabel: "PHỐI MÀU (COLORWAY)",
-        retailLabel: "GIÁ PHÁT HÀNH (RETAIL)",
-        dateLabel: "NGÀY RA MẮT",
-        conditionLabel: "TÌNH TRẠNG",
-        sizeLabel: "KÍCH CỠ (SIZE)",
-        storyTitle: "Câu chuyện & Bối cảnh thiết kế",
-        notFound: "Không tìm thấy thông tin tác phẩm này."
+
+        back:
+          "← Quay lại Bộ sưu tập",
+
+        skuLabel:
+          "MÃ SẢN PHẨM (SKU)",
+
+        colorwayLabel:
+          "PHỐI MÀU (COLORWAY)",
+
+        retailLabel:
+          "GIÁ PHÁT HÀNH (RETAIL)",
+
+        dateLabel:
+          "NGÀY RA MẮT",
+
+        conditionLabel:
+          "TÌNH TRẠNG",
+
+        sizeLabel:
+          "KÍCH CỠ (SIZE)",
+
+        storyTitle:
+          "Câu chuyện & Bối cảnh thiết kế",
+
+        notFound:
+          "Không tìm thấy thông tin tác phẩm này."
+
       },
+
+
       en: {
-        back: "← Back to Collection",
-        skuLabel: "SKU",
-        colorwayLabel: "COLORWAY",
-        retailLabel: "RETAIL PRICE",
-        dateLabel: "RELEASE DATE",
-        conditionLabel: "CONDITION",
-        sizeLabel: "SIZE",
-        storyTitle: "Story & Design Background",
-        notFound: "Piece information not found."
+
+        back:
+          "← Back to Collection",
+
+        skuLabel:
+          "SKU",
+
+        colorwayLabel:
+          "COLORWAY",
+
+        retailLabel:
+          "RETAIL PRICE",
+
+        dateLabel:
+          "RELEASE DATE",
+
+        conditionLabel:
+          "CONDITION",
+
+        sizeLabel:
+          "SIZE",
+
+        storyTitle:
+          "Story & Design Background",
+
+        notFound:
+          "Piece information not found."
+
       }
+
     };
 
+
+
+    /* =====================================================
+       CHANGE LANGUAGE
+    ===================================================== */
+
     function changeLang(lang) {
-      currentLang = lang;
-      localStorage.setItem('locan_lang', lang);
-      window.history.replaceState({}, '', `shoe.html?id=${shoeId}&lang=${lang}`);
+
+      currentLang =
+        normalizeLanguage(lang);
+
+
+      localStorage.setItem(
+        'locan_lang',
+        currentLang
+      );
+
+
+      const currentURL =
+        new URL(
+          window.location.href
+        );
+
+
+      currentURL.searchParams.set(
+        'lang',
+        currentLang
+      );
+
+
+      if (shoeId) {
+
+        currentURL.searchParams.set(
+          'id',
+          shoeId
+        );
+
+      }
+
+
+      window.history.replaceState(
+        {},
+        '',
+        `${currentURL.pathname}${currentURL.search}${currentURL.hash}`
+      );
+
+
       loadShoeDetails();
+
     }
+
+
+
+    /* =====================================================
+       LOAD SNEAKER
+    ===================================================== */
 
     function loadShoeDetails() {
-      const btnVi = document.getElementById('btn-vi');
-      const btnEn = document.getElementById('btn-en');
-      if (btnVi) btnVi.classList.toggle('active', currentLang === 'vi');
-      if (btnEn) btnEn.classList.toggle('active', currentLang === 'en');
-      
-      const backLink = document.getElementById('back-link');
-      if (backLink) backLink.innerText = labels[currentLang].back;
 
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (labels[currentLang][key]) el.innerText = labels[currentLang][key];
-      });
+      currentLang =
+        normalizeLanguage(
+          currentLang
+        );
 
-      const sneaker = sneakers.find(item => item.id === shoeId);
 
-      if (sneaker) {
-        document.getElementById('shoe-title').innerText = sneaker.title[currentLang];
-        document.getElementById('shoe-subtitle').innerText = sneaker.subtitle[currentLang];
-        document.getElementById('shoe-sku').innerText = sneaker.sku;
-        document.getElementById('shoe-colorway').innerText = sneaker.colorway;
-        document.getElementById('shoe-retail').innerText = sneaker.retailPrice;
-        document.getElementById('shoe-date').innerText = sneaker.releaseDate;
-        document.getElementById('shoe-condition').innerText = sneaker.condition[currentLang];
-        document.getElementById('shoe-size').innerText = sneaker.size;
-        
-        const imgEl = document.getElementById('shoe-image');
-        imgEl.src = sneaker.image;
-        imgEl.alt = sneaker.title[currentLang];
-        
-        document.getElementById('shoe-story').innerHTML = sneaker.story[currentLang];
-      } else {
-        document.querySelector('main').innerHTML = `<p style="text-align:center; width:100%; grid-column: 1 / -1; padding: 50px;">${labels[currentLang].notFound}</p>`;
+      document.documentElement.lang =
+        currentLang;
+
+
+
+      /* LANGUAGE BUTTONS */
+
+      const btnVi =
+        document.getElementById(
+          'btn-vi'
+        );
+
+
+      const btnEn =
+        document.getElementById(
+          'btn-en'
+        );
+
+
+      if (btnVi) {
+
+        btnVi.classList.toggle(
+          'active',
+          currentLang === 'vi'
+        );
+
       }
+
+
+      if (btnEn) {
+
+        btnEn.classList.toggle(
+          'active',
+          currentLang === 'en'
+        );
+
+      }
+
+
+
+      /* BACK BUTTON */
+
+      const backLink =
+        document.getElementById(
+          'back-link'
+        );
+
+
+      if (backLink) {
+
+        backLink.textContent =
+          labels[currentLang].back;
+
+
+        backLink.href =
+          `index.html?lang=${encodeURIComponent(currentLang)}`;
+
+      }
+
+
+
+      /* TRANSLATE LABELS */
+
+      document
+        .querySelectorAll(
+          '[data-i18n]'
+        )
+        .forEach(element => {
+
+          const key =
+            element.getAttribute(
+              'data-i18n'
+            );
+
+
+          if (
+            labels[currentLang][key]
+          ) {
+
+            element.textContent =
+              labels[currentLang][key];
+
+          }
+
+        });
+
+
+
+      /* FIND SNEAKER */
+
+      const sneaker =
+        Array.isArray(sneakers)
+
+          ? sneakers.find(
+              item =>
+                item.id === shoeId
+            )
+
+          : null;
+
+
+
+      /* NOT FOUND */
+
+      if (!sneaker) {
+
+        document.title =
+          labels[currentLang].notFound;
+
+
+        const main =
+          document.querySelector(
+            '.shoe-detail-container'
+          );
+
+
+        if (main) {
+
+          main.innerHTML = `
+
+            <div class="not-found">
+
+              <p>
+                ${escapeHTML(
+                  labels[currentLang].notFound
+                )}
+              </p>
+
+            </div>
+
+          `;
+
+        }
+
+
+        const storySection =
+          document.querySelector(
+            '.story-section'
+          );
+
+
+        if (storySection) {
+
+          storySection.style.display =
+            'none';
+
+        }
+
+
+        return;
+
+      }
+
+
+
+      /* PAGE TITLE */
+
+      const sneakerTitle =
+        getLocalizedText(
+          sneaker.title,
+          currentLang
+        );
+
+
+      document.title =
+        `${sneakerTitle} | Lộc An Sneaker Collection`;
+
+
+
+      /* TEXT */
+
+      document.getElementById(
+        'shoe-title'
+      ).textContent =
+        sneakerTitle;
+
+
+      document.getElementById(
+        'shoe-subtitle'
+      ).textContent =
+        getLocalizedText(
+          sneaker.subtitle,
+          currentLang
+        );
+
+
+      document.getElementById(
+        'shoe-sku'
+      ).textContent =
+        sneaker.sku || 'N/A';
+
+
+      document.getElementById(
+        'shoe-colorway'
+      ).textContent =
+        sneaker.colorway || 'N/A';
+
+
+      document.getElementById(
+        'shoe-retail'
+      ).textContent =
+        sneaker.retailPrice || 'N/A';
+
+
+      document.getElementById(
+        'shoe-date'
+      ).textContent =
+        formatReleaseDate(
+          sneaker.releaseDate,
+          currentLang
+        );
+
+
+      document.getElementById(
+        'shoe-condition'
+      ).textContent =
+        getLocalizedText(
+          sneaker.condition,
+          currentLang
+        );
+
+
+      document.getElementById(
+        'shoe-size'
+      ).textContent =
+        sneaker.size || 'N/A';
+
+
+
+      /* IMAGE */
+
+      const image =
+        document.getElementById(
+          'shoe-image'
+        );
+
+
+      image.src =
+        sneaker.image;
+
+
+      image.alt =
+        sneakerTitle;
+
+
+
+      /* STORY */
+
+      document.getElementById(
+        'shoe-story'
+      ).innerHTML =
+        getLocalizedText(
+          sneaker.story,
+          currentLang
+        );
+
     }
 
+
+
+    /* =====================================================
+       INITIALIZE DETAIL PAGE
+    ===================================================== */
+
     loadShoeDetails();
+
   </script>
+
 </body>
+
 </html>
