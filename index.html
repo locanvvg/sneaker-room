@@ -15,7 +15,7 @@
 
     <main>
       <div id="sneaker-grid" class="grid">
-        <!-- Danh sách giày sẽ được load tự động từ data.js -->
+        <!-- Danh sách giày sẽ được load và sắp xếp tự động từ data.js -->
       </div>
     </main>
 
@@ -29,7 +29,12 @@
     const grid = document.getElementById('sneaker-grid');
 
     if (typeof sneakers !== 'undefined' && sneakers.length > 0) {
-      grid.innerHTML = sneakers.map(shoe => `
+      // Sắp xếp danh sách giày theo bảng chữ cái (A-Z) dựa vào tên (title)
+      const sortedSneakers = [...sneakers].sort((a, b) => 
+        a.title.localeCompare(b.title, 'en', { sensitivity: 'base' })
+      );
+
+      grid.innerHTML = sortedSneakers.map(shoe => `
         <a href="shoe.html?id=${shoe.id}" class="card-link">
           <div class="card">
             <div class="card-img-wrapper">
