@@ -90,6 +90,7 @@
   color: #ffcc00;
 }
 
+
 /* =========================================================
    CATEGORY LANDING PAGES
 ========================================================= */
@@ -176,7 +177,59 @@
   color: #cfcfd3;
 }
 
+
+/* =========================================================
+   SNEAKER MASK COLLECTION
+========================================================= */
+
+.mask-grid .card-img-wrapper {
+  background: #101012;
+}
+
+.mask-grid .card-img-wrapper img {
+  object-fit: contain !important;
+  object-position: center !important;
+  padding: 8px;
+}
+
+.mask-source-condition {
+  color: #00ffcc;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.45px;
+  white-space: nowrap;
+}
+
+.mask-detail-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 420px;
+
+  padding: 12px;
+
+  background: #101012;
+
+  border:
+    1px solid #222;
+}
+
+.mask-detail-image img {
+  width: 100%;
+  max-height: 760px;
+
+  object-fit: contain;
+  object-position: center;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
 @media screen and (max-width: 650px) {
+
   .museum-nav {
     flex-wrap: wrap;
   }
@@ -191,5 +244,13 @@
 
   .collection-category-status {
     grid-template-columns: 1fr;
+  }
+
+  .mask-detail-image {
+    min-height: 0;
+  }
+
+  .mask-source-condition {
+    font-size: 0.68rem;
   }
 }
