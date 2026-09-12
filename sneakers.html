@@ -8,37 +8,47 @@
 </head>
 <body>
 
-  <header class="collection-header">
-    <a href="index.html" class="back-to-vault">← Back to Vault</a>
-    <h1>LỘC AN SNEAKER COLLECTION</h1>
-    <p>Không gian lưu trữ & Bảo tàng Sneaker Kỹ thuật số</p>
-  </header>
+  <div class="collection-container">
+    <!-- Nút quay về Vault -->
+    <nav class="collection-nav">
+      <a href="index.html" class="back-link">← Quay lại Vault</a>
+    </nav>
 
-  <main class="container">
-    <div id="sneaker-grid" class="sneaker-grid">
-      <!-- Dữ liệu giày sẽ được load tự động từ data.js -->
+    <!-- Tiêu đề bộ sưu tập -->
+    <header class="collection-header">
+      <h1>Lộc An Sneaker Collection</h1>
+      <p>Không gian lưu trữ & Bảo tàng Sneaker Kỹ thuật số</p>
+    </header>
+
+    <!-- Khu vực hiển thị danh sách giày (Render tự động từ data.js) -->
+    <div id="sneakerGrid" class="sneaker-grid">
+      <!-- Các card giày sẽ được chèn tự động bằng JavaScript -->
     </div>
-  </main>
+  </div>
 
+  <!-- Nhúng file dữ liệu -->
   <script src="data.js"></script>
   <script>
-    const grid = document.getElementById('sneaker-grid');
-    sneakers.forEach(item => {
-      const card = document.createElement('a');
-      card.href = `shoe.html?id=${item.id}`;
-      card.className = 'sneaker-card';
-      card.innerHTML = `
-        <div class="sneaker-img-wrapper">
-          <img src="${item.image}" alt="${item.title}">
+    // Load danh sách giày từ data.js ra giao diện dạng lưới (Grid)
+    const grid = document.getElementById('sneakerGrid');
+
+    if (typeof sneakersData !== 'undefined' && sneakersData.length > 0) {
+      grid.innerHTML = sneakersData.map(item => `
+        <div class="sneaker-card" onclick="location.href='shoe.html?id=${item.id}'">
+          <div class="sneaker-img-wrapper">
+            <img src="${item.image}" alt="${item.name}" loading="lazy">
+            <span class="sneaker-badge">${item.badge || 'Archive'}</span>
+          </div>
+          <div class="sneaker-info">
+            <span class="sneaker-brand">${item.brand}</span>
+            <h3>${item.name}</h3>
+            <p class="sneaker-desc">${item.shortDesc || item.description || ''}</p>
+          </div>
         </div>
-        <div class="sneaker-info">
-          <h2>${item.title}</h2>
-          <p class="subtitle">${item.subtitle}</p>
-          <p class="meta">${item.editionType} • Size ${item.size}</p>
-        </div>
-      `;
-      grid.appendChild(card);
-    });
+      `).join('');
+    } else {
+      grid.innerHTML = '<p style="color: #777; text-align: center; grid-column: 1/-1;">Không tìm thấy dữ liệu sneaker nào.</p>';
+    }
   </script>
 </body>
 </html>
