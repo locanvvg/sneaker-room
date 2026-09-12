@@ -3,19 +3,51 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Lộc An Collection - Sneaker Mask Archive">
-  <meta name="theme-color" content="#0d0d0d">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Lộc An Collection - Handcrafted Sneaker Mask Archive"
+  >
+
+  <meta
+    name="theme-color"
+    content="#0d0d0d"
+  >
 
   <title>Sneaker Mask | Lộc An Sneaker Collection</title>
 
-  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
-  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
-  <link rel="manifest" href="./site.webmanifest">
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="./favicon.svg"
+  >
 
-  <link rel="stylesheet" href="./style.css?v=20260912-14">
-  <link rel="stylesheet" href="./collection-menu.css?v=20260912-14">
+  <link
+    rel="apple-touch-icon"
+    href="./apple-touch-icon.png"
+  >
+
+  <link
+    rel="manifest"
+    href="./site.webmanifest"
+  >
+
+  <link
+    rel="stylesheet"
+    href="./style.css?v=20260912-16"
+  >
+
+  <link
+    rel="stylesheet"
+    href="./collection-menu.css?v=20260912-16"
+  >
 </head>
+
 
 <body>
 
@@ -24,137 +56,503 @@
     <header class="home-header">
 
       <div class="lang-switcher corner-lang">
-        <button type="button" id="btn-vi" class="lang-btn active" onclick="setCategoryLanguage('vi')">
+
+        <button
+          type="button"
+          id="btn-vi"
+          class="lang-btn active"
+          onclick="setMaskLanguage('vi')"
+        >
           VI
         </button>
 
-        <button type="button" id="btn-en" class="lang-btn" onclick="setCategoryLanguage('en')">
+        <button
+          type="button"
+          id="btn-en"
+          class="lang-btn"
+          onclick="setMaskLanguage('en')"
+        >
           EN
         </button>
+
       </div>
 
-      <h1>LỘC AN SNEAKER COLLECTION</h1>
 
-      <p class="category-header-subtitle" data-vi="Không gian lưu trữ & Bảo tàng Sneaker Kỹ thuật số" data-en="Digital Sneaker Archive & Museum">
+      <h1>
+        LỘC AN SNEAKER COLLECTION
+      </h1>
+
+
+      <p
+        id="mask-main-subtitle"
+        data-vi="Không gian lưu trữ & Bảo tàng Sneaker Kỹ thuật số"
+        data-en="Digital Sneaker Archive & Museum"
+      >
         Không gian lưu trữ &amp; Bảo tàng Sneaker Kỹ thuật số
       </p>
+
 
       <nav class="museum-nav">
 
         <details class="museum-nav-dropdown">
-          <summary class="museum-nav-link active collection-nav-trigger">
+
+          <summary
+            class="museum-nav-link active collection-nav-trigger"
+          >
             <span>COLLECTION</span>
-            <span class="collection-nav-arrow" aria-hidden="true">▾</span>
+
+            <span
+              class="collection-nav-arrow"
+              aria-hidden="true"
+            >
+              ▾
+            </span>
           </summary>
 
+
           <div class="museum-nav-submenu">
-            <a href="./index.html" class="museum-nav-submenu-link">SNEAKERS</a>
-            <a href="./lego.html" class="museum-nav-submenu-link">LEGO</a>
-            <a href="./sneaker-mask.html" class="museum-nav-submenu-link active">SNEAKER MASK</a>
+
+            <a
+              href="./index.html"
+              class="museum-nav-submenu-link"
+            >
+              SNEAKERS
+            </a>
+
+            <a
+              href="./lego.html"
+              class="museum-nav-submenu-link"
+            >
+              LEGO
+            </a>
+
+            <a
+              href="./sneaker-mask.html"
+              class="museum-nav-submenu-link active"
+            >
+              SNEAKER MASK
+            </a>
+
           </div>
+
         </details>
 
-        <a href="./about.html" class="museum-nav-link">ABOUT</a>
+
+        <a
+          href="./about.html"
+          class="museum-nav-link"
+        >
+          ABOUT
+        </a>
+
       </nav>
 
     </header>
 
-    <main class="collection-category-page">
 
-      <section class="collection-category-hero category-lang-panel" data-lang="vi">
-        <p class="collection-category-eyebrow">COLLECTION / SNEAKER MASK</p>
-        <h2>Sneaker Mask</h2>
-        <p>
-          Khu vực lưu trữ dành cho Sneaker Mask và các hiện vật liên quan đến văn hóa sneaker trong Lộc An Collection.
-          Hồ sơ từng hiện vật có thể được bổ sung theo cùng format catalogue của website.
+    <main>
+
+      <section
+        class="collection-category-hero"
+        style="margin-bottom: 24px;"
+      >
+
+        <p class="collection-category-eyebrow">
+          COLLECTION / SNEAKER MASK
         </p>
-      </section>
 
-      <section class="collection-category-hero category-lang-panel" data-lang="en" hidden>
-        <p class="collection-category-eyebrow">COLLECTION / SNEAKER MASK</p>
-        <h2>Sneaker Mask</h2>
-        <p>
-          An archive for Sneaker Mask objects and related sneaker-culture artifacts within the Lộc An Collection.
-          Individual records can be added using the same catalogue format as the rest of the website.
+
+        <h2>
+          Handcrafted Sneaker Masks
+        </h2>
+
+
+        <p
+          id="mask-page-description"
+          data-vi="Kho lưu trữ những tác phẩm Sneaker Mask độc bản được cắt tay và chế tác hoàn toàn thủ công từ những đôi sneaker nguyên bản trong tình trạng Deadstock."
+          data-en="An archive of unique Sneaker Mask artifacts, hand-cut and entirely handmade from original Deadstock sneakers."
+        >
+          Kho lưu trữ những tác phẩm Sneaker Mask độc bản
+          được cắt tay và chế tác hoàn toàn thủ công
+          từ những đôi sneaker nguyên bản
+          trong tình trạng Deadstock.
         </p>
+
       </section>
 
-      <section class="collection-category-status">
-        <div class="collection-category-stat">
-          <span class="collection-category-stat-label category-text" data-vi="DANH MỤC" data-en="CATEGORY">DANH MỤC</span>
-          <span class="collection-category-stat-value">SNEAKER MASK</span>
-        </div>
 
-        <div class="collection-category-stat">
-          <span class="collection-category-stat-label category-text" data-vi="LOẠI LƯU TRỮ" data-en="ARCHIVE TYPE">LOẠI LƯU TRỮ</span>
-          <span class="collection-category-stat-value category-text" data-vi="COLLECTIBLES" data-en="COLLECTIBLES">COLLECTIBLES</span>
-        </div>
+      <div
+        id="mask-count"
+        class="collection-count"
+      >
+        TỔNG SỐ: 2 MASK
+      </div>
 
-        <div class="collection-category-stat">
-          <span class="collection-category-stat-label category-text" data-vi="TRẠNG THÁI HỒ SƠ" data-en="ARCHIVE STATUS">TRẠNG THÁI HỒ SƠ</span>
-          <span class="collection-category-stat-value category-text" data-vi="ĐANG BỔ SUNG" data-en="IN PROGRESS">ĐANG BỔ SUNG</span>
-        </div>
-      </section>
 
-      <section class="collection-category-empty category-lang-panel" data-lang="vi">
-        <strong>Danh mục Sneaker Mask đã được tạo.</strong>
-        Khi bạn gửi từng hiện vật, mình có thể thêm ảnh, tên, provenance, condition và câu chuyện vào trang này.
-      </section>
-
-      <section class="collection-category-empty category-lang-panel" data-lang="en" hidden>
-        <strong>The Sneaker Mask category is ready.</strong>
-        When you provide each artifact, its imagery, name, provenance, condition, and story can be added to this page.
-      </section>
+      <div
+        id="mask-grid"
+        class="grid mask-grid"
+      ></div>
 
     </main>
 
+
     <footer>
-      <p>&copy; 2026 Lộc An Sneaker Collection. All Rights Reserved.</p>
+
+      <p>
+        &copy; 2026 Lộc An Sneaker Collection.
+        All Rights Reserved.
+      </p>
+
     </footer>
 
   </div>
 
-  <script>
-    const CATEGORY_LANGUAGES = ["vi", "en"];
 
-    let categoryLanguage =
-      new URLSearchParams(window.location.search).get("lang") ||
-      localStorage.getItem("locan_lang") ||
+  <script src="./sneaker-mask-data.js?v=20260912-16"></script>
+
+
+  <script>
+
+    const MASK_LANGUAGES = [
+      "vi",
+      "en"
+    ];
+
+
+    let maskLanguage =
+      new URLSearchParams(
+        window.location.search
+      ).get("lang")
+
+      ||
+
+      localStorage.getItem(
+        "locan_lang"
+      )
+
+      ||
+
       "vi";
 
-    if (!CATEGORY_LANGUAGES.includes(categoryLanguage)) {
-      categoryLanguage = "vi";
+
+    if (
+      !MASK_LANGUAGES.includes(
+        maskLanguage
+      )
+    ) {
+      maskLanguage = "vi";
     }
 
-    function setCategoryLanguage(lang) {
-      categoryLanguage = CATEGORY_LANGUAGES.includes(lang) ? lang : "vi";
-      localStorage.setItem("locan_lang", categoryLanguage);
-      document.documentElement.lang = categoryLanguage;
 
-      document.getElementById("btn-vi").classList.toggle("active", categoryLanguage === "vi");
-      document.getElementById("btn-en").classList.toggle("active", categoryLanguage === "en");
+    function setMaskLanguage(lang) {
 
-      document.querySelectorAll(".category-lang-panel").forEach(element => {
-        element.hidden = element.dataset.lang !== categoryLanguage;
-      });
+      maskLanguage =
+        MASK_LANGUAGES.includes(lang)
+          ? lang
+          : "vi";
 
-      document.querySelectorAll(".category-text").forEach(element => {
-        element.textContent = element.dataset[categoryLanguage] || element.textContent;
-      });
 
-      const subtitle = document.querySelector(".category-header-subtitle");
-      if (subtitle) {
-        subtitle.textContent = subtitle.dataset[categoryLanguage];
+      localStorage.setItem(
+        "locan_lang",
+        maskLanguage
+      );
+
+
+      document.documentElement.lang =
+        maskLanguage;
+
+
+      document
+        .getElementById("btn-vi")
+        .classList
+        .toggle(
+          "active",
+          maskLanguage === "vi"
+        );
+
+
+      document
+        .getElementById("btn-en")
+        .classList
+        .toggle(
+          "active",
+          maskLanguage === "en"
+        );
+
+
+      const subtitle =
+        document.getElementById(
+          "mask-main-subtitle"
+        );
+
+
+      subtitle.textContent =
+        subtitle.dataset[
+          maskLanguage
+        ];
+
+
+      const description =
+        document.getElementById(
+          "mask-page-description"
+        );
+
+
+      description.textContent =
+        description.dataset[
+          maskLanguage
+        ];
+
+
+      document
+        .getElementById(
+          "mask-count"
+        )
+        .textContent =
+          maskLanguage === "vi"
+            ? `TỔNG SỐ: ${sneakerMasks.length} MASK`
+            : `TOTAL: ${sneakerMasks.length} MASKS`;
+
+
+      renderMaskCollection();
+
+
+      const url =
+        new URL(
+          window.location.href
+        );
+
+
+      url.searchParams.set(
+        "lang",
+        maskLanguage
+      );
+
+
+      window.history.replaceState(
+        {},
+        "",
+        url.pathname +
+        url.search +
+        url.hash
+      );
+
+    }
+
+
+    function renderMaskCollection() {
+
+      const grid =
+        document.getElementById(
+          "mask-grid"
+        );
+
+
+      grid.innerHTML = "";
+
+
+      sneakerMasks.forEach(
+        mask => {
+
+          const link =
+            document.createElement(
+              "a"
+            );
+
+
+          link.className =
+            "card-link";
+
+
+          link.href =
+            `./sneaker-mask-detail.html?id=${encodeURIComponent(mask.id)}&lang=${maskLanguage}`;
+
+
+          const card =
+            document.createElement(
+              "article"
+            );
+
+
+          card.className =
+            "card";
+
+
+          const imageWrapper =
+            document.createElement(
+              "div"
+            );
+
+
+          imageWrapper.className =
+            "card-img-wrapper";
+
+
+          const image =
+            document.createElement(
+              "img"
+            );
+
+
+          image.src =
+            mask.image;
+
+
+          image.alt =
+            mask.title[
+              maskLanguage
+            ];
+
+
+          image.loading =
+            "lazy";
+
+
+          imageWrapper.appendChild(
+            image
+          );
+
+
+          const info =
+            document.createElement(
+              "div"
+            );
+
+
+          info.className =
+            "card-info";
+
+
+          const title =
+            document.createElement(
+              "h3"
+            );
+
+
+          title.textContent =
+            mask.title[
+              maskLanguage
+            ];
+
+
+          const subtitle =
+            document.createElement(
+              "p"
+            );
+
+
+          subtitle.className =
+            "subtitle";
+
+
+          subtitle.textContent =
+            mask.subtitle[
+              maskLanguage
+            ];
+
+
+          const meta =
+            document.createElement(
+              "div"
+            );
+
+
+          meta.className =
+            "card-meta";
+
+
+          const badge =
+            document.createElement(
+              "span"
+            );
+
+
+          badge.className =
+            "badge";
+
+
+          badge.textContent =
+            "HANDCRAFTED 1/1";
+
+
+          const sourceCondition =
+            document.createElement(
+              "span"
+            );
+
+
+          sourceCondition.className =
+            "mask-source-condition";
+
+
+          sourceCondition.textContent =
+            maskLanguage === "vi"
+              ? "DEADSTOCK SOURCE"
+              : "DEADSTOCK SOURCE";
+
+
+          meta.appendChild(
+            badge
+          );
+
+
+          meta.appendChild(
+            sourceCondition
+          );
+
+
+          info.appendChild(
+            title
+          );
+
+
+          info.appendChild(
+            subtitle
+          );
+
+
+          info.appendChild(
+            meta
+          );
+
+
+          card.appendChild(
+            imageWrapper
+          );
+
+
+          card.appendChild(
+            info
+          );
+
+
+          link.appendChild(
+            card
+          );
+
+
+          grid.appendChild(
+            link
+          );
+
+        }
+      );
+
+    }
+
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      () => {
+
+        setMaskLanguage(
+          maskLanguage
+        );
+
       }
+    );
 
-      const url = new URL(window.location.href);
-      url.searchParams.set("lang", categoryLanguage);
-      window.history.replaceState({}, "", url.pathname + url.search + url.hash);
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      setCategoryLanguage(categoryLanguage);
-    });
   </script>
 
 </body>
