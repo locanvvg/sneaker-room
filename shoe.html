@@ -7,14 +7,19 @@
   <link rel="stylesheet" href="style.css">
   <style>
     body { background: #0a0a0c; color: #fff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; padding: 0; }
-    .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
-    .back-link { color: #888; text-decoration: none; font-size: 0.9rem; letter-spacing: 1px; display: inline-block; margin-bottom: 20px; }
+    .container { max-width: 850px; margin: 0 auto; padding: 40px 20px; }
+    .back-link { color: #888; text-decoration: none; font-size: 0.9rem; letter-spacing: 1px; display: inline-block; margin-bottom: 25px; }
     .back-link:hover { color: #fff; }
     
-    /* Tối ưu hóa hiệu ứng xoay mượt mà, chống lag tuyệt đối bằng phần cứng (will-change & transform) */
+    /* Header tiêu đề sản phẩm */
+    .shoe-header { text-align: center; margin-bottom: 30px; }
+    .shoe-header h1 { font-size: 2.2rem; letter-spacing: 1.5px; margin: 0 0 10px 0; text-transform: uppercase; line-height: 1.3; }
+    .shoe-header p { color: #888; font-size: 0.9rem; letter-spacing: 1.5px; margin: 0; text-transform: uppercase; }
+
+    /* Khung hiển thị ảnh lớn phía trên với hiệu ứng xoay mượt mà chống lag tuyệt đối */
     .shoe-display-container {
-      width: 100%; height: 350px; background: #141417; border: 1px solid #222; border-radius: 12px;
-      display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; margin-bottom: 30px;
+      width: 100%; height: 450px; background: #141417; border: 1px solid #222; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; margin-bottom: 35px;
     }
     .shoe-image {
       max-width: 85%; max-height: 85%; object-fit: contain;
@@ -23,10 +28,10 @@
 
     /* Bảng thông tin chi tiết */
     .specs-box {
-      background: #141417; border: 1px solid #222; border-radius: 12px; padding: 25px; margin-bottom: 30px;
+      background: #141417; border: 1px solid #222; border-radius: 14px; padding: 25px 30px; margin-bottom: 30px;
     }
     .spec-row {
-      display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #222; font-size: 0.9rem;
+      display: flex; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid #222; font-size: 0.95rem;
     }
     .spec-row:last-child { border-bottom: none; }
     .spec-label { color: #777; text-transform: uppercase; letter-spacing: 1px; font-size: 0.75rem; }
@@ -35,34 +40,36 @@
 
     /* Ô ghi chú lưu trữ vàng (Exhibition Note) */
     .exhibition-note-box {
-      background: rgba(255, 204, 0, 0.05); border-left: 4px solid #ffcc00; border: 1px solid rgba(255, 204, 0, 0.3);
-      border-radius: 4px; padding: 20px; margin-bottom: 30px; font-size: 0.9rem; line-height: 1.6; color: #f5f5f5;
+      background: rgba(255, 204, 0, 0.04); border-left: 4px solid #ffcc00; border: 1px solid rgba(255, 204, 0, 0.25);
+      border-radius: 6px; padding: 22px; margin-bottom: 35px; font-size: 0.95rem; line-height: 1.7; color: #f0f0f0;
     }
     .exhibition-note-title {
-      color: #ffcc00; font-weight: bold; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 8px; display: block;
+      color: #ffcc00; font-weight: bold; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 10px; display: block;
     }
 
-    /* Phần câu chuyện sản phẩm */
-    .story-section { margin-top: 40px; }
-    .story-section h2 { font-size: 1.4rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 20px; border-bottom: 1px solid #222; padding-bottom: 10px; }
-    .story-content { color: #ccc; line-height: 1.8; font-size: 0.95rem; }
-    .story-content p { margin-bottom: 15px; }
+    /* Phần câu chuyện & bối cảnh thiết kế dài và cuốn hút */
+    .story-section { margin-top: 40px; border-top: 1px solid #222; padding-top: 35px; }
+    .story-section h2 { font-size: 1.4rem; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 25px; color: #fff; }
+    .story-content { color: #ccc; line-height: 1.9; font-size: 1.05rem; }
+    .story-content p { margin-bottom: 20px; text-align: justify; }
 
     /* Nút chuyển đổi ngôn ngữ */
     .lang-toggle {
-      float: right; background: #222; color: #ffcc00; border: 1px solid #444; padding: 6px 12px;
+      float: right; background: #1a1a1f; color: #ffcc00; border: 1px solid #333; padding: 8px 14px;
       border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; letter-spacing: 1px;
+      transition: background 0.2s;
     }
-    .lang-toggle:hover { background: #333; }
+    .lang-toggle:hover { background: #25252b; }
   </style>
 </head>
 <body>
   <div class="container">
-    <a href="sneakers.html" class="back-link">← Quay lại danh sách Sneaker</a>
+    <a href="sneakers.html" class="back-link">← Quay lại danh sách Vault</a>
     <button class="lang-toggle" id="langBtn" onclick="toggleLanguage()">EN / VI</button>
+    <div style="clear: both;"></div>
     
     <div id="shoeDetails">
-      <!-- Nội dung được load động qua JavaScript -->
+      <!-- Nội dung render động qua JavaScript -->
     </div>
   </div>
 
@@ -86,16 +93,16 @@
       const container = document.getElementById('shoeDetails');
 
       if (!shoe) {
-        container.innerHTML = '<p style="text-align: center; color: #777;">Không tìm thấy sản phẩm trong cơ sở dữ liệu lưu trữ.</p>';
+        container.innerHTML = '<p style="text-align: center; color: #777; padding: 50px;">Không tìm thấy sản phẩm trong cơ sở dữ liệu lưu trữ.</p>';
         return;
       }
 
       const isVi = currentLang === 'vi';
 
       container.innerHTML = `
-        <div class="collection-header" style="margin-bottom: 20px;">
-          <h1 style="font-size: 1.8rem; letter-spacing: 1px; margin: 0 0 5px 0;">${isVi ? shoe.title : shoe.titleEn}</h1>
-          <p style="color: #777; font-size: 0.85rem; letter-spacing: 1px; margin: 0;">${isVi ? shoe.subtitle : shoe.subtitleEn}</p>
+        <div class="shoe-header">
+          <h1>${isVi ? shoe.title : shoe.titleEn}</h1>
+          <p>${isVi ? shoe.subtitle : shoe.subtitleEn}</p>
         </div>
 
         <div class="shoe-display-container" id="displayContainer">
@@ -152,7 +159,7 @@
       renderShoe();
     }
 
-    // Tối ưu tương tác xoay/di chuột siêu mượt bằng requestAnimationFrame chống lag tuyệt đối
+    // Tối ưu tương tác xoay mượt mà bằng requestAnimationFrame chống lag tuyệt đối
     function initSmoothInteraction() {
       const container = document.getElementById('displayContainer');
       const img = document.getElementById('shoeImage');
@@ -165,9 +172,9 @@
         window.requestAnimationFrame(() => {
           const x = e.clientX - bounds.left;
           const y = e.clientY - bounds.top;
-          const xPercent = (x / bounds.width - 0.5) * 20; 
-          const yPercent = (y / bounds.height - 0.5) * -20;
-          img.style.transform = `perspective(1000px) rotateY(${xPercent}deg) rotateX(${yPercent}deg) scale(1.05)`;
+          const xPercent = (x / bounds.width - 0.5) * 15; 
+          const yPercent = (y / bounds.height - 0.5) * -15;
+          img.style.transform = `perspective(1000px) rotateY(${xPercent}deg) rotateX(${yPercent}deg) scale(1.04)`;
         });
       });
 
