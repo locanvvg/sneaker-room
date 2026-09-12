@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lộc An Collection - Sneaker Mask Archive">
+  <meta name="theme-color" content="#0d0d0d">
+
+  <title>Sneaker Mask | Lộc An Sneaker Collection</title>
+
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+  <link rel="manifest" href="./site.webmanifest">
+
+  <link rel="stylesheet" href="./style.css?v=20260912-14">
+  <link rel="stylesheet" href="./collection-menu.css?v=20260912-14">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <header class="home-header">
+
+      <div class="lang-switcher corner-lang">
+        <button type="button" id="btn-vi" class="lang-btn active" onclick="setCategoryLanguage('vi')">
+          VI
+        </button>
+
+        <button type="button" id="btn-en" class="lang-btn" onclick="setCategoryLanguage('en')">
+          EN
+        </button>
+      </div>
+
+      <h1>LỘC AN SNEAKER COLLECTION</h1>
+
+      <p class="category-header-subtitle" data-vi="Không gian lưu trữ & Bảo tàng Sneaker Kỹ thuật số" data-en="Digital Sneaker Archive & Museum">
+        Không gian lưu trữ &amp; Bảo tàng Sneaker Kỹ thuật số
+      </p>
+
+      <nav class="museum-nav">
+
+        <details class="museum-nav-dropdown">
+          <summary class="museum-nav-link active collection-nav-trigger">
+            <span>COLLECTION</span>
+            <span class="collection-nav-arrow" aria-hidden="true">▾</span>
+          </summary>
+
+          <div class="museum-nav-submenu">
+            <a href="./index.html" class="museum-nav-submenu-link">SNEAKERS</a>
+            <a href="./lego.html" class="museum-nav-submenu-link">LEGO</a>
+            <a href="./sneaker-mask.html" class="museum-nav-submenu-link active">SNEAKER MASK</a>
+          </div>
+        </details>
+
+        <a href="./about.html" class="museum-nav-link">ABOUT</a>
+      </nav>
+
+    </header>
+
+    <main class="collection-category-page">
+
+      <section class="collection-category-hero category-lang-panel" data-lang="vi">
+        <p class="collection-category-eyebrow">COLLECTION / SNEAKER MASK</p>
+        <h2>Sneaker Mask</h2>
+        <p>
+          Khu vực lưu trữ dành cho Sneaker Mask và các hiện vật liên quan đến văn hóa sneaker trong Lộc An Collection.
+          Hồ sơ từng hiện vật có thể được bổ sung theo cùng format catalogue của website.
+        </p>
+      </section>
+
+      <section class="collection-category-hero category-lang-panel" data-lang="en" hidden>
+        <p class="collection-category-eyebrow">COLLECTION / SNEAKER MASK</p>
+        <h2>Sneaker Mask</h2>
+        <p>
+          An archive for Sneaker Mask objects and related sneaker-culture artifacts within the Lộc An Collection.
+          Individual records can be added using the same catalogue format as the rest of the website.
+        </p>
+      </section>
+
+      <section class="collection-category-status">
+        <div class="collection-category-stat">
+          <span class="collection-category-stat-label category-text" data-vi="DANH MỤC" data-en="CATEGORY">DANH MỤC</span>
+          <span class="collection-category-stat-value">SNEAKER MASK</span>
+        </div>
+
+        <div class="collection-category-stat">
+          <span class="collection-category-stat-label category-text" data-vi="LOẠI LƯU TRỮ" data-en="ARCHIVE TYPE">LOẠI LƯU TRỮ</span>
+          <span class="collection-category-stat-value category-text" data-vi="COLLECTIBLES" data-en="COLLECTIBLES">COLLECTIBLES</span>
+        </div>
+
+        <div class="collection-category-stat">
+          <span class="collection-category-stat-label category-text" data-vi="TRẠNG THÁI HỒ SƠ" data-en="ARCHIVE STATUS">TRẠNG THÁI HỒ SƠ</span>
+          <span class="collection-category-stat-value category-text" data-vi="ĐANG BỔ SUNG" data-en="IN PROGRESS">ĐANG BỔ SUNG</span>
+        </div>
+      </section>
+
+      <section class="collection-category-empty category-lang-panel" data-lang="vi">
+        <strong>Danh mục Sneaker Mask đã được tạo.</strong>
+        Khi bạn gửi từng hiện vật, mình có thể thêm ảnh, tên, provenance, condition và câu chuyện vào trang này.
+      </section>
+
+      <section class="collection-category-empty category-lang-panel" data-lang="en" hidden>
+        <strong>The Sneaker Mask category is ready.</strong>
+        When you provide each artifact, its imagery, name, provenance, condition, and story can be added to this page.
+      </section>
+
+    </main>
+
+    <footer>
+      <p>&copy; 2026 Lộc An Sneaker Collection. All Rights Reserved.</p>
+    </footer>
+
+  </div>
+
+  <script>
+    const CATEGORY_LANGUAGES = ["vi", "en"];
+
+    let categoryLanguage =
+      new URLSearchParams(window.location.search).get("lang") ||
+      localStorage.getItem("locan_lang") ||
+      "vi";
+
+    if (!CATEGORY_LANGUAGES.includes(categoryLanguage)) {
+      categoryLanguage = "vi";
+    }
+
+    function setCategoryLanguage(lang) {
+      categoryLanguage = CATEGORY_LANGUAGES.includes(lang) ? lang : "vi";
+      localStorage.setItem("locan_lang", categoryLanguage);
+      document.documentElement.lang = categoryLanguage;
+
+      document.getElementById("btn-vi").classList.toggle("active", categoryLanguage === "vi");
+      document.getElementById("btn-en").classList.toggle("active", categoryLanguage === "en");
+
+      document.querySelectorAll(".category-lang-panel").forEach(element => {
+        element.hidden = element.dataset.lang !== categoryLanguage;
+      });
+
+      document.querySelectorAll(".category-text").forEach(element => {
+        element.textContent = element.dataset[categoryLanguage] || element.textContent;
+      });
+
+      const subtitle = document.querySelector(".category-header-subtitle");
+      if (subtitle) {
+        subtitle.textContent = subtitle.dataset[categoryLanguage];
+      }
+
+      const url = new URL(window.location.href);
+      url.searchParams.set("lang", categoryLanguage);
+      window.history.replaceState({}, "", url.pathname + url.search + url.hash);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      setCategoryLanguage(categoryLanguage);
+    });
+  </script>
+
+</body>
+
+</html>

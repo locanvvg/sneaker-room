@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lộc An Collection - LEGO Archive">
+  <meta name="theme-color" content="#0d0d0d">
+
+  <title>LEGO | Lộc An Sneaker Collection</title>
+
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+  <link rel="manifest" href="./site.webmanifest">
+
+  <link rel="stylesheet" href="./style.css?v=20260912-14">
+  <link rel="stylesheet" href="./collection-menu.css?v=20260912-14">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <header class="home-header">
+
+      <div class="lang-switcher corner-lang">
+        <button type="button" id="btn-vi" class="lang-btn active" onclick="setCategoryLanguage('vi')">
+          VI
+        </button>
+
+        <button type="button" id="btn-en" class="lang-btn" onclick="setCategoryLanguage('en')">
+          EN
+        </button>
+      </div>
+
+      <h1>LỘC AN SNEAKER COLLECTION</h1>
+
+      <p class="category-header-subtitle" data-vi="Không gian lưu trữ & Bảo tàng Sneaker Kỹ thuật số" data-en="Digital Sneaker Archive & Museum">
+        Không gian lưu trữ &amp; Bảo tàng Sneaker Kỹ thuật số
+      </p>
+
+      <nav class="museum-nav">
+
+        <details class="museum-nav-dropdown">
+          <summary class="museum-nav-link active collection-nav-trigger">
+            <span>COLLECTION</span>
+            <span class="collection-nav-arrow" aria-hidden="true">▾</span>
+          </summary>
+
+          <div class="museum-nav-submenu">
+            <a href="./index.html" class="museum-nav-submenu-link">SNEAKERS</a>
+            <a href="./lego.html" class="museum-nav-submenu-link active">LEGO</a>
+            <a href="./sneaker-mask.html" class="museum-nav-submenu-link">SNEAKER MASK</a>
+          </div>
+        </details>
+
+        <a href="./about.html" class="museum-nav-link">ABOUT</a>
+      </nav>
+
+    </header>
+
+    <main class="collection-category-page">
+
+      <section class="collection-category-hero category-lang-panel" data-lang="vi">
+        <p class="collection-category-eyebrow">COLLECTION / LEGO</p>
+        <h2>LEGO Nike</h2>
+        <p>
+          Khu vực lưu trữ dành cho các bộ LEGO Nike trong Lộc An Collection.
+          Hai bộ LEGO Nike của bộ sưu tập sẽ được ghi nhận tại đây theo cùng tinh thần catalogue:
+          hình ảnh, mã sản phẩm, ngày phát hành, giá retail và câu chuyện thiết kế.
+        </p>
+      </section>
+
+      <section class="collection-category-hero category-lang-panel" data-lang="en" hidden>
+        <p class="collection-category-eyebrow">COLLECTION / LEGO</p>
+        <h2>Nike LEGO</h2>
+        <p>
+          An archive for Nike LEGO objects within the Lộc An Collection.
+          The collection's two Nike LEGO sets will be documented here using the same catalogue approach:
+          imagery, product code, release date, retail price, and design story.
+        </p>
+      </section>
+
+      <section class="collection-category-status">
+        <div class="collection-category-stat">
+          <span class="collection-category-stat-label category-text" data-vi="DANH MỤC" data-en="CATEGORY">DANH MỤC</span>
+          <span class="collection-category-stat-value">LEGO</span>
+        </div>
+
+        <div class="collection-category-stat">
+          <span class="collection-category-stat-label category-text" data-vi="HIỆN CÓ" data-en="OWNED">HIỆN CÓ</span>
+          <span class="collection-category-stat-value category-text" data-vi="2 BỘ NIKE LEGO" data-en="2 NIKE LEGO SETS">2 BỘ NIKE LEGO</span>
+        </div>
+
+        <div class="collection-category-stat">
+          <span class="collection-category-stat-label category-text" data-vi="TRẠNG THÁI HỒ SƠ" data-en="ARCHIVE STATUS">TRẠNG THÁI HỒ SƠ</span>
+          <span class="collection-category-stat-value category-text" data-vi="ĐANG BỔ SUNG" data-en="IN PROGRESS">ĐANG BỔ SUNG</span>
+        </div>
+      </section>
+
+      <section class="collection-category-empty category-lang-panel" data-lang="vi">
+        <strong>Hồ sơ LEGO sẽ được thêm tiếp.</strong>
+        Khi có tên chính xác, hình ảnh, SKU và thông tin của từng bộ, các item sẽ được hiển thị dạng card giống collection sneaker.
+      </section>
+
+      <section class="collection-category-empty category-lang-panel" data-lang="en" hidden>
+        <strong>LEGO records will be added next.</strong>
+        Once each set's exact name, imagery, SKU, and release information are available, the items can be displayed as archive cards like the sneaker collection.
+      </section>
+
+    </main>
+
+    <footer>
+      <p>&copy; 2026 Lộc An Sneaker Collection. All Rights Reserved.</p>
+    </footer>
+
+  </div>
+
+  <script>
+    const CATEGORY_LANGUAGES = ["vi", "en"];
+
+    let categoryLanguage =
+      new URLSearchParams(window.location.search).get("lang") ||
+      localStorage.getItem("locan_lang") ||
+      "vi";
+
+    if (!CATEGORY_LANGUAGES.includes(categoryLanguage)) {
+      categoryLanguage = "vi";
+    }
+
+    function setCategoryLanguage(lang) {
+      categoryLanguage = CATEGORY_LANGUAGES.includes(lang) ? lang : "vi";
+      localStorage.setItem("locan_lang", categoryLanguage);
+      document.documentElement.lang = categoryLanguage;
+
+      document.getElementById("btn-vi").classList.toggle("active", categoryLanguage === "vi");
+      document.getElementById("btn-en").classList.toggle("active", categoryLanguage === "en");
+
+      document.querySelectorAll(".category-lang-panel").forEach(element => {
+        element.hidden = element.dataset.lang !== categoryLanguage;
+      });
+
+      document.querySelectorAll(".category-text").forEach(element => {
+        element.textContent = element.dataset[categoryLanguage] || element.textContent;
+      });
+
+      const subtitle = document.querySelector(".category-header-subtitle");
+      if (subtitle) {
+        subtitle.textContent = subtitle.dataset[categoryLanguage];
+      }
+
+      const url = new URL(window.location.href);
+      url.searchParams.set("lang", categoryLanguage);
+      window.history.replaceState({}, "", url.pathname + url.search + url.hash);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      setCategoryLanguage(categoryLanguage);
+    });
+  </script>
+
+</body>
+
+</html>
