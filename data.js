@@ -30,13 +30,13 @@ const sneakers = [
     editionType: "Signature Signed",
     condition: "Deadstock (Signed)",
     size: "12 US",
-    image: "sbdunk_yutohorigome_matcha.jpg",
+    image: "matcha.jpg", // Đảm bảo tên file ảnh trên GitHub khớp với tên này
     story: `
-      <p>Tiếp nối thành công vang dội từ phiên bản hợp tác đầu tiên, màn kết hợp giữa Nike SB và vận động viên trượt ván huy chương vàng Olympic Yuto Horigome mang đến diện mạo mới mẻ mang tên <b>Nike SB Dunk Low Yuto Horigome 'Matcha'</b>. Lấy cảm hứng từ các sắc thái xanh dịu mát của bột trà xanh matcha, đôi giày khéo léo kết hợp các tông màu đất trên nền chất liệu da lộn và da cao cấp.</p>
+      <p>Tiếp nối tiếng vang chấn động từ phiên bản hợp tác đầu tiên năm 2023, tượng đài trượt ván thế giới và nhà vô địch Huy chương Vàng Olympic Yuto Horigome tiếp tục bắt tay cùng Nike SB để cho ra mắt siêu phẩm <b>Nike SB Dunk Low Yuto Horigome 'Matcha'</b> vào ngày 5 tháng 4 năm 2025. Nếu bản phát hành đầu tiên mang màu sắc đô thị tối giản, thì phiên bản 'Matcha' lần này lại đưa người xem chìm đắm vào không gian thiên nhiên tĩnh lặng thông qua các sắc thái tinh tế của bột trà xanh truyền thống Nhật Bản.</p>
 
-      <p>Mặc dù trên thị trường chung, phiên bản này được Nike phát hành rộng rãi dưới dạng một đôi <b>General Release (GR)</b> tiêu chuẩn để cộng đồng skater và sneakerhead dễ dàng tiếp cận với mức giá bán lẻ $135, nhưng đôi sở hữu trong bộ sưu tập cá nhân này lại mang một giá trị hoàn toàn khác biệt và độc nhất.</p>
+      <p>Đôi giày là một bản giao hưởng màu sắc xuất sắc giữa các tông màu đất trầm ấm và sang trọng: sự hòa quyện giữa lớp nền <i>Light Khaki</i>, các mảng da lộn màu <i>Asparagus</i>, điểm xuyết sắc xanh sâu thẳm <i>Legion Green</i> cùng chi tiết <i>Burnt Sienna</i> tinh tế. Biểu tượng lông vũ chéo quen thuộc đại diện cho gia tộc và di sản của Yuto Horigome được chạm khắc dập nổi sắc nét ở phần gót giày bên ngoài, kết hợp cùng lớp đệm lót chuyên dụng dành riêng cho các vận động viên trượt ván đỉnh cao.</p>
 
-      <p>Điểm ăn tiền đắt giá nhất chính là việc đôi giày vinh dự có được <b>chữ ký trực tiếp của chính nhà thiết kế (Yuto Horigome)</b> được ký tay tỉ mỉ lên trên thân giày. Sự kết hợp giữa một thiết kế đại trà mang tính biểu tượng đường phố cùng nét chữ ký độc quyền biến đôi giày size <b>12 US</b> này vượt qua ranh giới của một đôi giày thể thao thông thường, trở thành một tác phẩm nghệ thuật mang đậm dấu ấn cá nhân và giá trị lưu trữ đỉnh cao.</p>
+      <p>Trên thị trường thương mại toàn cầu, mẫu giày này được phát hành dưới dạng một phiên bản đại trà cao cấp (General Release) với mức giá niêm yết tiêu chuẩn $135 để cộng đồng skater và giới mộ điệu dễ dàng tiếp cận. Tuy nhiên, tác phẩm hiện đang lưu trữ trong bộ sưu tập của Lộc An lại vượt xa một sản phẩm thương mại thông thường: thân giày mang <b>chữ ký trực tiếp bằng tay của chính Yuto Horigome</b>. Sự kết hợp giữa một thiết kế biểu tượng đương đại cùng chữ ký sống độc quyền của huyền thoại sống làng Skateboard đã biến đôi giày size <b>12 US</b> này thành một bảo vật lưu trữ kỹ thuật số và hiện vật độc bản vô giá.</p>
     `
   }
 ];
