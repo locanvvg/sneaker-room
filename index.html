@@ -39,7 +39,12 @@
 
   <link
     rel="stylesheet"
-    href="./style.css?v=20260912-13"
+    href="./style.css?v=20260912-14"
+  >
+
+  <link
+    rel="stylesheet"
+    href="./collection-menu.css?v=20260912-14"
   >
 </head>
 
@@ -84,12 +89,39 @@
 
       <nav class="museum-nav">
 
-        <a
-          href="./index.html"
-          class="museum-nav-link active"
-        >
-          COLLECTION
-        </a>
+        <details class="museum-nav-dropdown">
+
+          <summary class="museum-nav-link active collection-nav-trigger">
+            <span>COLLECTION</span>
+            <span class="collection-nav-arrow" aria-hidden="true">▾</span>
+          </summary>
+
+          <div class="museum-nav-submenu">
+
+            <a
+              href="./index.html"
+              class="museum-nav-submenu-link active"
+            >
+              SNEAKERS
+            </a>
+
+            <a
+              href="./lego.html"
+              class="museum-nav-submenu-link"
+            >
+              LEGO
+            </a>
+
+            <a
+              href="./sneaker-mask.html"
+              class="museum-nav-submenu-link"
+            >
+              SNEAKER MASK
+            </a>
+
+          </div>
+
+        </details>
 
         <a
           href="./about.html"
@@ -342,106 +374,46 @@
   </div>
 
 
-  <script src="./data.js?v=20260912-13"></script>
-  <script src="./main.js?v=20260912-13"></script>
-
-
-  <!--
-    SIGNATURE SIGNED FILTER
-
-    main.js hiện tại phân loại:
-    PE / Sample / F&F / GR.
-
-    Đoạn này mở rộng classifier hiện tại
-    để Signature Signed trở thành
-    một phân khúc riêng thay vì bị đưa vào GR.
-  -->
+  <script src="./data.js?v=20260912-14"></script>
+  <script src="./main.js?v=20260912-14"></script>
 
   <script>
+    if (typeof getEditionCategories === "function") {
+      const originalGetEditionCategories = getEditionCategories;
 
-    const originalGetEditionCategories =
-      getEditionCategories;
-
-
-    getEditionCategories =
-      function (sneaker) {
-
-        const categories =
-          originalGetEditionCategories(
-            sneaker
-          );
-
+      getEditionCategories = function (sneaker) {
+        const categories = originalGetEditionCategories(sneaker);
 
         const values = [
-
           sneaker.title?.vi,
           sneaker.title?.en,
-
           sneaker.subtitle?.vi,
           sneaker.subtitle?.en,
-
           sneaker.editionType?.vi,
           sneaker.editionType?.en,
-
           sneaker.title,
           sneaker.subtitle,
           sneaker.editionType
-
         ];
 
-
-        const corpus =
-          values
-
-            .filter(
-              value =>
-                typeof value === "string"
-            )
-
-            .join(" ")
-
-            .toUpperCase();
-
+        const corpus = values
+          .filter(value => typeof value === "string")
+          .join(" ")
+          .toUpperCase();
 
         const isSignatureSigned =
-
-          corpus.includes(
-            "SIGNATURE SIGNED"
-          )
-
-          ||
-
-          (
-            corpus.includes("SIGNATURE") &&
-            corpus.includes("SIGNED")
-          );
-
+          corpus.includes("SIGNATURE SIGNED") ||
+          (corpus.includes("SIGNATURE") && corpus.includes("SIGNED"));
 
         if (isSignatureSigned) {
-
-          /*
-            main.js cũ sẽ xem đôi này là GR
-            vì nó không phải PE/Sample/F&F.
-
-            Khi phát hiện Signature Signed,
-            bỏ GR và đưa sang category riêng.
-          */
-
           categories.delete("GR");
-
-          categories.add(
-            "Signature Signed"
-          );
-
+          categories.add("Signature Signed");
         }
 
-
         return categories;
-
       };
-
+    }
   </script>
-
 
 </body>
 
