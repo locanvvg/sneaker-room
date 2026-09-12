@@ -209,7 +209,7 @@ const sneakers = [
 
     size: "12.5 US",
 
-    image: "jordan_quai54_friendsandfamily.png",
+    image: "jordan1_quai54_ff_v2.png",
 
     story: {
 
@@ -575,7 +575,7 @@ const sneakers = [
 
     size: "10 US",
 
-    image: "jordan1_vaa_alaska.png",
+    image: "jordan1_vaa_alaska_v2.png",
 
     story: {
 
@@ -703,23 +703,10 @@ const sneakers = [
       en: "Pre-Release Sample Edition (2026)"
     },
 
-    /*
-      IO7847-002 là mã tham chiếu
-      của phiên bản retail tương ứng.
-
-      Nếu tem trên đôi Sample có SKU khác,
-      thay SKU bên dưới bằng mã trên hiện vật.
-    */
-
     sku: "IO7847-002",
 
     colorway:
       "Black/White-Varsity Red-Sport Royal",
-
-    /*
-      Đây là Sample trong collection,
-      không phải retail pair.
-    */
 
     retailPrice: "N/A",
 
