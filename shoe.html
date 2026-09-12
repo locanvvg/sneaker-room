@@ -87,6 +87,7 @@
           id="shoe-image"
           src=""
           alt="Sneaker"
+          decoding="async"
         >
 
       </div>
@@ -113,7 +114,7 @@
               class="spec-label"
               id="label-sku"
             >
-              MÃ SẢN PHẨM (SKU)
+              MÃ SẢN PHẨM
             </span>
 
             <span
@@ -130,7 +131,7 @@
               class="spec-label"
               id="label-colorway"
             >
-              PHỐI MÀU (COLORWAY)
+              PHỐI MÀU
             </span>
 
             <span
@@ -147,7 +148,7 @@
               class="spec-label"
               id="label-retail"
             >
-              GIÁ PHÁT HÀNH (RETAIL)
+              GIÁ PHÁT HÀNH
             </span>
 
             <span
@@ -198,7 +199,7 @@
               class="spec-label"
               id="label-size"
             >
-              KÍCH CỠ (SIZE)
+              KÍCH CỠ
             </span>
 
             <span
@@ -318,13 +319,13 @@
           '← Quay lại Bộ sưu tập',
 
         sku:
-          'MÃ SẢN PHẨM (SKU)',
+          'MÃ SẢN PHẨM',
 
         colorway:
-          'PHỐI MÀU (COLORWAY)',
+          'PHỐI MÀU',
 
         retail:
-          'GIÁ PHÁT HÀNH (RETAIL)',
+          'GIÁ PHÁT HÀNH',
 
         date:
           'NGÀY RA MẮT',
@@ -333,7 +334,7 @@
           'TÌNH TRẠNG',
 
         size:
-          'KÍCH CỠ (SIZE)',
+          'KÍCH CỠ',
 
         story:
           'Câu chuyện & Bối cảnh thiết kế',
@@ -513,10 +514,6 @@
       }
 
 
-      /*
-        Old date format fallback
-      */
-
       return value;
 
     }
@@ -567,7 +564,7 @@
 
 
     /* ==========================================
-       UPDATE LABELS
+       UPDATE LANGUAGE INTERFACE
     ========================================== */
 
     function updateLanguageInterface() {
@@ -665,10 +662,6 @@
       updateLanguageInterface();
 
 
-      /*
-        Verify data.js
-      */
-
       if (
         typeof sneakers === 'undefined' ||
         !Array.isArray(sneakers)
@@ -680,10 +673,6 @@
 
       }
 
-
-      /*
-        Find shoe by ID
-      */
 
       const sneaker =
         sneakers.find(
@@ -700,10 +689,6 @@
 
       }
 
-
-      /*
-        Restore sections
-      */
 
       document
         .getElementById('story-section')
