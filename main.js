@@ -1,6 +1,6 @@
 /* =========================================================
    LỘC AN SNEAKER COLLECTION
-   HOMEPAGE CONTROLLER
+   HOMEPAGE
 ========================================================= */
 
 
@@ -10,14 +10,20 @@
 
 const SUPPORTED_LANGUAGES = ["vi", "en"];
 
+
 function normalizeLanguage(lang) {
+
   return SUPPORTED_LANGUAGES.includes(lang)
     ? lang
     : "vi";
 }
 
+
 const urlParams =
-  new URLSearchParams(window.location.search);
+  new URLSearchParams(
+    window.location.search
+  );
+
 
 let currentLang =
   normalizeLanguage(
@@ -25,6 +31,7 @@ let currentLang =
     localStorage.getItem("locan_lang") ||
     "vi"
   );
+
 
 localStorage.setItem(
   "locan_lang",
@@ -46,23 +53,34 @@ const VALID_SORTS = [
   "size-desc"
 ];
 
+
 let currentSort =
   localStorage.getItem("locan_sort") ||
   "default";
 
+
 if (!VALID_SORTS.includes(currentSort)) {
-  currentSort = "default";
+
+  currentSort =
+    "default";
 }
 
 
 /* =========================================================
-   FILTER STATE
+   FILTERS
 ========================================================= */
 
 const activeFilters = {
-  edition: new Set(),
-  condition: new Set(),
-  size: new Set()
+
+  edition:
+    new Set(),
+
+  condition:
+    new Set(),
+
+  size:
+    new Set()
+
 };
 
 
@@ -123,8 +141,8 @@ const translations = {
       "Không có đôi giày nào phù hợp với bộ lọc hiện tại.",
 
     total:
-      total =>
-        `TỔNG SỐ: ${total} ĐÔI`
+      count =>
+        `TỔNG SỐ: ${count} ĐÔI`
   },
 
 
@@ -179,15 +197,15 @@ const translations = {
       "No sneakers match the current filters.",
 
     total:
-      total =>
-        `TOTAL: ${total} ${total === 1 ? "PAIR" : "PAIRS"}`
+      count =>
+        `TOTAL: ${count} ${count === 1 ? "PAIR" : "PAIRS"}`
   }
 
 };
 
 
 /* =========================================================
-   LOCALIZED TEXT
+   HELPERS
 ========================================================= */
 
 function getLocalizedText(value) {
@@ -209,10 +227,6 @@ function getLocalizedText(value) {
 }
 
 
-/* =========================================================
-   ESCAPE HTML
-========================================================= */
-
 function escapeHTML(value) {
 
   return String(value ?? "")
@@ -230,7 +244,7 @@ function escapeHTML(value) {
 
 
 /* =========================================================
-   SIZE HELPERS
+   SIZE
 ========================================================= */
 
 function getNumericSize(size) {
@@ -239,17 +253,21 @@ function getNumericSize(size) {
     return null;
   }
 
+
   const match =
     String(size).match(
       /(\d+(?:\.\d+)?)/
     );
 
+
   if (!match) {
     return null;
   }
 
+
   const value =
     Number(match[1]);
+
 
   return Number.isFinite(value)
     ? value
@@ -259,14 +277,13 @@ function getNumericSize(size) {
 
 function normalizeSizeValue(size) {
 
-  const numericSize =
+  const value =
     getNumericSize(size);
 
-  if (numericSize === null) {
-    return "";
-  }
 
-  return String(numericSize);
+  return value === null
+    ? ""
+    : String(value);
 }
 
 
@@ -279,47 +296,46 @@ function getAvailableSizes() {
     return [];
   }
 
+
   const sizes =
     sneakers
       .map(
         sneaker =>
-          getNumericSize(sneaker.size)
+          getNumericSize(
+            sneaker.size
+          )
       )
       .filter(
-        size =>
-          size !== null
+        value =>
+          value !== null
       );
 
-  const uniqueSizes =
-    [...new Set(sizes)];
 
-  uniqueSizes.sort(
-    (a, b) =>
-      a - b
-  );
-
-  return uniqueSizes;
+  return [...new Set(sizes)]
+    .sort(
+      (a, b) =>
+        a - b
+    );
 }
 
 
 /* =========================================================
-   RELEASE DATE
+   DATE
 ========================================================= */
 
-function getReleaseDateValue(releaseDate) {
+function getReleaseDateValue(value) {
 
-  if (!releaseDate) {
+  if (!value) {
     return null;
   }
 
-  const value =
-    String(releaseDate);
 
+  const date =
+    String(value);
 
-  /* YYYY-MM-DD */
 
   if (
-    /^\d{4}-\d{2}-\d{2}$/.test(value)
+    /^\d{4}-\d{2}-\d{2}$/.test(date)
   ) {
 
     const [
@@ -327,9 +343,10 @@ function getReleaseDateValue(releaseDate) {
       month,
       day
     ] =
-      value
+      date
         .split("-")
         .map(Number);
+
 
     return Date.UTC(
       year,
@@ -339,19 +356,18 @@ function getReleaseDateValue(releaseDate) {
   }
 
 
-  /* YYYY-MM */
-
   if (
-    /^\d{4}-\d{2}$/.test(value)
+    /^\d{4}-\d{2}$/.test(date)
   ) {
 
     const [
       year,
       month
     ] =
-      value
+      date
         .split("-")
         .map(Number);
+
 
     return Date.UTC(
       year,
@@ -361,14 +377,12 @@ function getReleaseDateValue(releaseDate) {
   }
 
 
-  /* YYYY */
-
   if (
-    /^\d{4}$/.test(value)
+    /^\d{4}$/.test(date)
   ) {
 
     return Date.UTC(
-      Number(value),
+      Number(date),
       0,
       1
     );
@@ -376,7 +390,8 @@ function getReleaseDateValue(releaseDate) {
 
 
   const parsed =
-    Date.parse(value);
+    Date.parse(date);
+
 
   return Number.isNaN(parsed)
     ? null
@@ -394,39 +409,33 @@ function getEditionCategories(sneaker) {
     new Set();
 
 
-  const corpus = [
-
-    getLocalizedText(
-      sneaker.title
-    ),
-
-    getLocalizedText(
-      sneaker.subtitle
-    ),
-
-    getLocalizedText(
-      sneaker.editionType
-    ),
+  const values = [
 
     sneaker.title?.vi,
-
     sneaker.title?.en,
 
     sneaker.subtitle?.vi,
-
     sneaker.subtitle?.en,
 
     sneaker.editionType?.vi,
+    sneaker.editionType?.en,
 
-    sneaker.editionType?.en
+    sneaker.title,
+    sneaker.subtitle,
+    sneaker.editionType
 
-  ]
-    .filter(Boolean)
-    .join(" ")
-    .toUpperCase();
+  ];
 
 
-  /* PE */
+  const corpus =
+    values
+      .filter(
+        value =>
+          typeof value === "string"
+      )
+      .join(" ")
+      .toUpperCase();
+
 
   if (
     /\bPE\b/.test(corpus) ||
@@ -439,8 +448,6 @@ function getEditionCategories(sneaker) {
   }
 
 
-  /* SAMPLE */
-
   if (
     corpus.includes("SAMPLE")
   ) {
@@ -448,8 +455,6 @@ function getEditionCategories(sneaker) {
     categories.add("Sample");
   }
 
-
-  /* FRIENDS & FAMILY */
 
   if (
     corpus.includes("F&F") ||
@@ -462,9 +467,9 @@ function getEditionCategories(sneaker) {
   }
 
 
-  /* GENERAL RELEASE */
-
-  if (categories.size === 0) {
+  if (
+    categories.size === 0
+  ) {
 
     categories.add("GR");
   }
@@ -480,7 +485,7 @@ function getEditionCategories(sneaker) {
 
 function getConditionCategory(sneaker) {
 
-  const condition =
+  const value =
     getLocalizedText(
       sneaker.condition
     )
@@ -488,23 +493,105 @@ function getConditionCategory(sneaker) {
       .toLowerCase();
 
 
-  if (
-    condition === "deadstock"
-  ) {
-
+  if (value === "deadstock") {
     return "Deadstock";
   }
 
 
-  if (
-    condition === "used"
-  ) {
-
+  if (value === "used") {
     return "Used";
   }
 
 
   return "";
+}
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+function filterSneakers(items) {
+
+  return items.filter(
+    sneaker => {
+
+
+      /* EDITION */
+
+      if (
+        activeFilters.edition.size > 0
+      ) {
+
+        const categories =
+          getEditionCategories(
+            sneaker
+          );
+
+
+        const matches =
+          [...activeFilters.edition]
+            .some(
+              value =>
+                categories.has(value)
+            );
+
+
+        if (!matches) {
+          return false;
+        }
+      }
+
+
+      /* CONDITION */
+
+      if (
+        activeFilters.condition.size > 0
+      ) {
+
+        const condition =
+          getConditionCategory(
+            sneaker
+          );
+
+
+        if (
+          !activeFilters.condition.has(
+            condition
+          )
+        ) {
+
+          return false;
+        }
+      }
+
+
+      /* SIZE */
+
+      if (
+        activeFilters.size.size > 0
+      ) {
+
+        const size =
+          normalizeSizeValue(
+            sneaker.size
+          );
+
+
+        if (
+          !activeFilters.size.has(
+            size
+          )
+        ) {
+
+          return false;
+        }
+      }
+
+
+      return true;
+    }
+  );
 }
 
 
@@ -521,8 +608,6 @@ function sortSneakers(items) {
   switch (currentSort) {
 
 
-    /* A → Z */
-
     case "az":
 
       sorted.sort(
@@ -533,9 +618,7 @@ function sortSneakers(items) {
             getLocalizedText(
               b.title
             ),
-            currentLang === "vi"
-              ? "vi"
-              : "en",
+            currentLang,
             {
               sensitivity: "base",
               numeric: true
@@ -545,8 +628,6 @@ function sortSneakers(items) {
 
       break;
 
-
-    /* Z → A */
 
     case "za":
 
@@ -558,9 +639,7 @@ function sortSneakers(items) {
             getLocalizedText(
               a.title
             ),
-            currentLang === "vi"
-              ? "vi"
-              : "en",
+            currentLang,
             {
               sensitivity: "base",
               numeric: true
@@ -570,8 +649,6 @@ function sortSneakers(items) {
 
       break;
 
-
-    /* NEWEST → OLDEST */
 
     case "date-desc":
 
@@ -604,14 +681,13 @@ function sortSneakers(items) {
             return -1;
           }
 
+
           return dateB - dateA;
         }
       );
 
       break;
 
-
-    /* OLDEST → NEWEST */
 
     case "date-asc":
 
@@ -644,6 +720,7 @@ function sortSneakers(items) {
             return -1;
           }
 
+
           return dateA - dateB;
         }
       );
@@ -651,22 +728,16 @@ function sortSneakers(items) {
       break;
 
 
-    /* SIZE SMALL → LARGE */
-
     case "size-asc":
 
       sorted.sort(
         (a, b) => {
 
           const sizeA =
-            getNumericSize(
-              a.size
-            );
+            getNumericSize(a.size);
 
           const sizeB =
-            getNumericSize(
-              b.size
-            );
+            getNumericSize(b.size);
 
 
           if (
@@ -683,6 +754,7 @@ function sortSneakers(items) {
           if (sizeB === null) {
             return -1;
           }
+
 
           return sizeA - sizeB;
         }
@@ -691,22 +763,16 @@ function sortSneakers(items) {
       break;
 
 
-    /* SIZE LARGE → SMALL */
-
     case "size-desc":
 
       sorted.sort(
         (a, b) => {
 
           const sizeA =
-            getNumericSize(
-              a.size
-            );
+            getNumericSize(a.size);
 
           const sizeB =
-            getNumericSize(
-              b.size
-            );
+            getNumericSize(b.size);
 
 
           if (
@@ -723,6 +789,7 @@ function sortSneakers(items) {
           if (sizeB === null) {
             return -1;
           }
+
 
           return sizeB - sizeA;
         }
@@ -742,90 +809,6 @@ function sortSneakers(items) {
 
 
 /* =========================================================
-   FILTER
-========================================================= */
-
-function filterSneakers(items) {
-
-  return items.filter(
-    sneaker => {
-
-
-      /* EDITION */
-
-      if (
-        activeFilters.edition.size > 0
-      ) {
-
-        const sneakerCategories =
-          getEditionCategories(
-            sneaker
-          );
-
-        const editionMatches =
-          [...activeFilters.edition]
-            .some(
-              category =>
-                sneakerCategories.has(
-                  category
-                )
-            );
-
-        if (!editionMatches) {
-          return false;
-        }
-      }
-
-
-      /* CONDITION */
-
-      if (
-        activeFilters.condition.size > 0
-      ) {
-
-        const condition =
-          getConditionCategory(
-            sneaker
-          );
-
-        if (
-          !activeFilters.condition.has(
-            condition
-          )
-        ) {
-          return false;
-        }
-      }
-
-
-      /* SIZE */
-
-      if (
-        activeFilters.size.size > 0
-      ) {
-
-        const size =
-          normalizeSizeValue(
-            sneaker.size
-          );
-
-        if (
-          !activeFilters.size.has(
-            size
-          )
-        ) {
-          return false;
-        }
-      }
-
-
-      return true;
-    }
-  );
-}
-
-
-/* =========================================================
    FILTER ACTIONS
 ========================================================= */
 
@@ -834,28 +817,24 @@ function toggleFilter(
   value
 ) {
 
-  if (
-    !activeFilters[group]
-  ) {
+  const filter =
+    activeFilters[group];
+
+
+  if (!filter) {
     return;
   }
 
 
   if (
-    activeFilters[group].has(
-      value
-    )
+    filter.has(value)
   ) {
 
-    activeFilters[group].delete(
-      value
-    );
+    filter.delete(value);
 
   } else {
 
-    activeFilters[group].add(
-      value
-    );
+    filter.add(value);
   }
 
 
@@ -872,6 +851,7 @@ function clearAllFilters() {
   activeFilters.condition.clear();
 
   activeFilters.size.clear();
+
 
   updateFilterInterface();
 
@@ -890,7 +870,7 @@ function hasActiveFilters() {
 
 
 /* =========================================================
-   SIZE FILTER BUTTONS
+   SIZE FILTERS
 ========================================================= */
 
 function renderSizeFilterButtons() {
@@ -899,6 +879,7 @@ function renderSizeFilterButtons() {
     document.getElementById(
       "size-filter-chips"
     );
+
 
   if (!container) {
     return;
@@ -917,6 +898,7 @@ function renderSizeFilterButtons() {
           const value =
             String(size);
 
+
           const active =
             activeFilters.size.has(
               value
@@ -928,10 +910,10 @@ function renderSizeFilterButtons() {
               type="button"
               class="filter-chip ${active ? "active" : ""}"
               data-group="size"
-              data-value="${escapeHTML(value)}"
-              onclick="toggleFilter('size', '${escapeHTML(value)}')"
+              data-value="${value}"
+              onclick="toggleFilter('size', '${value}')"
             >
-              ${escapeHTML(value)} US
+              ${value} US
             </button>
           `;
         }
@@ -941,7 +923,7 @@ function renderSizeFilterButtons() {
 
 
 /* =========================================================
-   FILTER INTERFACE
+   FILTER UI
 ========================================================= */
 
 function updateFilterInterface() {
@@ -950,25 +932,29 @@ function updateFilterInterface() {
     translations[currentLang];
 
 
-  const filterTitle =
-    document.getElementById(
-      "filter-title"
-    );
+  document.getElementById(
+    "filter-title"
+  ).textContent =
+    t.filterTitle;
 
-  const editionLabel =
-    document.getElementById(
-      "edition-filter-label"
-    );
 
-  const conditionLabel =
-    document.getElementById(
-      "condition-filter-label"
-    );
+  document.getElementById(
+    "edition-filter-label"
+  ).textContent =
+    t.filterEdition;
 
-  const sizeLabel =
-    document.getElementById(
-      "size-filter-label"
-    );
+
+  document.getElementById(
+    "condition-filter-label"
+  ).textContent =
+    t.filterCondition;
+
+
+  document.getElementById(
+    "size-filter-label"
+  ).textContent =
+    t.filterSize;
+
 
   const clearButton =
     document.getElementById(
@@ -976,36 +962,14 @@ function updateFilterInterface() {
     );
 
 
-  if (filterTitle) {
-    filterTitle.textContent =
-      t.filterTitle;
-  }
+  clearButton.textContent =
+    t.clearFilters;
 
-  if (editionLabel) {
-    editionLabel.textContent =
-      t.filterEdition;
-  }
 
-  if (conditionLabel) {
-    conditionLabel.textContent =
-      t.filterCondition;
-  }
-
-  if (sizeLabel) {
-    sizeLabel.textContent =
-      t.filterSize;
-  }
-
-  if (clearButton) {
-
-    clearButton.textContent =
-      t.clearFilters;
-
-    clearButton.classList.toggle(
-      "visible",
-      hasActiveFilters()
-    );
-  }
+  clearButton.classList.toggle(
+    "visible",
+    hasActiveFilters()
+  );
 
 
   document
@@ -1020,6 +984,7 @@ function updateFilterInterface() {
 
         const value =
           button.dataset.value;
+
 
         button.classList.toggle(
           "active",
@@ -1036,45 +1001,28 @@ function updateFilterInterface() {
 
 
 /* =========================================================
-   SORT ACTION
+   SORT UI
 ========================================================= */
 
 function changeSort(value) {
 
-  if (
-    !VALID_SORTS.includes(value)
-  ) {
-
-    value =
-      "default";
-  }
-
-
   currentSort =
-    value;
+    VALID_SORTS.includes(value)
+      ? value
+      : "default";
+
 
   localStorage.setItem(
     "locan_sort",
     currentSort
   );
 
+
   renderGrid();
 }
 
 
-/* =========================================================
-   SORT INTERFACE
-========================================================= */
-
 function updateSortInterface() {
-
-  const t =
-    translations[currentLang];
-
-  const label =
-    document.getElementById(
-      "sort-label"
-    );
 
   const select =
     document.getElementById(
@@ -1082,18 +1030,21 @@ function updateSortInterface() {
     );
 
 
-  if (!select) {
-    return;
-  }
+  const label =
+    document.getElementById(
+      "sort-label"
+    );
 
 
-  if (label) {
-    label.textContent =
-      t.sortLabel;
-  }
+  const t =
+    translations[currentLang];
 
 
-  const optionMap = {
+  label.textContent =
+    t.sortLabel;
+
+
+  const names = {
 
     default:
       t.sortDefault,
@@ -1118,22 +1069,13 @@ function updateSortInterface() {
   };
 
 
-  Array
-    .from(select.options)
+  [...select.options]
     .forEach(
       option => {
 
-        if (
-          optionMap[
-            option.value
-          ]
-        ) {
-
-          option.textContent =
-            optionMap[
-              option.value
-            ];
-        }
+        option.textContent =
+          names[option.value] ||
+          option.textContent;
       }
     );
 
@@ -1144,39 +1086,30 @@ function updateSortInterface() {
 
 
 /* =========================================================
-   TOTAL COUNT
-
-   QUAN TRỌNG:
-   total ở đây chính là số card ĐANG HIỂN THỊ.
+   TOTAL
 ========================================================= */
 
-function updateCollectionCount(
-  visibleCount
-) {
+function updateCollectionCount(count) {
 
   const element =
     document.getElementById(
       "collection-count"
     );
 
+
   if (!element) {
     return;
   }
 
 
-  const t =
-    translations[currentLang];
-
-
   element.textContent =
-    t.total(
-      visibleCount
-    );
+    translations[currentLang]
+      .total(count);
 }
 
 
 /* =========================================================
-   LANGUAGE CHANGE
+   LANGUAGE
 ========================================================= */
 
 function setLanguage(lang) {
@@ -1218,7 +1151,7 @@ function setLanguage(lang) {
 
   document
     .getElementById("btn-vi")
-    ?.classList.toggle(
+    .classList.toggle(
       "active",
       currentLang === "vi"
     );
@@ -1226,7 +1159,7 @@ function setLanguage(lang) {
 
   document
     .getElementById("btn-en")
-    ?.classList.toggle(
+    .classList.toggle(
       "active",
       currentLang === "en"
     );
@@ -1246,6 +1179,7 @@ function setLanguage(lang) {
         const key =
           element.dataset.i18n;
 
+
         if (t[key]) {
 
           element.textContent =
@@ -1264,7 +1198,7 @@ function setLanguage(lang) {
 
 
 /* =========================================================
-   CARD RENDERER
+   CARD
 ========================================================= */
 
 function renderCard(sneaker) {
@@ -1274,33 +1208,35 @@ function renderCard(sneaker) {
       sneaker.title
     );
 
+
   const subtitle =
     getLocalizedText(
       sneaker.subtitle
     );
 
-  const editionType =
+
+  const edition =
     getLocalizedText(
       sneaker.editionType
     );
 
-  const size =
-    sneaker.size || "";
 
-  const image =
-    sneaker.image || "";
-
+  /*
+     IMPORTANT:
+     Use ./shoe.html so GitHub Pages stays inside
+     /sneaker-room/
+  */
 
   const detailURL =
-    `shoe.html?id=${encodeURIComponent(sneaker.id)}` +
+    `./shoe.html?id=${encodeURIComponent(sneaker.id)}` +
     `&lang=${encodeURIComponent(currentLang)}`;
 
 
-  const badgeHTML =
-    editionType
+  const badge =
+    edition
       ? `
         <span class="badge">
-          ${escapeHTML(editionType)}
+          ${escapeHTML(edition)}
         </span>
       `
       : `
@@ -1322,7 +1258,7 @@ function renderCard(sneaker) {
         <div class="card-img-wrapper">
 
           <img
-            src="${escapeHTML(image)}"
+            src="${escapeHTML(sneaker.image || "")}"
             alt="${escapeHTML(title)}"
             loading="lazy"
             decoding="async"
@@ -1343,10 +1279,10 @@ function renderCard(sneaker) {
 
           <div class="card-meta">
 
-            ${badgeHTML}
+            ${badge}
 
             <span class="size">
-              ${escapeHTML(size)}
+              ${escapeHTML(sneaker.size || "")}
             </span>
 
           </div>
@@ -1361,7 +1297,7 @@ function renderCard(sneaker) {
 
 
 /* =========================================================
-   GRID RENDERER
+   RENDER
 ========================================================= */
 
 function renderGrid() {
@@ -1370,6 +1306,7 @@ function renderGrid() {
     document.getElementById(
       "sneaker-grid"
     );
+
 
   if (!grid) {
     return;
@@ -1393,15 +1330,11 @@ function renderGrid() {
   }
 
 
-  /* FILTER */
-
   const filtered =
     filterSneakers(
       sneakers
     );
 
-
-  /* SORT */
 
   const sorted =
     sortSneakers(
@@ -1409,14 +1342,14 @@ function renderGrid() {
     );
 
 
-  /* TOTAL = CURRENTLY VISIBLE */
+  /*
+     TOTAL = NUMBER CURRENTLY DISPLAYED
+  */
 
   updateCollectionCount(
     sorted.length
   );
 
-
-  /* EMPTY RESULT */
 
   if (
     sorted.length === 0
@@ -1425,9 +1358,8 @@ function renderGrid() {
     grid.innerHTML = `
       <div class="collection-message">
         ${escapeHTML(
-          translations[
-            currentLang
-          ].noResults
+          translations[currentLang]
+            .noResults
         )}
       </div>
     `;
@@ -1436,22 +1368,15 @@ function renderGrid() {
   }
 
 
-  /* CARDS */
-
   grid.innerHTML =
     sorted
-      .map(
-        sneaker =>
-          renderCard(
-            sneaker
-          )
-      )
+      .map(renderCard)
       .join("");
 }
 
 
 /* =========================================================
-   INITIALIZE
+   START
 ========================================================= */
 
 document.addEventListener(
