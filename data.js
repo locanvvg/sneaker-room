@@ -8,6 +8,7 @@ const sneakersData = [
     sku: "961539 (Serial: ES007436)",
     colorway: "Black/Gym Red-White",
     retailPrice: "N/A (PE Exclusive)",
+    retailPriceEn: "N/A (PE Exclusive)",
     releaseDate: "12/2019",
     editionType: "PE Sample",
     condition: "Deadstock (Brand New)",
@@ -16,9 +17,11 @@ const sneakersData = [
     image: "jordan1_pe_bloodline_friendsandfamily_sample.png",
     badge: "Sample PE",
     shortDesc: "Phiên bản giới hạn Friends & Family Sample, sở hữu chi tiết thiết kế độc bản.",
+    shortDescEn: "Limited Friends & Family Sample edition featuring unique design details.",
     story: "<p>Nếu phiên bản thương mại Air Jordan 1 'Bloodline' trắng/đen/đỏ ra mắt vào dịp Black Friday 2019 vốn rất quen thuộc với giới mộ điệu, thì tác phẩm này lại mang một thân phận hoàn toàn khác biệt.</p><p>Đặc điểm ăn tiền tạo nên giá trị sưu tầm độc bản của dòng PE chính thức nằm ở việc chỉ có 93 đôi được sản xuất trên toàn cầu dành riêng cho nội bộ.</p><p>Tuy nhiên, tác phẩm hiện đang ngự trị trong bộ sưu tập cá nhân của Lộc An lại mang một ý nghĩa cao hơn thế: đây là một đôi Sample nguyên bản độc nhất vô nhị từ nhà máy.</p>",
     storyEn: "<p>While the commercial 'Bloodline' release from Black Friday 2019 is widely known, this piece holds an entirely different lineage.</p><p>The true rarity lies in its strict production run of only 93 pairs worldwide, allocated exclusively for friends and family.</p><p>Above all, the piece preserved in Lộc An's archive holds even greater historical significance: an ultra-rare factory sample pair.</p>",
-    exhibitionNote: "Tác phẩm thuộc phiên bản Player Exclusive kết hợp dạng bản mẫu thử nghiệm từ nhà máy, với số lượng cực kỳ giới hạn trên toàn cầu."
+    exhibitionNote: "Tác phẩm thuộc phiên bản Player Exclusive kết hợp dạng bản mẫu thử nghiệm từ nhà máy (Factory Sample), với số lượng cực kỳ giới hạn trên toàn cầu dành riêng cho nội bộ thương hiệu.",
+    exhibitionNoteEn: "This piece belongs to an ultra-rare hybrid Player Exclusive and factory sample edition, strictly limited worldwide for brand insiders."
   },
   {
     id: "jordan-1-quai54-ff",
@@ -29,6 +32,7 @@ const sneakersData = [
     sku: "MNJDLS 262 767119 XC",
     colorway: "Black/Italy Blue-Black-University Red",
     retailPrice: "N/A",
+    retailPriceEn: "N/A",
     releaseDate: "07/01/2017",
     editionType: "F&F",
     condition: "Deadstock (Brand New)",
@@ -37,9 +41,11 @@ const sneakersData = [
     image: "jordan_quai54_friendsandfamily_sample.png",
     badge: "F&F EXCLUSIVE",
     shortDesc: "Phiên bản Friends & Family cực hiếm dành riêng cho giải đấu bóng rổ Paris.",
+    shortDescEn: "Ultra-rare Friends & Family edition dedicated to the Paris streetball tournament.",
     story: "<p>Được thiết kế độc quyền cho giải đấu bóng rổ đường phố danh giá Quai 54 tại Paris, phiên bản này không bao giờ được phát hành thương mại rộng rãi.</p><p>Sự kết hợp màu sắc biểu tượng đại diện cho tinh thần thể thao đỉnh cao và văn hóa sát mặt đất.</p>",
-    storyEn: "<p>Designed exclusively for the prestigious Quai 54 streetball tournament in Paris, this version was never released to the general public.</p>",
-    exhibitionNote: "Phiên bản đặc biệt giới hạn cho khách mời và vận động viên tại giải đấu Quai 54."
+    storyEn: "<p>Designed exclusively for the prestigious Quai 54 streetball tournament in Paris, this version was never released to the general public.</p><p>The iconic colorway represents the pinnacle of sporting spirit and street culture.</p>",
+    exhibitionNote: "Tác phẩm thuộc phiên bản đặc biệt (F&F). Các phiên bản dạng này (như Promo Sample, Player Exclusive hoặc Friends & Family) chỉ được sản xuất giới hạn để dành riêng cho vận động viên, người thân hoặc nội bộ thương hiệu. Do không được phát hành thương mại tại các cửa hàng bán lẻ, tác phẩm không có giá niêm yết gốc (Retail Price: N/A) và sở hữu giá trị sưu tầm đặc biệt trên thị trường quốc tế.",
+    exhibitionNoteEn: "This piece belongs to a special Friends & Family (F&F) edition. Such pairs (like Promo Samples, Player Exclusives, or F&F) were strictly produced in limited numbers for athletes, relatives, or brand personnel. Not released commercially at retail, it carries no official retail price (Retail Price: N/A) and holds exceptional collectible value globally."
   },
   {
     id: "sbdunk-yutohorigome-matcha",
@@ -50,6 +56,7 @@ const sneakersData = [
     sku: "FN1288-200",
     colorway: "Sail/Asparagus-Malachite",
     retailPrice: "$130 USD",
+    retailPriceEn: "$130 USD",
     releaseDate: "08/29/2023",
     editionType: "Signed Edition",
     condition: "Deadstock (Brand New)",
@@ -58,9 +65,11 @@ const sneakersData = [
     image: "sbdunk_yutohorigome_matcha.png",
     badge: "SIGNED EDITION",
     shortDesc: "Phiên bản chữ ký trực tiếp từ huyền thoại trượt ván Olympic Yuto Horigome.",
+    shortDescEn: "Directly signed edition from Olympic skateboarding legend Yuto Horigome.",
     story: "<p>Đánh dấu cột mốc lịch sử của skateboard tại Thế vận hội, phiên bản kết hợp cùng Yuto Horigome mang phối màu lấy cảm hứng từ trà xanh Matcha tinh tế.</p><p>Đôi giày trong kho lưu trữ sở hữu chữ ký tay trực tiếp của vận động viên.</p>",
-    storyEn: "<p>Marking a historic milestone for Olympic skateboarding, this collaboration with Yuto Horigome features clean matcha-inspired tones.</p>",
-    exhibitionNote: "Sản phẩm có chữ ký xác thực trực tiếp từ Yuto Horigome."
+    storyEn: "<p>Marking a historic milestone for Olympic skateboarding, this collaboration with Yuto Horigome features clean matcha-inspired tones.</p><p>The archive pair features the athlete's direct hand-signed signature.</p>",
+    exhibitionNote: "Sản phẩm có chữ ký xác thực trực tiếp từ Yuto Horigome.",
+    exhibitionNoteEn: "This product features verified direct autograph from Yuto Horigome."
   },
   {
     id: "offwhite-jordan-1-unc",
@@ -71,6 +80,7 @@ const sneakersData = [
     sku: "AQ0818-148",
     colorway: "White/Dark Powder Blue-Cone",
     retailPrice: "$190 USD",
+    retailPriceEn: "$190 USD",
     releaseDate: "06/19/2018",
     editionType: "Archive Edition",
     condition: "Deadstock (Brand New)",
@@ -79,8 +89,10 @@ const sneakersData = [
     image: "jordan1_vaa_alaska.png",
     badge: "ARCHIVE EDITION",
     shortDesc: "Phiên bản đặc biệt từ quỹ lưu trữ nghệ thuật chính thức của Virgil Abloh.",
+    shortDescEn: "Special piece from Virgil Abloh's official artistic archive fund.",
     story: "<p>Tác phẩm kinh điển mang ngôn ngữ thiết kế deconstructed đặc trưng của Virgil Abloh, tri ân ngôi trường đại học alma mater UNC của Michael Jordan.</p>",
     storyEn: "<p>A quintessential piece embodying Virgil Abloh's signature deconstructed design language, paying homage to Michael Jordan's alma mater.</p>",
-    exhibitionNote: "Tác phẩm nghệ thuật mang tính biểu tượng trong kỷ nguyên thiết kế hiện đại."
+    exhibitionNote: "Tác phẩm nghệ thuật mang tính biểu tượng trong kỷ nguyên thiết kế hiện đại.",
+    exhibitionNoteEn: "An iconic art piece of the modern design era."
   }
 ];
