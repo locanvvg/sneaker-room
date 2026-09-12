@@ -2,11 +2,10 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Lộc An Vault - Secure Archive</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* CSS RIÊNG CHO HIỆU ỨNG KÉT SẮT VAULT DIAL */
     body {
       margin: 0;
       padding: 0;
@@ -14,6 +13,7 @@
       color: #fff;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       overflow-x: hidden;
+      touch-action: pan-y;
     }
 
     .vault-container {
@@ -28,56 +28,53 @@
 
     .vault-header {
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       z-index: 2;
     }
 
     .vault-header h1 {
-      font-size: 2.2rem;
-      letter-spacing: 4px;
-      margin: 0 0 8px 0;
+      font-size: 1.8rem;
+      letter-spacing: 3px;
+      margin: 0 0 5px 0;
       color: #fff;
       text-transform: uppercase;
     }
 
     .vault-header p {
       color: #777;
-      font-size: 0.85rem;
+      font-size: 0.75rem;
       letter-spacing: 2px;
       margin: 0;
     }
 
-    /* MÔ HÌNH BÁNH XE KÉT SẮT (SAFE DIAL) */
     .safe-dial-container {
       position: relative;
-      width: 280px;
-      height: 280px;
-      margin: 20px auto 40px auto;
+      width: 240px;
+      height: 240px;
+      margin: 10px auto 25px auto;
       display: flex;
       align-items: center;
       justify-content: center;
       z-index: 2;
     }
 
-    /* Vòng tròn định vị cố định bên ngoài */
     .dial-ring-outer {
       position: absolute;
       width: 100%;
       height: 100%;
       border-radius: 50%;
       border: 2px dashed rgba(255, 204, 0, 0.3);
-      box-shadow: 0 0 30px rgba(0,0,0,0.8) inset;
+      box-shadow: 0 0 25px rgba(0,0,0,0.8) inset;
       pointer-events: none;
     }
 
-    /* Vành kim loại có thể xoay */
     .safe-dial {
-      width: 220px;
-      height: 220px;
+      width: 190px;
+      height: 190px;
       background: radial-gradient(circle at 30% 30%, #2c2c30 0%, #121215 70%, #08080a 100%);
       border-radius: 50%;
       border: 4px solid #3a3a40;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.9), 
+      box-shadow: 0 8px 25px rgba(0,0,0,0.9), 
                   inset 0 2px 5px rgba(255,255,255,0.15),
                   inset 0 -4px 8px rgba(0,0,0,0.8);
       position: relative;
@@ -85,18 +82,17 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: box-shadow 0.2s ease;
       user-select: none;
+      touch-action: none;
     }
 
     .safe-dial:active {
       cursor: grabbing;
     }
 
-    /* Tâm bánh xe két sắt */
     .dial-center-cap {
-      width: 80px;
-      height: 80px;
+      width: 70px;
+      height: 70px;
       background: linear-gradient(135deg, #222 0%, #111 100%);
       border-radius: 50%;
       border: 2px solid #444;
@@ -105,80 +101,78 @@
       align-items: center;
       justify-content: center;
       box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+      pointer-events: none;
     }
 
     .dial-center-cap span {
-      font-size: 0.65rem;
+      font-size: 0.6rem;
       color: #777;
       letter-spacing: 1px;
     }
 
     .dial-center-cap strong {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: #ffcc00;
       letter-spacing: 1px;
     }
 
-    /* Vạch chỉ hướng khóa ở đỉnh (Top Marker) */
     .dial-marker {
       position: absolute;
-      top: -12px;
+      top: -10px;
       left: 50%;
       transform: translateX(-50%);
       width: 0;
       height: 0;
-      border-left: 8px solid transparent;
-      border-right: 8px solid transparent;
-      border-bottom: 14px solid #ffcc00;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-bottom: 12px solid #ffcc00;
       z-index: 10;
       filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
     }
 
-    /* Gạch chia độ trên vành xoay */
     .dial-notch {
       position: absolute;
       width: 4px;
-      height: 12px;
+      height: 10px;
       background: #555;
-      top: 6px;
+      top: 5px;
       left: calc(50% - 2px);
-      transform-origin: 50% 104px;
+      transform-origin: 50% 90px;
+      pointer-events: none;
     }
 
-    /* KHU VỰC HIỂN THỊ DANH MỤC ĐANG CHỌN (VAULT WING DISPLAY) */
     .vault-wing-display {
       width: 100%;
-      max-width: 400px;
+      max-width: 360px;
       background: #141417;
       border: 1px solid #2a2a30;
-      border-radius: 14px;
-      padding: 20px;
+      border-radius: 12px;
+      padding: 15px;
       text-align: center;
       box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-      transition: all 0.3s ease;
       z-index: 2;
     }
 
     .vault-wing-preview {
       width: 100%;
-      height: 180px;
+      height: 160px;
       border-radius: 8px;
       object-fit: cover;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
       background: #1a1a1f;
       border: 1px solid #333;
     }
 
     .vault-wing-info h3 {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       margin: 0 0 5px 0;
       letter-spacing: 1px;
     }
 
-    .vault-wing-info .status {
-      font-size: 0.8rem;
+    .status {
+      font-size: 0.75rem;
       letter-spacing: 2px;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
       display: inline-block;
       padding: 4px 10px;
       border-radius: 4px;
@@ -196,7 +190,6 @@
       border: 1px solid rgba(231, 76, 60, 0.3);
     }
 
-    /* Nút kích hoạt mở cửa Vault */
     .vault-action-btn {
       display: block;
       width: 100%;
@@ -208,14 +201,9 @@
       border-radius: 8px;
       letter-spacing: 1px;
       text-transform: uppercase;
-      transition: background 0.2s, transform 0.2s;
       border: none;
       cursor: pointer;
-    }
-
-    .vault-action-btn:hover {
-      background: #ffdb4d;
-      transform: translateY(-2px);
+      box-sizing: border-box;
     }
 
     .vault-action-btn.disabled {
@@ -226,10 +214,10 @@
     }
 
     .vault-instruction {
-      margin-top: 25px;
-      font-size: 0.8rem;
+      margin-top: 20px;
+      font-size: 0.75rem;
       color: #666;
-      letter-spacing: 1.5px;
+      letter-spacing: 1px;
       text-align: center;
       z-index: 2;
     }
@@ -243,20 +231,16 @@
       <p>SECURE DIGITAL ARCHIVE & SYSTEM</p>
     </div>
 
-    <!-- Bánh xe két sắt cơ học -->
     <div class="safe-dial-container">
       <div class="dial-marker"></div>
       <div class="dial-ring-outer"></div>
       
-      <!-- Vành xoay két sắt -->
       <div id="safeDial" class="safe-dial">
-        <!-- Các vạch chia độ trên bánh xe -->
         <script>
           for (let i = 0; i < 12; i++) {
             document.write(`<div class="dial-notch" style="transform: rotate(${i * 30}deg)"></div>`);
           }
         </script>
-        
         <div class="dial-center-cap">
           <span>ZONE</span>
           <strong id="zoneIndicator">01</strong>
@@ -264,7 +248,6 @@
       </div>
     </div>
 
-    <!-- Khu vực hiển thị ngăn tủ Vault tương ứng với vị trí xoay -->
     <div id="vaultWingDisplay" class="vault-wing-display">
       <img id="wingImg" class="vault-wing-preview" src="jordan1_pe_bloodline_friendsandfamily_sample.png" alt="Vault Wing">
       <div class="vault-wing-info">
@@ -275,12 +258,11 @@
     </div>
 
     <div class="vault-instruction">
-      XOAY BÁNH XE KÉT SẮT ĐỂ CHUYỂN ĐỔI KHU VỰC LƯU TRỮ
+      XOAY BÁNH XE HOẶC VUỐT ĐỂ CHUYỂN KHU VỰC
     </div>
   </main>
 
   <script>
-    // Dữ liệu các ngăn tủ trong Vault (đã cập nhật bỏ Vintage Audio, đổi tên Lego)
     const vaultWings = [
       {
         id: 1,
@@ -297,7 +279,7 @@
         title: "Lego",
         status: "locked",
         statusText: "[ LOCKED / COMING SOON ]",
-        image: "", // Để trống sẽ hiện khung tối
+        image: "",
         link: "#",
         btnText: "ĐANG KHÓA BẢO MẬT",
         angle: 120
@@ -314,11 +296,10 @@
       }
     ];
 
-    let currentRotation = 0;
+    let currentDialAngle = 0;
     let currentIndex = 0;
     const dial = document.getElementById('safeDial');
     const zoneIndicator = document.getElementById('zoneIndicator');
-    
     const wingImg = document.getElementById('wingImg');
     const wingTitle = document.getElementById('wingTitle');
     const wingStatus = document.getElementById('wingStatus');
@@ -345,35 +326,31 @@
         wingImg.src = wing.image;
         wingImg.style.display = 'block';
       } else {
-        wingImg.style.display = 'none'; // Ẩn ảnh nếu chưa có dữ liệu hình ảnh
+        wingImg.style.display = 'none';
       }
     }
 
-    // Xử lý tương tác kéo xoay bánh xe két sắt bằng chuột / cảm ứng
-    let isDragging = false;
+    // Xử lý sự kiện chung cho cả Chuột (Mouse) và Cảm ứng điện thoại (Touch)
+    let isInteracting = false;
     let startAngle = 0;
-    let currentDialAngle = 0;
 
-    dial.addEventListener('mousedown', (e) => {
-      isDragging = true;
+    function getAngle(clientX, clientY) {
       const rect = dial.getBoundingClientRect();
       const centerx = rect.left + rect.width / 2;
       const centery = rect.top + rect.height / 2;
-      startAngle = Math.atan2(e.clientY - centery, e.clientX - centerx) * (180 / Math.PI) - currentDialAngle;
-      e.preventDefault();
-    });
+      return Math.atan2(clientY - centery, clientX - centerx) * (180 / Math.PI);
+    }
 
-    window.addEventListener('mousemove', (e) => {
-      if (!isDragging) return;
-      const rect = dial.getBoundingClientRect();
-      const centerx = rect.left + rect.width / 2;
-      const centery = rect.top + rect.height / 2;
-      let angle = Math.atan2(e.clientY - centery, e.clientX - centerx) * (180 / Math.PI) - startAngle;
-      
-      currentDialAngle = angle;
+    function startInteraction(clientX, clientY) {
+      isInteracting = true;
+      startAngle = getAngle(clientX, clientY) - currentDialAngle;
+    }
+
+    function moveInteraction(clientX, clientY) {
+      if (!isInteracting) return;
+      currentDialAngle = getAngle(clientX, clientY) - startAngle;
       dial.style.transform = `rotate(${currentDialAngle}deg)`;
 
-      // Tính toán vùng chọn dựa trên góc xoay (chia 360 độ thành 3 phần: mỗi phần 120 độ)
       let normalizedAngle = (currentDialAngle % 360 + 360) % 360;
       if (normalizedAngle >= 300 || normalizedAngle < 60) {
         if (currentIndex !== 0) { currentIndex = 0; updateVaultDisplay(currentIndex); }
@@ -382,21 +359,41 @@
       } else if (normalizedAngle >= 180 && normalizedAngle < 300) {
         if (currentIndex !== 2) { currentIndex = 2; updateVaultDisplay(currentIndex); }
       }
-    });
+    }
 
-    window.addEventListener('mouseup', () => {
-      if (!isDragging) return;
-      isDragging = false;
-      // Tự động snap (hít) về đúng góc chuẩn của mục gần nhất
+    function endInteraction() {
+      if (!isInteracting) return;
+      isInteracting = false;
       currentDialAngle = vaultWings[currentIndex].angle;
       dial.style.transition = 'transform 0.4s cubic-bezier(0.15, 0.85, 0.35, 1.2)';
       dial.style.transform = `rotate(${currentDialAngle}deg)`;
       setTimeout(() => { dial.style.transition = 'none'; }, 400);
-    });
+    }
 
-    // Hỗ trợ cuộn chuột để xoay bánh xe nhanh
+    // Đăng ký Mouse Events
+    dial.addEventListener('mousedown', (e) => { startInteraction(e.clientX, e.clientY); e.preventDefault(); });
+    window.addEventListener('mousemove', (e) => { moveInteraction(e.clientX, e.clientY); });
+    window.addEventListener('mouseup', () => { endInteraction(); });
+
+    // Đăng ký Touch Events cho Điện thoại
+    dial.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) {
+        startInteraction(e.touches[0].clientX, e.touches[0].clientY);
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    window.addEventListener('touchmove', (e) => {
+      if (isInteracting && e.touches.length === 1) {
+        moveInteraction(e.touches[0].clientX, e.touches[0].clientY);
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    window.addEventListener('touchend', () => { endInteraction(); });
+
+    // Hỗ trợ cuộn chuột
     window.addEventListener('wheel', (e) => {
-      e.preventDefault();
       if (e.deltaY > 0) {
         currentIndex = (currentIndex + 1) % vaultWings.length;
       } else {
@@ -409,7 +406,6 @@
       updateVaultDisplay(currentIndex);
     }, { passive: false });
 
-    // Khởi tạo hiển thị ban đầu
     updateVaultDisplay(0);
   </script>
 </body>
