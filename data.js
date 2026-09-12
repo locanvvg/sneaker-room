@@ -73,7 +73,7 @@ const sneakers = [
     editionType: "Archive Special Edition",
     condition: "Deadstock (Brand New)",
     size: "10 US",
-    image: "virgil_abloh_alaska.png",
+    image: "jordan1_vaa_alaska.png",
     story: `
       <p>Mang trong mình hơi thở và di sản tư duy thiết kế vĩ đại của cố thiên tài Virgil Abloh, phiên bản <b>Virgil Abloh Archive x Air Jordan 1 Retro High OG SP 'Alaska'</b> chính thức ra mắt vào ngày 3 tháng 4 năm 2026. Đôi giày là sự hồi sinh và tái bản mang tầm lịch sử dựa trên phối màu "White" (Euro Exclusive) từng làm chấn động toàn cầu trong bộ sưu tập biểu tượng "The Ten" trước đây.</p>
 
