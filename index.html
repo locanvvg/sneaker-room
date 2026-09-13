@@ -3,11 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <meta
     name="description"
@@ -19,9 +15,7 @@
     content="#0d0d0d"
   >
 
-  <title>
-    Lộc An Sneaker Collection
-  </title>
+  <title>Lộc An Sneaker Collection</title>
 
   <link
     rel="icon"
@@ -41,12 +35,12 @@
 
   <link
     rel="stylesheet"
-    href="./style.css?v=20260912-search-notice-1"
+    href="./style.css?v=20260912-final-search"
   >
 
   <link
     rel="stylesheet"
-    href="./collection-menu.css?v=20260912-search-notice-1"
+    href="./collection-menu.css?v=20260912-final-search"
   >
 </head>
 
@@ -54,43 +48,65 @@
 
   <div class="container">
 
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
     <header class="home-header">
 
-      <div class="lang-switcher corner-lang">
+      <div class="header-corner-tools">
 
-        <button
-          type="button"
-          id="btn-vi"
-          class="lang-btn active"
-          onclick="setLanguage('vi')"
+        <a
+          href="./about.html"
+          class="about-corner-link"
         >
-          VI
-        </button>
+          ABOUT
+        </a>
 
-        <button
-          type="button"
-          id="btn-en"
-          class="lang-btn"
-          onclick="setLanguage('en')"
-        >
-          EN
-        </button>
+        <div class="lang-switcher">
+
+          <button
+            type="button"
+            id="btn-vi"
+            class="lang-btn active"
+            onclick="setLanguage('vi')"
+          >
+            VI
+          </button>
+
+          <button
+            type="button"
+            id="btn-en"
+            class="lang-btn"
+            onclick="setLanguage('en')"
+          >
+            EN
+          </button>
+
+        </div>
 
       </div>
+
 
       <h1 data-i18n="mainTitle">
         LỘC AN SNEAKER COLLECTION
       </h1>
 
+
       <p data-i18n="mainSubtitle">
         Không gian lưu trữ &amp; Bảo tàng Sneaker Kỹ thuật số
       </p>
 
-      <nav class="museum-nav">
+
+      <nav
+        class="museum-nav"
+        aria-label="Collection navigation"
+      >
 
         <a
           href="./index.html"
           class="museum-nav-link active"
+          aria-current="page"
         >
           SNEAKERS
         </a>
@@ -109,39 +125,24 @@
           SNEAKER MASK
         </a>
 
-        <a
-          href="./about.html"
-          class="museum-nav-link"
-        >
-          ABOUT
-        </a>
-
       </nav>
 
     </header>
 
 
-    <!-- =================================================
-         SEARCH ARCHIVE
-    ================================================== -->
+    <!-- =====================================================
+         SEARCH
+    ====================================================== -->
 
     <section class="archive-search-panel">
 
-      <div class="archive-search-header">
-
-        <label
-          id="archive-search-label"
-          for="archive-search-input"
-          class="archive-search-label"
-        >
-          TÌM KIẾM ARCHIVE
-        </label>
-
-        <span class="archive-search-hint">
-          NAME · SKU · COLORWAY · EDITION
-        </span>
-
-      </div>
+      <label
+        id="archive-search-label"
+        for="archive-search-input"
+        class="archive-search-label"
+      >
+        TÌM KIẾM
+      </label>
 
 
       <div class="archive-search-box">
@@ -153,23 +154,25 @@
           ⌕
         </span>
 
+
         <input
           id="archive-search-input"
           class="archive-search-input"
           type="search"
           autocomplete="off"
           spellcheck="false"
-          placeholder="Tìm theo tên, SKU, colorway, collaboration..."
-          aria-label="Search sneaker archive"
+          placeholder="Tìm kiếm..."
+          aria-label="Tìm kiếm bộ sưu tập"
           oninput="handleArchiveSearch(this.value)"
           onkeydown="handleArchiveSearchKeydown(event)"
         >
+
 
         <button
           type="button"
           id="archive-search-clear"
           class="archive-search-clear"
-          aria-label="Clear search"
+          aria-label="Xóa tìm kiếm"
           onclick="clearArchiveSearch()"
         >
           ×
@@ -180,9 +183,9 @@
     </section>
 
 
-    <!-- =================================================
+    <!-- =====================================================
          SORT
-    ================================================== -->
+    ====================================================== -->
 
     <section class="collection-toolbar">
 
@@ -194,6 +197,7 @@
         >
           SẮP XẾP
         </label>
+
 
         <select
           id="sort-select"
@@ -235,9 +239,9 @@
     </section>
 
 
-    <!-- =================================================
-         FILTER
-    ================================================== -->
+    <!-- =====================================================
+         FILTERS
+    ====================================================== -->
 
     <section class="filter-panel">
 
@@ -249,6 +253,7 @@
         >
           BỘ LỌC BỘ SƯU TẬP
         </span>
+
 
         <button
           type="button"
@@ -273,6 +278,7 @@
           PHÂN KHÚC
         </div>
 
+
         <div class="filter-chips">
 
           <button
@@ -285,6 +291,7 @@
             PE
           </button>
 
+
           <button
             type="button"
             class="filter-chip"
@@ -294,6 +301,7 @@
           >
             SAMPLE
           </button>
+
 
           <button
             type="button"
@@ -305,6 +313,7 @@
             F&amp;F
           </button>
 
+
           <button
             type="button"
             class="filter-chip"
@@ -314,6 +323,7 @@
           >
             SIGNATURE SIGNED
           </button>
+
 
           <button
             type="button"
@@ -341,6 +351,7 @@
           TÌNH TRẠNG
         </div>
 
+
         <div class="filter-chips">
 
           <button
@@ -352,6 +363,7 @@
           >
             DEADSTOCK
           </button>
+
 
           <button
             type="button"
@@ -379,6 +391,7 @@
           KÍCH CỠ
         </div>
 
+
         <div
           id="size-filter-chips"
           class="filter-chips"
@@ -389,9 +402,9 @@
     </section>
 
 
-    <!-- =================================================
-         COUNT
-    ================================================== -->
+    <!-- =====================================================
+         RESULT COUNT
+    ====================================================== -->
 
     <div
       id="collection-count"
@@ -401,9 +414,9 @@
     </div>
 
 
-    <!-- =================================================
-         SNEAKER GRID
-    ================================================== -->
+    <!-- =====================================================
+         GRID
+    ====================================================== -->
 
     <main>
 
@@ -427,27 +440,34 @@
   </div>
 
 
-  <!-- =================================================
-       DATA + MAIN JS
-  ================================================== -->
+  <!-- =====================================================
+       DATA + EXISTING WEBSITE LOGIC
+  ====================================================== -->
 
   <script
-    src="./data.js?v=20260912-search-notice-1"
+    src="./data.js?v=20260912-final-search"
   ></script>
 
   <script
-    src="./main.js?v=20260912-search-notice-1"
+    src="./main.js?v=20260912-final-search"
   ></script>
 
 
-  <!-- =================================================
+  <!-- =====================================================
        SEARCH EXTENSION
-  ================================================== -->
+
+       Không thay main.js.
+       Search được nối vào filter hiện tại.
+  ====================================================== -->
 
   <script>
 
     let archiveSearchQuery = "";
 
+
+    /* =====================================================
+       TEXT NORMALIZATION
+    ====================================================== */
 
     function normalizeArchiveSearchText(value) {
 
@@ -470,7 +490,9 @@
     function flattenArchiveSearchValue(value) {
 
       if (
-        value == null
+        value === null
+        ||
+        value === undefined
       ) {
         return "";
       }
@@ -519,9 +541,13 @@
     }
 
 
+    /* =====================================================
+       BUILD SEARCHABLE TEXT FOR EACH SNEAKER
+    ====================================================== */
+
     function getSneakerArchiveSearchText(sneaker) {
 
-      const fields = [
+      const searchableFields = [
 
         sneaker.title,
 
@@ -554,10 +580,12 @@
 
       return normalizeArchiveSearchText(
 
-        fields
+        searchableFields
+
           .map(
             flattenArchiveSearchValue
           )
+
           .join(" ")
 
       );
@@ -566,7 +594,7 @@
 
 
     /* =====================================================
-       EXTEND EXISTING FILTER SYSTEM
+       EXTEND EXISTING FILTER FUNCTION
     ====================================================== */
 
     const originalFilterSneakers =
@@ -576,7 +604,12 @@
     filterSneakers =
       function (items) {
 
-        const filtered =
+        /*
+          First run all existing filters:
+          Edition / Condition / Size
+        */
+
+        const filteredByExistingFilters =
           originalFilterSneakers(
             items
           );
@@ -588,18 +621,35 @@
           );
 
 
+        /*
+          Empty search:
+          return the normal filter results.
+        */
+
         if (!query) {
-          return filtered;
+
+          return filteredByExistingFilters;
+
         }
 
 
-        const terms =
+        /*
+          Multiple words all have to match.
+
+          Example:
+          "jordan sample"
+          requires both "jordan" and "sample".
+        */
+
+        const searchTerms =
           query
+
             .split(/\s+/)
+
             .filter(Boolean);
 
 
-        return filtered.filter(
+        return filteredByExistingFilters.filter(
           sneaker => {
 
             const searchableText =
@@ -608,7 +658,7 @@
               );
 
 
-            return terms.every(
+            return searchTerms.every(
               term =>
                 searchableText.includes(
                   term
@@ -622,8 +672,11 @@
 
 
     /* =====================================================
-       SEARCH INPUT
+       SEARCH EVENTS
     ====================================================== */
+
+    let archiveSearchTimer = null;
+
 
     function handleArchiveSearch(value) {
 
@@ -633,7 +686,26 @@
 
       updateArchiveSearchUI();
 
-      renderGrid();
+
+      /*
+        Very small debounce so searching remains smooth
+        when the collection grows to ~200 pairs.
+      */
+
+      clearTimeout(
+        archiveSearchTimer
+      );
+
+
+      archiveSearchTimer =
+        setTimeout(
+          () => {
+
+            renderGrid();
+
+          },
+          70
+        );
 
     }
 
@@ -642,6 +714,11 @@
 
       archiveSearchQuery =
         "";
+
+
+      clearTimeout(
+        archiveSearchTimer
+      );
 
 
       const input =
@@ -688,25 +765,26 @@
         );
 
 
-      if (clearButton) {
-
-        clearButton.classList.toggle(
-
-          "visible",
-
-          archiveSearchQuery
-            .trim()
-            .length > 0
-
-        );
-
+      if (!clearButton) {
+        return;
       }
+
+
+      clearButton.classList.toggle(
+
+        "visible",
+
+        archiveSearchQuery
+          .trim()
+          .length > 0
+
+      );
 
     }
 
 
     /* =====================================================
-       VI / EN SEARCH TEXT
+       VI / EN
     ====================================================== */
 
     const originalUpdateStaticText =
@@ -715,6 +793,10 @@
 
     updateStaticText =
       function () {
+
+        /*
+          Preserve all existing translations.
+        */
 
         originalUpdateStaticText();
 
@@ -731,6 +813,12 @@
           );
 
 
+        const clearButton =
+          document.getElementById(
+            "archive-search-clear"
+          );
+
+
         if (
           currentLang === "vi"
         ) {
@@ -738,7 +826,7 @@
           if (label) {
 
             label.textContent =
-              "TÌM KIẾM ARCHIVE";
+              "TÌM KIẾM";
 
           }
 
@@ -746,12 +834,21 @@
           if (input) {
 
             input.placeholder =
-              "Tìm theo tên, SKU, colorway, collaboration...";
-
+              "Tìm kiếm...";
 
             input.setAttribute(
               "aria-label",
-              "Tìm kiếm bộ sưu tập sneaker"
+              "Tìm kiếm bộ sưu tập"
+            );
+
+          }
+
+
+          if (clearButton) {
+
+            clearButton.setAttribute(
+              "aria-label",
+              "Xóa tìm kiếm"
             );
 
           }
@@ -761,7 +858,7 @@
           if (label) {
 
             label.textContent =
-              "SEARCH ARCHIVE";
+              "SEARCH";
 
           }
 
@@ -769,12 +866,21 @@
           if (input) {
 
             input.placeholder =
-              "Search by name, SKU, colorway, collaboration...";
-
+              "Search...";
 
             input.setAttribute(
               "aria-label",
-              "Search sneaker archive"
+              "Search collection"
+            );
+
+          }
+
+
+          if (clearButton) {
+
+            clearButton.setAttribute(
+              "aria-label",
+              "Clear search"
             );
 
           }
@@ -785,7 +891,7 @@
 
 
     /* =====================================================
-       SEARCH RESULT COUNTER
+       RESULT COUNTER
     ====================================================== */
 
     const originalUpdateCollectionCount =
@@ -822,13 +928,13 @@
           sneakers.length;
 
 
-        const hasSearch =
+        const searchIsActive =
           archiveSearchQuery
             .trim()
             .length > 0;
 
 
-        const hasFilters =
+        const filtersAreActive =
 
           activeFilters.edition.size > 0
 
@@ -842,9 +948,9 @@
 
 
         if (
-          hasSearch
+          searchIsActive
           ||
-          hasFilters
+          filtersAreActive
         ) {
 
           element.textContent =
@@ -855,27 +961,29 @@
 
               : `SHOWING: ${count} / ${total} PAIRS`;
 
-        } else {
-
-          originalUpdateCollectionCount(
-            count
-          );
+          return;
 
         }
+
+
+        originalUpdateCollectionCount(
+          count
+        );
 
       };
 
 
+    /* =====================================================
+       INIT
+    ====================================================== */
+
     document.addEventListener(
-
       "DOMContentLoaded",
-
       () => {
 
         updateArchiveSearchUI();
 
       }
-
     );
 
   </script>
