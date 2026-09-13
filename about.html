@@ -2,7 +2,6 @@
 <html lang="vi">
 
 <head>
-
   <meta charset="UTF-8">
 
   <meta
@@ -42,14 +41,13 @@
 
   <link
     rel="stylesheet"
-    href="./style.css?v=20260912-auth1"
+    href="./style.css?v=20260912-about-navfix"
   >
 
   <link
     rel="stylesheet"
-    href="./collection-menu.css?v=20260912-auth1"
+    href="./collection-menu.css?v=20260912-about-navfix"
   >
-
 </head>
 
 
@@ -58,29 +56,48 @@
   <div class="container">
 
 
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
     <header class="about-header">
 
 
-      <div class="lang-switcher corner-lang">
+      <!-- ABOUT + LANGUAGE: TOP RIGHT -->
 
-        <button
-          type="button"
-          id="btn-vi"
-          class="lang-btn active"
-          onclick="setAboutLanguage('vi')"
+      <div class="header-corner-tools">
+
+        <a
+          href="./about.html"
+          class="about-corner-link active"
+          aria-current="page"
         >
-          VI
-        </button>
+          ABOUT
+        </a>
 
 
-        <button
-          type="button"
-          id="btn-en"
-          class="lang-btn"
-          onclick="setAboutLanguage('en')"
-        >
-          EN
-        </button>
+        <div class="lang-switcher">
+
+          <button
+            type="button"
+            id="btn-vi"
+            class="lang-btn active"
+            onclick="setAboutLanguage('vi')"
+          >
+            VI
+          </button>
+
+
+          <button
+            type="button"
+            id="btn-en"
+            class="lang-btn"
+            onclick="setAboutLanguage('en')"
+          >
+            EN
+          </button>
+
+        </div>
 
       </div>
 
@@ -95,7 +112,12 @@
       </h1>
 
 
-      <nav class="museum-nav">
+      <!-- MAIN COLLECTION NAVIGATION -->
+
+      <nav
+        class="museum-nav"
+        aria-label="Collection navigation"
+      >
 
         <a
           href="./index.html"
@@ -120,19 +142,14 @@
           SNEAKER MASK
         </a>
 
-
-        <a
-          href="./about.html"
-          class="museum-nav-link active"
-        >
-          ABOUT
-        </a>
-
       </nav>
-
 
     </header>
 
+
+    <!-- =====================================================
+         ABOUT CONTENT
+    ====================================================== -->
 
     <main class="about-page">
 
@@ -234,9 +251,9 @@
       </section>
 
 
-      <!-- =================================================
+      <!-- =====================================================
            CLASSIFICATION + CONDITION
-      ================================================== -->
+      ====================================================== -->
 
       <section class="archive-principles">
 
@@ -532,7 +549,9 @@
           </p>
 
 
-          <!-- AUTHENTICITY -->
+          <!-- =================================================
+               AUTHENTICITY VI
+          ================================================== -->
 
           <div class="authenticity-section">
 
@@ -566,9 +585,12 @@
             <p class="authenticity-text">
 
               Đối với những hiện vật đặc biệt như
-              <strong>Player Exclusive,
-              Friends &amp; Family,
-              Sample, Signature Signed</strong>
+              <strong>
+                Player Exclusive,
+                Friends &amp; Family,
+                Sample,
+                Signature Signed
+              </strong>
               hoặc các phiên bản có nguồn gốc
               phát hành không thông thường,
               quá trình lưu trữ còn chú trọng đến
@@ -669,7 +691,9 @@
           </p>
 
 
-          <!-- AUTHENTICITY -->
+          <!-- =================================================
+               AUTHENTICITY EN
+          ================================================== -->
 
           <div class="authenticity-section">
 
@@ -703,9 +727,12 @@
             <p class="authenticity-text">
 
               For distinctive artifacts such as
-              <strong>Player Exclusives,
-              Friends &amp; Family editions,
-              Samples, Signature Signed pieces</strong>,
+              <strong>
+                Player Exclusives,
+                Friends &amp; Family editions,
+                Samples,
+                Signature Signed pieces
+              </strong>,
               or releases with unconventional
               distribution histories,
               the archival process also considers
@@ -750,18 +777,19 @@
 
         </article>
 
-
       </section>
 
 
-      <!-- =================================================
+      <!-- =====================================================
            CATALOGUE
-      ================================================== -->
+      ====================================================== -->
 
       <section class="catalogue-section">
 
 
-        <!-- VI -->
+        <!-- =================================================
+             CATALOGUE VI
+        ================================================== -->
 
         <div
           class="lang-panel"
@@ -817,7 +845,9 @@
         </div>
 
 
-        <!-- EN -->
+        <!-- =================================================
+             CATALOGUE EN
+        ================================================== -->
 
         <div
           class="lang-panel"
@@ -873,12 +903,14 @@
 
         </div>
 
-
       </section>
-
 
     </main>
 
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
 
     <footer>
 
@@ -889,9 +921,12 @@
 
     </footer>
 
-
   </div>
 
+
+  <!-- =====================================================
+       ABOUT LANGUAGE LOGIC
+  ====================================================== -->
 
   <script>
 
@@ -930,9 +965,7 @@
     }
 
 
-    function setAboutLanguage(
-      lang
-    ) {
+    function setAboutLanguage(lang) {
 
       aboutLanguage =
         ABOUT_LANGUAGES.includes(
@@ -1022,7 +1055,6 @@
     );
 
   </script>
-
 
 </body>
 
