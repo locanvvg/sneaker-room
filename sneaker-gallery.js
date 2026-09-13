@@ -10,7 +10,6 @@
 
 window.SNEAKER_GALLERIES = {
 
-
   /* =====================================================
      1. JORDAN 1 BLACK BLOODLINE PE SAMPLE
   ===================================================== */
@@ -22,7 +21,6 @@ window.SNEAKER_GALLERIES = {
 
   /* =====================================================
      2. JORDAN 1 QUAI 54 F&F
-
      Ảnh 1 = cover
      Ảnh 2 = detail
   ===================================================== */
@@ -35,14 +33,8 @@ window.SNEAKER_GALLERIES = {
 
   /* =====================================================
      3. NIKE SB DUNK LOW YUTO HORIGOME MATCHA
-
      Ảnh 1 = cover
      Ảnh 2 = detail
-
-     LƯU Ý:
-     Filename thực tế bạn upload hiện tại là:
-     sbdunk_yutohorigome_matcha1.png
-     không có dấu "_" trước số 1.
   ===================================================== */
 
   "nike-sb-dunk-yuto-matcha": [
@@ -93,6 +85,24 @@ window.SNEAKER_GALLERIES = {
 
   "nike-off-white-waffle-racer-white": [
     "pictures/nike_waffle_racer_ow.png"
+  ],
+
+
+  /* =====================================================
+     9. PUMA x ROSÉ SPEEDCAT LEATHER
+  ===================================================== */
+
+  "puma-rose-speedcat-leather-warm-white": [
+    "pictures/puma_rose.png"
+  ],
+
+
+  /* =====================================================
+     10. JORDAN 4 BLACK CEMENT 1999
+  ===================================================== */
+
+  "jordan-4-black-cement-1999": [
+    "pictures/jordan4_bred_1999.png"
   ]
 
 };
