@@ -3,7 +3,11 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <meta
     name="description"
@@ -15,7 +19,9 @@
     content="#0d0d0d"
   >
 
-  <title>Lộc An Sneaker Collection</title>
+  <title>
+    Lộc An Sneaker Collection
+  </title>
 
   <link
     rel="icon"
@@ -35,12 +41,12 @@
 
   <link
     rel="stylesheet"
-    href="./style.css?v=20260913-clean-nav"
+    href="./style.css?v=20260912-search-notice-1"
   >
 
   <link
     rel="stylesheet"
-    href="./collection-menu.css?v=20260913-clean-nav"
+    href="./collection-menu.css?v=20260912-search-notice-1"
   >
 </head>
 
@@ -50,33 +56,25 @@
 
     <header class="home-header">
 
-      <div class="header-corner-tools">
+      <div class="lang-switcher corner-lang">
 
-        <a href="./about.html" class="about-corner-link">
-          ABOUT
-        </a>
+        <button
+          type="button"
+          id="btn-vi"
+          class="lang-btn active"
+          onclick="setLanguage('vi')"
+        >
+          VI
+        </button>
 
-        <div class="lang-switcher">
-
-          <button
-            type="button"
-            id="btn-vi"
-            class="lang-btn active"
-            onclick="setLanguage('vi')"
-          >
-            VI
-          </button>
-
-          <button
-            type="button"
-            id="btn-en"
-            class="lang-btn"
-            onclick="setLanguage('en')"
-          >
-            EN
-          </button>
-
-        </div>
+        <button
+          type="button"
+          id="btn-en"
+          class="lang-btn"
+          onclick="setLanguage('en')"
+        >
+          EN
+        </button>
 
       </div>
 
@@ -88,23 +86,103 @@
         Không gian lưu trữ &amp; Bảo tàng Sneaker Kỹ thuật số
       </p>
 
-      <nav class="museum-nav" aria-label="Collection navigation">
+      <nav class="museum-nav">
 
-        <a href="./index.html" class="museum-nav-link active" aria-current="page">
+        <a
+          href="./index.html"
+          class="museum-nav-link active"
+        >
           SNEAKERS
         </a>
 
-        <a href="./lego.html" class="museum-nav-link">
+        <a
+          href="./lego.html"
+          class="museum-nav-link"
+        >
           LEGO
         </a>
 
-        <a href="./sneaker-mask.html" class="museum-nav-link">
+        <a
+          href="./sneaker-mask.html"
+          class="museum-nav-link"
+        >
           SNEAKER MASK
+        </a>
+
+        <a
+          href="./about.html"
+          class="museum-nav-link"
+        >
+          ABOUT
         </a>
 
       </nav>
 
     </header>
+
+
+    <!-- =================================================
+         SEARCH ARCHIVE
+    ================================================== -->
+
+    <section class="archive-search-panel">
+
+      <div class="archive-search-header">
+
+        <label
+          id="archive-search-label"
+          for="archive-search-input"
+          class="archive-search-label"
+        >
+          TÌM KIẾM ARCHIVE
+        </label>
+
+        <span class="archive-search-hint">
+          NAME · SKU · COLORWAY · EDITION
+        </span>
+
+      </div>
+
+
+      <div class="archive-search-box">
+
+        <span
+          class="archive-search-icon"
+          aria-hidden="true"
+        >
+          ⌕
+        </span>
+
+        <input
+          id="archive-search-input"
+          class="archive-search-input"
+          type="search"
+          autocomplete="off"
+          spellcheck="false"
+          placeholder="Tìm theo tên, SKU, colorway, collaboration..."
+          aria-label="Search sneaker archive"
+          oninput="handleArchiveSearch(this.value)"
+          onkeydown="handleArchiveSearchKeydown(event)"
+        >
+
+        <button
+          type="button"
+          id="archive-search-clear"
+          class="archive-search-clear"
+          aria-label="Clear search"
+          onclick="clearArchiveSearch()"
+        >
+          ×
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =================================================
+         SORT
+    ================================================== -->
 
     <section class="collection-toolbar">
 
@@ -121,18 +199,45 @@
           id="sort-select"
           onchange="changeSort(this.value)"
         >
-          <option value="default">Mặc định</option>
-          <option value="az">A → Z</option>
-          <option value="za">Z → A</option>
-          <option value="date-desc">Ngày phát hành: Mới → Cũ</option>
-          <option value="date-asc">Ngày phát hành: Cũ → Mới</option>
-          <option value="size-asc">Size nhỏ → lớn</option>
-          <option value="size-desc">Size lớn → nhỏ</option>
+
+          <option value="default">
+            Mặc định
+          </option>
+
+          <option value="az">
+            A → Z
+          </option>
+
+          <option value="za">
+            Z → A
+          </option>
+
+          <option value="date-desc">
+            Ngày phát hành: Mới → Cũ
+          </option>
+
+          <option value="date-asc">
+            Ngày phát hành: Cũ → Mới
+          </option>
+
+          <option value="size-asc">
+            Size nhỏ → lớn
+          </option>
+
+          <option value="size-desc">
+            Size lớn → nhỏ
+          </option>
+
         </select>
 
       </div>
 
     </section>
+
+
+    <!-- =================================================
+         FILTER
+    ================================================== -->
 
     <section class="filter-panel">
 
@@ -155,6 +260,9 @@
         </button>
 
       </div>
+
+
+      <!-- EDITION -->
 
       <div class="filter-group">
 
@@ -221,6 +329,9 @@
 
       </div>
 
+
+      <!-- CONDITION -->
+
       <div class="filter-group">
 
         <div
@@ -256,6 +367,9 @@
 
       </div>
 
+
+      <!-- SIZE -->
+
       <div class="filter-group">
 
         <div
@@ -274,12 +388,22 @@
 
     </section>
 
+
+    <!-- =================================================
+         COUNT
+    ================================================== -->
+
     <div
       id="collection-count"
       class="collection-count"
     >
       TỔNG SỐ: 0 ĐÔI
     </div>
+
+
+    <!-- =================================================
+         SNEAKER GRID
+    ================================================== -->
 
     <main>
 
@@ -290,17 +414,471 @@
 
     </main>
 
+
     <footer>
+
       <p>
         &copy; 2026 Lộc An Sneaker Collection.
         All Rights Reserved.
       </p>
+
     </footer>
 
   </div>
 
-  <script src="./data.js?v=20260913-clean-nav"></script>
-  <script src="./main.js?v=20260913-clean-nav"></script>
+
+  <!-- =================================================
+       DATA + MAIN JS
+  ================================================== -->
+
+  <script
+    src="./data.js?v=20260912-search-notice-1"
+  ></script>
+
+  <script
+    src="./main.js?v=20260912-search-notice-1"
+  ></script>
+
+
+  <!-- =================================================
+       SEARCH EXTENSION
+  ================================================== -->
+
+  <script>
+
+    let archiveSearchQuery = "";
+
+
+    function normalizeArchiveSearchText(value) {
+
+      return String(value ?? "")
+
+        .normalize("NFD")
+
+        .replace(
+          /[\u0300-\u036f]/g,
+          ""
+        )
+
+        .toLowerCase()
+
+        .trim();
+
+    }
+
+
+    function flattenArchiveSearchValue(value) {
+
+      if (
+        value == null
+      ) {
+        return "";
+      }
+
+
+      if (
+        typeof value === "string"
+        ||
+        typeof value === "number"
+      ) {
+
+        return String(value);
+
+      }
+
+
+      if (
+        Array.isArray(value)
+      ) {
+
+        return value
+          .map(
+            flattenArchiveSearchValue
+          )
+          .join(" ");
+
+      }
+
+
+      if (
+        typeof value === "object"
+      ) {
+
+        return Object
+          .values(value)
+          .map(
+            flattenArchiveSearchValue
+          )
+          .join(" ");
+
+      }
+
+
+      return "";
+
+    }
+
+
+    function getSneakerArchiveSearchText(sneaker) {
+
+      const fields = [
+
+        sneaker.title,
+
+        sneaker.subtitle,
+
+        sneaker.brand,
+
+        sneaker.collaboration,
+
+        sneaker.sku,
+
+        sneaker.styleCode,
+
+        sneaker.colorway,
+
+        sneaker.editionType,
+
+        sneaker.condition,
+
+        sneaker.size,
+
+        sneaker.releaseDate,
+
+        sneaker.retail,
+
+        sneaker.retailPrice
+
+      ];
+
+
+      return normalizeArchiveSearchText(
+
+        fields
+          .map(
+            flattenArchiveSearchValue
+          )
+          .join(" ")
+
+      );
+
+    }
+
+
+    /* =====================================================
+       EXTEND EXISTING FILTER SYSTEM
+    ====================================================== */
+
+    const originalFilterSneakers =
+      filterSneakers;
+
+
+    filterSneakers =
+      function (items) {
+
+        const filtered =
+          originalFilterSneakers(
+            items
+          );
+
+
+        const query =
+          normalizeArchiveSearchText(
+            archiveSearchQuery
+          );
+
+
+        if (!query) {
+          return filtered;
+        }
+
+
+        const terms =
+          query
+            .split(/\s+/)
+            .filter(Boolean);
+
+
+        return filtered.filter(
+          sneaker => {
+
+            const searchableText =
+              getSneakerArchiveSearchText(
+                sneaker
+              );
+
+
+            return terms.every(
+              term =>
+                searchableText.includes(
+                  term
+                )
+            );
+
+          }
+        );
+
+      };
+
+
+    /* =====================================================
+       SEARCH INPUT
+    ====================================================== */
+
+    function handleArchiveSearch(value) {
+
+      archiveSearchQuery =
+        value;
+
+
+      updateArchiveSearchUI();
+
+      renderGrid();
+
+    }
+
+
+    function clearArchiveSearch() {
+
+      archiveSearchQuery =
+        "";
+
+
+      const input =
+        document.getElementById(
+          "archive-search-input"
+        );
+
+
+      if (input) {
+
+        input.value =
+          "";
+
+        input.focus();
+
+      }
+
+
+      updateArchiveSearchUI();
+
+      renderGrid();
+
+    }
+
+
+    function handleArchiveSearchKeydown(event) {
+
+      if (
+        event.key === "Escape"
+      ) {
+
+        clearArchiveSearch();
+
+      }
+
+    }
+
+
+    function updateArchiveSearchUI() {
+
+      const clearButton =
+        document.getElementById(
+          "archive-search-clear"
+        );
+
+
+      if (clearButton) {
+
+        clearButton.classList.toggle(
+
+          "visible",
+
+          archiveSearchQuery
+            .trim()
+            .length > 0
+
+        );
+
+      }
+
+    }
+
+
+    /* =====================================================
+       VI / EN SEARCH TEXT
+    ====================================================== */
+
+    const originalUpdateStaticText =
+      updateStaticText;
+
+
+    updateStaticText =
+      function () {
+
+        originalUpdateStaticText();
+
+
+        const label =
+          document.getElementById(
+            "archive-search-label"
+          );
+
+
+        const input =
+          document.getElementById(
+            "archive-search-input"
+          );
+
+
+        if (
+          currentLang === "vi"
+        ) {
+
+          if (label) {
+
+            label.textContent =
+              "TÌM KIẾM ARCHIVE";
+
+          }
+
+
+          if (input) {
+
+            input.placeholder =
+              "Tìm theo tên, SKU, colorway, collaboration...";
+
+
+            input.setAttribute(
+              "aria-label",
+              "Tìm kiếm bộ sưu tập sneaker"
+            );
+
+          }
+
+        } else {
+
+          if (label) {
+
+            label.textContent =
+              "SEARCH ARCHIVE";
+
+          }
+
+
+          if (input) {
+
+            input.placeholder =
+              "Search by name, SKU, colorway, collaboration...";
+
+
+            input.setAttribute(
+              "aria-label",
+              "Search sneaker archive"
+            );
+
+          }
+
+        }
+
+      };
+
+
+    /* =====================================================
+       SEARCH RESULT COUNTER
+    ====================================================== */
+
+    const originalUpdateCollectionCount =
+      updateCollectionCount;
+
+
+    updateCollectionCount =
+      function (count) {
+
+        const element =
+          document.getElementById(
+            "collection-count"
+          );
+
+
+        if (
+          !element
+          ||
+          typeof sneakers === "undefined"
+          ||
+          !Array.isArray(sneakers)
+        ) {
+
+          originalUpdateCollectionCount(
+            count
+          );
+
+          return;
+
+        }
+
+
+        const total =
+          sneakers.length;
+
+
+        const hasSearch =
+          archiveSearchQuery
+            .trim()
+            .length > 0;
+
+
+        const hasFilters =
+
+          activeFilters.edition.size > 0
+
+          ||
+
+          activeFilters.condition.size > 0
+
+          ||
+
+          activeFilters.size.size > 0;
+
+
+        if (
+          hasSearch
+          ||
+          hasFilters
+        ) {
+
+          element.textContent =
+
+            currentLang === "vi"
+
+              ? `HIỂN THỊ: ${count} / ${total} ĐÔI`
+
+              : `SHOWING: ${count} / ${total} PAIRS`;
+
+        } else {
+
+          originalUpdateCollectionCount(
+            count
+          );
+
+        }
+
+      };
+
+
+    document.addEventListener(
+
+      "DOMContentLoaded",
+
+      () => {
+
+        updateArchiveSearchUI();
+
+      }
+
+    );
+
+  </script>
 
 </body>
 
