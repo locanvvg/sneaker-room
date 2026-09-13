@@ -1,6 +1,7 @@
 /* =========================================================
    LỘC AN SNEAKER COLLECTION
-   NAVIGATION + CATEGORY PAGES + ABOUT AUTHENTICITY
+   NAVIGATION + SEARCH + PRIVATE COLLECTION NOTICE
+   + CATEGORY PAGES + ABOUT AUTHENTICITY
 ========================================================= */
 
 
@@ -8,8 +9,101 @@
    HEADER
 ========================================================= */
 
-.home-header {
+.home-header,
+.about-header {
   position: relative;
+}
+
+
+/* =========================================================
+   PRIVATE COLLECTION / NOT FOR SALE NOTICE
+========================================================= */
+
+.home-header::after,
+.about-header::after {
+  content:
+    "PRIVATE COLLECTION — NOT FOR SALE  ·  Đây là kho lưu trữ & trưng bày bộ sưu tập cá nhân, không phải cửa hàng hoặc nền tảng bán hàng.";
+
+  display: block;
+
+  max-width: 900px;
+
+  margin:
+    24px
+    auto
+    0;
+
+  padding:
+    12px
+    16px;
+
+  color:
+    #ff6b6b;
+
+  background:
+    rgba(
+      255,
+      76,
+      76,
+      0.045
+    );
+
+  border:
+    1px solid
+    rgba(
+      255,
+      82,
+      82,
+      0.18
+    );
+
+  border-left:
+    3px solid #ff4d4d;
+
+  border-radius:
+    8px;
+
+  font-size:
+    0.72rem;
+
+  font-weight:
+    750;
+
+  line-height:
+    1.65;
+
+  letter-spacing:
+    0.45px;
+
+  text-align:
+    center;
+}
+
+
+/* Footer warning */
+
+footer::before {
+  content:
+    "PRIVATE COLLECTION · ARCHIVE ONLY · NOT FOR SALE";
+
+  display: block;
+
+  margin:
+    0
+    0
+    12px;
+
+  color:
+    #a85b5b;
+
+  font-size:
+    0.62rem;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    1.25px;
 }
 
 
@@ -41,17 +135,23 @@
 .about-corner-link {
   display: inline-block;
 
-  color: #77777c;
+  color:
+    #77777c;
 
-  text-decoration: none;
+  text-decoration:
+    none;
 
-  font-size: 0.66rem;
+  font-size:
+    0.66rem;
 
-  font-weight: 800;
+  font-weight:
+    800;
 
-  letter-spacing: 1.3px;
+  letter-spacing:
+    1.3px;
 
-  opacity: 0.75;
+  opacity:
+    0.75;
 
   transition:
     color 0.2s ease,
@@ -61,9 +161,11 @@
 
 
 .about-corner-link:hover {
-  color: #d2d2d6;
+  color:
+    #d2d2d6;
 
-  opacity: 0.55;
+  opacity:
+    0.55;
 
   transform:
     translateY(-2px);
@@ -71,9 +173,11 @@
 
 
 .about-corner-link.active {
-  color: #ffcc00;
+  color:
+    #ffcc00;
 
-  opacity: 1;
+  opacity:
+    1;
 }
 
 
@@ -84,40 +188,52 @@
 .museum-nav {
   display: flex;
 
-  justify-content: center;
+  justify-content:
+    center;
 
-  align-items: center;
+  align-items:
+    center;
 
-  flex-wrap: wrap;
+  flex-wrap:
+    wrap;
 
-  gap: 36px;
+  gap:
+    36px;
 
-  margin-top: 24px;
+  margin-top:
+    24px;
 }
 
 
 .museum-nav-link {
-  display: inline-block;
+  display:
+    inline-block;
 
   padding:
     6px
     2px
     9px;
 
-  color: #85858a;
+  color:
+    #85858a;
 
-  text-decoration: none;
+  text-decoration:
+    none;
 
   border-bottom:
     2px solid transparent;
 
-  font-size: 0.76rem;
+  font-size:
+    0.76rem;
 
-  font-weight: 800;
+  font-weight:
+    800;
 
-  letter-spacing: 1.4px;
+  letter-spacing:
+    1.4px;
 
-  opacity: 0.75;
+  opacity:
+    0.75;
 
   transform:
     translateY(0);
@@ -132,21 +248,26 @@
 
 
 .museum-nav-link:hover {
-  color: #d4d4d8;
+  color:
+    #d4d4d8;
 
-  opacity: 0.5;
+  opacity:
+    0.5;
 
   transform:
     translateY(-2px);
 
-  letter-spacing: 1.65px;
+  letter-spacing:
+    1.65px;
 }
 
 
 .museum-nav-link.active {
-  color: #ffcc00;
+  color:
+    #ffcc00;
 
-  opacity: 1;
+  opacity:
+    1;
 
   border-color:
     #ffcc00;
@@ -154,9 +275,264 @@
 
 
 .museum-nav-link.active:hover {
-  color: #ffd633;
+  color:
+    #ffd633;
 
-  opacity: 1;
+  opacity:
+    1;
+}
+
+
+/* =========================================================
+   ARCHIVE SEARCH
+========================================================= */
+
+.archive-search-panel {
+  margin:
+    28px
+    0
+    18px;
+
+  padding:
+    18px;
+
+  background:
+    #121214;
+
+  border:
+    1px solid #27272b;
+
+  border-radius:
+    12px;
+}
+
+
+.archive-search-header {
+  display:
+    flex;
+
+  justify-content:
+    space-between;
+
+  align-items:
+    center;
+
+  gap:
+    16px;
+
+  margin-bottom:
+    10px;
+}
+
+
+.archive-search-label {
+  color:
+    #ffcc00;
+
+  font-size:
+    0.7rem;
+
+  font-weight:
+    850;
+
+  letter-spacing:
+    1.45px;
+}
+
+
+.archive-search-hint {
+  color:
+    #626268;
+
+  font-size:
+    0.6rem;
+
+  font-weight:
+    750;
+
+  letter-spacing:
+    1.05px;
+}
+
+
+.archive-search-box {
+  position:
+    relative;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+}
+
+
+.archive-search-icon {
+  position:
+    absolute;
+
+  left:
+    15px;
+
+  z-index:
+    2;
+
+  color:
+    #74747a;
+
+  font-size:
+    1.15rem;
+
+  pointer-events:
+    none;
+}
+
+
+.archive-search-input {
+  width:
+    100%;
+
+  padding:
+    14px
+    46px
+    14px
+    43px;
+
+  color:
+    #f2f2f4;
+
+  background:
+    #0d0d0f;
+
+  border:
+    1px solid #303035;
+
+  border-radius:
+    9px;
+
+  outline:
+    none;
+
+  font:
+    inherit;
+
+  font-size:
+    0.9rem;
+
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease;
+}
+
+
+.archive-search-input::placeholder {
+  color:
+    #5f5f65;
+}
+
+
+.archive-search-input:hover {
+  border-color:
+    #3a3a40;
+}
+
+
+.archive-search-input:focus {
+  background:
+    #0f0f11;
+
+  border-color:
+    rgba(
+      255,
+      204,
+      0,
+      0.7
+    );
+
+  box-shadow:
+    0 0 0 3px
+    rgba(
+      255,
+      204,
+      0,
+      0.07
+    );
+}
+
+
+.archive-search-input::-webkit-search-cancel-button {
+  display:
+    none;
+}
+
+
+.archive-search-clear {
+  position:
+    absolute;
+
+  right:
+    10px;
+
+  display:
+    none;
+
+  width:
+    30px;
+
+  height:
+    30px;
+
+  padding:
+    0;
+
+  color:
+    #77777d;
+
+  background:
+    transparent;
+
+  border:
+    0;
+
+  border-radius:
+    50%;
+
+  cursor:
+    pointer;
+
+  font-size:
+    1.25rem;
+
+  line-height:
+    1;
+
+  transition:
+    color 0.18s ease,
+    background 0.18s ease;
+}
+
+
+.archive-search-clear.visible {
+  display:
+    grid;
+
+  place-items:
+    center;
+}
+
+
+.archive-search-clear:hover {
+  color:
+    #ffcc00;
+
+  background:
+    rgba(
+      255,
+      204,
+      0,
+      0.06
+    );
 }
 
 
@@ -172,21 +548,24 @@
 
 
 .site-section[hidden] {
-  display: none !important;
+  display:
+    none !important;
 }
 
 
 @keyframes sectionFadeIn {
 
   from {
-    opacity: 0;
+    opacity:
+      0;
 
     transform:
       translateY(4px);
   }
 
   to {
-    opacity: 1;
+    opacity:
+      1;
 
     transform:
       translateY(0);
@@ -200,22 +579,29 @@
 ========================================================= */
 
 .card-cta {
-  display: block;
+  display:
+    block;
 
-  margin-top: 16px;
+  margin-top:
+    16px;
 
-  padding-top: 12px;
+  padding-top:
+    12px;
 
   border-top:
     1px solid #29292d;
 
-  color: #8f8f94;
+  color:
+    #8f8f94;
 
-  font-size: 0.7rem;
+  font-size:
+    0.7rem;
 
-  font-weight: 800;
+  font-weight:
+    800;
 
-  letter-spacing: 1.15px;
+  letter-spacing:
+    1.15px;
 
   transition:
     color 0.2s ease,
@@ -224,7 +610,8 @@
 
 
 .card-link:hover .card-cta {
-  color: #ffcc00;
+  color:
+    #ffcc00;
 
   transform:
     translateX(5px);
@@ -236,11 +623,14 @@
 ========================================================= */
 
 .collection-category-hero {
-  margin-top: 24px;
+  margin-top:
+    24px;
 
-  margin-bottom: 24px;
+  margin-bottom:
+    24px;
 
-  padding: 34px;
+  padding:
+    34px;
 
   background:
     #141416;
@@ -499,6 +889,23 @@
   }
 
 
+  .home-header::after,
+  .about-header::after {
+    margin-top:
+      20px;
+
+    padding:
+      11px
+      13px;
+
+    font-size:
+      0.68rem;
+
+    text-align:
+      left;
+  }
+
+
   .museum-nav {
     gap:
       14px
@@ -512,6 +919,33 @@
 
     letter-spacing:
       1px;
+  }
+
+
+  .archive-search-panel {
+    margin-top:
+      22px;
+
+    padding:
+      15px;
+  }
+
+
+  .archive-search-header {
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+
+    gap:
+      6px;
+  }
+
+
+  .archive-search-input {
+    font-size:
+      0.86rem;
   }
 
 
@@ -570,6 +1004,21 @@
   .about-corner-link {
     font-size:
       0.61rem;
+  }
+
+
+  .archive-search-hint {
+    display:
+      none;
+  }
+
+
+  .archive-search-input {
+    padding-left:
+      40px;
+
+    font-size:
+      0.82rem;
   }
 
 
