@@ -4518,14 +4518,14 @@ const sneakers = [
     id: "vans-knu-skool-black-true-white-rope-lace",
 
     title: {
-      vi: "Vans Knu Skool 'Black/True White' — Rope Lace Custom",
-      en: "Vans Knu Skool 'Black/True White' — Rope Lace Custom"
-    },
+  vi: "Vans Knu Skool 'Black/True White'",
+  en: "Vans Knu Skool 'Black/True White'"
+},
 
-    subtitle: {
-      vi: "Personal Rope-Lace Modification",
-      en: "Personal Rope-Lace Modification"
-    },
+subtitle: {
+  vi: "Chunky Skate Silhouette (2023)",
+  en: "Chunky Skate Silhouette (2023)"
+},
 
     sku: "VN0009QC6BT",
 
