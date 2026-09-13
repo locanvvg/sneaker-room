@@ -5,151 +5,138 @@
    - LANGUAGE
    - SORT
    - FILTER
-   - SNEAKER GRID
-   - RESPONSIVE GRID VIEW CONTROLLER
+   - SEARCH-COMPATIBLE RENDERING
+   - ADJUSTABLE GRID 1–5 COLUMNS
+   - HORIZONTAL GRID DENSITY SLIDER
+   - 3D COVER-FLOW VIEW
 ========================================================= */
+
+const SUPPORTED_LANGUAGES = ["vi", "en"];
+
+const translations = {
+  vi: {
+    mainTitle: "LỘC AN SNEAKER COLLECTION",
+    mainSubtitle: "Không gian lưu trữ & Bảo tàng Sneaker Kỹ thuật số",
+
+    sortLabel: "SẮP XẾP",
+    sortDefault: "Mặc định",
+    sortAZ: "A → Z",
+    sortZA: "Z → A",
+    sortDateDesc: "Ngày phát hành: Mới → Cũ",
+    sortDateAsc: "Ngày phát hành: Cũ → Mới",
+    sortSizeAsc: "Size nhỏ → lớn",
+    sortSizeDesc: "Size lớn → nhỏ",
+
+    filterTitle: "BỘ LỌC BỘ SƯU TẬP",
+    clearFilters: "XÓA BỘ LỌC",
+
+    editionLabel: "PHÂN KHÚC",
+    conditionLabel: "TÌNH TRẠNG",
+    sizeLabel: "KÍCH CỠ",
+
+    total: count => `TỔNG SỐ: ${count} ĐÔI`,
+
+    viewMore: "XEM THÊM →",
+
+    noResults:
+      "Không có hiện vật phù hợp với bộ lọc hiện tại.",
+
+    gridLabel:
+      columns => `LƯỚI · ${columns} CỘT`,
+
+    decreaseGrid:
+      "Giảm số cột",
+
+    increaseGrid:
+      "Tăng số cột",
+
+    gridRange:
+      "Điều chỉnh số cột trong lưới",
+
+    view3D:
+      "3D VIEW",
+
+    backToGrid:
+      "GRID VIEW",
+
+    previous:
+      "Đôi trước",
+
+    next:
+      "Đôi tiếp theo",
+
+    galleryHint:
+      "KÉO / VUỐT ĐỂ XEM · NHẤN ĐÔI Ở GIỮA ĐỂ MỞ"
+  },
+
+
+  en: {
+    mainTitle: "LỘC AN SNEAKER COLLECTION",
+    mainSubtitle: "Digital Sneaker Archive & Museum",
+
+    sortLabel: "SORT",
+    sortDefault: "Default",
+    sortAZ: "A → Z",
+    sortZA: "Z → A",
+    sortDateDesc: "Release date: Newest → Oldest",
+    sortDateAsc: "Release date: Oldest → Newest",
+    sortSizeAsc: "Size: Small → Large",
+    sortSizeDesc: "Size: Large → Small",
+
+    filterTitle: "COLLECTION FILTERS",
+    clearFilters: "CLEAR FILTERS",
+
+    editionLabel: "EDITION",
+    conditionLabel: "CONDITION",
+    sizeLabel: "SIZE",
+
+    total:
+      count => `TOTAL: ${count} PAIRS`,
+
+    viewMore:
+      "VIEW MORE →",
+
+    noResults:
+      "No artifacts match the current filters.",
+
+    gridLabel:
+      columns => `GRID · ${columns} COLUMNS`,
+
+    decreaseGrid:
+      "Decrease grid columns",
+
+    increaseGrid:
+      "Increase grid columns",
+
+    gridRange:
+      "Adjust the number of grid columns",
+
+    view3D:
+      "3D VIEW",
+
+    backToGrid:
+      "GRID VIEW",
+
+    previous:
+      "Previous sneaker",
+
+    next:
+      "Next sneaker",
+
+    galleryHint:
+      "DRAG / SWIPE TO BROWSE · TAP THE CENTER PAIR TO OPEN"
+  }
+};
 
 
 /* =========================================================
    LANGUAGE
 ========================================================= */
 
-const SUPPORTED_LANGUAGES = [
-  "vi",
-  "en"
-];
-
-
-const translations = {
-
-  vi: {
-
-    mainTitle:
-      "LỘC AN SNEAKER COLLECTION",
-
-    mainSubtitle:
-      "Không gian lưu trữ & Bảo tàng Sneaker Kỹ thuật số",
-
-    sortLabel:
-      "SẮP XẾP",
-
-    sortDefault:
-      "Mặc định",
-
-    sortAZ:
-      "A → Z",
-
-    sortZA:
-      "Z → A",
-
-    sortDateDesc:
-      "Ngày phát hành: Mới → Cũ",
-
-    sortDateAsc:
-      "Ngày phát hành: Cũ → Mới",
-
-    sortSizeAsc:
-      "Size nhỏ → lớn",
-
-    sortSizeDesc:
-      "Size lớn → nhỏ",
-
-    filterTitle:
-      "BỘ LỌC BỘ SƯU TẬP",
-
-    clearFilters:
-      "XÓA BỘ LỌC",
-
-    editionLabel:
-      "PHÂN KHÚC",
-
-    conditionLabel:
-      "TÌNH TRẠNG",
-
-    sizeLabel:
-      "KÍCH CỠ",
-
-    total:
-      count =>
-        `TỔNG SỐ: ${count} ĐÔI`,
-
-    viewMore:
-      "XEM THÊM →",
-
-    noResults:
-      "Không có hiện vật phù hợp với bộ lọc hiện tại."
-
-  },
-
-
-  en: {
-
-    mainTitle:
-      "LỘC AN SNEAKER COLLECTION",
-
-    mainSubtitle:
-      "Digital Sneaker Archive & Museum",
-
-    sortLabel:
-      "SORT",
-
-    sortDefault:
-      "Default",
-
-    sortAZ:
-      "A → Z",
-
-    sortZA:
-      "Z → A",
-
-    sortDateDesc:
-      "Release date: Newest → Oldest",
-
-    sortDateAsc:
-      "Release date: Oldest → Newest",
-
-    sortSizeAsc:
-      "Size: Small → Large",
-
-    sortSizeDesc:
-      "Size: Large → Small",
-
-    filterTitle:
-      "COLLECTION FILTERS",
-
-    clearFilters:
-      "CLEAR FILTERS",
-
-    editionLabel:
-      "EDITION",
-
-    conditionLabel:
-      "CONDITION",
-
-    sizeLabel:
-      "SIZE",
-
-    total:
-      count =>
-        `TOTAL: ${count} PAIRS`,
-
-    viewMore:
-      "VIEW MORE →",
-
-    noResults:
-      "No artifacts match the current filters."
-
-  }
-
-};
-
-
 function normalizeLanguage(lang) {
-
   return SUPPORTED_LANGUAGES.includes(lang)
     ? lang
     : "vi";
-
 }
 
 
@@ -161,15 +148,11 @@ const urlParams =
 
 let currentLang =
   normalizeLanguage(
-
     urlParams.get("lang")
     ||
-    localStorage.getItem(
-      "locan_lang"
-    )
+    localStorage.getItem("locan_lang")
     ||
     "vi"
-
   );
 
 
@@ -178,21 +161,14 @@ let currentSort =
 
 
 const activeFilters = {
-
-  edition:
-    new Set(),
-
-  condition:
-    new Set(),
-
-  size:
-    new Set()
-
+  edition: new Set(),
+  condition: new Set(),
+  size: new Set()
 };
 
 
 /* =========================================================
-   LOCALIZED TEXT
+   HELPERS
 ========================================================= */
 
 function getLocalizedText(value) {
@@ -222,7 +198,6 @@ function getLocalizedText(value) {
   ) {
 
     return String(
-
       value[currentLang]
       ??
       value.vi
@@ -230,51 +205,66 @@ function getLocalizedText(value) {
       value.en
       ??
       ""
-
     );
 
   }
 
 
   return "";
-
 }
 
-
-/* =========================================================
-   HTML ESCAPE
-========================================================= */
 
 function escapeHTML(value) {
 
   return String(
     value ?? ""
   )
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 
-    .replaceAll(
-      "&",
-      "&amp;"
-    )
+}
 
-    .replaceAll(
-      "<",
-      "&lt;"
-    )
 
-    .replaceAll(
-      ">",
-      "&gt;"
-    )
+function safeStorageGet(key) {
 
-    .replaceAll(
-      '"',
-      "&quot;"
-    )
+  try {
 
-    .replaceAll(
-      "'",
-      "&#039;"
+    return localStorage.getItem(
+      key
     );
+
+  } catch (_) {
+
+    return null;
+
+  }
+
+}
+
+
+function safeStorageSet(
+  key,
+  value
+) {
+
+  try {
+
+    localStorage.setItem(
+      key,
+      String(value)
+    );
+
+  } catch (_) {
+
+    /*
+      Storage is optional.
+      Website still works without it.
+    */
+
+  }
 
 }
 
@@ -305,9 +295,7 @@ function getNumericSize(size) {
     );
 
 
-  return Number.isFinite(
-    value
-  )
+  return Number.isFinite(value)
     ? value
     : null;
 
@@ -384,29 +372,23 @@ function getEditionCategories(
   const corpus = [
 
     sneaker.title?.vi,
-
     sneaker.title?.en,
 
     sneaker.subtitle?.vi,
-
     sneaker.subtitle?.en,
 
     sneaker.editionType?.vi,
-
     sneaker.editionType?.en,
 
     sneaker.title,
-
     sneaker.subtitle,
-
     sneaker.editionType
 
   ]
 
     .filter(
       value =>
-        typeof value ===
-        "string"
+        typeof value === "string"
     )
 
     .join(" ")
@@ -536,9 +518,8 @@ function getEditionCategories(
 
 
   /*
-     If an item does not explicitly
-     declare another edition,
-     treat it as GR.
+    If the sneaker has no special category,
+    use GR.
   */
 
   if (
@@ -613,9 +594,7 @@ function filterSneakers(
       /* EDITION */
 
       if (
-        activeFilters
-          .edition
-          .size > 0
+        activeFilters.edition.size > 0
       ) {
 
         const categories =
@@ -626,8 +605,7 @@ function filterSneakers(
 
         const match = [
 
-          ...activeFilters
-            .edition
+          ...activeFilters.edition
 
         ]
 
@@ -649,20 +627,18 @@ function filterSneakers(
       /* CONDITION */
 
       if (
-        activeFilters
-          .condition
-          .size > 0
+        activeFilters.condition.size > 0
       ) {
 
         if (
 
-          !activeFilters
-            .condition
-            .has(
-              getConditionCategory(
-                sneaker
-              )
+          !activeFilters.condition.has(
+
+            getConditionCategory(
+              sneaker
             )
+
+          )
 
         ) {
 
@@ -676,9 +652,7 @@ function filterSneakers(
       /* SIZE */
 
       if (
-        activeFilters
-          .size
-          .size > 0
+        activeFilters.size.size > 0
       ) {
 
         const size =
@@ -689,11 +663,9 @@ function filterSneakers(
 
         if (
 
-          !activeFilters
-            .size
-            .has(
-              size
-            )
+          !activeFilters.size.has(
+            size
+          )
 
         ) {
 
@@ -731,9 +703,7 @@ function getReleaseTimestamp(
 
 
   const normalized =
-    /^\d{4}-\d{2}$/.test(
-      text
-    )
+    /^\d{4}-\d{2}$/.test(text)
 
       ? `${text}-01`
 
@@ -749,9 +719,7 @@ function getReleaseTimestamp(
   return Number.isFinite(
     timestamp
   )
-
     ? timestamp
-
     : 0;
 
 }
@@ -979,7 +947,6 @@ function sortSneakers(
 
 
     default:
-
       break;
 
   }
@@ -991,7 +958,7 @@ function sortSneakers(
 
 
 /* =========================================================
-   FILTER EVENTS
+   FILTER ACTIONS
 ========================================================= */
 
 function toggleFilter(
@@ -1027,14 +994,12 @@ function toggleFilter(
 
   updateFilterInterface();
 
+  reset3DPosition();
+
   renderGrid();
 
 }
 
-
-/* =========================================================
-   CLEAR FILTERS
-========================================================= */
 
 function clearAllFilters() {
 
@@ -1051,14 +1016,12 @@ function clearAllFilters() {
 
   updateFilterInterface();
 
+  reset3DPosition();
+
   renderGrid();
 
 }
 
-
-/* =========================================================
-   CHANGE SORT
-========================================================= */
 
 function changeSort(
   value
@@ -1084,14 +1047,14 @@ function changeSort(
 
 
   currentSort =
-    allowed.includes(
-      value
-    )
+    allowed.includes(value)
 
       ? value
 
       : "default";
 
+
+  reset3DPosition();
 
   renderGrid();
 
@@ -1121,7 +1084,6 @@ function renderSizeFilters() {
 
       .map(
         size => {
-
 
           const value =
             String(size);
@@ -1181,7 +1143,6 @@ function updateFilterInterface() {
     .forEach(
       button => {
 
-
         const group =
           button.dataset.group;
 
@@ -1201,9 +1162,7 @@ function updateFilterInterface() {
           Boolean(
             set
             &&
-            set.has(
-              value
-            )
+            set.has(value)
           )
 
         );
@@ -1224,21 +1183,15 @@ function updateFilterInterface() {
 
     const hasActiveFilters =
 
-      activeFilters
-        .edition
-        .size > 0
+      activeFilters.edition.size > 0
 
       ||
 
-      activeFilters
-        .condition
-        .size > 0
+      activeFilters.condition.size > 0
 
       ||
 
-      activeFilters
-        .size
-        .size > 0;
+      activeFilters.size.size > 0;
 
 
     clearButton
@@ -1257,106 +1210,72 @@ function updateFilterInterface() {
 
 
 /* =========================================================
-   GRID VIEW SYSTEM
+   COLLECTION VIEW STATE
 ========================================================= */
 
-
-/*
-   Desktop:
-   1 - 5 columns
-   Default = 3
-
-   Tablet:
-   1 - 3 columns
-   Default = 2
-
-   Mobile:
-   1 - 2 columns
-   Default = 1
-
-   Each device category has
-   its own remembered preference.
-*/
-
-const GRID_VIEW_CONFIG = {
-
-  desktop: {
-
-    min:
-      1,
-
-    max:
-      5,
-
-    defaultColumns:
-      3,
-
-    storageKey:
-      "locan_grid_columns_desktop"
-
-  },
+const GRID_MIN =
+  1;
 
 
-  tablet: {
-
-    min:
-      1,
-
-    max:
-      3,
-
-    defaultColumns:
-      2,
-
-    storageKey:
-      "locan_grid_columns_tablet"
-
-  },
+const GRID_MAX =
+  5;
 
 
-  mobile: {
+let collectionViewMode =
 
-    min:
-      1,
+  safeStorageGet(
+    "locan_collection_view"
+  ) === "3d"
 
-    max:
-      2,
+    ? "3d"
 
-    defaultColumns:
-      1,
-
-    storageKey:
-      "locan_grid_columns_mobile"
-
-  }
-
-};
+    : "grid";
 
 
-let currentGridMode =
-  null;
-
-
-let currentGridColumns =
+let gridColumns =
   3;
 
 
-let gridResizeTimer =
+let gridDevice =
   null;
 
 
+let resizeTimer =
+  null;
+
+
+let slideItems =
+  [];
+
+
+let slideIndex =
+  0;
+
+
+let slideActiveId =
+  null;
+
+
+let pointerStartX =
+  null;
+
+
+let pointerStartY =
+  null;
+
+
+let pointerMoved =
+  false;
+
+
 /* =========================================================
-   GRID MODE
+   RESPONSIVE DEVICE
 ========================================================= */
 
-function getGridViewMode() {
-
-  const width =
-    window.innerWidth;
-
+function getGridDevice() {
 
   if (
-    width <= 700
+    window.innerWidth <= 650
   ) {
 
     return "mobile";
@@ -1365,7 +1284,7 @@ function getGridViewMode() {
 
 
   if (
-    width <= 999
+    window.innerWidth <= 950
   ) {
 
     return "tablet";
@@ -1379,105 +1298,669 @@ function getGridViewMode() {
 
 
 /* =========================================================
-   SAFE LOCAL STORAGE
+   DEFAULT GRID
 ========================================================= */
 
-function getStoredGridColumns(
-  mode
+function getDefaultGridColumns(
+  device
 ) {
 
-  const config =
-    GRID_VIEW_CONFIG[mode];
-
-
-  if (!config) {
-    return 3;
-  }
-
-
-  try {
-
-    const stored =
-      Number.parseInt(
-
-        localStorage.getItem(
-          config.storageKey
-        ),
-
-        10
-
-      );
-
-
-    if (
-      Number.isFinite(
-        stored
-      )
-    ) {
-
-      return Math.min(
-
-        config.max,
-
-        Math.max(
-          config.min,
-          stored
-        )
-
-      );
-
-    }
-
-  } catch (
-    error
+  if (
+    device === "mobile"
   ) {
 
-    /*
-       Storage unavailable.
-       Fall back to default.
-    */
+    return 1;
 
   }
 
 
-  return config
-    .defaultColumns;
+  if (
+    device === "tablet"
+  ) {
+
+    return 2;
+
+  }
+
+
+  return 3;
 
 }
 
 
-function storeGridColumns(
-  mode,
-  columns
+/* =========================================================
+   GRID STORAGE
+========================================================= */
+
+function getGridStorageKey(
+  device
 ) {
 
-  const config =
-    GRID_VIEW_CONFIG[mode];
+  return `locan_grid_columns_${device}`;
+
+}
 
 
-  if (!config) {
+function readGridColumns(
+  device
+) {
+
+  const stored =
+    Number.parseInt(
+
+      safeStorageGet(
+        getGridStorageKey(
+          device
+        )
+      ),
+
+      10
+
+    );
+
+
+  if (
+    Number.isFinite(
+      stored
+    )
+  ) {
+
+    return Math.min(
+
+      GRID_MAX,
+
+      Math.max(
+        GRID_MIN,
+        stored
+      )
+
+    );
+
+  }
+
+
+  return getDefaultGridColumns(
+    device
+  );
+
+}
+
+
+/* =========================================================
+   SET GRID COLUMNS
+========================================================= */
+
+function setGridColumns(
+  value,
+  persist = true
+) {
+
+  const next =
+    Math.min(
+
+      GRID_MAX,
+
+      Math.max(
+
+        GRID_MIN,
+
+        Number.parseInt(
+          value,
+          10
+        ) || 1
+
+      )
+
+    );
+
+
+  gridDevice =
+    getGridDevice();
+
+
+  gridColumns =
+    next;
+
+
+  if (
+    persist
+  ) {
+
+    safeStorageSet(
+
+      getGridStorageKey(
+        gridDevice
+      ),
+
+      gridColumns
+
+    );
+
+  }
+
+
+  applyGridLayout();
+
+  updateCollectionViewControls();
+
+}
+
+
+/* =========================================================
+   STEP GRID
+========================================================= */
+
+function stepGridColumns(
+  delta
+) {
+
+  if (
+    collectionViewMode !== "grid"
+  ) {
+
+    return;
+
+  }
+
+
+  setGridColumns(
+
+    gridColumns + delta,
+
+    true
+
+  );
+
+}
+
+
+/* =========================================================
+   APPLY GRID LAYOUT
+========================================================= */
+
+function applyGridLayout() {
+
+  const grid =
+    document.getElementById(
+      "sneaker-grid"
+    );
+
+
+  if (!grid) {
     return;
   }
 
 
-  try {
+  grid.classList.remove(
 
-    localStorage.setItem(
+    "locan-grid-view",
 
-      config.storageKey,
+    "locan-3d-view",
 
-      String(columns)
+    "grid-cols-1",
+
+    "grid-cols-2",
+
+    "grid-cols-3",
+
+    "grid-cols-4",
+
+    "grid-cols-5"
+
+  );
+
+
+  if (
+    collectionViewMode === "3d"
+  ) {
+
+    grid.classList.add(
+      "locan-3d-view"
+    );
+
+
+    grid.style.removeProperty(
+      "--locan-grid-columns"
+    );
+
+
+    return;
+
+  }
+
+
+  grid.classList.add(
+
+    "locan-grid-view",
+
+    `grid-cols-${gridColumns}`
+
+  );
+
+
+  grid.style.setProperty(
+
+    "--locan-grid-columns",
+
+    String(
+      gridColumns
+    )
+
+  );
+
+}
+
+
+/* =========================================================
+   SET COLLECTION VIEW
+========================================================= */
+
+function setCollectionViewMode(
+  mode
+) {
+
+  collectionViewMode =
+    mode === "3d"
+      ? "3d"
+      : "grid";
+
+
+  safeStorageSet(
+
+    "locan_collection_view",
+
+    collectionViewMode
+
+  );
+
+
+  if (
+    collectionViewMode === "3d"
+  ) {
+
+    reset3DPosition();
+
+  }
+
+
+  applyGridLayout();
+
+  updateCollectionViewControls();
+
+  renderGrid();
+
+}
+
+
+function toggleCollectionViewMode() {
+
+  setCollectionViewMode(
+
+    collectionViewMode === "3d"
+
+      ? "grid"
+
+      : "3d"
+
+  );
+
+}
+
+
+/* =========================================================
+   VIEW UI
+========================================================= */
+
+function createCollectionViewUI() {
+
+  if (
+    document.getElementById(
+      "collection-display-row"
+    )
+  ) {
+
+    return;
+
+  }
+
+
+  const filterPanel =
+    document.querySelector(
+      ".filter-panel"
+    );
+
+
+  const count =
+    document.getElementById(
+      "collection-count"
+    );
+
+
+  const toolbar =
+    document.querySelector(
+      ".collection-toolbar"
+    );
+
+
+  if (
+    !filterPanel
+    ||
+    !count
+  ) {
+
+    return;
+
+  }
+
+
+  /* =====================================================
+     DISPLAY ROW
+  ===================================================== */
+
+  const displayRow =
+    document.createElement(
+      "div"
+    );
+
+
+  displayRow.id =
+    "collection-display-row";
+
+
+  displayRow.className =
+    "collection-display-row";
+
+
+  /* =====================================================
+     LEFT SPACER
+
+     Desktop:
+     [ empty ] [ GRID SLIDER ] [ TOTAL ]
+
+     This keeps slider visually centered.
+  ===================================================== */
+
+  const spacer =
+    document.createElement(
+      "div"
+    );
+
+
+  spacer.className =
+    "collection-display-spacer";
+
+
+  spacer.setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+
+  /* =====================================================
+     GRID SLIDER
+  ===================================================== */
+
+  const density =
+    document.createElement(
+      "div"
+    );
+
+
+  density.id =
+    "grid-density-control";
+
+
+  density.className =
+    "grid-density-control";
+
+
+  density.innerHTML = `
+
+    <div
+      id="grid-density-label"
+      class="grid-density-label"
+    >
+      LƯỚI · 3 CỘT
+    </div>
+
+
+    <div class="grid-density-slider-row">
+
+
+      <button
+
+        type="button"
+
+        id="grid-density-minus"
+
+        class="grid-density-step"
+
+        aria-label="Giảm số cột"
+
+      >
+
+        −
+
+      </button>
+
+
+      <div class="grid-density-range-wrap">
+
+
+        <input
+
+          type="range"
+
+          id="grid-density-range"
+
+          class="grid-density-range"
+
+          min="1"
+
+          max="5"
+
+          step="1"
+
+          value="3"
+
+          aria-label="Điều chỉnh số cột trong lưới"
+
+        >
+
+
+        <div
+          class="grid-density-ticks"
+          aria-hidden="true"
+        >
+
+          <span>1</span>
+          <span>2</span>
+          <span>3</span>
+          <span>4</span>
+          <span>5</span>
+
+        </div>
+
+
+      </div>
+
+
+      <button
+
+        type="button"
+
+        id="grid-density-plus"
+
+        class="grid-density-step"
+
+        aria-label="Tăng số cột"
+
+      >
+
+        +
+
+      </button>
+
+
+    </div>
+
+  `;
+
+
+  /*
+     Insert row immediately under
+     the filter panel.
+  */
+
+  filterPanel
+    .insertAdjacentElement(
+      "afterend",
+      displayRow
+    );
+
+
+  /*
+     Move existing collection count
+     into this row.
+  */
+
+  displayRow.appendChild(
+    spacer
+  );
+
+
+  displayRow.appendChild(
+    density
+  );
+
+
+  displayRow.appendChild(
+    count
+  );
+
+
+  /* =====================================================
+     SLIDER EVENTS
+  ===================================================== */
+
+  document
+
+    .getElementById(
+      "grid-density-minus"
+    )
+
+    ?.addEventListener(
+
+      "click",
+
+      () =>
+
+        stepGridColumns(
+          -1
+        )
 
     );
 
-  } catch (
-    error
+
+  document
+
+    .getElementById(
+      "grid-density-plus"
+    )
+
+    ?.addEventListener(
+
+      "click",
+
+      () =>
+
+        stepGridColumns(
+          1
+        )
+
+    );
+
+
+  document
+
+    .getElementById(
+      "grid-density-range"
+    )
+
+    ?.addEventListener(
+
+      "input",
+
+      event => {
+
+        if (
+          collectionViewMode === "3d"
+        ) {
+
+          return;
+
+        }
+
+
+        setGridColumns(
+
+          event.target.value,
+
+          true
+
+        );
+
+      }
+
+    );
+
+
+  /* =====================================================
+     SEPARATE 3D BUTTON
+  ===================================================== */
+
+  if (
+
+    toolbar
+
+    &&
+
+    !document.getElementById(
+      "collection-3d-toggle"
+    )
+
   ) {
 
-    /*
-       Ignore storage errors.
-       Grid still works normally.
-    */
+    const button =
+      document.createElement(
+        "button"
+      );
+
+
+    button.type =
+      "button";
+
+
+    button.id =
+      "collection-3d-toggle";
+
+
+    button.className =
+      "collection-3d-toggle";
+
+
+    button.addEventListener(
+
+      "click",
+
+      toggleCollectionViewMode
+
+    );
+
+
+    toolbar.appendChild(
+      button
+    );
 
   }
 
@@ -1485,14 +1968,287 @@ function storeGridColumns(
 
 
 /* =========================================================
-   GRID CONTROL CSS
+   RANGE PROGRESS
 ========================================================= */
 
-function installGridViewStyles() {
+function updateRangeProgress(
+  range
+) {
+
+  if (!range) {
+    return;
+  }
+
+
+  const min =
+    Number(
+      range.min
+    ) || GRID_MIN;
+
+
+  const max =
+    Number(
+      range.max
+    ) || GRID_MAX;
+
+
+  const value =
+    Number(
+      range.value
+    ) || gridColumns;
+
+
+  const progress =
+
+    (
+      (
+        value - min
+      )
+
+      /
+
+      (
+        max - min
+      )
+    )
+
+    * 100;
+
+
+  range.style.setProperty(
+
+    "--range-progress",
+
+    `${progress}%`
+
+  );
+
+}
+
+
+/* =========================================================
+   UPDATE VIEW CONTROLS
+========================================================= */
+
+function updateCollectionViewControls() {
+
+  const t =
+    translations[
+      currentLang
+    ];
+
+
+  const range =
+    document.getElementById(
+      "grid-density-range"
+    );
+
+
+  const minus =
+    document.getElementById(
+      "grid-density-minus"
+    );
+
+
+  const plus =
+    document.getElementById(
+      "grid-density-plus"
+    );
+
+
+  const label =
+    document.getElementById(
+      "grid-density-label"
+    );
+
+
+  const toggle3D =
+    document.getElementById(
+      "collection-3d-toggle"
+    );
+
+
+  /* RANGE */
+
+  if (
+    range
+  ) {
+
+    range.value =
+      String(
+        gridColumns
+      );
+
+
+    range.disabled =
+      collectionViewMode === "3d";
+
+
+    range.setAttribute(
+
+      "aria-label",
+
+      t.gridRange
+
+    );
+
+
+    updateRangeProgress(
+      range
+    );
+
+  }
+
+
+  /* MINUS */
+
+  if (
+    minus
+  ) {
+
+    minus.disabled =
+
+      collectionViewMode === "3d"
+
+      ||
+
+      gridColumns <= GRID_MIN;
+
+
+    minus.setAttribute(
+
+      "aria-label",
+
+      t.decreaseGrid
+
+    );
+
+
+    minus.title =
+      t.decreaseGrid;
+
+  }
+
+
+  /* PLUS */
+
+  if (
+    plus
+  ) {
+
+    plus.disabled =
+
+      collectionViewMode === "3d"
+
+      ||
+
+      gridColumns >= GRID_MAX;
+
+
+    plus.setAttribute(
+
+      "aria-label",
+
+      t.increaseGrid
+
+    );
+
+
+    plus.title =
+      t.increaseGrid;
+
+  }
+
+
+  /* LABEL */
+
+  if (
+    label
+  ) {
+
+    label.textContent =
+      t.gridLabel(
+        gridColumns
+      );
+
+  }
+
+
+  /* DISABLE SLIDER VISUALLY IN 3D */
+
+  const density =
+    document.getElementById(
+      "grid-density-control"
+    );
+
+
+  if (
+    density
+  ) {
+
+    density.classList.toggle(
+
+      "disabled",
+
+      collectionViewMode === "3d"
+
+    );
+
+  }
+
+
+  /* 3D BUTTON */
+
+  if (
+    toggle3D
+  ) {
+
+    const active =
+      collectionViewMode === "3d";
+
+
+    toggle3D.textContent =
+
+      active
+
+        ? t.backToGrid
+
+        : t.view3D;
+
+
+    toggle3D.classList.toggle(
+
+      "active",
+
+      active
+
+    );
+
+
+    toggle3D.setAttribute(
+
+      "aria-label",
+
+      active
+        ? t.backToGrid
+        : t.view3D
+
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   COLLECTION VIEW STYLES
+========================================================= */
+
+function installCollectionViewStyles() {
 
   if (
     document.getElementById(
-      "locan-grid-view-styles"
+      "locan-collection-view-styles"
     )
   ) {
 
@@ -1508,41 +2264,617 @@ function installGridViewStyles() {
 
 
   style.id =
-    "locan-grid-view-styles";
+    "locan-collection-view-styles";
 
 
   style.textContent = `
 
     /* =====================================================
-       DYNAMIC SNEAKER GRID
+       HORIZONTAL GRID CONTROL + TOTAL
     ===================================================== */
 
-    #sneaker-grid {
+    .collection-display-row {
+
+      display: grid;
+
+      grid-template-columns:
+        1fr
+        minmax(360px, 520px)
+        1fr;
+
+      align-items: center;
+
+      gap: 24px;
+
+      width: 100%;
+
+      margin:
+        0
+        0
+        24px;
+
+    }
+
+
+    .collection-display-spacer {
+
+      min-width: 0;
+
+    }
+
+
+    .collection-display-row
+    .collection-count {
+
+      justify-self: end;
+
+      margin: 0 !important;
+
+    }
+
+
+    /* =====================================================
+       GRID SLIDER CONTAINER
+    ===================================================== */
+
+    .grid-density-control {
+
+      width: 100%;
+
+      min-width: 0;
+
+      padding:
+        10px
+        16px
+        8px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,0.043),
+          rgba(255,255,255,0.018)
+        );
+
+      border:
+        1px solid
+        rgba(255,255,255,0.09);
+
+      border-radius: 14px;
+
+      box-shadow:
+
+        inset
+        0
+        1px
+        0
+        rgba(255,255,255,0.055),
+
+        0
+        10px
+        28px
+        rgba(0,0,0,0.12);
+
+      backdrop-filter:
+        blur(18px)
+        saturate(130%);
+
+      -webkit-backdrop-filter:
+        blur(18px)
+        saturate(130%);
+
+      transition:
+        opacity 0.2s ease,
+        border-color 0.2s ease;
+
+    }
+
+
+    .grid-density-control.disabled {
+
+      opacity: 0.38;
+
+    }
+
+
+    /* =====================================================
+       GRID LABEL
+    ===================================================== */
+
+    .grid-density-label {
+
+      margin-bottom: 5px;
+
+      color: #777b83;
+
+      font-size: 0.62rem;
+
+      font-weight: 850;
+
+      letter-spacing: 1.25px;
+
+      text-align: center;
+
+    }
+
+
+    /* =====================================================
+       SLIDER ROW
+    ===================================================== */
+
+    .grid-density-slider-row {
+
+      display: grid;
+
+      grid-template-columns:
+        34px
+        minmax(0, 1fr)
+        34px;
+
+      align-items: center;
+
+      gap: 13px;
+
+    }
+
+
+    /* =====================================================
+       − / + BUTTONS
+    ===================================================== */
+
+    .grid-density-step {
+
+      display: grid;
+
+      place-items: center;
+
+      width: 34px;
+
+      height: 34px;
+
+      padding: 0;
+
+      color: #92959d;
+
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          0.025
+        );
+
+      border:
+        1px solid
+        rgba(
+          255,
+          255,
+          255,
+          0.075
+        );
+
+      border-radius: 50%;
+
+      cursor: pointer;
+
+      font-size: 1.12rem;
+
+      line-height: 1;
+
+      transition:
+        color 0.18s ease,
+        border-color 0.18s ease,
+        background 0.18s ease,
+        transform 0.18s ease;
+
+    }
+
+
+    .grid-density-step:hover:not(:disabled) {
+
+      color: #ffcc00;
+
+      border-color:
+        rgba(
+          255,
+          204,
+          0,
+          0.30
+        );
+
+      background:
+        rgba(
+          255,
+          204,
+          0,
+          0.045
+        );
+
+      transform:
+        scale(1.04);
+
+    }
+
+
+    .grid-density-step:disabled {
+
+      opacity: 0.28;
+
+      cursor: default;
+
+    }
+
+
+    /* =====================================================
+       RANGE
+    ===================================================== */
+
+    .grid-density-range-wrap {
+
+      min-width: 0;
+
+    }
+
+
+    .grid-density-range {
+
+      --range-progress: 50%;
+
+      display: block;
+
+      width: 100%;
+
+      height: 24px;
+
+      margin: 0;
+
+      padding: 0;
+
+      appearance: none;
+
+      -webkit-appearance: none;
+
+      background: transparent;
+
+      cursor: pointer;
+
+    }
+
+
+    .grid-density-range:disabled {
+
+      cursor: default;
+
+    }
+
+
+    /* CHROME / EDGE / SAFARI TRACK */
+
+    .grid-density-range::-webkit-slider-runnable-track {
+
+      height: 4px;
+
+      border-radius: 999px;
+
+      background:
+
+        linear-gradient(
+
+          to right,
+
+          #ffcc00 0%,
+
+          #ffcc00
+          var(--range-progress),
+
+          #3c3c41
+          var(--range-progress),
+
+          #3c3c41 100%
+
+        );
+
+      box-shadow:
+
+        inset
+        0
+        0
+        0
+        1px
+        rgba(
+          255,
+          255,
+          255,
+          0.035
+        );
+
+    }
+
+
+    /* CHROME / EDGE / SAFARI THUMB */
+
+    .grid-density-range::-webkit-slider-thumb {
+
+      width: 19px;
+
+      height: 19px;
+
+      margin-top: -7.5px;
+
+      appearance: none;
+
+      -webkit-appearance: none;
+
+      background: #111114;
+
+      border:
+        3px solid
+        #ffcc00;
+
+      border-radius: 50%;
+
+      box-shadow:
+
+        0
+        0
+        0
+        3px
+        rgba(
+          255,
+          204,
+          0,
+          0.08
+        ),
+
+        0
+        3px
+        10px
+        rgba(
+          0,
+          0,
+          0,
+          0.45
+        );
+
+      transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+
+    }
+
+
+    .grid-density-range:hover::-webkit-slider-thumb {
+
+      transform:
+        scale(1.08);
+
+      box-shadow:
+
+        0
+        0
+        0
+        5px
+        rgba(
+          255,
+          204,
+          0,
+          0.10
+        ),
+
+        0
+        3px
+        11px
+        rgba(
+          0,
+          0,
+          0,
+          0.48
+        );
+
+    }
+
+
+    /* FIREFOX */
+
+    .grid-density-range::-moz-range-track {
+
+      height: 4px;
+
+      border-radius: 999px;
+
+      background: #3c3c41;
+
+    }
+
+
+    .grid-density-range::-moz-range-progress {
+
+      height: 4px;
+
+      border-radius: 999px;
+
+      background: #ffcc00;
+
+    }
+
+
+    .grid-density-range::-moz-range-thumb {
+
+      width: 15px;
+
+      height: 15px;
+
+      background: #111114;
+
+      border:
+        3px solid
+        #ffcc00;
+
+      border-radius: 50%;
+
+      box-shadow:
+
+        0
+        0
+        0
+        3px
+        rgba(
+          255,
+          204,
+          0,
+          0.08
+        ),
+
+        0
+        3px
+        10px
+        rgba(
+          0,
+          0,
+          0,
+          0.45
+        );
+
+    }
+
+
+    /* =====================================================
+       TICKS 1–5
+    ===================================================== */
+
+    .grid-density-ticks {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      padding:
+        0
+        2px;
+
+      margin-top: -2px;
+
+      color: #505158;
+
+      font-size: 0.50rem;
+
+      font-weight: 800;
+
+      line-height: 1;
+
+    }
+
+
+    /* =====================================================
+       SEPARATE 3D BUTTON
+    ===================================================== */
+
+    .collection-3d-toggle {
+
+      min-height: 39px;
+
+      margin-left: 12px;
+
+      padding:
+        9px
+        13px;
+
+      color: #8e929a;
+
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          0.025
+        );
+
+      border:
+        1px solid
+        rgba(
+          255,
+          255,
+          255,
+          0.09
+        );
+
+      border-radius: 9px;
+
+      cursor: pointer;
+
+      font-size: 0.66rem;
+
+      font-weight: 900;
+
+      letter-spacing: 1px;
+
+      transition:
+        color 0.18s ease,
+        border-color 0.18s ease,
+        background 0.18s ease;
+
+    }
+
+
+    .collection-3d-toggle:hover,
+    .collection-3d-toggle.active {
+
+      color: #ffcc00;
+
+      border-color:
+        rgba(
+          255,
+          204,
+          0,
+          0.24
+        );
+
+      background:
+        rgba(
+          255,
+          204,
+          0,
+          0.04
+        );
+
+    }
+
+
+    /* =====================================================
+       DYNAMIC GRID
+    ===================================================== */
+
+    #sneaker-grid.locan-grid-view {
 
       --locan-grid-columns: 3;
 
       display: grid !important;
 
       grid-template-columns:
+
         repeat(
-          var(--locan-grid-columns),
-          minmax(0, 1fr)
+
+          var(
+            --locan-grid-columns
+          ),
+
+          minmax(
+            0,
+            1fr
+          )
+
         ) !important;
 
-      align-items: stretch !important;
+      align-items:
+        stretch !important;
 
     }
 
 
-    /*
-       When the viewer deliberately selects
-       1-column mode on desktop/tablet,
-       prevent an excessively wide museum card.
-    */
+    /* =====================================================
+       1 COLUMN
+    ===================================================== */
 
-    #sneaker-grid.grid-cols-1 {
-
-      width: 100%;
+    #sneaker-grid.locan-grid-view.grid-cols-1 {
 
       max-width: 760px;
 
@@ -1553,28 +2885,26 @@ function installGridViewStyles() {
     }
 
 
-    #sneaker-grid.grid-cols-2 {
+    /* =====================================================
+       GAPS
+    ===================================================== */
+
+    #sneaker-grid.locan-grid-view.grid-cols-2,
+    #sneaker-grid.locan-grid-view.grid-cols-3 {
 
       gap: 28px;
 
     }
 
 
-    #sneaker-grid.grid-cols-3 {
-
-      gap: 28px;
-
-    }
-
-
-    #sneaker-grid.grid-cols-4 {
+    #sneaker-grid.locan-grid-view.grid-cols-4 {
 
       gap: 20px;
 
     }
 
 
-    #sneaker-grid.grid-cols-5 {
+    #sneaker-grid.locan-grid-view.grid-cols-5 {
 
       gap: 16px;
 
@@ -1582,7 +2912,7 @@ function installGridViewStyles() {
 
 
     /* =====================================================
-       FOUR-COLUMN DENSITY
+       FOUR COLUMN DENSITY
     ===================================================== */
 
     #sneaker-grid.grid-cols-4
@@ -1599,8 +2929,6 @@ function installGridViewStyles() {
     .card-info h3 {
 
       font-size: 0.98rem;
-
-      line-height: 1.38;
 
     }
 
@@ -1625,7 +2953,7 @@ function installGridViewStyles() {
 
 
     /* =====================================================
-       FIVE-COLUMN DENSITY
+       FIVE COLUMN DENSITY
     ===================================================== */
 
     #sneaker-grid.grid-cols-5
@@ -1665,8 +2993,6 @@ function installGridViewStyles() {
 
       font-size: 0.71rem;
 
-      line-height: 1.42;
-
     }
 
 
@@ -1699,41 +3025,160 @@ function installGridViewStyles() {
 
       font-size: 0.61rem;
 
-      letter-spacing: 0.9px;
-
     }
 
 
     /* =====================================================
-       GRID VIEW CONTROL
-       DESKTOP FLOATING LIQUID GLASS RAIL
+       3D COVER FLOW
     ===================================================== */
 
-    .grid-view-control {
+    #sneaker-grid.locan-3d-view {
 
-      position: fixed;
+      display: block !important;
 
-      top: 50%;
+      width: 100% !important;
 
-      right: 18px;
+      max-width: none !important;
 
-      z-index: 120;
+      margin: 0 !important;
 
-      display: flex;
+      overflow: visible !important;
 
-      flex-direction: column;
+    }
 
-      align-items: stretch;
 
-      width: 46px;
+    .sneaker-3d-gallery {
+
+      position: relative;
+
+      width: 100%;
+
+      min-height: 620px;
+
+      overflow: hidden;
+
+      border-radius: 24px;
+
+      outline: none;
+
+      perspective: 1450px;
+
+      perspective-origin:
+        50% 45%;
+
+      touch-action:
+        pan-y;
+
+      user-select:
+        none;
+
+    }
+
+
+    .sneaker-3d-gallery::before {
+
+      content: "";
+
+      position: absolute;
+
+      inset:
+        8%
+        8%
+        12%;
+
+      pointer-events: none;
+
+      background:
+
+        radial-gradient(
+
+          circle at center,
+
+          rgba(
+            255,
+            255,
+            255,
+            0.048
+          ),
+
+          rgba(
+            255,
+            255,
+            255,
+            0.018
+          ) 34%,
+
+          transparent 70%
+
+        );
+
+      filter:
+        blur(18px);
+
+    }
+
+
+    .sneaker-3d-stage {
+
+      position: relative;
+
+      width: 100%;
+
+      height: 550px;
+
+      transform-style:
+        preserve-3d;
+
+    }
+
+
+    .sneaker-3d-card {
+
+      position: absolute;
+
+      top: 48%;
+
+      left: 50%;
+
+      width:
+        min(
+          360px,
+          30vw
+        );
+
+      min-width: 270px;
+
+      height: 480px;
 
       overflow: hidden;
 
       background:
+
         linear-gradient(
+
           145deg,
-          rgba(48, 48, 53, 0.72),
-          rgba(18, 18, 21, 0.58)
+
+          rgba(
+            255,
+            255,
+            255,
+            0.075
+          ),
+
+          rgba(
+            255,
+            255,
+            255,
+            0.024
+          ) 48%,
+
+          rgba(
+            255,
+            255,
+            255,
+            0.016
+          )
+
         );
 
       border:
@@ -1745,16 +3190,20 @@ function installGridViewStyles() {
           0.13
         );
 
-      border-radius: 15px;
+      border-radius: 22px;
 
       box-shadow:
-        0 14px 36px
+
+        0
+        30px
+        55px
         rgba(
           0,
           0,
           0,
-          0.34
+          0.44
         ),
+
         inset
         0
         1px
@@ -1774,123 +3223,317 @@ function installGridViewStyles() {
         blur(24px)
         saturate(145%);
 
-      transform:
-        translateY(-50%);
-
-      user-select: none;
-
-      -webkit-user-select: none;
-
-    }
-
-
-    .grid-view-button {
-
-      display: grid;
-
-      place-items: center;
-
-      width: 44px;
-
-      height: 44px;
-
-      padding: 0;
-
-      appearance: none;
-
-      -webkit-appearance: none;
-
-      color: #a2a2a8;
-
-      background:
-        transparent;
-
-      border: 0;
-
-      outline: none;
+      transform-style:
+        preserve-3d;
 
       cursor: pointer;
 
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-
-      font-size: 1.3rem;
-
-      font-weight: 400;
-
-      line-height: 1;
+      opacity: 0;
 
       transition:
-        color 0.18s ease,
-        background 0.18s ease,
-        opacity 0.18s ease;
+
+        transform
+        0.48s
+        cubic-bezier(
+          0.22,
+          0.76,
+          0.22,
+          1
+        ),
+
+        opacity
+        0.34s
+        ease,
+
+        filter
+        0.34s
+        ease,
+
+        border-color
+        0.24s
+        ease;
 
     }
 
 
-    .grid-view-button:hover {
+    /* ACTIVE */
 
-      color: #ffcc00;
+    .sneaker-3d-card[data-offset="0"] {
 
-      background:
+      z-index: 5;
+
+      opacity: 1;
+
+      transform:
+
+        translate(
+          -50%,
+          -50%
+        )
+
+        translateZ(
+          110px
+        )
+
+        scale(1);
+
+      border-color:
         rgba(
           255,
           204,
           0,
-          0.065
+          0.20
         );
 
     }
 
 
-    .grid-view-button:focus-visible {
+    /* LEFT */
 
-      color: #ffcc00;
+    .sneaker-3d-card[data-offset="-1"] {
 
-      box-shadow:
-        inset
-        0
-        0
-        0
-        2px
-        rgba(
-          255,
-          204,
-          0,
-          0.38
+      z-index: 4;
+
+      opacity: 0.74;
+
+      filter:
+        brightness(0.72)
+        saturate(0.82);
+
+      transform:
+
+        translate(
+          -50%,
+          -50%
+        )
+
+        translateX(
+          -77%
+        )
+
+        translateZ(
+          -80px
+        )
+
+        rotateY(
+          27deg
+        )
+
+        scale(
+          0.82
         );
 
     }
 
 
-    .grid-view-button:disabled {
+    /* RIGHT */
 
-      color: #505056;
+    .sneaker-3d-card[data-offset="1"] {
 
-      opacity: 0.45;
+      z-index: 4;
 
-      cursor: default;
+      opacity: 0.74;
 
-      background:
-        transparent;
+      filter:
+        brightness(0.72)
+        saturate(0.82);
+
+      transform:
+
+        translate(
+          -50%,
+          -50%
+        )
+
+        translateX(
+          77%
+        )
+
+        translateZ(
+          -80px
+        )
+
+        rotateY(
+          -27deg
+        )
+
+        scale(
+          0.82
+        );
 
     }
 
 
-    .grid-view-number {
+    /* FAR LEFT */
 
-      display: grid;
+    .sneaker-3d-card[data-offset="-2"] {
 
-      place-items: center;
+      z-index: 3;
 
-      width: 44px;
+      opacity: 0.32;
 
-      height: 35px;
+      filter:
+        brightness(0.52)
+        saturate(0.65);
 
-      color: #ffcc00;
+      transform:
+
+        translate(
+          -50%,
+          -50%
+        )
+
+        translateX(
+          -128%
+        )
+
+        translateZ(
+          -250px
+        )
+
+        rotateY(
+          40deg
+        )
+
+        scale(
+          0.64
+        );
+
+    }
+
+
+    /* FAR RIGHT */
+
+    .sneaker-3d-card[data-offset="2"] {
+
+      z-index: 3;
+
+      opacity: 0.32;
+
+      filter:
+        brightness(0.52)
+        saturate(0.65);
+
+      transform:
+
+        translate(
+          -50%,
+          -50%
+        )
+
+        translateX(
+          128%
+        )
+
+        translateZ(
+          -250px
+        )
+
+        rotateY(
+          -40deg
+        )
+
+        scale(
+          0.64
+        );
+
+    }
+
+
+    /* =====================================================
+       3D IMAGE
+    ===================================================== */
+
+    .sneaker-3d-image {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      width: 100%;
+
+      height: 285px;
+
+    }
+
+
+    .sneaker-3d-image img {
+
+      display: block;
+
+      width: 88%;
+
+      height: 88%;
+
+      object-fit: contain;
+
+      object-position: center;
+
+      background: transparent;
+
+      filter:
+
+        drop-shadow(
+
+          0
+          16px
+          18px
+          rgba(
+            0,
+            0,
+            0,
+            0.24
+          )
+
+        );
+
+      pointer-events: none;
+
+    }
+
+
+    /* BAPE */
+
+    .sneaker-3d-image
+    img[src*="bapesta_stussy.png"] {
+
+      width: 54%;
+
+      height: 54%;
+
+    }
+
+
+    /* WAFFLE */
+
+    .sneaker-3d-image
+    img[src*="nike_waffle_racer_ow.png"] {
+
+      width: 52%;
+
+      height: 52%;
+
+    }
+
+
+    /* =====================================================
+       3D INFO
+    ===================================================== */
+
+    .sneaker-3d-info {
+
+      display: flex;
+
+      flex-direction: column;
+
+      min-height: 194px;
+
+      padding:
+        18px
+        20px
+        20px;
 
       border-top:
         1px solid
@@ -1898,53 +3541,122 @@ function installGridViewStyles() {
           255,
           255,
           255,
-          0.075
+          0.055
         );
 
-      border-bottom:
-        1px solid
+    }
+
+
+    .sneaker-3d-info h3 {
+
+      margin:
+        0
+        0
+        8px;
+
+      color: #f6f6f8;
+
+      font-size: 1rem;
+
+      line-height: 1.38;
+
+    }
+
+
+    .sneaker-3d-info p {
+
+      margin:
+        0
+        0
+        14px;
+
+      color: #9699a2;
+
+      font-size: 0.78rem;
+
+      line-height: 1.45;
+
+    }
+
+
+    .sneaker-3d-meta {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content:
+        space-between;
+
+      gap: 10px;
+
+      margin-top: auto;
+
+    }
+
+
+    .sneaker-3d-meta span {
+
+      padding:
+        5px
+        8px;
+
+      color: #ffcc00;
+
+      background:
         rgba(
           255,
           255,
           255,
-          0.075
+          0.085
         );
 
-      font-size: 0.75rem;
+      border-radius: 6px;
 
-      font-weight: 850;
+      font-size: 0.70rem;
 
-      letter-spacing: 0.5px;
+    }
+
+
+    .sneaker-3d-meta small {
+
+      color: #b5bac3;
+
+      font-size: 0.72rem;
 
     }
 
 
     /* =====================================================
-       MOBILE GRID TOGGLE
-       HIDDEN ON DESKTOP / TABLET
+       3D NAVIGATION
     ===================================================== */
 
-    .grid-mobile-toggle {
+    .sneaker-3d-nav {
 
-      display: none;
+      position: absolute;
 
-      align-items: center;
+      top: 46%;
 
-      justify-content: center;
+      z-index: 20;
 
-      min-height: 39px;
+      display: grid;
 
-      padding:
-        9px
-        13px;
+      place-items: center;
 
-      color: #96969c;
+      width: 46px;
+
+      height: 46px;
+
+      padding: 0;
+
+      color: #a5a5aa;
 
       background:
-        linear-gradient(
-          145deg,
-          rgba(255,255,255,0.045),
-          rgba(255,255,255,0.018)
+        rgba(
+          18,
+          18,
+          21,
+          0.58
         );
 
       border:
@@ -1953,18 +3665,10 @@ function installGridViewStyles() {
           255,
           255,
           255,
-          0.10
+          0.11
         );
 
-      border-radius: 9px;
-
-      cursor: pointer;
-
-      font-size: 0.68rem;
-
-      font-weight: 800;
-
-      letter-spacing: 1px;
+      border-radius: 50%;
 
       backdrop-filter:
         blur(18px);
@@ -1972,17 +3676,17 @@ function installGridViewStyles() {
       -webkit-backdrop-filter:
         blur(18px);
 
-      transition:
-        color 0.18s ease,
-        border-color 0.18s ease,
-        background 0.18s ease;
+      cursor: pointer;
+
+      font-size: 1.6rem;
+
+      transform:
+        translateY(-50%);
 
     }
 
 
-    .grid-mobile-toggle:hover,
-
-    .grid-mobile-toggle:focus-visible {
+    .sneaker-3d-nav:hover {
 
       color: #ffcc00;
 
@@ -1994,119 +3698,135 @@ function installGridViewStyles() {
           0.26
         );
 
-      background:
-        rgba(
-          255,
-          204,
-          0,
-          0.04
-        );
+    }
+
+
+    .sneaker-3d-prev {
+
+      left: 18px;
+
+    }
+
+
+    .sneaker-3d-next {
+
+      right: 18px;
+
+    }
+
+
+    /* =====================================================
+       3D FOOTER
+    ===================================================== */
+
+    .sneaker-3d-footer {
+
+      position: absolute;
+
+      left: 50%;
+
+      bottom: 17px;
+
+      z-index: 15;
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      gap: 7px;
+
+      transform:
+        translateX(-50%);
+
+      pointer-events: none;
+
+    }
+
+
+    .sneaker-3d-footer strong {
+
+      color: #ffcc00;
+
+      font-size: 0.72rem;
+
+      letter-spacing: 1.4px;
+
+    }
+
+
+    .sneaker-3d-footer span {
+
+      color: #626269;
+
+      font-size: 0.58rem;
+
+      font-weight: 800;
+
+      letter-spacing: 1px;
+
+      white-space: nowrap;
 
     }
 
 
     /* =====================================================
        TABLET
-       Control moves beside SORT.
     ===================================================== */
 
-    @media screen and
-    (min-width: 701px) and
-    (max-width: 999px) {
+    @media screen and (max-width: 950px) {
 
 
-      .collection-toolbar {
+      .collection-display-row {
 
-        gap: 12px;
-
-        flex-wrap: wrap;
+        grid-template-columns:
+          minmax(0, 1fr)
+          auto;
 
       }
 
 
-      .grid-view-control {
+      .collection-display-spacer {
 
-        position: static;
-
-        top: auto;
-
-        right: auto;
-
-        z-index: auto;
-
-        flex-direction: row;
-
-        width: auto;
-
-        height: 41px;
-
-        border-radius: 10px;
-
-        transform: none;
+        display: none;
 
       }
 
 
-      .grid-view-button {
+      .grid-density-control {
 
-        width: 39px;
-
-        height: 39px;
-
-        font-size: 1.15rem;
-
-      }
-
-
-      .grid-view-number {
-
-        width: 36px;
-
-        height: 39px;
-
-        border-top: 0;
-
-        border-bottom: 0;
-
-        border-left:
-          1px solid
-          rgba(
-            255,
-            255,
-            255,
-            0.075
+        width:
+          min(
+            100%,
+            500px
           );
 
-        border-right:
-          1px solid
-          rgba(
-            255,
-            255,
-            255,
-            0.075
-          );
+        justify-self: center;
 
       }
 
 
-      #sneaker-grid.grid-cols-1 {
+      .collection-display-row
+      .collection-count {
 
-        max-width: 680px;
+        justify-self: end;
 
       }
-
 
     }
 
 
     /* =====================================================
        MOBILE
-       No floating rail.
-       Only compact 1 ↔ 2 toggle.
+
+       TOTAL first.
+       Slider directly under TOTAL.
+
+       Still supports 1–5.
     ===================================================== */
 
-    @media screen and
-    (max-width: 700px) {
+    @media screen and (max-width: 650px) {
 
 
       .collection-toolbar {
@@ -2118,23 +3838,90 @@ function installGridViewStyles() {
       }
 
 
-      .grid-view-control {
+      /* 3D button full width */
 
-        display: none !important;
+      .collection-3d-toggle {
 
-      }
+        width: 100%;
 
-
-      .grid-mobile-toggle {
-
-        display: inline-flex;
-
-        margin-left: auto;
+        margin-left: 0;
 
       }
 
 
-      #sneaker-grid {
+      /* row becomes vertical */
+
+      .collection-display-row {
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 11px;
+
+        margin-bottom: 22px;
+
+      }
+
+
+      /* TOTAL FIRST */
+
+      .collection-display-row
+      .collection-count {
+
+        order: 1;
+
+        width: 100%;
+
+        margin: 0 !important;
+
+        text-align: center;
+
+      }
+
+
+      /* SLIDER SECOND */
+
+      .grid-density-control {
+
+        order: 2;
+
+        width: 100%;
+
+        padding:
+          10px
+          12px
+          8px;
+
+      }
+
+
+      .grid-density-slider-row {
+
+        grid-template-columns:
+          32px
+          minmax(0, 1fr)
+          32px;
+
+        gap: 10px;
+
+      }
+
+
+      .grid-density-step {
+
+        width: 32px;
+
+        height: 32px;
+
+      }
+
+
+      /* ===================================================
+         MOBILE GRID
+      =================================================== */
+
+      #sneaker-grid.locan-grid-view {
 
         max-width: none !important;
 
@@ -2145,34 +3932,52 @@ function installGridViewStyles() {
       }
 
 
-      #sneaker-grid.grid-cols-1 {
+      /* ONE COLUMN */
+
+      #sneaker-grid.locan-grid-view.grid-cols-1 {
 
         gap: 22px;
 
       }
 
 
-      #sneaker-grid.grid-cols-2 {
+      /* TWO COLUMNS */
+
+      #sneaker-grid.locan-grid-view.grid-cols-2 {
 
         gap: 12px;
 
       }
 
 
-      /* MOBILE 2-COLUMN CARD */
+      /* THREE */
 
-      #sneaker-grid.grid-cols-2
-      .card {
+      #sneaker-grid.locan-grid-view.grid-cols-3 {
 
-        border-radius: 13px;
+        gap: 9px;
 
       }
 
 
+      /* FOUR / FIVE */
+
+      #sneaker-grid.locan-grid-view.grid-cols-4,
+
+      #sneaker-grid.locan-grid-view.grid-cols-5 {
+
+        gap: 7px;
+
+      }
+
+
+      /* ===================================================
+         MOBILE 2 COLUMNS
+      =================================================== */
+
       #sneaker-grid.grid-cols-2
       .card-info {
 
-        min-height: 148px;
+        min-height: 146px;
 
         padding: 11px;
 
@@ -2182,11 +3987,9 @@ function installGridViewStyles() {
       #sneaker-grid.grid-cols-2
       .card-info h3 {
 
-        margin-bottom: 5px;
-
         font-size: 0.77rem;
 
-        line-height: 1.32;
+        line-height: 1.31;
 
       }
 
@@ -2194,58 +3997,285 @@ function installGridViewStyles() {
       #sneaker-grid.grid-cols-2
       .card-info .subtitle {
 
-        margin-bottom: 9px;
-
-        font-size: 0.66rem;
-
-        line-height: 1.38;
+        font-size: 0.65rem;
 
       }
 
 
-      #sneaker-grid.grid-cols-2
-      .card-meta {
+      /* ===================================================
+         MOBILE 3 COLUMNS
+         Compact catalogue preview
+      =================================================== */
 
-        gap: 6px;
+      #sneaker-grid.grid-cols-3
+      .card {
 
-      }
-
-
-      #sneaker-grid.grid-cols-2
-      .badge {
-
-        padding:
-          3px
-          5px;
-
-        border-radius: 5px;
-
-        font-size: 0.58rem;
+        border-radius: 11px;
 
       }
 
 
-      #sneaker-grid.grid-cols-2
-      .size {
+      #sneaker-grid.grid-cols-3
+      .card-info {
 
-        font-size: 0.59rem;
+        min-height: 94px;
+
+        padding: 8px;
 
       }
 
 
-      #sneaker-grid.grid-cols-2
+      #sneaker-grid.grid-cols-3
+      .card-info h3 {
+
+        margin: 0;
+
+        font-size: 0.62rem;
+
+        line-height: 1.25;
+
+      }
+
+
+      #sneaker-grid.grid-cols-3
+      .card-info .subtitle,
+
+      #sneaker-grid.grid-cols-3
+      .card-meta,
+
+      #sneaker-grid.grid-cols-3
       .card-cta {
 
-        margin-top: 9px;
-
-        padding-top: 8px;
-
-        font-size: 0.54rem;
-
-        letter-spacing: 0.65px;
+        display: none;
 
       }
 
+
+      /* ===================================================
+         MOBILE 4–5 COLUMNS
+         VISUAL OVERVIEW
+      =================================================== */
+
+      #sneaker-grid.grid-cols-4
+      .card,
+
+      #sneaker-grid.grid-cols-5
+      .card {
+
+        border-radius: 9px;
+
+      }
+
+
+      #sneaker-grid.grid-cols-4
+      .card-info,
+
+      #sneaker-grid.grid-cols-5
+      .card-info {
+
+        display: none;
+
+      }
+
+
+      #sneaker-grid.grid-cols-4
+      .card-img-wrapper,
+
+      #sneaker-grid.grid-cols-5
+      .card-img-wrapper {
+
+        aspect-ratio:
+          1 / 1;
+
+      }
+
+
+      /* ===================================================
+         3D MOBILE
+      =================================================== */
+
+      .sneaker-3d-gallery {
+
+        min-height: 540px;
+
+        border-radius: 18px;
+
+        perspective: 1100px;
+
+      }
+
+
+      .sneaker-3d-stage {
+
+        height: 485px;
+
+      }
+
+
+      .sneaker-3d-card {
+
+        top: 47%;
+
+        width:
+          min(
+            78vw,
+            330px
+          );
+
+        min-width: 0;
+
+        height: 420px;
+
+      }
+
+
+      .sneaker-3d-card[data-offset="0"] {
+
+        transform:
+
+          translate(
+            -50%,
+            -50%
+          )
+
+          translateZ(
+            80px
+          )
+
+          scale(1);
+
+      }
+
+
+      .sneaker-3d-card[data-offset="-1"] {
+
+        opacity: 0.46;
+
+        transform:
+
+          translate(
+            -50%,
+            -50%
+          )
+
+          translateX(
+            -82%
+          )
+
+          translateZ(
+            -100px
+          )
+
+          rotateY(
+            30deg
+          )
+
+          scale(
+            0.72
+          );
+
+      }
+
+
+      .sneaker-3d-card[data-offset="1"] {
+
+        opacity: 0.46;
+
+        transform:
+
+          translate(
+            -50%,
+            -50%
+          )
+
+          translateX(
+            82%
+          )
+
+          translateZ(
+            -100px
+          )
+
+          rotateY(
+            -30deg
+          )
+
+          scale(
+            0.72
+          );
+
+      }
+
+
+      .sneaker-3d-card[data-offset="-2"],
+
+      .sneaker-3d-card[data-offset="2"] {
+
+        opacity: 0;
+
+        pointer-events: none;
+
+      }
+
+
+      .sneaker-3d-image {
+
+        height: 245px;
+
+      }
+
+
+      .sneaker-3d-info {
+
+        min-height: 174px;
+
+        padding:
+          15px
+          16px
+          17px;
+
+      }
+
+
+      .sneaker-3d-info h3 {
+
+        font-size: 0.9rem;
+
+      }
+
+
+      .sneaker-3d-info p {
+
+        font-size: 0.72rem;
+
+      }
+
+
+      .sneaker-3d-nav {
+
+        display: none;
+
+      }
+
+
+      .sneaker-3d-footer {
+
+        bottom: 10px;
+
+      }
+
+
+      .sneaker-3d-footer span {
+
+        max-width: 88vw;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+
+        font-size: 0.52rem;
+
+      }
 
     }
 
@@ -2254,66 +4284,43 @@ function installGridViewStyles() {
        SMALL MOBILE
     ===================================================== */
 
-    @media screen and
-    (max-width: 430px) {
+    @media screen and (max-width: 430px) {
 
 
-      .grid-mobile-toggle {
+      .grid-density-label {
 
-        min-height: 37px;
-
-        padding:
-          8px
-          11px;
-
-        font-size: 0.64rem;
+        font-size: 0.58rem;
 
       }
 
 
-      #sneaker-grid.grid-cols-2 {
+      .grid-density-ticks {
 
-        gap: 9px;
-
-      }
-
-
-      #sneaker-grid.grid-cols-2
-      .card-info {
-
-        min-height: 140px;
-
-        padding: 9px;
+        font-size: 0.47rem;
 
       }
 
-
-      #sneaker-grid.grid-cols-2
-      .card-info h3 {
-
-        font-size: 0.72rem;
-
-      }
+    }
 
 
-      #sneaker-grid.grid-cols-2
-      .card-info .subtitle {
+    /* =====================================================
+       REDUCED MOTION
+    ===================================================== */
 
-        font-size: 0.62rem;
+    @media
+    (prefers-reduced-motion: reduce) {
 
-      }
 
+      .sneaker-3d-card,
 
-      #sneaker-grid.grid-cols-2
-      .badge,
+      .grid-density-step,
 
-      #sneaker-grid.grid-cols-2
-      .size {
+      .collection-3d-toggle {
 
-        font-size: 0.54rem;
+        transition:
+          none !important;
 
       }
-
 
     }
 
@@ -2328,191 +4335,390 @@ function installGridViewStyles() {
 
 
 /* =========================================================
-   CREATE GRID CONTROLS
+   3D GALLERY
 ========================================================= */
 
-function createGridViewControls() {
+function reset3DPosition() {
 
-  const toolbar =
-    document.querySelector(
-      ".collection-toolbar"
+  slideIndex =
+    0;
+
+
+  slideActiveId =
+    null;
+
+}
+
+
+function wrapIndex(
+  index,
+  length
+) {
+
+  return length > 0
+
+    ? (
+        (
+          index % length
+        )
+        +
+        length
+      )
+      %
+      length
+
+    : 0;
+
+}
+
+
+function offsetsFor(
+  length
+) {
+
+  if (
+    length <= 1
+  ) {
+
+    return [0];
+
+  }
+
+
+  if (
+    length === 2
+  ) {
+
+    return [
+      0,
+      1
+    ];
+
+  }
+
+
+  if (
+    length === 3
+  ) {
+
+    return [
+      -1,
+      0,
+      1
+    ];
+
+  }
+
+
+  if (
+    length === 4
+  ) {
+
+    return [
+      -1,
+      0,
+      1,
+      2
+    ];
+
+  }
+
+
+  return [
+    -2,
+    -1,
+    0,
+    1,
+    2
+  ];
+
+}
+
+
+/* =========================================================
+   DETAIL URL
+========================================================= */
+
+function getDetailURL(
+  sneaker
+) {
+
+  return (
+
+    `./shoe.html?id=${encodeURIComponent(
+      sneaker.id
+    )}`
+
+    +
+
+    `&lang=${encodeURIComponent(
+      currentLang
+    )}`
+
+  );
+
+}
+
+
+/* =========================================================
+   3D CARD
+========================================================= */
+
+function render3DCard(
+  sneaker,
+  index,
+  offset
+) {
+
+  const title =
+    getLocalizedText(
+      sneaker.title
     );
 
 
-  if (!toolbar) {
+  const subtitle =
+    getLocalizedText(
+      sneaker.subtitle
+    );
+
+
+  const edition =
+    getLocalizedText(
+      sneaker.editionType
+    );
+
+
+  return `
+
+    <article
+
+      class="sneaker-3d-card"
+
+      data-index="${index}"
+
+      data-offset="${offset}"
+
+      tabindex="0"
+
+      role="button"
+
+      aria-label="${escapeHTML(
+        title
+      )}"
+
+    >
+
+
+      <div class="sneaker-3d-image">
+
+
+        <img
+
+          src="${escapeHTML(
+            sneaker.image || ""
+          )}"
+
+          alt="${escapeHTML(
+            title
+          )}"
+
+          loading="${
+            offset === 0
+              ? "eager"
+              : "lazy"
+          }"
+
+          decoding="async"
+
+          draggable="false"
+
+        >
+
+
+      </div>
+
+
+      <div class="sneaker-3d-info">
+
+
+        <h3>
+
+          ${escapeHTML(
+            title
+          )}
+
+        </h3>
+
+
+        <p>
+
+          ${escapeHTML(
+            subtitle
+          )}
+
+        </p>
+
+
+        <div class="sneaker-3d-meta">
+
+
+          <span>
+
+            ${escapeHTML(
+              edition || "—"
+            )}
+
+          </span>
+
+
+          <small>
+
+            ${escapeHTML(
+              sneaker.size || ""
+            )}
+
+          </small>
+
+
+        </div>
+
+
+      </div>
+
+
+    </article>
+
+  `;
+
+}
+
+
+/* =========================================================
+   SLIDE POSITION
+========================================================= */
+
+function setSlideIndex(
+  index
+) {
+
+  if (
+    !slideItems.length
+  ) {
+
+    return;
+
+  }
+
+
+  slideIndex =
+    wrapIndex(
+
+      index,
+
+      slideItems.length
+
+    );
+
+
+  slideActiveId =
+    slideItems[
+      slideIndex
+    ]?.id
+    ||
+    null;
+
+
+  render3DGallery(
+    slideItems
+  );
+
+}
+
+
+function moveSlide(
+  direction
+) {
+
+  if (
+    slideItems.length <= 1
+  ) {
+
+    return;
+
+  }
+
+
+  setSlideIndex(
+
+    slideIndex
+    +
+    direction
+
+  );
+
+}
+
+
+/* =========================================================
+   OPEN ACTIVE SLIDE
+========================================================= */
+
+function openActiveSlide() {
+
+  const sneaker =
+    slideItems[
+      slideIndex
+    ];
+
+
+  if (!sneaker) {
     return;
   }
 
 
-  installGridViewStyles();
+  window.location.href =
+    getDetailURL(
+      sneaker
+    );
+
+}
 
 
-  /* DESKTOP / TABLET CONTROL */
+/* =========================================================
+   3D EVENTS
+========================================================= */
 
-  if (
+function bind3DGalleryEvents() {
 
-    !document.getElementById(
-      "grid-view-control"
-    )
-
-  ) {
-
-    const control =
-      document.createElement(
-        "div"
-      );
-
-
-    control.id =
-      "grid-view-control";
-
-
-    control.className =
-      "grid-view-control";
-
-
-    control.setAttribute(
-      "role",
-      "group"
+  const gallery =
+    document.getElementById(
+      "sneaker-3d-gallery"
     );
 
 
-    control.innerHTML = `
-
-      <button
-
-        type="button"
-
-        id="grid-view-increase"
-
-        class="grid-view-button"
-
-      >
-
-        +
-
-      </button>
-
-
-      <span
-
-        id="grid-view-number"
-
-        class="grid-view-number"
-
-        aria-live="polite"
-
-      >
-
-        3
-
-      </span>
-
-
-      <button
-
-        type="button"
-
-        id="grid-view-decrease"
-
-        class="grid-view-button"
-
-      >
-
-        −
-
-      </button>
-
-    `;
-
-
-    toolbar.appendChild(
-      control
-    );
-
-
-    document
-
-      .getElementById(
-        "grid-view-increase"
-      )
-
-      ?.addEventListener(
-        "click",
-        () => {
-
-          changeGridColumns(
-            1
-          );
-
-        }
-      );
-
-
-    document
-
-      .getElementById(
-        "grid-view-decrease"
-      )
-
-      ?.addEventListener(
-        "click",
-        () => {
-
-          changeGridColumns(
-            -1
-          );
-
-        }
-      );
-
+  if (!gallery) {
+    return;
   }
 
 
-  /* MOBILE CONTROL */
+  /* PREVIOUS */
 
-  if (
+  document
 
-    !document.getElementById(
-      "grid-mobile-toggle"
+    .getElementById(
+      "sneaker-3d-prev"
     )
 
-  ) {
-
-    const mobileToggle =
-      document.createElement(
-        "button"
-      );
-
-
-    mobileToggle.type =
-      "button";
-
-
-    mobileToggle.id =
-      "grid-mobile-toggle";
-
-
-    mobileToggle.className =
-      "grid-mobile-toggle";
-
-
-    mobileToggle.addEventListener(
+    ?.addEventListener(
 
       "click",
 
-      () => {
+      event => {
 
+        event.stopPropagation();
 
-        const next =
-          currentGridColumns === 1
-            ? 2
-            : 1;
-
-
-        setGridColumns(
-          next,
-          true
+        moveSlide(
+          -1
         );
 
       }
@@ -2520,22 +4726,396 @@ function createGridViewControls() {
     );
 
 
-    toolbar.appendChild(
-      mobileToggle
+  /* NEXT */
+
+  document
+
+    .getElementById(
+      "sneaker-3d-next"
+    )
+
+    ?.addEventListener(
+
+      "click",
+
+      event => {
+
+        event.stopPropagation();
+
+        moveSlide(
+          1
+        );
+
+      }
+
     );
 
-  }
+
+  /* CARDS */
+
+  gallery
+
+    .querySelectorAll(
+      ".sneaker-3d-card"
+    )
+
+    .forEach(
+      card => {
+
+
+        const activate =
+          () => {
+
+
+            if (
+              pointerMoved
+            ) {
+
+              return;
+
+            }
+
+
+            const index =
+              Number.parseInt(
+
+                card.dataset.index,
+
+                10
+
+              );
+
+
+            if (
+              !Number.isFinite(
+                index
+              )
+            ) {
+
+              return;
+
+            }
+
+
+            /*
+              Active card:
+              open sneaker detail.
+
+              Side card:
+              move into center.
+            */
+
+            if (
+              index === slideIndex
+            ) {
+
+              openActiveSlide();
+
+            } else {
+
+              setSlideIndex(
+                index
+              );
+
+            }
+
+          };
+
+
+        card.addEventListener(
+
+          "click",
+
+          activate
+
+        );
+
+
+        card.addEventListener(
+
+          "keydown",
+
+          event => {
+
+
+            if (
+
+              event.key === "Enter"
+
+              ||
+
+              event.key === " "
+
+            ) {
+
+              event.preventDefault();
+
+              activate();
+
+            }
+
+          }
+
+        );
+
+      }
+
+    );
+
+
+  /* KEYBOARD */
+
+  gallery.addEventListener(
+
+    "keydown",
+
+    event => {
+
+
+      if (
+        event.key === "ArrowLeft"
+      ) {
+
+        event.preventDefault();
+
+        moveSlide(
+          -1
+        );
+
+      }
+
+
+      if (
+        event.key === "ArrowRight"
+      ) {
+
+        event.preventDefault();
+
+        moveSlide(
+          1
+        );
+
+      }
+
+    }
+
+  );
+
+
+  /* POINTER DOWN */
+
+  gallery.addEventListener(
+
+    "pointerdown",
+
+    event => {
+
+
+      pointerStartX =
+        event.clientX;
+
+
+      pointerStartY =
+        event.clientY;
+
+
+      pointerMoved =
+        false;
+
+
+      try {
+
+        gallery.setPointerCapture(
+          event.pointerId
+        );
+
+      } catch (_) {
+
+        /*
+          Optional.
+        */
+
+      }
+
+    }
+
+  );
+
+
+  /* POINTER MOVE */
+
+  gallery.addEventListener(
+
+    "pointermove",
+
+    event => {
+
+
+      if (
+
+        pointerStartX === null
+
+        ||
+
+        pointerStartY === null
+
+      ) {
+
+        return;
+
+      }
+
+
+      const dx =
+        event.clientX
+        -
+        pointerStartX;
+
+
+      const dy =
+        event.clientY
+        -
+        pointerStartY;
+
+
+      if (
+
+        Math.abs(dx) > 8
+
+        ||
+
+        Math.abs(dy) > 8
+
+      ) {
+
+        pointerMoved =
+          true;
+
+      }
+
+    }
+
+  );
+
+
+  /* POINTER UP */
+
+  gallery.addEventListener(
+
+    "pointerup",
+
+    event => {
+
+
+      if (
+
+        pointerStartX === null
+
+        ||
+
+        pointerStartY === null
+
+      ) {
+
+        return;
+
+      }
+
+
+      const dx =
+        event.clientX
+        -
+        pointerStartX;
+
+
+      const dy =
+        event.clientY
+        -
+        pointerStartY;
+
+
+      /*
+        Horizontal swipe only.
+      */
+
+      if (
+
+        Math.abs(dx) > 48
+
+        &&
+
+        Math.abs(dx)
+        >
+        Math.abs(dy)
+
+      ) {
+
+        moveSlide(
+
+          dx < 0
+            ? 1
+            : -1
+
+        );
+
+      }
+
+
+      pointerStartX =
+        null;
+
+
+      pointerStartY =
+        null;
+
+
+      window.setTimeout(
+        () => {
+
+          pointerMoved =
+            false;
+
+        },
+        0
+      );
+
+    }
+
+  );
+
+
+  /* POINTER CANCEL */
+
+  gallery.addEventListener(
+
+    "pointercancel",
+
+    () => {
+
+      pointerStartX =
+        null;
+
+
+      pointerStartY =
+        null;
+
+
+      pointerMoved =
+        false;
+
+    }
+
+  );
 
 }
 
 
 /* =========================================================
-   APPLY GRID COLUMNS
+   RENDER 3D GALLERY
 ========================================================= */
 
-function setGridColumns(
-  columns,
-  persist = true
+function render3DGallery(
+  items
 ) {
 
   const grid =
@@ -2544,439 +5124,232 @@ function setGridColumns(
     );
 
 
-  if (!grid) {
+  if (
+    !grid
+    ||
+    !items.length
+  ) {
+
     return;
+
   }
 
 
-  const mode =
-    getGridViewMode();
+  slideItems =
+    items;
 
 
-  const config =
-    GRID_VIEW_CONFIG[mode];
-
-
-  let value =
-    Number.parseInt(
-      columns,
-      10
-    );
-
+  /*
+    Preserve active sneaker
+    if filter/sort changes.
+  */
 
   if (
-    !Number.isFinite(
-      value
-    )
+    slideActiveId
   ) {
 
-    value =
-      config.defaultColumns;
+    const preserved =
+      slideItems.findIndex(
 
-  }
+        item =>
+          item.id === slideActiveId
 
-
-  value =
-    Math.min(
-
-      config.max,
-
-      Math.max(
-        config.min,
-        value
-      )
-
-    );
-
-
-  currentGridMode =
-    mode;
-
-
-  currentGridColumns =
-    value;
-
-
-  grid.style.setProperty(
-
-    "--locan-grid-columns",
-
-    String(value)
-
-  );
-
-
-  grid.dataset.gridColumns =
-    String(value);
-
-
-  for (
-    let i = 1;
-    i <= 5;
-    i += 1
-  ) {
-
-    grid.classList.remove(
-      `grid-cols-${i}`
-    );
-
-  }
-
-
-  grid.classList.add(
-    `grid-cols-${value}`
-  );
-
-
-  if (
-    persist
-  ) {
-
-    storeGridColumns(
-      mode,
-      value
-    );
-
-  }
-
-
-  updateGridViewControl();
-
-}
-
-
-/* =========================================================
-   CHANGE GRID COLUMNS
-========================================================= */
-
-function changeGridColumns(
-  direction
-) {
-
-  const mode =
-    getGridViewMode();
-
-
-  const config =
-    GRID_VIEW_CONFIG[mode];
-
-
-  const next =
-
-    Math.min(
-
-      config.max,
-
-      Math.max(
-
-        config.min,
-
-        currentGridColumns
-        +
-        direction
-
-      )
-
-    );
-
-
-  setGridColumns(
-    next,
-    true
-  );
-
-}
-
-
-/* =========================================================
-   LOAD SAVED GRID
-========================================================= */
-
-function applySavedGridView() {
-
-  const mode =
-    getGridViewMode();
-
-
-  const columns =
-    getStoredGridColumns(
-      mode
-    );
-
-
-  setGridColumns(
-    columns,
-    false
-  );
-
-}
-
-
-/* =========================================================
-   GRID CONTROL STATE / LANGUAGE
-========================================================= */
-
-function updateGridViewControl() {
-
-  const mode =
-    getGridViewMode();
-
-
-  const config =
-    GRID_VIEW_CONFIG[mode];
-
-
-  const increase =
-    document.getElementById(
-      "grid-view-increase"
-    );
-
-
-  const decrease =
-    document.getElementById(
-      "grid-view-decrease"
-    );
-
-
-  const number =
-    document.getElementById(
-      "grid-view-number"
-    );
-
-
-  const mobileToggle =
-    document.getElementById(
-      "grid-mobile-toggle"
-    );
-
-
-  const isVietnamese =
-    currentLang === "vi";
-
-
-  if (
-    number
-  ) {
-
-    number.textContent =
-      String(
-        currentGridColumns
       );
 
 
-    number.setAttribute(
-
-      "aria-label",
-
-      isVietnamese
-
-        ? `${currentGridColumns} cột`
-
-        : `${currentGridColumns} columns`
-
-    );
+    slideIndex =
+      preserved >= 0
+        ? preserved
+        : 0;
 
   }
 
 
-  if (
-    increase
-  ) {
+  slideIndex =
+    wrapIndex(
 
-    increase.disabled =
-      currentGridColumns
-      >=
-      config.max;
+      slideIndex,
 
-
-    increase.setAttribute(
-
-      "aria-label",
-
-      isVietnamese
-
-        ? "Tăng số cột"
-
-        : "Increase grid columns"
+      slideItems.length
 
     );
 
 
-    increase.title =
-
-      isVietnamese
-
-        ? "Tăng số cột"
-
-        : "Increase columns";
-
-  }
+  slideActiveId =
+    slideItems[
+      slideIndex
+    ]?.id
+    ||
+    null;
 
 
-  if (
-    decrease
-  ) {
-
-    decrease.disabled =
-      currentGridColumns
-      <=
-      config.min;
+  const seen =
+    new Set();
 
 
-    decrease.setAttribute(
-
-      "aria-label",
-
-      isVietnamese
-
-        ? "Giảm số cột"
-
-        : "Decrease grid columns"
-
-    );
+  const cards =
+    [];
 
 
-    decrease.title =
+  offsetsFor(
+    slideItems.length
+  )
 
-      isVietnamese
-
-        ? "Giảm số cột"
-
-        : "Decrease columns";
-
-  }
+    .forEach(
+      offset => {
 
 
-  const control =
-    document.getElementById(
-      "grid-view-control"
-    );
+        const index =
+          wrapIndex(
 
+            slideIndex
+            +
+            offset,
 
-  if (
-    control
-  ) {
+            slideItems.length
 
-    control.setAttribute(
+          );
 
-      "aria-label",
-
-      isVietnamese
-
-        ? "Điều chỉnh bố cục lưới"
-
-        : "Adjust grid layout"
-
-    );
-
-  }
-
-
-  if (
-    mobileToggle
-  ) {
-
-    mobileToggle.textContent =
-
-      isVietnamese
-
-        ? `▦  LƯỚI · ${currentGridColumns}`
-
-        : `▦  GRID · ${currentGridColumns}`;
-
-
-    mobileToggle.setAttribute(
-
-      "aria-label",
-
-      isVietnamese
-
-        ? (
-            currentGridColumns === 1
-
-              ? "Chuyển sang lưới 2 cột"
-
-              : "Chuyển sang lưới 1 cột"
-          )
-
-        : (
-            currentGridColumns === 1
-
-              ? "Switch to 2-column grid"
-
-              : "Switch to 1-column grid"
-          )
-
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   RESPONSIVE GRID MODE
-========================================================= */
-
-function handleGridViewResize() {
-
-  clearTimeout(
-    gridResizeTimer
-  );
-
-
-  gridResizeTimer =
-    setTimeout(
-      () => {
-
-
-        const mode =
-          getGridViewMode();
-
-
-        /*
-           If the viewport moved into
-           a different device category,
-           load that category's own setting.
-        */
 
         if (
-          mode !==
-          currentGridMode
+          seen.has(
+            index
+          )
         ) {
-
-          applySavedGridView();
 
           return;
 
         }
 
 
-        /*
-           Otherwise simply ensure
-           the value still remains valid.
-        */
-
-        setGridColumns(
-          currentGridColumns,
-          false
+        seen.add(
+          index
         );
 
 
-      },
-      120
+        cards.push(
+
+          render3DCard(
+
+            slideItems[
+              index
+            ],
+
+            index,
+
+            offset
+
+          )
+
+        );
+
+      }
+
     );
 
+
+  const t =
+    translations[
+      currentLang
+    ];
+
+
+  grid.innerHTML = `
+
+    <section
+
+      id="sneaker-3d-gallery"
+
+      class="sneaker-3d-gallery"
+
+      tabindex="0"
+
+    >
+
+
+      <button
+
+        type="button"
+
+        id="sneaker-3d-prev"
+
+        class="
+          sneaker-3d-nav
+          sneaker-3d-prev
+        "
+
+        aria-label="${escapeHTML(
+          t.previous
+        )}"
+
+      >
+
+        ‹
+
+      </button>
+
+
+      <div class="sneaker-3d-stage">
+
+        ${cards.join("")}
+
+      </div>
+
+
+      <button
+
+        type="button"
+
+        id="sneaker-3d-next"
+
+        class="
+          sneaker-3d-nav
+          sneaker-3d-next
+        "
+
+        aria-label="${escapeHTML(
+          t.next
+        )}"
+
+      >
+
+        ›
+
+      </button>
+
+
+      <div class="sneaker-3d-footer">
+
+
+        <strong>
+
+          ${slideIndex + 1}
+          /
+          ${slideItems.length}
+
+        </strong>
+
+
+        <span>
+
+          ${escapeHTML(
+            t.galleryHint
+          )}
+
+        </span>
+
+
+      </div>
+
+
+    </section>
+
+  `;
+
+
+  bind3DGalleryEvents();
+
 }
-
-
-window.addEventListener(
-
-  "resize",
-
-  handleGridViewResize
-
-);
 
 
 /* =========================================================
@@ -3217,7 +5590,7 @@ function updateStaticText() {
     );
 
 
-  updateGridViewControl();
+  updateCollectionViewControls();
 
 }
 
@@ -3311,7 +5684,10 @@ function renderCard(
       : `
 
         <span
-          class="badge badge-placeholder"
+          class="
+            badge
+            badge-placeholder
+          "
         >
           &nbsp;
         </span>
@@ -3333,10 +5709,12 @@ function renderCard(
 
     >
 
+
       <article class="card">
 
 
         <div class="card-img-wrapper">
+
 
           <img
 
@@ -3353,6 +5731,7 @@ function renderCard(
             decoding="async"
 
           >
+
 
         </div>
 
@@ -3380,6 +5759,7 @@ function renderCard(
 
           <div class="card-meta">
 
+
             ${badge}
 
 
@@ -3390,6 +5770,7 @@ function renderCard(
               )}
 
             </span>
+
 
           </div>
 
@@ -3408,6 +5789,7 @@ function renderCard(
 
       </article>
 
+
     </a>
 
   `;
@@ -3416,7 +5798,7 @@ function renderCard(
 
 
 /* =========================================================
-   GRID RENDER
+   GRID / 3D RENDER
 ========================================================= */
 
 function renderGrid() {
@@ -3432,10 +5814,12 @@ function renderGrid() {
   }
 
 
+  applyGridLayout();
+
+
   if (
 
-    typeof sneakers ===
-      "undefined"
+    typeof sneakers === "undefined"
 
     ||
 
@@ -3507,6 +5891,24 @@ function renderGrid() {
   }
 
 
+  /* 3D */
+
+  if (
+    collectionViewMode === "3d"
+  ) {
+
+    render3DGallery(
+      sorted
+    );
+
+
+    return;
+
+  }
+
+
+  /* GRID */
+
   grid.innerHTML =
 
     sorted
@@ -3521,7 +5923,7 @@ function renderGrid() {
 
 
 /* =========================================================
-   SET LANGUAGE
+   LANGUAGE
 ========================================================= */
 
 function setLanguage(
@@ -3534,7 +5936,7 @@ function setLanguage(
     );
 
 
-  localStorage.setItem(
+  safeStorageSet(
 
     "locan_lang",
 
@@ -3585,6 +5987,68 @@ function setLanguage(
 
 
 /* =========================================================
+   RESPONSIVE GRID PREFERENCE
+========================================================= */
+
+function handleCollectionResize() {
+
+  clearTimeout(
+    resizeTimer
+  );
+
+
+  resizeTimer =
+    window.setTimeout(
+
+      () => {
+
+
+        const device =
+          getGridDevice();
+
+
+        if (
+          device !== gridDevice
+        ) {
+
+          gridDevice =
+            device;
+
+
+          gridColumns =
+            readGridColumns(
+              device
+            );
+
+
+          applyGridLayout();
+
+          updateCollectionViewControls();
+
+          renderGrid();
+
+        }
+
+
+      },
+
+      120
+
+    );
+
+}
+
+
+window.addEventListener(
+
+  "resize",
+
+  handleCollectionResize
+
+);
+
+
+/* =========================================================
    INITIALIZE
 ========================================================= */
 
@@ -3596,27 +6060,47 @@ document.addEventListener(
 
 
     /*
-       Grid controls first,
-       so language update can also
-       update their labels.
+      Install injected CSS.
     */
 
-    createGridViewControls();
+    installCollectionViewStyles();
 
 
     /*
-       Load remembered layout
-       for the current device class.
+      Create slider + 3D button.
     */
 
-    applySavedGridView();
+    createCollectionViewUI();
 
+
+    /*
+      Load grid preference
+      for current device.
+    */
+
+    gridDevice =
+      getGridDevice();
+
+
+    gridColumns =
+      readGridColumns(
+        gridDevice
+      );
+
+
+    /*
+      Apply UI.
+    */
+
+    applyGridLayout();
 
     updateStaticText();
 
     renderSizeFilters();
 
     updateFilterInterface();
+
+    updateCollectionViewControls();
 
     renderGrid();
 
