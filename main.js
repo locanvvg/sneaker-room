@@ -493,6 +493,39 @@ function getEditionCategories(
 
   }
 
+     /* CUSTOM 1/1 */
+
+  if (
+
+    corpus.includes(
+      "CUSTOM 1/1"
+    )
+
+    ||
+
+    corpus.includes(
+      "CUSTOM 1 OF 1"
+    )
+
+    ||
+
+    corpus.includes(
+      "CUSTOM 1-OF-1"
+    )
+
+    ||
+
+    corpus.includes(
+      "PERSONAL CUSTOM 1/1"
+    )
+
+  ) {
+
+    categories.add(
+      "Custom 1/1"
+    );
+
+  }
 
   /* GENERAL RELEASE */
 
