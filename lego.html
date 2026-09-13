@@ -2,13 +2,8 @@
 <html lang="vi">
 
 <head>
-
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <meta
     name="description"
@@ -20,10 +15,7 @@
     content="#0d0d0d"
   >
 
-  <title>
-    LEGO | Lộc An Sneaker Collection
-  </title>
-
+  <title>LEGO | Lộc An Sneaker Collection</title>
 
   <link
     rel="icon"
@@ -43,65 +35,64 @@
 
   <link
     rel="stylesheet"
-    href="./style.css?v=20260912-restore"
+    href="./style.css?v=20260913-clean-nav"
   >
 
   <link
     rel="stylesheet"
-    href="./collection-menu.css?v=20260912-restore"
+    href="./collection-menu.css?v=20260913-clean-nav"
   >
-
 </head>
-
 
 <body>
 
   <div class="container">
 
-
     <header class="home-header">
 
+      <div class="header-corner-tools">
 
-      <div class="lang-switcher corner-lang">
+        <a href="./about.html" class="about-corner-link">
+          ABOUT
+        </a>
 
-        <button
-          type="button"
-          id="btn-vi"
-          class="lang-btn active"
-          onclick="setLegoLanguage('vi')"
-        >
-          VI
-        </button>
+        <div class="lang-switcher">
 
+          <button
+            type="button"
+            id="btn-vi"
+            class="lang-btn active"
+            onclick="setLegoLanguage('vi')"
+          >
+            VI
+          </button>
 
-        <button
-          type="button"
-          id="btn-en"
-          class="lang-btn"
-          onclick="setLegoLanguage('en')"
-        >
-          EN
-        </button>
+          <button
+            type="button"
+            id="btn-en"
+            class="lang-btn"
+            onclick="setLegoLanguage('en')"
+          >
+            EN
+          </button>
+
+        </div>
 
       </div>
-
 
       <h1>
         LỘC AN SNEAKER COLLECTION
       </h1>
-
 
       <p
         id="lego-main-subtitle"
         data-vi="Không gian lưu trữ & Bảo tàng Sneaker Kỹ thuật số"
         data-en="Digital Sneaker Archive & Museum"
       >
-        Không gian lưu trữ &amp;
-        Bảo tàng Sneaker Kỹ thuật số
+        Không gian lưu trữ &amp; Bảo tàng Sneaker Kỹ thuật số
       </p>
 
-
-      <nav class="museum-nav">
+      <nav class="museum-nav" aria-label="Collection navigation">
 
         <a
           href="./index.html"
@@ -110,14 +101,13 @@
           SNEAKERS
         </a>
 
-
         <a
           href="./lego.html"
           class="museum-nav-link active"
+          aria-current="page"
         >
           LEGO
         </a>
-
 
         <a
           href="./sneaker-mask.html"
@@ -126,22 +116,12 @@
           SNEAKER MASK
         </a>
 
-
-        <a
-          href="./about.html"
-          class="museum-nav-link"
-        >
-          ABOUT
-        </a>
-
       </nav>
-
 
     </header>
 
 
     <main>
-
 
       <section class="collection-category-hero">
 
@@ -149,19 +129,16 @@
           LEGO ARCHIVE
         </p>
 
-
         <h2>
           Nike x LEGO
         </h2>
-
 
         <p
           id="lego-page-description"
           data-vi="Kho lưu trữ các bộ Nike x LEGO trong Lộc An Sneaker Collection, ghi nhận sự giao thoa giữa sneaker culture, basketball và thiết kế LEGO."
           data-en="An archive of Nike x LEGO sets within the Lộc An Sneaker Collection, documenting the intersection of sneaker culture, basketball, and LEGO design."
         >
-          Kho lưu trữ các bộ Nike x LEGO
-          trong Lộc An Sneaker Collection,
+          Kho lưu trữ các bộ Nike x LEGO trong Lộc An Sneaker Collection,
           ghi nhận sự giao thoa giữa sneaker culture,
           basketball và thiết kế LEGO.
         </p>
@@ -182,7 +159,6 @@
         class="grid"
       ></div>
 
-
     </main>
 
 
@@ -195,12 +171,11 @@
 
     </footer>
 
-
   </div>
 
 
   <script
-    src="./lego-data.js?v=20260912-restore"
+    src="./lego-data.js?v=20260913-clean-nav"
   ></script>
 
 
@@ -213,19 +188,14 @@
 
 
     let legoLanguage =
-
       new URLSearchParams(
         window.location.search
       ).get("lang")
-
       ||
-
       localStorage.getItem(
         "locan_lang"
       )
-
       ||
-
       "vi";
 
 
@@ -234,35 +204,25 @@
         legoLanguage
       )
     ) {
-
-      legoLanguage =
-        "vi";
-
+      legoLanguage = "vi";
     }
 
 
-    function numberWithComma(
-      value
-    ) {
+    function numberWithComma(value) {
 
       return Number(
         value
-      )
-        .toLocaleString(
-          "en-CA"
-        );
+      ).toLocaleString(
+        "en-CA"
+      );
 
     }
 
 
-    function setLegoLanguage(
-      lang
-    ) {
+    function setLegoLanguage(lang) {
 
       legoLanguage =
-        LEGO_LANGUAGES.includes(
-          lang
-        )
+        LEGO_LANGUAGES.includes(lang)
           ? lang
           : "vi";
 
@@ -278,9 +238,7 @@
 
 
       document
-        .getElementById(
-          "btn-vi"
-        )
+        .getElementById("btn-vi")
         .classList.toggle(
           "active",
           legoLanguage === "vi"
@@ -288,9 +246,7 @@
 
 
       document
-        .getElementById(
-          "btn-en"
-        )
+        .getElementById("btn-en")
         .classList.toggle(
           "active",
           legoLanguage === "en"
@@ -326,11 +282,8 @@
           "lego-count"
         )
         .textContent =
-
           legoLanguage === "vi"
-
             ? `TỔNG SỐ: ${legoSets.length} BỘ`
-
             : `TOTAL: ${legoSets.length} SETS`;
 
 
@@ -350,17 +303,11 @@
 
 
       window.history.replaceState(
-
         {},
-
         "",
-
-        url.pathname
-        +
-        url.search
-        +
+        url.pathname +
+        url.search +
         url.hash
-
       );
 
     }
@@ -383,19 +330,17 @@
       ) {
 
         grid.innerHTML = `
-
           <div class="not-found">
             LEGO data could not be loaded.
           </div>
-
         `;
 
         return;
+
       }
 
 
-      grid.innerHTML =
-        "";
+      grid.innerHTML = "";
 
 
       legoSets.forEach(
@@ -413,13 +358,10 @@
 
 
           link.href =
-
             `./lego-detail.html?id=${encodeURIComponent(
               lego.id
             )}`
-
             +
-
             `&lang=${encodeURIComponent(
               legoLanguage
             )}`;
@@ -547,7 +489,6 @@
 
 
           pieces.textContent =
-
             `${numberWithComma(
               lego.pieces
             )} PCS`;
@@ -564,11 +505,8 @@
 
 
           cta.textContent =
-
             legoLanguage === "vi"
-
               ? "XEM THÊM →"
-
               : "VIEW MORE →";
 
 
@@ -628,9 +566,7 @@
 
 
     document.addEventListener(
-
       "DOMContentLoaded",
-
       () => {
 
         setLegoLanguage(
@@ -638,11 +574,9 @@
         );
 
       }
-
     );
 
   </script>
-
 
 </body>
 
