@@ -12,7 +12,7 @@
 
   <meta
     name="description"
-    content="About Lộc An Sneaker Collection"
+    content="Lộc An Collection - Handcrafted Sneaker Mask Archive"
   >
 
   <meta
@@ -21,7 +21,7 @@
   >
 
   <title>
-    About | Lộc An Sneaker Collection
+    Sneaker Mask | Lộc An Sneaker Collection
   </title>
 
 
@@ -31,28 +31,24 @@
     href="./favicon.svg"
   >
 
-
   <link
     rel="apple-touch-icon"
     href="./apple-touch-icon.png"
   >
-
 
   <link
     rel="manifest"
     href="./site.webmanifest"
   >
 
-
   <link
     rel="stylesheet"
-    href="./style.css?v=20260912-18"
+    href="./style.css?v=20260912-20"
   >
 
-
   <link
     rel="stylesheet"
-    href="./collection-menu.css?v=20260912-18"
+    href="./collection-menu.css?v=20260912-20"
   >
 
 </head>
@@ -63,10 +59,8 @@
   <div class="container">
 
 
-    <header class="about-header">
+    <header class="home-header">
 
-
-      <!-- LANGUAGE -->
 
       <div class="lang-switcher corner-lang">
 
@@ -74,7 +68,7 @@
           type="button"
           id="btn-vi"
           class="lang-btn active"
-          onclick="setAboutLanguage('vi')"
+          onclick="setMaskLanguage('vi')"
         >
           VI
         </button>
@@ -84,7 +78,7 @@
           type="button"
           id="btn-en"
           class="lang-btn"
-          onclick="setAboutLanguage('en')"
+          onclick="setMaskLanguage('en')"
         >
           EN
         </button>
@@ -92,17 +86,20 @@
       </div>
 
 
-      <p class="eyebrow">
-        PRIVATE DIGITAL ARCHIVE
-      </p>
-
-
       <h1>
         LỘC AN SNEAKER COLLECTION
       </h1>
 
 
-      <!-- DIRECT NAVIGATION -->
+      <p
+        id="mask-main-subtitle"
+        data-vi="Không gian lưu trữ & Bảo tàng Sneaker Kỹ thuật số"
+        data-en="Digital Sneaker Archive & Museum"
+      >
+        Không gian lưu trữ &amp;
+        Bảo tàng Sneaker Kỹ thuật số
+      </p>
+
 
       <nav class="museum-nav">
 
@@ -124,7 +121,7 @@
 
         <a
           href="./sneaker-mask.html"
-          class="museum-nav-link"
+          class="museum-nav-link active"
         >
           SNEAKER MASK
         </a>
@@ -132,7 +129,7 @@
 
         <a
           href="./about.html"
-          class="museum-nav-link active"
+          class="museum-nav-link"
         >
           ABOUT
         </a>
@@ -143,589 +140,47 @@
     </header>
 
 
-    <main class="about-page">
+    <main>
 
 
-      <!-- =================================================
-           ABOUT VI
-      ================================================== -->
+      <section class="collection-category-hero">
 
-      <section
-        class="about-hero lang-panel"
-        data-lang="vi"
-      >
-
-        <p class="about-kicker">
-          VỀ BỘ SƯU TẬP
+        <p class="collection-category-eyebrow">
+          SNEAKER MASK ARCHIVE
         </p>
 
 
         <h2>
-          Sneaker như một hiện vật
-          thiết kế, văn hóa và lịch sử.
+          Handcrafted Sneaker Masks
         </h2>
 
 
-        <p>
-          Lộc An Sneaker Collection
-          là một kho lưu trữ sneaker tư nhân
-          được xây dựng theo hướng
-          catalogue kỹ thuật số.
-
-          Mỗi đôi giày được ghi nhận
-          không chỉ bằng hình ảnh,
-          mà còn bằng thông tin phát hành,
-          nguồn gốc,
-          tình trạng
-          và câu chuyện thiết kế.
-        </p>
-
-
-        <p>
-          Bộ sưu tập bao gồm
-          General Release,
-          Player Exclusive,
-          Friends &amp; Family,
-          Sample,
-          Signature Signed
-          cùng các hiện vật đặc biệt
-          liên quan đến văn hóa sneaker.
+        <p
+          id="mask-page-description"
+          data-vi="Kho lưu trữ các tác phẩm Sneaker Mask độc bản được cắt tay và chế tác hoàn toàn thủ công từ những đôi sneaker nguyên bản."
+          data-en="An archive of unique Sneaker Mask artifacts, hand-cut and entirely handmade from original sneakers."
+        >
+          Kho lưu trữ các tác phẩm
+          Sneaker Mask độc bản được cắt tay
+          và chế tác hoàn toàn thủ công
+          từ những đôi sneaker nguyên bản.
         </p>
 
       </section>
 
 
-      <!-- =================================================
-           ABOUT EN
-      ================================================== -->
-
-      <section
-        class="about-hero lang-panel"
-        data-lang="en"
+      <div
+        id="mask-count"
+        class="collection-count"
       >
+        TỔNG SỐ: 0 MASK
+      </div>
 
-        <p class="about-kicker">
-          ABOUT THE COLLECTION
-        </p>
 
-
-        <h2>
-          Sneakers as objects of design,
-          culture, and history.
-        </h2>
-
-
-        <p>
-          Lộc An Sneaker Collection
-          is a private sneaker archive
-          built as a digital catalogue.
-
-          Each pair is documented
-          through imagery,
-          release information,
-          provenance,
-          condition,
-          and design context.
-        </p>
-
-
-        <p>
-          The collection includes
-          General Releases,
-          Player Exclusives,
-          Friends &amp; Family editions,
-          Samples,
-          Signature Signed pieces,
-          and other distinctive
-          sneaker-culture artifacts.
-        </p>
-
-      </section>
-
-
-      <!-- =================================================
-           CLASSIFICATION + CONDITION
-      ================================================== -->
-
-      <section class="archive-principles">
-
-
-        <!-- =================================================
-             VI CLASSIFICATION
-        ================================================== -->
-
-        <article
-          class="archive-panel lang-panel"
-          data-lang="vi"
-        >
-
-          <p class="about-kicker">
-            PHÂN LOẠI PHIÊN BẢN
-          </p>
-
-
-          <h3>
-            Hệ thống phân loại trong bộ sưu tập
-          </h3>
-
-
-          <!-- GR -->
-
-          <div class="definition-item">
-
-            <strong>
-              General Release (GR)
-            </strong>
-
-            <span>
-              Phiên bản được sản xuất để phát hành
-              thương mại công khai qua hệ thống bán lẻ
-              chính thức, dành cho người tiêu dùng nói chung
-              và không giới hạn cho một nhóm người nhận riêng.
-            </span>
-
-          </div>
-
-
-          <!-- PE -->
-
-          <div class="definition-item">
-
-            <strong>
-              Player Exclusive (PE)
-            </strong>
-
-            <span>
-              Phiên bản được thương hiệu sản xuất
-              hoặc tùy chỉnh dành riêng cho vận động viên,
-              đội thi đấu hay cá nhân được chỉ định;
-              thường có số lượng giới hạn
-              và không phát hành bán lẻ công khai.
-            </span>
-
-          </div>
-
-
-          <!-- F&F -->
-
-          <div class="definition-item">
-
-            <strong>
-              Friends &amp; Family (F&amp;F)
-            </strong>
-
-            <span>
-              Phiên bản không phát hành bán lẻ công khai,
-              được thương hiệu, nhà thiết kế hoặc đối tác
-              sáng tạo phân phối trực tiếp cho gia đình,
-              bạn bè, cộng sự và những người thuộc
-              mạng lưới thân cận của dự án.
-            </span>
-
-          </div>
-
-
-          <!-- SAMPLE -->
-
-          <div class="definition-item">
-
-            <strong>
-              Sample
-            </strong>
-
-            <span>
-              Phiên bản được tạo trong quá trình phát triển,
-              thử nghiệm hoặc tiền sản xuất để đánh giá
-              thiết kế, vật liệu, màu sắc hay cấu trúc
-              trước khi sản phẩm hoàn thiện
-              hoặc được phát hành chính thức.
-            </span>
-
-          </div>
-
-
-          <!-- SIGNED -->
-
-          <div class="definition-item">
-
-            <strong>
-              Signature Signed
-            </strong>
-
-            <span>
-              Phiên bản thương mại hoặc đặc biệt
-              có chữ ký trực tiếp của vận động viên,
-              nhà thiết kế, nghệ sĩ hay nhân vật
-              gắn với sản phẩm; chữ ký bổ sung provenance
-              và không phải là tình trạng sử dụng.
-            </span>
-
-          </div>
-
-
-        </article>
-
-
-        <!-- =================================================
-             EN CLASSIFICATION
-        ================================================== -->
-
-        <article
-          class="archive-panel lang-panel"
-          data-lang="en"
-        >
-
-          <p class="about-kicker">
-            EDITION CLASSIFICATION
-          </p>
-
-
-          <h3>
-            Collection classification system
-          </h3>
-
-
-          <!-- GR -->
-
-          <div class="definition-item">
-
-            <strong>
-              General Release (GR)
-            </strong>
-
-            <span>
-              An edition produced for public commercial
-              release through official retail channels,
-              intended for the general consumer market
-              rather than a restricted group
-              of designated recipients.
-            </span>
-
-          </div>
-
-
-          <!-- PE -->
-
-          <div class="definition-item">
-
-            <strong>
-              Player Exclusive (PE)
-            </strong>
-
-            <span>
-              An edition produced or customized by the brand
-              specifically for athletes, teams,
-              or designated individuals;
-              these pairs are typically limited
-              and are not offered through public retail.
-            </span>
-
-          </div>
-
-
-          <!-- F&F -->
-
-          <div class="definition-item">
-
-            <strong>
-              Friends &amp; Family (F&amp;F)
-            </strong>
-
-            <span>
-              A non-public-retail edition distributed
-              directly by the brand, designer,
-              or creative partner to family, friends,
-              collaborators, and individuals
-              within the project's close network.
-            </span>
-
-          </div>
-
-
-          <!-- SAMPLE -->
-
-          <div class="definition-item">
-
-            <strong>
-              Sample
-            </strong>
-
-            <span>
-              An edition created during development,
-              testing, or pre-production to evaluate
-              design, materials, colors,
-              or construction before the product
-              is finalized or officially released.
-            </span>
-
-          </div>
-
-
-          <!-- SIGNED -->
-
-          <div class="definition-item">
-
-            <strong>
-              Signature Signed
-            </strong>
-
-            <span>
-              A commercial or special edition carrying
-              a direct signature from an athlete,
-              designer, artist, or person associated
-              with the product; the signature adds provenance
-              and does not describe condition.
-            </span>
-
-          </div>
-
-
-        </article>
-
-
-        <!-- =================================================
-             VI CONDITION
-        ================================================== -->
-
-        <article
-          class="archive-panel lang-panel"
-          data-lang="vi"
-        >
-
-          <p class="about-kicker">
-            TÌNH TRẠNG
-          </p>
-
-
-          <h3>
-            Hệ thống Condition
-          </h3>
-
-
-          <div class="condition-key">
-
-            <span class="condition-pill deadstock">
-              Deadstock
-            </span>
-
-            <span>
-              Chưa qua sử dụng.
-            </span>
-
-          </div>
-
-
-          <div class="condition-key">
-
-            <span class="condition-pill used">
-              Used
-            </span>
-
-            <span>
-              Đã qua sử dụng.
-            </span>
-
-          </div>
-
-
-          <p class="about-small">
-
-            Sample,
-            PE,
-            F&amp;F
-            và Signature Signed
-            mô tả nguồn gốc
-            hoặc loại phiên bản,
-            không phải tình trạng.
-
-          </p>
-
-        </article>
-
-
-        <!-- =================================================
-             EN CONDITION
-        ================================================== -->
-
-        <article
-          class="archive-panel lang-panel"
-          data-lang="en"
-        >
-
-          <p class="about-kicker">
-            CONDITION
-          </p>
-
-
-          <h3>
-            Condition system
-          </h3>
-
-
-          <div class="condition-key">
-
-            <span class="condition-pill deadstock">
-              Deadstock
-            </span>
-
-            <span>
-              Unworn.
-            </span>
-
-          </div>
-
-
-          <div class="condition-key">
-
-            <span class="condition-pill used">
-              Used
-            </span>
-
-            <span>
-              Previously worn.
-            </span>
-
-          </div>
-
-
-          <p class="about-small">
-
-            Sample,
-            PE,
-            F&amp;F
-            and Signature Signed
-            describe provenance
-            or edition type,
-            not condition.
-
-          </p>
-
-        </article>
-
-
-      </section>
-
-
-      <!-- =================================================
-           CATALOGUE FIELDS
-      ================================================== -->
-
-      <section class="catalogue-section">
-
-
-        <!-- VI -->
-
-        <div
-          class="lang-panel"
-          data-lang="vi"
-        >
-
-          <p class="about-kicker">
-            HỒ SƠ HIỆN VẬT
-          </p>
-
-
-          <h3>
-            Những thông tin được lưu trữ
-          </h3>
-
-
-          <div class="catalogue-grid">
-
-            <span>
-              Title
-            </span>
-
-            <span>
-              SKU / Style Code
-            </span>
-
-            <span>
-              Colorway
-            </span>
-
-            <span>
-              Retail Price
-            </span>
-
-            <span>
-              Release Date
-            </span>
-
-            <span>
-              Condition
-            </span>
-
-            <span>
-              Size
-            </span>
-
-            <span>
-              Provenance &amp; Story
-            </span>
-
-          </div>
-
-        </div>
-
-
-        <!-- EN -->
-
-        <div
-          class="lang-panel"
-          data-lang="en"
-        >
-
-          <p class="about-kicker">
-            OBJECT RECORD
-          </p>
-
-
-          <h3>
-            Information recorded in the archive
-          </h3>
-
-
-          <div class="catalogue-grid">
-
-            <span>
-              Title
-            </span>
-
-            <span>
-              SKU / Style Code
-            </span>
-
-            <span>
-              Colorway
-            </span>
-
-            <span>
-              Retail Price
-            </span>
-
-            <span>
-              Release Date
-            </span>
-
-            <span>
-              Condition
-            </span>
-
-            <span>
-              Size
-            </span>
-
-            <span>
-              Provenance &amp; Story
-            </span>
-
-          </div>
-
-        </div>
-
-
-      </section>
+      <div
+        id="mask-grid"
+        class="grid mask-grid"
+      ></div>
 
 
     </main>
@@ -744,15 +199,20 @@
   </div>
 
 
+  <script
+    src="./sneaker-mask-data.js?v=20260912-20"
+  ></script>
+
+
   <script>
 
-    const ABOUT_LANGUAGES = [
+    const MASK_LANGUAGES = [
       "vi",
       "en"
     ];
 
 
-    let aboutLanguage =
+    let maskLanguage =
 
       new URLSearchParams(
         window.location.search
@@ -770,76 +230,91 @@
 
 
     if (
-      !ABOUT_LANGUAGES.includes(
-        aboutLanguage
+      !MASK_LANGUAGES.includes(
+        maskLanguage
       )
     ) {
 
-      aboutLanguage =
+      maskLanguage =
         "vi";
 
     }
 
 
-    function setAboutLanguage(
+    function setMaskLanguage(
       lang
     ) {
 
-      aboutLanguage =
-        ABOUT_LANGUAGES.includes(
-          lang
-        )
+      maskLanguage =
+        MASK_LANGUAGES.includes(lang)
           ? lang
           : "vi";
 
 
       localStorage.setItem(
         "locan_lang",
-        aboutLanguage
+        maskLanguage
       );
 
 
       document.documentElement.lang =
-        aboutLanguage;
+        maskLanguage;
+
+
+      document
+        .getElementById("btn-vi")
+        .classList.toggle(
+          "active",
+          maskLanguage === "vi"
+        );
+
+
+      document
+        .getElementById("btn-en")
+        .classList.toggle(
+          "active",
+          maskLanguage === "en"
+        );
+
+
+      const subtitle =
+        document.getElementById(
+          "mask-main-subtitle"
+        );
+
+
+      subtitle.textContent =
+        subtitle.dataset[
+          maskLanguage
+        ];
+
+
+      const description =
+        document.getElementById(
+          "mask-page-description"
+        );
+
+
+      description.textContent =
+        description.dataset[
+          maskLanguage
+        ];
 
 
       document
         .getElementById(
-          "btn-vi"
+          "mask-count"
         )
-        .classList
-        .toggle(
-          "active",
-          aboutLanguage ===
-          "vi"
-        );
+        .textContent =
+
+          maskLanguage === "vi"
+
+            ? `TỔNG SỐ: ${sneakerMasks.length} MASK`
+
+            : `TOTAL: ${sneakerMasks.length} MASKS`;
 
 
-      document
-        .getElementById(
-          "btn-en"
-        )
-        .classList
-        .toggle(
-          "active",
-          aboutLanguage ===
-          "en"
-        );
-
-
-      document
-        .querySelectorAll(
-          ".lang-panel"
-        )
-        .forEach(
-          element => {
-
-            element.hidden =
-              element.dataset.lang !==
-              aboutLanguage;
-
-          }
-        );
+      renderMaskCollection();
 
 
       const url =
@@ -850,7 +325,7 @@
 
       url.searchParams.set(
         "lang",
-        aboutLanguage
+        maskLanguage
       );
 
 
@@ -865,12 +340,216 @@
     }
 
 
+    function renderMaskCollection() {
+
+      const grid =
+        document.getElementById(
+          "mask-grid"
+        );
+
+
+      grid.innerHTML = "";
+
+
+      sneakerMasks.forEach(
+        mask => {
+
+
+          const link =
+            document.createElement(
+              "a"
+            );
+
+
+          link.className =
+            "card-link";
+
+
+          link.href =
+            `./sneaker-mask-detail.html?id=${encodeURIComponent(
+              mask.id
+            )}&lang=${maskLanguage}`;
+
+
+          const card =
+            document.createElement(
+              "article"
+            );
+
+
+          card.className =
+            "card";
+
+
+          const imageWrapper =
+            document.createElement(
+              "div"
+            );
+
+
+          imageWrapper.className =
+            "card-img-wrapper";
+
+
+          const image =
+            document.createElement(
+              "img"
+            );
+
+
+          image.src =
+            mask.image;
+
+
+          image.alt =
+            mask.title[
+              maskLanguage
+            ];
+
+
+          image.loading =
+            "lazy";
+
+
+          imageWrapper.appendChild(
+            image
+          );
+
+
+          const info =
+            document.createElement(
+              "div"
+            );
+
+
+          info.className =
+            "card-info";
+
+
+          const title =
+            document.createElement(
+              "h3"
+            );
+
+
+          title.textContent =
+            mask.title[
+              maskLanguage
+            ];
+
+
+          const subtitle =
+            document.createElement(
+              "p"
+            );
+
+
+          subtitle.className =
+            "subtitle";
+
+
+          subtitle.textContent =
+            mask.subtitle[
+              maskLanguage
+            ];
+
+
+          const meta =
+            document.createElement(
+              "div"
+            );
+
+
+          meta.className =
+            "card-meta";
+
+
+          const badge =
+            document.createElement(
+              "span"
+            );
+
+
+          badge.className =
+            "badge";
+
+
+          badge.textContent =
+            "HANDCRAFTED 1/1";
+
+
+          const cta =
+            document.createElement(
+              "span"
+            );
+
+
+          cta.className =
+            "card-cta";
+
+
+          cta.textContent =
+            maskLanguage === "vi"
+              ? "XEM THÊM →"
+              : "VIEW MORE →";
+
+
+          meta.appendChild(
+            badge
+          );
+
+
+          info.appendChild(
+            title
+          );
+
+
+          info.appendChild(
+            subtitle
+          );
+
+
+          info.appendChild(
+            meta
+          );
+
+
+          info.appendChild(
+            cta
+          );
+
+
+          card.appendChild(
+            imageWrapper
+          );
+
+
+          card.appendChild(
+            info
+          );
+
+
+          link.appendChild(
+            card
+          );
+
+
+          grid.appendChild(
+            link
+          );
+
+        }
+      );
+
+    }
+
+
     document.addEventListener(
       "DOMContentLoaded",
       () => {
 
-        setAboutLanguage(
-          aboutLanguage
+        setMaskLanguage(
+          maskLanguage
         );
 
       }
