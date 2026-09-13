@@ -3,11 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <meta
     name="description"
@@ -24,30 +20,29 @@
   <link
     rel="icon"
     type="image/svg+xml"
-    href="/sneaker-room/favicon.svg"
+    href="./favicon.svg"
   >
 
   <link
     rel="apple-touch-icon"
-    href="/sneaker-room/apple-touch-icon.png"
+    href="./apple-touch-icon.png"
   >
 
   <link
     rel="manifest"
-    href="/sneaker-room/site.webmanifest"
+    href="./site.webmanifest"
   >
 
   <link
     rel="stylesheet"
-    href="/sneaker-room/style.css?v=20260912-navfix1"
+    href="./style.css?v=20260913-clean-nav"
   >
 
   <link
     rel="stylesheet"
-    href="/sneaker-room/collection-menu.css?v=20260912-navfix1"
+    href="./collection-menu.css?v=20260913-clean-nav"
   >
 </head>
-
 
 <body>
 
@@ -55,87 +50,72 @@
 
     <header class="home-header">
 
-      <div class="lang-switcher corner-lang">
+      <div class="header-corner-tools">
 
-        <button
-          type="button"
-          id="btn-vi"
-          class="lang-btn active"
-          onclick="setLanguage('vi')"
-        >
-          VI
-        </button>
+        <a href="./about.html" class="about-corner-link">
+          ABOUT
+        </a>
 
-        <button
-          type="button"
-          id="btn-en"
-          class="lang-btn"
-          onclick="setLanguage('en')"
-        >
-          EN
-        </button>
+        <div class="lang-switcher">
+
+          <button
+            type="button"
+            id="btn-vi"
+            class="lang-btn active"
+            onclick="setLanguage('vi')"
+          >
+            VI
+          </button>
+
+          <button
+            type="button"
+            id="btn-en"
+            class="lang-btn"
+            onclick="setLanguage('en')"
+          >
+            EN
+          </button>
+
+        </div>
 
       </div>
-
 
       <h1 data-i18n="mainTitle">
         LỘC AN SNEAKER COLLECTION
       </h1>
 
-
       <p data-i18n="mainSubtitle">
         Không gian lưu trữ &amp; Bảo tàng Sneaker Kỹ thuật số
       </p>
 
-
-      <!-- =================================================
-           MAIN NAVIGATION
-      ================================================== -->
-
-      <nav
-        class="museum-nav"
-        aria-label="Main navigation"
-      >
+      <nav class="museum-nav" aria-label="Collection navigation">
 
         <a
-          href="/sneaker-room/"
+          href="./index.html"
           class="museum-nav-link active"
+          aria-current="page"
         >
           SNEAKERS
         </a>
 
-
         <a
-          href="/sneaker-room/lego.html"
+          href="./lego.html"
           class="museum-nav-link"
         >
           LEGO
         </a>
 
-
         <a
-          href="/sneaker-room/sneaker-mask.html"
+          href="./sneaker-mask.html"
           class="museum-nav-link"
         >
           SNEAKER MASK
-        </a>
-
-
-        <a
-          href="/sneaker-room/about.html"
-          class="museum-nav-link"
-        >
-          ABOUT
         </a>
 
       </nav>
 
     </header>
 
-
-    <!-- =================================================
-         SORT
-    ================================================== -->
 
     <section class="collection-toolbar">
 
@@ -148,12 +128,10 @@
           SẮP XẾP
         </label>
 
-
         <select
           id="sort-select"
           onchange="changeSort(this.value)"
         >
-
           <option value="default">
             Mặc định
           </option>
@@ -181,17 +159,12 @@
           <option value="size-desc">
             Size lớn → nhỏ
           </option>
-
         </select>
 
       </div>
 
     </section>
 
-
-    <!-- =================================================
-         FILTER
-    ================================================== -->
 
     <section class="filter-panel">
 
@@ -203,7 +176,6 @@
         >
           BỘ LỌC BỘ SƯU TẬP
         </span>
-
 
         <button
           type="button"
@@ -217,8 +189,6 @@
       </div>
 
 
-      <!-- PHÂN KHÚC -->
-
       <div class="filter-group">
 
         <div
@@ -227,7 +197,6 @@
         >
           PHÂN KHÚC
         </div>
-
 
         <div class="filter-chips">
 
@@ -241,7 +210,6 @@
             PE
           </button>
 
-
           <button
             type="button"
             class="filter-chip"
@@ -251,7 +219,6 @@
           >
             SAMPLE
           </button>
-
 
           <button
             type="button"
@@ -263,7 +230,6 @@
             F&amp;F
           </button>
 
-
           <button
             type="button"
             class="filter-chip"
@@ -273,7 +239,6 @@
           >
             SIGNATURE SIGNED
           </button>
-
 
           <button
             type="button"
@@ -290,8 +255,6 @@
       </div>
 
 
-      <!-- CONDITION -->
-
       <div class="filter-group">
 
         <div
@@ -300,7 +263,6 @@
         >
           TÌNH TRẠNG
         </div>
-
 
         <div class="filter-chips">
 
@@ -313,7 +275,6 @@
           >
             DEADSTOCK
           </button>
-
 
           <button
             type="button"
@@ -330,8 +291,6 @@
       </div>
 
 
-      <!-- SIZE -->
-
       <div class="filter-group">
 
         <div
@@ -340,7 +299,6 @@
         >
           KÍCH CỠ
         </div>
-
 
         <div
           id="size-filter-chips"
@@ -352,10 +310,6 @@
     </section>
 
 
-    <!-- =================================================
-         COUNT
-    ================================================== -->
-
     <div
       id="collection-count"
       class="collection-count"
@@ -363,10 +317,6 @@
       TỔNG SỐ: 0 ĐÔI
     </div>
 
-
-    <!-- =================================================
-         COLLECTION
-    ================================================== -->
 
     <main>
 
@@ -390,16 +340,12 @@
   </div>
 
 
-  <!-- =====================================================
-       SCRIPTS
-  ====================================================== -->
-
   <script
-    src="/sneaker-room/data.js?v=20260912-navfix1"
+    src="./data.js?v=20260913-clean-nav"
   ></script>
 
   <script
-    src="/sneaker-room/main.js?v=20260912-navfix1"
+    src="./main.js?v=20260913-clean-nav"
   ></script>
 
 </body>
