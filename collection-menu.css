@@ -7,6 +7,7 @@
    - PRIVATE COLLECTION NOTICE
    - LIQUID GLASS SNEAKER CARDS
    - FULL SNEAKER COVER IMAGES
+   - BALANCED COVER SCALE
    - CATEGORY PAGES
    - ABOUT / AUTHENTICITY
 ========================================================= */
@@ -356,10 +357,6 @@
 
 /* =========================================================
    SNEAKER GRID
-
-   IMPORTANT:
-   Chỉ tác động lên homepage sneaker collection.
-   LEGO và Sneaker Mask không bị thay đổi.
 ========================================================= */
 
 #sneaker-grid {
@@ -368,12 +365,7 @@
 
 
 /* =========================================================
-   SNEAKER LIQUID GLASS CARD
-
-   Toàn bộ card là một lớp glass duy nhất.
-   Không còn:
-   - nền đen riêng cho ảnh
-   - nền xám đặc riêng cho phần text
+   LIQUID GLASS CARD
 ========================================================= */
 
 #sneaker-grid .card {
@@ -387,13 +379,6 @@
   height: 100%;
 
   overflow: hidden;
-
-  /*
-     Glass rất nhẹ.
-
-     Không dùng xám opaque để tránh cảm giác
-     "xám đục".
-  */
 
   background:
     linear-gradient(
@@ -428,10 +413,6 @@
     background 0.24s ease;
 }
 
-
-/*
-   Glass highlight nhẹ phía trên.
-*/
 
 #sneaker-grid .card::before {
   content: "";
@@ -483,11 +464,6 @@
 
 /* =========================================================
    CARD IMAGE AREA
-
-   Đây không phải một "box" riêng nữa.
-
-   Nó chỉ là vùng layout để đặt sneaker
-   trực tiếp lên card.
 ========================================================= */
 
 #sneaker-grid .card-img-wrapper {
@@ -500,19 +476,11 @@
 
   width: 100%;
 
-  /*
-     Giữ tất cả card có cùng vùng ảnh.
-  */
-
   aspect-ratio: 4 / 3;
 
   min-height: 0;
 
   overflow: hidden;
-
-  /*
-     Không background riêng.
-  */
 
   background: transparent !important;
 
@@ -523,31 +491,20 @@
 
 
 /* =========================================================
-   ALL 8 CURRENT COVER IMAGES
+   NORMAL COVER SIZE
 
-   Một rule duy nhất cho cả 8 đôi.
-
-   Không còn:
-   - BAPE nhỏ riêng
-   - Waffle nhỏ riêng
-   - Jordan lớn riêng
-
-   => tất cả dùng cùng một image viewport.
+   Bloodline
+   Quai 54
+   Yuto Matcha
+   Alaska
+   Fragment x Union
+   Shadow
 ========================================================= */
 
 #sneaker-grid
 .card-img-wrapper
 img {
   position: absolute;
-
-  /*
-     4% khoảng thở hai bên.
-     4% trên dưới.
-
-     Do ảnh hiện tại đã transparent,
-     sneaker sẽ được phóng lớn hơn nhiều
-     so với bản trước.
-  */
 
   top: 4%;
   left: 4%;
@@ -566,21 +523,11 @@ img {
 
   background: transparent !important;
 
-  /*
-     Không dùng special scale khác nhau
-     cho từng đôi.
-  */
-
   transform:
     scale(1.18);
 
   transform-origin:
     center center;
-
-  /*
-     Shadow rất nhẹ giúp PNG transparent
-     nổi khỏi glass mà không tạo ô nền.
-  */
 
   filter:
     drop-shadow(
@@ -595,10 +542,6 @@ img {
     filter 0.22s ease;
 }
 
-
-/*
-   Tất cả 8 đôi hover cùng mức.
-*/
 
 #sneaker-grid
 .card:hover
@@ -618,16 +561,52 @@ img {
 
 
 /* =========================================================
-   IMPORTANT:
-   RESET CÁC RULE CŨ CHO BAPE / WAFFLE
+   BAPE x STUSSY
 
-   Nếu browser còn đọc CSS version trước,
-   đoạn này đảm bảo 2 đôi không bị thu nhỏ nữa.
+   Canvas của ảnh này sát sneaker hơn
+   nên scale riêng để kích thước thị giác
+   cân với 6 đôi phía trên.
 ========================================================= */
 
 #sneaker-grid
 .card-img-wrapper
-img[src*="bapesta_stussy.png"],
+img[src*="bapesta_stussy.png"] {
+  top: 4% !important;
+  left: 4% !important;
+
+  width: 92% !important;
+  height: 92% !important;
+
+  max-width: none !important;
+  max-height: none !important;
+
+  padding: 0 !important;
+
+  object-fit: contain !important;
+
+  object-position:
+    center center !important;
+
+  transform:
+    scale(0.86) !important;
+}
+
+
+#sneaker-grid
+.card:hover
+.card-img-wrapper
+img[src*="bapesta_stussy.png"] {
+  transform:
+    scale(0.88) !important;
+}
+
+
+/* =========================================================
+   NIKE x OFF-WHITE WAFFLE RACER
+
+   Canvas của ảnh này sát sneaker nhất
+   nên scale nhỏ hơn BAPE một chút.
+========================================================= */
 
 #sneaker-grid
 .card-img-wrapper
@@ -649,29 +628,21 @@ img[src*="nike_waffle_racer_ow.png"] {
     center center !important;
 
   transform:
-    scale(1.18) !important;
+    scale(0.84) !important;
 }
 
-
-#sneaker-grid
-.card:hover
-.card-img-wrapper
-img[src*="bapesta_stussy.png"],
 
 #sneaker-grid
 .card:hover
 .card-img-wrapper
 img[src*="nike_waffle_racer_ow.png"] {
   transform:
-    scale(1.20) !important;
+    scale(0.86) !important;
 }
 
 
 /* =========================================================
    CARD INFORMATION
-
-   Không background riêng.
-   Nằm trực tiếp trên cùng glass card.
 ========================================================= */
 
 #sneaker-grid .card-info {
@@ -689,8 +660,6 @@ img[src*="nike_waffle_racer_ow.png"] {
 }
 
 
-/* Title */
-
 #sneaker-grid .card-info h3 {
   margin: 0 0 8px;
 
@@ -703,8 +672,6 @@ img[src*="nike_waffle_racer_ow.png"] {
 }
 
 
-/* Subtitle */
-
 #sneaker-grid .card-info .subtitle {
   margin: 0 0 15px;
 
@@ -715,8 +682,6 @@ img[src*="nike_waffle_racer_ow.png"] {
   line-height: 1.5;
 }
 
-
-/* Meta */
 
 #sneaker-grid .card-meta {
   display: flex;
@@ -729,8 +694,6 @@ img[src*="nike_waffle_racer_ow.png"] {
   margin-top: auto;
 }
 
-
-/* Badge */
 
 #sneaker-grid .badge {
   padding: 5px 9px;
@@ -749,6 +712,7 @@ img[src*="nike_waffle_racer_ow.png"] {
   font-size: 0.8rem;
 
   backdrop-filter: blur(10px);
+
   -webkit-backdrop-filter: blur(10px);
 }
 
@@ -757,8 +721,6 @@ img[src*="nike_waffle_racer_ow.png"] {
   visibility: hidden;
 }
 
-
-/* Size */
 
 #sneaker-grid .size {
   color: #b5bac3;
@@ -898,8 +860,6 @@ img[src*="nike_waffle_racer_ow.png"] {
 
 /* =========================================================
    SNEAKER MASK IMAGES
-
-   Không thay đổi hệ thống Sneaker Mask.
 ========================================================= */
 
 .mask-grid .card-img-wrapper {
@@ -1040,12 +1000,6 @@ img[src*="nike_waffle_racer_ow.png"] {
 
 @media screen and (max-width: 950px) {
 
-  /*
-     Hai cột tablet được xử lý trong style.css.
-
-     Giữ tất cả sneaker cùng tỷ lệ.
-  */
-
   #sneaker-grid
   .card-img-wrapper
   img {
@@ -1069,9 +1023,32 @@ img[src*="nike_waffle_racer_ow.png"] {
   }
 
 
+  /* BAPE */
+
   #sneaker-grid
   .card-img-wrapper
-  img[src*="bapesta_stussy.png"],
+  img[src*="bapesta_stussy.png"] {
+    top: 3% !important;
+    left: 3% !important;
+
+    width: 94% !important;
+    height: 94% !important;
+
+    transform:
+      scale(0.86) !important;
+  }
+
+
+  #sneaker-grid
+  .card:hover
+  .card-img-wrapper
+  img[src*="bapesta_stussy.png"] {
+    transform:
+      scale(0.88) !important;
+  }
+
+
+  /* Waffle Racer */
 
   #sneaker-grid
   .card-img-wrapper
@@ -1083,7 +1060,16 @@ img[src*="nike_waffle_racer_ow.png"] {
     height: 94% !important;
 
     transform:
-      scale(1.15) !important;
+      scale(0.84) !important;
+  }
+
+
+  #sneaker-grid
+  .card:hover
+  .card-img-wrapper
+  img[src*="nike_waffle_racer_ow.png"] {
+    transform:
+      scale(0.86) !important;
   }
 
 }
@@ -1147,19 +1133,12 @@ img[src*="nike_waffle_racer_ow.png"] {
   }
 
 
-  /* =====================================================
-     MOBILE GLASS CARD
-  ===================================================== */
-
   #sneaker-grid .card {
     border-radius: 16px;
   }
 
 
-  /*
-     Trên mobile card rộng hơn,
-     nên có thể cho sneaker lớn thêm chút nữa.
-  */
+  /* NORMAL SIX */
 
   #sneaker-grid
   .card-img-wrapper
@@ -1184,14 +1163,35 @@ img[src*="nike_waffle_racer_ow.png"] {
   }
 
 
-  /*
-     BAPE và Waffle = đúng cùng kích thước
-     với 6 đôi còn lại.
-  */
+  /* BAPE */
 
   #sneaker-grid
   .card-img-wrapper
-  img[src*="bapesta_stussy.png"],
+  img[src*="bapesta_stussy.png"] {
+    top: 2% !important;
+    left: 2% !important;
+
+    width: 96% !important;
+    height: 96% !important;
+
+    max-width: none !important;
+    max-height: none !important;
+
+    transform:
+      scale(0.88) !important;
+  }
+
+
+  #sneaker-grid
+  .card:hover
+  .card-img-wrapper
+  img[src*="bapesta_stussy.png"] {
+    transform:
+      scale(0.88) !important;
+  }
+
+
+  /* WAFFLE */
 
   #sneaker-grid
   .card-img-wrapper
@@ -1206,7 +1206,16 @@ img[src*="nike_waffle_racer_ow.png"] {
     max-height: none !important;
 
     transform:
-      scale(1.14) !important;
+      scale(0.86) !important;
+  }
+
+
+  #sneaker-grid
+  .card:hover
+  .card-img-wrapper
+  img[src*="nike_waffle_racer_ow.png"] {
+    transform:
+      scale(0.86) !important;
   }
 
 
@@ -1276,10 +1285,7 @@ img[src*="nike_waffle_racer_ow.png"] {
   }
 
 
-  /*
-     Giữ ảnh lớn trên điện thoại nhỏ,
-     nhưng vẫn contain nên không crop sneaker.
-  */
+  /* NORMAL SIX */
 
   #sneaker-grid
   .card-img-wrapper
@@ -1295,9 +1301,23 @@ img[src*="nike_waffle_racer_ow.png"] {
   }
 
 
+  /* BAPE */
+
   #sneaker-grid
   .card-img-wrapper
-  img[src*="bapesta_stussy.png"],
+  img[src*="bapesta_stussy.png"] {
+    top: 1% !important;
+    left: 1% !important;
+
+    width: 98% !important;
+    height: 98% !important;
+
+    transform:
+      scale(0.90) !important;
+  }
+
+
+  /* WAFFLE RACER */
 
   #sneaker-grid
   .card-img-wrapper
@@ -1309,7 +1329,7 @@ img[src*="nike_waffle_racer_ow.png"] {
     height: 98% !important;
 
     transform:
-      scale(1.10) !important;
+      scale(0.88) !important;
   }
 
 
