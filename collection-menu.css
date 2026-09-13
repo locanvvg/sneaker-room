@@ -1445,4 +1445,15 @@ img[src*="jordan1_shadow_2009.png"] {
 
 }
 
+   /* =========================================================
+   SNEAKER CARD — IMAGE / INFO DIVIDER
+   Match LEGO + Sneaker Mask cards
+========================================================= */
+
+#sneaker-grid .card-img-wrapper {
+  border-bottom:
+    1px solid
+    rgba(255, 255, 255, 0.055)
+    !important;
+}
 }
