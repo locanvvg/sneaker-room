@@ -1,15 +1,6 @@
 /* =========================================================
    LỘC AN SNEAKER COLLECTION
-
-   FINAL UI
-   - NAVIGATION
-   - SEARCH
-   - PRIVATE COLLECTION NOTICE
-   - LIQUID GLASS SNEAKER CARDS
-   - FULL SNEAKER COVER IMAGES
-   - BALANCED COVER SCALE
-   - CATEGORY PAGES
-   - ABOUT / AUTHENTICITY
+   COLLECTION MENU / FINAL UI
 ========================================================= */
 
 
@@ -73,11 +64,9 @@
   gap: 16px;
 }
 
-
 .header-corner-tools .lang-switcher {
   margin: 0;
 }
-
 
 .about-corner-link {
   display: inline-block;
@@ -99,7 +88,6 @@
     transform 0.2s ease;
 }
 
-
 .about-corner-link:hover {
   color: #d2d2d6;
 
@@ -107,7 +95,6 @@
 
   transform: translateY(-2px);
 }
-
 
 .about-corner-link.active {
   color: #ffcc00;
@@ -132,7 +119,6 @@
 
   margin-top: 24px;
 }
-
 
 .museum-nav-link {
   display: inline-block;
@@ -162,7 +148,6 @@
     letter-spacing 0.2s ease;
 }
 
-
 .museum-nav-link:hover {
   color: #d4d4d8;
 
@@ -173,7 +158,6 @@
   letter-spacing: 1.65px;
 }
 
-
 .museum-nav-link.active {
   color: #ffcc00;
 
@@ -181,7 +165,6 @@
 
   border-color: #ffcc00;
 }
-
 
 .museum-nav-link.active:hover {
   color: #ffd633;
@@ -209,7 +192,6 @@
   -webkit-backdrop-filter: blur(18px);
 }
 
-
 .archive-search-label {
   display: block;
 
@@ -223,7 +205,6 @@
   letter-spacing: 1.45px;
 }
 
-
 .archive-search-box {
   position: relative;
 
@@ -231,7 +212,6 @@
 
   align-items: center;
 }
-
 
 .archive-search-icon {
   position: absolute;
@@ -243,12 +223,10 @@
   color: #707076;
 
   font-size: 1.12rem;
-
   line-height: 1;
 
   pointer-events: none;
 }
-
 
 .archive-search-input {
   width: 100%;
@@ -268,7 +246,6 @@
   outline: none;
 
   font: inherit;
-
   font-size: 0.9rem;
 
   transition:
@@ -277,16 +254,13 @@
     background 0.18s ease;
 }
 
-
 .archive-search-input::placeholder {
   color: #5f5f65;
 }
 
-
 .archive-search-input:hover {
   border-color: rgba(255, 255, 255, 0.14);
 }
-
 
 .archive-search-input:focus {
   background: rgba(0, 0, 0, 0.3);
@@ -297,11 +271,9 @@
     0 0 0 3px rgba(255, 204, 0, 0.065);
 }
 
-
 .archive-search-input::-webkit-search-cancel-button {
   display: none;
 }
-
 
 .archive-search-clear {
   position: absolute;
@@ -322,6 +294,7 @@
   background: transparent;
 
   border: 0;
+
   border-radius: 50%;
 
   cursor: pointer;
@@ -334,11 +307,9 @@
     background 0.18s ease;
 }
 
-
 .archive-search-clear.visible {
   display: grid;
 }
-
 
 .archive-search-clear:hover {
   color: #ffcc00;
@@ -349,9 +320,29 @@
 
 /* =========================================================
    SNEAKER GRID
+
+   QUAN TRỌNG:
+   AUTO-FILL thay vì AUTO-FIT.
+
+   Khi filter còn:
+   - 3 đôi: 3 card bình thường
+   - 2 đôi: giữ nguyên width
+   - 1 đôi: giữ nguyên width
+
+   Empty column vẫn được giữ nên card không bị kéo lớn.
 ========================================================= */
 
 #sneaker-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fill,
+      minmax(280px, 1fr)
+    );
+
+  gap: 28px;
+
   align-items: stretch;
 }
 
@@ -403,7 +394,6 @@
     background 0.24s ease;
 }
 
-
 #sneaker-grid .card::before {
   content: "";
 
@@ -424,13 +414,11 @@
     );
 }
 
-
 #sneaker-grid .card > * {
   position: relative;
 
   z-index: 1;
 }
-
 
 #sneaker-grid .card:hover {
   transform: translateY(-4px);
@@ -480,7 +468,7 @@
 
 
 /* =========================================================
-   NORMAL SIX COVER IMAGES
+   NORMAL SNEAKER COVER IMAGES
 ========================================================= */
 
 #sneaker-grid
@@ -524,7 +512,6 @@ img {
     filter 0.22s ease;
 }
 
-
 #sneaker-grid
 .card:hover
 .card-img-wrapper
@@ -543,8 +530,7 @@ img {
 
 
 /* =========================================================
-   BAPE x STUSSY
-   SMALLER AGAIN
+   BAPE x STÜSSY
 ========================================================= */
 
 #sneaker-grid
@@ -570,7 +556,6 @@ img[src*="bapesta_stussy.png"] {
     scale(0.64) !important;
 }
 
-
 #sneaker-grid
 .card:hover
 .card-img-wrapper
@@ -582,7 +567,6 @@ img[src*="bapesta_stussy.png"] {
 
 /* =========================================================
    NIKE x OFF-WHITE WAFFLE RACER
-   SMALLER AGAIN
 ========================================================= */
 
 #sneaker-grid
@@ -607,7 +591,6 @@ img[src*="nike_waffle_racer_ow.png"] {
   transform:
     scale(0.62) !important;
 }
-
 
 #sneaker-grid
 .card:hover
@@ -636,7 +619,6 @@ img[src*="nike_waffle_racer_ow.png"] {
   background: transparent !important;
 }
 
-
 #sneaker-grid .card-info h3 {
   margin: 0 0 8px;
 
@@ -648,7 +630,6 @@ img[src*="nike_waffle_racer_ow.png"] {
   line-height: 1.4;
 }
 
-
 #sneaker-grid .card-info .subtitle {
   margin: 0 0 15px;
 
@@ -658,7 +639,6 @@ img[src*="nike_waffle_racer_ow.png"] {
 
   line-height: 1.5;
 }
-
 
 #sneaker-grid .card-meta {
   display: flex;
@@ -670,7 +650,6 @@ img[src*="nike_waffle_racer_ow.png"] {
 
   margin-top: auto;
 }
-
 
 #sneaker-grid .badge {
   padding: 5px 9px;
@@ -688,15 +667,12 @@ img[src*="nike_waffle_racer_ow.png"] {
   font-size: 0.8rem;
 
   backdrop-filter: blur(10px);
-
   -webkit-backdrop-filter: blur(10px);
 }
-
 
 #sneaker-grid .badge-placeholder {
   visibility: hidden;
 }
-
 
 #sneaker-grid .size {
   color: #b5bac3;
@@ -732,7 +708,6 @@ img[src*="nike_waffle_racer_ow.png"] {
     transform 0.2s ease;
 }
 
-
 .card-link:hover .card-cta {
   color: #ffcc00;
 
@@ -751,11 +726,9 @@ img[src*="nike_waffle_racer_ow.png"] {
     0.22s ease;
 }
 
-
 .site-section[hidden] {
   display: none !important;
 }
-
 
 @keyframes sectionFadeIn {
 
@@ -765,7 +738,6 @@ img[src*="nike_waffle_racer_ow.png"] {
     transform:
       translateY(4px);
   }
-
 
   to {
     opacity: 1;
@@ -783,7 +755,6 @@ img[src*="nike_waffle_racer_ow.png"] {
 
 .collection-category-hero {
   margin-top: 24px;
-
   margin-bottom: 24px;
 
   padding: 34px;
@@ -796,7 +767,6 @@ img[src*="nike_waffle_racer_ow.png"] {
   border-radius: 14px;
 }
 
-
 .collection-category-eyebrow {
   margin: 0 0 12px;
 
@@ -807,7 +777,6 @@ img[src*="nike_waffle_racer_ow.png"] {
 
   letter-spacing: 1.5px;
 }
-
 
 .collection-category-hero h2 {
   margin: 0 0 14px;
@@ -821,7 +790,6 @@ img[src*="nike_waffle_racer_ow.png"] {
       2.5rem
     );
 }
-
 
 .collection-category-hero p {
   max-width: 760px;
@@ -842,7 +810,6 @@ img[src*="nike_waffle_racer_ow.png"] {
   background: #101012;
 }
 
-
 .mask-grid .card-img-wrapper img {
   object-fit:
     contain !important;
@@ -862,7 +829,6 @@ img[src*="nike_waffle_racer_ow.png"] {
   margin-top: 28px;
 }
 
-
 .definition-item span {
   line-height: 1.65;
 }
@@ -881,7 +847,6 @@ img[src*="nike_waffle_racer_ow.png"] {
     1px solid #2a2a2e;
 }
 
-
 .authenticity-kicker {
   margin: 0 0 12px;
 
@@ -895,13 +860,11 @@ img[src*="nike_waffle_racer_ow.png"] {
   text-transform: uppercase;
 }
 
-
 .authenticity-section h3 {
   margin: 0 0 20px;
 
   color: #f2f2f4;
 }
-
 
 .authenticity-text {
   margin: 0 0 18px;
@@ -912,7 +875,6 @@ img[src*="nike_waffle_racer_ow.png"] {
 
   line-height: 1.8;
 }
-
 
 .authenticity-text strong {
   color: #cfcfd3;
@@ -960,7 +922,6 @@ img[src*="nike_waffle_racer_ow.png"] {
   line-height: 1.75;
 }
 
-
 .authenticity-notice strong {
   color: #ff4d4d;
 
@@ -975,6 +936,22 @@ img[src*="nike_waffle_racer_ow.png"] {
 ========================================================= */
 
 @media screen and (max-width: 950px) {
+
+  /*
+     Luôn giữ 2 cột trên tablet.
+     Nếu filter chỉ còn 1 sneaker,
+     card chỉ chiếm 1 trong 2 cột.
+  */
+  #sneaker-grid {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+
+    gap: 24px;
+  }
+
 
   #sneaker-grid
   .card-img-wrapper
@@ -1024,7 +1001,7 @@ img[src*="nike_waffle_racer_ow.png"] {
   }
 
 
-  /* WAFFLE */
+  /* WAFFLE RACER */
 
   #sneaker-grid
   .card-img-wrapper
@@ -1109,12 +1086,23 @@ img[src*="nike_waffle_racer_ow.png"] {
   }
 
 
+  /*
+     Mobile vẫn 1 card / row
+     đúng như thiết kế hiện tại.
+  */
+  #sneaker-grid {
+    grid-template-columns: 1fr;
+
+    gap: 22px;
+  }
+
+
   #sneaker-grid .card {
     border-radius: 16px;
   }
 
 
-  /* NORMAL SIX */
+  /* NORMAL SNEAKERS */
 
   #sneaker-grid
   .card-img-wrapper
@@ -1167,7 +1155,7 @@ img[src*="nike_waffle_racer_ow.png"] {
   }
 
 
-  /* WAFFLE */
+  /* WAFFLE RACER */
 
   #sneaker-grid
   .card-img-wrapper
@@ -1261,7 +1249,7 @@ img[src*="nike_waffle_racer_ow.png"] {
   }
 
 
-  /* NORMAL SIX */
+  /* NORMAL SNEAKERS */
 
   #sneaker-grid
   .card-img-wrapper
@@ -1293,7 +1281,7 @@ img[src*="nike_waffle_racer_ow.png"] {
   }
 
 
-  /* WAFFLE */
+  /* WAFFLE RACER */
 
   #sneaker-grid
   .card-img-wrapper
