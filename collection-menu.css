@@ -1,18 +1,86 @@
 /* =========================================================
    LỘC AN SNEAKER COLLECTION
-   DIRECT NAVIGATION + CATEGORY PAGES + CARD CTA
+   CLEAN TOP NAVIGATION + CATEGORY PAGES
 ========================================================= */
 
 
-/* ---------------- DIRECT NAVIGATION ---------------- */
+/* =========================================================
+   HEADER CORNER TOOLS
+   ABOUT + VI / EN
+========================================================= */
+
+.header-corner-tools {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 20;
+
+  display: flex;
+  align-items: center;
+
+  gap: 16px;
+}
+
+
+.header-corner-tools .lang-switcher {
+  margin: 0;
+}
+
+
+/* ABOUT nhỏ ở góc phải */
+
+.about-corner-link {
+  display: inline-block;
+
+  color: #717176;
+
+  text-decoration: none;
+
+  font-size: 0.66rem;
+  font-weight: 800;
+
+  letter-spacing: 1.35px;
+
+  opacity: 0.78;
+
+  transform: translateY(0);
+
+  transition:
+    color 0.18s ease,
+    opacity 0.18s ease,
+    transform 0.18s ease;
+}
+
+
+.about-corner-link:hover {
+  color: #d2d2d6;
+
+  opacity: 0.58;
+
+  transform: translateY(-1px);
+}
+
+
+.about-corner-link.active {
+  color: #ffcc00;
+
+  opacity: 1;
+}
+
+
+/* =========================================================
+   MAIN COLLECTION NAVIGATION
+========================================================= */
 
 .museum-nav {
   display: flex;
+
   justify-content: center;
   align-items: center;
+
   flex-wrap: wrap;
 
-  gap: 30px;
+  gap: 34px;
 
   margin-top: 24px;
 }
@@ -23,46 +91,51 @@
 
   display: inline-block;
 
-  padding: 5px 2px 8px;
+  padding:
+    5px
+    2px
+    8px;
 
-  color: #8b8b90;
+  color: #85858a;
+
+  text-decoration: none;
 
   border-bottom:
     2px solid transparent;
-
-  text-decoration: none;
 
   font-size: 0.76rem;
   font-weight: 800;
 
   letter-spacing: 1.4px;
 
-  opacity: 0.72;
+  opacity: 0.78;
 
-  transform:
-    translateY(0);
+  transform: translateY(0);
 
   transition:
-    color 0.22s ease,
-    opacity 0.22s ease,
-    transform 0.22s ease,
-    letter-spacing 0.22s ease,
-    border-color 0.22s ease,
-    text-shadow 0.22s ease;
+    color 0.2s ease,
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    letter-spacing 0.2s ease,
+    border-color 0.2s ease,
+    text-shadow 0.2s ease;
 }
 
+
+/* Hover: nhạt đi + dịch lên nhẹ */
 
 .museum-nav-link:hover {
-  color: #d0d0d3;
+  color: #d4d4d8;
 
-  opacity: 0.52;
+  opacity: 0.5;
 
-  transform:
-    translateY(-2px);
+  transform: translateY(-2px);
 
-  letter-spacing: 1.7px;
+  letter-spacing: 1.65px;
 }
 
+
+/* Trang đang được mở */
 
 .museum-nav-link.active {
   color: #ffcc00;
@@ -73,7 +146,7 @@
 
   text-shadow:
     0 0 12px
-    rgba(255, 204, 0, 0.18);
+    rgba(255, 204, 0, 0.16);
 }
 
 
@@ -82,27 +155,17 @@
 
   opacity: 1;
 
-  transform:
-    translateY(-1px);
-
-  text-shadow:
-    0 0 15px
-    rgba(255, 204, 0, 0.28);
+  transform: translateY(-1px);
 }
 
 
-.museum-nav-link:active {
-  color: #ffe066;
-
-  transform:
-    translateY(0);
-}
-
-
-/* ---------------- CARD CTA ---------------- */
+/* =========================================================
+   CARD CTA
+========================================================= */
 
 .card-cta {
   display: flex;
+
   align-items: center;
 
   margin-top: 16px;
@@ -120,9 +183,9 @@
   letter-spacing: 1.15px;
 
   transition:
-    color 0.22s ease,
-    transform 0.22s ease,
-    letter-spacing 0.22s ease;
+    color 0.2s ease,
+    transform 0.2s ease,
+    letter-spacing 0.2s ease;
 }
 
 
@@ -136,7 +199,9 @@
 }
 
 
-/* ---------------- CATEGORY HERO ---------------- */
+/* =========================================================
+   CATEGORY PAGES
+========================================================= */
 
 .collection-category-page {
   max-width: 980px;
@@ -208,7 +273,9 @@
 }
 
 
-/* ---------------- SNEAKER MASK ---------------- */
+/* =========================================================
+   SNEAKER MASK
+========================================================= */
 
 .mask-grid .card-img-wrapper {
   background: #101012;
@@ -230,7 +297,6 @@ img {
   display: flex;
 
   justify-content: center;
-
   align-items: center;
 
   min-height: 420px;
@@ -255,7 +321,9 @@ img {
 }
 
 
-/* ---------------- ABOUT ---------------- */
+/* =========================================================
+   ABOUT
+========================================================= */
 
 .definition-item {
   align-items: start;
@@ -267,14 +335,35 @@ img {
 }
 
 
-/* ---------------- RESPONSIVE ---------------- */
+/* =========================================================
+   TABLET / MOBILE
+========================================================= */
 
 @media screen and (max-width: 700px) {
+
+  .home-header,
+  .about-header {
+    padding-left: 0;
+
+    padding-right: 0;
+  }
+
+
+  .header-corner-tools {
+    position: static;
+
+    justify-content: flex-end;
+
+    gap: 14px;
+
+    margin-bottom: 18px;
+  }
+
 
   .museum-nav {
     gap:
       14px
-      20px;
+      22px;
 
     margin-top: 22px;
   }
@@ -307,6 +396,16 @@ img {
 
 
 @media screen and (max-width: 430px) {
+
+  .header-corner-tools {
+    gap: 10px;
+  }
+
+
+  .about-corner-link {
+    font-size: 0.62rem;
+  }
+
 
   .museum-nav {
     gap:
