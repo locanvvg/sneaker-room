@@ -1,18 +1,56 @@
 /* =========================================================
    LỘC AN SNEAKER COLLECTION
-   HOMEPAGE
-========================================================= */
-
-
-/* =========================================================
-   LANGUAGE
+   HOMEPAGE LOGIC
 ========================================================= */
 
 const SUPPORTED_LANGUAGES = ["vi", "en"];
 
+const translations = {
+  vi: {
+    mainTitle: "LỘC AN SNEAKER COLLECTION",
+    mainSubtitle: "Không gian lưu trữ & Bảo tàng Sneaker Kỹ thuật số",
+    sortLabel: "SẮP XẾP",
+    sortDefault: "Mặc định",
+    sortAZ: "A → Z",
+    sortZA: "Z → A",
+    sortDateDesc: "Ngày phát hành: Mới → Cũ",
+    sortDateAsc: "Ngày phát hành: Cũ → Mới",
+    sortSizeAsc: "Size nhỏ → lớn",
+    sortSizeDesc: "Size lớn → nhỏ",
+    filterTitle: "BỘ LỌC BỘ SƯU TẬP",
+    clearFilters: "XÓA BỘ LỌC",
+    editionLabel: "PHÂN KHÚC",
+    conditionLabel: "TÌNH TRẠNG",
+    sizeLabel: "KÍCH CỠ",
+    total: count => `TỔNG SỐ: ${count} ĐÔI`,
+    viewMore: "XEM THÊM →",
+    noResults: "Không có hiện vật phù hợp với bộ lọc hiện tại."
+  },
+
+  en: {
+    mainTitle: "LỘC AN SNEAKER COLLECTION",
+    mainSubtitle: "Digital Sneaker Archive & Museum",
+    sortLabel: "SORT",
+    sortDefault: "Default",
+    sortAZ: "A → Z",
+    sortZA: "Z → A",
+    sortDateDesc: "Release date: Newest → Oldest",
+    sortDateAsc: "Release date: Oldest → Newest",
+    sortSizeAsc: "Size: Small → Large",
+    sortSizeDesc: "Size: Large → Small",
+    filterTitle: "COLLECTION FILTERS",
+    clearFilters: "CLEAR FILTERS",
+    editionLabel: "EDITION",
+    conditionLabel: "CONDITION",
+    sizeLabel: "SIZE",
+    total: count => `TOTAL: ${count} PAIRS`,
+    viewMore: "VIEW MORE →",
+    noResults: "No artifacts match the current filters."
+  }
+};
+
 
 function normalizeLanguage(lang) {
-
   return SUPPORTED_LANGUAGES.includes(lang)
     ? lang
     : "vi";
@@ -33,231 +71,65 @@ let currentLang =
   );
 
 
-localStorage.setItem(
-  "locan_lang",
-  currentLang
-);
-
-
-/* =========================================================
-   SORT
-========================================================= */
-
-const VALID_SORTS = [
-  "default",
-  "az",
-  "za",
-  "date-desc",
-  "date-asc",
-  "size-asc",
-  "size-desc"
-];
-
-
 let currentSort =
-  localStorage.getItem("locan_sort") ||
   "default";
 
 
-if (!VALID_SORTS.includes(currentSort)) {
-
-  currentSort =
-    "default";
-}
-
-
-/* =========================================================
-   FILTERS
-========================================================= */
-
 const activeFilters = {
-
-  edition:
-    new Set(),
-
-  condition:
-    new Set(),
-
-  size:
-    new Set()
-
+  edition: new Set(),
+  condition: new Set(),
+  size: new Set()
 };
 
-
-/* =========================================================
-   TRANSLATIONS
-========================================================= */
-
-const translations = {
-
-  vi: {
-
-    mainTitle:
-      "LỘC AN SNEAKER COLLECTION",
-
-    mainSubtitle:
-      "Không gian lưu trữ & Bảo tàng Sneaker Kỹ thuật số",
-
-    sortLabel:
-      "SẮP XẾP",
-
-    sortDefault:
-      "Mặc định",
-
-    sortAZ:
-      "A → Z",
-
-    sortZA:
-      "Z → A",
-
-    sortDateDesc:
-      "Ngày phát hành: Mới → Cũ",
-
-    sortDateAsc:
-      "Ngày phát hành: Cũ → Mới",
-
-    sortSizeAsc:
-      "Size nhỏ → lớn",
-
-    sortSizeDesc:
-      "Size lớn → nhỏ",
-
-    filterTitle:
-      "BỘ LỌC BỘ SƯU TẬP",
-
-    filterEdition:
-      "PHÂN KHÚC",
-
-    filterCondition:
-      "TÌNH TRẠNG",
-
-    filterSize:
-      "KÍCH CỠ",
-
-    clearFilters:
-      "XÓA BỘ LỌC",
-
-    noResults:
-      "Không có đôi giày nào phù hợp với bộ lọc hiện tại.",
-
-    total:
-      count =>
-        `TỔNG SỐ: ${count} ĐÔI`
-  },
-
-
-  en: {
-
-    mainTitle:
-      "LỘC AN SNEAKER COLLECTION",
-
-    mainSubtitle:
-      "Digital Sneaker Archive & Museum",
-
-    sortLabel:
-      "SORT",
-
-    sortDefault:
-      "Default",
-
-    sortAZ:
-      "A → Z",
-
-    sortZA:
-      "Z → A",
-
-    sortDateDesc:
-      "Release Date: Newest → Oldest",
-
-    sortDateAsc:
-      "Release Date: Oldest → Newest",
-
-    sortSizeAsc:
-      "Size: Small → Large",
-
-    sortSizeDesc:
-      "Size: Large → Small",
-
-    filterTitle:
-      "COLLECTION FILTERS",
-
-    filterEdition:
-      "EDITION",
-
-    filterCondition:
-      "CONDITION",
-
-    filterSize:
-      "SIZE",
-
-    clearFilters:
-      "CLEAR FILTERS",
-
-    noResults:
-      "No sneakers match the current filters.",
-
-    total:
-      count =>
-        `TOTAL: ${count} ${count === 1 ? "PAIR" : "PAIRS"}`
-  }
-
-};
-
-
-/* =========================================================
-   HELPERS
-========================================================= */
 
 function getLocalizedText(value) {
 
-  if (!value) {
+  if (value == null) {
     return "";
   }
 
-  if (typeof value === "string") {
-    return value;
+  if (
+    typeof value === "string" ||
+    typeof value === "number"
+  ) {
+    return String(value);
   }
 
-  return (
-    value[currentLang] ||
-    value.en ||
-    value.vi ||
-    ""
-  );
+  if (
+    typeof value === "object"
+  ) {
+
+    return String(
+      value[currentLang] ??
+      value.vi ??
+      value.en ??
+      ""
+    );
+
+  }
+
+  return "";
 }
 
 
 function escapeHTML(value) {
 
   return String(value ?? "")
-
     .replaceAll("&", "&amp;")
-
     .replaceAll("<", "&lt;")
-
     .replaceAll(">", "&gt;")
-
     .replaceAll('"', "&quot;")
-
     .replaceAll("'", "&#039;");
 }
 
 
-/* =========================================================
-   SIZE
-========================================================= */
-
 function getNumericSize(size) {
 
-  if (!size) {
-    return null;
-  }
-
-
   const match =
-    String(size).match(
-      /(\d+(?:\.\d+)?)/
-    );
+    String(size ?? "")
+      .match(
+        /(\d+(?:\.\d+)?)/
+      );
 
 
   if (!match) {
@@ -297,111 +169,32 @@ function getAvailableSizes() {
   }
 
 
-  const sizes =
-    sneakers
-      .map(
-        sneaker =>
-          getNumericSize(
-            sneaker.size
-          )
-      )
-      .filter(
-        value =>
-          value !== null
-      );
+  return [
 
+    ...new Set(
 
-  return [...new Set(sizes)]
-    .sort(
-      (a, b) =>
-        a - b
-    );
+      sneakers
+
+        .map(
+          item =>
+            getNumericSize(
+              item.size
+            )
+        )
+
+        .filter(
+          value =>
+            value !== null
+        )
+
+    )
+
+  ].sort(
+    (a, b) =>
+      a - b
+  );
 }
 
-
-/* =========================================================
-   DATE
-========================================================= */
-
-function getReleaseDateValue(value) {
-
-  if (!value) {
-    return null;
-  }
-
-
-  const date =
-    String(value);
-
-
-  if (
-    /^\d{4}-\d{2}-\d{2}$/.test(date)
-  ) {
-
-    const [
-      year,
-      month,
-      day
-    ] =
-      date
-        .split("-")
-        .map(Number);
-
-
-    return Date.UTC(
-      year,
-      month - 1,
-      day
-    );
-  }
-
-
-  if (
-    /^\d{4}-\d{2}$/.test(date)
-  ) {
-
-    const [
-      year,
-      month
-    ] =
-      date
-        .split("-")
-        .map(Number);
-
-
-    return Date.UTC(
-      year,
-      month - 1,
-      1
-    );
-  }
-
-
-  if (
-    /^\d{4}$/.test(date)
-  ) {
-
-    return Date.UTC(
-      Number(date),
-      0,
-      1
-    );
-  }
-
-
-  const parsed =
-    Date.parse(date);
-
-
-  return Number.isNaN(parsed)
-    ? null
-    : parsed;
-}
-
-
-/* =========================================================
-   EDITION CLASSIFICATION
-========================================================= */
 
 function getEditionCategories(sneaker) {
 
@@ -409,7 +202,7 @@ function getEditionCategories(sneaker) {
     new Set();
 
 
-  const values = [
+  const corpus = [
 
     sneaker.title?.vi,
     sneaker.title?.en,
@@ -424,53 +217,89 @@ function getEditionCategories(sneaker) {
     sneaker.subtitle,
     sneaker.editionType
 
-  ];
+  ]
 
+    .filter(
+      value =>
+        typeof value ===
+        "string"
+    )
 
-  const corpus =
-    values
-      .filter(
-        value =>
-          typeof value === "string"
-      )
-      .join(" ")
-      .toUpperCase();
+    .join(" ")
+
+    .toUpperCase();
 
 
   if (
-    /\bPE\b/.test(corpus) ||
     corpus.includes(
       "PLAYER EXCLUSIVE"
     )
+    ||
+    /\bPE\b/.test(corpus)
   ) {
-
     categories.add("PE");
   }
 
 
   if (
-    corpus.includes("SAMPLE")
+    corpus.includes(
+      "SAMPLE"
+    )
   ) {
-
-    categories.add("Sample");
+    categories.add(
+      "Sample"
+    );
   }
 
 
   if (
-    corpus.includes("F&F") ||
     corpus.includes(
       "FRIENDS & FAMILY"
     )
+    ||
+    corpus.includes(
+      "FRIENDS AND FAMILY"
+    )
+    ||
+    corpus.includes(
+      "F&F"
+    )
   ) {
-
     categories.add("F&F");
+  }
+
+
+  if (
+    corpus.includes(
+      "SIGNATURE SIGNED"
+    )
+    ||
+    (
+      corpus.includes("SIGNATURE")
+      &&
+      corpus.includes("SIGNED")
+    )
+  ) {
+    categories.add(
+      "Signature Signed"
+    );
+  }
+
+
+  if (
+    corpus.includes(
+      "GENERAL RELEASE"
+    )
+    ||
+    /\bGR\b/.test(corpus)
+  ) {
+    categories.add("GR");
   }
 
 
   if (
     categories.size === 0
   ) {
-
     categories.add("GR");
   }
 
@@ -479,26 +308,28 @@ function getEditionCategories(sneaker) {
 }
 
 
-/* =========================================================
-   CONDITION
-========================================================= */
-
 function getConditionCategory(sneaker) {
 
   const value =
     getLocalizedText(
       sneaker.condition
     )
+
       .trim()
+
       .toLowerCase();
 
 
-  if (value === "deadstock") {
+  if (
+    value === "deadstock"
+  ) {
     return "Deadstock";
   }
 
 
-  if (value === "used") {
+  if (
+    value === "used"
+  ) {
     return "Used";
   }
 
@@ -507,17 +338,11 @@ function getConditionCategory(sneaker) {
 }
 
 
-/* =========================================================
-   FILTER
-========================================================= */
-
 function filterSneakers(items) {
 
   return items.filter(
     sneaker => {
 
-
-      /* EDITION */
 
       if (
         activeFilters.edition.size > 0
@@ -529,44 +354,40 @@ function filterSneakers(items) {
           );
 
 
-        const matches =
+        const match =
           [...activeFilters.edition]
+
             .some(
               value =>
-                categories.has(value)
+                categories.has(
+                  value
+                )
             );
 
 
-        if (!matches) {
+        if (!match) {
           return false;
         }
+
       }
 
-
-      /* CONDITION */
 
       if (
         activeFilters.condition.size > 0
       ) {
 
-        const condition =
-          getConditionCategory(
-            sneaker
-          );
-
-
         if (
           !activeFilters.condition.has(
-            condition
+            getConditionCategory(
+              sneaker
+            )
           )
         ) {
-
           return false;
         }
+
       }
 
-
-      /* SIZE */
 
       if (
         activeFilters.size.size > 0
@@ -583,21 +404,49 @@ function filterSneakers(items) {
             size
           )
         ) {
-
           return false;
         }
+
       }
 
 
       return true;
+
     }
   );
 }
 
 
-/* =========================================================
-   SORT
-========================================================= */
+function getReleaseTimestamp(value) {
+
+  if (!value) {
+    return 0;
+  }
+
+
+  const text =
+    String(value).trim();
+
+
+  const normalized =
+    /^\d{4}-\d{2}$/.test(text)
+
+      ? `${text}-01`
+
+      : text;
+
+
+  const timestamp =
+    Date.parse(
+      `${normalized}T12:00:00`
+    );
+
+
+  return Number.isFinite(timestamp)
+    ? timestamp
+    : 0;
+}
+
 
 function sortSneakers(items) {
 
@@ -612,17 +461,19 @@ function sortSneakers(items) {
 
       sorted.sort(
         (a, b) =>
+
           getLocalizedText(
             a.title
           ).localeCompare(
+
             getLocalizedText(
               b.title
             ),
-            currentLang,
-            {
-              sensitivity: "base",
-              numeric: true
-            }
+
+            currentLang === "vi"
+              ? "vi"
+              : "en"
+
           )
       );
 
@@ -633,17 +484,19 @@ function sortSneakers(items) {
 
       sorted.sort(
         (a, b) =>
+
           getLocalizedText(
             b.title
           ).localeCompare(
+
             getLocalizedText(
               a.title
             ),
-            currentLang,
-            {
-              sensitivity: "base",
-              numeric: true
-            }
+
+            currentLang === "vi"
+              ? "vi"
+              : "en"
+
           )
       );
 
@@ -653,37 +506,15 @@ function sortSneakers(items) {
     case "date-desc":
 
       sorted.sort(
-        (a, b) => {
+        (a, b) =>
 
-          const dateA =
-            getReleaseDateValue(
-              a.releaseDate
-            );
-
-          const dateB =
-            getReleaseDateValue(
-              b.releaseDate
-            );
-
-
-          if (
-            dateA === null &&
-            dateB === null
-          ) {
-            return 0;
-          }
-
-          if (dateA === null) {
-            return 1;
-          }
-
-          if (dateB === null) {
-            return -1;
-          }
-
-
-          return dateB - dateA;
-        }
+          getReleaseTimestamp(
+            b.releaseDate
+          )
+          -
+          getReleaseTimestamp(
+            a.releaseDate
+          )
       );
 
       break;
@@ -692,37 +523,15 @@ function sortSneakers(items) {
     case "date-asc":
 
       sorted.sort(
-        (a, b) => {
+        (a, b) =>
 
-          const dateA =
-            getReleaseDateValue(
-              a.releaseDate
-            );
-
-          const dateB =
-            getReleaseDateValue(
-              b.releaseDate
-            );
-
-
-          if (
-            dateA === null &&
-            dateB === null
-          ) {
-            return 0;
-          }
-
-          if (dateA === null) {
-            return 1;
-          }
-
-          if (dateB === null) {
-            return -1;
-          }
-
-
-          return dateA - dateB;
-        }
+          getReleaseTimestamp(
+            a.releaseDate
+          )
+          -
+          getReleaseTimestamp(
+            b.releaseDate
+          )
       );
 
       break;
@@ -733,30 +542,41 @@ function sortSneakers(items) {
       sorted.sort(
         (a, b) => {
 
-          const sizeA =
-            getNumericSize(a.size);
+          const aSize =
+            getNumericSize(
+              a.size
+            );
 
-          const sizeB =
-            getNumericSize(b.size);
+          const bSize =
+            getNumericSize(
+              b.size
+            );
 
 
           if (
-            sizeA === null &&
-            sizeB === null
+            aSize === null &&
+            bSize === null
           ) {
             return 0;
           }
 
-          if (sizeA === null) {
+
+          if (
+            aSize === null
+          ) {
             return 1;
           }
 
-          if (sizeB === null) {
+
+          if (
+            bSize === null
+          ) {
             return -1;
           }
 
 
-          return sizeA - sizeB;
+          return aSize - bSize;
+
         }
       );
 
@@ -768,30 +588,41 @@ function sortSneakers(items) {
       sorted.sort(
         (a, b) => {
 
-          const sizeA =
-            getNumericSize(a.size);
+          const aSize =
+            getNumericSize(
+              a.size
+            );
 
-          const sizeB =
-            getNumericSize(b.size);
+          const bSize =
+            getNumericSize(
+              b.size
+            );
 
 
           if (
-            sizeA === null &&
-            sizeB === null
+            aSize === null &&
+            bSize === null
           ) {
             return 0;
           }
 
-          if (sizeA === null) {
+
+          if (
+            aSize === null
+          ) {
             return 1;
           }
 
-          if (sizeB === null) {
+
+          if (
+            bSize === null
+          ) {
             return -1;
           }
 
 
-          return sizeB - sizeA;
+          return bSize - aSize;
+
         }
       );
 
@@ -801,6 +632,7 @@ function sortSneakers(items) {
     default:
 
       break;
+
   }
 
 
@@ -808,33 +640,30 @@ function sortSneakers(items) {
 }
 
 
-/* =========================================================
-   FILTER ACTIONS
-========================================================= */
-
 function toggleFilter(
   group,
   value
 ) {
 
-  const filter =
+  const set =
     activeFilters[group];
 
 
-  if (!filter) {
+  if (!set) {
     return;
   }
 
 
   if (
-    filter.has(value)
+    set.has(value)
   ) {
 
-    filter.delete(value);
+    set.delete(value);
 
   } else {
 
-    filter.add(value);
+    set.add(value);
+
   }
 
 
@@ -846,11 +675,14 @@ function toggleFilter(
 
 function clearAllFilters() {
 
-  activeFilters.edition.clear();
-
-  activeFilters.condition.clear();
-
-  activeFilters.size.clear();
+  Object
+    .values(
+      activeFilters
+    )
+    .forEach(
+      set =>
+        set.clear()
+    );
 
 
   updateFilterInterface();
@@ -859,21 +691,38 @@ function clearAllFilters() {
 }
 
 
-function hasActiveFilters() {
+function changeSort(value) {
 
-  return (
-    activeFilters.edition.size > 0 ||
-    activeFilters.condition.size > 0 ||
-    activeFilters.size.size > 0
-  );
+  const allowed = [
+
+    "default",
+
+    "az",
+
+    "za",
+
+    "date-desc",
+
+    "date-asc",
+
+    "size-asc",
+
+    "size-desc"
+
+  ];
+
+
+  currentSort =
+    allowed.includes(value)
+      ? value
+      : "default";
+
+
+  renderGrid();
 }
 
 
-/* =========================================================
-   SIZE FILTERS
-========================================================= */
-
-function renderSizeFilterButtons() {
+function renderSizeFilters() {
 
   const container =
     document.getElementById(
@@ -886,12 +735,10 @@ function renderSizeFilterButtons() {
   }
 
 
-  const sizes =
-    getAvailableSizes();
-
-
   container.innerHTML =
-    sizes
+
+    getAvailableSizes()
+
       .map(
         size => {
 
@@ -899,82 +746,32 @@ function renderSizeFilterButtons() {
             String(size);
 
 
-          const active =
-            activeFilters.size.has(
-              value
-            );
-
-
           return `
+
             <button
               type="button"
-              class="filter-chip ${active ? "active" : ""}"
+              class="filter-chip"
               data-group="size"
-              data-value="${value}"
-              onclick="toggleFilter('size', '${value}')"
+              data-value="${escapeHTML(value)}"
+              onclick="toggleFilter('size', '${escapeHTML(value)}')"
             >
-              ${value} US
+              ${escapeHTML(value)} US
             </button>
+
           `;
+
         }
       )
+
       .join("");
 }
 
 
-/* =========================================================
-   FILTER UI
-========================================================= */
-
 function updateFilterInterface() {
-
-  const t =
-    translations[currentLang];
-
-
-  document.getElementById(
-    "filter-title"
-  ).textContent =
-    t.filterTitle;
-
-
-  document.getElementById(
-    "edition-filter-label"
-  ).textContent =
-    t.filterEdition;
-
-
-  document.getElementById(
-    "condition-filter-label"
-  ).textContent =
-    t.filterCondition;
-
-
-  document.getElementById(
-    "size-filter-label"
-  ).textContent =
-    t.filterSize;
-
-
-  const clearButton =
-    document.getElementById(
-      "clear-filters"
-    );
-
-
-  clearButton.textContent =
-    t.clearFilters;
-
-
-  clearButton.classList.toggle(
-    "visible",
-    hasActiveFilters()
-  );
-
 
   document
     .querySelectorAll(
-      ".filter-chip[data-group='edition'], .filter-chip[data-group='condition']"
+      ".filter-chip[data-group]"
     )
     .forEach(
       button => {
@@ -985,44 +782,158 @@ function updateFilterInterface() {
         const value =
           button.dataset.value;
 
+        const set =
+          activeFilters[group];
+
 
         button.classList.toggle(
+
           "active",
-          activeFilters[group].has(
-            value
+
+          Boolean(
+            set &&
+            set.has(value)
           )
+
         );
+
       }
     );
 
 
-  renderSizeFilterButtons();
+  const clearButton =
+    document.getElementById(
+      "clear-filters"
+    );
+
+
+  if (
+    clearButton
+  ) {
+
+    const hasActiveFilters =
+
+      activeFilters.edition.size > 0
+      ||
+      activeFilters.condition.size > 0
+      ||
+      activeFilters.size.size > 0;
+
+
+    clearButton.classList.toggle(
+      "visible",
+      hasActiveFilters
+    );
+
+  }
 }
 
 
-/* =========================================================
-   SORT UI
-========================================================= */
+function updateStaticText() {
 
-function changeSort(value) {
-
-  currentSort =
-    VALID_SORTS.includes(value)
-      ? value
-      : "default";
+  const t =
+    translations[currentLang];
 
 
-  localStorage.setItem(
-    "locan_sort",
-    currentSort
-  );
+  document.documentElement.lang =
+    currentLang;
 
 
-  renderGrid();
-}
+  const title =
+    document.querySelector(
+      '[data-i18n="mainTitle"]'
+    );
 
 
-function updateSortInterface() {
+  const subtitle =
+    document.querySelector(
+      '[data-i18n="mainSubtitle"]'
+    );
+
+
+  if (title) {
+    title.textContent =
+      t.mainTitle;
+  }
+
+
+  if (subtitle) {
+    subtitle.textContent =
+      t.mainSubtitle;
+  }
+
+
+  const sortLabel =
+    document.getElementById(
+      "sort-label"
+    );
+
+
+  const filterTitle =
+    document.getElementById(
+      "filter-title"
+    );
+
+
+  const clearButton =
+    document.getElementById(
+      "clear-filters"
+    );
+
+
+  const editionLabel =
+    document.getElementById(
+      "edition-filter-label"
+    );
+
+
+  const conditionLabel =
+    document.getElementById(
+      "condition-filter-label"
+    );
+
+
+  const sizeLabel =
+    document.getElementById(
+      "size-filter-label"
+    );
+
+
+  if (sortLabel) {
+    sortLabel.textContent =
+      t.sortLabel;
+  }
+
+
+  if (filterTitle) {
+    filterTitle.textContent =
+      t.filterTitle;
+  }
+
+
+  if (clearButton) {
+    clearButton.textContent =
+      t.clearFilters;
+  }
+
+
+  if (editionLabel) {
+    editionLabel.textContent =
+      t.editionLabel;
+  }
+
+
+  if (conditionLabel) {
+    conditionLabel.textContent =
+      t.conditionLabel;
+  }
+
+
+  if (sizeLabel) {
+    sizeLabel.textContent =
+      t.sizeLabel;
+  }
+
 
   const select =
     document.getElementById(
@@ -1030,66 +941,77 @@ function updateSortInterface() {
     );
 
 
-  const label =
-    document.getElementById(
-      "sort-label"
+  if (select) {
+
+    const names = {
+
+      default:
+        t.sortDefault,
+
+      az:
+        t.sortAZ,
+
+      za:
+        t.sortZA,
+
+      "date-desc":
+        t.sortDateDesc,
+
+      "date-asc":
+        t.sortDateAsc,
+
+      "size-asc":
+        t.sortSizeAsc,
+
+      "size-desc":
+        t.sortSizeDesc
+
+    };
+
+
+    [...select.options]
+      .forEach(
+        option => {
+
+          option.textContent =
+            names[option.value]
+            ||
+            option.textContent;
+
+        }
+      );
+
+
+    select.value =
+      currentSort;
+
+  }
+
+
+  document
+    .getElementById(
+      "btn-vi"
+    )
+    ?.classList.toggle(
+      "active",
+      currentLang === "vi"
     );
 
 
-  const t =
-    translations[currentLang];
-
-
-  label.textContent =
-    t.sortLabel;
-
-
-  const names = {
-
-    default:
-      t.sortDefault,
-
-    az:
-      t.sortAZ,
-
-    za:
-      t.sortZA,
-
-    "date-desc":
-      t.sortDateDesc,
-
-    "date-asc":
-      t.sortDateAsc,
-
-    "size-asc":
-      t.sortSizeAsc,
-
-    "size-desc":
-      t.sortSizeDesc
-  };
-
-
-  [...select.options]
-    .forEach(
-      option => {
-
-        option.textContent =
-          names[option.value] ||
-          option.textContent;
-      }
+  document
+    .getElementById(
+      "btn-en"
+    )
+    ?.classList.toggle(
+      "active",
+      currentLang === "en"
     );
-
-
-  select.value =
-    currentSort;
 }
 
 
-/* =========================================================
-   TOTAL
-========================================================= */
-
-function updateCollectionCount(count) {
+function updateCollectionCount(
+  count
+) {
 
   const element =
     document.getElementById(
@@ -1107,99 +1029,6 @@ function updateCollectionCount(count) {
       .total(count);
 }
 
-
-/* =========================================================
-   LANGUAGE
-========================================================= */
-
-function setLanguage(lang) {
-
-  currentLang =
-    normalizeLanguage(lang);
-
-
-  localStorage.setItem(
-    "locan_lang",
-    currentLang
-  );
-
-
-  document.documentElement.lang =
-    currentLang;
-
-
-  const url =
-    new URL(
-      window.location.href
-    );
-
-
-  url.searchParams.set(
-    "lang",
-    currentLang
-  );
-
-
-  window.history.replaceState(
-    {},
-    "",
-    url.pathname +
-    url.search +
-    url.hash
-  );
-
-
-  document
-    .getElementById("btn-vi")
-    .classList.toggle(
-      "active",
-      currentLang === "vi"
-    );
-
-
-  document
-    .getElementById("btn-en")
-    .classList.toggle(
-      "active",
-      currentLang === "en"
-    );
-
-
-  const t =
-    translations[currentLang];
-
-
-  document
-    .querySelectorAll(
-      "[data-i18n]"
-    )
-    .forEach(
-      element => {
-
-        const key =
-          element.dataset.i18n;
-
-
-        if (t[key]) {
-
-          element.textContent =
-            t[key];
-        }
-      }
-    );
-
-
-  updateSortInterface();
-
-  updateFilterInterface();
-
-  renderGrid();
-}
-
-
-/* =========================================================
-   CARD
-========================================================= */
 
 function renderCard(sneaker) {
 
@@ -1221,24 +1050,28 @@ function renderCard(sneaker) {
     );
 
 
-  /*
-     IMPORTANT:
-     Use ./shoe.html so GitHub Pages stays inside
-     /sneaker-room/
-  */
-
   const detailURL =
-    `./shoe.html?id=${encodeURIComponent(sneaker.id)}` +
-    `&lang=${encodeURIComponent(currentLang)}`;
+
+    `./shoe.html?id=${encodeURIComponent(
+      sneaker.id
+    )}`
+
+    +
+
+    `&lang=${encodeURIComponent(
+      currentLang
+    )}`;
 
 
   const badge =
     edition
+
       ? `
         <span class="badge">
           ${escapeHTML(edition)}
         </span>
       `
+
       : `
         <span class="badge badge-placeholder">
           &nbsp;
@@ -1247,6 +1080,7 @@ function renderCard(sneaker) {
 
 
   return `
+
     <a
       href="${detailURL}"
       class="card-link"
@@ -1255,10 +1089,13 @@ function renderCard(sneaker) {
 
       <article class="card">
 
+
         <div class="card-img-wrapper">
 
           <img
-            src="${escapeHTML(sneaker.image || "")}"
+            src="${escapeHTML(
+              sneaker.image || ""
+            )}"
             alt="${escapeHTML(title)}"
             loading="lazy"
             decoding="async"
@@ -1269,36 +1106,45 @@ function renderCard(sneaker) {
 
         <div class="card-info">
 
+
           <h3>
             ${escapeHTML(title)}
           </h3>
 
+
           <p class="subtitle">
             ${escapeHTML(subtitle)}
           </p>
+
 
           <div class="card-meta">
 
             ${badge}
 
             <span class="size">
-              ${escapeHTML(sneaker.size || "")}
+              ${escapeHTML(
+                sneaker.size || ""
+              )}
             </span>
 
           </div>
 
+
+          <span class="card-cta">
+            ${translations[currentLang].viewMore}
+          </span>
+
+
         </div>
+
 
       </article>
 
     </a>
+
   `;
 }
 
-
-/* =========================================================
-   RENDER
-========================================================= */
 
 function renderGrid() {
 
@@ -1314,15 +1160,19 @@ function renderGrid() {
 
 
   if (
-    typeof sneakers === "undefined" ||
+    typeof sneakers === "undefined"
+    ||
     !Array.isArray(sneakers)
   ) {
 
     grid.innerHTML = `
-      <div class="collection-message">
-        Collection data unavailable.
+
+      <div class="not-found">
+        Collection data could not be loaded.
       </div>
+
     `;
+
 
     updateCollectionCount(0);
 
@@ -1342,10 +1192,6 @@ function renderGrid() {
     );
 
 
-  /*
-     TOTAL = NUMBER CURRENTLY DISPLAYED
-  */
-
   updateCollectionCount(
     sorted.length
   );
@@ -1356,12 +1202,14 @@ function renderGrid() {
   ) {
 
     grid.innerHTML = `
-      <div class="collection-message">
+
+      <div class="not-found">
         ${escapeHTML(
           translations[currentLang]
             .noResults
         )}
       </div>
+
     `;
 
     return;
@@ -1370,21 +1218,78 @@ function renderGrid() {
 
   grid.innerHTML =
     sorted
-      .map(renderCard)
+      .map(
+        renderCard
+      )
       .join("");
 }
 
 
-/* =========================================================
-   START
-========================================================= */
+function setLanguage(lang) {
+
+  currentLang =
+    normalizeLanguage(
+      lang
+    );
+
+
+  localStorage.setItem(
+    "locan_lang",
+    currentLang
+  );
+
+
+  const url =
+    new URL(
+      window.location.href
+    );
+
+
+  url.searchParams.set(
+    "lang",
+    currentLang
+  );
+
+
+  window.history.replaceState(
+
+    {},
+
+    "",
+
+    url.pathname
+    +
+    url.search
+    +
+    url.hash
+
+  );
+
+
+  updateStaticText();
+
+  renderSizeFilters();
+
+  updateFilterInterface();
+
+  renderGrid();
+}
+
 
 document.addEventListener(
+
   "DOMContentLoaded",
+
   () => {
 
-    setLanguage(
-      currentLang
-    );
+    updateStaticText();
+
+    renderSizeFilters();
+
+    updateFilterInterface();
+
+    renderGrid();
+
   }
+
 );
