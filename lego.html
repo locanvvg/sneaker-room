@@ -2,6 +2,7 @@
 <html lang="vi">
 
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -19,7 +20,10 @@
     content="#0d0d0d"
   >
 
-  <title>LEGO | Lộc An Sneaker Collection</title>
+  <title>
+    LEGO | Lộc An Sneaker Collection
+  </title>
+
 
   <link
     rel="icon"
@@ -27,25 +31,30 @@
     href="./favicon.svg"
   >
 
+
   <link
     rel="apple-touch-icon"
     href="./apple-touch-icon.png"
   >
+
 
   <link
     rel="manifest"
     href="./site.webmanifest"
   >
 
-  <link
-    rel="stylesheet"
-    href="./style.css?v=20260912-15"
-  >
 
   <link
     rel="stylesheet"
-    href="./collection-menu.css?v=20260912-15"
+    href="./style.css?v=20260912-18"
   >
+
+
+  <link
+    rel="stylesheet"
+    href="./collection-menu.css?v=20260912-18"
+  >
+
 </head>
 
 
@@ -53,7 +62,11 @@
 
   <div class="container">
 
+
     <header class="home-header">
+
+
+      <!-- LANGUAGE -->
 
       <div class="lang-switcher corner-lang">
 
@@ -65,6 +78,7 @@
         >
           VI
         </button>
+
 
         <button
           type="button"
@@ -78,6 +92,8 @@
       </div>
 
 
+      <!-- HEADER -->
+
       <h1>
         LỘC AN SNEAKER COLLECTION
       </h1>
@@ -88,54 +104,37 @@
         data-vi="Không gian lưu trữ & Bảo tàng Sneaker Kỹ thuật số"
         data-en="Digital Sneaker Archive & Museum"
       >
-        Không gian lưu trữ &amp; Bảo tàng Sneaker Kỹ thuật số
+        Không gian lưu trữ &amp;
+        Bảo tàng Sneaker Kỹ thuật số
       </p>
 
 
+      <!-- DIRECT NAVIGATION -->
+
       <nav class="museum-nav">
 
-        <details class="museum-nav-dropdown">
-
-          <summary
-            class="museum-nav-link active collection-nav-trigger"
-          >
-            <span>COLLECTION</span>
-
-            <span
-              class="collection-nav-arrow"
-              aria-hidden="true"
-            >
-              ▾
-            </span>
-          </summary>
+        <a
+          href="./index.html"
+          class="museum-nav-link"
+        >
+          SNEAKERS
+        </a>
 
 
-          <div class="museum-nav-submenu">
+        <a
+          href="./lego.html"
+          class="museum-nav-link active"
+        >
+          LEGO
+        </a>
 
-            <a
-              href="./index.html"
-              class="museum-nav-submenu-link"
-            >
-              SNEAKERS
-            </a>
 
-            <a
-              href="./lego.html"
-              class="museum-nav-submenu-link active"
-            >
-              LEGO
-            </a>
-
-            <a
-              href="./sneaker-mask.html"
-              class="museum-nav-submenu-link"
-            >
-              SNEAKER MASK
-            </a>
-
-          </div>
-
-        </details>
+        <a
+          href="./sneaker-mask.html"
+          class="museum-nav-link"
+        >
+          SNEAKER MASK
+        </a>
 
 
         <a
@@ -147,10 +146,14 @@
 
       </nav>
 
+
     </header>
 
 
     <main>
+
+
+      <!-- INTRO -->
 
       <section
         class="collection-category-hero"
@@ -158,11 +161,11 @@
       >
 
         <p class="collection-category-eyebrow">
-          COLLECTION / LEGO
+          LEGO ARCHIVE
         </p>
 
 
-        <h2 id="lego-page-title">
+        <h2>
           Nike x LEGO
         </h2>
 
@@ -172,27 +175,35 @@
           data-vi="Kho lưu trữ dành cho các bộ Nike x LEGO trong Lộc An Sneaker Collection — nơi sneaker culture, basketball và thiết kế LEGO được kết nối trong cùng một hệ thống catalogue."
           data-en="An archive dedicated to Nike x LEGO sets within the Lộc An Sneaker Collection — where sneaker culture, basketball and LEGO design are documented within one catalogue system."
         >
-          Kho lưu trữ dành cho các bộ Nike x LEGO trong
-          Lộc An Sneaker Collection — nơi sneaker culture,
-          basketball và thiết kế LEGO được kết nối
-          trong cùng một hệ thống catalogue.
+          Kho lưu trữ dành cho các bộ
+          Nike x LEGO trong
+          Lộc An Sneaker Collection —
+          nơi sneaker culture,
+          basketball và thiết kế LEGO
+          được kết nối trong cùng
+          một hệ thống catalogue.
         </p>
 
       </section>
 
 
+      <!-- COUNT -->
+
       <div
         id="lego-count"
         class="collection-count"
       >
-        TỔNG SỐ: 2 BỘ
+        TỔNG SỐ: 0 BỘ
       </div>
 
+
+      <!-- GRID -->
 
       <div
         id="lego-grid"
         class="grid"
       ></div>
+
 
     </main>
 
@@ -206,10 +217,13 @@
 
     </footer>
 
+
   </div>
 
 
-  <script src="./lego-data.js?v=20260912-15"></script>
+  <script
+    src="./lego-data.js?v=20260912-18"
+  ></script>
 
 
   <script>
@@ -241,22 +255,35 @@
         legoLanguage
       )
     ) {
-      legoLanguage = "vi";
-    }
-
-
-    function numberWithComma(value) {
-
-      return Number(value)
-        .toLocaleString("en-CA");
-
-    }
-
-
-    function setLegoLanguage(lang) {
 
       legoLanguage =
-        LEGO_LANGUAGES.includes(lang)
+        "vi";
+
+    }
+
+
+    function numberWithComma(
+      value
+    ) {
+
+      return Number(
+        value
+      )
+      .toLocaleString(
+        "en-CA"
+      );
+
+    }
+
+
+    function setLegoLanguage(
+      lang
+    ) {
+
+      legoLanguage =
+        LEGO_LANGUAGES.includes(
+          lang
+        )
           ? lang
           : "vi";
 
@@ -272,7 +299,9 @@
 
 
       document
-        .getElementById("btn-vi")
+        .getElementById(
+          "btn-vi"
+        )
         .classList
         .toggle(
           "active",
@@ -281,7 +310,9 @@
 
 
       document
-        .getElementById("btn-en")
+        .getElementById(
+          "btn-en"
+        )
         .classList
         .toggle(
           "active",
@@ -289,32 +320,28 @@
         );
 
 
-      document
-        .getElementById(
+      const subtitle =
+        document.getElementById(
           "lego-main-subtitle"
-        )
-        .textContent =
-          document
-            .getElementById(
-              "lego-main-subtitle"
-            )
-            .dataset[
-              legoLanguage
-            ];
+        );
 
 
-      document
-        .getElementById(
+      subtitle.textContent =
+        subtitle.dataset[
+          legoLanguage
+        ];
+
+
+      const description =
+        document.getElementById(
           "lego-page-description"
-        )
-        .textContent =
-          document
-            .getElementById(
-              "lego-page-description"
-            )
-            .dataset[
-              legoLanguage
-            ];
+        );
+
+
+      description.textContent =
+        description.dataset[
+          legoLanguage
+        ];
 
 
       document
@@ -322,8 +349,11 @@
           "lego-count"
         )
         .textContent =
+
           legoLanguage === "vi"
+
             ? `TỔNG SỐ: ${legoSets.length} BỘ`
+
             : `TOTAL: ${legoSets.length} SETS`;
 
 
@@ -361,11 +391,13 @@
         );
 
 
-      grid.innerHTML = "";
+      grid.innerHTML =
+        "";
 
 
       legoSets.forEach(
         lego => {
+
 
           const link =
             document.createElement(
@@ -378,7 +410,9 @@
 
 
           link.href =
-            `./lego-detail.html?id=${encodeURIComponent(lego.id)}&lang=${legoLanguage}`;
+            `./lego-detail.html?id=${encodeURIComponent(
+              lego.id
+            )}&lang=${legoLanguage}`;
 
 
           const card =
@@ -566,6 +600,7 @@
     );
 
   </script>
+
 
 </body>
 
