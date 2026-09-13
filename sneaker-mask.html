@@ -31,28 +31,24 @@
     href="./favicon.svg"
   >
 
-
   <link
     rel="apple-touch-icon"
     href="./apple-touch-icon.png"
   >
-
 
   <link
     rel="manifest"
     href="./site.webmanifest"
   >
 
-
   <link
     rel="stylesheet"
-    href="./style.css?v=20260912-18"
+    href="./style.css?v=20260912-20"
   >
 
-
   <link
     rel="stylesheet"
-    href="./collection-menu.css?v=20260912-18"
+    href="./collection-menu.css?v=20260912-20"
   >
 
 </head>
@@ -65,8 +61,6 @@
 
     <header class="home-header">
 
-
-      <!-- LANGUAGE -->
 
       <div class="lang-switcher corner-lang">
 
@@ -92,8 +86,6 @@
       </div>
 
 
-      <!-- HEADER -->
-
       <h1>
         LỘC AN SNEAKER COLLECTION
       </h1>
@@ -108,8 +100,6 @@
         Bảo tàng Sneaker Kỹ thuật số
       </p>
 
-
-      <!-- DIRECT NAVIGATION -->
 
       <nav class="museum-nav">
 
@@ -153,12 +143,7 @@
     <main>
 
 
-      <!-- INTRO -->
-
-      <section
-        class="collection-category-hero"
-        style="margin-bottom: 24px;"
-      >
+      <section class="collection-category-hero">
 
         <p class="collection-category-eyebrow">
           SNEAKER MASK ARCHIVE
@@ -172,20 +157,17 @@
 
         <p
           id="mask-page-description"
-          data-vi="Kho lưu trữ những tác phẩm Sneaker Mask độc bản được cắt tay và chế tác hoàn toàn thủ công từ những đôi sneaker nguyên bản trong tình trạng Deadstock."
-          data-en="An archive of unique Sneaker Mask artifacts, hand-cut and entirely handmade from original Deadstock sneakers."
+          data-vi="Kho lưu trữ các tác phẩm Sneaker Mask độc bản được cắt tay và chế tác hoàn toàn thủ công từ những đôi sneaker nguyên bản."
+          data-en="An archive of unique Sneaker Mask artifacts, hand-cut and entirely handmade from original sneakers."
         >
-          Kho lưu trữ những tác phẩm
-          Sneaker Mask độc bản
-          được cắt tay và chế tác
-          hoàn toàn thủ công từ những đôi sneaker
-          nguyên bản trong tình trạng Deadstock.
+          Kho lưu trữ các tác phẩm
+          Sneaker Mask độc bản được cắt tay
+          và chế tác hoàn toàn thủ công
+          từ những đôi sneaker nguyên bản.
         </p>
 
       </section>
 
-
-      <!-- COUNT -->
 
       <div
         id="mask-count"
@@ -194,8 +176,6 @@
         TỔNG SỐ: 0 MASK
       </div>
 
-
-      <!-- GRID -->
 
       <div
         id="mask-grid"
@@ -220,7 +200,7 @@
 
 
   <script
-    src="./sneaker-mask-data.js?v=20260912-18"
+    src="./sneaker-mask-data.js?v=20260912-20"
   ></script>
 
 
@@ -233,6 +213,7 @@
 
 
     let maskLanguage =
+
       new URLSearchParams(
         window.location.search
       ).get("lang")
@@ -265,9 +246,7 @@
     ) {
 
       maskLanguage =
-        MASK_LANGUAGES.includes(
-          lang
-        )
+        MASK_LANGUAGES.includes(lang)
           ? lang
           : "vi";
 
@@ -283,22 +262,16 @@
 
 
       document
-        .getElementById(
-          "btn-vi"
-        )
-        .classList
-        .toggle(
+        .getElementById("btn-vi")
+        .classList.toggle(
           "active",
           maskLanguage === "vi"
         );
 
 
       document
-        .getElementById(
-          "btn-en"
-        )
-        .classList
-        .toggle(
+        .getElementById("btn-en")
+        .classList.toggle(
           "active",
           maskLanguage === "en"
         );
@@ -375,8 +348,7 @@
         );
 
 
-      grid.innerHTML =
-        "";
+      grid.innerHTML = "";
 
 
       sneakerMasks.forEach(
@@ -506,6 +478,22 @@
             "HANDCRAFTED 1/1";
 
 
+          const cta =
+            document.createElement(
+              "span"
+            );
+
+
+          cta.className =
+            "card-cta";
+
+
+          cta.textContent =
+            maskLanguage === "vi"
+              ? "XEM THÊM →"
+              : "VIEW MORE →";
+
+
           meta.appendChild(
             badge
           );
@@ -523,6 +511,11 @@
 
           info.appendChild(
             meta
+          );
+
+
+          info.appendChild(
+            cta
           );
 
 
