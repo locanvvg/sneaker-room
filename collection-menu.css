@@ -1306,4 +1306,143 @@ img[src*="nike_waffle_racer_ow.png"] {
     font-size: 0.79rem;
   }
 
+   /* =========================================================
+   FINAL SNEAKER IMAGE SIZE TUNING
+   BAPE / WAFFLE RACER / SHADOW 2009
+========================================================= */
+
+
+/* DESKTOP */
+
+#sneaker-grid
+.card-img-wrapper
+img[src*="bapesta_stussy.png"] {
+  transform:
+    scale(0.72) !important;
+}
+
+#sneaker-grid
+.card:hover
+.card-img-wrapper
+img[src*="bapesta_stussy.png"] {
+  transform:
+    scale(0.74) !important;
+}
+
+
+#sneaker-grid
+.card-img-wrapper
+img[src*="nike_waffle_racer_ow.png"] {
+  transform:
+    scale(0.70) !important;
+}
+
+#sneaker-grid
+.card:hover
+.card-img-wrapper
+img[src*="nike_waffle_racer_ow.png"] {
+  transform:
+    scale(0.72) !important;
+}
+
+
+#sneaker-grid
+.card-img-wrapper
+img[src*="jordan1_shadow_2009.png"] {
+  transform:
+    scale(1.28) !important;
+}
+
+#sneaker-grid
+.card:hover
+.card-img-wrapper
+img[src*="jordan1_shadow_2009.png"] {
+  transform:
+    scale(1.30) !important;
+}
+
+
+/* TABLET */
+
+@media screen and (max-width: 950px) {
+
+  #sneaker-grid
+  .card-img-wrapper
+  img[src*="bapesta_stussy.png"] {
+    transform:
+      scale(0.72) !important;
+  }
+
+  #sneaker-grid
+  .card-img-wrapper
+  img[src*="nike_waffle_racer_ow.png"] {
+    transform:
+      scale(0.70) !important;
+  }
+
+  #sneaker-grid
+  .card-img-wrapper
+  img[src*="jordan1_shadow_2009.png"] {
+    transform:
+      scale(1.25) !important;
+  }
+
+}
+
+
+/* MOBILE */
+
+@media screen and (max-width: 700px) {
+
+  #sneaker-grid
+  .card-img-wrapper
+  img[src*="bapesta_stussy.png"] {
+    transform:
+      scale(0.74) !important;
+  }
+
+  #sneaker-grid
+  .card-img-wrapper
+  img[src*="nike_waffle_racer_ow.png"] {
+    transform:
+      scale(0.72) !important;
+  }
+
+  #sneaker-grid
+  .card-img-wrapper
+  img[src*="jordan1_shadow_2009.png"] {
+    transform:
+      scale(1.22) !important;
+  }
+
+}
+
+
+/* SMALL MOBILE */
+
+@media screen and (max-width: 430px) {
+
+  #sneaker-grid
+  .card-img-wrapper
+  img[src*="bapesta_stussy.png"] {
+    transform:
+      scale(0.76) !important;
+  }
+
+  #sneaker-grid
+  .card-img-wrapper
+  img[src*="nike_waffle_racer_ow.png"] {
+    transform:
+      scale(0.74) !important;
+  }
+
+  #sneaker-grid
+  .card-img-wrapper
+  img[src*="jordan1_shadow_2009.png"] {
+    transform:
+      scale(1.18) !important;
+  }
+
+}
+
 }
