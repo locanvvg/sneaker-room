@@ -544,7 +544,7 @@ img {
 
 /* =========================================================
    BAPE x STUSSY
-   SMALLER COVER
+   SMALLER AGAIN
 ========================================================= */
 
 #sneaker-grid
@@ -567,7 +567,7 @@ img[src*="bapesta_stussy.png"] {
     center center !important;
 
   transform:
-    scale(0.74) !important;
+    scale(0.64) !important;
 }
 
 
@@ -576,13 +576,13 @@ img[src*="bapesta_stussy.png"] {
 .card-img-wrapper
 img[src*="bapesta_stussy.png"] {
   transform:
-    scale(0.76) !important;
+    scale(0.66) !important;
 }
 
 
 /* =========================================================
    NIKE x OFF-WHITE WAFFLE RACER
-   SMALLER COVER
+   SMALLER AGAIN
 ========================================================= */
 
 #sneaker-grid
@@ -605,7 +605,7 @@ img[src*="nike_waffle_racer_ow.png"] {
     center center !important;
 
   transform:
-    scale(0.72) !important;
+    scale(0.62) !important;
 }
 
 
@@ -614,7 +614,7 @@ img[src*="nike_waffle_racer_ow.png"] {
 .card-img-wrapper
 img[src*="nike_waffle_racer_ow.png"] {
   transform:
-    scale(0.74) !important;
+    scale(0.64) !important;
 }
 
 
@@ -1011,7 +1011,7 @@ img[src*="nike_waffle_racer_ow.png"] {
     height: 94% !important;
 
     transform:
-      scale(0.74) !important;
+      scale(0.64) !important;
   }
 
 
@@ -1020,7 +1020,7 @@ img[src*="nike_waffle_racer_ow.png"] {
   .card-img-wrapper
   img[src*="bapesta_stussy.png"] {
     transform:
-      scale(0.76) !important;
+      scale(0.66) !important;
   }
 
 
@@ -1036,7 +1036,7 @@ img[src*="nike_waffle_racer_ow.png"] {
     height: 94% !important;
 
     transform:
-      scale(0.72) !important;
+      scale(0.62) !important;
   }
 
 
@@ -1045,7 +1045,7 @@ img[src*="nike_waffle_racer_ow.png"] {
   .card-img-wrapper
   img[src*="nike_waffle_racer_ow.png"] {
     transform:
-      scale(0.74) !important;
+      scale(0.64) !important;
   }
 
 }
@@ -1154,7 +1154,7 @@ img[src*="nike_waffle_racer_ow.png"] {
     max-height: none !important;
 
     transform:
-      scale(0.76) !important;
+      scale(0.66) !important;
   }
 
 
@@ -1163,7 +1163,7 @@ img[src*="nike_waffle_racer_ow.png"] {
   .card-img-wrapper
   img[src*="bapesta_stussy.png"] {
     transform:
-      scale(0.76) !important;
+      scale(0.66) !important;
   }
 
 
@@ -1182,7 +1182,7 @@ img[src*="nike_waffle_racer_ow.png"] {
     max-height: none !important;
 
     transform:
-      scale(0.74) !important;
+      scale(0.64) !important;
   }
 
 
@@ -1191,7 +1191,7 @@ img[src*="nike_waffle_racer_ow.png"] {
   .card-img-wrapper
   img[src*="nike_waffle_racer_ow.png"] {
     transform:
-      scale(0.74) !important;
+      scale(0.64) !important;
   }
 
 
@@ -1289,7 +1289,7 @@ img[src*="nike_waffle_racer_ow.png"] {
     height: 98% !important;
 
     transform:
-      scale(0.78) !important;
+      scale(0.68) !important;
   }
 
 
@@ -1305,7 +1305,7 @@ img[src*="nike_waffle_racer_ow.png"] {
     height: 98% !important;
 
     transform:
-      scale(0.76) !important;
+      scale(0.66) !important;
   }
 
 
