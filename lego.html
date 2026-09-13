@@ -43,12 +43,12 @@
 
   <link
     rel="stylesheet"
-    href="./style.css?v=20260912-20"
+    href="./style.css?v=20260912-restore"
   >
 
   <link
     rel="stylesheet"
-    href="./collection-menu.css?v=20260912-20"
+    href="./collection-menu.css?v=20260912-restore"
   >
 
 </head>
@@ -200,7 +200,7 @@
 
 
   <script
-    src="./lego-data.js?v=20260912-20"
+    src="./lego-data.js?v=20260912-restore"
   ></script>
 
 
@@ -235,7 +235,8 @@
       )
     ) {
 
-      legoLanguage = "vi";
+      legoLanguage =
+        "vi";
 
     }
 
@@ -244,7 +245,9 @@
       value
     ) {
 
-      return Number(value)
+      return Number(
+        value
+      )
         .toLocaleString(
           "en-CA"
         );
@@ -257,7 +260,9 @@
     ) {
 
       legoLanguage =
-        LEGO_LANGUAGES.includes(lang)
+        LEGO_LANGUAGES.includes(
+          lang
+        )
           ? lang
           : "vi";
 
@@ -273,7 +278,9 @@
 
 
       document
-        .getElementById("btn-vi")
+        .getElementById(
+          "btn-vi"
+        )
         .classList.toggle(
           "active",
           legoLanguage === "vi"
@@ -281,7 +288,9 @@
 
 
       document
-        .getElementById("btn-en")
+        .getElementById(
+          "btn-en"
+        )
         .classList.toggle(
           "active",
           legoLanguage === "en"
@@ -294,16 +303,16 @@
         );
 
 
-      subtitle.textContent =
-        subtitle.dataset[
-          legoLanguage
-        ];
-
-
       const description =
         document.getElementById(
           "lego-page-description"
         );
+
+
+      subtitle.textContent =
+        subtitle.dataset[
+          legoLanguage
+        ];
 
 
       description.textContent =
@@ -341,11 +350,17 @@
 
 
       window.history.replaceState(
+
         {},
+
         "",
-        url.pathname +
-        url.search +
+
+        url.pathname
+        +
+        url.search
+        +
         url.hash
+
       );
 
     }
@@ -359,7 +374,28 @@
         );
 
 
-      grid.innerHTML = "";
+      if (
+        typeof legoSets === "undefined"
+        ||
+        !Array.isArray(
+          legoSets
+        )
+      ) {
+
+        grid.innerHTML = `
+
+          <div class="not-found">
+            LEGO data could not be loaded.
+          </div>
+
+        `;
+
+        return;
+      }
+
+
+      grid.innerHTML =
+        "";
 
 
       legoSets.forEach(
@@ -377,9 +413,16 @@
 
 
           link.href =
+
             `./lego-detail.html?id=${encodeURIComponent(
               lego.id
-            )}&lang=${legoLanguage}`;
+            )}`
+
+            +
+
+            `&lang=${encodeURIComponent(
+              legoLanguage
+            )}`;
 
 
           const card =
@@ -420,6 +463,10 @@
 
           image.loading =
             "lazy";
+
+
+          image.decoding =
+            "async";
 
 
           imageWrapper.appendChild(
@@ -500,6 +547,7 @@
 
 
           pieces.textContent =
+
             `${numberWithComma(
               lego.pieces
             )} PCS`;
@@ -516,8 +564,11 @@
 
 
           cta.textContent =
+
             legoLanguage === "vi"
+
               ? "XEM THÊM →"
+
               : "VIEW MORE →";
 
 
@@ -577,7 +628,9 @@
 
 
     document.addEventListener(
+
       "DOMContentLoaded",
+
       () => {
 
         setLegoLanguage(
@@ -585,6 +638,7 @@
         );
 
       }
+
     );
 
   </script>
