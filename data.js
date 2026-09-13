@@ -19,11 +19,8 @@ const sneakers = [
     },
 
     sku: "961539 (Serial: ES007436)",
-
     colorway: "Black/Gym Red-White",
-
     retailPrice: "N/A",
-
     releaseDate: "2019-12",
 
     editionType: {
@@ -37,127 +34,127 @@ const sneakers = [
     },
 
     size: "7 US",
-
     image: "pictures/jordan1_pe_bloodline_friendsandfamily_sample.png",
 
     story: {
-
       vi: `
         <p>
-          Nếu phiên bản thương mại Jordan 1 'Bloodline'
-          trắng/đen/đỏ ra mắt vào dịp Black Friday năm 2019
-          đã quá quen thuộc với cộng đồng sneakerhead toàn cầu,
-          thì phiên bản
-          <b>Jordan 1 Retro High OG 'Black Bloodline' PE</b>
-          lại thuộc một nhóm hoàn toàn khác biệt.
-          Đây là phiên bản đặc biệt được Jordan Brand
-          chuẩn bị dành cho các vận động viên
-          và những cá nhân thuộc mạng lưới của thương hiệu
-          vào cuối năm 2019.
+          <b>Jordan 1 Retro High OG 'Black Bloodline' PE Sample</b>
+          được đặt trong bối cảnh của Air Jordan 1 "Bloodline" năm 2019,
+          một chủ đề được Jordan Brand đưa trở lại trong mùa Holiday 2019.
+          Phiên bản Bloodline thương mại mang mã 555088-062
+          được phát hành vào Black Friday, ngày 29 tháng 11 năm 2019,
+          với phối màu Black/Gym Red-White.
         </p>
 
         <p>
-          Điểm tạo nên giá trị sưu tầm đặc biệt của dòng PE
-          nằm ở số lượng sản xuất cực kỳ giới hạn,
-          cùng các dấu hiệu nhận diện riêng
-          dành cho từng đối tượng nhận được sản phẩm.
-
-          Đôi giày sở hữu lớp da màu đen
-          bao phủ phần lớn upper,
-          được làm nổi bật bởi các đường viền
-          <i>Gym Red</i>
-          chạy dọc theo cấu trúc panel
-          và bao quanh dấu Swoosh,
-          hoàn thiện với đế giữa màu trắng
-          và outsole màu đỏ.
+          Bản retail nổi bật bởi upper da trắng và đen,
+          đường viền Gym Red chạy quanh các panel và Swoosh,
+          cùng câu chữ
+          <b>"Who Said Man Was Not Meant To Fly"</b>
+          ở phần insole — một câu gắn với chiến dịch quảng bá Air Jordan đời đầu.
+          Bloodline cũng xuất hiện trong giai đoạn Jordan Brand thực hiện
+          dự án "Fearless Ones", nhìn lại di sản của Air Jordan 1
+          qua nhiều cách diễn giải mới.
         </p>
 
         <p>
-          Tuy nhiên, tác phẩm đang được lưu giữ trong
+          Hiện vật trong
           <b>Lộc An Sneaker Collection</b>
-          còn mang ý nghĩa đặc biệt hơn:
-          đây là một
-          <b>Sample của dòng PE</b>.
+          không phải bản retail 555088-062.
+          Đây là một
+          <b>PE Sample / Friends &amp; Family Sample</b>
+          với mã lưu trữ
+          <b>961539</b>
+          và serial
+          <b>ES007436</b>.
+          Chính vì là sample ngoài luồng phát hành thương mại,
+          archive tách hiện vật này khỏi giá retail của bản Bloodline thông thường.
+        </p>
 
-          Chính nguồn gốc Sample
-          khiến đôi giày size
-          <b>7 US</b>
-          trở thành một hiện vật lưu trữ đặc biệt,
-          phản ánh một giai đoạn nằm ngoài
-          hệ thống phát hành thương mại thông thường.
+        <p>
+          Về hình ảnh, đôi giày giữ ngôn ngữ Black/Gym Red-White
+          nhưng tạo cảm giác tối và mạnh hơn bản thương mại,
+          với upper chủ đạo màu đen,
+          các đường nhấn Gym Red và midsole trắng.
+          Đây là kiểu thay đổi rất quan trọng đối với một sample:
+          giá trị của hiện vật nằm không chỉ ở silhouette Air Jordan 1,
+          mà còn ở việc nó ghi lại một nhánh phát triển
+          không trở thành sản phẩm bán lẻ đại trà.
+        </p>
+
+        <p>
+          Trong catalogue của collection,
+          thuật ngữ <b>PE Sample</b> được giữ ở Edition Type,
+          còn condition chỉ ghi nhận trạng thái vật lý thực tế.
+          Tác phẩm hiện được lưu giữ ở tình trạng
+          <b>Deadstock</b>, size <b>7 US</b>.
         </p>
 
         <div class="exhibition-note">
           <strong>Ghi chú lưu trữ:</strong>
-
-          Tác phẩm thuộc nhóm
-          Player Exclusive / Friends &amp; Family / Sample.
-
-          Đây không phải là một đôi
-          được phát hành thương mại
-          qua hệ thống bán lẻ thông thường.
-
-          Vì vậy, hiện vật
-          <b>không có giá phát hành chính thức</b>.
+          Đây là PE / Friends &amp; Family Sample và không phải bản retail Bloodline 555088-062.
+          Vì vậy, retail của chính hiện vật được ghi nhận là <b>N/A</b>.
+          Mã lưu trữ: <b>961539</b>. Serial: <b>ES007436</b>.
         </div>
       `,
 
       en: `
         <p>
-          While the commercial Jordan 1 'Bloodline'
-          released during Black Friday 2019
-          is familiar to sneaker collectors worldwide,
-          the
-          <b>Jordan 1 Retro High OG 'Black Bloodline' PE</b>
-          belongs to a distinctly different category.
-
-          This special edition was prepared by Jordan Brand
-          for athletes and individuals
-          within the brand's network
-          toward the end of 2019.
+          The <b>Jordan 1 Retro High OG 'Black Bloodline' PE Sample</b>
+          sits within the broader context of the 2019 Air Jordan 1 "Bloodline" theme.
+          The commercial Bloodline, style 555088-062,
+          released on Black Friday, November 29, 2019,
+          in a Black/Gym Red-White palette.
         </p>
 
         <p>
-          The significance of the PE line
-          comes from its extremely limited production
-          and the identifying details
-          associated with its intended recipients.
-
-          The sneaker features a predominantly
-          black leather upper,
-          accented by
-          <i>Gym Red</i>
-          piping around the panel structure
-          and Swoosh,
-          finished with a white midsole
-          and red outsole.
+          The retail Bloodline was defined by white and black leather,
+          Gym Red piping around the panels and Swoosh,
+          and the phrase
+          <b>"Who Said Man Was Not Meant To Fly"</b>
+          on the insole — language associated with early Air Jordan advertising.
+          The release also appeared during Jordan Brand's "Fearless Ones" period,
+          when the Air Jordan 1 was being revisited through a range of heritage-driven interpretations.
         </p>
 
         <p>
-          The piece preserved in the
+          The artifact preserved in the
           <b>Lộc An Sneaker Collection</b>
-          carries an additional level of significance:
-          it is a
-          <b>Sample from the PE line</b>.
+          is not the commercial 555088-062 release.
+          It is a
+          <b>PE Sample / Friends &amp; Family Sample</b>
+          carrying archive code
+          <b>961539</b>
+          and serial
+          <b>ES007436</b>.
+          Because it sits outside the conventional retail release,
+          the archive does not assign the commercial Bloodline retail price to this piece.
+        </p>
 
-          Its Sample provenance
-          makes this size
-          <b>7 US</b>
-          pair a distinctive archival artifact
-          outside the conventional retail system.
+        <p>
+          Visually, the pair retains the Black/Gym Red-White language
+          while presenting a darker treatment than the standard retail shoe,
+          with a predominantly black upper,
+          Gym Red accents,
+          and a white midsole.
+          For an archival sample, that difference is central to its significance:
+          the object records a developmental branch that was not distributed as a regular retail product.
+        </p>
+
+        <p>
+          Within the collection catalogue,
+          <b>PE Sample</b> remains an Edition Type,
+          while condition records only the present physical state.
+          This pair is preserved
+          <b>Deadstock</b> in size <b>7 US</b>.
         </p>
 
         <div class="exhibition-note">
           <strong>Exhibition Note:</strong>
-
-          This piece belongs to the
-          Player Exclusive / Friends &amp; Family / Sample category.
-
-          It was not commercially distributed
-          through conventional retail channels.
-
-          Accordingly, the artifact
-          <b>does not have an official retail price</b>.
+          This is a PE / Friends &amp; Family Sample rather than the retail Bloodline 555088-062.
+          Accordingly, the artifact's own retail price is recorded as <b>N/A</b>.
+          Archive code: <b>961539</b>. Serial: <b>ES007436</b>.
         </div>
       `
     }
@@ -183,11 +180,8 @@ const sneakers = [
     },
 
     sku: "MNJDLS 262 767119 XC",
-
     colorway: "Black/Italy Blue-Black-University Red",
-
     retailPrice: "N/A",
-
     releaseDate: "2017-07-01",
 
     editionType: {
@@ -201,133 +195,131 @@ const sneakers = [
     },
 
     size: "12.5 US",
-
     image: "pictures/jordan1_quai54_ff_v2.png",
 
     story: {
-
       vi: `
         <p>
-          Nhằm tôn vinh Quai 54 –
-          giải đấu bóng rổ đường phố nổi tiếng
-          được tổ chức thường niên tại Paris,
-          Jordan Brand đã tạo ra phiên bản
           <b>Jordan 1 Retro High OG 'Quai 54' F&amp;F</b>
-          dành riêng cho nhóm
+          được tạo cho Quai 54,
+          giải streetball thường niên tại Paris
+          đã trở thành một trong những sự kiện bóng rổ đường phố
+          gắn bó lâu dài nhất với Jordan Brand.
+          Qua nhiều năm, Jordan đã sử dụng Quai 54
+          như một không gian kết nối basketball performance,
+          street culture và các phiên bản footwear giới hạn.
+        </p>
+
+        <p>
+          Năm 2017 có một Air Jordan 1 Quai 54 bản retail nền đen,
+          nhưng bên cạnh đó Jordan Brand còn tạo ra
+          một phiên bản hiếm hơn dành riêng cho
           <b>Friends &amp; Family</b>.
-
-          Đây là phiên bản không được phát hành thương mại
-          thông qua hệ thống bán lẻ thông thường.
+          Đây chính là phiên bản được lưu giữ trong collection.
         </p>
 
         <p>
-          Sở hữu phối màu
-          <i>Black/Italy Blue-Fast/University Red</i>,
-          điểm nhấn nổi bật nhất
-          là ngôn ngữ thiết kế
-          <b>Split Colorway</b>.
-
-          Một bên sử dụng Italy Blue
-          kết hợp với màu đen,
-          trong khi bên còn lại
-          tạo sự tương phản bằng University Red.
-
-          Logo Quai 54 xuất hiện
-          trên phần lưỡi gà
-          và các chi tiết bên trong,
-          kết nối trực tiếp đôi giày
-          với văn hóa bóng rổ đường phố Paris.
+          Điểm nhận diện mạnh nhất là cách xử lý
+          <b>mismatched / split color blocking</b>.
+          Giày bên phải sử dụng xanh Italy Blue kết hợp đen,
+          trong khi giày bên trái dùng University Red kết hợp đen.
+          Không chỉ khác nhau về màu,
+          các mảng upper còn kết hợp da và suede,
+          khiến sự bất đối xứng trở thành một phần của cả màu sắc lẫn vật liệu.
         </p>
 
         <p>
-          Phiên bản Jordan 1 Quai 54 F&amp;F
-          không được phân phối
-          qua các cửa hàng bán lẻ.
-
-          Những đôi thuộc phiên bản này
-          được dành cho vận động viên,
-          nghệ sĩ, khách mời
-          và những cá nhân có liên hệ
-          với Jordan Brand và Quai 54.
-
-          Chính nguồn gốc Friends &amp; Family
-          tạo nên vị thế đặc biệt
-          của đôi giày trong giới sưu tầm.
+          Quai 54 branding xuất hiện trên tongue và insole,
+          kết nối đôi giày trực tiếp với giải đấu Paris.
+          Bảng màu đen, xanh và đỏ cũng phản ánh
+          ngôn ngữ màu của collection Quai 54 2017,
+          trong đó red/blue tạo liên tưởng đến màu sắc của nước Pháp
+          nhưng được Jordan Brand xử lý theo cách graphic và không đối xứng hơn.
         </p>
 
         <p>
-          Tác phẩm hiện được lưu giữ trong
+          Điều quan trọng nhất về provenance là
+          phiên bản này <b>không được bán tại cửa hàng</b>.
+          Các nguồn đương thời mô tả nó là pair dành cho
+          Friends &amp; Family và một nhóm người được lựa chọn,
+          trong khi phiên bản Quai 54 retail khác mới là đôi được thương mại hóa.
+          Vì vậy, collection ghi retail của chính hiện vật này là <b>N/A</b>.
+        </p>
+
+        <p>
+          Tác phẩm trong
           <b>Lộc An Sneaker Collection</b>
-          ở tình trạng
-          <b>Deadstock</b>
-          với size
-          <b>12.5 US</b>.
+          được lưu giữ ở tình trạng
+          <b>Deadstock</b>, size <b>12.5 US</b>.
+          Với một F&amp;F pair,
+          giá trị archive nằm ở nguồn gốc phân phối,
+          sự khác biệt với bản retail và ngôn ngữ split-color đặc trưng của năm 2017.
         </p>
 
         <div class="exhibition-note">
           <strong>Ghi chú lưu trữ:</strong>
-
-          Đây là phiên bản
-          Friends &amp; Family
-          không được phát hành thương mại
-          tại các cửa hàng bán lẻ.
-
-          Vì vậy, tác phẩm
-          <b>không có giá phát hành chính thức</b>.
+          Style / sample code: <b>MNJDLS 262 767119 XC</b>.
+          Colorway: <b>Black/Italy Blue-Black-University Red</b>.
+          Edition Type: <b>F&amp;F</b>.
+          Retail của chính hiện vật: <b>N/A</b>.
         </div>
       `,
 
       en: `
         <p>
-          Created in celebration of Quai 54,
-          the renowned streetball tournament
-          held annually in Paris,
-          the
-          <b>Jordan 1 Retro High OG 'Quai 54' F&amp;F</b>
-          was produced specifically for
-          <b>Friends &amp; Family</b>.
-
-          This edition was not offered
-          through conventional retail channels.
+          The <b>Jordan 1 Retro High OG 'Quai 54' F&amp;F</b>
+          was created for Quai 54,
+          the annual Paris streetball tournament
+          that has become one of Jordan Brand's longest-running links
+          between competitive basketball, street culture, and limited footwear.
         </p>
 
         <p>
-          Featuring the
-          <i>Black/Italy Blue-Fast/University Red</i>
-          color scheme,
-          the defining visual element
-          is its bold
-          <b>Split Colorway</b>.
-
-          One side combines
-          Italy Blue with black,
-          while the other introduces
-          a strong University Red contrast.
-
-          Quai 54 branding appears
-          on the tongue and interior details,
-          connecting the sneaker directly
-          to Paris streetball culture.
+          In 2017, Jordan Brand released a black-based retail Air Jordan 1 Quai 54,
+          but also produced a significantly more exclusive
+          <b>Friends &amp; Family</b> version.
+          The latter is the edition preserved in this collection.
         </p>
 
         <p>
-          The pair preserved in the
+          Its defining feature is the
+          <b>mismatched split-color construction</b>.
+          The right shoe combines Italy Blue and black,
+          while the left uses University Red and black.
+          The design is also split through material,
+          combining leather and suede so that the asymmetry is structural as well as chromatic.
+        </p>
+
+        <p>
+          Quai 54 branding appears on the tongue and insoles,
+          directly linking the pair to the Paris tournament.
+          The black, blue, and red palette also reflects the broader 2017 Quai 54 visual language,
+          while the F&amp;F treatment pushes the concept into a much more graphic, mismatched format.
+        </p>
+
+        <p>
+          Provenance is central to this artifact:
+          contemporary reports describe the pair as
+          <b>not commercially sold in stores</b>
+          and intended for Friends &amp; Family and a selected group of recipients.
+          The archive therefore records the artifact's retail price as <b>N/A</b>.
+        </p>
+
+        <p>
+          The example preserved in the
           <b>Lộc An Sneaker Collection</b>
-          remains
-          <b>Deadstock</b>
-          in size
-          <b>12.5 US</b>.
+          remains <b>Deadstock</b> in size <b>12.5 US</b>.
+          Its archival importance lies in distribution provenance,
+          its separation from the retail Quai 54 release,
+          and its distinctive 2017 split-color execution.
         </p>
 
         <div class="exhibition-note">
           <strong>Exhibition Note:</strong>
-
-          This is a Friends &amp; Family edition
-          that was not commercially released
-          through retail stores.
-
-          Therefore, the artifact
-          <b>does not have an official retail price</b>.
+          Style / sample code: <b>MNJDLS 262 767119 XC</b>.
+          Colorway: <b>Black/Italy Blue-Black-University Red</b>.
+          Edition Type: <b>F&amp;F</b>.
+          Artifact retail: <b>N/A</b>.
         </div>
       `
     }
@@ -353,12 +345,8 @@ const sneakers = [
     },
 
     sku: "HF8022-300",
-
-    colorway:
-      "Asparagus/Legion Green/Light Khaki/Dark Loden/Sesame/Burnt Sienna",
-
+    colorway: "Asparagus/Legion Green/Light Khaki/Dark Loden/Sesame/Burnt Sienna",
     retailPrice: "$135 USD",
-
     releaseDate: "2025-04-05",
 
     editionType: {
@@ -372,110 +360,181 @@ const sneakers = [
     },
 
     size: "12 US",
-
     image: "pictures/sbdunk_yutohorigome_matcha.png",
 
     story: {
-
       vi: `
         <p>
-          Tiếp nối thành công
-          từ phiên bản hợp tác đầu tiên năm 2023,
-          nhà vô địch Olympic
-          <b>Yuto Horigome</b>
-          tiếp tục hợp tác cùng Nike SB
-          để giới thiệu
           <b>Nike SB Dunk Low Yuto Horigome 'Matcha'</b>
-          vào ngày 5 tháng 4 năm 2025.
-
-          Phiên bản này sử dụng bảng màu
-          lấy cảm hứng từ sắc xanh tự nhiên
-          của matcha Nhật Bản.
+          là colorway Dunk thứ hai của Yuto Horigome với Nike SB,
+          tiếp nối pair đầu tiên năm 2023.
+          Nike SB mô tả thiết kế này như một sự trở về với cảm giác "home":
+          màu sắc và vật liệu được Yuto lựa chọn để gợi lại
+          lịch sử, nghi thức và sự kiên nhẫn trong quá trình chuẩn bị matcha.
         </p>
 
         <p>
-          Đôi giày kết hợp lớp nền
-          <i>Light Khaki</i>,
-          các mảng da lộn
-          <i>Asparagus</i>,
-          sắc xanh
-          <i>Legion Green</i>
-          cùng điểm nhấn
-          <i>Burnt Sienna</i>.
-
-          Biểu tượng lông vũ đặc trưng
-          của Yuto Horigome
-          xuất hiện ở phần gót,
-          tạo nên dấu ấn nhận diện riêng
-          cho mẫu signature này.
+          Yuto Horigome nổi tiếng với phong cách skate
+          vừa kỹ thuật vừa điềm tĩnh dưới áp lực thi đấu.
+          Nike SB liên hệ trực tiếp tinh thần đó với matcha:
+          từ việc nghiền trà cho đến thao tác pha,
+          quá trình đòi hỏi sự chính xác, nhịp điệu và kiên nhẫn —
+          những phẩm chất cũng xuất hiện trong cách Yuto tiếp cận skateboarding.
         </p>
 
         <p>
-          Phiên bản thương mại
-          có giá phát hành
+          Upper kết hợp premium suede với leather overlays
+          trong các sắc
+          <b>Asparagus</b>, <b>Legion Green</b>, <b>Light Khaki</b>,
+          <b>Dark Loden</b>, <b>Sesame</b> và <b>Burnt Sienna</b>.
+          Nike SB còn nhắc đến các chi tiết vật liệu có bamboo fiber,
+          làm bảng màu xanh-nâu trở nên organic hơn
+          thay vì chỉ đơn thuần là một colorway xanh lá.
+        </p>
+
+        <p>
+          Các chi tiết nhỏ được xây dựng quanh chính nghi thức matcha:
+          bubble-detailed overlays,
+          eyelets gợi liên tưởng đến grinder,
+          lace aglets riêng,
+          cùng custom sockliner artwork.
+          Artwork bên trong được Nike SB mô tả là một cách thể hiện
+          sự cân bằng giữa Nhật Bản truyền thống và Nhật Bản hiện đại.
+        </p>
+
+        <p>
+          Ở lateral heel xuất hiện biểu tượng gia đình của Yuto,
+          thường được nhận biết qua motif lông vũ giao nhau.
+          Đây là một trong những dấu hiệu cá nhân quan trọng nhất
+          nối cả hai Yuto Dunks lại với nhau,
+          biến collaboration thành câu chuyện về gia đình và nguồn gốc Nhật Bản
+          chứ không chỉ là một signature colorway.
+        </p>
+
+        <p>
+          Về performance,
+          pair vẫn giữ những đặc điểm cốt lõi của SB Dunk Low:
+          padding dày hơn cho skate,
+          cấu trúc hỗ trợ impact,
+          và <b>Air Zoom unit ở heel</b>
+          để giảm chấn khi tiếp đất.
+          Vì vậy, thiết kế vừa có giá trị sưu tầm
+          vừa giữ chức năng thực tế của một skate shoe.
+        </p>
+
+        <p>
+          Nike SB phát hành Matcha tại selected skate shops ngày
+          <b>3 tháng 4 năm 2025</b>,
+          trước khi lên SNKRS ngày
+          <b>5 tháng 4 năm 2025</b>.
+          Giá retail tại Mỹ là
           <b>$135 USD</b>.
-
-          Tuy nhiên,
-          tác phẩm được lưu giữ trong
-          <b>Lộc An Sneaker Collection</b>
-          mang thêm giá trị đặc biệt
-          nhờ có
-          <b>chữ ký trực tiếp của Yuto Horigome</b>
-          trên đôi giày.
-
-          Tác phẩm hiện ở size
-          <b>12 US</b>
-          và tình trạng
-          <b>Deadstock</b>.
         </p>
+
+        <p>
+          Tác phẩm trong
+          <b>Lộc An Sneaker Collection</b>
+          có thêm provenance đặc biệt:
+          đôi giày được
+          <b>Yuto Horigome ký trực tiếp</b>.
+          Pair được lưu giữ ở tình trạng
+          <b>Deadstock</b>, size <b>12 US</b>,
+          vì vậy Edition Type trong archive được ghi là
+          <b>Signature Signed</b>.
+        </p>
+
+        <div class="exhibition-note">
+          <strong>Ghi chú lưu trữ:</strong>
+          Style code: <b>HF8022-300</b>.
+          Retail: <b>$135 USD</b>.
+          Condition: <b>Deadstock</b>.
+          Size: <b>12 US</b>.
+          Provenance đặc biệt: <b>directly signed by Yuto Horigome</b>.
+        </div>
       `,
 
       en: `
         <p>
-          Following the success
-          of their first collaboration in 2023,
-          Olympic champion
-          <b>Yuto Horigome</b>
-          teamed up with Nike SB again
-          for the
-          <b>Nike SB Dunk Low Yuto Horigome 'Matcha'</b>,
-          released on April 5, 2025.
-
-          The color palette draws inspiration
-          from the natural green tones
-          associated with Japanese matcha.
+          The <b>Nike SB Dunk Low Yuto Horigome 'Matcha'</b>
+          is Yuto Horigome's second Dunk colorway with Nike SB,
+          following his first collaborative pair in 2023.
+          Nike SB frames the design around a sense of home:
+          Yuto selected colors and materials that reference
+          the history, ritual, and patience involved in preparing matcha.
         </p>
 
         <p>
-          The sneaker combines a
-          <i>Light Khaki</i> base,
-          <i>Asparagus</i> suede overlays,
-          <i>Legion Green</i> accents,
-          and touches of
-          <i>Burnt Sienna</i>.
-
-          Yuto Horigome's distinctive
-          feather emblem appears on the heel,
-          providing a recognizable
-          signature element.
+          Horigome is known for skating with technical precision
+          and unusual calm under competitive pressure.
+          Nike SB directly connects that mindset to matcha preparation —
+          from grinding to pouring,
+          the process rewards timing, control, and patience,
+          qualities that also define Yuto's approach to skateboarding.
         </p>
 
         <p>
-          The commercial edition
-          carried a retail price of
+          The upper combines premium suede and leather overlays
+          in <b>Asparagus</b>, <b>Legion Green</b>, <b>Light Khaki</b>,
+          <b>Dark Loden</b>, <b>Sesame</b>, and <b>Burnt Sienna</b>.
+          Nike SB also references touches of bamboo fiber,
+          reinforcing the organic material language of the green-and-brown palette.
+        </p>
+
+        <p>
+          Small details extend the matcha concept:
+          bubble-detailed overlays,
+          grinder-inspired eyelets,
+          custom lace aglets,
+          and sockliner artwork.
+          Nike SB describes the interior artwork as reflecting
+          the balance of old- and new-world Japanese culture.
+        </p>
+
+        <p>
+          Yuto's family emblem appears on the lateral heel,
+          recognizable through its crossed-feather motif.
+          It is one of the most important personal signatures linking his two Dunks,
+          turning the collaboration into a reference to family and Japanese heritage
+          rather than simply an athlete colorway.
+        </p>
+
+        <p>
+          The shoe also retains core SB Dunk performance features:
+          plush skate-oriented padding,
+          impact support,
+          and a <b>heel Air Zoom unit</b>
+          for cushioning during hard landings.
+          The result remains a functional skate shoe as well as a collectible release.
+        </p>
+
+        <p>
+          The Matcha released through selected skate shops on
+          <b>April 3, 2025</b>,
+          followed by Nike SNKRS on
+          <b>April 5, 2025</b>.
+          U.S. retail was
           <b>$135 USD</b>.
-
-          The example preserved in the
-          <b>Lộc An Sneaker Collection</b>
-          is distinguished by
-          <b>Yuto Horigome's direct signature</b>
-          on the sneaker.
-
-          The archived pair is size
-          <b>12 US</b>
-          and remains
-          <b>Deadstock</b>.
         </p>
+
+        <p>
+          The artifact preserved in the
+          <b>Lộc An Sneaker Collection</b>
+          carries additional provenance:
+          the sneaker was
+          <b>directly signed by Yuto Horigome</b>.
+          It remains <b>Deadstock</b> in size <b>12 US</b>,
+          and is therefore catalogued as
+          <b>Signature Signed</b>.
+        </p>
+
+        <div class="exhibition-note">
+          <strong>Exhibition Note:</strong>
+          Style code: <b>HF8022-300</b>.
+          Retail: <b>$135 USD</b>.
+          Condition: <b>Deadstock</b>.
+          Size: <b>12 US</b>.
+          Special provenance: <b>directly signed by Yuto Horigome</b>.
+        </div>
       `
     }
   },
@@ -501,11 +560,8 @@ const sneakers = [
     },
 
     sku: "AA3834-100",
-
     colorway: "White/White-Metallic Silver",
-
     retailPrice: "$230 USD",
-
     releaseDate: "2026-04-03",
 
     editionType: {
@@ -519,109 +575,185 @@ const sneakers = [
     },
 
     size: "10 US",
-
     image: "pictures/jordan1_vaa_alaska_v2.png",
 
     story: {
-
       vi: `
         <p>
-          Mang dấu ấn di sản thiết kế
-          của Virgil Abloh,
-          phiên bản
-          <b>Jordan 1 Retro High OG
-          x Virgil Abloh Archive 'Alaska'</b>
-          ra mắt vào ngày 3 tháng 4 năm 2026.
-
-          Thiết kế gợi lại phối màu trắng
-          và ngôn ngữ deconstructed
-          gắn liền với di sản sáng tạo
-          của Virgil Abloh.
+          <b>Jordan 1 Retro High OG x Virgil Abloh Archive 'Alaska'</b>
+          ra mắt toàn cầu ngày
+          <b>3 tháng 4 năm 2026</b>,
+          đưa một trong những ngôn ngữ Air Jordan 1 quan trọng nhất
+          của Virgil Abloh trở lại dưới tên
+          <b>Virgil Abloh Archive (V.A.A.)</b>.
         </p>
 
         <p>
-          Phiên bản này mang dấu ấn
-          <b>Virgil Abloh Archive</b>,
-          với dòng chữ
-          <i>"V.A.A. for NIKE"</i>
-          trên thân giày.
-
-          Tên gọi
-          <b>'Alaska'</b>
-          gợi liên tưởng
-          đến bảng màu trắng lạnh,
-          đồng thời liên hệ
-          với studio sáng tạo
-          <i>Alaska Alaska</i>.
+          Nguồn gốc trực tiếp của Alaska nằm ở
+          all-white Off-White x Air Jordan 1 năm 2018,
+          một phiên bản từng gắn với phát hành giới hạn tại châu Âu.
+          Pair 2026 giữ lại phần lớn cấu trúc trắng,
+          nhưng branding được thay đổi để phản ánh vai trò của archive:
+          thay vì "Off-White", phần industrial text chuyển sang ngôn ngữ
+          <b>V.A.A.</b>.
         </p>
 
         <p>
-          Đôi giày tiếp tục sử dụng
-          ngôn ngữ thiết kế deconstructed
-          với các lớp vật liệu màu trắng,
-          mesh lộ thiên
-          và những yếu tố đặc trưng
-          trong phong cách của Virgil Abloh.
-
-          Tác phẩm size
-          <b>10 US</b>
-          được lưu giữ
-          ở tình trạng
-          <b>Deadstock</b>
-          trong
-          <b>Lộc An Sneaker Collection</b>.
+          Trước khi phát hành,
+          một trong những lần pair được chú ý rộng rãi
+          là khi <b>Hiroshi Fujiwara</b> mang nó
+          tại một panel liên quan đến triển lãm
+          <b>Virgil Abloh: The Codes</b> ở Paris.
+          Chi tiết này giúp Alaska xuất hiện không chỉ như một sneaker release,
+          mà còn trong bối cảnh rộng hơn của việc bảo tồn và diễn giải di sản thiết kế của Abloh.
         </p>
+
+        <p>
+          Thiết kế tiếp tục phương pháp deconstruction
+          đã làm Air Jordan 1 của Virgil Abloh trở nên có ảnh hưởng:
+          stitching được để lộ,
+          các lớp vật liệu và foam không được che hoàn toàn,
+          paneling trông như đang trong quá trình lắp ráp,
+          và chữ <b>"AIR"</b> xuất hiện trên midsole.
+          Mục đích thẩm mỹ nằm ở việc cho người xem thấy
+          cách một sản phẩm được cấu tạo thay vì giấu toàn bộ quá trình đó.
+        </p>
+
+        <p>
+          Một thay đổi quan trọng của bản V.A.A. là branding.
+          Industrial text tiếp tục là thành phần chính,
+          nhưng được điều chỉnh để phù hợp với Virgil Abloh Archive.
+          Pair cũng giữ lại motif zip tie,
+          lần này bằng <b>light-blue zip tie</b> —
+          một chi tiết đặc biệt dễ nhận ra trên phiên bản 2026.
+        </p>
+
+        <p>
+          Các bộ phụ kiện được ghi nhận gồm nhiều lựa chọn lace,
+          trong đó có black, purple và blue,
+          cùng <b>VAA booklet</b>.
+          Việc đi kèm tài liệu và packaging riêng
+          củng cố cách release này được trình bày như một archive object,
+          không chỉ là việc tái phát hành một colorway trắng cũ.
+        </p>
+
+        <p>
+          Colorway gần như monochrome khiến construction trở thành trọng tâm.
+          Khi không có các mảng màu mạnh để dẫn mắt,
+          exposed stitching, mesh, foam, typography,
+          Swoosh và các lớp panel
+          trở thành chính ngôn ngữ thị giác của đôi giày.
+        </p>
+
+        <p>
+          Style code của phiên bản là
+          <b>AA3834-100</b>,
+          retail tại Mỹ
+          <b>$230 USD</b>.
+          Tác phẩm trong
+          <b>Lộc An Sneaker Collection</b>
+          được lưu giữ ở tình trạng
+          <b>Deadstock</b>, size <b>10 US</b>,
+          với light-blue zip tie được giữ nguyên như một phần của hiện vật.
+        </p>
+
+        <div class="exhibition-note">
+          <strong>Ghi chú lưu trữ:</strong>
+          Style code: <b>AA3834-100</b>.
+          Release: <b>April 3, 2026</b>.
+          Retail: <b>$230 USD</b>.
+          Condition: <b>Deadstock</b>.
+          Size: <b>10 US</b>.
+          Light-blue zip tie và các phụ kiện archive là thành phần provenance quan trọng của set.
+        </div>
       `,
 
       en: `
         <p>
-          Carrying forward
-          the design legacy of Virgil Abloh,
-          the
-          <b>Jordan 1 Retro High OG
-          x Virgil Abloh Archive 'Alaska'</b>
-          launched on April 3, 2026.
-
-          The design revisits
-          the white visual language
-          and deconstructed approach
-          associated with Virgil Abloh's
-          creative legacy.
+          The <b>Jordan 1 Retro High OG x Virgil Abloh Archive 'Alaska'</b>
+          released globally on
+          <b>April 3, 2026</b>,
+          returning one of Virgil Abloh's most recognizable Air Jordan 1 languages
+          under the identity of the
+          <b>Virgil Abloh Archive (V.A.A.)</b>.
         </p>
 
         <p>
-          This edition carries
-          <b>Virgil Abloh Archive</b>
-          branding,
-          including
-          <i>"V.A.A. for NIKE"</i>
-          text on the sneaker.
-
-          The
-          <b>'Alaska'</b>
-          name evokes
-          its cold white palette
-          while also referencing
-          the
-          <i>Alaska Alaska</i>
-          creative studio.
+          Alaska's direct lineage is the all-white
+          Off-White x Air Jordan 1 from 2018,
+          an edition associated with a limited European release.
+          The 2026 pair preserves much of that white construction,
+          but updates the branding to reflect the archive:
+          "Off-White" language gives way to
+          <b>V.A.A.</b> industrial text.
         </p>
 
         <p>
-          The sneaker continues
-          the familiar deconstructed aesthetic
-          through layered white materials,
-          exposed mesh,
-          and details associated
-          with Virgil Abloh's design language.
-
-          This size
-          <b>10 US</b>
-          pair is preserved
-          <b>Deadstock</b>
-          within the
-          <b>Lộc An Sneaker Collection</b>.
+          Before release,
+          the pair drew major attention when
+          <b>Hiroshi Fujiwara</b> wore it
+          during a panel connected with the
+          <b>Virgil Abloh: The Codes</b> exhibition in Paris.
+          That appearance placed the sneaker within a wider conversation
+          about preserving and interpreting Abloh's design legacy.
         </p>
+
+        <p>
+          The construction continues the deconstructed method
+          that made Virgil Abloh's Air Jordan 1 work so influential:
+          exposed stitching,
+          visible foam and layered materials,
+          paneling that appears intentionally unfinished,
+          and the familiar <b>"AIR"</b> marking on the midsole.
+          The visual idea is to reveal how the product is made
+          instead of hiding every stage of assembly.
+        </p>
+
+        <p>
+          Branding is one of the most important changes in the V.A.A. edition.
+          Industrial typography remains central,
+          but is rewritten around the Virgil Abloh Archive.
+          The zip-tie motif also returns in a distinctive
+          <b>light-blue</b> treatment.
+        </p>
+
+        <p>
+          Documented accessories include multiple lace options,
+          including black, purple, and blue,
+          together with a <b>VAA booklet</b>.
+          The presence of dedicated documentation and packaging
+          reinforces the release as an archival object
+          rather than simply a colorway reissue.
+        </p>
+
+        <p>
+          The almost monochromatic palette shifts attention toward construction.
+          Without strong blocks of color,
+          exposed stitching, mesh, foam, typography,
+          Swoosh placement, and layered paneling
+          become the primary visual language of the shoe.
+        </p>
+
+        <p>
+          The edition carries style code
+          <b>AA3834-100</b>
+          and a U.S. retail price of
+          <b>$230 USD</b>.
+          The example preserved in the
+          <b>Lộc An Sneaker Collection</b>
+          remains <b>Deadstock</b> in size <b>10 US</b>,
+          with its light-blue zip tie retained as part of the artifact.
+        </p>
+
+        <div class="exhibition-note">
+          <strong>Exhibition Note:</strong>
+          Style code: <b>AA3834-100</b>.
+          Release: <b>April 3, 2026</b>.
+          Retail: <b>$230 USD</b>.
+          Condition: <b>Deadstock</b>.
+          Size: <b>10 US</b>.
+          The light-blue zip tie and archival accessories are important provenance components of the set.
+        </div>
       `
     }
   },
@@ -634,15 +766,11 @@ const sneakers = [
   ===================================================== */
 
   {
-    id:
-      "fragment-union-air-jordan-1-varsity-red-sport-royal-sample",
+    id: "fragment-union-air-jordan-1-varsity-red-sport-royal-sample",
 
     title: {
-      vi:
-        "Jordan 1 Retro High OG x Fragment x Union LA 'Varsity Red/Sport Royal' Sample",
-
-      en:
-        "Jordan 1 Retro High OG x Fragment x Union LA 'Varsity Red/Sport Royal' Sample"
+      vi: "Jordan 1 Retro High OG x Fragment x Union LA 'Varsity Red/Sport Royal' Sample",
+      en: "Jordan 1 Retro High OG x Fragment x Union LA 'Varsity Red/Sport Royal' Sample"
     },
 
     subtitle: {
@@ -651,12 +779,8 @@ const sneakers = [
     },
 
     sku: "IO7847-002",
-
-    colorway:
-      "Black/White-Varsity Red-Sport Royal",
-
+    colorway: "Black/White-Varsity Red-Sport Royal",
     retailPrice: "N/A",
-
     releaseDate: "2026-02-14",
 
     editionType: {
@@ -670,179 +794,161 @@ const sneakers = [
     },
 
     size: "12 US",
-
     image: "pictures/jordan1_fragmentunion_sample.png",
 
     story: {
-
       vi: `
         <p>
-          Là sự hội tụ của ba tên tuổi
-          có ảnh hưởng sâu rộng
-          trong văn hóa sneaker,
-          <b>Jordan 1 Retro High OG
-          x Fragment
-          x Union LA
-          'Varsity Red/Sport Royal'</b>
-          kết nối di sản của Jordan 1
-          với hai ngôn ngữ thiết kế đặc trưng:
-          sự tinh giản và cách sử dụng màu sắc
-          mang tính nhận diện cao
-          của
-          <b>Fragment</b>,
-          cùng tư duy tái cấu trúc thủ công
-          của
-          <b>Union Los Angeles</b>.
+          <b>Jordan 1 Retro High OG x Fragment x Union LA 'Varsity Red/Sport Royal'</b>
+          kết hợp hai collaborator có lịch sử rất riêng với Air Jordan 1:
+          <b>Fragment Design</b> của Hiroshi Fujiwara
+          và <b>Union Los Angeles</b> của Chris Gibbs.
         </p>
 
         <p>
-          Phiên bản thương mại tương ứng
-          được giới thiệu trong năm 2026,
-          sử dụng phối màu
-          <i>Black/White-Varsity Red-Sport Royal</i>
-          với mã tham chiếu
-          <b>IO7847-002</b>.
+          Fragment đã để lại dấu ấn lớn trên Air Jordan 1 từ năm 2014
+          với color blocking trắng/đen/royal
+          và double-lightning logo ở heel.
+          Union LA sau đó đưa Air Jordan 1 sang một hướng khác vào năm 2018,
+          nổi bật với cấu trúc collar được ghép như hai đôi vintage khác nhau,
+          exposed zig-zag stitching và nhãn <b>UN/LA</b>.
         </p>
 
         <p>
-          Thiết kế bắt đầu
-          từ cấu trúc
-          <b>Black Toe</b>
-          kinh điển của Jordan 1.
+          Dự án 2026 đưa hai ngôn ngữ đó lên cùng một silhouette.
+          Trên Varsity Red/Sport Royal,
+          nền trắng được kết hợp với black toe, black Swoosh và eyestay,
+          Sport Royal ở heel,
+          cùng Varsity Red ở collar.
+          Cách phối này tạo liên tưởng đến nhiều Air Jordan 1 cổ điển
+          nhưng được ghép lại theo tư duy hybrid của Union và Fragment.
+        </p>
 
-          Các panel màu trắng và đen
-          tạo nên nền tảng quen thuộc,
-          sau đó được tái diễn giải
-          bằng sắc
-          <b>Sport Royal</b>
-          ở phần gót và outsole,
-          kết hợp cùng cổ giày
-          <b>Varsity Red</b>
-          tạo nên sự tương phản mạnh mẽ.
+        <p>
+          Dấu hiệu Union xuất hiện qua
+          <b>exposed stitching ở ankle/collar</b>,
+          nhãn <b>UN/LA</b>
+          và cách xử lý cổ giày như một bộ phận được ráp thêm.
+          Fragment được nhận diện qua
+          <b>double lightning-bolt logo</b>
+          và các chi tiết technical text.
+          Wings logo được làm nổi bật với tỷ lệ lớn hơn,
+          trong khi Sail-toned midsole tạo cảm giác vintage.
+        </p>
+
+        <p>
+          Phiên bản thương mại của colorway
+          mang mã <b>IO7847-002</b>
+          có retail <b>$205 USD</b>.
+          Lịch phát hành 2026 có nhiều mốc theo channel:
+          Union có đợt phát hành trước,
+          sau đó SNKRS tiếp tục phát hành vào cuối tháng 2.
         </p>
 
         <p>
           Tuy nhiên,
-          tác phẩm được lưu giữ trong
+          hiện vật trong
           <b>Lộc An Sneaker Collection</b>
-          không phải là
-          một đôi phát hành bán lẻ thông thường.
-
-          Đây là một
-          <b>Sample</b>
-          của phiên bản
-          'Varsity Red/Sport Royal',
-          thuộc giai đoạn phát triển
-          và chuẩn bị sản phẩm
-          trước khi phiên bản thương mại
-          được đưa ra thị trường.
+          được catalogued là
+          <b>Pre-Release Sample</b>,
+          không phải retail pair thông thường.
+          Vì vậy, mã IO7847-002 được dùng làm reference cho product family,
+          nhưng retail của chính hiện vật sample vẫn được ghi là
+          <b>N/A</b>.
         </p>
 
         <p>
-          Tác phẩm trong bộ sưu tập
-          có size
-          <b>12 US</b>
-          và được lưu giữ ở tình trạng
-          <b>Deadstock</b>.
+          Pair được lưu giữ ở tình trạng
+          <b>Deadstock</b>, size <b>12 US</b>.
+          Giá trị archive của nó nằm ở việc ghi lại
+          giai đoạn trước khi sản phẩm thương mại ổn định hoàn toàn,
+          trong một collaboration đã chủ động kết hợp
+          hai dòng lịch sử rất khác nhau của Air Jordan 1.
         </p>
 
         <div class="exhibition-note">
           <strong>Ghi chú lưu trữ:</strong>
-
-          Tác phẩm trong
-          Lộc An Sneaker Collection
-          là phiên bản
-          <b>Sample</b>,
-          không phải đôi
-          được phát hành thương mại
-          tại các cửa hàng bán lẻ.
-
-          Vì vậy,
-          hiện vật này
-          <b>không có giá phát hành chính thức</b>.
-
-          Mã
-          <b>IO7847-002</b>
-          được sử dụng
-          làm mã tham chiếu
-          của phiên bản thương mại
-          'Varsity Red/Sport Royal'.
+          Reference style code: <b>IO7847-002</b>.
+          Commercial colorway retail: <b>$205 USD</b>.
+          Artifact Edition Type: <b>Sample</b>.
+          Retail của chính sample: <b>N/A</b>.
+          Condition: <b>Deadstock</b>. Size: <b>12 US</b>.
         </div>
       `,
 
       en: `
         <p>
-          Bringing together
-          three highly influential names
-          in sneaker culture,
-          the
-          <b>Jordan 1 Retro High OG
-          x Fragment
-          x Union LA
-          'Varsity Red/Sport Royal'</b>
-          connects the heritage
-          of the Jordan 1
-          with two distinctive design philosophies:
-          Fragment's restrained visual language
-          and recognizable use of color,
-          together with
-          Union Los Angeles'
-          reconstructed and handcrafted aesthetic.
+          The <b>Jordan 1 Retro High OG x Fragment x Union LA 'Varsity Red/Sport Royal'</b>
+          brings together two collaborators with very different histories on the Air Jordan 1:
+          <b>Fragment Design</b>, led by Hiroshi Fujiwara,
+          and <b>Union Los Angeles</b>, led by Chris Gibbs.
         </p>
 
         <p>
-          The corresponding commercial edition
-          was introduced in 2026
-          in a
-          <i>Black/White-Varsity Red-Sport Royal</i>
-          colorway
-          under reference SKU
-          <b>IO7847-002</b>.
+          Fragment left a major mark on the Air Jordan 1 in 2014
+          through white/black/royal color blocking
+          and its double-lightning heel logo.
+          Union LA later pushed the model in another direction in 2018,
+          using a collar that appeared reconstructed from different vintage pairs,
+          exposed zig-zag stitching,
+          and the recognizable <b>UN/LA</b> label.
         </p>
 
         <p>
-          The artifact preserved in the
-          <b>Lộc An Sneaker Collection</b>
-          is not a conventional retail pair.
-
-          It is a
-          <b>Sample</b>
-          of the
-          'Varsity Red/Sport Royal'
-          edition,
-          associated with
-          the product-development
-          and pre-release stage
-          preceding the commercial launch.
+          The 2026 project brings those two languages onto a single silhouette.
+          The Varsity Red/Sport Royal edition combines a white base
+          with a black toe, black Swoosh and eyestay,
+          Sport Royal around the heel,
+          and Varsity Red at the collar.
+          The blocking references several classic Air Jordan 1 ideas
+          while presenting them through a hybrid Union/Fragment construction.
         </p>
 
         <p>
-          The piece preserved in the collection
-          is size
-          <b>12 US</b>
-          and remains
-          <b>Deadstock</b>.
+          Union's contribution is visible through
+          <b>exposed ankle and collar stitching</b>,
+          the <b>UN/LA</b> label,
+          and the reconstructed collar treatment.
+          Fragment appears through the
+          <b>double lightning-bolt logo</b>
+          and technical text details.
+          An enlarged Wings logo and Sail-toned midsole further emphasize the vintage-reconstruction language.
+        </p>
+
+        <p>
+          The commercial colorway carries reference style
+          <b>IO7847-002</b>
+          and a retail price of
+          <b>$205 USD</b>.
+          Its 2026 rollout included more than one channel and date,
+          with an earlier Union release followed by a later SNKRS launch.
+        </p>
+
+        <p>
+          The artifact in the
+          <b>Lộc An Sneaker Collection</b>, however,
+          is catalogued as a
+          <b>Pre-Release Sample</b>
+          rather than a conventional retail pair.
+          IO7847-002 is therefore retained as the product-family reference,
+          while the artifact itself is recorded with retail <b>N/A</b>.
+        </p>
+
+        <p>
+          The pair remains
+          <b>Deadstock</b> in size <b>12 US</b>.
+          Its archival significance lies in documenting
+          a pre-retail stage of a collaboration
+          that intentionally combines two very different Air Jordan 1 design lineages.
         </p>
 
         <div class="exhibition-note">
           <strong>Exhibition Note:</strong>
-
-          The piece preserved in the
-          Lộc An Sneaker Collection
-          is a
-          <b>Sample</b>,
-          not a pair commercially released
-          through retail stores.
-
-          Accordingly,
-          this artifact
-          <b>does not have an official retail price</b>.
-
-          <b>IO7847-002</b>
-          is used here
-          as the reference SKU
-          for the commercial
-          'Varsity Red/Sport Royal' edition.
+          Reference style code: <b>IO7847-002</b>.
+          Commercial colorway retail: <b>$205 USD</b>.
+          Artifact Edition Type: <b>Sample</b>.
+          Sample artifact retail: <b>N/A</b>.
+          Condition: <b>Deadstock</b>. Size: <b>12 US</b>.
         </div>
       `
     }
@@ -868,11 +974,8 @@ const sneakers = [
     },
 
     sku: "332550-001",
-
     colorway: "Black/Shadow Grey White",
-
     retailPrice: "$160 USD",
-
     releaseDate: "2009-08-31",
 
     editionType: {
@@ -886,165 +989,170 @@ const sneakers = [
     },
 
     size: "10.5 US",
-
     image: "pictures/jordan1_shadow_2009.png",
 
     story: {
-
       vi: `
         <p>
           <b>Jordan 1 Retro High OG 'Shadow' 2009</b>
-          đánh dấu sự trở lại đầu tiên
-          của một trong những phối màu nguyên bản
-          kín đáo nhưng bền bỉ nhất
-          trong lịch sử Jordan 1.
-
-          Phối màu
-          <b>'Shadow'</b>
-          xuất hiện lần đầu vào năm
-          <b>1985</b>,
-          trong thế hệ đầu tiên của Air Jordan 1,
-          với bảng màu đen và xám trung tính
-          tạo nên một diện mạo hoàn toàn khác
-          so với những phối màu nổi bật hơn
-          như Chicago,
-          Bred
-          hay Royal.
+          đánh dấu lần đầu phối màu Shadow nguyên bản năm 1985
+          được đưa trở lại dưới dạng retro.
+          Black/Grey là một trong những colorway OG của Air Jordan 1
+          và luôn nổi bật theo cách ngược với Chicago, Bred hay Royal:
+          ít màu hơn, trung tính hơn và dễ bị đánh giá thấp khi nhìn riêng lẻ,
+          nhưng rất bền về mặt thẩm mỹ.
         </p>
 
         <p>
-          Sau lần xuất hiện nguyên bản năm 1985,
-          Shadow gần như biến mất
-          khỏi lịch phát hành
-          trong gần một phần tư thế kỷ.
-
-          Phải đến năm
-          <b>2009</b>,
-          Jordan Brand mới đưa phối màu này
-          trở lại lần đầu tiên
-          dưới dạng retro.
-
-          Vì vậy,
-          bản 2009 giữ một vị trí đặc biệt:
-          đây là
-          <b>lần retro đầu tiên của Shadow</b>
-          sau khoảng 24 năm kể từ bản OG.
+          Air Jordan 1 ban đầu được thiết kế bởi
+          <b>Peter Moore</b>.
+          Ở Shadow, cấu trúc color blocking sử dụng black làm nền chính,
+          trong khi Shadow Grey xuất hiện ở toe box,
+          heel và ankle areas,
+          hoàn thiện bằng white midsole.
+          Chính sự tiết chế này giúp Shadow tồn tại lâu dài
+          mà không phụ thuộc vào một câu chuyện màu sắc quá phức tạp.
         </p>
 
         <p>
-          Sau bản retro đầu tiên năm 2009,
-          Shadow tiếp tục trở lại
-          trong những thế hệ retro sau,
-          bao gồm
-          <b>2013</b>
-          và
-          <b>2018</b>.
-
-          Điều đó giúp bản 2009
-          trở thành một mắt xích quan trọng
-          giữa Shadow OG năm 1985
-          và các phiên bản hiện đại.
+          Bản 2009 không phải một bản sao tuyệt đối của OG 1985.
+          Đây là sản phẩm của giai đoạn Jordan Brand
+          vẫn chủ động tách retro khỏi Nike branding:
+          <b>Jumpman</b> thay cho Nike Air trên tongue,
+          Jumpman cũng xuất hiện ở heel,
+          và Wings logo được xử lý embossed theo phong cách của thời kỳ đó.
         </p>
 
         <p>
-          Tác phẩm được lưu giữ trong
+          Một chi tiết thường được nhắc tới trên bản 2009
+          là chất liệu da mềm
+          và phần tonal elephant-print treatment ở heel area.
+          Những thay đổi này làm 2009 khác khá rõ
+          so với các Shadow retro sau đó,
+          đặc biệt là 2013 khi Jordan Brand bắt đầu quay trở lại
+          cách trình bày "OG" gần nguyên bản hơn.
+        </p>
+
+        <p>
+          Dòng thời gian của Shadow giúp bản 2009 dễ định vị:
+          OG 1985,
+          lần retro đầu tiên năm <b>2009</b>,
+          sau đó là các lần trở lại đáng chú ý năm
+          <b>2013</b> và <b>2018</b>.
+          Vì thế, bản 2009 là một hiện vật của chính thời kỳ retro-transition,
+          khi Jordan Brand chưa hoàn toàn quay lại với Nike Air/OG detailing.
+        </p>
+
+        <p>
+          Pair mang style code
+          <b>332550-001</b>,
+          colorway
+          <b>Black/Shadow Grey-White</b>,
+          và release date
+          <b>31 tháng 8 năm 2009</b>.
+          Catalogue hiện sử dụng retail
+          <b>$160 USD</b>
+          theo product record được dùng cho archive.
+        </p>
+
+        <p>
+          Tác phẩm trong
           <b>Lộc An Sneaker Collection</b>
-          là phiên bản phát hành năm
-          <b>2009</b>,
-          size
-          <b>10.5 US</b>,
-          với tình trạng
-          <b>Used</b>.
-
-          Ý nghĩa sưu tầm của đôi giày
-          nằm ở vị trí lịch sử
-          của nó:
-          <b>lần retro đầu tiên
-          của phối màu Shadow
-          kể từ bản OG năm 1985</b>.
+          là size <b>10.5 US</b>, condition <b>Used</b>.
+          Giá trị của pair nằm ở vị trí lịch sử
+          là first Shadow retro,
+          đồng thời ghi lại một cách Jordan Brand diễn giải AJ1
+          rất đặc trưng của cuối thập niên 2000.
         </p>
+
+        <div class="exhibition-note">
+          <strong>Ghi chú lưu trữ:</strong>
+          Style code: <b>332550-001</b>.
+          Release: <b>August 31, 2009</b>.
+          Retail: <b>$160 USD</b>.
+          Condition: <b>Used</b>.
+          Size: <b>10.5 US</b>.
+          Đây là <b>first retro</b> của Shadow 1985.
+        </div>
       `,
 
       en: `
         <p>
-          <b>Jordan 1 Retro High OG 'Shadow' 2009</b>
-          marked the first return
-          of one of the most understated
-          yet enduring original colorways
-          in Jordan 1 history.
-
-          The
-          <b>'Shadow'</b>
-          colorway first appeared in
-          <b>1985</b>
-          during the original Air Jordan 1 era,
-          using a restrained
-          black-and-grey palette
-          that stood apart
-          from more visually prominent releases
-          such as Chicago,
-          Bred,
-          and Royal.
+          The <b>Jordan 1 Retro High OG 'Shadow' 2009</b>
+          marked the first time the original 1985 Shadow colorway
+          returned as a retro release.
+          Black/Grey was one of the original Air Jordan 1 colorways
+          and has always stood apart from Chicago, Bred, or Royal:
+          quieter, more neutral, and less dependent on a dramatic color story.
         </p>
 
         <p>
-          Following its original 1985 appearance,
-          Shadow remained absent
-          from the release calendar
-          for nearly a quarter century.
-
-          It was not until
-          <b>2009</b>
-          that Jordan Brand
-          brought the colorway back
-          for the first time
-          as a retro.
-
-          This gives the 2009 edition
-          a particularly important place
-          in the lineage:
-          it represents the
-          <b>first Shadow retro</b>
-          roughly 24 years after the original.
+          The original Air Jordan 1 was designed by
+          <b>Peter Moore</b>.
+          On the Shadow, black forms the primary structure,
+          while Shadow Grey appears across the toe box,
+          heel, and ankle areas,
+          finished over a white midsole.
+          That restraint is a major reason the colorway has aged so well visually.
         </p>
 
         <p>
-          Following the first retro
-          in 2009,
-          Shadow returned again
-          in later generations,
-          including
-          <b>2013</b>
-          and
-          <b>2018</b>.
+          The 2009 edition is not a one-to-one reproduction of the 1985 original.
+          It belongs to a period when Jordan Brand
+          was deliberately separating retro releases from Nike branding:
+          a <b>Jumpman</b> replaces Nike Air on the tongue,
+          another Jumpman appears at the heel,
+          and the Wings logo receives an embossed treatment characteristic of the era.
+        </p>
 
-          This makes the 2009 edition
-          an important bridge
-          between the original
-          1985 Shadow
-          and the modern retros
-          that followed.
+        <p>
+          The 2009 release is also remembered for its soft leather
+          and a tonal elephant-print treatment around the heel area.
+          Those details make it noticeably different from later Shadow retros,
+          especially the 2013 edition,
+          which moved the model back toward a more explicitly "OG" presentation.
+        </p>
+
+        <p>
+          The Shadow timeline helps define the importance of this pair:
+          the 1985 original,
+          the first retro in <b>2009</b>,
+          followed by notable returns in
+          <b>2013</b> and <b>2018</b>.
+          The 2009 pair therefore documents a transitional retro era
+          before Jordan Brand fully returned to Nike Air and more faithful OG detailing.
+        </p>
+
+        <p>
+          The release carries style code
+          <b>332550-001</b>,
+          colorway
+          <b>Black/Shadow Grey-White</b>,
+          and release date
+          <b>August 31, 2009</b>.
+          The archive currently records retail at
+          <b>$160 USD</b>
+          in accordance with the product record used by the collection.
         </p>
 
         <p>
           The example preserved in the
           <b>Lộc An Sneaker Collection</b>
-          is a
-          <b>2009</b>
-          release
-          in size
-          <b>10.5 US</b>,
-          with
-          <b>Used</b>
-          condition.
-
-          Its collector significance
-          comes from its historical position
-          as the
-          <b>first retro
-          of the Shadow colorway
-          since the original 1985 edition</b>.
+          is size <b>10.5 US</b> in <b>Used</b> condition.
+          Its importance comes from its place as the first Shadow retro
+          and as a clear document of how Jordan Brand interpreted the Air Jordan 1
+          during the late-2000s retro period.
         </p>
+
+        <div class="exhibition-note">
+          <strong>Exhibition Note:</strong>
+          Style code: <b>332550-001</b>.
+          Release: <b>August 31, 2009</b>.
+          Retail: <b>$160 USD</b>.
+          Condition: <b>Used</b>.
+          Size: <b>10.5 US</b>.
+          This was the <b>first retro</b> of the 1985 Shadow.
+        </div>
       `
     }
   },
@@ -1070,11 +1178,8 @@ const sneakers = [
     },
 
     sku: "191-030",
-
     colorway: "Green Camo/White-Black",
-
     retailPrice: "¥13,440",
-
     releaseDate: "2010-11-27",
 
     editionType: {
@@ -1088,354 +1193,209 @@ const sneakers = [
     },
 
     size: "9 US",
-
     image: "pictures/bapesta_stussy.png",
 
     story: {
-
       vi: `
         <p>
-          Ra mắt trong mùa Holiday 2010,
+          Ra mắt ngày
+          <b>27 tháng 11 năm 2010</b>,
           <b>BAPE x Stüssy Camo Canvas Hi Top 'Green Camo'</b>
-          là một phần của dự án hợp tác
-          <b>Survival of the Fittest</b>
-          giữa hai trong số những tên tuổi
-          có ảnh hưởng lớn nhất
-          đối với văn hóa streetwear
-          Nhật Bản và Hoa Kỳ.
-
-          Bộ sưu tập xuất hiện
-          trong năm kỷ niệm
-          <b>30 năm thành lập Stüssy</b>,
-          đồng thời đánh dấu
-          một trong những dự án hợp tác đáng chú ý
-          giữa Stüssy
-          và
-          <b>A Bathing Ape</b>.
+          thuộc capsule
+          <b>Survival of the Fittest</b>,
+          một collaboration giữa hai thương hiệu
+          có ảnh hưởng đặc biệt lớn đến lịch sử streetwear.
         </p>
 
         <p>
-          BAPE và Stüssy
-          đại diện cho hai nền tảng quan trọng
-          của streetwear hiện đại.
-
-          Stüssy phát triển từ
-          văn hóa surf và streetwear California
+          Stüssy phát triển từ California surf/street culture
           từ đầu thập niên 1980,
-          trong khi
-          A Bathing Ape,
-          được hình thành tại Tokyo
-          trong thập niên 1990,
-          trở thành một trong những thương hiệu
-          định hình mạnh mẽ
-          Harajuku streetwear.
+          trong khi <b>A Bathing Ape (BAPE)</b>
+          trở thành một trong những thương hiệu định hình Harajuku
+          từ thập niên 1990.
+          Đến năm 2010, cả hai đã trở thành reference point
+          cho cách streetwear có thể chuyển từ subculture
+          thành ngôn ngữ thời trang toàn cầu.
+        </p>
 
-          Việc hai thương hiệu gặp nhau
-          trong dự án năm 2010
-          vì thế không chỉ đơn thuần
-          là một capsule thời trang,
-          mà còn là sự giao thoa
-          giữa hai thế hệ và hai trung tâm
-          quan trọng của văn hóa streetwear.
+        <p>
+          Capsule xuất hiện trong năm
+          <b>kỷ niệm 30 năm Stüssy</b>
+          và không chỉ có footwear.
+          Những tài liệu đương thời về collection ghi nhận
+          apparel, outerwear, bags, denim và shoes,
+          cho thấy "Survival of the Fittest"
+          được xây dựng như một project đầy đủ giữa hai brand
+          chứ không phải một colorway đơn lẻ.
         </p>
 
         <p>
           Tên gọi
           <b>Survival of the Fittest</b>
-          được xây dựng quanh ý niệm
-          về sự tiến hóa,
-          khả năng thích nghi
-          và sức sống lâu dài.
-
-          Trong bối cảnh collaboration,
-          concept này trở thành
-          một phép ẩn dụ phù hợp
-          cho hai thương hiệu
-          đã tồn tại và duy trì ảnh hưởng
-          qua nhiều giai đoạn thay đổi
-          của văn hóa streetwear.
+          phù hợp với vị trí của cả hai thương hiệu:
+          BAPE và Stüssy đều đã trải qua nhiều chu kỳ thay đổi
+          của streetwear nhưng vẫn duy trì được dấu ấn nhận diện riêng.
+          Concept vì vậy có thể được đọc như câu chuyện về longevity,
+          adaptation và cultural survival.
         </p>
 
         <p>
-          Trên phiên bản
-          <b>Green Camo</b>,
-          ngôn ngữ hình ảnh
-          của BAPE và Stüssy
-          được hòa trộn trực tiếp
-          trên phần canvas upper.
-
-          Nền camouflage
-          đặc trưng của BAPE
-          sử dụng các sắc
-          xanh lá,
-          xanh đậm,
-          nâu
-          và beige,
-          trong khi các graphic
-          lấy cảm hứng từ
-          <b>Old Skull của Stüssy</b>
-          được tích hợp trực tiếp
-          vào cấu trúc camo.
-
-          Sự kết hợp này
-          thường được giới sưu tầm
-          gọi là
-          <b>Skull Camo</b>
-          hoặc
-          <b>ABC Skull Camo</b>.
+          Trên Green Camo,
+          phần canvas upper sử dụng camouflage palette
+          gồm các sắc xanh, nâu và beige.
+          Họa tiết không phải BAPE camo đơn thuần:
+          các graphic liên hệ đến Stüssy được trộn trực tiếp vào pattern,
+          tạo nên kiểu collaborative skull/camo language
+          mà giới sưu tầm thường nhận diện ngay khi nhìn gần.
         </p>
 
         <p>
-          Đôi giày sử dụng
-          cấu trúc canvas high-top cổ điển
-          với phần rubber toe cap màu trắng,
-          midsole cao su trắng
-          và đường foxing stripe màu đen.
-
-          Thiết kế đơn giản của silhouette
-          tạo ra một nền tảng trung tính
-          để họa tiết collaboration
-          trở thành điểm nhấn chính.
+          Silhouette high-top sử dụng
+          white rubber toe cap,
+          white rubber midsole
+          và black foxing stripe.
+          Chính cấu trúc canvas đơn giản này
+          làm pattern trở thành trọng tâm của đôi giày,
+          thay vì cạnh tranh với quá nhiều panel hoặc branding lớn.
         </p>
 
         <p>
-          Một trong những chi tiết
-          quan trọng nhất
-          nằm ở phần tongue.
-
-          Nhãn collaborative
-          kết hợp
-          <b>A Bathing Ape</b>
-          và
-          <b>Stüssy</b>
-          cùng dòng chữ
-          <b>Survival of the Fittest</b>
-          xác định trực tiếp
-          đôi giày là một phần
-          của capsule Holiday 2010.
-
-          Branding BAPE
-          tiếp tục xuất hiện
-          ở phần heel,
-          giúp hoàn thiện
-          ngôn ngữ thiết kế
-          của phiên bản.
+          Tongue label kết hợp
+          <b>A Bathing Ape</b>, <b>Stüssy</b>
+          và tên project
+          <b>Survival of the Fittest</b>.
+          Branding ở tongue và heel
+          biến pair thành một tài liệu trực tiếp của capsule 2010,
+          thay vì chỉ là một đôi camo high-top không xác định provenance.
         </p>
 
         <p>
-          Mẫu
-          <b>Camo Canvas Hi Top</b>
-          nằm trong đợt phát hành đầu tiên
-          của dự án
-          <b>Survival of the Fittest</b>
-          và được đưa ra thị trường
-          vào ngày
-          <b>27 tháng 11 năm 2010</b>.
-
-          Giá bán lẻ tại Nhật Bản
-          vào thời điểm phát hành
-          là
+          Giá retail tại Nhật của phiên bản
+          được archive giữ nguyên ở
           <b>¥13,440</b>.
-
-          Đợt phát hành tiếp theo
-          của dự án
-          diễn ra trong tháng 12 năm 2010.
+          Đây là ngoại lệ có chủ ý trong hệ thống catalogue:
+          các retail khác được chuẩn hóa về USD,
+          nhưng BAPE x Stüssy giữ nguyên giá JPY
+          để phản ánh nguồn phát hành Nhật Bản của hiện vật.
         </p>
 
         <p>
-          Tác phẩm được lưu giữ trong
+          Tác phẩm trong
           <b>Lộc An Sneaker Collection</b>
-          là phiên bản
-          <b>Green Camo</b>,
-          size
-          <b>9 US</b>,
-          với tình trạng
-          <b>Used</b>.
-
-          Đây là một phiên bản
-          <b>GR</b>
-          được phát hành thương mại
-          trong capsule
-          BAPE x Stüssy
-          Holiday 2010,
-          đại diện cho một giai đoạn
-          đáng chú ý trong lịch sử
-          collaboration giữa
-          streetwear Nhật Bản
-          và Hoa Kỳ.
+          là Green Camo, size <b>9 US</b>, condition <b>Used</b>.
+          Nó đại diện cho một giai đoạn mà collaboration giữa brand Nhật và Mỹ
+          trở thành một phần trung tâm của streetwear collecting,
+          trước khi mô hình cross-brand capsule trở nên phổ biến như hiện nay.
         </p>
+
+        <div class="exhibition-note">
+          <strong>Ghi chú lưu trữ:</strong>
+          SKU / item reference: <b>191-030</b>.
+          Release: <b>November 27, 2010</b>.
+          Retail: <b>¥13,440</b>.
+          Condition: <b>Used</b>.
+          Size: <b>9 US</b>.
+        </div>
       `,
 
       en: `
         <p>
-          Released during Holiday 2010,
-          the
-          <b>BAPE x Stüssy Camo Canvas Hi Top 'Green Camo'</b>
+          Released on
+          <b>November 27, 2010</b>,
+          the <b>BAPE x Stüssy Camo Canvas Hi Top 'Green Camo'</b>
           formed part of the
-          <b>Survival of the Fittest</b>
-          project between
-          two of the most influential names
-          in Japanese and American
-          streetwear culture.
+          <b>Survival of the Fittest</b> capsule,
+          a collaboration between two brands
+          with unusually deep influence on the history of streetwear.
+        </p>
 
-          The collection arrived
-          during
+        <p>
+          Stüssy emerged from California surf and street culture
+          in the early 1980s,
+          while <b>A Bathing Ape (BAPE)</b>
+          became one of the defining names of Harajuku
+          during the 1990s.
+          By 2010, both had become reference points
+          for how streetwear could move from subculture
+          into a global fashion language.
+        </p>
+
+        <p>
+          The capsule arrived during
           <b>Stüssy's 30th anniversary year</b>
-          and represented
-          one of the notable collaborative projects
-          between Stüssy
-          and
-          <b>A Bathing Ape</b>.
+          and extended far beyond footwear.
+          Contemporary coverage documented apparel, outerwear,
+          bags, denim, and shoes,
+          showing that "Survival of the Fittest"
+          was conceived as a broader joint project rather than a single colorway.
         </p>
 
         <p>
-          BAPE and Stüssy
-          represent two important foundations
-          of modern streetwear.
-
-          Stüssy emerged from
-          California surf and street culture
-          during the early 1980s,
-          while
-          A Bathing Ape,
-          established in Tokyo
-          during the 1990s,
-          became one of the defining names
-          of Harajuku streetwear.
-
-          Their 2010 collaboration
-          therefore represented more than
-          a simple fashion capsule;
-          it brought together
-          two generations
-          and two major centers
-          of global streetwear culture.
-        </p>
-
-        <p>
-          The
+          The title
           <b>Survival of the Fittest</b>
-          concept drew upon ideas
-          of evolution,
-          adaptation,
-          and longevity.
-
-          Within the collaboration,
-          the theme functioned
-          as an appropriate metaphor
-          for two brands
-          that had continued
-          to maintain cultural relevance
-          through multiple generations
-          of streetwear.
+          fits the position of both brands:
+          BAPE and Stüssy had already moved through multiple cycles of streetwear
+          while retaining highly recognizable identities.
+          The concept can therefore be read through longevity,
+          adaptation, and cultural survival.
         </p>
 
         <p>
-          On the
-          <b>Green Camo</b>
-          edition,
-          the visual identities
-          of both BAPE and Stüssy
-          are merged directly
-          across the canvas upper.
-
-          BAPE's recognizable
-          camouflage language
-          combines green,
-          dark green,
-          brown,
-          and beige tones,
-          while graphics inspired by
-          Stüssy's
-          <b>Old Skull</b>
-          imagery
-          are integrated into the pattern.
-
-          Collectors commonly refer
-          to this collaborative graphic
-          as
-          <b>Skull Camo</b>
-          or
-          <b>ABC Skull Camo</b>.
+          On the Green Camo edition,
+          the canvas upper uses a camouflage palette
+          of green, brown, and beige.
+          It is not simply a standard BAPE camo treatment:
+          Stüssy-related graphics are integrated into the pattern,
+          creating the collaborative skull/camo language
+          associated with the project.
         </p>
 
         <p>
-          The sneaker uses
-          a classic canvas
-          high-top construction
-          with a white rubber toe cap,
+          The high-top uses a
+          white rubber toe cap,
           white rubber midsole,
           and black foxing stripe.
-
-          The restrained silhouette
-          provides a neutral foundation
-          for the collaborative
-          camouflage artwork.
+          That relatively simple canvas construction
+          allows the graphic pattern to become the visual focus
+          instead of competing with complex paneling or oversized branding.
         </p>
 
         <p>
-          One of the most important
-          identifying elements
-          appears on the tongue.
-
-          The collaborative label
-          combines
-          <b>A Bathing Ape</b>
-          and
-          <b>Stüssy</b>
-          branding
-          with the phrase
-          <b>Survival of the Fittest</b>,
-          directly linking the sneaker
-          to the Holiday 2010 project.
-
-          BAPE branding
-          also appears on the heel,
-          completing the collaborative
-          design language.
+          The tongue label combines
+          <b>A Bathing Ape</b>, <b>Stüssy</b>,
+          and the project title
+          <b>Survival of the Fittest</b>.
+          Tongue and heel branding make the pair
+          a direct document of the 2010 capsule
+          rather than simply an unidentified camo high-top.
         </p>
 
         <p>
-          The
-          <b>Camo Canvas Hi Top</b>
-          formed part of the first release group
-          from the
-          <b>Survival of the Fittest</b>
-          project
-          and launched on
-          <b>November 27, 2010</b>.
-
-          Its original Japanese retail price
-          was
+          The archive preserves the original Japanese retail price of
           <b>¥13,440</b>.
-
-          A second release group
-          from the broader project
-          followed in December 2010.
+          This is an intentional exception in the catalogue:
+          other retail values are standardized to USD,
+          while the BAPE x Stüssy release retains JPY
+          to reflect its Japanese retail context.
         </p>
 
         <p>
-          The example preserved in the
+          The example in the
           <b>Lộc An Sneaker Collection</b>
-          is the
-          <b>Green Camo</b>
-          edition
-          in size
-          <b>9 US</b>,
-          with
-          <b>Used</b>
-          condition.
-
-          This is a
-          <b>GR</b>
-          commercially released edition
-          from the BAPE x Stüssy
-          Holiday 2010 capsule,
-          representing a notable moment
-          in the history
-          of Japanese-American
-          streetwear collaboration.
+          is the Green Camo edition in size <b>9 US</b>, condition <b>Used</b>.
+          It documents an era when Japanese-American brand collaborations
+          were becoming central to streetwear collecting,
+          before cross-brand capsules became as common as they are today.
         </p>
+
+        <div class="exhibition-note">
+          <strong>Exhibition Note:</strong>
+          SKU / item reference: <b>191-030</b>.
+          Release: <b>November 27, 2010</b>.
+          Retail: <b>¥13,440</b>.
+          Condition: <b>Used</b>.
+          Size: <b>9 US</b>.
+        </div>
       `
     }
   },
@@ -1443,8 +1403,7 @@ const sneakers = [
 
   /* =====================================================
      8. NIKE x OFF-WHITE
-        WAFFLE RACER SP
-        WHITE
+        WAFFLE RACER SP WHITE
   ===================================================== */
 
   {
@@ -1461,11 +1420,8 @@ const sneakers = [
     },
 
     sku: "CD8180-100",
-
     colorway: "White/Electric Green-Black",
-
     retailPrice: "$150 USD",
-
     releaseDate: "2019-12-12",
 
     editionType: {
@@ -1479,391 +1435,207 @@ const sneakers = [
     },
 
     size: "12W / 10.5M US",
-
     image: "pictures/nike_waffle_racer_ow.png",
 
     story: {
-
       vi: `
         <p>
-          Ra mắt vào ngày
-          <b>12 tháng 12 năm 2019</b>,
           <b>Nike x Off-White Waffle Racer SP 'White'</b>
-          là một phần của dự án
+          phát hành ngày
+          <b>12 tháng 12 năm 2019</b>
+          như phần thứ ba trong chuỗi sneaker
+          của collection nữ
           <b>Athlete in Progress</b>
-          giữa Nike và
-          <b>Virgil Abloh</b>.
-
-          Đây là giai đoạn hợp tác mà Abloh
-          chuyển sự chú ý từ việc tái cấu trúc
-          các biểu tượng sneaker quen thuộc
-          sang việc khám phá sâu hơn
-          di sản running và track &amp; field của Nike.
+          giữa Nike và Virgil Abloh.
         </p>
 
         <p>
-          Athlete in Progress được xây dựng
-          quanh ý tưởng về vận động viên
-          như một cá thể luôn trong quá trình
-          phát triển, thích nghi và tiến về phía trước.
-
-          Thay vì xem sản phẩm thể thao
-          như một thiết kế đã hoàn thiện tuyệt đối,
-          Virgil Abloh khai thác chính
-          quá trình thử nghiệm,
-          chuyển động và cấu trúc kỹ thuật
-          như một phần của ngôn ngữ thẩm mỹ.
+          Athlete in Progress mở rộng collaboration Nike x Off-White
+          khỏi việc tái cấu trúc các sneaker icons quen thuộc.
+          Collection chuyển trọng tâm sang running, track &amp; field
+          và hình ảnh vận động viên đang liên tục phát triển.
+          Trước Waffle Racer,
+          project đã sử dụng những model như
+          <b>Zoom Terra Kiger 5</b> và <b>Vapor Street</b>.
         </p>
 
         <p>
-          Nền tảng của đôi giày
-          bắt nguồn từ
-          <b>Nike Waffle Racer</b>,
-          một silhouette running
-          gắn liền với lịch sử ban đầu của Nike
-          và tư duy thiết kế của
-          <b>Bill Bowerman</b>.
-
-          Hệ thống đế waffle vốn được tạo ra
-          nhằm cung cấp độ bám
-          trong một cấu trúc nhẹ,
-          sau này trở thành một trong những
-          dấu hiệu thiết kế quan trọng nhất
-          trong di sản running của Nike.
+          Nền tảng lịch sử của thiết kế là
+          <b>Nike Waffle Racer</b>
+          và di sản running của Bill Bowerman.
+          Waffle outsole trở thành một trong những câu chuyện nổi tiếng nhất
+          của Nike vì nó cho phép tạo traction
+          trong một cấu trúc tương đối nhẹ.
+          Virgil Abloh không cố làm thiết kế này "sạch" hơn;
+          ông chủ động làm nó trông như một prototype đang vận hành.
         </p>
 
         <p>
-          Trên phiên bản Off-White,
-          Abloh giữ lại nền tảng retro-runner
-          nhưng bao phủ upper bằng
-          một lớp vật liệu dạng lưới
-          và translucent film.
-
-          Cấu trúc này tạo cảm giác
-          gần giống những lớp băng quấn
-          hoặc vật liệu kỹ thuật
-          được sử dụng bởi vận động viên,
-          đồng thời để lộ nhiều lớp cấu tạo
-          thay vì che giấu chúng.
+          Upper được phủ bởi
+          <b>translucent / tape-inspired film</b>
+          và lớp mesh/nylon,
+          tạo cảm giác như athletic taping hoặc technical wrapping.
+          Những lớp vật liệu chồng lên nhau
+          khiến người xem nhìn thấy construction
+          thay vì chỉ thấy bề mặt hoàn thiện.
         </p>
 
         <p>
-          Một trong những đặc điểm
-          dễ nhận biết nhất
-          là hệ thống dây kép.
-
-          Bên dưới là bộ dây truyền thống,
-          trong khi phía ngoài
-          sử dụng dây
-          <b>Electric Green</b>
-          chạy qua các móc màu đen.
-
-          Chi tiết này mang hơi hướng
-          hiking và performance equipment,
-          khiến hệ thống fastening
-          trở thành một phần trực tiếp
-          của thiết kế thay vì chỉ có chức năng
-          cố định bàn chân.
+          Hệ thống dây kép là một trong những yếu tố quan trọng nhất.
+          Bên cạnh conventional laces,
+          một bộ <b>Electric Green hiking cord</b>
+          chạy qua các anchor points màu đen.
+          Hệ thống này kết hợp language của running
+          với outdoor equipment,
+          một hướng thiết kế xuất hiện nhiều lần trong Athlete in Progress.
         </p>
 
         <p>
-          Ngôn ngữ thiết kế đặc trưng
-          của Off-White tiếp tục xuất hiện
-          qua phần tongue để lộ cấu trúc,
-          typography mang phong cách công nghiệp,
+          Outsole cũng được thay đổi mạnh.
+          Các <b>rubber spikes</b> nhô khỏi phần đế,
+          làm đôi giày nằm ở khoảng giữa
+          retro running shoe, track spike và trail object.
+          Chính sự hơi "quá mức" của spike
+          khiến Waffle Racer Off-White
+          trông giống một design experiment hơn một retro đơn thuần.
+        </p>
+
+        <p>
+          Branding của Off-White được giữ qua
+          industrial text,
           orange tab,
-          retro Nike tongue tag,
-          Swoosh lớn ở thân giày
-          và zip tie đặc trưng.
-
-          Những chi tiết này tạo ra
-          sự đối lập giữa một silhouette running
-          mang tính lịch sử
-          và tư duy deconstructed
-          đương đại của Virgil Abloh.
+          exposed tongue construction,
+          metallic/silver Swoosh
+          và zip-tie motif.
+          Phối màu White dùng nền trắng và off-white
+          để những thành phần kỹ thuật — film, cord, spike và hardware —
+          nổi bật rõ hơn.
         </p>
 
         <p>
-          Điểm khác biệt mạnh nhất
-          nằm ở outsole.
-
-          Thay vì chỉ sử dụng
-          cấu trúc waffle truyền thống,
-          Nike và Off-White bổ sung
-          các phần
-          <b>rubber spike</b>
-          nhô rõ khỏi đế.
-
-          Điều này làm đôi giày
-          gợi liên tưởng đồng thời
-          đến track spike,
-          trail footwear
-          và những thiết bị chuyên dụng
-          dành cho vận động viên.
-        </p>
-
-        <p>
-          Phối màu
-          <b>White/Electric Green-Black</b>
-          sử dụng các sắc trắng
-          và off-white làm nền,
-          tương phản với dây
-          Electric Green,
-          các móc dây màu đen,
-          Swoosh metallic
-          và orange tab đặc trưng.
-
-          Bảng màu sáng giúp cấu trúc nhiều lớp,
-          vật liệu translucent
-          và những chi tiết kỹ thuật
-          của thiết kế được thể hiện rõ ràng hơn.
-        </p>
-
-        <p>
-          Waffle Racer SP được phát hành
-          trong ba phối màu chính:
-          <b>White</b>,
-          <b>Black</b>
-          và
-          <b>Vivid Sky</b>.
-
-          Phiên bản White mang mã
-          <b>CD8180-100</b>,
-          được phát hành với giá retail
+          Waffle Racer được phát hành trong ba colorways chính:
+          <b>Black</b>, <b>White</b> và <b>Vivid Sky</b>.
+          Bản White mang style code
+          <b>CD8180-100</b>
+          và retail tại Mỹ
           <b>$150 USD</b>.
         </p>
 
         <p>
-          Tác phẩm được lưu giữ trong
+          Tác phẩm trong
           <b>Lộc An Sneaker Collection</b>
-          là phiên bản White
-          ở size
-          <b>12W / 10.5M US</b>,
-          với tình trạng
-          <b>Used</b>.
-        </p>
-
-        <p>
-          Qua quá trình sử dụng
-          và lão hóa tự nhiên của vật liệu,
-          các khu vực màu trắng và off-white
-          trên đôi giày hiện đã xuất hiện
-          <b>yellowing</b>.
-
-          Trong archive,
-          hiện tượng này được ghi nhận
-          như một phần của tình trạng vật lý
-          và lịch sử sử dụng của hiện vật,
-          thay vì được xem như
-          một phân loại condition riêng biệt.
+          là size <b>12W / 10.5M US</b>, condition <b>Used</b>.
+          Các vùng white/off-white hiện có yellowing theo thời gian.
+          Archive ghi nhận yellowing như một đặc điểm lão hóa vật liệu,
+          không phải một condition category riêng.
         </p>
 
         <div class="exhibition-note">
           <strong>Ghi chú lưu trữ:</strong>
-
-          Condition chính thức của hiện vật
-          được ghi nhận là
-          <b>Used</b>.
-
-          Hiện tượng
-          <b>yellowing</b>
-          được lưu lại như một đặc điểm
-          của quá trình lão hóa vật liệu
-          trên đôi giày.
+          Style code: <b>CD8180-100</b>.
+          Retail: <b>$150 USD</b>.
+          Condition: <b>Used</b>.
+          Size: <b>12W / 10.5M US</b>.
+          Yellowing được ghi nhận như material aging của hiện vật.
         </div>
       `,
 
       en: `
         <p>
-          Released on
-          <b>December 12, 2019</b>,
-          the
-          <b>Nike x Off-White Waffle Racer SP 'White'</b>
-          formed part of
-          <b>Athlete in Progress</b>,
-          a Nike project developed with
-          <b>Virgil Abloh</b>.
-
-          This chapter of their collaboration
-          shifted attention away from simply
-          reconstructing familiar sneaker icons
-          and toward Nike's deeper heritage
-          in running and track &amp; field.
+          The <b>Nike x Off-White Waffle Racer SP 'White'</b>
+          released on
+          <b>December 12, 2019</b>
+          as the third sneaker chapter
+          in the women's
+          <b>Athlete in Progress</b>
+          collection by Nike and Virgil Abloh.
         </p>
 
         <p>
-          Athlete in Progress
-          was built around the idea
-          of the athlete as someone
-          continuously developing,
-          adapting,
-          and moving forward.
-
-          Rather than presenting performance products
-          as completely resolved objects,
-          Virgil Abloh treated experimentation,
-          movement,
-          and technical construction
-          as part of the aesthetic itself.
+          Athlete in Progress moved the Nike x Off-White relationship
+          beyond the reconstruction of familiar sneaker icons.
+          The project shifted toward running, track &amp; field,
+          and the image of the athlete as continuously developing.
+          Before the Waffle Racer,
+          the line had already explored models such as the
+          <b>Zoom Terra Kiger 5</b> and <b>Vapor Street</b>.
         </p>
 
         <p>
-          The sneaker is based on the
-          <b>Nike Waffle Racer</b>,
-          a running silhouette closely connected
-          to Nike's early history
-          and the design philosophy of
-          <b>Bill Bowerman</b>.
-
-          The original waffle outsole concept
-          was developed to provide traction
-          through a lightweight structure
-          and eventually became
-          one of the most recognizable elements
-          of Nike's running heritage.
+          The historical base is the
+          <b>Nike Waffle Racer</b>
+          and Bill Bowerman's running legacy.
+          The waffle outsole became one of Nike's defining early stories
+          because it delivered traction in a relatively lightweight structure.
+          Abloh does not attempt to make that heritage cleaner;
+          he deliberately makes the shoe look closer to an active prototype.
         </p>
 
         <p>
-          For the Off-White interpretation,
-          Abloh retained the retro-running foundation
-          while surrounding the upper
-          with a netted,
-          translucent film.
-
-          The construction evokes
-          athletic tape and technical wrapping,
-          exposing layers of the shoe
-          rather than concealing
-          how the product is assembled.
+          The upper is wrapped in a
+          <b>translucent, tape-inspired film</b>
+          over mesh and nylon,
+          creating an effect similar to athletic taping or technical wrapping.
+          The layered construction allows the viewer to read
+          how the shoe is assembled rather than only its finished surface.
         </p>
 
         <p>
-          One of the design's
-          most immediately recognizable features
-          is its dual-lacing system.
-
-          Traditional laces remain underneath,
-          while an additional
-          <b>Electric Green</b>
-          cord runs through
-          black external hooks.
-
-          The system introduces
-          a hiking and performance-equipment influence,
-          turning a functional fastening element
-          into a major visual component.
+          The dual-lacing system is one of the most important interventions.
+          Alongside conventional laces,
+          an <b>Electric Green hiking cord</b>
+          passes through black anchor points.
+          The system blends running language with outdoor equipment,
+          a recurring idea within Athlete in Progress.
         </p>
 
         <p>
-          Off-White's established design language
-          continues through
-          the exposed tongue construction,
-          industrial-style typography,
-          orange tab,
-          retro Nike tongue branding,
-          prominent Swoosh,
-          and signature zip tie.
-
-          Together,
-          these elements create a contrast
-          between a historically important
-          Nike running silhouette
-          and Virgil Abloh's contemporary
-          deconstructed approach.
+          The outsole is equally aggressive.
+          Pronounced <b>rubber spikes</b>
+          push the shoe somewhere between
+          a retro runner, a track spike, and a trail object.
+          Their intentionally exaggerated character
+          makes the Off-White Waffle Racer feel more like a design experiment
+          than a straightforward retro.
         </p>
 
         <p>
-          The outsole provides
-          one of the most dramatic interventions.
-
-          Rather than relying exclusively
-          on the traditional waffle structure,
-          Nike and Off-White added
-          pronounced
-          <b>rubber spikes</b>
-          beneath the shoe.
-
-          The resulting appearance references
-          track spikes,
-          trail footwear,
-          and specialized athletic equipment
-          at the same time.
+          Off-White branding appears through
+          industrial text,
+          the orange tab,
+          exposed tongue construction,
+          metallic/silver Swoosh,
+          and zip-tie motif.
+          The White colorway uses a pale base
+          so that film, cord, spikes, and hardware
+          become especially visible.
         </p>
 
         <p>
-          The
-          <b>White/Electric Green-Black</b>
-          colorway uses white
-          and off-white tones as its foundation,
-          contrasted by
-          Electric Green secondary laces,
-          black hardware,
-          a metallic Swoosh,
-          and Off-White's recognizable
-          orange accent.
-
-          The lighter palette makes
-          the layered materials,
-          translucent construction,
-          and technical details
-          especially visible.
-        </p>
-
-        <p>
-          The Waffle Racer SP
-          was released in three primary colorways:
-          <b>White</b>,
-          <b>Black</b>,
-          and
-          <b>Vivid Sky</b>.
-
+          The Waffle Racer released in three primary colorways:
+          <b>Black</b>, <b>White</b>, and <b>Vivid Sky</b>.
           The White edition carries style code
           <b>CD8180-100</b>
-          and originally retailed for
+          and a U.S. retail price of
           <b>$150 USD</b>.
         </p>
 
         <p>
-          The example preserved in the
+          The artifact in the
           <b>Lộc An Sneaker Collection</b>
-          is the White edition
-          in size
-          <b>12W / 10.5M US</b>,
-          with
-          <b>Used</b>
-          condition.
-        </p>
-
-        <p>
-          Through wear
-          and the natural aging
-          of its materials,
-          portions of the sneaker's
-          white and off-white construction
-          have developed visible
-          <b>yellowing</b>.
-
-          Within the archive,
-          this is documented
-          as part of the artifact's
-          present physical condition
-          and material history
-          rather than as a separate
-          condition classification.
+          is size <b>12W / 10.5M US</b> in <b>Used</b> condition.
+          Its white and off-white materials now show yellowing with age.
+          The archive records yellowing as material aging,
+          not as a separate condition category.
         </p>
 
         <div class="exhibition-note">
           <strong>Exhibition Note:</strong>
-
-          The artifact's official condition
-          is recorded as
-          <b>Used</b>.
-
-          Visible
-          <b>yellowing</b>
-          is documented as part
-          of the sneaker's natural
-          material-aging history.
+          Style code: <b>CD8180-100</b>.
+          Retail: <b>$150 USD</b>.
+          Condition: <b>Used</b>.
+          Size: <b>12W / 10.5M US</b>.
+          Yellowing is documented as material aging of the artifact.
         </div>
       `
     }
@@ -1890,11 +1662,8 @@ const sneakers = [
     },
 
     sku: "404390-01",
-
     colorway: "Warm White/PUMA Black",
-
     retailPrice: "$110 USD",
-
     releaseDate: "2025-08-29",
 
     editionType: {
@@ -1908,667 +1677,499 @@ const sneakers = [
     },
 
     size: "9.5W / 8M US",
-
     image: "pictures/puma_rose.png",
 
     story: {
-
       vi: `
         <p>
-          Ra mắt trong năm 2025,
           <b>PUMA x ROSÉ Speedcat Leather 'Warm White'</b>
-          là một trong những thiết kế trung tâm
-          của collection đầu tiên
-          được phát triển giữa
-          <b>PUMA</b>
-          và
-          <b>ROSÉ</b>.
-
-          Dự án xuất hiện sau khi ROSÉ
-          trở thành global ambassador
-          và collaborator của PUMA,
-          mở rộng mối quan hệ
-          từ hình ảnh thương hiệu
-          sang một dự án thiết kế
-          mang dấu ấn cá nhân rõ rệt hơn.
+          thuộc collection đầy đủ đầu tiên của ROSÉ với PUMA,
+          được giới thiệu năm 2025
+          sau khi cô gia nhập thương hiệu với vai trò
+          global ambassador và collaborator vào năm 2024.
         </p>
 
         <p>
-          Collection được xây dựng
-          như một sự phản ánh
-          phong cách riêng của ROSÉ,
-          kết hợp classic streetwear,
-          sportswear archive của PUMA,
-          những yếu tố tinh giản,
-          cùng cách xử lý mềm mại
-          và refined hơn.
-
-          Thay vì dựa chủ yếu
-          vào branding cỡ lớn,
-          collection sử dụng
-          tỷ lệ,
-          vật liệu,
-          hệ thống dây
-          và những chi tiết nhỏ
-          để tạo nhận diện.
+          PUMA mô tả collection như một project rất cá nhân,
+          kết hợp oversized sportswear,
+          tailored elements,
+          các tham chiếu đến archive của hãng
+          và những thiết kế nữ tính hơn.
+          Một "ROSIE" wordmark riêng cũng được sử dụng xuyên suốt collection.
         </p>
 
         <p>
-          Nền tảng của đôi giày là
-          <b>PUMA Speedcat</b>,
-          silhouette có nguồn gốc
-          sâu trong lịch sử motorsport
-          của PUMA.
-
-          Dòng Speedcat phát triển
-          từ footwear dành cho môi trường đua xe,
-          nơi cấu trúc cực thấp,
-          phần đế mỏng
-          và form ôm chân
-          hỗ trợ người lái
-          cảm nhận bàn đạp
-          một cách chính xác hơn.
+          ROSÉ gọi tinh thần của dự án là
+          <b>"quiet rebellion"</b>:
+          sự tự tin, honest expression
+          và khả năng xuất hiện như phiên bản chân thật nhất của bản thân
+          mà không cần quá nhiều noise.
+          Cách tiếp cận này đặc biệt phù hợp với Speedcat,
+          một silhouette vốn tối giản về khối lượng nhưng rất rõ cá tính về tỷ lệ.
         </p>
 
         <p>
-          Từ nguồn gốc kỹ thuật đó,
-          Speedcat dần vượt khỏi
-          môi trường motorsport
-          và trở thành
-          một lifestyle silhouette.
-
-          Đặc biệt trong những năm 2000,
-          form dáng thấp và thuôn dài
-          của Speedcat
-          tạo ra một thẩm mỹ
-          khác biệt rõ rệt
-          so với những sneaker
-          có midsole dày
-          hoặc tỷ lệ bulky hơn.
+          Speedcat bắt nguồn từ motorsport của PUMA.
+          Dáng giày thấp, dài và gần mặt đất
+          phát triển từ nhu cầu của racing footwear,
+          nơi cảm giác bàn đạp và kiểm soát quan trọng hơn
+          cushioning dày hoặc volume lớn.
+          Sau đó Speedcat vượt khỏi đường đua
+          để trở thành một lifestyle silhouette có ảnh hưởng lớn trong những năm 2000.
         </p>
 
         <p>
-          Khi xu hướng
-          <b>low-profile sneaker</b>
-          quay trở lại mạnh mẽ,
-          PUMA cũng đưa Speedcat
-          trở lại vị trí nổi bật
-          trong catalogue của hãng.
-
-          Collaboration với ROSÉ
-          xuất hiện đúng trong giai đoạn này,
-          nhưng thay vì chỉ sử dụng
-          một phối màu mới,
-          cô tái diễn giải
-          chính ngôn ngữ của silhouette.
+          Trong collection của ROSÉ,
+          PUMA giới thiệu hai cách diễn giải Speedcat đáng chú ý:
+          <b>Speedcat Ballet</b> với lacing lấy cảm hứng từ pointe shoes,
+          và một Speedcat premium treatment
+          với statement lacing bao quanh upper.
+          Pair Warm White 404390-01 thuộc chính ngôn ngữ statement-lacing đó.
         </p>
 
         <p>
-          Phiên bản
-          <b>Warm White/PUMA Black</b>
-          giữ lại form thấp,
-          toe thuôn
-          và tỷ lệ aerodynamic
-          đặc trưng của Speedcat.
-
-          Upper sử dụng
-          leather màu Warm White,
-          tạo cảm giác mềm hơn
-          so với pure white,
-          trong khi
-          <b>PUMA Formstrip màu đen</b>
-          tạo đường tương phản mạnh
-          chạy dọc thân giày.
+          Upper dùng Warm White leather
+          với black PUMA Formstrip tạo tương phản.
+          Một secondary wraparound lacing system
+          chạy quanh thân giày,
+          biến dây thành yếu tố tạo hình thay vì chỉ là fastening system.
+          Exposed zig-zag stitching và co-branded tongue treatment
+          làm pair khác rõ Speedcat tiêu chuẩn.
         </p>
 
         <p>
-          Theo thông số sản phẩm của PUMA,
-          upper sử dụng chủ yếu
-          <b>cow leather</b>,
-          kết hợp một tỷ lệ nhỏ
-          vật liệu synthetic.
-
-          Outsole cao su
-          giữ lại cảm giác
-          sát mặt đất đặc trưng,
-          trong khi cấu trúc sole
-          sử dụng
-          <b>IMEVA</b>
-          nhằm hỗ trợ trọng lượng nhẹ
-          và độ êm
-          mà không làm thay đổi
-          silhouette low-profile.
+          Sự đối lập là phần hay nhất của thiết kế:
+          phía dưới vẫn là racing-derived silhouette
+          với form rất thấp và streamlined,
+          nhưng bên trên lại có ribbon-like lacing
+          và một cách xử lý mềm hơn, thời trang hơn.
+          Thay vì xóa motorsport heritage,
+          ROSÉ đặt feminine detailing song song với nó.
         </p>
 
         <p>
-          Chi tiết dễ nhận biết nhất
-          của phiên bản ROSÉ
-          là
-          <b>secondary wraparound lacing system</b>.
-
-          Ngoài hệ thống dây chính,
-          một bộ dây thứ hai
-          được dẫn vòng qua upper,
-          tạo ra những đường chéo
-          chạy trực tiếp
-          trên bề mặt của đôi giày.
+          PUMA công bố collection bắt đầu bán từ
+          <b>28 tháng 8 năm 2025</b>,
+          trong khi product listing của 404390-01
+          ghi release date
+          <b>29 tháng 8 năm 2025</b>.
+          Catalogue sử dụng ngày product release 29/08/2025
+          cho chính pair này.
         </p>
 
         <p>
-          Trên phối màu Warm White,
-          dây màu đen
-          tạo độ tương phản rất mạnh
-          với nền leather sáng.
-
-          Khi nhìn từ xa,
-          các đường dây
-          gần giống ribbon
-          được quấn quanh silhouette,
-          biến một thành phần
-          vốn mang chức năng cố định chân
-          thành một thành phần
-          đồ họa của thiết kế.
+          Style code là <b>404390-01</b>,
+          colorway <b>Warm White/PUMA Black</b>,
+          retail <b>$110 USD</b>.
+          Các phụ kiện được ghi nhận gồm
+          black laces, white laces và ROSIE pins,
+          cùng special packaging / collaboration components tùy market.
         </p>
 
         <p>
-          Đây cũng là nơi
-          ngôn ngữ của ROSÉ
-          tạo ra sự đối lập
-          với nguồn gốc motorsport.
-
-          Phần nền Speedcat
-          vẫn gợi cảm giác
-          tốc độ,
-          thiết bị đua xe
-          và sự chính xác,
-          nhưng hệ thống dây mới
-          làm tổng thể mềm mại hơn
-          và đưa đôi giày
-          gần hơn với fashion footwear.
-        </p>
-
-        <p>
-          Collection PUMA x ROSÉ
-          tiếp tục khai thác
-          sự đối lập này
-          trên những reinterpretation khác
-          của Speedcat,
-          bao gồm những thiết kế
-          đưa yếu tố ballet
-          và ribbon
-          vào một silhouette
-          vốn có nguồn gốc từ racing.
-
-          Vì vậy,
-          tính nữ tính trong collection
-          không thay thế
-          motorsport heritage,
-          mà được đặt song song
-          với heritage đó.
-        </p>
-
-        <p>
-          Các chi tiết khác
-          bao gồm
-          <b>PUMA x ROSÉ co-branding</b>,
-          tongue treatment riêng,
-          exposed stitching
-          và những điểm hoàn thiện
-          giúp collaboration
-          có nhận diện riêng
-          mà vẫn giữ lại
-          cấu trúc cơ bản của Speedcat.
-        </p>
-
-        <p>
-          ROSÉ mô tả tinh thần
-          của project
-          thông qua ý tưởng
-          <b>quiet rebellion</b>:
-          sự tự tin thể hiện cá tính
-          mà không nhất thiết
-          phải sử dụng
-          những tuyên bố thị giác quá lớn.
-
-          Triết lý này phù hợp
-          với chính đôi Speedcat,
-          khi sự khác biệt
-          nằm nhiều ở tỷ lệ,
-          cách buộc dây,
-          material
-          và detailing
-          hơn là branding oversized.
-        </p>
-
-        <p>
-          Phối màu
-          <b>Warm White/PUMA Black</b>
-          càng nhấn mạnh cách tiếp cận đó.
-
-          Warm White tạo cảm giác
-          nhẹ nhàng,
-          hơi vintage
-          và dễ kết hợp,
-          trong khi Formstrip
-          cùng hệ thống dây màu đen
-          giữ cho tổng thể
-          vẫn có độ sắc nét
-          cần thiết của một racing silhouette.
-        </p>
-
-        <p>
-          Packaging và phụ kiện
-          cũng là một phần đáng chú ý
-          đối với một bộ được lưu trữ
-          theo hướng archive.
-
-          Phiên bản này được ghi nhận
-          với
-          <b>black laces</b>,
-          <b>white laces</b>
-          và
-          <b>2 ROSIE pins</b>,
-          cùng các thành phần packaging
-          và collaboration accessories
-          tùy theo thị trường.
-        </p>
-
-        <p>
-          Việc giữ lại
-          những phụ kiện này
-          có ý nghĩa đối với
-          provenance và tính đầy đủ
-          của bộ sản phẩm,
-          đặc biệt khi collaboration
-          được lưu trữ
-          không chỉ như footwear
-          mà như một hiện vật
-          của một thời điểm cụ thể
-          trong lịch sử thương hiệu.
-        </p>
-
-        <p>
-          Phiên bản mang style code
-          <b>404390-01</b>,
-          colorway
-          <b>Warm White/PUMA Black</b>,
-          và retail
-          <b>$110 USD</b>.
-
           Tác phẩm trong
           <b>Lộc An Sneaker Collection</b>
-          được lưu giữ
-          ở tình trạng
-          <b>Deadstock</b>,
-          size
-          <b>9.5W / 8M US</b>.
-        </p>
-
-        <p>
-          Trong bối cảnh rộng hơn,
-          PUMA x ROSÉ Speedcat
-          đại diện cho điểm giao
-          giữa ba lớp lịch sử:
-          <b>motorsport heritage</b>
-          của PUMA,
-          sự hồi sinh
-          của
-          <b>low-profile sneaker culture</b>,
-          và một cách diễn giải
-          mang tính
-          <b>refined femininity</b>
-          của ROSÉ.
+          được lưu giữ ở tình trạng
+          <b>Deadstock</b>, size <b>9.5W / 8M US</b>.
+          Trong archive, phụ kiện collaboration được xem là một phần provenance
+          của toàn bộ set chứ không chỉ là extras tách rời.
         </p>
 
         <div class="exhibition-note">
           <strong>Ghi chú lưu trữ:</strong>
-
-          Style code:
-          <b>404390-01</b>.
-
-          Colorway:
-          <b>Warm White/PUMA Black</b>.
-
-          Retail:
-          <b>$110 USD</b>.
-
-          Condition:
-          <b>Deadstock</b>.
-
-          Size:
-          <b>9.5W / 8M US</b>.
-
-          Các phụ kiện collaboration
-          nên được lưu giữ cùng hiện vật
-          khi có thể
-          nhằm duy trì provenance
-          và tính đầy đủ của bộ sản phẩm.
+          Style code: <b>404390-01</b>.
+          Colorway: <b>Warm White/PUMA Black</b>.
+          Retail: <b>$110 USD</b>.
+          Condition: <b>Deadstock</b>.
+          Size: <b>9.5W / 8M US</b>.
         </div>
       `,
 
       en: `
         <p>
-          Released in 2025,
-          the
-          <b>PUMA x ROSÉ Speedcat Leather 'Warm White'</b>
-          became one of the central footwear designs
-          from the first full collection
-          developed between
-          <b>PUMA</b>
-          and
-          <b>ROSÉ</b>.
-
-          The project followed ROSÉ's
-          appointment as a global ambassador
-          and collaborator,
-          expanding the relationship
-          beyond campaign imagery
-          into a more personal
-          design project.
+          The <b>PUMA x ROSÉ Speedcat Leather 'Warm White'</b>
+          belongs to ROSÉ's first full collection with PUMA,
+          introduced in 2025 after she joined the brand
+          as a global ambassador and collaborator in 2024.
         </p>
 
         <p>
-          The collection was conceived
-          as a reflection
-          of ROSÉ's personal style,
-          combining classic streetwear,
-          references to PUMA's sportswear archive,
-          understated proportions,
-          and a softer,
-          more refined design language.
-
-          Rather than relying primarily
-          on oversized branding,
-          its identity emerges through
-          proportion,
-          materials,
-          lacing,
-          and small collaborative details.
+          PUMA described the collection as a highly personal project,
+          combining oversized sportswear,
+          tailored elements,
+          references to the brand's archive,
+          and more distinctly feminine designs.
+          A dedicated "ROSIE" wordmark also appears throughout the collection.
         </p>
 
         <p>
-          The foundation of the shoe is the
-          <b>PUMA Speedcat</b>,
-          a silhouette deeply connected
-          to PUMA's motorsport history.
-
-          The Speedcat lineage grew
-          from racing footwear,
-          where an exceptionally low construction,
-          thin sole,
-          and close-fitting shape
-          helped drivers maintain
-          precise pedal feel.
+          ROSÉ described the project's spirit through
+          <b>"quiet rebellion"</b>:
+          confidence, honest expression,
+          and appearing as the most authentic version of oneself
+          without unnecessary noise.
+          That idea suits the Speedcat especially well,
+          because the silhouette is visually minimal in mass
+          yet highly distinctive in proportion.
         </p>
 
         <p>
-          From that technical foundation,
-          the Speedcat eventually moved
-          beyond motorsport
-          and became
-          a lifestyle silhouette.
-
-          During the 2000s in particular,
-          its low,
-          elongated proportions
-          offered a distinctly different aesthetic
-          from sneakers built around
-          thicker midsoles
-          and bulkier forms.
+          The Speedcat comes from PUMA's motorsport heritage.
+          Its low, elongated, close-to-the-ground shape
+          developed from the priorities of racing footwear,
+          where pedal feel and control matter more than thick cushioning or bulky volume.
+          The model later moved beyond the racetrack
+          and became an influential lifestyle silhouette during the 2000s.
         </p>
 
         <p>
-          As
-          <b>low-profile sneakers</b>
-          returned to prominence,
-          PUMA brought the Speedcat
-          back into a central position
-          within its footwear catalogue.
-
-          The ROSÉ collaboration arrived
-          during this revival,
-          but rather than functioning
-          simply as a new colorway,
-          it reinterpreted
-          the visual language
-          of the silhouette itself.
+          Within ROSÉ's collection,
+          PUMA introduced two notable Speedcat interpretations:
+          the <b>Speedcat Ballet</b> with pointe-inspired lacing,
+          and a premium Speedcat treatment
+          with statement laces wrapping the upper.
+          The Warm White 404390-01 belongs to that statement-lacing language.
         </p>
 
         <p>
-          The
-          <b>Warm White/PUMA Black</b>
-          edition retains
-          the Speedcat's low stance,
-          streamlined toe,
-          and aerodynamic proportions.
-
-          Its Warm White leather upper
-          provides a softer appearance
-          than stark optical white,
-          while the black
-          <b>PUMA Formstrip</b>
-          creates a strong,
-          graphic contrast.
+          The upper uses Warm White leather
+          contrasted by a black PUMA Formstrip.
+          A secondary wraparound lacing system
+          travels around the shoe,
+          turning the laces into a visual construction element rather than only a fastening system.
+          Exposed zig-zag stitching and co-branded tongue treatment
+          further separate the pair from a standard Speedcat.
         </p>
 
         <p>
-          PUMA product specifications
-          describe the upper
-          as being constructed
-          primarily from
-          <b>cow leather</b>,
-          with a small synthetic component.
-
-          The rubber outsole
-          maintains the silhouette's
-          close-to-the-ground character,
-          while
-          <b>IMEVA</b>
-          in the sole structure
-          supports lightweight cushioning
-          without disrupting
-          its low-profile proportions.
+          The contrast is central to the design:
+          underneath remains a racing-derived silhouette
+          with a very low, streamlined form,
+          while the upper introduces ribbon-like lacing
+          and a softer, more fashion-oriented character.
+          Rather than erasing motorsport heritage,
+          ROSÉ places feminine detailing beside it.
         </p>
 
         <p>
-          The most recognizable intervention
-          on the ROSÉ edition
-          is the
-          <b>secondary wraparound lacing system</b>.
-
-          In addition to the primary laces,
-          a second lace system
-          travels around the upper,
-          creating diagonal lines
-          directly across
-          the surface of the sneaker.
+          PUMA announced the collection as available from
+          <b>August 28, 2025</b>,
+          while product listings for 404390-01
+          record a release date of
+          <b>August 29, 2025</b>.
+          The catalogue uses the product-specific August 29 date for this pair.
         </p>
 
         <p>
-          On the Warm White edition,
-          the black laces
-          create a strong contrast
-          against the pale leather.
-
-          From a distance,
-          these lines appear almost
-          like ribbons
-          wrapped around the silhouette,
-          transforming a traditionally functional
-          component
-          into a graphic part
-          of the design.
+          Style code: <b>404390-01</b>.
+          Colorway: <b>Warm White/PUMA Black</b>.
+          Retail: <b>$110 USD</b>.
+          Documented accessories include black laces, white laces, and ROSIE pins,
+          with special packaging and other collaboration components depending on market.
         </p>
 
         <p>
-          This is also where
-          ROSÉ's design language
-          creates a deliberate tension
-          with the Speedcat's motorsport origins.
-
-          The underlying shoe
-          continues to communicate
-          speed,
-          racing equipment,
-          and precision,
-          while the new lacing
-          softens the overall appearance
-          and moves the silhouette
-          further into fashion.
-        </p>
-
-        <p>
-          The wider PUMA x ROSÉ collection
-          explores this tension
-          across other reinterpretations
-          of the Speedcat,
-          combining racing heritage
-          with ballet-inspired,
-          ribbon-like,
-          and more feminine references.
-
-          The feminine elements
-          therefore do not erase
-          the Speedcat's motorsport history;
-          they are deliberately placed
-          alongside it.
-        </p>
-
-        <p>
-          Additional details include
-          <b>PUMA x ROSÉ co-branding</b>,
-          distinctive tongue treatment,
-          exposed stitching,
-          and finishing elements
-          that establish a clear
-          collaborative identity
-          while preserving
-          the underlying Speedcat structure.
-        </p>
-
-        <p>
-          ROSÉ described
-          the creative spirit
-          of the project
-          through the idea of
-          <b>quiet rebellion</b>:
-          expressing individuality
-          with confidence
-          without requiring
-          an oversized visual statement.
-
-          That philosophy fits
-          the Speedcat itself,
-          where much of the collaboration's
-          identity lies in
-          proportion,
-          lacing,
-          material,
-          and detail
-          rather than oversized branding.
-        </p>
-
-        <p>
-          The
-          <b>Warm White/PUMA Black</b>
-          palette reinforces
-          this approach.
-
-          Warm White creates
-          a softer,
-          slightly vintage character,
-          while the black Formstrip
-          and lacing
-          retain the sharpness
-          expected from
-          a racing-derived silhouette.
-        </p>
-
-        <p>
-          Packaging and accessories
-          are also relevant
-          when the release
-          is preserved as an archive object.
-
-          The edition is documented
-          with
-          <b>black laces</b>,
-          <b>white laces</b>,
-          and
-          <b>two ROSIE pins</b>,
-          alongside special packaging
-          and other collaboration components
-          depending on market.
-        </p>
-
-        <p>
-          Preserving these accessories
-          contributes to
-          the provenance
-          and completeness
-          of the set,
-          particularly when the collaboration
-          is documented not only
-          as footwear,
-          but as an artifact
-          representing a specific moment
-          in brand and design history.
-        </p>
-
-        <p>
-          The release carries style code
-          <b>404390-01</b>,
-          the
-          <b>Warm White/PUMA Black</b>
-          colorway,
-          and an original retail price of
-          <b>$110 USD</b>.
-
           The example preserved in the
           <b>Lộc An Sneaker Collection</b>
-          remains
-          <b>Deadstock</b>
-          in size
-          <b>9.5W / 8M US</b>.
-        </p>
-
-        <p>
-          In a broader context,
-          the PUMA x ROSÉ Speedcat
-          sits at the intersection
-          of three histories:
-          PUMA's
-          <b>motorsport heritage</b>,
-          the contemporary return of
-          <b>low-profile sneaker culture</b>,
-          and ROSÉ's interpretation
-          of
-          <b>refined femininity</b>.
+          remains <b>Deadstock</b> in size <b>9.5W / 8M US</b>.
+          Collaboration accessories are treated as part of the set's provenance
+          rather than merely detached extras.
         </p>
 
         <div class="exhibition-note">
           <strong>Exhibition Note:</strong>
+          Style code: <b>404390-01</b>.
+          Colorway: <b>Warm White/PUMA Black</b>.
+          Retail: <b>$110 USD</b>.
+          Condition: <b>Deadstock</b>.
+          Size: <b>9.5W / 8M US</b>.
+        </div>
+      `
+    }
+  },
 
-          Style code:
-          <b>404390-01</b>.
 
-          Colorway:
-          <b>Warm White/PUMA Black</b>.
+  /* =====================================================
+     10. JORDAN 4 RETRO
+         BLACK CEMENT 1999
+  ===================================================== */
 
-          Original retail:
-          <b>$110 USD</b>.
+  {
+    id: "jordan-4-black-cement-1999",
 
-          Condition:
-          <b>Deadstock</b>.
+    title: {
+      vi: "Jordan 4 Retro 'Black Cement' 1999",
+      en: "Jordan 4 Retro 'Black Cement' 1999"
+    },
 
-          Size:
-          <b>9.5W / 8M US</b>.
+    subtitle: {
+      vi: "First Black Cement Retro Release (1999)",
+      en: "First Black Cement Retro Release (1999)"
+    },
 
-          Collaboration accessories
-          should be preserved with the artifact
-          whenever possible
-          to maintain provenance
-          and set completeness.
+    sku: "136013-001",
+    colorway: "Black/Cement Grey",
+    retailPrice: "$99.99 USD",
+    releaseDate: "1999-05-05",
+
+    editionType: {
+      vi: "GR",
+      en: "GR"
+    },
+
+    condition: {
+      vi: "Used",
+      en: "Used"
+    },
+
+    size: "9.5 US",
+    image: "pictures/jordan4_bred_1999.png",
+
+    story: {
+      vi: `
+        <p>
+          Phát hành ngày
+          <b>5 tháng 5 năm 1999</b>,
+          <b>Jordan 4 Retro 'Black Cement' 1999</b>
+          là lần retro đầu tiên của Black Cement
+          sau bản nguyên bản năm 1989.
+          Khoảng cách đúng một thập kỷ
+          khiến pair này trở thành một trong những tài liệu quan trọng
+          của giai đoạn Jordan retro bắt đầu trưởng thành.
+        </p>
+
+        <p>
+          Air Jordan 4 nguyên bản do
+          <b>Tinker Hatfield</b> thiết kế.
+          Sau Air Jordan 3,
+          Hatfield tiếp tục visible Air cushioning
+          nhưng thêm mesh paneling,
+          plastic support wings,
+          multi-point lacing system
+          và tongue với Jumpman/Flight branding.
+          Air Jordan 4 cũng trở thành model Jordan đầu tiên
+          được đưa ra thị trường trên quy mô toàn cầu.
+        </p>
+
+        <p>
+          Trong các phối màu OG,
+          <b>Black/Cement Grey</b>
+          là một trong những pair có liên hệ mạnh nhất với lịch sử thi đấu của Michael Jordan.
+          Upper black nubuck kết hợp Cement Grey,
+          white và red accents
+          tạo ra một bảng màu tối hơn Chicago
+          nhưng vẫn gắn rõ với Chicago Bulls.
+        </p>
+
+        <p>
+          Colorway ngày nay thường được gọi là
+          <b>"Bred"</b>,
+          nhưng tên <b>"Black Cement"</b>
+          đã được cộng đồng sneaker dùng từ lâu.
+          "Cement" ở đây liên hệ đến Cement Grey
+          trên outsole và các chi tiết của pair,
+          không phải chỉ đến elephant print như nhiều người thường nhầm khi nghe từ Cement.
+        </p>
+
+        <p>
+          Black Cement 4 gắn trực tiếp với
+          <b>"The Shot"</b> năm 1989.
+          Trong Game 5 vòng đầu NBA Playoffs trước Cleveland Cavaliers,
+          Michael Jordan thực hiện cú ném quyết định trước Craig Ehlo,
+          tạo ra một trong những khoảnh khắc biểu tượng nhất sự nghiệp của ông.
+          Trên chân Jordan trong khoảnh khắc đó là Air Jordan 4 Black Cement.
+        </p>
+
+        <p>
+          Mười năm sau,
+          bản <b>1999 Retro</b>
+          đưa colorway trở lại với style code
+          <b>136013-001</b>.
+          Pair giữ black nubuck,
+          mesh, wings,
+          Cement Grey và red detailing,
+          đồng thời giữ một chi tiết cực kỳ quan trọng đối với collectors:
+          <b>NIKE AIR ở heel</b>.
+        </p>
+
+        <p>
+          Nike Air heel làm bản 1999 đặc biệt hơn khi nhìn lại timeline sau đó.
+          Black Cement quay lại năm 2008 trong Countdown Pack
+          và năm 2012,
+          nhưng các bản đó sử dụng Jumpman ở heel.
+          Phải đến năm <b>2019</b>,
+          Nike Air mới trở lại trên một Black Cement retro phát hành rộng rãi.
+          Vì vậy, bản 1999 giữ vị trí rất riêng trong khoảng hai thập kỷ.
+        </p>
+
+        <p>
+          Packaging cũng phản ánh early-retro era:
+          bản 1999 được phát hành trong
+          <b>silver Jordan box</b>
+          và complete examples có thể đi kèm
+          <b>retro card</b>
+          với hình Michael Jordan trong Air Jordan 4.
+          Đây là kiểu packaging rất đặc trưng của Jordan retro cuối thập niên 1990.
+        </p>
+
+        <p>
+          Giá retail chính xác được archive sử dụng là
+          <b>$99.99 USD</b>.
+          Nhiều database sneaker làm tròn con số này thành $100,
+          nhưng catalogue của Lộc An Sneaker Collection giữ mức $99.99
+          theo thông tin retail cụ thể của kỳ phát hành.
+        </p>
+
+        <p>
+          Với một Air Jordan 4 sản xuất năm 1999,
+          material aging là một phần không thể bỏ qua của việc lưu trữ.
+          Các nguồn về vintage pairs ghi nhận polyurethane midsoles,
+          wings và heel tabs có thể xuống cấp theo thời gian.
+          Tuy nhiên, archive không tự động gán những hư hỏng đó cho pair này
+          nếu chưa được quan sát trực tiếp trên hiện vật.
+        </p>
+
+        <p>
+          Tác phẩm trong
+          <b>Lộc An Sneaker Collection</b>
+          là size <b>9.5 US</b>, condition <b>Used</b>.
+          Giá trị lịch sử của nó nằm ở ba lớp cùng lúc:
+          Black Cement gắn với "The Shot",
+          Air Jordan 4 là thiết kế quan trọng của Tinker Hatfield,
+          và bản 1999 là first retro vẫn giữ Nike Air heel branding.
+        </p>
+
+        <div class="exhibition-note">
+          <strong>Ghi chú lưu trữ:</strong>
+          Style code: <b>136013-001</b>.
+          Colorway: <b>Black/Cement Grey</b>.
+          Release: <b>May 5, 1999</b>.
+          Retail: <b>$99.99 USD</b>.
+          Edition Type: <b>GR</b>.
+          Condition: <b>Used</b>.
+          Size: <b>9.5 US</b>.
+        </div>
+      `,
+
+      en: `
+        <p>
+          Released on
+          <b>May 5, 1999</b>,
+          the <b>Jordan 4 Retro 'Black Cement' 1999</b>
+          was the first retro of the Black Cement colorway
+          following the original 1989 edition.
+          The exact ten-year gap makes this pair an important document
+          of the period when Jordan retro culture began to mature.
+        </p>
+
+        <p>
+          The original Air Jordan 4 was designed by
+          <b>Tinker Hatfield</b>.
+          Following the Air Jordan 3,
+          Hatfield retained visible Air cushioning
+          while introducing mesh paneling,
+          plastic support wings,
+          a multi-point lacing system,
+          and the Jumpman/Flight tongue treatment.
+          The Air Jordan 4 also became the first Jordan model
+          to receive a global release.
+        </p>
+
+        <p>
+          Among the original colorways,
+          <b>Black/Cement Grey</b>
+          has one of the strongest links to Michael Jordan's on-court history.
+          Its black nubuck upper is paired with Cement Grey,
+          white, and red accents,
+          creating a darker interpretation of the Chicago Bulls palette.
+        </p>
+
+        <p>
+          The colorway is now frequently called
+          <b>"Bred"</b>,
+          but <b>"Black Cement"</b>
+          is the older collector name.
+          "Cement" refers to the Cement Grey used on the shoe,
+          not simply to elephant print — a common misunderstanding created by the language around other Jordan models.
+        </p>
+
+        <p>
+          The Black Cement 4 is permanently tied to
+          <b>"The Shot"</b> in 1989.
+          In Game 5 of the opening playoff series against the Cleveland Cavaliers,
+          Michael Jordan hit the decisive jumper over Craig Ehlo,
+          creating one of the defining images of his career.
+          On his feet were the Air Jordan 4 Black Cement.
+        </p>
+
+        <p>
+          Ten years later,
+          the <b>1999 Retro</b>
+          returned the colorway under style code
+          <b>136013-001</b>.
+          It retained black nubuck,
+          mesh, wings,
+          Cement Grey and red detailing,
+          together with one detail especially valued by collectors:
+          <b>NIKE AIR on the heel</b>.
+        </p>
+
+        <p>
+          The Nike Air heel becomes even more significant in the later timeline.
+          Black Cement returned in the 2008 Countdown Pack
+          and again in 2012,
+          but those editions used Jumpman branding at the heel.
+          Nike Air did not return to a widely released Black Cement retro
+          until <b>2019</b>.
+          The 1999 pair therefore occupied a uniquely OG-linked position for roughly two decades.
+        </p>
+
+        <p>
+          Packaging also reflects the early retro era:
+          the 1999 edition was supplied in a
+          <b>silver Jordan box</b>,
+          and complete examples may include a
+          <b>retro card</b>
+          featuring Michael Jordan in the Air Jordan 4.
+          This packaging language is strongly associated with late-1990s Jordan retros.
+        </p>
+
+        <p>
+          The archive records the exact retail as
+          <b>$99.99 USD</b>.
+          Many sneaker databases round the figure to $100,
+          but the Lộc An Sneaker Collection retains $99.99
+          as the precise retail figure used for this release record.
+        </p>
+
+        <p>
+          Material aging is an unavoidable consideration
+          when preserving an Air Jordan 4 produced in 1999.
+          Sources documenting surviving vintage pairs note that polyurethane midsoles,
+          wings, and heel tabs can deteriorate with time.
+          The archive does not automatically assign any of those failures to this specific pair
+          unless they are directly observed on the artifact.
+        </p>
+
+        <p>
+          The example preserved in the
+          <b>Lộc An Sneaker Collection</b>
+          is size <b>9.5 US</b> in <b>Used</b> condition.
+          Its historical significance sits on three levels at once:
+          Black Cement's connection to "The Shot",
+          the Air Jordan 4's importance within Tinker Hatfield's design legacy,
+          and the 1999 edition's status as the first retro while retaining Nike Air heel branding.
+        </p>
+
+        <div class="exhibition-note">
+          <strong>Exhibition Note:</strong>
+          Style code: <b>136013-001</b>.
+          Colorway: <b>Black/Cement Grey</b>.
+          Release: <b>May 5, 1999</b>.
+          Retail: <b>$99.99 USD</b>.
+          Edition Type: <b>GR</b>.
+          Condition: <b>Used</b>.
+          Size: <b>9.5 US</b>.
         </div>
       `
     }
