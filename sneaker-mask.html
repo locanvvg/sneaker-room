@@ -2,17 +2,12 @@
 <html lang="vi">
 
 <head>
-
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <meta
     name="description"
-    content="Lộc An Collection - Handcrafted Sneaker Mask Archive"
+    content="Lộc An Collection - Nike x LEGO Archive"
   >
 
   <meta
@@ -20,10 +15,7 @@
     content="#0d0d0d"
   >
 
-  <title>
-    Sneaker Mask | Lộc An Sneaker Collection
-  </title>
-
+  <title>LEGO | Lộc An Sneaker Collection</title>
 
   <link
     rel="icon"
@@ -43,65 +35,64 @@
 
   <link
     rel="stylesheet"
-    href="./style.css?v=20260912-restore"
+    href="./style.css?v=20260913-clean-nav"
   >
 
   <link
     rel="stylesheet"
-    href="./collection-menu.css?v=20260912-restore"
+    href="./collection-menu.css?v=20260913-clean-nav"
   >
-
 </head>
-
 
 <body>
 
   <div class="container">
 
-
     <header class="home-header">
 
+      <div class="header-corner-tools">
 
-      <div class="lang-switcher corner-lang">
+        <a href="./about.html" class="about-corner-link">
+          ABOUT
+        </a>
 
-        <button
-          type="button"
-          id="btn-vi"
-          class="lang-btn active"
-          onclick="setMaskLanguage('vi')"
-        >
-          VI
-        </button>
+        <div class="lang-switcher">
 
+          <button
+            type="button"
+            id="btn-vi"
+            class="lang-btn active"
+            onclick="setLegoLanguage('vi')"
+          >
+            VI
+          </button>
 
-        <button
-          type="button"
-          id="btn-en"
-          class="lang-btn"
-          onclick="setMaskLanguage('en')"
-        >
-          EN
-        </button>
+          <button
+            type="button"
+            id="btn-en"
+            class="lang-btn"
+            onclick="setLegoLanguage('en')"
+          >
+            EN
+          </button>
+
+        </div>
 
       </div>
-
 
       <h1>
         LỘC AN SNEAKER COLLECTION
       </h1>
 
-
       <p
-        id="mask-main-subtitle"
+        id="lego-main-subtitle"
         data-vi="Không gian lưu trữ & Bảo tàng Sneaker Kỹ thuật số"
         data-en="Digital Sneaker Archive & Museum"
       >
-        Không gian lưu trữ &amp;
-        Bảo tàng Sneaker Kỹ thuật số
+        Không gian lưu trữ &amp; Bảo tàng Sneaker Kỹ thuật số
       </p>
 
-
-      <nav class="museum-nav">
+      <nav class="museum-nav" aria-label="Collection navigation">
 
         <a
           href="./index.html"
@@ -110,79 +101,63 @@
           SNEAKERS
         </a>
 
-
         <a
           href="./lego.html"
-          class="museum-nav-link"
+          class="museum-nav-link active"
+          aria-current="page"
         >
           LEGO
         </a>
 
-
         <a
           href="./sneaker-mask.html"
-          class="museum-nav-link active"
+          class="museum-nav-link"
         >
           SNEAKER MASK
         </a>
 
-
-        <a
-          href="./about.html"
-          class="museum-nav-link"
-        >
-          ABOUT
-        </a>
-
       </nav>
-
 
     </header>
 
 
     <main>
 
-
       <section class="collection-category-hero">
 
         <p class="collection-category-eyebrow">
-          SNEAKER MASK ARCHIVE
+          LEGO ARCHIVE
         </p>
 
-
         <h2>
-          Handcrafted Sneaker Masks
+          Nike x LEGO
         </h2>
 
-
         <p
-          id="mask-page-description"
-          data-vi="Kho lưu trữ các tác phẩm Sneaker Mask độc bản được cắt tay và chế tác hoàn toàn thủ công từ những đôi sneaker nguyên bản."
-          data-en="An archive of unique Sneaker Mask artifacts, hand-cut and entirely handmade from original sneakers."
+          id="lego-page-description"
+          data-vi="Kho lưu trữ các bộ Nike x LEGO trong Lộc An Sneaker Collection, ghi nhận sự giao thoa giữa sneaker culture, basketball và thiết kế LEGO."
+          data-en="An archive of Nike x LEGO sets within the Lộc An Sneaker Collection, documenting the intersection of sneaker culture, basketball, and LEGO design."
         >
-          Kho lưu trữ các tác phẩm
-          Sneaker Mask độc bản
-          được cắt tay
-          và chế tác hoàn toàn thủ công
-          từ những đôi sneaker nguyên bản.
+          Kho lưu trữ các bộ Nike x LEGO trong Lộc An Sneaker Collection,
+          ghi nhận sự giao thoa giữa sneaker culture,
+          basketball và thiết kế LEGO.
         </p>
 
       </section>
 
 
       <div
-        id="mask-count"
+        id="lego-count"
         class="collection-count"
       >
-        TỔNG SỐ: 0 MASK
+        TỔNG SỐ: 0 BỘ
       </div>
 
 
       <div
-        id="mask-grid"
-        class="grid mask-grid"
+        id="lego-grid"
+        class="grid"
       ></div>
-
 
     </main>
 
@@ -196,132 +171,123 @@
 
     </footer>
 
-
   </div>
 
 
   <script
-    src="./sneaker-mask-data.js?v=20260912-restore"
+    src="./lego-data.js?v=20260913-clean-nav"
   ></script>
 
 
   <script>
 
-    const MASK_LANGUAGES = [
+    const LEGO_LANGUAGES = [
       "vi",
       "en"
     ];
 
 
-    let maskLanguage =
-
+    let legoLanguage =
       new URLSearchParams(
         window.location.search
       ).get("lang")
-
       ||
-
       localStorage.getItem(
         "locan_lang"
       )
-
       ||
-
       "vi";
 
 
     if (
-      !MASK_LANGUAGES.includes(
-        maskLanguage
+      !LEGO_LANGUAGES.includes(
+        legoLanguage
       )
     ) {
+      legoLanguage = "vi";
+    }
 
-      maskLanguage =
-        "vi";
+
+    function numberWithComma(value) {
+
+      return Number(
+        value
+      ).toLocaleString(
+        "en-CA"
+      );
 
     }
 
 
-    function setMaskLanguage(
-      lang
-    ) {
+    function setLegoLanguage(lang) {
 
-      maskLanguage =
-        MASK_LANGUAGES.includes(
-          lang
-        )
+      legoLanguage =
+        LEGO_LANGUAGES.includes(lang)
           ? lang
           : "vi";
 
 
       localStorage.setItem(
         "locan_lang",
-        maskLanguage
+        legoLanguage
       );
 
 
       document.documentElement.lang =
-        maskLanguage;
+        legoLanguage;
 
 
       document
-        .getElementById(
-          "btn-vi"
-        )
+        .getElementById("btn-vi")
         .classList.toggle(
           "active",
-          maskLanguage === "vi"
+          legoLanguage === "vi"
         );
 
 
       document
-        .getElementById(
-          "btn-en"
-        )
+        .getElementById("btn-en")
         .classList.toggle(
           "active",
-          maskLanguage === "en"
+          legoLanguage === "en"
         );
 
 
       const subtitle =
         document.getElementById(
-          "mask-main-subtitle"
+          "lego-main-subtitle"
         );
 
 
       const description =
         document.getElementById(
-          "mask-page-description"
+          "lego-page-description"
         );
 
 
       subtitle.textContent =
         subtitle.dataset[
-          maskLanguage
+          legoLanguage
         ];
 
 
       description.textContent =
         description.dataset[
-          maskLanguage
+          legoLanguage
         ];
 
 
       document
         .getElementById(
-          "mask-count"
+          "lego-count"
         )
         .textContent =
-
-          maskLanguage === "vi"
-
-            ? `TỔNG SỐ: ${sneakerMasks.length} MASK`
-
-            : `TOTAL: ${sneakerMasks.length} MASKS`;
+          legoLanguage === "vi"
+            ? `TỔNG SỐ: ${legoSets.length} BỘ`
+            : `TOTAL: ${legoSets.length} SETS`;
 
 
-      renderMaskCollection();
+      renderLegoCollection();
 
 
       const url =
@@ -332,62 +298,53 @@
 
       url.searchParams.set(
         "lang",
-        maskLanguage
+        legoLanguage
       );
 
 
       window.history.replaceState(
-
         {},
-
         "",
-
-        url.pathname
-        +
-        url.search
-        +
+        url.pathname +
+        url.search +
         url.hash
-
       );
 
     }
 
 
-    function renderMaskCollection() {
+    function renderLegoCollection() {
 
       const grid =
         document.getElementById(
-          "mask-grid"
+          "lego-grid"
         );
 
 
       if (
-        typeof sneakerMasks ===
-        "undefined"
+        typeof legoSets === "undefined"
         ||
         !Array.isArray(
-          sneakerMasks
+          legoSets
         )
       ) {
 
         grid.innerHTML = `
-
           <div class="not-found">
-            Sneaker Mask data could not be loaded.
+            LEGO data could not be loaded.
           </div>
-
         `;
 
         return;
+
       }
 
 
-      grid.innerHTML =
-        "";
+      grid.innerHTML = "";
 
 
-      sneakerMasks.forEach(
-        mask => {
+      legoSets.forEach(
+        lego => {
 
 
           const link =
@@ -401,15 +358,12 @@
 
 
           link.href =
-
-            `./sneaker-mask-detail.html?id=${encodeURIComponent(
-              mask.id
+            `./lego-detail.html?id=${encodeURIComponent(
+              lego.id
             )}`
-
             +
-
             `&lang=${encodeURIComponent(
-              maskLanguage
+              legoLanguage
             )}`;
 
 
@@ -440,12 +394,12 @@
 
 
           image.src =
-            mask.image;
+            lego.image;
 
 
           image.alt =
-            mask.title[
-              maskLanguage
+            lego.title[
+              legoLanguage
             ];
 
 
@@ -479,8 +433,8 @@
 
 
           title.textContent =
-            mask.title[
-              maskLanguage
+            lego.title[
+              legoLanguage
             ];
 
 
@@ -495,8 +449,8 @@
 
 
           subtitle.textContent =
-            mask.subtitle[
-              maskLanguage
+            lego.subtitle[
+              legoLanguage
             ];
 
 
@@ -521,7 +475,23 @@
 
 
           badge.textContent =
-            "HANDCRAFTED 1/1";
+            "NIKE x LEGO";
+
+
+          const pieces =
+            document.createElement(
+              "span"
+            );
+
+
+          pieces.className =
+            "size";
+
+
+          pieces.textContent =
+            `${numberWithComma(
+              lego.pieces
+            )} PCS`;
 
 
           const cta =
@@ -535,16 +505,18 @@
 
 
           cta.textContent =
-
-            maskLanguage === "vi"
-
+            legoLanguage === "vi"
               ? "XEM THÊM →"
-
               : "VIEW MORE →";
 
 
           meta.appendChild(
             badge
+          );
+
+
+          meta.appendChild(
+            pieces
           );
 
 
@@ -594,21 +566,17 @@
 
 
     document.addEventListener(
-
       "DOMContentLoaded",
-
       () => {
 
-        setMaskLanguage(
-          maskLanguage
+        setLegoLanguage(
+          legoLanguage
         );
 
       }
-
     );
 
   </script>
-
 
 </body>
 
