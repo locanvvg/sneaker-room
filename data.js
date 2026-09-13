@@ -1531,6 +1531,7 @@ const sneakers = [
     size: "10.5 US",
 
     image: "pictures/jordan1_shadow_2009.png",
+    imageScale: 1.14,
 
     story: {
 
@@ -1815,6 +1816,7 @@ const sneakers = [
     size: "9 US",
 
     image: "pictures/bapesta_stussy.png",
+    imageScale: 1.18,
 
     story: {
 
@@ -2147,6 +2149,7 @@ const sneakers = [
     size: "12W / 10.5M US",
 
     image: "pictures/nike_waffle_racer_ow.png",
+    imageScale: 1.18,
 
     story: {
 
