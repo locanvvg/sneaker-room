@@ -22,7 +22,7 @@ const legoSets = [
 
     pieces: 1180,
 
-    retailPrice: "C$129.99",
+    retailPrice: "$99.99 USD",
 
     releaseDate: "2025-07-01",
 
@@ -167,8 +167,8 @@ const legoSets = [
           trong không gian sneaker.
 
           Giá retail chính thức
-          tại Canada là
-          <b>C$129.99</b>.
+          tại Hoa Kỳ là
+          <b>$99.99 USD</b>.
         </p>
 
         <p>
@@ -189,9 +189,7 @@ const legoSets = [
         </p>
 
         <div class="exhibition-note">
-          <strong>
-            Ghi chú catalogue:
-          </strong>
+          <strong>Ghi chú catalogue:</strong>
 
           LEGO mô tả mô hình chính
           bằng bảng màu xanh và trắng,
@@ -318,9 +316,9 @@ const legoSets = [
           38 cm wide,
           and 13 cm deep</b>.
 
-          Official Canadian retail
+          Official U.S. retail
           for the set is
-          <b>C$129.99</b>.
+          <b>$99.99 USD</b>.
         </p>
 
         <p>
@@ -340,9 +338,7 @@ const legoSets = [
         </p>
 
         <div class="exhibition-note">
-          <strong>
-            Catalogue Note:
-          </strong>
+          <strong>Catalogue Note:</strong>
 
           LEGO presents the central model
           through a blue-and-white palette
@@ -383,7 +379,7 @@ const legoSets = [
 
     pieces: 454,
 
-    retailPrice: "C$49.99",
+    retailPrice: "$39.99 USD",
 
     releaseDate: "2025-09-01",
 
@@ -508,8 +504,8 @@ const legoSets = [
           được phát hành với
           <b>454 pieces</b>
           và giá retail chính thức
-          tại Canada là
-          <b>C$49.99</b>.
+          tại Hoa Kỳ là
+          <b>$39.99 USD</b>.
 
           Khi hoàn thiện,
           mô hình có kích thước
@@ -538,9 +534,7 @@ const legoSets = [
         </p>
 
         <div class="exhibition-note">
-          <strong>
-            Ghi chú catalogue:
-          </strong>
+          <strong>Ghi chú catalogue:</strong>
 
           LEGO chính thức mô tả
           chiếc Dunk trong 43021
@@ -653,8 +647,8 @@ const legoSets = [
           Set 43021 contains
           <b>454 pieces</b>
           and carries an official
-          Canadian retail price of
-          <b>C$49.99</b>.
+          U.S. retail price of
+          <b>$39.99 USD</b>.
 
           The completed model measures
           approximately
@@ -680,9 +674,7 @@ const legoSets = [
         </p>
 
         <div class="exhibition-note">
-          <strong>
-            Catalogue Note:
-          </strong>
+          <strong>Catalogue Note:</strong>
 
           LEGO officially describes
           the Dunk in set 43021
