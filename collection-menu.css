@@ -1306,6 +1306,8 @@ img[src*="nike_waffle_racer_ow.png"] {
     font-size: 0.79rem;
   }
 
+}
+
    /* =========================================================
    FINAL SNEAKER IMAGE SIZE TUNING
    BAPE / WAFFLE RACER / SHADOW 2009
@@ -1455,5 +1457,4 @@ img[src*="jordan1_shadow_2009.png"] {
     1px solid
     rgba(255, 255, 255, 0.055)
     !important;
-}
 }
