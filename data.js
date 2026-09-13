@@ -1441,4 +1441,413 @@ const sneakers = [
     }
   }
 
+  /* =====================================================
+     8. NIKE x OFF-WHITE
+        WAFFLE RACER SP
+        WHITE
+  ===================================================== */
+
+  {
+    id: "nike-off-white-waffle-racer-white",
+
+    title: {
+      vi: "Nike x Off-White Waffle Racer SP 'White'",
+      en: "Nike x Off-White Waffle Racer SP 'White'"
+    },
+
+    subtitle: {
+      vi: "Athlete in Progress (2019)",
+      en: "Athlete in Progress (2019)"
+    },
+
+    sku: "CD8180-100",
+
+    colorway: "White/Electric Green-Black",
+
+    retailPrice: "$150",
+
+    releaseDate: "2019-12-12",
+
+    editionType: {
+      vi: "GR",
+      en: "GR"
+    },
+
+    condition: {
+      vi: "Used",
+      en: "Used"
+    },
+
+    size: "12W / 10.5M US",
+
+    image: "pictures/nike_waffle_racer_ow.png",
+
+    story: {
+
+      vi: `
+        <p>
+          Ra mắt vào ngày
+          <b>12 tháng 12 năm 2019</b>,
+          <b>Nike x Off-White Waffle Racer SP 'White'</b>
+          là một phần của dự án
+          <b>Athlete in Progress</b>
+          giữa Nike và
+          <b>Virgil Abloh</b>.
+          Đây là giai đoạn hợp tác mà Abloh
+          chuyển sự chú ý từ việc tái cấu trúc
+          các biểu tượng sneaker quen thuộc
+          sang việc khám phá sâu hơn
+          di sản running và track &amp; field của Nike.
+        </p>
+
+        <p>
+          Athlete in Progress được xây dựng
+          quanh ý tưởng về vận động viên
+          như một cá thể luôn trong quá trình
+          phát triển, thích nghi và tiến về phía trước.
+          Thay vì xem sản phẩm thể thao
+          như một thiết kế đã hoàn thiện tuyệt đối,
+          Virgil Abloh khai thác chính
+          quá trình thử nghiệm,
+          chuyển động và cấu trúc kỹ thuật
+          như một phần của ngôn ngữ thẩm mỹ.
+        </p>
+
+        <p>
+          Nền tảng của đôi giày
+          bắt nguồn từ
+          <b>Nike Waffle Racer</b>,
+          một silhouette running
+          gắn liền với lịch sử ban đầu của Nike
+          và tư duy thiết kế của
+          <b>Bill Bowerman</b>.
+          Hệ thống đế waffle vốn được tạo ra
+          nhằm cung cấp độ bám
+          trong một cấu trúc nhẹ,
+          sau này trở thành một trong những
+          dấu hiệu thiết kế quan trọng nhất
+          trong di sản running của Nike.
+        </p>
+
+        <p>
+          Trên phiên bản Off-White,
+          Abloh giữ lại nền tảng retro-runner
+          nhưng bao phủ upper bằng
+          một lớp vật liệu dạng lưới
+          và translucent film.
+          Cấu trúc này tạo cảm giác
+          gần giống những lớp băng quấn
+          hoặc vật liệu kỹ thuật
+          được sử dụng bởi vận động viên,
+          đồng thời để lộ nhiều lớp cấu tạo
+          thay vì che giấu chúng.
+        </p>
+
+        <p>
+          Một trong những đặc điểm
+          dễ nhận biết nhất
+          là hệ thống dây kép.
+          Bên dưới là bộ dây truyền thống,
+          trong khi phía ngoài
+          sử dụng dây
+          <b>Electric Green</b>
+          chạy qua các móc màu đen.
+          Chi tiết này mang hơi hướng
+          hiking và performance equipment,
+          khiến hệ thống fastening
+          trở thành một phần trực tiếp
+          của thiết kế thay vì chỉ có chức năng
+          cố định bàn chân.
+        </p>
+
+        <p>
+          Ngôn ngữ thiết kế đặc trưng
+          của Off-White tiếp tục xuất hiện
+          qua phần tongue để lộ cấu trúc,
+          typography mang phong cách công nghiệp,
+          orange tab,
+          retro Nike tongue tag,
+          Swoosh lớn ở thân giày
+          và zip tie đặc trưng.
+          Những chi tiết này tạo ra
+          sự đối lập giữa một silhouette running
+          mang tính lịch sử
+          và tư duy deconstructed
+          đương đại của Virgil Abloh.
+        </p>
+
+        <p>
+          Điểm khác biệt mạnh nhất
+          nằm ở outsole.
+          Thay vì chỉ sử dụng
+          cấu trúc waffle truyền thống,
+          Nike và Off-White bổ sung
+          các phần
+          <b>rubber spike</b>
+          nhô rõ khỏi đế.
+          Điều này làm đôi giày
+          gợi liên tưởng đồng thời
+          đến track spike,
+          trail footwear
+          và những thiết bị chuyên dụng
+          dành cho vận động viên.
+        </p>
+
+        <p>
+          Phối màu
+          <b>White/Electric Green-Black</b>
+          sử dụng các sắc trắng
+          và off-white làm nền,
+          tương phản với dây
+          Electric Green,
+          các móc dây màu đen,
+          Swoosh metallic
+          và orange tab đặc trưng.
+          Bảng màu sáng giúp cấu trúc nhiều lớp,
+          vật liệu translucent
+          và những chi tiết kỹ thuật
+          của thiết kế được thể hiện rõ ràng hơn.
+        </p>
+
+        <p>
+          Waffle Racer SP được phát hành
+          trong ba phối màu chính:
+          <b>White</b>,
+          <b>Black</b>
+          và
+          <b>Vivid Sky</b>.
+          Phiên bản White mang mã
+          <b>CD8180-100</b>,
+          được phát hành với giá retail
+          <b>$150 USD</b>.
+        </p>
+
+        <p>
+          Tác phẩm được lưu giữ trong
+          <b>Lộc An Sneaker Collection</b>
+          là phiên bản White
+          ở size
+          <b>12W / 10.5M US</b>,
+          với tình trạng
+          <b>Used</b>.
+        </p>
+
+        <p>
+          Qua quá trình sử dụng
+          và lão hóa tự nhiên của vật liệu,
+          các khu vực màu trắng và off-white
+          trên đôi giày hiện đã xuất hiện
+          <b>yellowing</b>.
+          Trong archive,
+          hiện tượng này được ghi nhận
+          như một phần của tình trạng vật lý
+          và lịch sử sử dụng của hiện vật,
+          thay vì được xem như
+          một phân loại condition riêng biệt.
+        </p>
+
+        <div class="exhibition-note">
+
+          <strong>Ghi chú lưu trữ:</strong>
+
+          Condition chính thức của hiện vật
+          được ghi nhận là
+          <b>Used</b>.
+
+          Hiện tượng
+          <b>yellowing</b>
+          được lưu lại như một đặc điểm
+          của quá trình lão hóa vật liệu
+          trên đôi giày.
+
+        </div>
+      `,
+
+
+      en: `
+        <p>
+          Released on
+          <b>December 12, 2019</b>,
+          the
+          <b>Nike x Off-White Waffle Racer SP 'White'</b>
+          formed part of
+          <b>Athlete in Progress</b>,
+          a Nike project developed with
+          <b>Virgil Abloh</b>.
+          This chapter of their collaboration
+          shifted attention away from simply
+          reconstructing familiar sneaker icons
+          and toward Nike's deeper heritage
+          in running and track &amp; field.
+        </p>
+
+        <p>
+          Athlete in Progress
+          was built around the idea
+          of the athlete as someone
+          continuously developing,
+          adapting,
+          and moving forward.
+          Rather than presenting performance products
+          as completely resolved objects,
+          Virgil Abloh treated experimentation,
+          movement,
+          and technical construction
+          as part of the aesthetic itself.
+        </p>
+
+        <p>
+          The sneaker is based on the
+          <b>Nike Waffle Racer</b>,
+          a running silhouette closely connected
+          to Nike's early history
+          and the design philosophy of
+          <b>Bill Bowerman</b>.
+          The original waffle outsole concept
+          was developed to provide traction
+          through a lightweight structure
+          and eventually became
+          one of the most recognizable elements
+          of Nike's running heritage.
+        </p>
+
+        <p>
+          For the Off-White interpretation,
+          Abloh retained the retro-running foundation
+          while surrounding the upper
+          with a netted,
+          translucent film.
+          The construction evokes
+          athletic tape and technical wrapping,
+          exposing layers of the shoe
+          rather than concealing
+          how the product is assembled.
+        </p>
+
+        <p>
+          One of the design's
+          most immediately recognizable features
+          is its dual-lacing system.
+          Traditional laces remain underneath,
+          while an additional
+          <b>Electric Green</b>
+          cord runs through
+          black external hooks.
+          The system introduces
+          a hiking and performance-equipment influence,
+          turning a functional fastening element
+          into a major visual component.
+        </p>
+
+        <p>
+          Off-White's established design language
+          continues through
+          the exposed tongue construction,
+          industrial-style typography,
+          orange tab,
+          retro Nike tongue branding,
+          prominent Swoosh,
+          and signature zip tie.
+          Together,
+          these elements create a contrast
+          between a historically important
+          Nike running silhouette
+          and Virgil Abloh's contemporary
+          deconstructed approach.
+        </p>
+
+        <p>
+          The outsole provides
+          one of the most dramatic interventions.
+          Rather than relying exclusively
+          on the traditional waffle structure,
+          Nike and Off-White added
+          pronounced
+          <b>rubber spikes</b>
+          beneath the shoe.
+          The resulting appearance references
+          track spikes,
+          trail footwear,
+          and specialized athletic equipment
+          at the same time.
+        </p>
+
+        <p>
+          The
+          <b>White/Electric Green-Black</b>
+          colorway uses white
+          and off-white tones as its foundation,
+          contrasted by
+          Electric Green secondary laces,
+          black hardware,
+          a metallic Swoosh,
+          and Off-White's recognizable
+          orange accent.
+          The lighter palette makes
+          the layered materials,
+          translucent construction,
+          and technical details
+          especially visible.
+        </p>
+
+        <p>
+          The Waffle Racer SP
+          was released in three primary colorways:
+          <b>White</b>,
+          <b>Black</b>,
+          and
+          <b>Vivid Sky</b>.
+          The White edition carries style code
+          <b>CD8180-100</b>
+          and originally retailed for
+          <b>$150 USD</b>.
+        </p>
+
+        <p>
+          The example preserved in the
+          <b>Lộc An Sneaker Collection</b>
+          is the White edition
+          in size
+          <b>12W / 10.5M US</b>,
+          with
+          <b>Used</b>
+          condition.
+        </p>
+
+        <p>
+          Through wear
+          and the natural aging
+          of its materials,
+          portions of the sneaker's
+          white and off-white construction
+          have developed visible
+          <b>yellowing</b>.
+          Within the archive,
+          this is documented
+          as part of the artifact's
+          present physical condition
+          and material history
+          rather than as a separate
+          condition classification.
+        </p>
+
+        <div class="exhibition-note">
+
+          <strong>Exhibition Note:</strong>
+
+          The artifact's official condition
+          is recorded as
+          <b>Used</b>.
+
+          Visible
+          <b>yellowing</b>
+          is documented as part
+          of the sneaker's natural
+          material-aging history.
+
+        </div>
+      `
+    }
+  }
+  
 ];
