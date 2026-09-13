@@ -2,6 +2,7 @@
 <html lang="vi">
 
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -19,7 +20,10 @@
     content="#0d0d0d"
   >
 
-  <title>Sneaker Mask | Lộc An Sneaker Collection</title>
+  <title>
+    Sneaker Mask | Lộc An Sneaker Collection
+  </title>
+
 
   <link
     rel="icon"
@@ -27,25 +31,30 @@
     href="./favicon.svg"
   >
 
+
   <link
     rel="apple-touch-icon"
     href="./apple-touch-icon.png"
   >
+
 
   <link
     rel="manifest"
     href="./site.webmanifest"
   >
 
-  <link
-    rel="stylesheet"
-    href="./style.css?v=20260912-17"
-  >
 
   <link
     rel="stylesheet"
-    href="./collection-menu.css?v=20260912-17"
+    href="./style.css?v=20260912-18"
   >
+
+
+  <link
+    rel="stylesheet"
+    href="./collection-menu.css?v=20260912-18"
+  >
+
 </head>
 
 
@@ -53,7 +62,11 @@
 
   <div class="container">
 
+
     <header class="home-header">
+
+
+      <!-- LANGUAGE -->
 
       <div class="lang-switcher corner-lang">
 
@@ -65,6 +78,7 @@
         >
           VI
         </button>
+
 
         <button
           type="button"
@@ -78,6 +92,8 @@
       </div>
 
 
+      <!-- HEADER -->
+
       <h1>
         LỘC AN SNEAKER COLLECTION
       </h1>
@@ -88,58 +104,37 @@
         data-vi="Không gian lưu trữ & Bảo tàng Sneaker Kỹ thuật số"
         data-en="Digital Sneaker Archive & Museum"
       >
-        Không gian lưu trữ &amp; Bảo tàng Sneaker Kỹ thuật số
+        Không gian lưu trữ &amp;
+        Bảo tàng Sneaker Kỹ thuật số
       </p>
 
 
+      <!-- DIRECT NAVIGATION -->
+
       <nav class="museum-nav">
 
-        <details class="museum-nav-dropdown">
-
-          <summary
-            class="museum-nav-link active collection-nav-trigger"
-          >
-
-            <span>
-              COLLECTION
-            </span>
-
-            <span
-              class="collection-nav-arrow"
-              aria-hidden="true"
-            >
-              ▾
-            </span>
-
-          </summary>
+        <a
+          href="./index.html"
+          class="museum-nav-link"
+        >
+          SNEAKERS
+        </a>
 
 
-          <div class="museum-nav-submenu">
+        <a
+          href="./lego.html"
+          class="museum-nav-link"
+        >
+          LEGO
+        </a>
 
-            <a
-              href="./index.html"
-              class="museum-nav-submenu-link"
-            >
-              SNEAKERS
-            </a>
 
-            <a
-              href="./lego.html"
-              class="museum-nav-submenu-link"
-            >
-              LEGO
-            </a>
-
-            <a
-              href="./sneaker-mask.html"
-              class="museum-nav-submenu-link active"
-            >
-              SNEAKER MASK
-            </a>
-
-          </div>
-
-        </details>
+        <a
+          href="./sneaker-mask.html"
+          class="museum-nav-link active"
+        >
+          SNEAKER MASK
+        </a>
 
 
         <a
@@ -151,14 +146,14 @@
 
       </nav>
 
+
     </header>
 
 
     <main>
 
-      <!-- =================================================
-           SNEAKER MASK INTRO
-      ================================================== -->
+
+      <!-- INTRO -->
 
       <section
         class="collection-category-hero"
@@ -166,7 +161,7 @@
       >
 
         <p class="collection-category-eyebrow">
-          COLLECTION / SNEAKER MASK
+          SNEAKER MASK ARCHIVE
         </p>
 
 
@@ -180,35 +175,33 @@
           data-vi="Kho lưu trữ những tác phẩm Sneaker Mask độc bản được cắt tay và chế tác hoàn toàn thủ công từ những đôi sneaker nguyên bản trong tình trạng Deadstock."
           data-en="An archive of unique Sneaker Mask artifacts, hand-cut and entirely handmade from original Deadstock sneakers."
         >
-          Kho lưu trữ những tác phẩm Sneaker Mask độc bản
-          được cắt tay và chế tác hoàn toàn thủ công
-          từ những đôi sneaker nguyên bản
-          trong tình trạng Deadstock.
+          Kho lưu trữ những tác phẩm
+          Sneaker Mask độc bản
+          được cắt tay và chế tác
+          hoàn toàn thủ công từ những đôi sneaker
+          nguyên bản trong tình trạng Deadstock.
         </p>
 
       </section>
 
 
-      <!-- =================================================
-           TOTAL COUNT
-      ================================================== -->
+      <!-- COUNT -->
 
       <div
         id="mask-count"
         class="collection-count"
       >
-        TỔNG SỐ: 2 MASK
+        TỔNG SỐ: 0 MASK
       </div>
 
 
-      <!-- =================================================
-           MASK GRID
-      ================================================== -->
+      <!-- GRID -->
 
       <div
         id="mask-grid"
         class="grid mask-grid"
       ></div>
+
 
     </main>
 
@@ -222,21 +215,14 @@
 
     </footer>
 
+
   </div>
 
 
-  <!-- =====================================================
-       DATA
-  ====================================================== -->
-
   <script
-    src="./sneaker-mask-data.js?v=20260912-17"
+    src="./sneaker-mask-data.js?v=20260912-18"
   ></script>
 
-
-  <!-- =====================================================
-       SNEAKER MASK PAGE LOGIC
-  ====================================================== -->
 
   <script>
 
@@ -268,19 +254,20 @@
       )
     ) {
 
-      maskLanguage = "vi";
+      maskLanguage =
+        "vi";
 
     }
 
 
-    /* =====================================================
-       LANGUAGE
-    ===================================================== */
-
-    function setMaskLanguage(lang) {
+    function setMaskLanguage(
+      lang
+    ) {
 
       maskLanguage =
-        MASK_LANGUAGES.includes(lang)
+        MASK_LANGUAGES.includes(
+          lang
+        )
           ? lang
           : "vi";
 
@@ -296,7 +283,9 @@
 
 
       document
-        .getElementById("btn-vi")
+        .getElementById(
+          "btn-vi"
+        )
         .classList
         .toggle(
           "active",
@@ -305,15 +294,15 @@
 
 
       document
-        .getElementById("btn-en")
+        .getElementById(
+          "btn-en"
+        )
         .classList
         .toggle(
           "active",
           maskLanguage === "en"
         );
 
-
-      /* HEADER SUBTITLE */
 
       const subtitle =
         document.getElementById(
@@ -327,8 +316,6 @@
         ];
 
 
-      /* PAGE DESCRIPTION */
-
       const description =
         document.getElementById(
           "mask-page-description"
@@ -340,8 +327,6 @@
           maskLanguage
         ];
 
-
-      /* TOTAL */
 
       document
         .getElementById(
@@ -358,8 +343,6 @@
 
       renderMaskCollection();
 
-
-      /* UPDATE URL LANGUAGE */
 
       const url =
         new URL(
@@ -384,10 +367,6 @@
     }
 
 
-    /* =====================================================
-       RENDER MASK COLLECTION
-    ===================================================== */
-
     function renderMaskCollection() {
 
       const grid =
@@ -396,16 +375,13 @@
         );
 
 
-      grid.innerHTML = "";
+      grid.innerHTML =
+        "";
 
 
       sneakerMasks.forEach(
         mask => {
 
-
-          /* ===============================================
-             LINK
-          =============================================== */
 
           const link =
             document.createElement(
@@ -423,10 +399,6 @@
             )}&lang=${maskLanguage}`;
 
 
-          /* ===============================================
-             CARD
-          =============================================== */
-
           const card =
             document.createElement(
               "article"
@@ -436,10 +408,6 @@
           card.className =
             "card";
 
-
-          /* ===============================================
-             IMAGE
-          =============================================== */
 
           const imageWrapper =
             document.createElement(
@@ -476,10 +444,6 @@
           );
 
 
-          /* ===============================================
-             CARD INFO
-          =============================================== */
-
           const info =
             document.createElement(
               "div"
@@ -489,8 +453,6 @@
           info.className =
             "card-info";
 
-
-          /* TITLE */
 
           const title =
             document.createElement(
@@ -504,27 +466,21 @@
             ];
 
 
-          /* SUBTITLE */
-
-          const maskSubtitle =
+          const subtitle =
             document.createElement(
               "p"
             );
 
 
-          maskSubtitle.className =
+          subtitle.className =
             "subtitle";
 
 
-          maskSubtitle.textContent =
+          subtitle.textContent =
             mask.subtitle[
               maskLanguage
             ];
 
-
-          /* ===============================================
-             META
-          =============================================== */
 
           const meta =
             document.createElement(
@@ -535,8 +491,6 @@
           meta.className =
             "card-meta";
 
-
-          /* HANDCRAFTED BADGE */
 
           const badge =
             document.createElement(
@@ -557,17 +511,13 @@
           );
 
 
-          /* ===============================================
-             BUILD CARD
-          =============================================== */
-
           info.appendChild(
             title
           );
 
 
           info.appendChild(
-            maskSubtitle
+            subtitle
           );
 
 
@@ -601,10 +551,6 @@
     }
 
 
-    /* =====================================================
-       INITIAL LOAD
-    ===================================================== */
-
     document.addEventListener(
       "DOMContentLoaded",
       () => {
@@ -617,6 +563,7 @@
     );
 
   </script>
+
 
 </body>
 
