@@ -2,13 +2,8 @@
 <html lang="vi">
 
 <head>
-
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <meta
     name="description"
@@ -20,10 +15,7 @@
     content="#0d0d0d"
   >
 
-  <title>
-    Sneaker Mask | Lộc An Sneaker Collection
-  </title>
-
+  <title>Sneaker Mask | Lộc An Sneaker Collection</title>
 
   <link
     rel="icon"
@@ -43,45 +35,51 @@
 
   <link
     rel="stylesheet"
-    href="./style.css?v=20260912-restore"
+    href="./style.css?v=20260913-clean-nav"
   >
 
   <link
     rel="stylesheet"
-    href="./collection-menu.css?v=20260912-restore"
+    href="./collection-menu.css?v=20260913-clean-nav"
   >
-
 </head>
-
 
 <body>
 
   <div class="container">
 
-
     <header class="home-header">
 
+      <div class="header-corner-tools">
 
-      <div class="lang-switcher corner-lang">
-
-        <button
-          type="button"
-          id="btn-vi"
-          class="lang-btn active"
-          onclick="setMaskLanguage('vi')"
+        <a
+          href="./about.html"
+          class="about-corner-link"
         >
-          VI
-        </button>
+          ABOUT
+        </a>
 
+        <div class="lang-switcher">
 
-        <button
-          type="button"
-          id="btn-en"
-          class="lang-btn"
-          onclick="setMaskLanguage('en')"
-        >
-          EN
-        </button>
+          <button
+            type="button"
+            id="btn-vi"
+            class="lang-btn active"
+            onclick="setMaskLanguage('vi')"
+          >
+            VI
+          </button>
+
+          <button
+            type="button"
+            id="btn-en"
+            class="lang-btn"
+            onclick="setMaskLanguage('en')"
+          >
+            EN
+          </button>
+
+        </div>
 
       </div>
 
@@ -96,12 +94,14 @@
         data-vi="Không gian lưu trữ & Bảo tàng Sneaker Kỹ thuật số"
         data-en="Digital Sneaker Archive & Museum"
       >
-        Không gian lưu trữ &amp;
-        Bảo tàng Sneaker Kỹ thuật số
+        Không gian lưu trữ &amp; Bảo tàng Sneaker Kỹ thuật số
       </p>
 
 
-      <nav class="museum-nav">
+      <nav
+        class="museum-nav"
+        aria-label="Collection navigation"
+      >
 
         <a
           href="./index.html"
@@ -110,7 +110,6 @@
           SNEAKERS
         </a>
 
-
         <a
           href="./lego.html"
           class="museum-nav-link"
@@ -118,30 +117,20 @@
           LEGO
         </a>
 
-
         <a
           href="./sneaker-mask.html"
           class="museum-nav-link active"
+          aria-current="page"
         >
           SNEAKER MASK
         </a>
 
-
-        <a
-          href="./about.html"
-          class="museum-nav-link"
-        >
-          ABOUT
-        </a>
-
       </nav>
-
 
     </header>
 
 
     <main>
-
 
       <section class="collection-category-hero">
 
@@ -149,21 +138,17 @@
           SNEAKER MASK ARCHIVE
         </p>
 
-
         <h2>
           Handcrafted Sneaker Masks
         </h2>
-
 
         <p
           id="mask-page-description"
           data-vi="Kho lưu trữ các tác phẩm Sneaker Mask độc bản được cắt tay và chế tác hoàn toàn thủ công từ những đôi sneaker nguyên bản."
           data-en="An archive of unique Sneaker Mask artifacts, hand-cut and entirely handmade from original sneakers."
         >
-          Kho lưu trữ các tác phẩm
-          Sneaker Mask độc bản
-          được cắt tay
-          và chế tác hoàn toàn thủ công
+          Kho lưu trữ các tác phẩm Sneaker Mask độc bản
+          được cắt tay và chế tác hoàn toàn thủ công
           từ những đôi sneaker nguyên bản.
         </p>
 
@@ -183,7 +168,6 @@
         class="grid mask-grid"
       ></div>
 
-
     </main>
 
 
@@ -196,12 +180,11 @@
 
     </footer>
 
-
   </div>
 
 
   <script
-    src="./sneaker-mask-data.js?v=20260912-restore"
+    src="./sneaker-mask-data.js?v=20260913-clean-nav"
   ></script>
 
 
@@ -214,19 +197,14 @@
 
 
     let maskLanguage =
-
       new URLSearchParams(
         window.location.search
       ).get("lang")
-
       ||
-
       localStorage.getItem(
         "locan_lang"
       )
-
       ||
-
       "vi";
 
 
@@ -242,14 +220,10 @@
     }
 
 
-    function setMaskLanguage(
-      lang
-    ) {
+    function setMaskLanguage(lang) {
 
       maskLanguage =
-        MASK_LANGUAGES.includes(
-          lang
-        )
+        MASK_LANGUAGES.includes(lang)
           ? lang
           : "vi";
 
@@ -313,11 +287,8 @@
           "mask-count"
         )
         .textContent =
-
           maskLanguage === "vi"
-
             ? `TỔNG SỐ: ${sneakerMasks.length} MASK`
-
             : `TOTAL: ${sneakerMasks.length} MASKS`;
 
 
@@ -337,17 +308,11 @@
 
 
       window.history.replaceState(
-
         {},
-
         "",
-
-        url.pathname
-        +
-        url.search
-        +
+        url.pathname +
+        url.search +
         url.hash
-
       );
 
     }
@@ -371,14 +336,13 @@
       ) {
 
         grid.innerHTML = `
-
           <div class="not-found">
             Sneaker Mask data could not be loaded.
           </div>
-
         `;
 
         return;
+
       }
 
 
@@ -401,13 +365,10 @@
 
 
           link.href =
-
             `./sneaker-mask-detail.html?id=${encodeURIComponent(
               mask.id
             )}`
-
             +
-
             `&lang=${encodeURIComponent(
               maskLanguage
             )}`;
@@ -535,11 +496,8 @@
 
 
           cta.textContent =
-
             maskLanguage === "vi"
-
               ? "XEM THÊM →"
-
               : "VIEW MORE →";
 
 
@@ -594,9 +552,7 @@
 
 
     document.addEventListener(
-
       "DOMContentLoaded",
-
       () => {
 
         setMaskLanguage(
@@ -604,11 +560,9 @@
         );
 
       }
-
     );
 
   </script>
-
 
 </body>
 
