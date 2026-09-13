@@ -1,93 +1,171 @@
 /* =========================================================
    LỘC AN COLLECTION
-   COLLECTION DROPDOWN + CATEGORY PAGES
+   DIRECT NAVIGATION + CATEGORY PAGES + CARD CTA
 ========================================================= */
 
-.museum-nav-dropdown {
-  position: relative;
-}
 
-.museum-nav-dropdown > summary {
-  list-style: none;
-}
+/* =========================================================
+   DIRECT TOP NAVIGATION
+========================================================= */
 
-.museum-nav-dropdown > summary::-webkit-details-marker {
-  display: none;
-}
-
-.collection-nav-trigger {
-  display: inline-flex;
+.museum-nav {
+  display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 6px;
-  cursor: pointer;
-  user-select: none;
+  flex-wrap: wrap;
+
+  gap: 30px;
+
+  margin-top: 24px;
 }
 
-.collection-nav-arrow {
-  display: inline-block;
-  color: currentColor;
-  font-size: 0.72rem;
-  transform-origin: center;
-  transition: transform 0.18s ease;
-}
 
-.museum-nav-dropdown[open] .collection-nav-arrow {
-  transform: rotate(180deg);
-}
-
-.museum-nav-submenu {
-  position: absolute;
-  z-index: 100;
-  top: calc(100% + 12px);
-  left: 50%;
-  min-width: 190px;
-  padding: 8px;
-  background: #161618;
-  border: 1px solid #303034;
-  border-radius: 10px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.38);
-  transform: translateX(-50%);
-}
-
-.museum-nav-submenu::before {
-  content: "";
-  position: absolute;
-  top: -6px;
-  left: 50%;
-  width: 10px;
-  height: 10px;
-  background: #161618;
-  border-top: 1px solid #303034;
-  border-left: 1px solid #303034;
-  transform: translateX(-50%) rotate(45deg);
-}
-
-.museum-nav-submenu-link {
+.museum-nav-link {
   position: relative;
-  z-index: 1;
-  display: block;
-  padding: 11px 13px;
+
+  padding: 5px 2px 8px;
+
   color: #8b8b90;
-  border-radius: 7px;
+
+  border-bottom:
+    2px solid transparent;
+
   text-decoration: none;
-  text-align: left;
-  white-space: nowrap;
-  font-size: 0.72rem;
+
+  font-size: 0.76rem;
   font-weight: 800;
-  letter-spacing: 1.15px;
+
+  letter-spacing: 1.4px;
+
+  opacity: 0.72;
+
+  transform:
+    translateY(0);
+
   transition:
-    background 0.18s ease,
-    color 0.18s ease;
+    color 0.22s ease,
+    opacity 0.22s ease,
+    transform 0.22s ease,
+    letter-spacing 0.22s ease,
+    border-color 0.22s ease,
+    text-shadow 0.22s ease;
 }
 
-.museum-nav-submenu-link:hover {
-  background: #202023;
-  color: #fff;
+
+/*
+   Hover:
+   - dịch nhẹ lên
+   - mờ nhẹ
+   - tăng khoảng cách chữ
+*/
+
+.museum-nav-link:hover {
+  color: #d6d6d8;
+
+  opacity: 0.45;
+
+  transform:
+    translateY(-2px);
+
+  letter-spacing: 1.7px;
 }
 
-.museum-nav-submenu-link.active {
-  background: rgba(255, 204, 0, 0.1);
+
+/*
+   Trang đang active:
+   - vàng rõ
+   - underline vàng
+   - glow rất nhẹ
+*/
+
+.museum-nav-link.active {
   color: #ffcc00;
+
+  opacity: 1;
+
+  border-color: #ffcc00;
+
+  text-shadow:
+    0 0 12px
+    rgba(255, 204, 0, 0.18);
+}
+
+
+/*
+   Active + hover:
+   không làm nó quá mờ
+*/
+
+.museum-nav-link.active:hover {
+  color: #ffd633;
+
+  opacity: 1;
+
+  transform:
+    translateY(-1px);
+
+  text-shadow:
+    0 0 15px
+    rgba(255, 204, 0, 0.28);
+}
+
+
+/* =========================================================
+   CARD — VIEW MORE CTA
+========================================================= */
+
+/*
+   Tất cả card sneaker / LEGO / mask
+   đều tự có dòng XEM THÊM.
+*/
+
+.card-info::after {
+  content: "XEM THÊM →";
+
+  display: block;
+
+  margin-top: 16px;
+
+  padding-top: 12px;
+
+  color: #8f8f94;
+
+  border-top:
+    1px solid #29292d;
+
+  font-size: 0.7rem;
+  font-weight: 800;
+
+  letter-spacing: 1.15px;
+
+  transition:
+    color 0.22s ease,
+    transform 0.22s ease,
+    letter-spacing 0.22s ease;
+}
+
+
+/*
+   English
+*/
+
+html[lang="en"] .card-info::after {
+  content: "VIEW MORE →";
+}
+
+
+/*
+   Hover card:
+   CTA chạy nhẹ sang phải
+*/
+
+.card-link:hover .card-info::after {
+  color: #ffcc00;
+
+  transform:
+    translateX(5px);
+
+  letter-spacing: 1.3px;
 }
 
 
@@ -97,83 +175,147 @@
 
 .collection-category-page {
   max-width: 980px;
+
   margin: 0 auto;
 }
 
+
 .collection-category-hero {
   margin-top: 16px;
+
   padding: 34px;
+
   background: #141416;
-  border: 1px solid #26262a;
+
+  border:
+    1px solid #26262a;
+
   border-radius: 14px;
 }
 
+
 .collection-category-eyebrow {
-  margin: 0 0 12px;
+  margin:
+    0
+    0
+    12px;
+
   color: #ffcc00;
+
   font-size: 0.7rem;
   font-weight: 800;
+
   letter-spacing: 1.5px;
 }
 
+
 .collection-category-hero h2 {
-  margin: 0 0 14px;
+  margin:
+    0
+    0
+    14px;
+
   color: #f5f5f7;
-  font-size: clamp(1.7rem, 4vw, 2.5rem);
+
+  font-size:
+    clamp(
+      1.7rem,
+      4vw,
+      2.5rem
+    );
+
   line-height: 1.15;
 }
 
+
 .collection-category-hero p {
   max-width: 760px;
+
   margin: 0;
+
   color: #9b9ba0;
+
   font-size: 0.98rem;
+
   line-height: 1.75;
 }
 
+
 .collection-category-status {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(0, 1fr)
+    );
+
   gap: 14px;
+
   margin-top: 18px;
 }
+
 
 .collection-category-stat {
   padding: 18px;
+
   background: #161618;
-  border: 1px solid #26262a;
+
+  border:
+    1px solid #26262a;
+
   border-radius: 10px;
 }
 
+
 .collection-category-stat-label {
   display: block;
+
   margin-bottom: 8px;
+
   color: #68686d;
+
   font-size: 0.66rem;
   font-weight: 800;
+
   letter-spacing: 1.15px;
 }
 
+
 .collection-category-stat-value {
   color: #f3f3f5;
+
   font-size: 0.92rem;
+
   font-weight: 750;
 }
 
+
 .collection-category-empty {
   margin-top: 18px;
+
   padding: 56px 24px;
+
   background: #101012;
+
   color: #77777d;
-  border: 1px dashed #303034;
+
+  border:
+    1px dashed #303034;
+
   border-radius: 12px;
+
   text-align: center;
+
   line-height: 1.7;
 }
 
+
 .collection-category-empty strong {
   display: block;
+
   margin-bottom: 8px;
+
   color: #cfcfd3;
 }
 
@@ -186,22 +328,21 @@
   background: #101012;
 }
 
-.mask-grid .card-img-wrapper img {
+
+.mask-grid
+.card-img-wrapper
+img {
   object-fit: contain !important;
+
   object-position: center !important;
+
   padding: 8px;
 }
 
-.mask-source-condition {
-  color: #00ffcc;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.45px;
-  white-space: nowrap;
-}
 
 .mask-detail-image {
   display: flex;
+
   justify-content: center;
   align-items: center;
 
@@ -215,12 +356,29 @@
     1px solid #222;
 }
 
+
 .mask-detail-image img {
   width: 100%;
+
   max-height: 760px;
 
   object-fit: contain;
+
   object-position: center;
+}
+
+
+/* =========================================================
+   ABOUT — CLASSIFICATION
+========================================================= */
+
+.definition-item {
+  align-items: start;
+}
+
+
+.definition-item span {
+  line-height: 1.65;
 }
 
 
@@ -228,29 +386,65 @@
    RESPONSIVE
 ========================================================= */
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 700px) {
 
   .museum-nav {
-    flex-wrap: wrap;
+    gap:
+      14px
+      20px;
+
+    margin-top: 22px;
   }
 
-  .museum-nav-submenu {
-    min-width: 180px;
+
+  .museum-nav-link {
+    font-size: 0.69rem;
+
+    letter-spacing: 1px;
   }
+
+
+  .museum-nav-link:hover {
+    letter-spacing: 1.1px;
+  }
+
 
   .collection-category-hero {
-    padding: 24px 20px;
+    padding:
+      24px
+      20px;
   }
 
+
   .collection-category-status {
-    grid-template-columns: 1fr;
+    grid-template-columns:
+      1fr;
   }
+
 
   .mask-detail-image {
     min-height: 0;
   }
 
-  .mask-source-condition {
-    font-size: 0.68rem;
+}
+
+
+@media screen and (max-width: 430px) {
+
+  .museum-nav {
+    gap:
+      10px
+      16px;
   }
+
+
+  .museum-nav-link {
+    font-size: 0.64rem;
+  }
+
+
+  .card-info::after {
+    font-size: 0.66rem;
+  }
+
 }
