@@ -1,12 +1,14 @@
 /* =========================================================
    LỘC AN SNEAKER COLLECTION
 
-   FINAL NAVIGATION
-   + SEARCH
-   + PRIVATE COLLECTION NOTICE
-   + SNEAKER FULL-IMAGE CARDS
-   + CATEGORY PAGES
-   + ABOUT AUTHENTICITY
+   FINAL UI
+   - NAVIGATION
+   - SEARCH
+   - PRIVATE COLLECTION NOTICE
+   - LIQUID GLASS SNEAKER CARDS
+   - FULL SNEAKER COVER IMAGES
+   - CATEGORY PAGES
+   - ABOUT / AUTHENTICITY
 ========================================================= */
 
 
@@ -29,31 +31,21 @@
   content: "PRIVATE COLLECTION — NOT FOR SALE";
 
   display: block;
+
   width: fit-content;
 
   margin: 24px auto 0;
+
   padding: 9px 15px;
 
   color: #ff6969;
 
-  background:
-    rgba(
-      255,
-      76,
-      76,
-      0.045
-    );
+  background: rgba(255, 76, 76, 0.045);
 
-  border:
-    1px solid
-    rgba(
-      255,
-      82,
-      82,
-      0.18
-    );
+  border: 1px solid rgba(255, 82, 82, 0.18);
 
   border-left: 3px solid #ff4d4d;
+
   border-radius: 7px;
 
   font-size: 0.67rem;
@@ -61,6 +53,7 @@
   line-height: 1.3;
 
   letter-spacing: 1.1px;
+
   text-align: center;
 }
 
@@ -78,6 +71,7 @@
   z-index: 20;
 
   display: flex;
+
   align-items: center;
 
   gap: 16px;
@@ -115,8 +109,7 @@
 
   opacity: 0.55;
 
-  transform:
-    translateY(-2px);
+  transform: translateY(-2px);
 }
 
 
@@ -148,17 +141,13 @@
 .museum-nav-link {
   display: inline-block;
 
-  padding:
-    6px
-    2px
-    9px;
+  padding: 6px 2px 9px;
 
   color: #85858a;
 
   text-decoration: none;
 
-  border-bottom:
-    2px solid transparent;
+  border-bottom: 2px solid transparent;
 
   font-size: 0.76rem;
   font-weight: 800;
@@ -167,8 +156,7 @@
 
   opacity: 0.75;
 
-  transform:
-    translateY(0);
+  transform: translateY(0);
 
   transition:
     color 0.2s ease,
@@ -184,8 +172,7 @@
 
   opacity: 0.5;
 
-  transform:
-    translateY(-2px);
+  transform: translateY(-2px);
 
   letter-spacing: 1.65px;
 }
@@ -212,19 +199,18 @@
 ========================================================= */
 
 .archive-search-panel {
-  margin:
-    28px
-    0
-    18px;
+  margin: 28px 0 18px;
 
   padding: 18px;
 
-  background: #121214;
+  background: rgba(255, 255, 255, 0.025);
 
-  border:
-    1px solid #27272b;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 
   border-radius: 12px;
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 }
 
 
@@ -261,6 +247,7 @@
   color: #707076;
 
   font-size: 1.12rem;
+
   line-height: 1;
 
   pointer-events: none;
@@ -272,24 +259,20 @@
 
   min-height: 48px;
 
-  padding:
-    13px
-    47px
-    13px
-    43px;
+  padding: 13px 47px 13px 43px;
 
   color: #f2f2f4;
 
-  background: #0d0d0f;
+  background: rgba(0, 0, 0, 0.22);
 
-  border:
-    1px solid #303035;
+  border: 1px solid rgba(255, 255, 255, 0.09);
 
   border-radius: 9px;
 
   outline: none;
 
   font: inherit;
+
   font-size: 0.9rem;
 
   transition:
@@ -305,33 +288,20 @@
 
 
 .archive-search-input:hover {
-  border-color: #3a3a40;
+  border-color: rgba(255, 255, 255, 0.14);
 }
 
 
 .archive-search-input:focus {
-  background: #0f0f11;
+  background: rgba(0, 0, 0, 0.3);
 
-  border-color:
-    rgba(
-      255,
-      204,
-      0,
-      0.68
-    );
+  border-color: rgba(255, 204, 0, 0.68);
 
   box-shadow:
     0 0 0 3px
-    rgba(
-      255,
-      204,
-      0,
-      0.065
-    );
+    rgba(255, 204, 0, 0.065);
 }
 
-
-/* Hide native browser search X */
 
 .archive-search-input::-webkit-search-cancel-button {
   display: none;
@@ -357,11 +327,13 @@
   background: transparent;
 
   border: 0;
+
   border-radius: 50%;
 
   cursor: pointer;
 
   font-size: 1.25rem;
+
   line-height: 1;
 
   transition:
@@ -378,26 +350,144 @@
 .archive-search-clear:hover {
   color: #ffcc00;
 
-  background:
-    rgba(
-      255,
-      204,
-      0,
-      0.06
-    );
+  background: rgba(255, 204, 0, 0.06);
 }
 
 
 /* =========================================================
-   SNEAKER COVER IMAGE
+   SNEAKER GRID
 
    IMPORTANT:
-   Chỉ áp dụng cho #sneaker-grid.
+   Chỉ tác động lên homepage sneaker collection.
+   LEGO và Sneaker Mask không bị thay đổi.
+========================================================= */
 
-   - Black background
-   - Full sneaker visible
-   - No crop
-   - No lost toe / heel / zip tie / accessories
+#sneaker-grid {
+  align-items: stretch;
+}
+
+
+/* =========================================================
+   SNEAKER LIQUID GLASS CARD
+
+   Toàn bộ card là một lớp glass duy nhất.
+   Không còn:
+   - nền đen riêng cho ảnh
+   - nền xám đặc riêng cho phần text
+========================================================= */
+
+#sneaker-grid .card {
+  position: relative;
+
+  display: flex;
+
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  /*
+     Glass rất nhẹ.
+
+     Không dùng xám opaque để tránh cảm giác
+     "xám đục".
+  */
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.052) 0%,
+      rgba(255, 255, 255, 0.026) 48%,
+      rgba(255, 255, 255, 0.018) 100%
+    );
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.105);
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 14px 36px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+
+  backdrop-filter:
+    blur(22px)
+    saturate(140%);
+
+  -webkit-backdrop-filter:
+    blur(22px)
+    saturate(140%);
+
+  transition:
+    transform 0.24s ease,
+    border-color 0.24s ease,
+    box-shadow 0.24s ease,
+    background 0.24s ease;
+}
+
+
+/*
+   Glass highlight nhẹ phía trên.
+*/
+
+#sneaker-grid .card::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 0;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.055) 0%,
+      rgba(255, 255, 255, 0.012) 30%,
+      transparent 58%
+    );
+}
+
+
+#sneaker-grid .card > * {
+  position: relative;
+
+  z-index: 1;
+}
+
+
+#sneaker-grid .card:hover {
+  transform: translateY(-4px);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.064) 0%,
+      rgba(255, 255, 255, 0.032) 50%,
+      rgba(255, 255, 255, 0.022) 100%
+    );
+
+  border-color:
+    rgba(255, 204, 0, 0.20);
+
+  box-shadow:
+    0 18px 42px rgba(0, 0, 0, 0.30),
+    inset 0 1px 0 rgba(255, 255, 255, 0.09);
+}
+
+
+/* =========================================================
+   CARD IMAGE AREA
+
+   Đây không phải một "box" riêng nữa.
+
+   Nó chỉ là vùng layout để đặt sneaker
+   trực tiếp lên card.
 ========================================================= */
 
 #sneaker-grid .card-img-wrapper {
@@ -410,90 +500,270 @@
 
   width: 100%;
 
+  /*
+     Giữ tất cả card có cùng vùng ảnh.
+  */
+
   aspect-ratio: 4 / 3;
+
+  min-height: 0;
 
   overflow: hidden;
 
-  background: #000000;
+  /*
+     Không background riêng.
+  */
+
+  background: transparent !important;
+
+  border: 0 !important;
+
+  box-shadow: none !important;
 }
 
 
-/*
-   "contain" rất quan trọng.
+/* =========================================================
+   ALL 8 CURRENT COVER IMAGES
 
-   cover   = phóng ảnh + crop.
-   contain = luôn giữ toàn bộ ảnh trong khung.
-*/
+   Một rule duy nhất cho cả 8 đôi.
+
+   Không còn:
+   - BAPE nhỏ riêng
+   - Waffle nhỏ riêng
+   - Jordan lớn riêng
+
+   => tất cả dùng cùng một image viewport.
+========================================================= */
 
 #sneaker-grid
 .card-img-wrapper
 img {
   position: absolute;
 
-  inset: 0;
+  /*
+     4% khoảng thở hai bên.
+     4% trên dưới.
 
-  display: block;
+     Do ảnh hiện tại đã transparent,
+     sneaker sẽ được phóng lớn hơn nhiều
+     so với bản trước.
+  */
 
-  width: 100% !important;
-  height: 100% !important;
+  top: 4%;
+  left: 4%;
 
-  padding: 10px;
+  width: 92% !important;
+  height: 92% !important;
+
+  padding: 0 !important;
 
   object-fit: contain !important;
 
   object-position:
     center center !important;
 
-  background: transparent;
+  display: block;
+
+  background: transparent !important;
+
+  /*
+     Không dùng special scale khác nhau
+     cho từng đôi.
+  */
+
+  transform:
+    scale(1.18);
+
+  transform-origin:
+    center center;
+
+  /*
+     Shadow rất nhẹ giúp PNG transparent
+     nổi khỏi glass mà không tạo ô nền.
+  */
+
+  filter:
+    drop-shadow(
+      0
+      12px
+      14px
+      rgba(0, 0, 0, 0.18)
+    );
+
+  transition:
+    transform 0.22s ease,
+    filter 0.22s ease;
 }
 
 
 /*
-   Không zoom ảnh khi hover.
-   Giữ nguyên full sneaker.
+   Tất cả 8 đôi hover cùng mức.
 */
 
 #sneaker-grid
-.card-link:hover
+.card:hover
 .card-img-wrapper
 img {
-  object-fit: contain !important;
+  transform:
+    scale(1.20);
+
+  filter:
+    drop-shadow(
+      0
+      14px
+      18px
+      rgba(0, 0, 0, 0.22)
+    );
 }
 
 
 /* =========================================================
-   SINGLE PAGE SECTION SUPPORT
+   IMPORTANT:
+   RESET CÁC RULE CŨ CHO BAPE / WAFFLE
+
+   Nếu browser còn đọc CSS version trước,
+   đoạn này đảm bảo 2 đôi không bị thu nhỏ nữa.
 ========================================================= */
 
-.site-section {
-  animation:
-    sectionFadeIn
-    0.22s ease;
+#sneaker-grid
+.card-img-wrapper
+img[src*="bapesta_stussy.png"],
+
+#sneaker-grid
+.card-img-wrapper
+img[src*="nike_waffle_racer_ow.png"] {
+  top: 4% !important;
+  left: 4% !important;
+
+  width: 92% !important;
+  height: 92% !important;
+
+  max-width: none !important;
+  max-height: none !important;
+
+  padding: 0 !important;
+
+  object-fit: contain !important;
+
+  object-position:
+    center center !important;
+
+  transform:
+    scale(1.18) !important;
 }
 
 
-.site-section[hidden] {
-  display:
-    none !important;
+#sneaker-grid
+.card:hover
+.card-img-wrapper
+img[src*="bapesta_stussy.png"],
+
+#sneaker-grid
+.card:hover
+.card-img-wrapper
+img[src*="nike_waffle_racer_ow.png"] {
+  transform:
+    scale(1.20) !important;
 }
 
 
-@keyframes sectionFadeIn {
+/* =========================================================
+   CARD INFORMATION
 
-  from {
-    opacity: 0;
+   Không background riêng.
+   Nằm trực tiếp trên cùng glass card.
+========================================================= */
 
-    transform:
-      translateY(4px);
-  }
+#sneaker-grid .card-info {
+  display: flex;
 
-  to {
-    opacity: 1;
+  flex-direction: column;
 
-    transform:
-      translateY(0);
-  }
+  flex: 1;
 
+  min-height: 190px;
+
+  padding: 20px;
+
+  background: transparent !important;
+}
+
+
+/* Title */
+
+#sneaker-grid .card-info h3 {
+  margin: 0 0 8px;
+
+  color: #f5f5f7;
+
+  font-size: 1.1rem;
+  font-weight: 800;
+
+  line-height: 1.4;
+}
+
+
+/* Subtitle */
+
+#sneaker-grid .card-info .subtitle {
+  margin: 0 0 15px;
+
+  color: #9499a3;
+
+  font-size: 0.85rem;
+
+  line-height: 1.5;
+}
+
+
+/* Meta */
+
+#sneaker-grid .card-meta {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 10px;
+
+  margin-top: auto;
+}
+
+
+/* Badge */
+
+#sneaker-grid .badge {
+  padding: 5px 9px;
+
+  background:
+    rgba(255, 255, 255, 0.10);
+
+  color: #ffcc00;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.045);
+
+  border-radius: 6px;
+
+  font-size: 0.8rem;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+
+#sneaker-grid .badge-placeholder {
+  visibility: hidden;
+}
+
+
+/* Size */
+
+#sneaker-grid .size {
+  color: #b5bac3;
+
+  font-size: 0.8rem;
 }
 
 
@@ -509,9 +779,10 @@ img {
   padding-top: 12px;
 
   border-top:
-    1px solid #29292d;
+    1px solid
+    rgba(255, 255, 255, 0.07);
 
-  color: #8f8f94;
+  color: #8f949e;
 
   font-size: 0.7rem;
   font-weight: 800;
@@ -529,6 +800,42 @@ img {
 
   transform:
     translateX(5px);
+}
+
+
+/* =========================================================
+   SINGLE PAGE SECTION SUPPORT
+========================================================= */
+
+.site-section {
+  animation:
+    sectionFadeIn
+    0.22s ease;
+}
+
+
+.site-section[hidden] {
+  display: none !important;
+}
+
+
+@keyframes sectionFadeIn {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(4px);
+  }
+
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+
 }
 
 
@@ -553,10 +860,7 @@ img {
 
 
 .collection-category-eyebrow {
-  margin:
-    0
-    0
-    12px;
+  margin: 0 0 12px;
 
   color: #ffcc00;
 
@@ -568,10 +872,7 @@ img {
 
 
 .collection-category-hero h2 {
-  margin:
-    0
-    0
-    14px;
+  margin: 0 0 14px;
 
   color: #f5f5f7;
 
@@ -597,6 +898,8 @@ img {
 
 /* =========================================================
    SNEAKER MASK IMAGES
+
+   Không thay đổi hệ thống Sneaker Mask.
 ========================================================= */
 
 .mask-grid .card-img-wrapper {
@@ -644,10 +947,7 @@ img {
 
 
 .authenticity-kicker {
-  margin:
-    0
-    0
-    12px;
+  margin: 0 0 12px;
 
   color: #ffcc00;
 
@@ -661,20 +961,14 @@ img {
 
 
 .authenticity-section h3 {
-  margin:
-    0
-    0
-    20px;
+  margin: 0 0 20px;
 
   color: #f2f2f4;
 }
 
 
 .authenticity-text {
-  margin:
-    0
-    0
-    18px;
+  margin: 0 0 18px;
 
   color: #94949a;
 
@@ -692,15 +986,13 @@ img {
 
 
 /* =========================================================
-   AUTHENTICITY NOTICE IN ABOUT
+   AUTHENTICITY NOTICE
 ========================================================= */
 
 .authenticity-notice {
   margin-top: 24px;
 
-  padding:
-    16px
-    18px;
+  padding: 16px 18px;
 
   color: #ff6767;
 
@@ -743,7 +1035,62 @@ img {
 
 
 /* =========================================================
-   TABLET / MOBILE
+   TABLET
+========================================================= */
+
+@media screen and (max-width: 950px) {
+
+  /*
+     Hai cột tablet được xử lý trong style.css.
+
+     Giữ tất cả sneaker cùng tỷ lệ.
+  */
+
+  #sneaker-grid
+  .card-img-wrapper
+  img {
+    top: 3%;
+    left: 3%;
+
+    width: 94% !important;
+    height: 94% !important;
+
+    transform:
+      scale(1.15);
+  }
+
+
+  #sneaker-grid
+  .card:hover
+  .card-img-wrapper
+  img {
+    transform:
+      scale(1.17);
+  }
+
+
+  #sneaker-grid
+  .card-img-wrapper
+  img[src*="bapesta_stussy.png"],
+
+  #sneaker-grid
+  .card-img-wrapper
+  img[src*="nike_waffle_racer_ow.png"] {
+    top: 3% !important;
+    left: 3% !important;
+
+    width: 94% !important;
+    height: 94% !important;
+
+    transform:
+      scale(1.15) !important;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
 ========================================================= */
 
 @media screen and (max-width: 700px) {
@@ -761,9 +1108,7 @@ img {
   .about-header::after {
     margin-top: 20px;
 
-    padding:
-      8px
-      13px;
+    padding: 8px 13px;
 
     font-size: 0.64rem;
 
@@ -772,9 +1117,7 @@ img {
 
 
   .museum-nav {
-    gap:
-      14px
-      22px;
+    gap: 14px 22px;
   }
 
 
@@ -804,24 +1147,71 @@ img {
   }
 
 
+  /* =====================================================
+     MOBILE GLASS CARD
+  ===================================================== */
+
+  #sneaker-grid .card {
+    border-radius: 16px;
+  }
+
+
   /*
-     Mobile sneaker cards:
-     vẫn giữ full sneaker,
-     nhưng giảm padding một chút
-     để đôi giày lớn hơn.
+     Trên mobile card rộng hơn,
+     nên có thể cho sneaker lớn thêm chút nữa.
   */
 
   #sneaker-grid
   .card-img-wrapper
   img {
-    padding: 7px;
+    top: 2%;
+    left: 2%;
+
+    width: 96% !important;
+    height: 96% !important;
+
+    transform:
+      scale(1.14);
+  }
+
+
+  #sneaker-grid
+  .card:hover
+  .card-img-wrapper
+  img {
+    transform:
+      scale(1.14);
+  }
+
+
+  /*
+     BAPE và Waffle = đúng cùng kích thước
+     với 6 đôi còn lại.
+  */
+
+  #sneaker-grid
+  .card-img-wrapper
+  img[src*="bapesta_stussy.png"],
+
+  #sneaker-grid
+  .card-img-wrapper
+  img[src*="nike_waffle_racer_ow.png"] {
+    top: 2% !important;
+    left: 2% !important;
+
+    width: 96% !important;
+    height: 96% !important;
+
+    max-width: none !important;
+    max-height: none !important;
+
+    transform:
+      scale(1.14) !important;
   }
 
 
   .collection-category-hero {
-    padding:
-      24px
-      20px;
+    padding: 24px 20px;
   }
 
 
@@ -840,9 +1230,7 @@ img {
 
 
   .authenticity-notice {
-    padding:
-      14px
-      15px;
+    padding: 14px 15px;
 
     font-size: 0.81rem;
   }
@@ -857,9 +1245,7 @@ img {
 @media screen and (max-width: 430px) {
 
   .museum-nav {
-    gap:
-      10px
-      16px;
+    gap: 10px 16px;
   }
 
 
@@ -891,15 +1277,39 @@ img {
 
 
   /*
-     Small phones:
-     cho sneaker chiếm nhiều diện tích hơn,
-     nhưng vẫn tuyệt đối không crop.
+     Giữ ảnh lớn trên điện thoại nhỏ,
+     nhưng vẫn contain nên không crop sneaker.
   */
 
   #sneaker-grid
   .card-img-wrapper
   img {
-    padding: 5px;
+    top: 1%;
+    left: 1%;
+
+    width: 98% !important;
+    height: 98% !important;
+
+    transform:
+      scale(1.10);
+  }
+
+
+  #sneaker-grid
+  .card-img-wrapper
+  img[src*="bapesta_stussy.png"],
+
+  #sneaker-grid
+  .card-img-wrapper
+  img[src*="nike_waffle_racer_ow.png"] {
+    top: 1% !important;
+    left: 1% !important;
+
+    width: 98% !important;
+    height: 98% !important;
+
+    transform:
+      scale(1.10) !important;
   }
 
 
@@ -912,351 +1322,4 @@ img {
     font-size: 0.79rem;
   }
 
-}
-
-/* =========================================================
-   SPECIAL COVER FIT
-   BAPE x STUSSY + OFF-WHITE WAFFLE RACER
-
-   Hai ảnh này có subject nằm sát mép canvas hơn
-   các ảnh cover khác, nên cho thêm khoảng thở riêng.
-========================================================= */
-
-#sneaker-grid
-.card-img-wrapper
-img[src*="bapesta_stussy.png"],
-
-#sneaker-grid
-.card-img-wrapper
-img[src*="nike_waffle_racer_ow.png"] {
-  padding: 24px !important;
-
-  object-fit: contain !important;
-  object-position: center center !important;
-
-  transform: scale(0.92);
-
-  transform-origin: center center;
-}
-
-
-/* Mobile */
-
-@media screen and (max-width: 700px) {
-
-  #sneaker-grid
-  .card-img-wrapper
-  img[src*="bapesta_stussy.png"],
-
-  #sneaker-grid
-  .card-img-wrapper
-  img[src*="nike_waffle_racer_ow.png"] {
-    padding: 16px !important;
-
-    transform: scale(0.94);
-  }
-
-/* =========================================================
-   SNEAKER GRID / GLASS CARD / FULL SHOE COVER
-========================================================= */
-
-#sneaker-grid,
-.collection-grid,
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 28px;
-  align-items: stretch;
-}
-
-/* Glass card */
-.card {
-  position: relative;
-  overflow: hidden;
-  border-radius: 22px;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.045)),
-    rgba(170, 178, 190, 0.06);
-  border: 1px solid rgba(255,255,255,0.12);
-  box-shadow:
-    0 12px 28px rgba(0,0,0,0.28),
-    inset 0 1px 0 rgba(255,255,255,0.07);
-  backdrop-filter: blur(20px) saturate(145%);
-  -webkit-backdrop-filter: blur(20px) saturate(145%);
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(255, 204, 0, 0.22);
-  box-shadow:
-    0 16px 38px rgba(0, 0, 0, 0.34),
-    0 0 0 1px rgba(255, 204, 0, 0.04) inset;
-}
-
-/* bỏ nền riêng của vùng ảnh */
-.card-img-wrapper {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 280px;
-  padding: 28px 24px 14px;
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-}
-
-/* nếu card đang dùng thẻ a bọc ảnh */
-.card-link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
-
-/* ảnh cover luôn full đôi, không bị crop */
-.card-img-wrapper img {
-  display: block;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  max-height: 215px;
-  object-fit: contain !important;
-  object-position: center center !important;
-  filter:
-    drop-shadow(0 10px 18px rgba(0, 0, 0, 0.24))
-    drop-shadow(0 2px 4px rgba(0, 0, 0, 0.18));
-  transition: transform 0.22s ease;
-}
-
-/* hover nhẹ cho ảnh */
-.card:hover .card-img-wrapper img {
-  transform: translateY(-2px);
-}
-
-/* phần nội dung dưới card */
-.card-info {
-  padding: 20px 24px 22px;
-  background: transparent !important;
-}
-
-/* title */
-.card-title {
-  margin: 0 0 10px;
-  color: #f6f6f8;
-  font-size: 1.06rem;
-  font-weight: 800;
-  line-height: 1.32;
-  letter-spacing: -0.01em;
-}
-
-/* subtitle */
-.card-subtitle,
-.card-meta,
-.card-storyline {
-  margin: 0 0 18px;
-  color: #a8adb7;
-  font-size: 0.96rem;
-  line-height: 1.55;
-}
-
-/* hàng dưới: badge + size */
-.card-bottom,
-.card-meta-row,
-.card-footer-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  margin-top: 6px;
-  padding-top: 14px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-/* size */
-.card-size {
-  color: #c6cad1;
-  font-size: 0.96rem;
-  white-space: nowrap;
-}
-
-/* badge chung */
-.badge,
-.edition-badge,
-.tag {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 32px;
-  padding: 6px 12px;
-  border-radius: 10px;
-  background: rgba(255, 204, 0, 0.12);
-  border: 1px solid rgba(255, 204, 0, 0.14);
-  color: #ffcc33;
-  font-size: 0.9rem;
-  font-weight: 700;
-  line-height: 1;
-}
-
-/* CTA */
-.card-cta,
-.card-info::after {
-  display: block;
-  margin-top: 16px;
-  padding-top: 12px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  color: #aeb3bc;
-  font-size: 0.82rem;
-  font-weight: 800;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-  transition: color 0.2s ease, transform 0.2s ease;
-}
-
-.card-info::after {
-  content: "XEM THÊM →";
-}
-
-html[lang="en"] .card-info::after {
-  content: "VIEW MORE →";
-}
-
-.card-link:hover .card-info::after,
-.card:hover .card-info::after,
-.card-link:hover .card-cta,
-.card:hover .card-cta {
-  color: #ffcc00;
-  transform: translateX(4px);
-}
-
-/* =========================================================
-   SPECIAL COVER FIT
-   chỉnh riêng những đôi dễ bị to / sát mép
-========================================================= */
-
-/* BAPE x Stussy */
-#sneaker-grid .card-img-wrapper img[src*="bapesta_stussy.png"] {
-  max-height: 185px !important;
-  transform: scale(0.86);
-  transform-origin: center center;
-}
-
-/* Nike x Off-White Waffle Racer */
-#sneaker-grid .card-img-wrapper img[src*="nike_waffle_racer_ow.png"] {
-  max-height: 180px !important;
-  transform: scale(0.84);
-  transform-origin: center center;
-}
-
-/* nếu hover thì vẫn chỉ nhích nhẹ, không phóng quá lớn */
-#sneaker-grid .card:hover .card-img-wrapper img[src*="bapesta_stussy.png"],
-#sneaker-grid .card:hover .card-img-wrapper img[src*="nike_waffle_racer_ow.png"] {
-  transform: scale(0.84) translateY(-1px);
-}
-
-/* ảnh phụ _1 trong detail modal / detail page nếu có */
-.detail-gallery img,
-.modal-gallery img,
-.detail-extra-images img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-@media screen and (max-width: 900px) {
-  #sneaker-grid,
-  .collection-grid,
-  .grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 22px;
-  }
-
-  .card-img-wrapper {
-    min-height: 250px;
-    padding: 24px 20px 10px;
-  }
-
-  .card-img-wrapper img {
-    max-height: 195px;
-  }
-
-  .card-title {
-    font-size: 1rem;
-  }
-
-  .card-subtitle,
-  .card-meta,
-  .card-storyline,
-  .card-size {
-    font-size: 0.92rem;
-  }
-}
-
-@media screen and (max-width: 700px) {
-  #sneaker-grid,
-  .collection-grid,
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
-
-  .card {
-    border-radius: 18px;
-  }
-
-  .card-img-wrapper {
-    min-height: 225px;
-    padding: 20px 18px 8px;
-  }
-
-  .card-img-wrapper img {
-    max-height: 175px;
-  }
-
-  .card-info {
-    padding: 18px 18px 18px;
-  }
-
-  #sneaker-grid .card-img-wrapper img[src*="bapesta_stussy.png"] {
-    max-height: 170px !important;
-    transform: scale(0.88);
-  }
-
-  #sneaker-grid .card-img-wrapper img[src*="nike_waffle_racer_ow.png"] {
-    max-height: 165px !important;
-    transform: scale(0.86);
-  }
-
-  #sneaker-grid .card:hover .card-img-wrapper img[src*="bapesta_stussy.png"],
-  #sneaker-grid .card:hover .card-img-wrapper img[src*="nike_waffle_racer_ow.png"] {
-    transform: scale(0.86) translateY(-1px);
-  }
-}
-
-@media screen and (max-width: 430px) {
-  .card-img-wrapper {
-    min-height: 210px;
-  }
-
-  .card-img-wrapper img {
-    max-height: 160px;
-  }
-
-  .card-title {
-    font-size: 0.96rem;
-  }
-
-  .card-subtitle,
-  .card-meta,
-  .card-storyline,
-  .card-size {
-    font-size: 0.88rem;
-  }
-}
 }
