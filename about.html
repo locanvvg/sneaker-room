@@ -43,12 +43,12 @@
 
   <link
     rel="stylesheet"
-    href="./style.css?v=20260912-20"
+    href="./style.css?v=20260912-restore"
   >
 
   <link
     rel="stylesheet"
-    href="./collection-menu.css?v=20260912-20"
+    href="./collection-menu.css?v=20260912-restore"
   >
 
 </head>
@@ -161,7 +161,8 @@
           data-en="An archive of unique Sneaker Mask artifacts, hand-cut and entirely handmade from original sneakers."
         >
           Kho lưu trữ các tác phẩm
-          Sneaker Mask độc bản được cắt tay
+          Sneaker Mask độc bản
+          được cắt tay
           và chế tác hoàn toàn thủ công
           từ những đôi sneaker nguyên bản.
         </p>
@@ -200,7 +201,7 @@
 
 
   <script
-    src="./sneaker-mask-data.js?v=20260912-20"
+    src="./sneaker-mask-data.js?v=20260912-restore"
   ></script>
 
 
@@ -246,7 +247,9 @@
     ) {
 
       maskLanguage =
-        MASK_LANGUAGES.includes(lang)
+        MASK_LANGUAGES.includes(
+          lang
+        )
           ? lang
           : "vi";
 
@@ -262,7 +265,9 @@
 
 
       document
-        .getElementById("btn-vi")
+        .getElementById(
+          "btn-vi"
+        )
         .classList.toggle(
           "active",
           maskLanguage === "vi"
@@ -270,7 +275,9 @@
 
 
       document
-        .getElementById("btn-en")
+        .getElementById(
+          "btn-en"
+        )
         .classList.toggle(
           "active",
           maskLanguage === "en"
@@ -283,16 +290,16 @@
         );
 
 
-      subtitle.textContent =
-        subtitle.dataset[
-          maskLanguage
-        ];
-
-
       const description =
         document.getElementById(
           "mask-page-description"
         );
+
+
+      subtitle.textContent =
+        subtitle.dataset[
+          maskLanguage
+        ];
 
 
       description.textContent =
@@ -330,11 +337,17 @@
 
 
       window.history.replaceState(
+
         {},
+
         "",
-        url.pathname +
-        url.search +
+
+        url.pathname
+        +
+        url.search
+        +
         url.hash
+
       );
 
     }
@@ -348,7 +361,29 @@
         );
 
 
-      grid.innerHTML = "";
+      if (
+        typeof sneakerMasks ===
+        "undefined"
+        ||
+        !Array.isArray(
+          sneakerMasks
+        )
+      ) {
+
+        grid.innerHTML = `
+
+          <div class="not-found">
+            Sneaker Mask data could not be loaded.
+          </div>
+
+        `;
+
+        return;
+      }
+
+
+      grid.innerHTML =
+        "";
 
 
       sneakerMasks.forEach(
@@ -366,9 +401,16 @@
 
 
           link.href =
+
             `./sneaker-mask-detail.html?id=${encodeURIComponent(
               mask.id
-            )}&lang=${maskLanguage}`;
+            )}`
+
+            +
+
+            `&lang=${encodeURIComponent(
+              maskLanguage
+            )}`;
 
 
           const card =
@@ -409,6 +451,10 @@
 
           image.loading =
             "lazy";
+
+
+          image.decoding =
+            "async";
 
 
           imageWrapper.appendChild(
@@ -489,8 +535,11 @@
 
 
           cta.textContent =
+
             maskLanguage === "vi"
+
               ? "XEM THÊM →"
+
               : "VIEW MORE →";
 
 
@@ -545,7 +594,9 @@
 
 
     document.addEventListener(
+
       "DOMContentLoaded",
+
       () => {
 
         setMaskLanguage(
@@ -553,6 +604,7 @@
         );
 
       }
+
     );
 
   </script>
