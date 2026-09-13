@@ -3,91 +3,78 @@
    COLLECTION VIEW CONTROLLER
 
    - Horizontal grid-density slider: 1–5 columns
-   - View toggle placed between slider and total count
-   - Desktop / tablet / mobile responsive layout
+   - Grid / 3D button between slider and total count
+   - Desktop + mobile responsive layout
    - Smooth 3D cover-flow
-   - Mouse drag, touch swipe, arrows, keyboard, trackpad
-   - Works with existing Search / Filter / Sort
+   - Mouse drag / touch swipe / keyboard / trackpad
+   - FIX: desktop arrow buttons no longer get captured by drag
+   - Compatible with existing Search / Filter / Sort
 ========================================================= */
 
 (() => {
   "use strict";
 
-
   /* =======================================================
-     NEUTRALIZE THE LEGACY GRID CONTROLLER FROM main.js
-
-     collection-view.js will own:
-     - grid density
-     - view mode
-     - 3D cover flow
+     DISABLE THE OLDER VIEW CONTROLLER INSIDE main.js
   ======================================================= */
 
   try {
-
     if (
-      typeof handleGridViewResize ===
+      typeof window.handleCollectionResize ===
       "function"
     ) {
-
       window.removeEventListener(
         "resize",
-        handleGridViewResize
+        window.handleCollectionResize
       );
-
     }
-
   } catch (_) {}
 
 
   try {
-
     if (
-      typeof createGridViewControls ===
+      typeof window.handleGridViewResize ===
       "function"
     ) {
-
-      createGridViewControls =
-        function () {};
-
+      window.removeEventListener(
+        "resize",
+        window.handleGridViewResize
+      );
     }
-
   } catch (_) {}
 
 
-  try {
+  [
+    "installCollectionViewStyles",
+    "createCollectionViewUI",
+    "updateCollectionViewControls",
+    "createGridViewControls",
+    "applySavedGridView",
+    "updateGridViewControl"
+  ].forEach(
+    name => {
 
-    if (
-      typeof applySavedGridView ===
-      "function"
-    ) {
+      try {
 
-      applySavedGridView =
-        function () {};
+        if (
+          typeof window[name] ===
+          "function"
+        ) {
+
+          window[name] =
+            function () {};
+
+        }
+
+      } catch (_) {}
 
     }
-
-  } catch (_) {}
-
-
-  try {
-
-    if (
-      typeof updateGridViewControl ===
-      "function"
-    ) {
-
-      updateGridViewControl =
-        function () {};
-
-    }
-
-  } catch (_) {}
+  );
 
 
-  const originalUpdateStaticText =
-    updateStaticText;
-
+  /* =======================================================
+     CONSTANTS / STATE
+  ======================================================= */
 
   const GRID_MIN =
     1;
@@ -110,6 +97,10 @@
 
   let gridColumns =
     readStoredColumns();
+
+
+  let lastDeviceMode =
+    deviceMode();
 
 
   let slideItems =
@@ -202,7 +193,33 @@
         String(value)
       );
 
-    } catch (_) {}
+    } catch (_) {
+
+      /*
+        Storage is optional.
+      */
+
+    }
+
+  }
+
+
+  function clamp(
+    value,
+    min,
+    max
+  ) {
+
+    return Math.min(
+
+      max,
+
+      Math.max(
+        min,
+        value
+      )
+
+    );
 
   }
 
@@ -308,28 +325,8 @@
   }
 
 
-  function clamp(
-    value,
-    min,
-    max
-  ) {
-
-    return Math.min(
-
-      max,
-
-      Math.max(
-        min,
-        value
-      )
-
-    );
-
-  }
-
-
   /* =======================================================
-     TEXT
+     LOCALIZED COPY
   ======================================================= */
 
   function copy() {
@@ -438,9 +435,8 @@
 
 
     /*
-       If a previous version moved the count
-       into another container, detach it first
-       so it is not accidentally deleted.
+       Keep the count alive even if an older controller
+       has already moved it.
     */
 
     if (
@@ -474,52 +470,70 @@
 
       "collection-3d-toggle"
 
-    ]
+    ].forEach(
+      id => {
 
-      .forEach(
-        id => {
-
-          const element =
-            document.getElementById(
-              id
-            );
+        const element =
+          document.getElementById(
+            id
+          );
 
 
-          if (
-            element
-            &&
-            !element.contains(
-              count
-            )
-          ) {
+        if (
+          element
+          &&
+          element !== count
+          &&
+          !element.contains(
+            count
+          )
+        ) {
 
-            element.remove();
-
-          }
+          element.remove();
 
         }
-      );
+
+      }
+    );
+
+
+    document
+      .getElementById(
+        "locan-grid-view-styles"
+      )
+      ?.remove();
+
+
+    document
+      .getElementById(
+        "locan-collection-view-styles"
+      )
+      ?.remove();
+
+
+    document
+      .getElementById(
+        "locan-collection-view-v3-css"
+      )
+      ?.remove();
 
   }
 
 
   /* =======================================================
-     CREATE HORIZONTAL CONTROL ROW
+     CREATE CONTROL ROW
 
-     DESKTOP:
+     DESKTOP / TABLET:
 
-     [ LONG GRID SLIDER ]
-     [ 3D VIEW / GRID VIEW ]
+     [ GRID SLIDER ]
+     [ 3D / GRID VIEW ]
      [ TOTAL ]
 
      MOBILE:
 
      [ TOTAL ]
-     [ 3D VIEW / GRID VIEW ]
-     [ LONG GRID SLIDER ]
-
-     Therefore VIEW button is always between
-     the GRID slider and TOTAL.
+     [ 3D / GRID VIEW ]
+     [ GRID SLIDER ]
   ======================================================= */
 
   function createViewUI() {
@@ -571,10 +585,6 @@
     row.className =
       "collection-display-row";
 
-
-    /* =====================================================
-       GRID DENSITY
-    ===================================================== */
 
     const density =
       document.createElement(
@@ -647,11 +657,8 @@
 
 
           <div
-
             class="grid-density-ticks"
-
             aria-hidden="true"
-
           >
 
             <span>1</span>
@@ -692,10 +699,6 @@
     `;
 
 
-    /* =====================================================
-       VIEW BUTTON
-    ===================================================== */
-
     const viewButton =
       document.createElement(
         "button"
@@ -713,12 +716,6 @@
     viewButton.className =
       "collection-view-toggle";
 
-
-    /* =====================================================
-       ORDER
-
-       Slider → View → Total
-    ===================================================== */
 
     row.appendChild(
       density
@@ -744,9 +741,7 @@
     );
 
 
-    /* =====================================================
-       MINUS
-    ===================================================== */
+    /* MINUS */
 
     document
 
@@ -760,6 +755,16 @@
 
         () => {
 
+
+          if (
+            viewMode !== "grid"
+          ) {
+
+            return;
+
+          }
+
+
           setGridColumns(
 
             gridColumns - 1
@@ -771,9 +776,7 @@
       );
 
 
-    /* =====================================================
-       PLUS
-    ===================================================== */
+    /* PLUS */
 
     document
 
@@ -787,6 +790,16 @@
 
         () => {
 
+
+          if (
+            viewMode !== "grid"
+          ) {
+
+            return;
+
+          }
+
+
           setGridColumns(
 
             gridColumns + 1
@@ -798,9 +811,7 @@
       );
 
 
-    /* =====================================================
-       RANGE
-    ===================================================== */
+    /* RANGE */
 
     document
 
@@ -816,7 +827,7 @@
 
 
           if (
-            viewMode === "3d"
+            viewMode !== "grid"
           ) {
 
             return;
@@ -837,9 +848,7 @@
       );
 
 
-    /* =====================================================
-       GRID / 3D
-    ===================================================== */
+    /* GRID / 3D */
 
     viewButton.addEventListener(
 
@@ -866,7 +875,7 @@
 
 
   /* =======================================================
-     GRID DENSITY
+     GRID CONTROLS
   ======================================================= */
 
   function setGridColumns(
@@ -880,7 +889,9 @@
         Number.parseInt(
           value,
           10
-        ) || 1,
+        )
+        ||
+        GRID_MIN,
 
         GRID_MIN,
 
@@ -914,10 +925,6 @@
 
   }
 
-
-  /* =======================================================
-     APPLY GRID LAYOUT
-  ======================================================= */
 
   function applyGridLayout() {
 
@@ -992,10 +999,6 @@
   }
 
 
-  /* =======================================================
-     RANGE PROGRESS
-  ======================================================= */
-
   function updateRangeProgress(
     range
   ) {
@@ -1051,10 +1054,6 @@
   }
 
 
-  /* =======================================================
-     UPDATE CONTROLS
-  ======================================================= */
-
   function updateControls() {
 
     const t =
@@ -1097,8 +1096,6 @@
       );
 
 
-    /* LABEL */
-
     if (
       label
     ) {
@@ -1110,8 +1107,6 @@
 
     }
 
-
-    /* RANGE */
 
     if (
       range
@@ -1143,8 +1138,6 @@
     }
 
 
-    /* MINUS */
-
     if (
       minus
     ) {
@@ -1172,8 +1165,6 @@
 
     }
 
-
-    /* PLUS */
 
     if (
       plus
@@ -1203,8 +1194,6 @@
     }
 
 
-    /* SLIDER DIM IN 3D */
-
     density
       ?.classList
       .toggle(
@@ -1215,8 +1204,6 @@
 
       );
 
-
-    /* VIEW BUTTON */
 
     if (
       toggle
@@ -1309,15 +1296,7 @@
 
 
   /* =======================================================
-     VISIBLE ITEMS
-
-     filterSneakers already includes:
-     - Edition
-     - Condition
-     - Size
-     - Search extension
-
-     sortSneakers includes current sorting.
+     DATA / RENDER
   ======================================================= */
 
   function getVisibleItems() {
@@ -1340,6 +1319,14 @@
     }
 
 
+    /*
+       filterSneakers already contains:
+       - Search
+       - Edition
+       - Condition
+       - Size
+    */
+
     return sortSneakers(
 
       filterSneakers(
@@ -1350,10 +1337,6 @@
 
   }
 
-
-  /* =======================================================
-     RENDER COLLECTION
-  ======================================================= */
 
   function renderCollection() {
 
@@ -1436,8 +1419,6 @@
     }
 
 
-    /* 3D */
-
     if (
       viewMode === "3d"
     ) {
@@ -1451,8 +1432,6 @@
 
     }
 
-
-    /* GRID */
 
     grid.innerHTML =
 
@@ -1559,10 +1538,6 @@
 
   }
 
-
-  /* =======================================================
-     3D CARD
-  ======================================================= */
 
   function render3DCard(
     sneaker,
@@ -1684,10 +1659,6 @@
   }
 
 
-  /* =======================================================
-     LAZY LOAD ONLY NEARBY 3D IMAGES
-  ======================================================= */
-
   function ensureNearbyImage(
     card,
     relative
@@ -1739,10 +1710,6 @@
   }
 
 
-  /* =======================================================
-     STAGE METRICS
-  ======================================================= */
-
   function stageMetrics() {
 
     const stage =
@@ -1767,28 +1734,19 @@
       window.innerWidth;
 
 
-    /*
-       Large desktop:
-       cards farther apart.
-
-       Mobile:
-       cards naturally closer.
-    */
-
-    const spacing =
-      clamp(
-
-        width * 0.27,
-
-        245,
-
-        360
-
-      );
-
-
     return {
-      spacing
+
+      spacing:
+        clamp(
+
+          width * 0.27,
+
+          245,
+
+          360
+
+        )
+
     };
 
   }
@@ -1796,19 +1754,6 @@
 
   /* =======================================================
      SMOOTH 3D POSITIONING
-
-     Instead of rebuilding the whole gallery every time,
-     we keep the SAME DOM cards and continuously change
-     their transforms.
-
-     dragProgress:
-
-        0    = current sneaker centered
-       -1    = next sneaker centered
-       +1    = previous sneaker centered
-
-     This is what makes dragging physically follow
-     the finger / mouse.
   ======================================================= */
 
   function update3DPositions(
@@ -1829,11 +1774,17 @@
 
 
     if (
+
       !stage
+
       ||
+
       !gallery
+
       ||
+
       !slideItems.length
+
     ) {
 
       return;
@@ -1887,15 +1838,6 @@
 
           );
 
-
-        /*
-           If user drags LEFT,
-           dragProgress becomes negative.
-
-           Next card:
-           1 → 0
-           and moves smoothly to center.
-        */
 
         const relative =
 
@@ -1958,10 +1900,10 @@
           clamp(
 
             1
+
             -
-            absolute
-            *
-            0.16,
+
+            absolute * 0.16,
 
             0.56,
 
@@ -1979,10 +1921,10 @@
             : clamp(
 
                 1
+
                 -
-                absolute
-                *
-                0.30,
+
+                absolute * 0.30,
 
                 0.10,
 
@@ -1995,10 +1937,10 @@
           clamp(
 
             1
+
             -
-            absolute
-            *
-            0.16,
+
+            absolute * 0.16,
 
             0.56,
 
@@ -2011,10 +1953,10 @@
           clamp(
 
             1
+
             -
-            absolute
-            *
-            0.12,
+
+            absolute * 0.12,
 
             0.62,
 
@@ -2122,10 +2064,6 @@
   }
 
 
-  /* =======================================================
-     MOVE SLIDE
-  ======================================================= */
-
   function moveSlide(
     direction
   ) {
@@ -2170,10 +2108,6 @@
   }
 
 
-  /* =======================================================
-     MOVE DIRECTLY TO CLICKED CARD
-  ======================================================= */
-
   function moveToSlide(
     index
   ) {
@@ -2216,10 +2150,6 @@
   }
 
 
-  /* =======================================================
-     OPEN CENTER CARD
-  ======================================================= */
-
   function openCenterSlide() {
 
     const sneaker =
@@ -2246,7 +2176,7 @@
 
 
   /* =======================================================
-     RESET DRAG
+     DRAG ENGINE
   ======================================================= */
 
   function resetDrag() {
@@ -2283,13 +2213,6 @@
 
   }
 
-
-  /* =======================================================
-     REQUEST ANIMATION FRAME FOR DRAG
-
-     This prevents excessive DOM updates and makes
-     mobile motion substantially smoother.
-  ======================================================= */
 
   function scheduleDragFrame() {
 
@@ -2344,17 +2267,6 @@
 
   }
 
-
-  /* =======================================================
-     FINISH DRAG
-
-     Uses:
-     - distance
-     - velocity
-
-     A quick flick therefore works even without
-     dragging very far.
-  ======================================================= */
 
   function finishDrag() {
 
@@ -2449,11 +2361,6 @@
     }
 
 
-    /*
-       Smooth spring-like snap
-       to the final card.
-    */
-
     update3DPositions(
 
       0,
@@ -2471,8 +2378,8 @@
 
 
     /*
-       Prevent the click event that follows a drag
-       from opening the sneaker detail.
+       Prevent the click after dragging
+       from opening the sneaker.
     */
 
     if (
@@ -2496,6 +2403,14 @@
 
   /* =======================================================
      GALLERY EVENTS
+
+     IMPORTANT FIX:
+
+     Arrow buttons stop pointer events before they reach
+     the gallery drag controller.
+
+     The gallery ALSO refuses pointerdown events that
+     originate from .sneaker-3d-nav.
   ======================================================= */
 
   function bindGalleryEvents() {
@@ -2523,16 +2438,86 @@
     }
 
 
+    const prevButton =
+      document.getElementById(
+        "sneaker-3d-prev"
+      );
+
+
+    const nextButton =
+      document.getElementById(
+        "sneaker-3d-next"
+      );
+
+
     /* =====================================================
-       DESKTOP PREVIOUS BUTTON
+       FIX #1
+
+       Pointer events on arrows do NOT bubble
+       into the gallery drag system.
     ===================================================== */
 
-    document
+    [
+      prevButton,
+      nextButton
+    ]
 
-      .getElementById(
-        "sneaker-3d-prev"
+      .filter(
+        Boolean
       )
 
+      .forEach(
+        button => {
+
+
+          button.addEventListener(
+
+            "pointerdown",
+
+            event => {
+
+              event.stopPropagation();
+
+            }
+
+          );
+
+
+          button.addEventListener(
+
+            "pointerup",
+
+            event => {
+
+              event.stopPropagation();
+
+            }
+
+          );
+
+
+          button.addEventListener(
+
+            "pointercancel",
+
+            event => {
+
+              event.stopPropagation();
+
+            }
+
+          );
+
+        }
+
+      );
+
+
+    /* =====================================================
+       PREVIOUS
+    ===================================================== */
+
+    prevButton
       ?.addEventListener(
 
         "click",
@@ -2555,15 +2540,10 @@
 
 
     /* =====================================================
-       DESKTOP NEXT BUTTON
+       NEXT
     ===================================================== */
 
-    document
-
-      .getElementById(
-        "sneaker-3d-next"
-      )
-
+    nextButton
       ?.addEventListener(
 
         "click",
@@ -2634,11 +2614,11 @@
 
 
               /*
-                 CENTER:
+                 Center card:
                  open detail.
 
-                 SIDE CARD:
-                 move it to center.
+                 Side card:
+                 move into center.
               */
 
               if (
@@ -2742,56 +2722,49 @@
 
     /* =====================================================
        POINTER DOWN
-       Works with:
-       - mouse
-       - touch
-       - stylus
+
+       FIX #2:
+       Never capture pointer when it starts on arrow button.
     ===================================================== */
 
     gallery.addEventListener(
 
-  "pointerdown",
+      "pointerdown",
 
-  event => {
-
-
-    /*
-       IMPORTANT:
-       Arrow buttons are controls, not drag surfaces.
-
-       Do NOT let the gallery capture the pointer
-       when the user clicks Previous / Next.
-    */
-
-    if (
-      event.target.closest(
-        ".sneaker-3d-nav"
-      )
-    ) {
-
-      return;
-
-    }
+      event => {
 
 
-    /*
-       Left mouse button only.
-       Touch pointer has button 0.
-    */
+        if (
 
-    if (
+          event.target.closest(
+            ".sneaker-3d-nav"
+          )
 
-      event.button !== undefined
+        ) {
 
-      &&
+          return;
 
-      event.button !== 0
+        }
 
-    ) {
 
-      return;
+        /*
+           Left mouse button only.
+           Touch pointer also uses button 0.
+        */
 
-    }
+        if (
+
+          event.button !== undefined
+
+          &&
+
+          event.button !== 0
+
+        ) {
+
+          return;
+
+        }
 
 
         drag.active =
@@ -2850,9 +2823,6 @@
 
     /* =====================================================
        POINTER MOVE
-
-       This now updates card positions continuously,
-       instead of waiting for pointerup.
     ===================================================== */
 
     gallery.addEventListener(
@@ -2901,7 +2871,7 @@
 
 
         /*
-           Ignore tiny accidental movements.
+           Ignore tiny accidental movement.
         */
 
         if (
@@ -2928,8 +2898,8 @@
 
 
         /*
-           If user is clearly scrolling vertically
-           on mobile, let the page scroll normally.
+           Preserve natural vertical scrolling
+           on phone.
         */
 
         if (
@@ -2967,10 +2937,6 @@
           dx;
 
 
-        /*
-           Calculate smoothed velocity.
-        */
-
         const dt =
           Math.max(
 
@@ -2987,7 +2953,9 @@
 
           (
             event.clientX
+
             -
+
             drag.lastX
           )
 
@@ -3066,11 +3034,18 @@
 
       "pointercancel",
 
-      () => {
+      event => {
 
 
         if (
+
           !drag.active
+
+          ||
+
+          event.pointerId !==
+            drag.pointerId
+
         ) {
 
           return;
@@ -3087,9 +3062,6 @@
 
     /* =====================================================
        TRACKPAD HORIZONTAL SWIPE
-
-       One gesture = one slide.
-       Throttle prevents 10 slides from one trackpad flick.
     ===================================================== */
 
     gallery.addEventListener(
@@ -3197,15 +3169,6 @@
 
   /* =======================================================
      RENDER 3D GALLERY
-
-     IMPORTANT:
-     Every card is rendered ONCE.
-
-     Moving between sneakers only changes transforms.
-
-     This fixes the old issue where every swipe rebuilt
-     the entire gallery DOM, which caused the hard/jumpy
-     feeling.
   ======================================================= */
 
   function render3DGallery(
@@ -3234,8 +3197,8 @@
 
 
     /*
-       Preserve same sneaker when Search / Sort / Filter
-       changes if possible.
+       Preserve active sneaker after search/filter/sort
+       whenever possible.
     */
 
     if (
@@ -3395,11 +3358,8 @@
 
 
     /*
-       First frame:
-       set positions without animation.
-
-       Second frame:
-       normal transitions become active.
+       Initial layout without animation,
+       then enable smooth transitions.
     */
 
     requestAnimationFrame(
@@ -3418,6 +3378,7 @@
         requestAnimationFrame(
           () => {
 
+
             update3DPositions(
 
               0,
@@ -3430,20 +3391,21 @@
         );
 
       }
+
     );
 
   }
 
 
   /* =======================================================
-     STYLES
+     CSS
   ======================================================= */
 
   function installStyles() {
 
     if (
       document.getElementById(
-        "locan-collection-view-v3-css"
+        "locan-collection-view-v4-css"
       )
     ) {
 
@@ -3459,13 +3421,13 @@
 
 
     style.id =
-      "locan-collection-view-v3-css";
+      "locan-collection-view-v4-css";
 
 
     style.textContent = `
 
       /* ===================================================
-         HIDE LEGACY CONTROLS
+         REMOVE OLD CONTROLS
       =================================================== */
 
       #grid-view-control,
@@ -3486,20 +3448,31 @@
 
       .collection-display-row {
 
-        display: grid;
+        display:
+          grid;
 
         grid-template-columns:
-          minmax(420px, 1fr)
+
+          minmax(
+            420px,
+            1fr
+          )
+
           142px
+
           max-content;
 
-        align-items: center;
+        align-items:
+          center;
 
-        gap: 18px;
+        gap:
+          18px;
 
-        width: 100%;
+        width:
+          100%;
 
         margin:
+
           16px
           0
           28px;
@@ -3510,7 +3483,8 @@
       .collection-display-row
       .collection-count {
 
-        justify-self: end;
+        justify-self:
+          end;
 
         margin:
           0 !important;
@@ -3527,11 +3501,14 @@
 
       .grid-density-control {
 
-        width: 100%;
+        width:
+          100%;
 
-        min-width: 0;
+        min-width:
+          0;
 
         padding:
+
           10px
           16px
           8px;
@@ -3559,7 +3536,9 @@
           );
 
         border:
+
           1px solid
+
           rgba(
             255,
             255,
@@ -3595,15 +3574,23 @@
 
         backdrop-filter:
 
-          blur(18px)
+          blur(
+            18px
+          )
 
-          saturate(130%);
+          saturate(
+            130%
+          );
 
         -webkit-backdrop-filter:
 
-          blur(18px)
+          blur(
+            18px
+          )
 
-          saturate(130%);
+          saturate(
+            130%
+          );
 
         transition:
 
@@ -3649,7 +3636,8 @@
 
       .grid-density-slider-row {
 
-        display: grid;
+        display:
+          grid;
 
         grid-template-columns:
 
@@ -3671,13 +3659,10 @@
       }
 
 
-      /* ===================================================
-         − / +
-      =================================================== */
-
       .grid-density-step {
 
-        display: grid;
+        display:
+          grid;
 
         place-items:
           center;
@@ -3718,6 +3703,9 @@
 
         cursor:
           pointer;
+
+        font:
+          inherit;
 
         font-size:
           1.12rem;
@@ -3764,7 +3752,9 @@
           );
 
         transform:
-          scale(1.04);
+          scale(
+            1.04
+          );
 
       }
 
@@ -3779,10 +3769,6 @@
 
       }
 
-
-      /* ===================================================
-         RANGE
-      =================================================== */
 
       .grid-density-range-wrap {
 
@@ -3976,10 +3962,6 @@
       }
 
 
-      /* ===================================================
-         1 2 3 4 5
-      =================================================== */
-
       .grid-density-ticks {
 
         display:
@@ -4011,9 +3993,6 @@
 
       /* ===================================================
          VIEW TOGGLE
-
-         Now physically BETWEEN:
-         grid slider ↔ total count.
       =================================================== */
 
       .collection-view-toggle {
@@ -4028,6 +4007,7 @@
           48px;
 
         padding:
+
           10px
           14px;
 
@@ -4129,7 +4109,7 @@
 
 
       /* ===================================================
-         GRID
+         DYNAMIC GRID
       =================================================== */
 
       #sneaker-grid.locan-grid-view {
@@ -4161,8 +4141,6 @@
       }
 
 
-      /* 1 COLUMN */
-
       #sneaker-grid.locan-grid-view.grid-cols-1 {
 
         max-width:
@@ -4176,8 +4154,6 @@
 
       }
 
-
-      /* GAPS */
 
       #sneaker-grid.locan-grid-view.grid-cols-2,
 
@@ -4204,8 +4180,6 @@
 
       }
 
-
-      /* 4 COLUMNS */
 
       #sneaker-grid.grid-cols-4
       .card-info {
@@ -4248,8 +4222,6 @@
 
       }
 
-
-      /* 5 COLUMNS */
 
       #sneaker-grid.grid-cols-5
       .card {
@@ -4303,6 +4275,7 @@
       .badge {
 
         padding:
+
           4px
           7px;
 
@@ -4629,12 +4602,6 @@
       }
 
 
-      /*
-         During active dragging,
-         transition MUST be removed so
-         the card follows pointer 1:1.
-      */
-
       .sneaker-3d-gallery.is-dragging
       .sneaker-3d-card {
 
@@ -4752,8 +4719,6 @@
       }
 
 
-      /* BAPE */
-
       .sneaker-3d-image
       img[src*="bapesta_stussy.png"] {
 
@@ -4765,8 +4730,6 @@
 
       }
 
-
-      /* WAFFLE */
 
       .sneaker-3d-image
       img[src*="nike_waffle_racer_ow.png"] {
@@ -4798,9 +4761,7 @@
         padding:
 
           18px
-
           20px
-
           20px;
 
         border-top:
@@ -4883,6 +4844,7 @@
       .sneaker-3d-meta span {
 
         padding:
+
           5px
           8px;
 
@@ -4918,7 +4880,10 @@
 
 
       /* ===================================================
-         3D DESKTOP ARROWS
+         3D ARROWS
+
+         IMPORTANT:
+         Keep arrows above all cards.
       =================================================== */
 
       .sneaker-3d-nav {
@@ -4930,7 +4895,7 @@
           46%;
 
         z-index:
-          500;
+          1000;
 
         display:
           grid;
@@ -4955,7 +4920,7 @@
             18,
             18,
             21,
-            0.72
+            0.78
           );
 
         border:
@@ -4985,6 +4950,9 @@
         cursor:
           pointer;
 
+        font:
+          inherit;
+
         font-size:
           1.7rem;
 
@@ -4995,6 +4963,12 @@
           translateY(
             -50%
           );
+
+        pointer-events:
+          auto !important;
+
+        touch-action:
+          manipulation;
 
         transition:
 
@@ -5031,7 +5005,7 @@
             28,
             28,
             31,
-            0.86
+            0.92
           );
 
       }
@@ -5198,16 +5172,11 @@
       /* ===================================================
          MOBILE
 
-         Previous requirement preserved:
-
          TOTAL
          ↓
          GRID / 3D VIEW
          ↓
          GRID SLIDER
-
-         The View button is still between
-         Total and Slider.
       =================================================== */
 
       @media screen and
@@ -5234,8 +5203,6 @@
         }
 
 
-        /* TOTAL FIRST */
-
         .collection-display-row
         .collection-count {
 
@@ -5253,8 +5220,6 @@
 
         }
 
-
-        /* VIEW BUTTON SECOND */
 
         .collection-view-toggle {
 
@@ -5277,8 +5242,6 @@
         }
 
 
-        /* SLIDER THIRD */
-
         .grid-density-control {
 
           order:
@@ -5290,9 +5253,7 @@
           padding:
 
             10px
-
             12px
-
             8px;
 
         }
@@ -5328,9 +5289,7 @@
         }
 
 
-        /* =================================================
-           MOBILE GRID
-        ================================================= */
+        /* MOBILE GRID */
 
         #sneaker-grid.locan-grid-view {
 
@@ -5380,7 +5339,7 @@
         }
 
 
-        /* MOBILE 2 COLUMNS */
+        /* TWO COLUMNS */
 
         #sneaker-grid.grid-cols-2
         .card-info {
@@ -5415,7 +5374,7 @@
         }
 
 
-        /* MOBILE 3 COLUMNS */
+        /* THREE COLUMNS */
 
         #sneaker-grid.grid-cols-3
         .card {
@@ -5468,9 +5427,7 @@
         }
 
 
-        /* MOBILE 4 / 5
-           Visual overview mode
-        */
+        /* FOUR / FIVE COLUMNS */
 
         #sneaker-grid.grid-cols-4
         .card,
@@ -5571,9 +5528,7 @@
           padding:
 
             15px
-
             16px
-
             17px;
 
         }
@@ -5596,8 +5551,7 @@
 
 
         /*
-           Mobile uses swipe,
-           so arrows are unnecessary.
+           Mobile uses swipe.
         */
 
         .sneaker-3d-nav {
@@ -5726,93 +5680,106 @@
      LANGUAGE WRAPPER
   ======================================================= */
 
-  updateStaticText =
-    function () {
+  const originalUpdateStaticText =
+    window.updateStaticText;
 
 
-      originalUpdateStaticText();
+  if (
+    typeof originalUpdateStaticText ===
+    "function"
+  ) {
+
+    window.updateStaticText =
+      function () {
 
 
-      updateControls();
+        originalUpdateStaticText();
 
 
-      if (
-        viewMode === "3d"
-        &&
-        slideItems.length
-      ) {
-
-        const footer =
-          document.querySelector(
-            ".sneaker-3d-footer span"
-          );
+        updateControls();
 
 
         if (
-          footer
+          viewMode === "3d"
+          &&
+          slideItems.length
         ) {
 
-          footer.textContent =
-            copy().hint;
+          const t =
+            copy();
+
+
+          const footer =
+            document.querySelector(
+              ".sneaker-3d-footer span"
+            );
+
+
+          const prev =
+            document.getElementById(
+              "sneaker-3d-prev"
+            );
+
+
+          const next =
+            document.getElementById(
+              "sneaker-3d-next"
+            );
+
+
+          if (
+            footer
+          ) {
+
+            footer.textContent =
+              t.hint;
+
+          }
+
+
+          if (
+            prev
+          ) {
+
+            prev.setAttribute(
+
+              "aria-label",
+
+              t.previous
+
+            );
+
+          }
+
+
+          if (
+            next
+          ) {
+
+            next.setAttribute(
+
+              "aria-label",
+
+              t.next
+
+            );
+
+          }
 
         }
 
+      };
 
-        const prev =
-          document.getElementById(
-            "sneaker-3d-prev"
-          );
-
-
-        const next =
-          document.getElementById(
-            "sneaker-3d-next"
-          );
-
-
-        if (
-          prev
-        ) {
-
-          prev.setAttribute(
-
-            "aria-label",
-
-            copy().previous
-
-          );
-
-        }
-
-
-        if (
-          next
-        ) {
-
-          next.setAttribute(
-
-            "aria-label",
-
-            copy().next
-
-          );
-
-        }
-
-      }
-
-    };
+  }
 
 
   /* =======================================================
      TAKE OVER GLOBAL renderGrid()
 
-     Search / Filter / Sort already call renderGrid(),
-     therefore all existing features automatically work
-     in both Grid and 3D modes.
+     Search / Filter / Sort all call renderGrid().
   ======================================================= */
 
-  renderGrid =
+  window.renderGrid =
     renderCollection;
 
 
@@ -5832,39 +5799,20 @@
         () => {
 
 
-          const stored =
-            Number.parseInt(
-
-              safeGet(
-                storageKey()
-              ),
-
-              10
-
-            );
+          const mode =
+            deviceMode();
 
 
           if (
-            Number.isFinite(
-              stored
-            )
+            mode !== lastDeviceMode
           ) {
 
-            gridColumns =
-              clamp(
+            lastDeviceMode =
+              mode;
 
-                stored,
-
-                GRID_MIN,
-
-                GRID_MAX
-
-              );
-
-          } else {
 
             gridColumns =
-              defaultColumns();
+              readStoredColumns();
 
           }
 
@@ -5890,6 +5838,7 @@
             requestAnimationFrame(
               () => {
 
+
                 update3DPositions(
 
                   0,
@@ -5899,6 +5848,7 @@
                 );
 
               }
+
             );
 
           }
@@ -5936,6 +5886,10 @@
     createViewUI();
 
 
+    lastDeviceMode =
+      deviceMode();
+
+
     gridColumns =
       readStoredColumns();
 
@@ -5953,13 +5907,31 @@
 
   /*
      collection-view.js is loaded at the bottom
-     of index.html, so the required DOM elements
-     already exist.
-
-     Running immediately also stops the old
-     controller from flashing onto the screen.
+     of index.html.
   */
 
-  init();
+  if (
+    document.readyState ===
+    "loading"
+  ) {
+
+    document.addEventListener(
+
+      "DOMContentLoaded",
+
+      init,
+
+      {
+        once:
+          true
+      }
+
+    );
+
+  } else {
+
+    init();
+
+  }
 
 })();
