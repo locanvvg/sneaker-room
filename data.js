@@ -3370,6 +3370,1403 @@ const sneakers = [
         </p>
       `
     }
+  },
+
+  ,
+
+  /* =====================================================
+     11. NEW BALANCE 2002R
+         PERSONAL CUSTOM
+  ===================================================== */
+
+  {
+    id: "new-balance-2002r-custom",
+
+    title: {
+      vi: "New Balance 2002R (Custom)",
+      en: "New Balance 2002R (Custom)"
+    },
+
+    subtitle: {
+      vi: "Personal Custom 1/1",
+      en: "Personal Custom 1/1"
+    },
+
+    sku: "N/A",
+
+    colorway: "N/A",
+
+    retailPrice: "$145 USD",
+
+    releaseDate: "N/A",
+
+    editionType: {
+      vi: "Custom 1/1",
+      en: "Custom 1/1"
+    },
+
+    condition: {
+      vi: "Used",
+      en: "Used"
+    },
+
+    size: "10 US",
+
+    image: "pictures/nb_2002r.png",
+
+    story: {
+      vi: `
+        <p>
+          <b>New Balance 2002R</b>
+          là một trong những silhouette
+          tiêu biểu cho làn sóng phục hưng
+          technical running footwear
+          của New Balance trong thập niên 2020.
+          Thiết kế phát triển từ
+          New Balance 2002 nguyên bản,
+          một mẫu performance runner cao cấp
+          xuất hiện vào đầu thập niên 2010.
+        </p>
+
+        <p>
+          Khi được tái giới thiệu dưới tên
+          <b>2002R</b>,
+          silhouette giữ lại ngôn ngữ
+          running shoe đầu những năm 2000:
+          upper nhiều lớp,
+          mesh thoáng khí,
+          các panel có tính kỹ thuật cao
+          và tỷ lệ mang đặc trưng
+          của retro performance footwear.
+        </p>
+
+        <p>
+          Phần đế của 2002R
+          kết hợp nhiều công nghệ
+          đã trở thành dấu hiệu quen thuộc
+          của New Balance,
+          bao gồm
+          <b>ABZORB</b>,
+          <b>N-ergy</b>
+          và hệ thống
+          <b>Stability Web</b>.
+          Sự kết hợp này giúp đôi giày
+          giữ được cảm giác của một retro runner
+          nhưng vẫn phù hợp với việc sử dụng hằng ngày.
+        </p>
+
+        <p>
+          Hiện vật trong
+          <b>Lộc An Sneaker Collection</b>
+          đã được chủ sở hữu
+          tự thực hiện custom thủ công,
+          biến một đôi 2002R
+          thành một
+          <b>personal 1/1</b>.
+        </p>
+
+        <p>
+          Ý tưởng visual của bản custom
+          được
+          <b>lấy cảm hứng từ Jackson Pollock</b>
+          và cách ông sử dụng
+          những vệt sơn,
+          giọt sơn,
+          chuyển động
+          và sự ngẫu nhiên có kiểm soát
+          để tạo nên những composition
+          không phụ thuộc vào
+          hình ảnh mô tả truyền thống.
+        </p>
+
+        <p>
+          Thay vì giữ từng panel
+          của sneaker như những vùng
+          màu sắc riêng biệt,
+          các lớp sơn
+          <b>đen, trắng, đỏ và xám</b>
+          được vẩy và phủ
+          xuyên qua nhiều khu vực
+          của upper và midsole.
+        </p>
+
+        <p>
+          Mesh,
+          synthetic overlays,
+          logo N
+          và cấu trúc đế
+          vì vậy không còn được nhìn
+          như những thành phần độc lập.
+          Chúng trở thành
+          một bề mặt liên tục
+          cho toàn bộ composition.
+        </p>
+
+        <p>
+          Cách xử lý này đặc biệt phù hợp
+          với 2002R
+          vì bản thân silhouette
+          vốn đã có rất nhiều
+          panel,
+          đường cắt
+          và texture.
+          Các splatter marks
+          chạy qua những đường phân chia đó,
+          khiến cấu trúc kỹ thuật của shoe
+          hòa vào artwork thay vì
+          chỉ đóng vai trò làm nền.
+        </p>
+
+        <p>
+          Một đặc điểm quan trọng
+          của hiện vật là
+          custom không cố gắng
+          tạo ra hai chiếc giày
+          hoàn toàn giống nhau.
+          Các vệt sơn,
+          mật độ màu
+          và hướng chuyển động
+          khác nhau giữa hai chiếc,
+          khiến mỗi bên
+          trở thành một composition riêng
+          nhưng vẫn thuộc cùng một pair.
+        </p>
+
+        <p>
+          Vì pair đã được sử dụng,
+          những dấu hiệu wear
+          tiếp tục tương tác
+          với lớp artwork thủ công.
+          Điều này khiến đôi giày
+          không chỉ lưu lại
+          quá trình custom,
+          mà còn ghi lại
+          quá trình sử dụng thực tế
+          sau khi tác phẩm được hoàn thành.
+        </p>
+
+        <div class="exhibition-note">
+          <strong>Ghi chú lưu trữ:</strong>
+          Đây là một personal custom 1/1
+          do chủ sở hữu thực hiện.
+          Thiết kế được lấy cảm hứng
+          từ ngôn ngữ hội họa
+          của Jackson Pollock;
+          đây không phải collaboration chính thức
+          giữa New Balance
+          và Jackson Pollock
+          hoặc Pollock-Krasner Foundation.
+        </div>
+      `,
+
+      en: `
+        <p>
+          The <b>New Balance 2002R</b>
+          became one of the defining silhouettes
+          of New Balance's revival
+          of technical running footwear
+          during the 2020s.
+          Its lineage reaches back
+          to the original New Balance 2002,
+          a premium performance runner
+          introduced in the early 2010s.
+        </p>
+
+        <p>
+          Reintroduced as the
+          <b>2002R</b>,
+          the silhouette retains
+          the visual language
+          of early-2000s running footwear:
+          layered construction,
+          breathable mesh,
+          technical paneling,
+          and the proportions
+          of a retro performance runner.
+        </p>
+
+        <p>
+          The 2002R sole platform
+          combines technologies
+          that became closely associated
+          with New Balance,
+          including
+          <b>ABZORB</b>,
+          <b>N-ergy</b>,
+          and the
+          <b>Stability Web</b>.
+          Together,
+          they allow the model
+          to retain its retro-runner character
+          while remaining practical
+          for everyday wear.
+        </p>
+
+        <p>
+          The artifact preserved in the
+          <b>Lộc An Sneaker Collection</b>
+          was personally customized
+          by its owner,
+          transforming the 2002R
+          into a
+          <b>personal 1-of-1</b>.
+        </p>
+
+        <p>
+          The visual concept
+          was
+          <b>inspired by Jackson Pollock</b>
+          and by his use of
+          splashed paint,
+          drips,
+          physical movement,
+          and controlled spontaneity
+          to construct compositions
+          without relying on
+          conventional representational imagery.
+        </p>
+
+        <p>
+          Rather than treating
+          each sneaker panel
+          as an isolated field of color,
+          layers of
+          <b>black, white, red, and grey</b>
+          paint move across
+          multiple areas
+          of the upper and midsole.
+        </p>
+
+        <p>
+          Mesh,
+          synthetic overlays,
+          the N logo,
+          and the sole structure
+          therefore stop functioning
+          as completely separate components.
+          Instead,
+          the entire sneaker becomes
+          a continuous surface
+          for the composition.
+        </p>
+
+        <p>
+          The treatment is particularly suited
+          to the 2002R
+          because the silhouette itself
+          already contains
+          numerous panels,
+          seams,
+          and contrasting textures.
+          The splatter marks cross
+          those structural boundaries,
+          allowing the technical construction
+          of the sneaker
+          to become part of the artwork.
+        </p>
+
+        <p>
+          An important aspect
+          of the artifact
+          is that the custom does not attempt
+          to make both shoes
+          perfectly identical.
+          Paint direction,
+          density,
+          and individual marks
+          vary from one shoe to the other,
+          allowing each side
+          to function as its own composition
+          while remaining part of the same pair.
+        </p>
+
+        <p>
+          Because the pair has been worn,
+          signs of use now interact
+          with the hand-applied artwork.
+          The sneaker therefore records
+          not only the customization process,
+          but also its physical history
+          after the work was completed.
+        </p>
+
+        <div class="exhibition-note">
+          <strong>Exhibition Note:</strong>
+          This is a personal 1-of-1 custom
+          created by the owner.
+          Its visual treatment is inspired
+          by the artistic language
+          associated with Jackson Pollock;
+          it is not an official collaboration
+          between New Balance
+          and Jackson Pollock
+          or the Pollock-Krasner Foundation.
+        </div>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     12. BALENCIAGA DEFENDER
+         BEIGE
+  ===================================================== */
+
+  {
+    id: "balenciaga-defender-beige",
+
+    title: {
+      vi: "Balenciaga Defender 'Beige'",
+      en: "Balenciaga Defender 'Beige'"
+    },
+
+    subtitle: {
+      vi: "Tire-Tread Runner (2022)",
+      en: "Tire-Tread Runner (2022)"
+    },
+
+    sku: "685613W2RA69700",
+
+    colorway: "Beige",
+
+    retailPrice: "$1,090 USD",
+
+    releaseDate: "2022-03-01",
+
+    editionType: {
+      vi: "GR",
+      en: "GR"
+    },
+
+    condition: {
+      vi: "Used",
+      en: "Used"
+    },
+
+    size: "10 US",
+
+    image: "pictures/balenciaga_defender.png",
+
+    story: {
+      vi: `
+        <p>
+          <b>Balenciaga Defender</b>
+          xuất hiện trong giai đoạn
+          footwear của Balenciaga
+          dưới định hướng sáng tạo của Demna
+          liên tục thử nghiệm
+          với tỷ lệ,
+          trọng lượng thị giác
+          và khái niệm về một sneaker
+          có thể lớn đến mức nào.
+        </p>
+
+        <p>
+          Sau những silhouette
+          như Triple S và Track,
+          Defender tiếp tục
+          cách tiếp cận
+          biến sneaker
+          thành một vật thể điêu khắc,
+          nơi phần đế
+          không chỉ đóng vai trò kỹ thuật
+          mà trở thành yếu tố
+          quyết định toàn bộ hình dáng của shoe.
+        </p>
+
+        <p>
+          Điểm nhận diện lớn nhất
+          của Defender
+          là hệ thống outsole
+          lấy cảm hứng từ
+          <b>tire tread</b>.
+          Những khối cao su
+          rất lớn
+          chạy quanh phần dưới
+          của sneaker,
+          khiến sole unit
+          gần giống một bánh xe
+          bao quanh upper.
+        </p>
+
+        <p>
+          Cấu trúc này
+          tạo ra một silhouette
+          rộng,
+          nặng
+          và có cảm giác
+          gần với industrial design
+          hơn một running shoe thông thường.
+          Khi nhìn từ bên hông,
+          phần tread nhô cao
+          và lan ra ngoài
+          đường nét của upper,
+          làm thay đổi hoàn toàn
+          tỷ lệ của bàn chân.
+        </p>
+
+        <p>
+          Upper được xây dựng
+          bằng mesh và nylon,
+          kết hợp nhiều panel
+          mang tính kỹ thuật.
+          Balenciaga còn sử dụng
+          <b>worn-out effect</b>
+          có chủ đích,
+          tạo cảm giác
+          như sneaker đã trải qua
+          bụi,
+          ma sát
+          và thời gian
+          ngay từ khi còn mới.
+        </p>
+
+        <p>
+          Điều này khiến Defender
+          trở thành một ví dụ thú vị
+          về cách luxury footwear
+          có thể chủ động
+          đưa dấu hiệu của sự cũ,
+          bụi bẩn
+          và hao mòn
+          vào chính aesthetic
+          của sản phẩm.
+        </p>
+
+        <p>
+          Colorway Beige
+          làm rõ ý tưởng đó hơn nữa.
+          Những sắc cream,
+          off-white
+          và beige
+          khiến shoe giống
+          một vật thể
+          đã tiếp xúc với đất và bụi,
+          đồng thời làm nổi bật
+          texture phức tạp
+          của phần đế.
+        </p>
+
+        <p>
+          Branding trên Defender
+          tương đối tiết chế
+          so với kích thước của silhouette.
+          Vì vậy,
+          identity của pair
+          đến chủ yếu từ
+          hình dáng,
+          tỷ lệ
+          và cấu trúc tread đặc trưng
+          thay vì dựa vào logo lớn.
+        </p>
+
+        <p>
+          Trong archive,
+          Defender đại diện
+          cho một giai đoạn
+          sneaker design
+          nơi ranh giới
+          giữa footwear,
+          sculpture
+          và fashion object
+          trở nên ngày càng mờ.
+        </p>
+      `,
+
+      en: `
+        <p>
+          The <b>Balenciaga Defender</b>
+          emerged during a period
+          in which Balenciaga footwear
+          under Demna
+          repeatedly experimented
+          with proportion,
+          visual weight,
+          and the question
+          of how dramatically
+          a sneaker could reshape the foot.
+        </p>
+
+        <p>
+          Following silhouettes
+          such as the Triple S and Track,
+          the Defender continued
+          Balenciaga's approach
+          of treating footwear
+          as a sculptural object,
+          where the sole
+          is not merely a technical component
+          but the element
+          that determines the shoe's entire form.
+        </p>
+
+        <p>
+          Its defining feature
+          is an outsole
+          inspired by
+          <b>tire-tread</b> geometry.
+          Oversized rubber blocks
+          wrap around
+          the lower portion
+          of the sneaker,
+          making the sole unit
+          resemble a wheel
+          surrounding the upper.
+        </p>
+
+        <p>
+          The construction creates
+          a wide,
+          visually heavy silhouette
+          that feels closer
+          to industrial design
+          than a conventional running shoe.
+          Viewed from the side,
+          the tread rises
+          and expands beyond
+          the boundaries of the upper,
+          dramatically altering
+          the apparent proportions of the foot.
+        </p>
+
+        <p>
+          The upper combines
+          mesh and nylon
+          through multiple
+          technical-looking panels.
+          Balenciaga also incorporates
+          a deliberate
+          <b>worn-out effect</b>,
+          giving the sneaker
+          the appearance of exposure
+          to dust,
+          friction,
+          and time
+          even before natural wear begins.
+        </p>
+
+        <p>
+          The Defender therefore
+          offers an interesting example
+          of luxury footwear
+          intentionally incorporating
+          visual signs of age,
+          dirt,
+          and deterioration
+          into the aesthetic
+          of the product itself.
+        </p>
+
+        <p>
+          The Beige colorway
+          reinforces that concept.
+          Cream,
+          off-white,
+          and beige tones
+          make the shoe resemble
+          an object affected
+          by earth and dust,
+          while simultaneously emphasizing
+          the complex texture
+          of the sole.
+        </p>
+
+        <p>
+          Branding is relatively restrained
+          compared with
+          the scale of the silhouette.
+          As a result,
+          the Defender's identity
+          comes primarily from
+          its shape,
+          proportions,
+          and distinctive tread architecture
+          rather than oversized logos.
+        </p>
+
+        <p>
+          Within the archive,
+          the Defender represents
+          a period of sneaker design
+          in which the boundaries
+          between footwear,
+          sculpture,
+          and fashion object
+          became increasingly blurred.
+        </p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     13. JORDAN 1 RETRO HIGH OG
+         CITY OF FLIGHT
+  ===================================================== */
+
+  {
+    id: "jordan-1-city-of-flight-2018",
+
+    title: {
+      vi: "Jordan 1 Retro High OG 'City of Flight'",
+      en: "Jordan 1 Retro High OG 'City of Flight'"
+    },
+
+    subtitle: {
+      vi: "Los Angeles / NBA All-Star Edition (2018)",
+      en: "Los Angeles / NBA All-Star Edition (2018)"
+    },
+
+    sku: "555088-031",
+
+    colorway: "Black/Metallic Gold-Summit White",
+
+    retailPrice: "$160 USD",
+
+    releaseDate: "2018-01-10",
+
+    editionType: {
+      vi: "GR",
+      en: "GR"
+    },
+
+    condition: {
+      vi: "Used",
+      en: "Used"
+    },
+
+    size: "11 US",
+
+    image: "pictures/jordan1_cityofflight.png",
+
+    story: {
+      vi: `
+        <p>
+          <b>Jordan 1 Retro High OG
+          'City of Flight'</b>
+          được xây dựng
+          quanh mối liên hệ
+          giữa Air Jordan,
+          Los Angeles
+          và văn hóa
+          NBA All-Star.
+        </p>
+
+        <p>
+          Air Jordan 1
+          vốn có một mối liên hệ
+          đặc biệt với
+          giai đoạn đầu
+          trong sự nghiệp
+          của Michael Jordan.
+          Khi silhouette xuất hiện
+          giữa thập niên 1980,
+          nó nhanh chóng trở thành
+          một phần không thể tách rời
+          khỏi hình ảnh
+          của Jordan trên sân.
+        </p>
+
+        <p>
+          City of Flight
+          lấy lịch sử đó
+          và đặt nó
+          vào bối cảnh mới:
+          <b>Los Angeles</b>,
+          nơi NBA All-Star Weekend
+          trở thành một sự kiện
+          giao nhau giữa basketball,
+          celebrity culture,
+          fashion
+          và sneaker collecting.
+        </p>
+
+        <p>
+          Upper sử dụng
+          black tumbled leather
+          gần như monochrome,
+          tạo một nền tối
+          để các chi tiết
+          <b>Metallic Gold</b>
+          trở thành điểm nhấn.
+        </p>
+
+        <p>
+          Gold xuất hiện
+          quanh Swoosh,
+          Wings logo
+          và các chi tiết branding,
+          đem lại cho pair
+          một cảm giác
+          vừa basketball
+          vừa premium.
+        </p>
+
+        <p>
+          White midsole
+          tạo đường phân cách rõ ràng
+          giữa upper màu đen
+          và phần outsole
+          translucent icy blue.
+          Đây là một chi tiết
+          tương đối khác biệt
+          so với cách xử lý outsole
+          thường thấy
+          trên nhiều Jordan 1
+          cổ điển.
+        </p>
+
+        <p>
+          Một trong những
+          chi tiết kể chuyện
+          quan trọng nhất
+          nằm bên trong shoe:
+          sockliner sử dụng
+          graphic
+          <b>bản đồ Los Angeles</b>.
+        </p>
+
+        <p>
+          Chi tiết này
+          khiến City of Flight
+          không chỉ là
+          một Jordan 1 black-and-gold,
+          mà trở thành
+          một sneaker
+          gắn với địa điểm cụ thể.
+        </p>
+
+        <p>
+          City of Flight
+          cho thấy cách
+          Jordan Brand
+          có thể sử dụng
+          một silhouette
+          gần như không thay đổi
+          kể từ năm 1985
+          như một nền tảng
+          để kể những câu chuyện
+          mới về thành phố,
+          bóng rổ
+          và văn hóa sneaker.
+        </p>
+      `,
+
+      en: `
+        <p>
+          The <b>Jordan 1 Retro High OG
+          'City of Flight'</b>
+          is built around
+          the relationship between
+          Air Jordan,
+          Los Angeles,
+          and NBA All-Star culture.
+        </p>
+
+        <p>
+          The Air Jordan 1
+          is inseparable
+          from the early stage
+          of Michael Jordan's career.
+          When the silhouette emerged
+          in the mid-1980s,
+          it quickly became
+          a defining part
+          of Jordan's visual identity
+          on the court.
+        </p>
+
+        <p>
+          City of Flight
+          takes that history
+          and places it
+          inside a new setting:
+          <b>Los Angeles</b>,
+          where NBA All-Star Weekend
+          operates at the intersection
+          of basketball,
+          celebrity culture,
+          fashion,
+          and sneaker collecting.
+        </p>
+
+        <p>
+          The upper uses
+          nearly monochromatic
+          black tumbled leather,
+          creating a dark foundation
+          for
+          <b>Metallic Gold</b>
+          detailing.
+        </p>
+
+        <p>
+          Gold appears
+          around the Swoosh,
+          on the Wings logo,
+          and through the branding,
+          giving the pair
+          a character
+          that feels both
+          basketball-oriented
+          and premium.
+        </p>
+
+        <p>
+          A white midsole
+          creates a strong separation
+          between the black upper
+          and a translucent
+          icy-blue outsole.
+          The outsole treatment
+          gives the shoe
+          a different visual character
+          from many traditionally constructed
+          Jordan 1 colorways.
+        </p>
+
+        <p>
+          One of the most important
+          narrative details
+          appears inside the shoe:
+          the sockliner carries
+          a graphic
+          <b>map of Los Angeles</b>.
+        </p>
+
+        <p>
+          That detail
+          transforms City of Flight
+          from a simple
+          black-and-gold Jordan 1
+          into a sneaker
+          with a specific
+          geographic identity.
+        </p>
+
+        <p>
+          City of Flight
+          demonstrates how
+          Jordan Brand
+          can use a silhouette
+          that has remained
+          fundamentally recognizable
+          since 1985
+          as a platform
+          for new stories
+          about cities,
+          basketball,
+          and sneaker culture.
+        </p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     14. JORDAN 1 LOW
+         REVERSE BRED
+  ===================================================== */
+
+  {
+    id: "jordan-1-low-reverse-bred-2020",
+
+    title: {
+      vi: "Jordan 1 Low 'Reverse Bred'",
+      en: "Jordan 1 Low 'Reverse Bred'"
+    },
+
+    subtitle: {
+      vi: "Bred-Inspired Low-Top Edition (2020)",
+      en: "Bred-Inspired Low-Top Edition (2020)"
+    },
+
+    sku: "553558-606",
+
+    colorway: "Gym Red/Black-Gym Red-White",
+
+    retailPrice: "$90 USD",
+
+    releaseDate: "2020-09-29",
+
+    editionType: {
+      vi: "GR",
+      en: "GR"
+    },
+
+    condition: {
+      vi: "Used",
+      en: "Used"
+    },
+
+    size: "11 US",
+
+    image: "pictures/jordan1_low_reversebred.png",
+
+    story: {
+      vi: `
+        <p>
+          <b>Jordan 1 Low
+          'Reverse Bred'</b>
+          lấy một trong những
+          hệ màu nổi tiếng nhất
+          trong lịch sử Air Jordan
+          rồi tái sắp xếp
+          color blocking
+          trên cấu trúc low-top.
+        </p>
+
+        <p>
+          Black và red
+          đã gắn với
+          Air Jordan 1
+          ngay từ giai đoạn đầu
+          của dòng sản phẩm.
+          Qua nhiều thập niên,
+          bảng màu này
+          trở thành một trong những
+          visual codes
+          dễ nhận biết nhất
+          của Jordan Brand.
+        </p>
+
+        <p>
+          Reverse Bred
+          không đơn giản
+          thu nhỏ một Jordan 1 High.
+          Pair thay đổi
+          cách black và Gym Red
+          được phân bố,
+          tạo nên một composition
+          quen thuộc nhưng
+          vẫn đủ khác biệt.
+        </p>
+
+        <p>
+          Black leather
+          xuất hiện
+          ở toe box
+          và mid-panel,
+          trong khi
+          <b>Gym Red</b>
+          bao phủ các overlays
+          và Swoosh.
+        </p>
+
+        <p>
+          White midsole
+          tạo một khoảng ngắt
+          giữa upper
+          và red outsole,
+          giúp bảng màu
+          không trở nên
+          quá nặng
+          dù sử dụng
+          hai màu đậm chủ đạo.
+        </p>
+
+        <p>
+          Branding của Jordan 1 Low
+          cũng có identity riêng.
+          Jumpman nằm trên tongue,
+          trong khi Wings logo
+          được chuyển về heel,
+          khác với cách
+          Nike Air branding
+          thường được nhấn mạnh
+          trên Jordan 1 High OG.
+        </p>
+
+        <p>
+          Về cấu trúc,
+          pair vẫn giữ
+          những yếu tố cơ bản
+          bắt nguồn từ thiết kế
+          Air Jordan 1 của
+          <b>Peter Moore</b>:
+          perforated toe box,
+          layered leather construction,
+          Swoosh hai bên
+          và hệ thống cushioning
+          nằm trong sole.
+        </p>
+
+        <p>
+          Reverse Bred
+          vì vậy hoạt động
+          như một phiên bản
+          lifestyle dễ sử dụng hơn,
+          nhưng vẫn giữ được
+          mối liên hệ trực tiếp
+          với một trong những
+          bảng màu quan trọng nhất
+          của lịch sử Air Jordan.
+        </p>
+      `,
+
+      en: `
+        <p>
+          The <b>Jordan 1 Low
+          'Reverse Bred'</b>
+          takes one of
+          the most recognizable
+          color systems
+          in Air Jordan history
+          and redistributes it
+          across a low-top structure.
+        </p>
+
+        <p>
+          Black and red
+          have been associated
+          with the Air Jordan 1
+          since the earliest period
+          of the line.
+          Across several decades,
+          the palette became
+          one of Jordan Brand's
+          most recognizable
+          visual codes.
+        </p>
+
+        <p>
+          Reverse Bred
+          is not simply
+          a reduced-height
+          Jordan 1 High.
+          The shoe changes
+          the distribution
+          of black and Gym Red,
+          creating a composition
+          that feels familiar
+          without being identical.
+        </p>
+
+        <p>
+          Black leather
+          appears on
+          the toe box
+          and mid-panel,
+          while
+          <b>Gym Red</b>
+          covers the overlays
+          and Swoosh.
+        </p>
+
+        <p>
+          A white midsole
+          creates a visual break
+          between the upper
+          and red outsole,
+          preventing the palette
+          from becoming overly heavy
+          despite its two
+          dominant colors.
+        </p>
+
+        <p>
+          Jordan 1 Low branding
+          also has
+          its own identity.
+          A Jumpman appears
+          on the tongue,
+          while the Wings logo
+          moves to the heel,
+          differing from
+          the Nike Air emphasis
+          typically associated
+          with Jordan 1 High OG models.
+        </p>
+
+        <p>
+          Structurally,
+          the pair still preserves
+          the basic language
+          that originated
+          with <b>Peter Moore's</b>
+          Air Jordan 1:
+          a perforated toe box,
+          layered leather construction,
+          lateral Swooshes,
+          and cushioning
+          contained within the sole.
+        </p>
+
+        <p>
+          Reverse Bred therefore
+          works as a more
+          everyday-oriented interpretation
+          while maintaining
+          a direct connection
+          to one of the most important
+          color languages
+          in Air Jordan history.
+        </p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     15. VANS KNU SKOOL
+         BLACK / TRUE WHITE
+         PERSONAL ROPE LACE MODIFICATION
+  ===================================================== */
+
+  {
+    id: "vans-knu-skool-black-true-white-rope-lace",
+
+    title: {
+      vi: "Vans Knu Skool 'Black/True White' — Rope Lace Custom",
+      en: "Vans Knu Skool 'Black/True White' — Rope Lace Custom"
+    },
+
+    subtitle: {
+      vi: "Personal Rope-Lace Modification",
+      en: "Personal Rope-Lace Modification"
+    },
+
+    sku: "VN0009QC6BT",
+
+    colorway: "Black/True White",
+
+    retailPrice: "$75 USD",
+
+    releaseDate: "2023-02-18",
+
+    editionType: {
+      vi: "GR",
+      en: "GR"
+    },
+
+    condition: {
+      vi: "Used",
+      en: "Used"
+    },
+
+    size: "11 US",
+
+    image: "pictures/vans_knuskool.png",
+
+    story: {
+      vi: `
+        <p>
+          <b>Vans Knu Skool</b>
+          là một silhouette
+          bắt nguồn từ
+          ngôn ngữ skate footwear
+          cuối thập niên 1990,
+          thời kỳ mà sneaker
+          trở nên dày,
+          padded
+          và exaggerated hơn
+          đáng kể so với
+          những model skate
+          cổ điển trước đó.
+        </p>
+
+        <p>
+          Knu Skool
+          phát triển từ
+          những yếu tố quen thuộc
+          của Vans,
+          đặc biệt là
+          Old Skool,
+          nhưng thay đổi
+          tỷ lệ theo hướng
+          đậm chất '90s.
+        </p>
+
+        <p>
+          Oversized tongue,
+          padded collar,
+          thick laces
+          và Sidestripe
+          có cấu trúc ba chiều
+          tạo ra một silhouette
+          có volume lớn hơn nhiều
+          so với Old Skool truyền thống.
+        </p>
+
+        <p>
+          Black suede upper
+          kết hợp với
+          True White Sidestripe
+          tạo nên một
+          black-and-white composition
+          đơn giản,
+          cho phép tỷ lệ
+          và texture của shoe
+          trở thành yếu tố chính.
+        </p>
+
+        <p>
+          Vulcanized construction
+          và waffle outsole
+          vẫn giữ
+          mối liên hệ trực tiếp
+          với DNA skate
+          lâu đời của Vans.
+        </p>
+
+        <p>
+          Hiện vật trong
+          <b>Lộc An Sneaker Collection</b>
+          được chủ sở hữu
+          thay đổi hệ thống dây
+          bằng
+          <b>oversized rope laces</b>.
+        </p>
+
+        <p>
+          Việc sử dụng
+          rope laces dày
+          làm tongue
+          và eyestay
+          trở nên nặng thị giác hơn,
+          đồng thời đẩy
+          đặc trưng exaggerated
+          vốn có của Knu Skool
+          đi xa hơn
+          factory configuration.
+        </p>
+
+        <p>
+          Pair sử dụng
+          hai treatment
+          dây tương phản:
+          rope lace đen
+          trên một chiếc
+          và rope lace trắng
+          trên chiếc còn lại.
+        </p>
+
+        <p>
+          Sự bất đối xứng này
+          biến một colorway GR
+          tương đối đơn giản
+          thành một pair
+          có identity riêng
+          trong collection.
+        </p>
+
+        <div class="exhibition-note">
+          <strong>Ghi chú lưu trữ:</strong>
+          Rope laces là modification cá nhân
+          được thực hiện trên pair
+          trong collection.
+          Đây không phải
+          factory edition
+          hoặc collaboration chính thức của Vans.
+        </div>
+      `,
+
+      en: `
+        <p>
+          The <b>Vans Knu Skool</b>
+          originates from
+          the visual language
+          of late-1990s skate footwear,
+          a period when sneakers
+          became substantially thicker,
+          more padded,
+          and more exaggerated
+          than earlier
+          skate models.
+        </p>
+
+        <p>
+          The Knu Skool
+          develops familiar
+          Vans design elements,
+          particularly those
+          associated with
+          the Old Skool,
+          while changing
+          their proportions
+          through a distinctly
+          '90s approach.
+        </p>
+
+        <p>
+          An oversized tongue,
+          padded collar,
+          thick laces,
+          and a three-dimensional
+          Sidestripe
+          produce a silhouette
+          with considerably more volume
+          than a traditional Old Skool.
+        </p>
+
+        <p>
+          A black suede upper
+          and True White Sidestripe
+          create a relatively simple
+          black-and-white composition,
+          allowing the shoe's
+          proportions and textures
+          to become the main visual elements.
+        </p>
+
+        <p>
+          Vulcanized construction
+          and the waffle outsole
+          maintain a direct connection
+          to Vans'
+          long-established skate heritage.
+        </p>
+
+        <p>
+          The artifact preserved
+          in the
+          <b>Lộc An Sneaker Collection</b>
+          has been modified
+          by the owner
+          with
+          <b>oversized rope laces</b>.
+        </p>
+
+        <p>
+          The heavier rope construction
+          adds greater visual mass
+          to the tongue
+          and eyestay,
+          pushing the Knu Skool's
+          already exaggerated proportions
+          beyond its standard
+          factory configuration.
+        </p>
+
+        <p>
+          The pair uses
+          contrasting lace treatments:
+          black rope
+          on one shoe
+          and white rope
+          on the other.
+        </p>
+
+        <p>
+          This asymmetry
+          transforms a relatively
+          straightforward GR colorway
+          into a pair
+          with a distinct identity
+          within the collection.
+        </p>
+
+        <div class="exhibition-note">
+          <strong>Exhibition Note:</strong>
+          The rope laces are
+          a personal modification
+          applied to the pair
+          preserved in the collection.
+          This is not a factory edition
+          or an official Vans collaboration.
+        </div>
+      `
+    }
   }
 
 ];
