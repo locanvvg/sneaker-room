@@ -2,7 +2,6 @@
 <html lang="vi">
 
 <head>
-
   <meta charset="UTF-8">
 
   <meta
@@ -12,7 +11,7 @@
 
   <meta
     name="description"
-    content="About Lộc An Sneaker Collection"
+    content="Lộc An Sneaker Collection - Digital Sneaker Archive & Museum"
   >
 
   <meta
@@ -20,37 +19,33 @@
     content="#0d0d0d"
   >
 
-  <title>
-    About | Lộc An Sneaker Collection
-  </title>
-
+  <title>Lộc An Sneaker Collection</title>
 
   <link
     rel="icon"
     type="image/svg+xml"
-    href="./favicon.svg"
+    href="/sneaker-room/favicon.svg"
   >
 
   <link
     rel="apple-touch-icon"
-    href="./apple-touch-icon.png"
+    href="/sneaker-room/apple-touch-icon.png"
   >
 
   <link
     rel="manifest"
-    href="./site.webmanifest"
+    href="/sneaker-room/site.webmanifest"
   >
 
   <link
     rel="stylesheet"
-    href="./style.css?v=20260912-20"
+    href="/sneaker-room/style.css?v=20260912-navfix1"
   >
 
   <link
     rel="stylesheet"
-    href="./collection-menu.css?v=20260912-20"
+    href="/sneaker-room/collection-menu.css?v=20260912-navfix1"
   >
-
 </head>
 
 
@@ -58,9 +53,7 @@
 
   <div class="container">
 
-
-    <header class="about-header">
-
+    <header class="home-header">
 
       <div class="lang-switcher corner-lang">
 
@@ -68,17 +61,16 @@
           type="button"
           id="btn-vi"
           class="lang-btn active"
-          onclick="setAboutLanguage('vi')"
+          onclick="setLanguage('vi')"
         >
           VI
         </button>
-
 
         <button
           type="button"
           id="btn-en"
           class="lang-btn"
-          onclick="setAboutLanguage('en')"
+          onclick="setLanguage('en')"
         >
           EN
         </button>
@@ -86,28 +78,35 @@
       </div>
 
 
-      <p class="eyebrow">
-        PRIVATE DIGITAL ARCHIVE
-      </p>
-
-
-      <h1>
+      <h1 data-i18n="mainTitle">
         LỘC AN SNEAKER COLLECTION
       </h1>
 
 
-      <nav class="museum-nav">
+      <p data-i18n="mainSubtitle">
+        Không gian lưu trữ &amp; Bảo tàng Sneaker Kỹ thuật số
+      </p>
+
+
+      <!-- =================================================
+           MAIN NAVIGATION
+      ================================================== -->
+
+      <nav
+        class="museum-nav"
+        aria-label="Main navigation"
+      >
 
         <a
-          href="./index.html"
-          class="museum-nav-link"
+          href="/sneaker-room/"
+          class="museum-nav-link active"
         >
           SNEAKERS
         </a>
 
 
         <a
-          href="./lego.html"
+          href="/sneaker-room/lego.html"
           class="museum-nav-link"
         >
           LEGO
@@ -115,7 +114,7 @@
 
 
         <a
-          href="./sneaker-mask.html"
+          href="/sneaker-room/sneaker-mask.html"
           class="museum-nav-link"
         >
           SNEAKER MASK
@@ -123,571 +122,258 @@
 
 
         <a
-          href="./about.html"
-          class="museum-nav-link active"
+          href="/sneaker-room/about.html"
+          class="museum-nav-link"
         >
           ABOUT
         </a>
 
       </nav>
 
-
     </header>
 
 
-    <main class="about-page">
+    <!-- =================================================
+         SORT
+    ================================================== -->
+
+    <section class="collection-toolbar">
+
+      <div class="sort-control">
+
+        <label
+          for="sort-select"
+          id="sort-label"
+        >
+          SẮP XẾP
+        </label>
 
 
-      <!-- VI HERO -->
-
-      <section
-        class="about-hero lang-panel"
-        data-lang="vi"
-      >
-
-        <p class="about-kicker">
-          VỀ BỘ SƯU TẬP
-        </p>
-
-
-        <h2>
-          Sneaker như một hiện vật
-          thiết kế, văn hóa và lịch sử.
-        </h2>
-
-
-        <p>
-          Lộc An Sneaker Collection
-          là một kho lưu trữ sneaker tư nhân
-          được xây dựng theo hướng catalogue kỹ thuật số.
-
-          Mỗi đôi giày được ghi nhận
-          không chỉ bằng hình ảnh,
-          mà còn bằng thông tin phát hành,
-          nguồn gốc, tình trạng
-          và câu chuyện thiết kế.
-        </p>
-
-
-        <p>
-          Bộ sưu tập bao gồm
-          General Release,
-          Player Exclusive,
-          Friends &amp; Family,
-          Sample,
-          Signature Signed
-          cùng những hiện vật đặc biệt khác
-          thuộc văn hóa sneaker.
-        </p>
-
-      </section>
-
-
-      <!-- EN HERO -->
-
-      <section
-        class="about-hero lang-panel"
-        data-lang="en"
-      >
-
-        <p class="about-kicker">
-          ABOUT THE COLLECTION
-        </p>
-
-
-        <h2>
-          Sneakers as objects of design,
-          culture, and history.
-        </h2>
-
-
-        <p>
-          Lộc An Sneaker Collection
-          is a private sneaker archive
-          built as a digital catalogue.
-
-          Each pair is documented
-          through imagery,
-          release information,
-          provenance,
-          condition,
-          and design context.
-        </p>
-
-
-        <p>
-          The collection includes
-          General Releases,
-          Player Exclusives,
-          Friends &amp; Family editions,
-          Samples,
-          Signature Signed pieces,
-          and other distinctive
-          sneaker-culture artifacts.
-        </p>
-
-      </section>
-
-
-      <section class="archive-principles">
-
-
-        <!-- VI CLASSIFICATION -->
-
-        <article
-          class="archive-panel lang-panel"
-          data-lang="vi"
+        <select
+          id="sort-select"
+          onchange="changeSort(this.value)"
         >
 
-          <p class="about-kicker">
-            PHÂN LOẠI
-          </p>
+          <option value="default">
+            Mặc định
+          </option>
+
+          <option value="az">
+            A → Z
+          </option>
+
+          <option value="za">
+            Z → A
+          </option>
+
+          <option value="date-desc">
+            Ngày phát hành: Mới → Cũ
+          </option>
+
+          <option value="date-asc">
+            Ngày phát hành: Cũ → Mới
+          </option>
+
+          <option value="size-asc">
+            Size nhỏ → lớn
+          </option>
+
+          <option value="size-desc">
+            Size lớn → nhỏ
+          </option>
+
+        </select>
+
+      </div>
+
+    </section>
 
 
-          <h3>
-            Hệ thống phân loại hiện vật
-          </h3>
+    <!-- =================================================
+         FILTER
+    ================================================== -->
 
+    <section class="filter-panel">
 
-          <div class="definition-item">
+      <div class="filter-panel-header">
 
-            <strong>
-              General Release (GR)
-            </strong>
-
-            <span>
-              Phiên bản được sản xuất để phát hành thương mại
-              công khai qua các kênh bán lẻ chính thức
-              hoặc được ủy quyền, dành cho thị trường
-              người tiêu dùng nói chung.
-            </span>
-
-          </div>
-
-
-          <div class="definition-item">
-
-            <strong>
-              Player Exclusive (PE)
-            </strong>
-
-            <span>
-              Phiên bản được thương hiệu sản xuất
-              hoặc tùy chỉnh dành riêng cho vận động viên,
-              đội thi đấu hay cá nhân được chỉ định,
-              và thường không phát hành bán lẻ công khai.
-            </span>
-
-          </div>
-
-
-          <div class="definition-item">
-
-            <strong>
-              Friends &amp; Family (F&amp;F)
-            </strong>
-
-            <span>
-              Phiên bản không phát hành bán lẻ công khai,
-              được thương hiệu, nhà thiết kế hoặc đối tác sáng tạo
-              phân phối trực tiếp cho gia đình, bạn bè,
-              cộng sự và mạng lưới thân cận của dự án.
-            </span>
-
-          </div>
-
-
-          <div class="definition-item">
-
-            <strong>
-              Sample
-            </strong>
-
-            <span>
-              Phiên bản được tạo trong quá trình phát triển,
-              thử nghiệm hoặc tiền sản xuất nhằm đánh giá
-              thiết kế, vật liệu, màu sắc hay cấu trúc
-              trước khi sản phẩm được hoàn thiện.
-            </span>
-
-          </div>
-
-
-          <div class="definition-item">
-
-            <strong>
-              Signature Signed
-            </strong>
-
-            <span>
-              Hiện vật có chữ ký trực tiếp của vận động viên,
-              nhà thiết kế, nghệ sĩ hoặc nhân vật
-              gắn liền với sản phẩm, qua đó bổ sung
-              provenance và giá trị lưu trữ cho hiện vật.
-            </span>
-
-          </div>
-
-
-          <p class="about-small">
-
-            Một hiện vật có thể thuộc
-            nhiều nhóm cùng lúc.
-
-            Ví dụ:
-            một đôi có thể vừa là
-            Player Exclusive,
-            vừa là Sample
-            hoặc Friends &amp; Family.
-
-          </p>
-
-        </article>
-
-
-        <!-- EN CLASSIFICATION -->
-
-        <article
-          class="archive-panel lang-panel"
-          data-lang="en"
+        <span
+          class="filter-main-label"
+          id="filter-title"
         >
-
-          <p class="about-kicker">
-            CLASSIFICATION
-          </p>
+          BỘ LỌC BỘ SƯU TẬP
+        </span>
 
 
-          <h3>
-            Archive classification system
-          </h3>
-
-
-          <div class="definition-item">
-
-            <strong>
-              General Release (GR)
-            </strong>
-
-            <span>
-              An edition produced for public commercial release
-              through official or authorized retail channels,
-              intended for the general consumer market
-              rather than designated private recipients.
-            </span>
-
-          </div>
-
-
-          <div class="definition-item">
-
-            <strong>
-              Player Exclusive (PE)
-            </strong>
-
-            <span>
-              An edition produced or customized by the brand
-              specifically for athletes, teams,
-              or designated individuals,
-              and typically not offered through public retail.
-            </span>
-
-          </div>
-
-
-          <div class="definition-item">
-
-            <strong>
-              Friends &amp; Family (F&amp;F)
-            </strong>
-
-            <span>
-              A non-public-retail edition distributed directly
-              by the brand, designer, or creative partner
-              to family, friends, collaborators,
-              and individuals within the project's close network.
-            </span>
-
-          </div>
-
-
-          <div class="definition-item">
-
-            <strong>
-              Sample
-            </strong>
-
-            <span>
-              An edition created during development,
-              testing, or pre-production to evaluate
-              design, materials, colors, or construction
-              before the product is finalized.
-            </span>
-
-          </div>
-
-
-          <div class="definition-item">
-
-            <strong>
-              Signature Signed
-            </strong>
-
-            <span>
-              An artifact carrying a direct signature
-              from an athlete, designer, artist,
-              or individual associated with the product,
-              adding documented provenance and archival significance.
-            </span>
-
-          </div>
-
-
-          <p class="about-small">
-
-            An artifact may belong
-            to more than one category.
-
-            For example,
-            a pair may simultaneously be
-            a Player Exclusive,
-            Sample,
-            or Friends &amp; Family edition.
-
-          </p>
-
-        </article>
-
-
-        <!-- VI CONDITION -->
-
-        <article
-          class="archive-panel lang-panel"
-          data-lang="vi"
+        <button
+          type="button"
+          id="clear-filters"
+          class="clear-filter-btn"
+          onclick="clearAllFilters()"
         >
+          XÓA BỘ LỌC
+        </button>
 
-          <p class="about-kicker">
-            TÌNH TRẠNG
-          </p>
-
-
-          <h3>
-            Hệ thống Condition
-          </h3>
+      </div>
 
 
-          <div class="condition-key">
+      <!-- PHÂN KHÚC -->
 
-            <span class="condition-pill deadstock">
-              Deadstock
-            </span>
-
-            <span>
-              Chưa qua sử dụng.
-            </span>
-
-          </div>
-
-
-          <div class="condition-key">
-
-            <span class="condition-pill used">
-              Used
-            </span>
-
-            <span>
-              Đã qua sử dụng.
-            </span>
-
-          </div>
-
-
-          <p class="about-small">
-
-            GR, PE, F&amp;F,
-            Sample và Signature Signed
-            mô tả loại phiên bản
-            hoặc provenance,
-            không phải tình trạng sử dụng.
-
-          </p>
-
-        </article>
-
-
-        <!-- EN CONDITION -->
-
-        <article
-          class="archive-panel lang-panel"
-          data-lang="en"
-        >
-
-          <p class="about-kicker">
-            CONDITION
-          </p>
-
-
-          <h3>
-            Condition system
-          </h3>
-
-
-          <div class="condition-key">
-
-            <span class="condition-pill deadstock">
-              Deadstock
-            </span>
-
-            <span>
-              Unworn.
-            </span>
-
-          </div>
-
-
-          <div class="condition-key">
-
-            <span class="condition-pill used">
-              Used
-            </span>
-
-            <span>
-              Previously worn.
-            </span>
-
-          </div>
-
-
-          <p class="about-small">
-
-            GR, PE, F&amp;F,
-            Sample and Signature Signed
-            describe edition type
-            or provenance,
-            not condition.
-
-          </p>
-
-        </article>
-
-
-      </section>
-
-
-      <!-- CATALOGUE -->
-
-      <section class="catalogue-section">
-
+      <div class="filter-group">
 
         <div
-          class="lang-panel"
-          data-lang="vi"
+          id="edition-filter-label"
+          class="filter-group-label"
         >
-
-          <p class="about-kicker">
-            HỒ SƠ HIỆN VẬT
-          </p>
+          PHÂN KHÚC
+        </div>
 
 
-          <h3>
-            Những thông tin được lưu trữ
-          </h3>
+        <div class="filter-chips">
+
+          <button
+            type="button"
+            class="filter-chip"
+            data-group="edition"
+            data-value="PE"
+            onclick="toggleFilter('edition', 'PE')"
+          >
+            PE
+          </button>
 
 
-          <div class="catalogue-grid">
+          <button
+            type="button"
+            class="filter-chip"
+            data-group="edition"
+            data-value="Sample"
+            onclick="toggleFilter('edition', 'Sample')"
+          >
+            SAMPLE
+          </button>
 
-            <span>
-              Title
-            </span>
 
-            <span>
-              SKU / Style Code
-            </span>
+          <button
+            type="button"
+            class="filter-chip"
+            data-group="edition"
+            data-value="F&F"
+            onclick="toggleFilter('edition', 'F&F')"
+          >
+            F&amp;F
+          </button>
 
-            <span>
-              Colorway
-            </span>
 
-            <span>
-              Retail Price
-            </span>
+          <button
+            type="button"
+            class="filter-chip"
+            data-group="edition"
+            data-value="Signature Signed"
+            onclick="toggleFilter('edition', 'Signature Signed')"
+          >
+            SIGNATURE SIGNED
+          </button>
 
-            <span>
-              Release Date
-            </span>
 
-            <span>
-              Condition
-            </span>
+          <button
+            type="button"
+            class="filter-chip"
+            data-group="edition"
+            data-value="GR"
+            onclick="toggleFilter('edition', 'GR')"
+          >
+            GR
+          </button>
 
-            <span>
-              Size
-            </span>
+        </div>
 
-            <span>
-              Provenance &amp; Story
-            </span>
+      </div>
 
-          </div>
 
+      <!-- CONDITION -->
+
+      <div class="filter-group">
+
+        <div
+          id="condition-filter-label"
+          class="filter-group-label"
+        >
+          TÌNH TRẠNG
+        </div>
+
+
+        <div class="filter-chips">
+
+          <button
+            type="button"
+            class="filter-chip"
+            data-group="condition"
+            data-value="Deadstock"
+            onclick="toggleFilter('condition', 'Deadstock')"
+          >
+            DEADSTOCK
+          </button>
+
+
+          <button
+            type="button"
+            class="filter-chip"
+            data-group="condition"
+            data-value="Used"
+            onclick="toggleFilter('condition', 'Used')"
+          >
+            USED
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- SIZE -->
+
+      <div class="filter-group">
+
+        <div
+          id="size-filter-label"
+          class="filter-group-label"
+        >
+          KÍCH CỠ
         </div>
 
 
         <div
-          class="lang-panel"
-          data-lang="en"
-        >
+          id="size-filter-chips"
+          class="filter-chips"
+        ></div>
 
-          <p class="about-kicker">
-            OBJECT RECORD
-          </p>
+      </div>
 
-
-          <h3>
-            Information recorded in the archive
-          </h3>
+    </section>
 
 
-          <div class="catalogue-grid">
+    <!-- =================================================
+         COUNT
+    ================================================== -->
 
-            <span>
-              Title
-            </span>
-
-            <span>
-              SKU / Style Code
-            </span>
-
-            <span>
-              Colorway
-            </span>
-
-            <span>
-              Retail Price
-            </span>
-
-            <span>
-              Release Date
-            </span>
-
-            <span>
-              Condition
-            </span>
-
-            <span>
-              Size
-            </span>
-
-            <span>
-              Provenance &amp; Story
-            </span>
-
-          </div>
-
-        </div>
+    <div
+      id="collection-count"
+      class="collection-count"
+    >
+      TỔNG SỐ: 0 ĐÔI
+    </div>
 
 
-      </section>
+    <!-- =================================================
+         COLLECTION
+    ================================================== -->
 
+    <main>
+
+      <div
+        id="sneaker-grid"
+        class="grid"
+      ></div>
 
     </main>
 
@@ -701,134 +387,20 @@
 
     </footer>
 
-
   </div>
 
 
-  <script>
+  <!-- =====================================================
+       SCRIPTS
+  ====================================================== -->
 
-    const ABOUT_LANGUAGES = [
-      "vi",
-      "en"
-    ];
+  <script
+    src="/sneaker-room/data.js?v=20260912-navfix1"
+  ></script>
 
-
-    let aboutLanguage =
-
-      new URLSearchParams(
-        window.location.search
-      ).get("lang")
-
-      ||
-
-      localStorage.getItem(
-        "locan_lang"
-      )
-
-      ||
-
-      "vi";
-
-
-    if (
-      !ABOUT_LANGUAGES.includes(
-        aboutLanguage
-      )
-    ) {
-
-      aboutLanguage =
-        "vi";
-
-    }
-
-
-    function setAboutLanguage(
-      lang
-    ) {
-
-      aboutLanguage =
-        ABOUT_LANGUAGES.includes(lang)
-          ? lang
-          : "vi";
-
-
-      localStorage.setItem(
-        "locan_lang",
-        aboutLanguage
-      );
-
-
-      document.documentElement.lang =
-        aboutLanguage;
-
-
-      document
-        .getElementById("btn-vi")
-        .classList.toggle(
-          "active",
-          aboutLanguage === "vi"
-        );
-
-
-      document
-        .getElementById("btn-en")
-        .classList.toggle(
-          "active",
-          aboutLanguage === "en"
-        );
-
-
-      document
-        .querySelectorAll(
-          ".lang-panel"
-        )
-        .forEach(
-          element => {
-
-            element.hidden =
-              element.dataset.lang !==
-              aboutLanguage;
-
-          }
-        );
-
-
-      const url =
-        new URL(
-          window.location.href
-        );
-
-
-      url.searchParams.set(
-        "lang",
-        aboutLanguage
-      );
-
-
-      window.history.replaceState(
-        {},
-        "",
-        url.pathname +
-        url.search +
-        url.hash
-      );
-
-    }
-
-
-    document.addEventListener(
-      "DOMContentLoaded",
-      () => {
-
-        setAboutLanguage(
-          aboutLanguage
-        );
-
-      }
-    );
-
-  </script>
-
+  <script
+    src="/sneaker-room/main.js?v=20260912-navfix1"
+  ></script>
 
 </body>
 
