@@ -50,7 +50,6 @@ const sneakers = [
           thì phiên bản
           <b>Jordan 1 Retro High OG 'Black Bloodline' PE</b>
           lại thuộc một nhóm hoàn toàn khác biệt.
-
           Đây là phiên bản đặc biệt được Jordan Brand
           chuẩn bị dành cho các vận động viên
           và những cá nhân thuộc mạng lưới của thương hiệu
@@ -358,7 +357,7 @@ const sneakers = [
     colorway:
       "Asparagus/Legion Green/Light Khaki/Dark Loden/Sesame/Burnt Sienna",
 
-    retailPrice: "$135",
+    retailPrice: "$135 USD",
 
     releaseDate: "2025-04-05",
 
@@ -414,7 +413,7 @@ const sneakers = [
         <p>
           Phiên bản thương mại
           có giá phát hành
-          <b>$135</b>.
+          <b>$135 USD</b>.
 
           Tuy nhiên,
           tác phẩm được lưu giữ trong
@@ -464,7 +463,7 @@ const sneakers = [
         <p>
           The commercial edition
           carried a retail price of
-          <b>$135</b>.
+          <b>$135 USD</b>.
 
           The example preserved in the
           <b>Lộc An Sneaker Collection</b>
@@ -505,7 +504,7 @@ const sneakers = [
 
     colorway: "White/White-Metallic Silver",
 
-    retailPrice: "$230",
+    retailPrice: "$230 USD",
 
     releaseDate: "2026-04-03",
 
@@ -872,7 +871,7 @@ const sneakers = [
 
     colorway: "Black/Shadow Grey White",
 
-    retailPrice: "$160",
+    retailPrice: "$160 USD",
 
     releaseDate: "2009-08-31",
 
@@ -1441,6 +1440,7 @@ const sneakers = [
     }
   },
 
+
   /* =====================================================
      8. NIKE x OFF-WHITE
         WAFFLE RACER SP
@@ -1464,7 +1464,7 @@ const sneakers = [
 
     colorway: "White/Electric Green-Black",
 
-    retailPrice: "$150",
+    retailPrice: "$150 USD",
 
     releaseDate: "2019-12-12",
 
@@ -1493,6 +1493,7 @@ const sneakers = [
           <b>Athlete in Progress</b>
           giữa Nike và
           <b>Virgil Abloh</b>.
+
           Đây là giai đoạn hợp tác mà Abloh
           chuyển sự chú ý từ việc tái cấu trúc
           các biểu tượng sneaker quen thuộc
@@ -1505,6 +1506,7 @@ const sneakers = [
           quanh ý tưởng về vận động viên
           như một cá thể luôn trong quá trình
           phát triển, thích nghi và tiến về phía trước.
+
           Thay vì xem sản phẩm thể thao
           như một thiết kế đã hoàn thiện tuyệt đối,
           Virgil Abloh khai thác chính
@@ -1521,6 +1523,7 @@ const sneakers = [
           gắn liền với lịch sử ban đầu của Nike
           và tư duy thiết kế của
           <b>Bill Bowerman</b>.
+
           Hệ thống đế waffle vốn được tạo ra
           nhằm cung cấp độ bám
           trong một cấu trúc nhẹ,
@@ -1535,6 +1538,7 @@ const sneakers = [
           nhưng bao phủ upper bằng
           một lớp vật liệu dạng lưới
           và translucent film.
+
           Cấu trúc này tạo cảm giác
           gần giống những lớp băng quấn
           hoặc vật liệu kỹ thuật
@@ -1547,11 +1551,13 @@ const sneakers = [
           Một trong những đặc điểm
           dễ nhận biết nhất
           là hệ thống dây kép.
+
           Bên dưới là bộ dây truyền thống,
           trong khi phía ngoài
           sử dụng dây
           <b>Electric Green</b>
           chạy qua các móc màu đen.
+
           Chi tiết này mang hơi hướng
           hiking và performance equipment,
           khiến hệ thống fastening
@@ -1569,6 +1575,7 @@ const sneakers = [
           retro Nike tongue tag,
           Swoosh lớn ở thân giày
           và zip tie đặc trưng.
+
           Những chi tiết này tạo ra
           sự đối lập giữa một silhouette running
           mang tính lịch sử
@@ -1579,12 +1586,14 @@ const sneakers = [
         <p>
           Điểm khác biệt mạnh nhất
           nằm ở outsole.
+
           Thay vì chỉ sử dụng
           cấu trúc waffle truyền thống,
           Nike và Off-White bổ sung
           các phần
           <b>rubber spike</b>
           nhô rõ khỏi đế.
+
           Điều này làm đôi giày
           gợi liên tưởng đồng thời
           đến track spike,
@@ -1603,6 +1612,7 @@ const sneakers = [
           các móc dây màu đen,
           Swoosh metallic
           và orange tab đặc trưng.
+
           Bảng màu sáng giúp cấu trúc nhiều lớp,
           vật liệu translucent
           và những chi tiết kỹ thuật
@@ -1616,6 +1626,7 @@ const sneakers = [
           <b>Black</b>
           và
           <b>Vivid Sky</b>.
+
           Phiên bản White mang mã
           <b>CD8180-100</b>,
           được phát hành với giá retail
@@ -1638,6 +1649,7 @@ const sneakers = [
           các khu vực màu trắng và off-white
           trên đôi giày hiện đã xuất hiện
           <b>yellowing</b>.
+
           Trong archive,
           hiện tượng này được ghi nhận
           như một phần của tình trạng vật lý
@@ -1647,7 +1659,6 @@ const sneakers = [
         </p>
 
         <div class="exhibition-note">
-
           <strong>Ghi chú lưu trữ:</strong>
 
           Condition chính thức của hiện vật
@@ -1659,10 +1670,8 @@ const sneakers = [
           được lưu lại như một đặc điểm
           của quá trình lão hóa vật liệu
           trên đôi giày.
-
         </div>
       `,
-
 
       en: `
         <p>
@@ -1674,6 +1683,7 @@ const sneakers = [
           <b>Athlete in Progress</b>,
           a Nike project developed with
           <b>Virgil Abloh</b>.
+
           This chapter of their collaboration
           shifted attention away from simply
           reconstructing familiar sneaker icons
@@ -1688,6 +1698,7 @@ const sneakers = [
           continuously developing,
           adapting,
           and moving forward.
+
           Rather than presenting performance products
           as completely resolved objects,
           Virgil Abloh treated experimentation,
@@ -1703,6 +1714,7 @@ const sneakers = [
           to Nike's early history
           and the design philosophy of
           <b>Bill Bowerman</b>.
+
           The original waffle outsole concept
           was developed to provide traction
           through a lightweight structure
@@ -1717,6 +1729,7 @@ const sneakers = [
           while surrounding the upper
           with a netted,
           translucent film.
+
           The construction evokes
           athletic tape and technical wrapping,
           exposing layers of the shoe
@@ -1728,11 +1741,13 @@ const sneakers = [
           One of the design's
           most immediately recognizable features
           is its dual-lacing system.
+
           Traditional laces remain underneath,
           while an additional
           <b>Electric Green</b>
           cord runs through
           black external hooks.
+
           The system introduces
           a hiking and performance-equipment influence,
           turning a functional fastening element
@@ -1748,6 +1763,7 @@ const sneakers = [
           retro Nike tongue branding,
           prominent Swoosh,
           and signature zip tie.
+
           Together,
           these elements create a contrast
           between a historically important
@@ -1759,12 +1775,14 @@ const sneakers = [
         <p>
           The outsole provides
           one of the most dramatic interventions.
+
           Rather than relying exclusively
           on the traditional waffle structure,
           Nike and Off-White added
           pronounced
           <b>rubber spikes</b>
           beneath the shoe.
+
           The resulting appearance references
           track spikes,
           trail footwear,
@@ -1783,6 +1801,7 @@ const sneakers = [
           a metallic Swoosh,
           and Off-White's recognizable
           orange accent.
+
           The lighter palette makes
           the layered materials,
           translucent construction,
@@ -1797,6 +1816,7 @@ const sneakers = [
           <b>Black</b>,
           and
           <b>Vivid Sky</b>.
+
           The White edition carries style code
           <b>CD8180-100</b>
           and originally retailed for
@@ -1822,6 +1842,7 @@ const sneakers = [
           white and off-white construction
           have developed visible
           <b>yellowing</b>.
+
           Within the archive,
           this is documented
           as part of the artifact's
@@ -1832,7 +1853,6 @@ const sneakers = [
         </p>
 
         <div class="exhibition-note">
-
           <strong>Exhibition Note:</strong>
 
           The artifact's official condition
@@ -1844,10 +1864,714 @@ const sneakers = [
           is documented as part
           of the sneaker's natural
           material-aging history.
+        </div>
+      `
+    }
+  },
 
+
+  /* =====================================================
+     9. PUMA x ROSÉ
+        SPEEDCAT LEATHER
+        WARM WHITE
+  ===================================================== */
+
+  {
+    id: "puma-rose-speedcat-leather-warm-white",
+
+    title: {
+      vi: "PUMA x ROSÉ Speedcat Leather 'Warm White'",
+      en: "PUMA x ROSÉ Speedcat Leather 'Warm White'"
+    },
+
+    subtitle: {
+      vi: "PUMA x ROSÉ First Collection (2025)",
+      en: "PUMA x ROSÉ First Collection (2025)"
+    },
+
+    sku: "404390-01",
+
+    colorway: "Warm White/PUMA Black",
+
+    retailPrice: "$110 USD",
+
+    releaseDate: "2025-08-29",
+
+    editionType: {
+      vi: "GR",
+      en: "GR"
+    },
+
+    condition: {
+      vi: "Deadstock",
+      en: "Deadstock"
+    },
+
+    size: "9.5W / 8M US",
+
+    image: "pictures/puma_rose.png",
+
+    story: {
+
+      vi: `
+        <p>
+          Ra mắt trong năm 2025,
+          <b>PUMA x ROSÉ Speedcat Leather 'Warm White'</b>
+          là một trong những thiết kế trung tâm
+          của collection đầu tiên
+          được phát triển giữa
+          <b>PUMA</b>
+          và
+          <b>ROSÉ</b>.
+
+          Dự án xuất hiện sau khi ROSÉ
+          trở thành global ambassador
+          và collaborator của PUMA,
+          mở rộng mối quan hệ
+          từ hình ảnh thương hiệu
+          sang một dự án thiết kế
+          mang dấu ấn cá nhân rõ rệt hơn.
+        </p>
+
+        <p>
+          Collection được xây dựng
+          như một sự phản ánh
+          phong cách riêng của ROSÉ,
+          kết hợp classic streetwear,
+          sportswear archive của PUMA,
+          những yếu tố tinh giản,
+          cùng cách xử lý mềm mại
+          và refined hơn.
+
+          Thay vì dựa chủ yếu
+          vào branding cỡ lớn,
+          collection sử dụng
+          tỷ lệ,
+          vật liệu,
+          hệ thống dây
+          và những chi tiết nhỏ
+          để tạo nhận diện.
+        </p>
+
+        <p>
+          Nền tảng của đôi giày là
+          <b>PUMA Speedcat</b>,
+          silhouette có nguồn gốc
+          sâu trong lịch sử motorsport
+          của PUMA.
+
+          Dòng Speedcat phát triển
+          từ footwear dành cho môi trường đua xe,
+          nơi cấu trúc cực thấp,
+          phần đế mỏng
+          và form ôm chân
+          hỗ trợ người lái
+          cảm nhận bàn đạp
+          một cách chính xác hơn.
+        </p>
+
+        <p>
+          Từ nguồn gốc kỹ thuật đó,
+          Speedcat dần vượt khỏi
+          môi trường motorsport
+          và trở thành
+          một lifestyle silhouette.
+
+          Đặc biệt trong những năm 2000,
+          form dáng thấp và thuôn dài
+          của Speedcat
+          tạo ra một thẩm mỹ
+          khác biệt rõ rệt
+          so với những sneaker
+          có midsole dày
+          hoặc tỷ lệ bulky hơn.
+        </p>
+
+        <p>
+          Khi xu hướng
+          <b>low-profile sneaker</b>
+          quay trở lại mạnh mẽ,
+          PUMA cũng đưa Speedcat
+          trở lại vị trí nổi bật
+          trong catalogue của hãng.
+
+          Collaboration với ROSÉ
+          xuất hiện đúng trong giai đoạn này,
+          nhưng thay vì chỉ sử dụng
+          một phối màu mới,
+          cô tái diễn giải
+          chính ngôn ngữ của silhouette.
+        </p>
+
+        <p>
+          Phiên bản
+          <b>Warm White/PUMA Black</b>
+          giữ lại form thấp,
+          toe thuôn
+          và tỷ lệ aerodynamic
+          đặc trưng của Speedcat.
+
+          Upper sử dụng
+          leather màu Warm White,
+          tạo cảm giác mềm hơn
+          so với pure white,
+          trong khi
+          <b>PUMA Formstrip màu đen</b>
+          tạo đường tương phản mạnh
+          chạy dọc thân giày.
+        </p>
+
+        <p>
+          Theo thông số sản phẩm của PUMA,
+          upper sử dụng chủ yếu
+          <b>cow leather</b>,
+          kết hợp một tỷ lệ nhỏ
+          vật liệu synthetic.
+
+          Outsole cao su
+          giữ lại cảm giác
+          sát mặt đất đặc trưng,
+          trong khi cấu trúc sole
+          sử dụng
+          <b>IMEVA</b>
+          nhằm hỗ trợ trọng lượng nhẹ
+          và độ êm
+          mà không làm thay đổi
+          silhouette low-profile.
+        </p>
+
+        <p>
+          Chi tiết dễ nhận biết nhất
+          của phiên bản ROSÉ
+          là
+          <b>secondary wraparound lacing system</b>.
+
+          Ngoài hệ thống dây chính,
+          một bộ dây thứ hai
+          được dẫn vòng qua upper,
+          tạo ra những đường chéo
+          chạy trực tiếp
+          trên bề mặt của đôi giày.
+        </p>
+
+        <p>
+          Trên phối màu Warm White,
+          dây màu đen
+          tạo độ tương phản rất mạnh
+          với nền leather sáng.
+
+          Khi nhìn từ xa,
+          các đường dây
+          gần giống ribbon
+          được quấn quanh silhouette,
+          biến một thành phần
+          vốn mang chức năng cố định chân
+          thành một thành phần
+          đồ họa của thiết kế.
+        </p>
+
+        <p>
+          Đây cũng là nơi
+          ngôn ngữ của ROSÉ
+          tạo ra sự đối lập
+          với nguồn gốc motorsport.
+
+          Phần nền Speedcat
+          vẫn gợi cảm giác
+          tốc độ,
+          thiết bị đua xe
+          và sự chính xác,
+          nhưng hệ thống dây mới
+          làm tổng thể mềm mại hơn
+          và đưa đôi giày
+          gần hơn với fashion footwear.
+        </p>
+
+        <p>
+          Collection PUMA x ROSÉ
+          tiếp tục khai thác
+          sự đối lập này
+          trên những reinterpretation khác
+          của Speedcat,
+          bao gồm những thiết kế
+          đưa yếu tố ballet
+          và ribbon
+          vào một silhouette
+          vốn có nguồn gốc từ racing.
+
+          Vì vậy,
+          tính nữ tính trong collection
+          không thay thế
+          motorsport heritage,
+          mà được đặt song song
+          với heritage đó.
+        </p>
+
+        <p>
+          Các chi tiết khác
+          bao gồm
+          <b>PUMA x ROSÉ co-branding</b>,
+          tongue treatment riêng,
+          exposed stitching
+          và những điểm hoàn thiện
+          giúp collaboration
+          có nhận diện riêng
+          mà vẫn giữ lại
+          cấu trúc cơ bản của Speedcat.
+        </p>
+
+        <p>
+          ROSÉ mô tả tinh thần
+          của project
+          thông qua ý tưởng
+          <b>quiet rebellion</b>:
+          sự tự tin thể hiện cá tính
+          mà không nhất thiết
+          phải sử dụng
+          những tuyên bố thị giác quá lớn.
+
+          Triết lý này phù hợp
+          với chính đôi Speedcat,
+          khi sự khác biệt
+          nằm nhiều ở tỷ lệ,
+          cách buộc dây,
+          material
+          và detailing
+          hơn là branding oversized.
+        </p>
+
+        <p>
+          Phối màu
+          <b>Warm White/PUMA Black</b>
+          càng nhấn mạnh cách tiếp cận đó.
+
+          Warm White tạo cảm giác
+          nhẹ nhàng,
+          hơi vintage
+          và dễ kết hợp,
+          trong khi Formstrip
+          cùng hệ thống dây màu đen
+          giữ cho tổng thể
+          vẫn có độ sắc nét
+          cần thiết của một racing silhouette.
+        </p>
+
+        <p>
+          Packaging và phụ kiện
+          cũng là một phần đáng chú ý
+          đối với một bộ được lưu trữ
+          theo hướng archive.
+
+          Phiên bản này được ghi nhận
+          với
+          <b>black laces</b>,
+          <b>white laces</b>
+          và
+          <b>2 ROSIE pins</b>,
+          cùng các thành phần packaging
+          và collaboration accessories
+          tùy theo thị trường.
+        </p>
+
+        <p>
+          Việc giữ lại
+          những phụ kiện này
+          có ý nghĩa đối với
+          provenance và tính đầy đủ
+          của bộ sản phẩm,
+          đặc biệt khi collaboration
+          được lưu trữ
+          không chỉ như footwear
+          mà như một hiện vật
+          của một thời điểm cụ thể
+          trong lịch sử thương hiệu.
+        </p>
+
+        <p>
+          Phiên bản mang style code
+          <b>404390-01</b>,
+          colorway
+          <b>Warm White/PUMA Black</b>,
+          và retail
+          <b>$110 USD</b>.
+
+          Tác phẩm trong
+          <b>Lộc An Sneaker Collection</b>
+          được lưu giữ
+          ở tình trạng
+          <b>Deadstock</b>,
+          size
+          <b>9.5W / 8M US</b>.
+        </p>
+
+        <p>
+          Trong bối cảnh rộng hơn,
+          PUMA x ROSÉ Speedcat
+          đại diện cho điểm giao
+          giữa ba lớp lịch sử:
+          <b>motorsport heritage</b>
+          của PUMA,
+          sự hồi sinh
+          của
+          <b>low-profile sneaker culture</b>,
+          và một cách diễn giải
+          mang tính
+          <b>refined femininity</b>
+          của ROSÉ.
+        </p>
+
+        <div class="exhibition-note">
+          <strong>Ghi chú lưu trữ:</strong>
+
+          Style code:
+          <b>404390-01</b>.
+
+          Colorway:
+          <b>Warm White/PUMA Black</b>.
+
+          Retail:
+          <b>$110 USD</b>.
+
+          Condition:
+          <b>Deadstock</b>.
+
+          Size:
+          <b>9.5W / 8M US</b>.
+
+          Các phụ kiện collaboration
+          nên được lưu giữ cùng hiện vật
+          khi có thể
+          nhằm duy trì provenance
+          và tính đầy đủ của bộ sản phẩm.
+        </div>
+      `,
+
+      en: `
+        <p>
+          Released in 2025,
+          the
+          <b>PUMA x ROSÉ Speedcat Leather 'Warm White'</b>
+          became one of the central footwear designs
+          from the first full collection
+          developed between
+          <b>PUMA</b>
+          and
+          <b>ROSÉ</b>.
+
+          The project followed ROSÉ's
+          appointment as a global ambassador
+          and collaborator,
+          expanding the relationship
+          beyond campaign imagery
+          into a more personal
+          design project.
+        </p>
+
+        <p>
+          The collection was conceived
+          as a reflection
+          of ROSÉ's personal style,
+          combining classic streetwear,
+          references to PUMA's sportswear archive,
+          understated proportions,
+          and a softer,
+          more refined design language.
+
+          Rather than relying primarily
+          on oversized branding,
+          its identity emerges through
+          proportion,
+          materials,
+          lacing,
+          and small collaborative details.
+        </p>
+
+        <p>
+          The foundation of the shoe is the
+          <b>PUMA Speedcat</b>,
+          a silhouette deeply connected
+          to PUMA's motorsport history.
+
+          The Speedcat lineage grew
+          from racing footwear,
+          where an exceptionally low construction,
+          thin sole,
+          and close-fitting shape
+          helped drivers maintain
+          precise pedal feel.
+        </p>
+
+        <p>
+          From that technical foundation,
+          the Speedcat eventually moved
+          beyond motorsport
+          and became
+          a lifestyle silhouette.
+
+          During the 2000s in particular,
+          its low,
+          elongated proportions
+          offered a distinctly different aesthetic
+          from sneakers built around
+          thicker midsoles
+          and bulkier forms.
+        </p>
+
+        <p>
+          As
+          <b>low-profile sneakers</b>
+          returned to prominence,
+          PUMA brought the Speedcat
+          back into a central position
+          within its footwear catalogue.
+
+          The ROSÉ collaboration arrived
+          during this revival,
+          but rather than functioning
+          simply as a new colorway,
+          it reinterpreted
+          the visual language
+          of the silhouette itself.
+        </p>
+
+        <p>
+          The
+          <b>Warm White/PUMA Black</b>
+          edition retains
+          the Speedcat's low stance,
+          streamlined toe,
+          and aerodynamic proportions.
+
+          Its Warm White leather upper
+          provides a softer appearance
+          than stark optical white,
+          while the black
+          <b>PUMA Formstrip</b>
+          creates a strong,
+          graphic contrast.
+        </p>
+
+        <p>
+          PUMA product specifications
+          describe the upper
+          as being constructed
+          primarily from
+          <b>cow leather</b>,
+          with a small synthetic component.
+
+          The rubber outsole
+          maintains the silhouette's
+          close-to-the-ground character,
+          while
+          <b>IMEVA</b>
+          in the sole structure
+          supports lightweight cushioning
+          without disrupting
+          its low-profile proportions.
+        </p>
+
+        <p>
+          The most recognizable intervention
+          on the ROSÉ edition
+          is the
+          <b>secondary wraparound lacing system</b>.
+
+          In addition to the primary laces,
+          a second lace system
+          travels around the upper,
+          creating diagonal lines
+          directly across
+          the surface of the sneaker.
+        </p>
+
+        <p>
+          On the Warm White edition,
+          the black laces
+          create a strong contrast
+          against the pale leather.
+
+          From a distance,
+          these lines appear almost
+          like ribbons
+          wrapped around the silhouette,
+          transforming a traditionally functional
+          component
+          into a graphic part
+          of the design.
+        </p>
+
+        <p>
+          This is also where
+          ROSÉ's design language
+          creates a deliberate tension
+          with the Speedcat's motorsport origins.
+
+          The underlying shoe
+          continues to communicate
+          speed,
+          racing equipment,
+          and precision,
+          while the new lacing
+          softens the overall appearance
+          and moves the silhouette
+          further into fashion.
+        </p>
+
+        <p>
+          The wider PUMA x ROSÉ collection
+          explores this tension
+          across other reinterpretations
+          of the Speedcat,
+          combining racing heritage
+          with ballet-inspired,
+          ribbon-like,
+          and more feminine references.
+
+          The feminine elements
+          therefore do not erase
+          the Speedcat's motorsport history;
+          they are deliberately placed
+          alongside it.
+        </p>
+
+        <p>
+          Additional details include
+          <b>PUMA x ROSÉ co-branding</b>,
+          distinctive tongue treatment,
+          exposed stitching,
+          and finishing elements
+          that establish a clear
+          collaborative identity
+          while preserving
+          the underlying Speedcat structure.
+        </p>
+
+        <p>
+          ROSÉ described
+          the creative spirit
+          of the project
+          through the idea of
+          <b>quiet rebellion</b>:
+          expressing individuality
+          with confidence
+          without requiring
+          an oversized visual statement.
+
+          That philosophy fits
+          the Speedcat itself,
+          where much of the collaboration's
+          identity lies in
+          proportion,
+          lacing,
+          material,
+          and detail
+          rather than oversized branding.
+        </p>
+
+        <p>
+          The
+          <b>Warm White/PUMA Black</b>
+          palette reinforces
+          this approach.
+
+          Warm White creates
+          a softer,
+          slightly vintage character,
+          while the black Formstrip
+          and lacing
+          retain the sharpness
+          expected from
+          a racing-derived silhouette.
+        </p>
+
+        <p>
+          Packaging and accessories
+          are also relevant
+          when the release
+          is preserved as an archive object.
+
+          The edition is documented
+          with
+          <b>black laces</b>,
+          <b>white laces</b>,
+          and
+          <b>two ROSIE pins</b>,
+          alongside special packaging
+          and other collaboration components
+          depending on market.
+        </p>
+
+        <p>
+          Preserving these accessories
+          contributes to
+          the provenance
+          and completeness
+          of the set,
+          particularly when the collaboration
+          is documented not only
+          as footwear,
+          but as an artifact
+          representing a specific moment
+          in brand and design history.
+        </p>
+
+        <p>
+          The release carries style code
+          <b>404390-01</b>,
+          the
+          <b>Warm White/PUMA Black</b>
+          colorway,
+          and an original retail price of
+          <b>$110 USD</b>.
+
+          The example preserved in the
+          <b>Lộc An Sneaker Collection</b>
+          remains
+          <b>Deadstock</b>
+          in size
+          <b>9.5W / 8M US</b>.
+        </p>
+
+        <p>
+          In a broader context,
+          the PUMA x ROSÉ Speedcat
+          sits at the intersection
+          of three histories:
+          PUMA's
+          <b>motorsport heritage</b>,
+          the contemporary return of
+          <b>low-profile sneaker culture</b>,
+          and ROSÉ's interpretation
+          of
+          <b>refined femininity</b>.
+        </p>
+
+        <div class="exhibition-note">
+          <strong>Exhibition Note:</strong>
+
+          Style code:
+          <b>404390-01</b>.
+
+          Colorway:
+          <b>Warm White/PUMA Black</b>.
+
+          Original retail:
+          <b>$110 USD</b>.
+
+          Condition:
+          <b>Deadstock</b>.
+
+          Size:
+          <b>9.5W / 8M US</b>.
+
+          Collaboration accessories
+          should be preserved with the artifact
+          whenever possible
+          to maintain provenance
+          and set completeness.
         </div>
       `
     }
   }
-  
+
 ];
