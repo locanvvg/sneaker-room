@@ -31,28 +31,24 @@
     href="./favicon.svg"
   >
 
-
   <link
     rel="apple-touch-icon"
     href="./apple-touch-icon.png"
   >
-
 
   <link
     rel="manifest"
     href="./site.webmanifest"
   >
 
-
   <link
     rel="stylesheet"
-    href="./style.css?v=20260912-18"
+    href="./style.css?v=20260912-20"
   >
 
-
   <link
     rel="stylesheet"
-    href="./collection-menu.css?v=20260912-18"
+    href="./collection-menu.css?v=20260912-20"
   >
 
 </head>
@@ -65,8 +61,6 @@
 
     <header class="home-header">
 
-
-      <!-- LANGUAGE -->
 
       <div class="lang-switcher corner-lang">
 
@@ -92,8 +86,6 @@
       </div>
 
 
-      <!-- HEADER -->
-
       <h1>
         LỘC AN SNEAKER COLLECTION
       </h1>
@@ -108,8 +100,6 @@
         Bảo tàng Sneaker Kỹ thuật số
       </p>
 
-
-      <!-- DIRECT NAVIGATION -->
 
       <nav class="museum-nav">
 
@@ -153,12 +143,7 @@
     <main>
 
 
-      <!-- INTRO -->
-
-      <section
-        class="collection-category-hero"
-        style="margin-bottom: 24px;"
-      >
+      <section class="collection-category-hero">
 
         <p class="collection-category-eyebrow">
           LEGO ARCHIVE
@@ -172,22 +157,17 @@
 
         <p
           id="lego-page-description"
-          data-vi="Kho lưu trữ dành cho các bộ Nike x LEGO trong Lộc An Sneaker Collection — nơi sneaker culture, basketball và thiết kế LEGO được kết nối trong cùng một hệ thống catalogue."
-          data-en="An archive dedicated to Nike x LEGO sets within the Lộc An Sneaker Collection — where sneaker culture, basketball and LEGO design are documented within one catalogue system."
+          data-vi="Kho lưu trữ các bộ Nike x LEGO trong Lộc An Sneaker Collection, ghi nhận sự giao thoa giữa sneaker culture, basketball và thiết kế LEGO."
+          data-en="An archive of Nike x LEGO sets within the Lộc An Sneaker Collection, documenting the intersection of sneaker culture, basketball, and LEGO design."
         >
-          Kho lưu trữ dành cho các bộ
-          Nike x LEGO trong
-          Lộc An Sneaker Collection —
-          nơi sneaker culture,
-          basketball và thiết kế LEGO
-          được kết nối trong cùng
-          một hệ thống catalogue.
+          Kho lưu trữ các bộ Nike x LEGO
+          trong Lộc An Sneaker Collection,
+          ghi nhận sự giao thoa giữa sneaker culture,
+          basketball và thiết kế LEGO.
         </p>
 
       </section>
 
-
-      <!-- COUNT -->
 
       <div
         id="lego-count"
@@ -196,8 +176,6 @@
         TỔNG SỐ: 0 BỘ
       </div>
 
-
-      <!-- GRID -->
 
       <div
         id="lego-grid"
@@ -222,7 +200,7 @@
 
 
   <script
-    src="./lego-data.js?v=20260912-18"
+    src="./lego-data.js?v=20260912-20"
   ></script>
 
 
@@ -235,6 +213,7 @@
 
 
     let legoLanguage =
+
       new URLSearchParams(
         window.location.search
       ).get("lang")
@@ -256,8 +235,7 @@
       )
     ) {
 
-      legoLanguage =
-        "vi";
+      legoLanguage = "vi";
 
     }
 
@@ -266,12 +244,10 @@
       value
     ) {
 
-      return Number(
-        value
-      )
-      .toLocaleString(
-        "en-CA"
-      );
+      return Number(value)
+        .toLocaleString(
+          "en-CA"
+        );
 
     }
 
@@ -281,9 +257,7 @@
     ) {
 
       legoLanguage =
-        LEGO_LANGUAGES.includes(
-          lang
-        )
+        LEGO_LANGUAGES.includes(lang)
           ? lang
           : "vi";
 
@@ -299,22 +273,16 @@
 
 
       document
-        .getElementById(
-          "btn-vi"
-        )
-        .classList
-        .toggle(
+        .getElementById("btn-vi")
+        .classList.toggle(
           "active",
           legoLanguage === "vi"
         );
 
 
       document
-        .getElementById(
-          "btn-en"
-        )
-        .classList
-        .toggle(
+        .getElementById("btn-en")
+        .classList.toggle(
           "active",
           legoLanguage === "en"
         );
@@ -391,8 +359,7 @@
         );
 
 
-      grid.innerHTML =
-        "";
+      grid.innerHTML = "";
 
 
       legoSets.forEach(
@@ -538,6 +505,22 @@
             )} PCS`;
 
 
+          const cta =
+            document.createElement(
+              "span"
+            );
+
+
+          cta.className =
+            "card-cta";
+
+
+          cta.textContent =
+            legoLanguage === "vi"
+              ? "XEM THÊM →"
+              : "VIEW MORE →";
+
+
           meta.appendChild(
             badge
           );
@@ -560,6 +543,11 @@
 
           info.appendChild(
             meta
+          );
+
+
+          info.appendChild(
+            cta
           );
 
 
