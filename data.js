@@ -4283,7 +4283,7 @@ const sneakers = [
 
     colorway: "Gym Red/Black-Gym Red-White",
 
-    retailPrice: "$90 USD",
+    retailPrice: "$115 USD",
 
     releaseDate: "2020-09-29",
 
