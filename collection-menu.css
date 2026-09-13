@@ -4,6 +4,7 @@
    FINAL NAVIGATION
    + SEARCH
    + PRIVATE COLLECTION NOTICE
+   + SNEAKER FULL-IMAGE CARDS
    + CATEGORY PAGES
    + ABOUT AUTHENTICITY
 ========================================================= */
@@ -21,36 +22,19 @@
 
 /* =========================================================
    PRIVATE COLLECTION NOTICE
-
-   Displayed automatically on:
-   - Sneakers
-   - LEGO
-   - Sneaker Mask
-   - About
-
-   because those pages share collection-menu.css.
 ========================================================= */
 
 .home-header::after,
 .about-header::after {
-  content:
-    "PRIVATE COLLECTION — NOT FOR SALE";
+  content: "PRIVATE COLLECTION — NOT FOR SALE";
 
   display: block;
-
   width: fit-content;
 
-  margin:
-    24px
-    auto
-    0;
+  margin: 24px auto 0;
+  padding: 9px 15px;
 
-  padding:
-    9px
-    15px;
-
-  color:
-    #ff6969;
+  color: #ff6969;
 
   background:
     rgba(
@@ -69,26 +53,15 @@
       0.18
     );
 
-  border-left:
-    3px solid #ff4d4d;
+  border-left: 3px solid #ff4d4d;
+  border-radius: 7px;
 
-  border-radius:
-    7px;
+  font-size: 0.67rem;
+  font-weight: 850;
+  line-height: 1.3;
 
-  font-size:
-    0.67rem;
-
-  font-weight:
-    850;
-
-  line-height:
-    1.3;
-
-  letter-spacing:
-    1.1px;
-
-  text-align:
-    center;
+  letter-spacing: 1.1px;
+  text-align: center;
 }
 
 
@@ -105,7 +78,6 @@
   z-index: 20;
 
   display: flex;
-
   align-items: center;
 
   gap: 16px;
@@ -120,23 +92,16 @@
 .about-corner-link {
   display: inline-block;
 
-  color:
-    #77777c;
+  color: #77777c;
 
-  text-decoration:
-    none;
+  text-decoration: none;
 
-  font-size:
-    0.66rem;
+  font-size: 0.66rem;
+  font-weight: 800;
 
-  font-weight:
-    800;
+  letter-spacing: 1.3px;
 
-  letter-spacing:
-    1.3px;
-
-  opacity:
-    0.75;
+  opacity: 0.75;
 
   transition:
     color 0.2s ease,
@@ -146,11 +111,9 @@
 
 
 .about-corner-link:hover {
-  color:
-    #d2d2d6;
+  color: #d2d2d6;
 
-  opacity:
-    0.55;
+  opacity: 0.55;
 
   transform:
     translateY(-2px);
@@ -158,11 +121,9 @@
 
 
 .about-corner-link.active {
-  color:
-    #ffcc00;
+  color: #ffcc00;
 
-  opacity:
-    1;
+  opacity: 1;
 }
 
 
@@ -173,52 +134,38 @@
 .museum-nav {
   display: flex;
 
-  justify-content:
-    center;
+  justify-content: center;
+  align-items: center;
 
-  align-items:
-    center;
+  flex-wrap: wrap;
 
-  flex-wrap:
-    wrap;
+  gap: 36px;
 
-  gap:
-    36px;
-
-  margin-top:
-    24px;
+  margin-top: 24px;
 }
 
 
 .museum-nav-link {
-  display:
-    inline-block;
+  display: inline-block;
 
   padding:
     6px
     2px
     9px;
 
-  color:
-    #85858a;
+  color: #85858a;
 
-  text-decoration:
-    none;
+  text-decoration: none;
 
   border-bottom:
     2px solid transparent;
 
-  font-size:
-    0.76rem;
+  font-size: 0.76rem;
+  font-weight: 800;
 
-  font-weight:
-    800;
+  letter-spacing: 1.4px;
 
-  letter-spacing:
-    1.4px;
-
-  opacity:
-    0.75;
+  opacity: 0.75;
 
   transform:
     translateY(0);
@@ -233,38 +180,30 @@
 
 
 .museum-nav-link:hover {
-  color:
-    #d4d4d8;
+  color: #d4d4d8;
 
-  opacity:
-    0.5;
+  opacity: 0.5;
 
   transform:
     translateY(-2px);
 
-  letter-spacing:
-    1.65px;
+  letter-spacing: 1.65px;
 }
 
 
 .museum-nav-link.active {
-  color:
-    #ffcc00;
+  color: #ffcc00;
 
-  opacity:
-    1;
+  opacity: 1;
 
-  border-color:
-    #ffcc00;
+  border-color: #ffcc00;
 }
 
 
 .museum-nav-link.active:hover {
-  color:
-    #ffd633;
+  color: #ffd633;
 
-  opacity:
-    1;
+  opacity: 1;
 }
 
 
@@ -278,83 +217,60 @@
     0
     18px;
 
-  padding:
-    18px;
+  padding: 18px;
 
-  background:
-    #121214;
+  background: #121214;
 
   border:
     1px solid #27272b;
 
-  border-radius:
-    12px;
+  border-radius: 12px;
 }
 
 
 .archive-search-label {
-  display:
-    block;
+  display: block;
 
-  margin-bottom:
-    10px;
+  margin-bottom: 10px;
 
-  color:
-    #ffcc00;
+  color: #ffcc00;
 
-  font-size:
-    0.7rem;
+  font-size: 0.7rem;
+  font-weight: 850;
 
-  font-weight:
-    850;
-
-  letter-spacing:
-    1.45px;
+  letter-spacing: 1.45px;
 }
 
 
 .archive-search-box {
-  position:
-    relative;
+  position: relative;
 
-  display:
-    flex;
+  display: flex;
 
-  align-items:
-    center;
+  align-items: center;
 }
 
 
 .archive-search-icon {
-  position:
-    absolute;
+  position: absolute;
 
-  left:
-    15px;
+  left: 15px;
 
-  z-index:
-    2;
+  z-index: 2;
 
-  color:
-    #707076;
+  color: #707076;
 
-  font-size:
-    1.12rem;
+  font-size: 1.12rem;
+  line-height: 1;
 
-  line-height:
-    1;
-
-  pointer-events:
-    none;
+  pointer-events: none;
 }
 
 
 .archive-search-input {
-  width:
-    100%;
+  width: 100%;
 
-  min-height:
-    48px;
+  min-height: 48px;
 
   padding:
     13px
@@ -362,26 +278,19 @@
     13px
     43px;
 
-  color:
-    #f2f2f4;
+  color: #f2f2f4;
 
-  background:
-    #0d0d0f;
+  background: #0d0d0f;
 
   border:
     1px solid #303035;
 
-  border-radius:
-    9px;
+  border-radius: 9px;
 
-  outline:
-    none;
+  outline: none;
 
-  font:
-    inherit;
-
-  font-size:
-    0.9rem;
+  font: inherit;
+  font-size: 0.9rem;
 
   transition:
     border-color 0.18s ease,
@@ -391,20 +300,17 @@
 
 
 .archive-search-input::placeholder {
-  color:
-    #5f5f65;
+  color: #5f5f65;
 }
 
 
 .archive-search-input:hover {
-  border-color:
-    #3a3a40;
+  border-color: #3a3a40;
 }
 
 
 .archive-search-input:focus {
-  background:
-    #0f0f11;
+  background: #0f0f11;
 
   border-color:
     rgba(
@@ -425,57 +331,38 @@
 }
 
 
-/* Hide native Chrome/WebKit search X.
-   We use our own × button instead. */
+/* Hide native browser search X */
 
 .archive-search-input::-webkit-search-cancel-button {
-  display:
-    none;
+  display: none;
 }
 
 
 .archive-search-clear {
-  position:
-    absolute;
+  position: absolute;
 
-  right:
-    10px;
+  right: 10px;
 
-  display:
-    none;
+  display: none;
 
-  width:
-    30px;
+  width: 30px;
+  height: 30px;
 
-  height:
-    30px;
+  padding: 0;
 
-  padding:
-    0;
+  place-items: center;
 
-  place-items:
-    center;
+  color: #77777d;
 
-  color:
-    #77777d;
+  background: transparent;
 
-  background:
-    transparent;
+  border: 0;
+  border-radius: 50%;
 
-  border:
-    0;
+  cursor: pointer;
 
-  border-radius:
-    50%;
-
-  cursor:
-    pointer;
-
-  font-size:
-    1.25rem;
-
-  line-height:
-    1;
+  font-size: 1.25rem;
+  line-height: 1;
 
   transition:
     color 0.18s ease,
@@ -484,14 +371,12 @@
 
 
 .archive-search-clear.visible {
-  display:
-    grid;
+  display: grid;
 }
 
 
 .archive-search-clear:hover {
-  color:
-    #ffcc00;
+  color: #ffcc00;
 
   background:
     rgba(
@@ -500,6 +385,79 @@
       0,
       0.06
     );
+}
+
+
+/* =========================================================
+   SNEAKER COVER IMAGE
+
+   IMPORTANT:
+   Chỉ áp dụng cho #sneaker-grid.
+
+   - Black background
+   - Full sneaker visible
+   - No crop
+   - No lost toe / heel / zip tie / accessories
+========================================================= */
+
+#sneaker-grid .card-img-wrapper {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+
+  aspect-ratio: 4 / 3;
+
+  overflow: hidden;
+
+  background: #000000;
+}
+
+
+/*
+   "contain" rất quan trọng.
+
+   cover   = phóng ảnh + crop.
+   contain = luôn giữ toàn bộ ảnh trong khung.
+*/
+
+#sneaker-grid
+.card-img-wrapper
+img {
+  position: absolute;
+
+  inset: 0;
+
+  display: block;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  padding: 10px;
+
+  object-fit: contain !important;
+
+  object-position:
+    center center !important;
+
+  background: transparent;
+}
+
+
+/*
+   Không zoom ảnh khi hover.
+   Giữ nguyên full sneaker.
+*/
+
+#sneaker-grid
+.card-link:hover
+.card-img-wrapper
+img {
+  object-fit: contain !important;
 }
 
 
@@ -523,17 +481,14 @@
 @keyframes sectionFadeIn {
 
   from {
-    opacity:
-      0;
+    opacity: 0;
 
     transform:
       translateY(4px);
   }
 
-
   to {
-    opacity:
-      1;
+    opacity: 1;
 
     transform:
       translateY(0);
@@ -547,29 +502,21 @@
 ========================================================= */
 
 .card-cta {
-  display:
-    block;
+  display: block;
 
-  margin-top:
-    16px;
+  margin-top: 16px;
 
-  padding-top:
-    12px;
+  padding-top: 12px;
 
   border-top:
     1px solid #29292d;
 
-  color:
-    #8f8f94;
+  color: #8f8f94;
 
-  font-size:
-    0.7rem;
+  font-size: 0.7rem;
+  font-weight: 800;
 
-  font-weight:
-    800;
-
-  letter-spacing:
-    1.15px;
+  letter-spacing: 1.15px;
 
   transition:
     color 0.2s ease,
@@ -578,8 +525,7 @@
 
 
 .card-link:hover .card-cta {
-  color:
-    #ffcc00;
+  color: #ffcc00;
 
   transform:
     translateX(5px);
@@ -591,23 +537,18 @@
 ========================================================= */
 
 .collection-category-hero {
-  margin-top:
-    24px;
+  margin-top: 24px;
 
-  margin-bottom:
-    24px;
+  margin-bottom: 24px;
 
-  padding:
-    34px;
+  padding: 34px;
 
-  background:
-    #141416;
+  background: #141416;
 
   border:
     1px solid #26262a;
 
-  border-radius:
-    14px;
+  border-radius: 14px;
 }
 
 
@@ -617,17 +558,12 @@
     0
     12px;
 
-  color:
-    #ffcc00;
+  color: #ffcc00;
 
-  font-size:
-    0.7rem;
+  font-size: 0.7rem;
+  font-weight: 800;
 
-  font-weight:
-    800;
-
-  letter-spacing:
-    1.5px;
+  letter-spacing: 1.5px;
 }
 
 
@@ -637,8 +573,7 @@
     0
     14px;
 
-  color:
-    #f5f5f7;
+  color: #f5f5f7;
 
   font-size:
     clamp(
@@ -650,17 +585,13 @@
 
 
 .collection-category-hero p {
-  max-width:
-    760px;
+  max-width: 760px;
 
-  margin:
-    0;
+  margin: 0;
 
-  color:
-    #9b9ba0;
+  color: #9b9ba0;
 
-  line-height:
-    1.75;
+  line-height: 1.75;
 }
 
 
@@ -669,8 +600,7 @@
 ========================================================= */
 
 .mask-grid .card-img-wrapper {
-  background:
-    #101012;
+  background: #101012;
 }
 
 
@@ -681,8 +611,7 @@
   object-position:
     center !important;
 
-  padding:
-    8px;
+  padding: 8px;
 }
 
 
@@ -691,14 +620,12 @@
 ========================================================= */
 
 #section-about {
-  margin-top:
-    28px;
+  margin-top: 28px;
 }
 
 
 .definition-item span {
-  line-height:
-    1.65;
+  line-height: 1.65;
 }
 
 
@@ -707,11 +634,9 @@
 ========================================================= */
 
 .authenticity-section {
-  margin-top:
-    30px;
+  margin-top: 30px;
 
-  padding-top:
-    26px;
+  padding-top: 26px;
 
   border-top:
     1px solid #2a2a2e;
@@ -724,20 +649,14 @@
     0
     12px;
 
-  color:
-    #ffcc00;
+  color: #ffcc00;
 
-  font-size:
-    0.7rem;
+  font-size: 0.7rem;
+  font-weight: 800;
 
-  font-weight:
-    800;
+  letter-spacing: 1.4px;
 
-  letter-spacing:
-    1.4px;
-
-  text-transform:
-    uppercase;
+  text-transform: uppercase;
 }
 
 
@@ -747,8 +666,7 @@
     0
     20px;
 
-  color:
-    #f2f2f4;
+  color: #f2f2f4;
 }
 
 
@@ -758,23 +676,18 @@
     0
     18px;
 
-  color:
-    #94949a;
+  color: #94949a;
 
-  font-size:
-    0.9rem;
+  font-size: 0.9rem;
 
-  line-height:
-    1.8;
+  line-height: 1.8;
 }
 
 
 .authenticity-text strong {
-  color:
-    #cfcfd3;
+  color: #cfcfd3;
 
-  font-weight:
-    700;
+  font-weight: 700;
 }
 
 
@@ -783,15 +696,13 @@
 ========================================================= */
 
 .authenticity-notice {
-  margin-top:
-    24px;
+  margin-top: 24px;
 
   padding:
     16px
     18px;
 
-  color:
-    #ff6767;
+  color: #ff6767;
 
   background:
     rgba(
@@ -813,29 +724,21 @@
   border-left:
     3px solid #ff4d4d;
 
-  border-radius:
-    8px;
+  border-radius: 8px;
 
-  font-size:
-    0.84rem;
+  font-size: 0.84rem;
+  font-weight: 600;
 
-  font-weight:
-    600;
-
-  line-height:
-    1.75;
+  line-height: 1.75;
 }
 
 
 .authenticity-notice strong {
-  color:
-    #ff4d4d;
+  color: #ff4d4d;
 
-  font-weight:
-    900;
+  font-weight: 900;
 
-  letter-spacing:
-    0.5px;
+  letter-spacing: 0.5px;
 }
 
 
@@ -846,31 +749,25 @@
 @media screen and (max-width: 700px) {
 
   .header-corner-tools {
-    position:
-      static;
+    position: static;
 
-    justify-content:
-      flex-end;
+    justify-content: flex-end;
 
-    margin-bottom:
-      18px;
+    margin-bottom: 18px;
   }
 
 
   .home-header::after,
   .about-header::after {
-    margin-top:
-      20px;
+    margin-top: 20px;
 
     padding:
       8px
       13px;
 
-    font-size:
-      0.64rem;
+    font-size: 0.64rem;
 
-    letter-spacing:
-      0.9px;
+    letter-spacing: 0.9px;
   }
 
 
@@ -882,35 +779,42 @@
 
 
   .museum-nav-link {
-    font-size:
-      0.69rem;
+    font-size: 0.69rem;
 
-    letter-spacing:
-      1px;
+    letter-spacing: 1px;
   }
 
 
   .archive-search-panel {
-    margin-top:
-      22px;
+    margin-top: 22px;
 
-    padding:
-      15px;
+    padding: 15px;
   }
 
 
   .archive-search-label {
-    margin-bottom:
-      9px;
+    margin-bottom: 9px;
   }
 
 
   .archive-search-input {
-    min-height:
-      46px;
+    min-height: 46px;
 
-    font-size:
-      0.86rem;
+    font-size: 0.86rem;
+  }
+
+
+  /*
+     Mobile sneaker cards:
+     vẫn giữ full sneaker,
+     nhưng giảm padding một chút
+     để đôi giày lớn hơn.
+  */
+
+  #sneaker-grid
+  .card-img-wrapper
+  img {
+    padding: 7px;
   }
 
 
@@ -922,20 +826,16 @@
 
 
   .authenticity-section {
-    margin-top:
-      26px;
+    margin-top: 26px;
 
-    padding-top:
-      22px;
+    padding-top: 22px;
   }
 
 
   .authenticity-text {
-    font-size:
-      0.87rem;
+    font-size: 0.87rem;
 
-    line-height:
-      1.75;
+    line-height: 1.75;
   }
 
 
@@ -944,8 +844,7 @@
       14px
       15px;
 
-    font-size:
-      0.81rem;
+    font-size: 0.81rem;
   }
 
 }
@@ -965,47 +864,52 @@
 
 
   .museum-nav-link {
-    font-size:
-      0.64rem;
+    font-size: 0.64rem;
   }
 
 
   .about-corner-link {
-    font-size:
-      0.61rem;
+    font-size: 0.61rem;
   }
 
 
   .archive-search-panel {
-    padding:
-      13px;
+    padding: 13px;
   }
 
 
   .archive-search-label {
-    font-size:
-      0.66rem;
+    font-size: 0.66rem;
   }
 
 
   .archive-search-input {
-    padding-left:
-      40px;
+    padding-left: 40px;
 
-    font-size:
-      0.82rem;
+    font-size: 0.82rem;
+  }
+
+
+  /*
+     Small phones:
+     cho sneaker chiếm nhiều diện tích hơn,
+     nhưng vẫn tuyệt đối không crop.
+  */
+
+  #sneaker-grid
+  .card-img-wrapper
+  img {
+    padding: 5px;
   }
 
 
   .authenticity-kicker {
-    font-size:
-      0.65rem;
+    font-size: 0.65rem;
   }
 
 
   .authenticity-notice {
-    font-size:
-      0.79rem;
+    font-size: 0.79rem;
   }
 
 }
