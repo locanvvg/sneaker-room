@@ -1,583 +1,373 @@
-<!DOCTYPE html>
-<html lang="vi">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <meta
-    name="description"
-    content="Lộc An Collection - Nike x LEGO Archive"
-  >
-
-  <meta
-    name="theme-color"
-    content="#0d0d0d"
-  >
-
-  <title>LEGO | Lộc An Sneaker Collection</title>
-
-  <link
-    rel="icon"
-    type="image/svg+xml"
-    href="./favicon.svg"
-  >
-
-  <link
-    rel="apple-touch-icon"
-    href="./apple-touch-icon.png"
-  >
-
-  <link
-    rel="manifest"
-    href="./site.webmanifest"
-  >
-
-  <link
-    rel="stylesheet"
-    href="./style.css?v=20260913-clean-nav"
-  >
-
-  <link
-    rel="stylesheet"
-    href="./collection-menu.css?v=20260913-clean-nav"
-  >
-</head>
-
-<body>
-
-  <div class="container">
-
-    <header class="home-header">
-
-      <div class="header-corner-tools">
-
-        <a href="./about.html" class="about-corner-link">
-          ABOUT
-        </a>
-
-        <div class="lang-switcher">
-
-          <button
-            type="button"
-            id="btn-vi"
-            class="lang-btn active"
-            onclick="setLegoLanguage('vi')"
-          >
-            VI
-          </button>
+/* =========================================================
+   LỘC AN SNEAKER COLLECTION
+   SINGLE-PAGE NAVIGATION
+========================================================= */
 
-          <button
-            type="button"
-            id="btn-en"
-            class="lang-btn"
-            onclick="setLegoLanguage('en')"
-          >
-            EN
-          </button>
 
-        </div>
+.home-header {
+  position: relative;
+}
 
-      </div>
 
-      <h1>
-        LỘC AN SNEAKER COLLECTION
-      </h1>
+/* =========================================================
+   ABOUT + LANGUAGE
+========================================================= */
 
-      <p
-        id="lego-main-subtitle"
-        data-vi="Không gian lưu trữ & Bảo tàng Sneaker Kỹ thuật số"
-        data-en="Digital Sneaker Archive & Museum"
-      >
-        Không gian lưu trữ &amp; Bảo tàng Sneaker Kỹ thuật số
-      </p>
+.header-corner-tools {
+  position: absolute;
 
-      <nav class="museum-nav" aria-label="Collection navigation">
+  top: 0;
+  right: 0;
 
-        <a
-          href="./index.html"
-          class="museum-nav-link"
-        >
-          SNEAKERS
-        </a>
+  z-index: 20;
 
-        <a
-          href="./lego.html"
-          class="museum-nav-link active"
-          aria-current="page"
-        >
-          LEGO
-        </a>
+  display: flex;
 
-        <a
-          href="./sneaker-mask.html"
-          class="museum-nav-link"
-        >
-          SNEAKER MASK
-        </a>
+  align-items: center;
 
-      </nav>
+  gap: 16px;
+}
 
-    </header>
 
+.header-corner-tools .lang-switcher {
+  margin: 0;
+}
 
-    <main>
 
-      <section class="collection-category-hero">
+.about-corner-link {
+  display: inline-block;
 
-        <p class="collection-category-eyebrow">
-          LEGO ARCHIVE
-        </p>
+  color: #77777c;
 
-        <h2>
-          Nike x LEGO
-        </h2>
+  text-decoration: none;
 
-        <p
-          id="lego-page-description"
-          data-vi="Kho lưu trữ các bộ Nike x LEGO trong Lộc An Sneaker Collection, ghi nhận sự giao thoa giữa sneaker culture, basketball và thiết kế LEGO."
-          data-en="An archive of Nike x LEGO sets within the Lộc An Sneaker Collection, documenting the intersection of sneaker culture, basketball, and LEGO design."
-        >
-          Kho lưu trữ các bộ Nike x LEGO trong Lộc An Sneaker Collection,
-          ghi nhận sự giao thoa giữa sneaker culture,
-          basketball và thiết kế LEGO.
-        </p>
+  font-size: 0.66rem;
 
-      </section>
+  font-weight: 800;
 
+  letter-spacing: 1.3px;
 
-      <div
-        id="lego-count"
-        class="collection-count"
-      >
-        TỔNG SỐ: 0 BỘ
-      </div>
+  opacity: 0.75;
 
+  transition:
+    color 0.2s ease,
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
 
-      <div
-        id="lego-grid"
-        class="grid"
-      ></div>
 
-    </main>
+.about-corner-link:hover {
+  color: #d2d2d6;
 
+  opacity: 0.55;
 
-    <footer>
+  transform: translateY(-2px);
+}
 
-      <p>
-        &copy; 2026 Lộc An Sneaker Collection.
-        All Rights Reserved.
-      </p>
 
-    </footer>
+.about-corner-link.active {
+  color: #ffcc00;
 
-  </div>
+  opacity: 1;
+}
 
 
-  <script
-    src="./lego-data.js?v=20260913-clean-nav"
-  ></script>
+/* =========================================================
+   MAIN NAVIGATION
+========================================================= */
 
+.museum-nav {
+  display: flex;
 
-  <script>
+  justify-content: center;
 
-    const LEGO_LANGUAGES = [
-      "vi",
-      "en"
-    ];
+  align-items: center;
 
+  flex-wrap: wrap;
 
-    let legoLanguage =
-      new URLSearchParams(
-        window.location.search
-      ).get("lang")
-      ||
-      localStorage.getItem(
-        "locan_lang"
-      )
-      ||
-      "vi";
+  gap: 36px;
 
+  margin-top: 24px;
+}
 
-    if (
-      !LEGO_LANGUAGES.includes(
-        legoLanguage
-      )
-    ) {
-      legoLanguage = "vi";
-    }
 
+.museum-nav-link {
+  display: inline-block;
 
-    function numberWithComma(value) {
+  padding:
+    6px
+    2px
+    9px;
 
-      return Number(
-        value
-      ).toLocaleString(
-        "en-CA"
-      );
+  color: #85858a;
 
-    }
+  text-decoration: none;
 
+  border-bottom:
+    2px solid transparent;
 
-    function setLegoLanguage(lang) {
+  font-size: 0.76rem;
 
-      legoLanguage =
-        LEGO_LANGUAGES.includes(lang)
-          ? lang
-          : "vi";
+  font-weight: 800;
 
+  letter-spacing: 1.4px;
 
-      localStorage.setItem(
-        "locan_lang",
-        legoLanguage
-      );
+  opacity: 0.75;
 
+  transform: translateY(0);
 
-      document.documentElement.lang =
-        legoLanguage;
+  transition:
+    color 0.2s ease,
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    letter-spacing 0.2s ease;
+}
 
 
-      document
-        .getElementById("btn-vi")
-        .classList.toggle(
-          "active",
-          legoLanguage === "vi"
-        );
+.museum-nav-link:hover {
+  color: #d4d4d8;
 
+  opacity: 0.5;
 
-      document
-        .getElementById("btn-en")
-        .classList.toggle(
-          "active",
-          legoLanguage === "en"
-        );
+  transform: translateY(-2px);
 
+  letter-spacing: 1.65px;
+}
 
-      const subtitle =
-        document.getElementById(
-          "lego-main-subtitle"
-        );
 
+.museum-nav-link.active {
+  color: #ffcc00;
 
-      const description =
-        document.getElementById(
-          "lego-page-description"
-        );
+  opacity: 1;
 
+  border-color: #ffcc00;
+}
 
-      subtitle.textContent =
-        subtitle.dataset[
-          legoLanguage
-        ];
 
+.museum-nav-link.active:hover {
+  color: #ffd633;
 
-      description.textContent =
-        description.dataset[
-          legoLanguage
-        ];
+  opacity: 1;
+}
 
 
-      document
-        .getElementById(
-          "lego-count"
-        )
-        .textContent =
-          legoLanguage === "vi"
-            ? `TỔNG SỐ: ${legoSets.length} BỘ`
-            : `TOTAL: ${legoSets.length} SETS`;
+/* =========================================================
+   SINGLE PAGE SECTIONS
+========================================================= */
 
+.site-section {
+  animation:
+    sectionFadeIn
+    0.22s ease;
+}
 
-      renderLegoCollection();
 
+.site-section[hidden] {
+  display: none !important;
+}
 
-      const url =
-        new URL(
-          window.location.href
-        );
 
+@keyframes sectionFadeIn {
 
-      url.searchParams.set(
-        "lang",
-        legoLanguage
-      );
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
 
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
-      window.history.replaceState(
-        {},
-        "",
-        url.pathname +
-        url.search +
-        url.hash
-      );
+}
 
-    }
 
+/* =========================================================
+   CARD CTA
+========================================================= */
 
-    function renderLegoCollection() {
+.card-cta {
+  display: block;
 
-      const grid =
-        document.getElementById(
-          "lego-grid"
-        );
+  margin-top: 16px;
 
+  padding-top: 12px;
 
-      if (
-        typeof legoSets === "undefined"
-        ||
-        !Array.isArray(
-          legoSets
-        )
-      ) {
+  border-top:
+    1px solid #29292d;
 
-        grid.innerHTML = `
-          <div class="not-found">
-            LEGO data could not be loaded.
-          </div>
-        `;
+  color: #8f8f94;
 
-        return;
+  font-size: 0.7rem;
 
-      }
+  font-weight: 800;
 
+  letter-spacing: 1.15px;
 
-      grid.innerHTML = "";
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
 
 
-      legoSets.forEach(
-        lego => {
+.card-link:hover .card-cta {
+  color: #ffcc00;
 
+  transform: translateX(5px);
+}
 
-          const link =
-            document.createElement(
-              "a"
-            );
 
+/* =========================================================
+   LEGO / MASK HERO
+========================================================= */
 
-          link.className =
-            "card-link";
+.collection-category-hero {
+  margin-top: 24px;
 
+  margin-bottom: 24px;
 
-          link.href =
-            `./lego-detail.html?id=${encodeURIComponent(
-              lego.id
-            )}`
-            +
-            `&lang=${encodeURIComponent(
-              legoLanguage
-            )}`;
+  padding: 34px;
 
+  background: #141416;
 
-          const card =
-            document.createElement(
-              "article"
-            );
+  border:
+    1px solid #26262a;
 
+  border-radius: 14px;
+}
 
-          card.className =
-            "card";
 
+.collection-category-eyebrow {
+  margin:
+    0
+    0
+    12px;
 
-          const imageWrapper =
-            document.createElement(
-              "div"
-            );
+  color: #ffcc00;
 
+  font-size: 0.7rem;
 
-          imageWrapper.className =
-            "card-img-wrapper";
+  font-weight: 800;
 
+  letter-spacing: 1.5px;
+}
 
-          const image =
-            document.createElement(
-              "img"
-            );
 
+.collection-category-hero h2 {
+  margin:
+    0
+    0
+    14px;
 
-          image.src =
-            lego.image;
+  color: #f5f5f7;
 
-
-          image.alt =
-            lego.title[
-              legoLanguage
-            ];
-
-
-          image.loading =
-            "lazy";
-
-
-          image.decoding =
-            "async";
-
-
-          imageWrapper.appendChild(
-            image
-          );
-
-
-          const info =
-            document.createElement(
-              "div"
-            );
-
-
-          info.className =
-            "card-info";
-
-
-          const title =
-            document.createElement(
-              "h3"
-            );
-
-
-          title.textContent =
-            lego.title[
-              legoLanguage
-            ];
-
-
-          const subtitle =
-            document.createElement(
-              "p"
-            );
-
-
-          subtitle.className =
-            "subtitle";
-
-
-          subtitle.textContent =
-            lego.subtitle[
-              legoLanguage
-            ];
-
-
-          const meta =
-            document.createElement(
-              "div"
-            );
-
-
-          meta.className =
-            "card-meta";
-
-
-          const badge =
-            document.createElement(
-              "span"
-            );
-
-
-          badge.className =
-            "badge";
-
-
-          badge.textContent =
-            "NIKE x LEGO";
-
-
-          const pieces =
-            document.createElement(
-              "span"
-            );
-
-
-          pieces.className =
-            "size";
-
-
-          pieces.textContent =
-            `${numberWithComma(
-              lego.pieces
-            )} PCS`;
-
-
-          const cta =
-            document.createElement(
-              "span"
-            );
-
-
-          cta.className =
-            "card-cta";
-
-
-          cta.textContent =
-            legoLanguage === "vi"
-              ? "XEM THÊM →"
-              : "VIEW MORE →";
-
-
-          meta.appendChild(
-            badge
-          );
-
-
-          meta.appendChild(
-            pieces
-          );
-
-
-          info.appendChild(
-            title
-          );
-
-
-          info.appendChild(
-            subtitle
-          );
-
-
-          info.appendChild(
-            meta
-          );
-
-
-          info.appendChild(
-            cta
-          );
-
-
-          card.appendChild(
-            imageWrapper
-          );
-
-
-          card.appendChild(
-            info
-          );
-
-
-          link.appendChild(
-            card
-          );
-
-
-          grid.appendChild(
-            link
-          );
-
-        }
-      );
-
-    }
-
-
-    document.addEventListener(
-      "DOMContentLoaded",
-      () => {
-
-        setLegoLanguage(
-          legoLanguage
-        );
-
-      }
+  font-size:
+    clamp(
+      1.7rem,
+      4vw,
+      2.5rem
     );
+}
 
-  </script>
 
-</body>
+.collection-category-hero p {
+  max-width: 760px;
 
-</html>
+  margin: 0;
+
+  color: #9b9ba0;
+
+  line-height: 1.75;
+}
+
+
+/* =========================================================
+   MASK IMAGE
+========================================================= */
+
+.mask-grid .card-img-wrapper {
+  background: #101012;
+}
+
+
+.mask-grid .card-img-wrapper img {
+  object-fit: contain !important;
+
+  object-position: center !important;
+
+  padding: 8px;
+}
+
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+#section-about {
+  margin-top: 28px;
+}
+
+
+.definition-item span {
+  line-height: 1.65;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media screen and (max-width: 700px) {
+
+  .header-corner-tools {
+    position: static;
+
+    justify-content: flex-end;
+
+    margin-bottom: 18px;
+  }
+
+
+  .museum-nav {
+    gap:
+      14px
+      22px;
+  }
+
+
+  .museum-nav-link {
+    font-size: 0.69rem;
+
+    letter-spacing: 1px;
+  }
+
+
+  .collection-category-hero {
+    padding:
+      24px
+      20px;
+  }
+
+}
+
+
+@media screen and (max-width: 430px) {
+
+  .museum-nav {
+    gap:
+      10px
+      16px;
+  }
+
+
+  .museum-nav-link {
+    font-size: 0.64rem;
+  }
+
+
+  .about-corner-link {
+    font-size: 0.61rem;
+  }
+
+}
