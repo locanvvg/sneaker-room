@@ -1,420 +1,450 @@
-<!DOCTYPE html>
-<html lang="vi">
+/* =========================================================
+   LỘC AN COLLECTION
+   DIRECT NAVIGATION + CATEGORY PAGES + CARD CTA
+========================================================= */
 
-<head>
-  <meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+/* =========================================================
+   DIRECT TOP NAVIGATION
+========================================================= */
 
-  <meta
-    name="description"
-    content="Lộc An Sneaker Collection - Digital Sneaker Archive & Museum"
-  >
+.museum-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 
-  <meta
-    name="theme-color"
-    content="#0d0d0d"
-  >
-
-  <title>Lộc An Sneaker Collection</title>
-
-  <link
-    rel="icon"
-    type="image/svg+xml"
-    href="./favicon.svg"
-  >
+  gap: 30px;
 
-  <link
-    rel="apple-touch-icon"
-    href="./apple-touch-icon.png"
-  >
-
-  <link
-    rel="manifest"
-    href="./site.webmanifest"
-  >
+  margin-top: 24px;
+}
 
-  <link
-    rel="stylesheet"
-    href="./style.css?v=20260912-14"
-  >
 
-  <link
-    rel="stylesheet"
-    href="./collection-menu.css?v=20260912-14"
-  >
-</head>
+.museum-nav-link {
+  position: relative;
 
+  padding: 5px 2px 8px;
 
-<body>
+  color: #8b8b90;
 
-  <div class="container">
+  border-bottom:
+    2px solid transparent;
 
-    <header class="home-header">
+  text-decoration: none;
 
-      <div class="lang-switcher corner-lang">
+  font-size: 0.76rem;
+  font-weight: 800;
 
-        <button
-          type="button"
-          id="btn-vi"
-          class="lang-btn active"
-          onclick="setLanguage('vi')"
-        >
-          VI
-        </button>
+  letter-spacing: 1.4px;
 
-        <button
-          type="button"
-          id="btn-en"
-          class="lang-btn"
-          onclick="setLanguage('en')"
-        >
-          EN
-        </button>
+  opacity: 0.72;
 
-      </div>
+  transform:
+    translateY(0);
 
+  transition:
+    color 0.22s ease,
+    opacity 0.22s ease,
+    transform 0.22s ease,
+    letter-spacing 0.22s ease,
+    border-color 0.22s ease,
+    text-shadow 0.22s ease;
+}
 
-      <h1 data-i18n="mainTitle">
-        LỘC AN SNEAKER COLLECTION
-      </h1>
 
-      <p data-i18n="mainSubtitle">
-        Không gian lưu trữ &amp; Bảo tàng Sneaker Kỹ thuật số
-      </p>
+/*
+   Hover:
+   - dịch nhẹ lên
+   - mờ nhẹ
+   - tăng khoảng cách chữ
+*/
 
+.museum-nav-link:hover {
+  color: #d6d6d8;
 
-      <nav class="museum-nav">
+  opacity: 0.45;
 
-        <details class="museum-nav-dropdown">
+  transform:
+    translateY(-2px);
 
-          <summary class="museum-nav-link active collection-nav-trigger">
-            <span>COLLECTION</span>
-            <span class="collection-nav-arrow" aria-hidden="true">▾</span>
-          </summary>
+  letter-spacing: 1.7px;
+}
 
-          <div class="museum-nav-submenu">
 
-            <a
-              href="./index.html"
-              class="museum-nav-submenu-link active"
-            >
-              SNEAKERS
-            </a>
+/*
+   Trang đang active:
+   - vàng rõ
+   - underline vàng
+   - glow rất nhẹ
+*/
 
-            <a
-              href="./lego.html"
-              class="museum-nav-submenu-link"
-            >
-              LEGO
-            </a>
+.museum-nav-link.active {
+  color: #ffcc00;
 
-            <a
-              href="./sneaker-mask.html"
-              class="museum-nav-submenu-link"
-            >
-              SNEAKER MASK
-            </a>
+  opacity: 1;
 
-          </div>
+  border-color: #ffcc00;
 
-        </details>
+  text-shadow:
+    0 0 12px
+    rgba(255, 204, 0, 0.18);
+}
 
-        <a
-          href="./about.html"
-          class="museum-nav-link"
-        >
-          ABOUT
-        </a>
 
-      </nav>
+/*
+   Active + hover:
+   không làm nó quá mờ
+*/
 
-    </header>
+.museum-nav-link.active:hover {
+  color: #ffd633;
 
+  opacity: 1;
 
-    <!-- SORT -->
+  transform:
+    translateY(-1px);
 
-    <section class="collection-toolbar">
+  text-shadow:
+    0 0 15px
+    rgba(255, 204, 0, 0.28);
+}
 
-      <div class="sort-control">
 
-        <label
-          for="sort-select"
-          id="sort-label"
-        >
-          SẮP XẾP
-        </label>
+/* =========================================================
+   CARD — VIEW MORE CTA
+========================================================= */
 
-        <select
-          id="sort-select"
-          onchange="changeSort(this.value)"
-        >
-
-          <option value="default">
-            Mặc định
-          </option>
-
-          <option value="az">
-            A → Z
-          </option>
-
-          <option value="za">
-            Z → A
-          </option>
-
-          <option value="date-desc">
-            Ngày phát hành: Mới → Cũ
-          </option>
-
-          <option value="date-asc">
-            Ngày phát hành: Cũ → Mới
-          </option>
-
-          <option value="size-asc">
-            Size nhỏ → lớn
-          </option>
-
-          <option value="size-desc">
-            Size lớn → nhỏ
-          </option>
-
-        </select>
-
-      </div>
-
-    </section>
-
-
-    <!-- FILTER -->
-
-    <section class="filter-panel">
-
-      <div class="filter-panel-header">
-
-        <span
-          class="filter-main-label"
-          id="filter-title"
-        >
-          BỘ LỌC BỘ SƯU TẬP
-        </span>
-
-        <button
-          type="button"
-          id="clear-filters"
-          class="clear-filter-btn"
-          onclick="clearAllFilters()"
-        >
-          XÓA BỘ LỌC
-        </button>
-
-      </div>
-
-
-      <!-- EDITION -->
-
-      <div class="filter-group">
-
-        <div
-          id="edition-filter-label"
-          class="filter-group-label"
-        >
-          PHÂN KHÚC
-        </div>
-
-        <div class="filter-chips">
-
-          <button
-            type="button"
-            class="filter-chip"
-            data-group="edition"
-            data-value="PE"
-            onclick="toggleFilter('edition', 'PE')"
-          >
-            PE
-          </button>
-
-          <button
-            type="button"
-            class="filter-chip"
-            data-group="edition"
-            data-value="Sample"
-            onclick="toggleFilter('edition', 'Sample')"
-          >
-            SAMPLE
-          </button>
-
-          <button
-            type="button"
-            class="filter-chip"
-            data-group="edition"
-            data-value="F&F"
-            onclick="toggleFilter('edition', 'F&F')"
-          >
-            F&amp;F
-          </button>
+/*
+   Tất cả card sneaker / LEGO / mask
+   đều tự có dòng XEM THÊM.
+*/
 
-          <button
-            type="button"
-            class="filter-chip"
-            data-group="edition"
-            data-value="Signature Signed"
-            onclick="toggleFilter('edition', 'Signature Signed')"
-          >
-            SIGNATURE SIGNED
-          </button>
+.card-info::after {
+  content: "XEM THÊM →";
 
-          <button
-            type="button"
-            class="filter-chip"
-            data-group="edition"
-            data-value="GR"
-            onclick="toggleFilter('edition', 'GR')"
-          >
-            GR
-          </button>
+  display: block;
 
-        </div>
+  margin-top: 16px;
 
-      </div>
+  padding-top: 12px;
 
+  color: #8f8f94;
 
-      <!-- CONDITION -->
+  border-top:
+    1px solid #29292d;
 
-      <div class="filter-group">
+  font-size: 0.7rem;
+  font-weight: 800;
 
-        <div
-          id="condition-filter-label"
-          class="filter-group-label"
-        >
-          TÌNH TRẠNG
-        </div>
+  letter-spacing: 1.15px;
 
-        <div class="filter-chips">
+  transition:
+    color 0.22s ease,
+    transform 0.22s ease,
+    letter-spacing 0.22s ease;
+}
 
-          <button
-            type="button"
-            class="filter-chip"
-            data-group="condition"
-            data-value="Deadstock"
-            onclick="toggleFilter('condition', 'Deadstock')"
-          >
-            DEADSTOCK
-          </button>
 
-          <button
-            type="button"
-            class="filter-chip"
-            data-group="condition"
-            data-value="Used"
-            onclick="toggleFilter('condition', 'Used')"
-          >
-            USED
-          </button>
+/*
+   English
+*/
 
-        </div>
+html[lang="en"] .card-info::after {
+  content: "VIEW MORE →";
+}
 
-      </div>
 
+/*
+   Hover card:
+   CTA chạy nhẹ sang phải
+*/
 
-      <!-- SIZE -->
+.card-link:hover .card-info::after {
+  color: #ffcc00;
 
-      <div class="filter-group">
+  transform:
+    translateX(5px);
 
-        <div
-          id="size-filter-label"
-          class="filter-group-label"
-        >
-          KÍCH CỠ
-        </div>
+  letter-spacing: 1.3px;
+}
 
-        <div
-          id="size-filter-chips"
-          class="filter-chips"
-        ></div>
 
-      </div>
+/* =========================================================
+   CATEGORY LANDING PAGES
+========================================================= */
 
-    </section>
+.collection-category-page {
+  max-width: 980px;
 
+  margin: 0 auto;
+}
 
-    <!-- TOTAL -->
 
-    <div
-      id="collection-count"
-      class="collection-count"
-    >
-      TỔNG SỐ: 0 ĐÔI
-    </div>
+.collection-category-hero {
+  margin-top: 16px;
 
+  padding: 34px;
 
-    <!-- GRID -->
+  background: #141416;
 
-    <main>
+  border:
+    1px solid #26262a;
 
-      <div
-        id="sneaker-grid"
-        class="grid"
-      ></div>
+  border-radius: 14px;
+}
 
-    </main>
 
+.collection-category-eyebrow {
+  margin:
+    0
+    0
+    12px;
 
-    <footer>
+  color: #ffcc00;
 
-      <p>
-        &copy; 2026 Lộc An Sneaker Collection.
-        All Rights Reserved.
-      </p>
+  font-size: 0.7rem;
+  font-weight: 800;
 
-    </footer>
+  letter-spacing: 1.5px;
+}
 
-  </div>
 
+.collection-category-hero h2 {
+  margin:
+    0
+    0
+    14px;
 
-  <script src="./data.js?v=20260912-14"></script>
-  <script src="./main.js?v=20260912-14"></script>
+  color: #f5f5f7;
 
-  <script>
-    if (typeof getEditionCategories === "function") {
-      const originalGetEditionCategories = getEditionCategories;
+  font-size:
+    clamp(
+      1.7rem,
+      4vw,
+      2.5rem
+    );
 
-      getEditionCategories = function (sneaker) {
-        const categories = originalGetEditionCategories(sneaker);
+  line-height: 1.15;
+}
 
-        const values = [
-          sneaker.title?.vi,
-          sneaker.title?.en,
-          sneaker.subtitle?.vi,
-          sneaker.subtitle?.en,
-          sneaker.editionType?.vi,
-          sneaker.editionType?.en,
-          sneaker.title,
-          sneaker.subtitle,
-          sneaker.editionType
-        ];
 
-        const corpus = values
-          .filter(value => typeof value === "string")
-          .join(" ")
-          .toUpperCase();
+.collection-category-hero p {
+  max-width: 760px;
 
-        const isSignatureSigned =
-          corpus.includes("SIGNATURE SIGNED") ||
-          (corpus.includes("SIGNATURE") && corpus.includes("SIGNED"));
+  margin: 0;
 
-        if (isSignatureSigned) {
-          categories.delete("GR");
-          categories.add("Signature Signed");
-        }
+  color: #9b9ba0;
 
-        return categories;
-      };
-    }
-  </script>
+  font-size: 0.98rem;
 
-</body>
+  line-height: 1.75;
+}
 
-</html>
+
+.collection-category-status {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(0, 1fr)
+    );
+
+  gap: 14px;
+
+  margin-top: 18px;
+}
+
+
+.collection-category-stat {
+  padding: 18px;
+
+  background: #161618;
+
+  border:
+    1px solid #26262a;
+
+  border-radius: 10px;
+}
+
+
+.collection-category-stat-label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #68686d;
+
+  font-size: 0.66rem;
+  font-weight: 800;
+
+  letter-spacing: 1.15px;
+}
+
+
+.collection-category-stat-value {
+  color: #f3f3f5;
+
+  font-size: 0.92rem;
+
+  font-weight: 750;
+}
+
+
+.collection-category-empty {
+  margin-top: 18px;
+
+  padding: 56px 24px;
+
+  background: #101012;
+
+  color: #77777d;
+
+  border:
+    1px dashed #303034;
+
+  border-radius: 12px;
+
+  text-align: center;
+
+  line-height: 1.7;
+}
+
+
+.collection-category-empty strong {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #cfcfd3;
+}
+
+
+/* =========================================================
+   SNEAKER MASK COLLECTION
+========================================================= */
+
+.mask-grid .card-img-wrapper {
+  background: #101012;
+}
+
+
+.mask-grid
+.card-img-wrapper
+img {
+  object-fit: contain !important;
+
+  object-position: center !important;
+
+  padding: 8px;
+}
+
+
+.mask-detail-image {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  min-height: 420px;
+
+  padding: 12px;
+
+  background: #101012;
+
+  border:
+    1px solid #222;
+}
+
+
+.mask-detail-image img {
+  width: 100%;
+
+  max-height: 760px;
+
+  object-fit: contain;
+
+  object-position: center;
+}
+
+
+/* =========================================================
+   ABOUT — CLASSIFICATION
+========================================================= */
+
+.definition-item {
+  align-items: start;
+}
+
+
+.definition-item span {
+  line-height: 1.65;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media screen and (max-width: 700px) {
+
+  .museum-nav {
+    gap:
+      14px
+      20px;
+
+    margin-top: 22px;
+  }
+
+
+  .museum-nav-link {
+    font-size: 0.69rem;
+
+    letter-spacing: 1px;
+  }
+
+
+  .museum-nav-link:hover {
+    letter-spacing: 1.1px;
+  }
+
+
+  .collection-category-hero {
+    padding:
+      24px
+      20px;
+  }
+
+
+  .collection-category-status {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .mask-detail-image {
+    min-height: 0;
+  }
+
+}
+
+
+@media screen and (max-width: 430px) {
+
+  .museum-nav {
+    gap:
+      10px
+      16px;
+  }
+
+
+  .museum-nav-link {
+    font-size: 0.64rem;
+  }
+
+
+  .card-info::after {
+    font-size: 0.66rem;
+  }
+
+}
