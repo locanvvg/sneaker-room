@@ -1,11 +1,11 @@
 /* =========================================================
-   LỘC AN COLLECTION
+   LỘC AN SNEAKER COLLECTION
    DIRECT NAVIGATION + CATEGORY PAGES + CARD CTA
 ========================================================= */
 
 
 /* =========================================================
-   DIRECT TOP NAVIGATION
+   DIRECT NAVIGATION
 ========================================================= */
 
 .museum-nav {
@@ -23,12 +23,13 @@
 .museum-nav-link {
   position: relative;
 
+  display: inline-block;
+
   padding: 5px 2px 8px;
 
   color: #8b8b90;
 
-  border-bottom:
-    2px solid transparent;
+  border-bottom: 2px solid transparent;
 
   text-decoration: none;
 
@@ -39,8 +40,7 @@
 
   opacity: 0.72;
 
-  transform:
-    translateY(0);
+  transform: translateY(0);
 
   transition:
     color 0.22s ease,
@@ -52,31 +52,20 @@
 }
 
 
-/*
-   Hover:
-   - dịch nhẹ lên
-   - mờ nhẹ
-   - tăng khoảng cách chữ
-*/
+/* Hover: dịch nhẹ và fade */
 
 .museum-nav-link:hover {
-  color: #d6d6d8;
+  color: #d0d0d3;
 
-  opacity: 0.45;
+  opacity: 0.5;
 
-  transform:
-    translateY(-2px);
+  transform: translateY(-2px);
 
   letter-spacing: 1.7px;
 }
 
 
-/*
-   Trang đang active:
-   - vàng rõ
-   - underline vàng
-   - glow rất nhẹ
-*/
+/* Trang hiện tại */
 
 .museum-nav-link.active {
   color: #ffcc00;
@@ -86,52 +75,47 @@
   border-color: #ffcc00;
 
   text-shadow:
-    0 0 12px
-    rgba(255, 204, 0, 0.18);
+    0 0 12px rgba(255, 204, 0, 0.18);
 }
 
 
-/*
-   Active + hover:
-   không làm nó quá mờ
-*/
+/* Active hover */
 
 .museum-nav-link.active:hover {
   color: #ffd633;
 
   opacity: 1;
 
-  transform:
-    translateY(-1px);
+  transform: translateY(-1px);
 
   text-shadow:
-    0 0 15px
-    rgba(255, 204, 0, 0.28);
+    0 0 15px rgba(255, 204, 0, 0.28);
+}
+
+
+/* Khi click */
+
+.museum-nav-link:active {
+  color: #ffe066;
+
+  transform: translateY(0);
 }
 
 
 /* =========================================================
-   CARD — VIEW MORE CTA
+   CARD CTA
 ========================================================= */
 
-/*
-   Tất cả card sneaker / LEGO / mask
-   đều tự có dòng XEM THÊM.
-*/
-
-.card-info::after {
-  content: "XEM THÊM →";
-
-  display: block;
+.card-cta {
+  display: flex;
+  align-items: center;
 
   margin-top: 16px;
-
   padding-top: 12px;
 
   color: #8f8f94;
 
-  border-top:
-    1px solid #29292d;
+  border-top: 1px solid #29292d;
 
   font-size: 0.7rem;
   font-weight: 800;
@@ -145,32 +129,17 @@
 }
 
 
-/*
-   English
-*/
-
-html[lang="en"] .card-info::after {
-  content: "VIEW MORE →";
-}
-
-
-/*
-   Hover card:
-   CTA chạy nhẹ sang phải
-*/
-
-.card-link:hover .card-info::after {
+.card-link:hover .card-cta {
   color: #ffcc00;
 
-  transform:
-    translateX(5px);
+  transform: translateX(5px);
 
   letter-spacing: 1.3px;
 }
 
 
 /* =========================================================
-   CATEGORY LANDING PAGES
+   CATEGORY HERO
 ========================================================= */
 
 .collection-category-page {
@@ -182,23 +151,20 @@ html[lang="en"] .card-info::after {
 
 .collection-category-hero {
   margin-top: 16px;
+  margin-bottom: 24px;
 
   padding: 34px;
 
   background: #141416;
 
-  border:
-    1px solid #26262a;
+  border: 1px solid #26262a;
 
   border-radius: 14px;
 }
 
 
 .collection-category-eyebrow {
-  margin:
-    0
-    0
-    12px;
+  margin: 0 0 12px;
 
   color: #ffcc00;
 
@@ -210,19 +176,15 @@ html[lang="en"] .card-info::after {
 
 
 .collection-category-hero h2 {
-  margin:
-    0
-    0
-    14px;
+  margin: 0 0 14px;
 
   color: #f5f5f7;
 
-  font-size:
-    clamp(
-      1.7rem,
-      4vw,
-      2.5rem
-    );
+  font-size: clamp(
+    1.7rem,
+    4vw,
+    2.5rem
+  );
 
   line-height: 1.15;
 }
@@ -241,87 +203,8 @@ html[lang="en"] .card-info::after {
 }
 
 
-.collection-category-status {
-  display: grid;
-
-  grid-template-columns:
-    repeat(
-      3,
-      minmax(0, 1fr)
-    );
-
-  gap: 14px;
-
-  margin-top: 18px;
-}
-
-
-.collection-category-stat {
-  padding: 18px;
-
-  background: #161618;
-
-  border:
-    1px solid #26262a;
-
-  border-radius: 10px;
-}
-
-
-.collection-category-stat-label {
-  display: block;
-
-  margin-bottom: 8px;
-
-  color: #68686d;
-
-  font-size: 0.66rem;
-  font-weight: 800;
-
-  letter-spacing: 1.15px;
-}
-
-
-.collection-category-stat-value {
-  color: #f3f3f5;
-
-  font-size: 0.92rem;
-
-  font-weight: 750;
-}
-
-
-.collection-category-empty {
-  margin-top: 18px;
-
-  padding: 56px 24px;
-
-  background: #101012;
-
-  color: #77777d;
-
-  border:
-    1px dashed #303034;
-
-  border-radius: 12px;
-
-  text-align: center;
-
-  line-height: 1.7;
-}
-
-
-.collection-category-empty strong {
-  display: block;
-
-  margin-bottom: 8px;
-
-  color: #cfcfd3;
-}
-
-
 /* =========================================================
-   SNEAKER MASK COLLECTION
+   SNEAKER MASK
 ========================================================= */
 
 .mask-grid .card-img-wrapper {
@@ -329,11 +212,8 @@ html[lang="en"] .card-info::after {
 }
 
 
-.mask-grid
-.card-img-wrapper
-img {
+.mask-grid .card-img-wrapper img {
   object-fit: contain !important;
-
   object-position: center !important;
 
   padding: 8px;
@@ -342,7 +222,6 @@ img {
 
 .mask-detail-image {
   display: flex;
-
   justify-content: center;
   align-items: center;
 
@@ -352,8 +231,7 @@ img {
 
   background: #101012;
 
-  border:
-    1px solid #222;
+  border: 1px solid #222;
 }
 
 
@@ -363,13 +241,12 @@ img {
   max-height: 760px;
 
   object-fit: contain;
-
   object-position: center;
 }
 
 
 /* =========================================================
-   ABOUT — CLASSIFICATION
+   ABOUT CLASSIFICATION
 ========================================================= */
 
 .definition-item {
@@ -389,9 +266,7 @@ img {
 @media screen and (max-width: 700px) {
 
   .museum-nav {
-    gap:
-      14px
-      20px;
+    gap: 14px 20px;
 
     margin-top: 22px;
   }
@@ -410,15 +285,7 @@ img {
 
 
   .collection-category-hero {
-    padding:
-      24px
-      20px;
-  }
-
-
-  .collection-category-status {
-    grid-template-columns:
-      1fr;
+    padding: 24px 20px;
   }
 
 
@@ -432,9 +299,7 @@ img {
 @media screen and (max-width: 430px) {
 
   .museum-nav {
-    gap:
-      10px
-      16px;
+    gap: 10px 16px;
   }
 
 
@@ -443,7 +308,7 @@ img {
   }
 
 
-  .card-info::after {
+  .card-cta {
     font-size: 0.66rem;
   }
 
