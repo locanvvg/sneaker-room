@@ -956,4 +956,307 @@ img[src*="nike_waffle_racer_ow.png"] {
     transform: scale(0.94);
   }
 
+/* =========================================================
+   SNEAKER GRID / GLASS CARD / FULL SHOE COVER
+========================================================= */
+
+#sneaker-grid,
+.collection-grid,
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 28px;
+  align-items: stretch;
+}
+
+/* Glass card */
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.045)),
+    rgba(170, 178, 190, 0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow:
+    0 12px 28px rgba(0,0,0,0.28),
+    inset 0 1px 0 rgba(255,255,255,0.07);
+  backdrop-filter: blur(20px) saturate(145%);
+  -webkit-backdrop-filter: blur(20px) saturate(145%);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 204, 0, 0.22);
+  box-shadow:
+    0 16px 38px rgba(0, 0, 0, 0.34),
+    0 0 0 1px rgba(255, 204, 0, 0.04) inset;
+}
+
+/* bỏ nền riêng của vùng ảnh */
+.card-img-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 280px;
+  padding: 28px 24px 14px;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* nếu card đang dùng thẻ a bọc ảnh */
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* ảnh cover luôn full đôi, không bị crop */
+.card-img-wrapper img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 215px;
+  object-fit: contain !important;
+  object-position: center center !important;
+  filter:
+    drop-shadow(0 10px 18px rgba(0, 0, 0, 0.24))
+    drop-shadow(0 2px 4px rgba(0, 0, 0, 0.18));
+  transition: transform 0.22s ease;
+}
+
+/* hover nhẹ cho ảnh */
+.card:hover .card-img-wrapper img {
+  transform: translateY(-2px);
+}
+
+/* phần nội dung dưới card */
+.card-info {
+  padding: 20px 24px 22px;
+  background: transparent !important;
+}
+
+/* title */
+.card-title {
+  margin: 0 0 10px;
+  color: #f6f6f8;
+  font-size: 1.06rem;
+  font-weight: 800;
+  line-height: 1.32;
+  letter-spacing: -0.01em;
+}
+
+/* subtitle */
+.card-subtitle,
+.card-meta,
+.card-storyline {
+  margin: 0 0 18px;
+  color: #a8adb7;
+  font-size: 0.96rem;
+  line-height: 1.55;
+}
+
+/* hàng dưới: badge + size */
+.card-bottom,
+.card-meta-row,
+.card-footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 6px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* size */
+.card-size {
+  color: #c6cad1;
+  font-size: 0.96rem;
+  white-space: nowrap;
+}
+
+/* badge chung */
+.badge,
+.edition-badge,
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 6px 12px;
+  border-radius: 10px;
+  background: rgba(255, 204, 0, 0.12);
+  border: 1px solid rgba(255, 204, 0, 0.14);
+  color: #ffcc33;
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* CTA */
+.card-cta,
+.card-info::after {
+  display: block;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: #aeb3bc;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.card-info::after {
+  content: "XEM THÊM →";
+}
+
+html[lang="en"] .card-info::after {
+  content: "VIEW MORE →";
+}
+
+.card-link:hover .card-info::after,
+.card:hover .card-info::after,
+.card-link:hover .card-cta,
+.card:hover .card-cta {
+  color: #ffcc00;
+  transform: translateX(4px);
+}
+
+/* =========================================================
+   SPECIAL COVER FIT
+   chỉnh riêng những đôi dễ bị to / sát mép
+========================================================= */
+
+/* BAPE x Stussy */
+#sneaker-grid .card-img-wrapper img[src*="bapesta_stussy.png"] {
+  max-height: 185px !important;
+  transform: scale(0.86);
+  transform-origin: center center;
+}
+
+/* Nike x Off-White Waffle Racer */
+#sneaker-grid .card-img-wrapper img[src*="nike_waffle_racer_ow.png"] {
+  max-height: 180px !important;
+  transform: scale(0.84);
+  transform-origin: center center;
+}
+
+/* nếu hover thì vẫn chỉ nhích nhẹ, không phóng quá lớn */
+#sneaker-grid .card:hover .card-img-wrapper img[src*="bapesta_stussy.png"],
+#sneaker-grid .card:hover .card-img-wrapper img[src*="nike_waffle_racer_ow.png"] {
+  transform: scale(0.84) translateY(-1px);
+}
+
+/* ảnh phụ _1 trong detail modal / detail page nếu có */
+.detail-gallery img,
+.modal-gallery img,
+.detail-extra-images img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media screen and (max-width: 900px) {
+  #sneaker-grid,
+  .collection-grid,
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 22px;
+  }
+
+  .card-img-wrapper {
+    min-height: 250px;
+    padding: 24px 20px 10px;
+  }
+
+  .card-img-wrapper img {
+    max-height: 195px;
+  }
+
+  .card-title {
+    font-size: 1rem;
+  }
+
+  .card-subtitle,
+  .card-meta,
+  .card-storyline,
+  .card-size {
+    font-size: 0.92rem;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  #sneaker-grid,
+  .collection-grid,
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .card {
+    border-radius: 18px;
+  }
+
+  .card-img-wrapper {
+    min-height: 225px;
+    padding: 20px 18px 8px;
+  }
+
+  .card-img-wrapper img {
+    max-height: 175px;
+  }
+
+  .card-info {
+    padding: 18px 18px 18px;
+  }
+
+  #sneaker-grid .card-img-wrapper img[src*="bapesta_stussy.png"] {
+    max-height: 170px !important;
+    transform: scale(0.88);
+  }
+
+  #sneaker-grid .card-img-wrapper img[src*="nike_waffle_racer_ow.png"] {
+    max-height: 165px !important;
+    transform: scale(0.86);
+  }
+
+  #sneaker-grid .card:hover .card-img-wrapper img[src*="bapesta_stussy.png"],
+  #sneaker-grid .card:hover .card-img-wrapper img[src*="nike_waffle_racer_ow.png"] {
+    transform: scale(0.86) translateY(-1px);
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .card-img-wrapper {
+    min-height: 210px;
+  }
+
+  .card-img-wrapper img {
+    max-height: 160px;
+  }
+
+  .card-title {
+    font-size: 0.96rem;
+  }
+
+  .card-subtitle,
+  .card-meta,
+  .card-storyline,
+  .card-size {
+    font-size: 0.88rem;
+  }
+}
 }
