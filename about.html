@@ -2,31 +2,818 @@
 <html lang="vi">
 
 <head>
+
   <meta charset="UTF-8">
-  <title>Sneaker Mask | Lộc An Sneaker Collection</title>
 
-  <script>
-    const params =
-      new URLSearchParams(
-        window.location.search
-      );
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-    const lang =
-      params.get("lang") || "vi";
+  <meta
+    name="description"
+    content="About Lộc An Sneaker Collection"
+  >
 
-    window.location.replace(
-      `./?lang=${encodeURIComponent(lang)}#masks`
-    );
-  </script>
+  <meta
+    name="theme-color"
+    content="#0d0d0d"
+  >
+
+  <title>
+    About | Lộc An Sneaker Collection
+  </title>
+
+
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="./favicon.svg"
+  >
+
+
+  <link
+    rel="apple-touch-icon"
+    href="./apple-touch-icon.png"
+  >
+
+
+  <link
+    rel="manifest"
+    href="./site.webmanifest"
+  >
+
+
+  <link
+    rel="stylesheet"
+    href="./style.css?v=20260912-fix1"
+  >
+
+
+  <link
+    rel="stylesheet"
+    href="./collection-menu.css?v=20260912-fix1"
+  >
+
 </head>
+
 
 <body>
 
-  <p>
-    <a href="./#masks">
-      Open Sneaker Mask Collection
-    </a>
-  </p>
+  <div class="container">
+
+
+    <header class="about-header">
+
+
+      <div class="lang-switcher corner-lang">
+
+        <button
+          type="button"
+          id="btn-vi"
+          class="lang-btn active"
+          onclick="setAboutLanguage('vi')"
+        >
+          VI
+        </button>
+
+
+        <button
+          type="button"
+          id="btn-en"
+          class="lang-btn"
+          onclick="setAboutLanguage('en')"
+        >
+          EN
+        </button>
+
+      </div>
+
+
+      <p class="eyebrow">
+        PRIVATE DIGITAL ARCHIVE
+      </p>
+
+
+      <h1>
+        LỘC AN SNEAKER COLLECTION
+      </h1>
+
+
+      <nav class="museum-nav">
+
+        <a
+          href="./index.html"
+          class="museum-nav-link"
+        >
+          SNEAKERS
+        </a>
+
+
+        <a
+          href="./lego.html"
+          class="museum-nav-link"
+        >
+          LEGO
+        </a>
+
+
+        <a
+          href="./sneaker-mask.html"
+          class="museum-nav-link"
+        >
+          SNEAKER MASK
+        </a>
+
+
+        <a
+          href="./about.html"
+          class="museum-nav-link active"
+        >
+          ABOUT
+        </a>
+
+      </nav>
+
+
+    </header>
+
+
+    <main class="about-page">
+
+
+      <!-- =================================================
+           ABOUT VI
+      ================================================== -->
+
+      <section
+        class="about-hero lang-panel"
+        data-lang="vi"
+      >
+
+        <p class="about-kicker">
+          VỀ BỘ SƯU TẬP
+        </p>
+
+
+        <h2>
+          Sneaker như một hiện vật
+          thiết kế, văn hóa và lịch sử.
+        </h2>
+
+
+        <p>
+          Lộc An Sneaker Collection
+          là một kho lưu trữ sneaker tư nhân
+          được xây dựng theo hướng catalogue kỹ thuật số.
+
+          Mỗi đôi giày được ghi nhận
+          không chỉ bằng hình ảnh,
+          mà còn bằng thông tin phát hành,
+          nguồn gốc,
+          tình trạng
+          và câu chuyện thiết kế.
+        </p>
+
+
+        <p>
+          Bộ sưu tập bao gồm
+          General Release,
+          Player Exclusive,
+          Friends &amp; Family,
+          Sample,
+          Signature Signed
+          cùng những hiện vật đặc biệt khác
+          thuộc văn hóa sneaker.
+        </p>
+
+      </section>
+
+
+      <!-- =================================================
+           ABOUT EN
+      ================================================== -->
+
+      <section
+        class="about-hero lang-panel"
+        data-lang="en"
+        hidden
+      >
+
+        <p class="about-kicker">
+          ABOUT THE COLLECTION
+        </p>
+
+
+        <h2>
+          Sneakers as objects of design,
+          culture, and history.
+        </h2>
+
+
+        <p>
+          Lộc An Sneaker Collection
+          is a private sneaker archive
+          built as a digital catalogue.
+
+          Each pair is documented
+          through imagery,
+          release information,
+          provenance,
+          condition,
+          and design context.
+        </p>
+
+
+        <p>
+          The collection includes
+          General Releases,
+          Player Exclusives,
+          Friends &amp; Family editions,
+          Samples,
+          Signature Signed pieces,
+          and other distinctive
+          sneaker-culture artifacts.
+        </p>
+
+      </section>
+
+
+      <!-- =================================================
+           CLASSIFICATION
+      ================================================== -->
+
+      <section class="archive-principles">
+
+
+        <!-- VI -->
+
+        <article
+          class="archive-panel lang-panel"
+          data-lang="vi"
+        >
+
+          <p class="about-kicker">
+            PHÂN LOẠI PHIÊN BẢN
+          </p>
+
+
+          <h3>
+            Hệ thống phân loại trong bộ sưu tập
+          </h3>
+
+
+          <div class="definition-item">
+
+            <strong>
+              General Release (GR)
+            </strong>
+
+            <span>
+              Phiên bản được sản xuất và phân phối thương mại
+              công khai thông qua các kênh bán lẻ chính thức
+              hoặc được ủy quyền, dành cho thị trường
+              người tiêu dùng nói chung.
+            </span>
+
+          </div>
+
+
+          <div class="definition-item">
+
+            <strong>
+              Player Exclusive (PE)
+            </strong>
+
+            <span>
+              Phiên bản được thương hiệu sản xuất
+              hoặc tùy chỉnh dành riêng cho vận động viên,
+              đội thi đấu hoặc cá nhân được chỉ định,
+              và thường không được phát hành bán lẻ công khai.
+            </span>
+
+          </div>
+
+
+          <div class="definition-item">
+
+            <strong>
+              Friends &amp; Family (F&amp;F)
+            </strong>
+
+            <span>
+              Phiên bản không phát hành bán lẻ công khai,
+              được thương hiệu, nhà thiết kế hoặc đối tác sáng tạo
+              phân phối trực tiếp cho gia đình, bạn bè,
+              cộng sự và những cá nhân thuộc
+              mạng lưới thân cận của dự án.
+            </span>
+
+          </div>
+
+
+          <div class="definition-item">
+
+            <strong>
+              Sample
+            </strong>
+
+            <span>
+              Phiên bản được tạo trong quá trình phát triển,
+              thử nghiệm hoặc tiền sản xuất nhằm đánh giá
+              thiết kế, vật liệu, màu sắc hoặc cấu trúc
+              trước khi sản phẩm được hoàn thiện
+              hoặc phát hành chính thức.
+            </span>
+
+          </div>
+
+
+          <div class="definition-item">
+
+            <strong>
+              Signature Signed
+            </strong>
+
+            <span>
+              Hiện vật có chữ ký trực tiếp của vận động viên,
+              nhà thiết kế, nghệ sĩ hoặc nhân vật
+              có mối liên hệ trực tiếp với sản phẩm,
+              qua đó bổ sung provenance
+              và giá trị lưu trữ cho hiện vật.
+            </span>
+
+          </div>
+
+
+          <p class="about-small">
+
+            Một hiện vật có thể thuộc
+            nhiều nhóm cùng lúc.
+
+            Ví dụ, một đôi có thể vừa là
+            Player Exclusive,
+            vừa là Sample
+            hoặc Friends &amp; Family.
+
+          </p>
+
+        </article>
+
+
+        <!-- EN -->
+
+        <article
+          class="archive-panel lang-panel"
+          data-lang="en"
+          hidden
+        >
+
+          <p class="about-kicker">
+            EDITION CLASSIFICATION
+          </p>
+
+
+          <h3>
+            Collection classification system
+          </h3>
+
+
+          <div class="definition-item">
+
+            <strong>
+              General Release (GR)
+            </strong>
+
+            <span>
+              An edition produced and distributed
+              for public commercial release
+              through official or authorized retail channels,
+              intended for the general consumer market.
+            </span>
+
+          </div>
+
+
+          <div class="definition-item">
+
+            <strong>
+              Player Exclusive (PE)
+            </strong>
+
+            <span>
+              An edition produced or customized by the brand
+              specifically for athletes, teams,
+              or designated individuals,
+              and typically not offered through public retail.
+            </span>
+
+          </div>
+
+
+          <div class="definition-item">
+
+            <strong>
+              Friends &amp; Family (F&amp;F)
+            </strong>
+
+            <span>
+              A non-public-retail edition distributed directly
+              by the brand, designer, or creative partner
+              to family, friends, collaborators,
+              and individuals within the project's close network.
+            </span>
+
+          </div>
+
+
+          <div class="definition-item">
+
+            <strong>
+              Sample
+            </strong>
+
+            <span>
+              An edition created during development,
+              testing, or pre-production to evaluate
+              design, materials, colors, or construction
+              before the product is finalized
+              or officially released.
+            </span>
+
+          </div>
+
+
+          <div class="definition-item">
+
+            <strong>
+              Signature Signed
+            </strong>
+
+            <span>
+              An artifact carrying a direct signature
+              from an athlete, designer, artist,
+              or individual directly associated with the product,
+              adding documented provenance
+              and archival significance.
+            </span>
+
+          </div>
+
+
+          <p class="about-small">
+
+            An artifact may belong
+            to more than one category.
+
+            For example,
+            a pair may simultaneously be
+            a Player Exclusive,
+            Sample,
+            or Friends &amp; Family edition.
+
+          </p>
+
+        </article>
+
+
+        <!-- =================================================
+             CONDITION VI
+        ================================================== -->
+
+        <article
+          class="archive-panel lang-panel"
+          data-lang="vi"
+        >
+
+          <p class="about-kicker">
+            TÌNH TRẠNG
+          </p>
+
+
+          <h3>
+            Hệ thống Condition
+          </h3>
+
+
+          <div class="condition-key">
+
+            <span class="condition-pill deadstock">
+              Deadstock
+            </span>
+
+            <span>
+              Chưa qua sử dụng.
+            </span>
+
+          </div>
+
+
+          <div class="condition-key">
+
+            <span class="condition-pill used">
+              Used
+            </span>
+
+            <span>
+              Đã qua sử dụng.
+            </span>
+
+          </div>
+
+
+          <p class="about-small">
+
+            GR, PE, F&amp;F,
+            Sample và Signature Signed
+            mô tả loại phiên bản
+            hoặc provenance,
+            không phải tình trạng sử dụng.
+
+          </p>
+
+        </article>
+
+
+        <!-- =================================================
+             CONDITION EN
+        ================================================== -->
+
+        <article
+          class="archive-panel lang-panel"
+          data-lang="en"
+          hidden
+        >
+
+          <p class="about-kicker">
+            CONDITION
+          </p>
+
+
+          <h3>
+            Condition system
+          </h3>
+
+
+          <div class="condition-key">
+
+            <span class="condition-pill deadstock">
+              Deadstock
+            </span>
+
+            <span>
+              Unworn.
+            </span>
+
+          </div>
+
+
+          <div class="condition-key">
+
+            <span class="condition-pill used">
+              Used
+            </span>
+
+            <span>
+              Previously worn.
+            </span>
+
+          </div>
+
+
+          <p class="about-small">
+
+            GR, PE, F&amp;F,
+            Sample and Signature Signed
+            describe edition type
+            or provenance,
+            not condition.
+
+          </p>
+
+        </article>
+
+
+      </section>
+
+
+      <!-- =================================================
+           CATALOGUE
+      ================================================== -->
+
+      <section class="catalogue-section">
+
+
+        <div
+          class="lang-panel"
+          data-lang="vi"
+        >
+
+          <p class="about-kicker">
+            HỒ SƠ HIỆN VẬT
+          </p>
+
+
+          <h3>
+            Những thông tin được lưu trữ
+          </h3>
+
+
+          <div class="catalogue-grid">
+
+            <span>Title</span>
+
+            <span>SKU / Style Code</span>
+
+            <span>Colorway</span>
+
+            <span>Retail Price</span>
+
+            <span>Release Date</span>
+
+            <span>Condition</span>
+
+            <span>Size</span>
+
+            <span>Provenance &amp; Story</span>
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="lang-panel"
+          data-lang="en"
+          hidden
+        >
+
+          <p class="about-kicker">
+            OBJECT RECORD
+          </p>
+
+
+          <h3>
+            Information recorded in the archive
+          </h3>
+
+
+          <div class="catalogue-grid">
+
+            <span>Title</span>
+
+            <span>SKU / Style Code</span>
+
+            <span>Colorway</span>
+
+            <span>Retail Price</span>
+
+            <span>Release Date</span>
+
+            <span>Condition</span>
+
+            <span>Size</span>
+
+            <span>Provenance &amp; Story</span>
+
+          </div>
+
+        </div>
+
+
+      </section>
+
+
+    </main>
+
+
+    <footer>
+
+      <p>
+        &copy; 2026 Lộc An Sneaker Collection.
+        All Rights Reserved.
+      </p>
+
+    </footer>
+
+
+  </div>
+
+
+  <script>
+
+    const ABOUT_LANGUAGES = [
+      "vi",
+      "en"
+    ];
+
+
+    let aboutLanguage =
+      new URLSearchParams(
+        window.location.search
+      ).get("lang")
+      ||
+      localStorage.getItem(
+        "locan_lang"
+      )
+      ||
+      "vi";
+
+
+    if (
+      !ABOUT_LANGUAGES.includes(
+        aboutLanguage
+      )
+    ) {
+      aboutLanguage = "vi";
+    }
+
+
+    function setAboutLanguage(lang) {
+
+      aboutLanguage =
+        ABOUT_LANGUAGES.includes(lang)
+          ? lang
+          : "vi";
+
+
+      localStorage.setItem(
+        "locan_lang",
+        aboutLanguage
+      );
+
+
+      document.documentElement.lang =
+        aboutLanguage;
+
+
+      document
+        .getElementById("btn-vi")
+        .classList.toggle(
+          "active",
+          aboutLanguage === "vi"
+        );
+
+
+      document
+        .getElementById("btn-en")
+        .classList.toggle(
+          "active",
+          aboutLanguage === "en"
+        );
+
+
+      document
+        .querySelectorAll(
+          ".lang-panel"
+        )
+        .forEach(
+          element => {
+
+            element.hidden =
+              element.dataset.lang !==
+              aboutLanguage;
+
+          }
+        );
+
+
+      const url =
+        new URL(
+          window.location.href
+        );
+
+
+      url.searchParams.set(
+        "lang",
+        aboutLanguage
+      );
+
+
+      window.history.replaceState(
+        {},
+        "",
+        url.pathname +
+        url.search +
+        url.hash
+      );
+
+    }
+
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      () => {
+
+        setAboutLanguage(
+          aboutLanguage
+        );
+
+      }
+    );
+
+  </script>
+
 
 </body>
 
