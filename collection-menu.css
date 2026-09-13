@@ -913,3 +913,47 @@ img {
   }
 
 }
+
+/* =========================================================
+   SPECIAL COVER FIT
+   BAPE x STUSSY + OFF-WHITE WAFFLE RACER
+
+   Hai ảnh này có subject nằm sát mép canvas hơn
+   các ảnh cover khác, nên cho thêm khoảng thở riêng.
+========================================================= */
+
+#sneaker-grid
+.card-img-wrapper
+img[src*="bapesta_stussy.png"],
+
+#sneaker-grid
+.card-img-wrapper
+img[src*="nike_waffle_racer_ow.png"] {
+  padding: 24px !important;
+
+  object-fit: contain !important;
+  object-position: center center !important;
+
+  transform: scale(0.92);
+
+  transform-origin: center center;
+}
+
+
+/* Mobile */
+
+@media screen and (max-width: 700px) {
+
+  #sneaker-grid
+  .card-img-wrapper
+  img[src*="bapesta_stussy.png"],
+
+  #sneaker-grid
+  .card-img-wrapper
+  img[src*="nike_waffle_racer_ow.png"] {
+    padding: 16px !important;
+
+    transform: scale(0.94);
+  }
+
+}
