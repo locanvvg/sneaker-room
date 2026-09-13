@@ -2750,29 +2750,48 @@
 
     gallery.addEventListener(
 
-      "pointerdown",
+  "pointerdown",
 
-      event => {
+  event => {
 
 
-        /*
-           Left mouse button only.
-           Touch pointer has button 0.
-        */
+    /*
+       IMPORTANT:
+       Arrow buttons are controls, not drag surfaces.
 
-        if (
+       Do NOT let the gallery capture the pointer
+       when the user clicks Previous / Next.
+    */
 
-          event.button !== undefined
+    if (
+      event.target.closest(
+        ".sneaker-3d-nav"
+      )
+    ) {
 
-          &&
+      return;
 
-          event.button !== 0
+    }
 
-        ) {
 
-          return;
+    /*
+       Left mouse button only.
+       Touch pointer has button 0.
+    */
 
-        }
+    if (
+
+      event.button !== undefined
+
+      &&
+
+      event.button !== 0
+
+    ) {
+
+      return;
+
+    }
 
 
         drag.active =
