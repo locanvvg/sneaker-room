@@ -1,5 +1,5 @@
 /* =========================================================
-   LỘC AN — CATALOG DISPLAY ENGINE v4 — MOBILE 3D
+   LỘC AN — CATALOG DISPLAY ENGINE v4b — MOBILE 3D FINE TUNE
 
    PURPOSE
    -------
@@ -171,8 +171,8 @@
       },
 
       view3dMobile: {
-        scaleX: 0.78,
-        scaleY: 0.78,
+        scaleX: 0.82,
+        scaleY: 0.82,
         x: 0,
         y: 0
       }
@@ -287,8 +287,8 @@
       },
 
       view3dMobile: {
-        scaleX: 0.76,
-        scaleY: 0.64,
+        scaleX: 0.80,
+        scaleY: 0.68,
         x: 0,
         y: 0
       }
@@ -306,8 +306,8 @@
       ],
 
       view3dMobile: {
-        scaleX: 0.74,
-        scaleY: 0.74,
+        scaleX: 0.78,
+        scaleY: 0.78,
         x: 0,
         y: 0
       }
@@ -2095,7 +2095,7 @@
 
 
   console.info(
-    "Lộc An catalog display engine v4 loaded — desktop preserved + smaller phone 3D + future Auto Fit"
+    "Lộc An catalog display engine v4b loaded — mobile fine tune for Puma / Jordan 4 / Balenciaga"
   );
 
 })();
