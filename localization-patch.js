@@ -681,3 +681,69 @@
     subtree: true
   });
 })();
+
+/* =========================================================
+   NEW BALANCE 2002R — 3D VIEW SCALE ONLY
+========================================================= */
+
+(() => {
+  const NB_3D_SCALE = 0.60;
+
+  function resizeNewBalance3D() {
+    document.querySelectorAll("img").forEach(img => {
+
+      const alt = (img.alt || "").toLowerCase();
+      const src = (img.src || "").toLowerCase();
+
+      const isNewBalance =
+        alt.includes("new balance 2002r") ||
+        src.includes("newbalance") ||
+        src.includes("new_balance");
+
+      if (!isNewBalance) return;
+
+      /*
+        Nếu ảnh đang nằm trong card Grid thì bỏ qua.
+        Grid hiện đã đúng kích thước.
+      */
+      if (img.closest(".card")) return;
+
+      img.style.setProperty(
+        "scale",
+        NB_3D_SCALE,
+        "important"
+      );
+
+      img.style.setProperty(
+        "transform-origin",
+        "center center",
+        "important"
+      );
+
+      img.style.setProperty(
+        "object-fit",
+        "contain",
+        "important"
+      );
+    });
+  }
+
+  resizeNewBalance3D();
+
+  window.addEventListener(
+    "load",
+    resizeNewBalance3D
+  );
+
+  const observer = new MutationObserver(
+    resizeNewBalance3D
+  );
+
+  observer.observe(
+    document.body,
+    {
+      childList: true,
+      subtree: true
+    }
+  );
+})();
