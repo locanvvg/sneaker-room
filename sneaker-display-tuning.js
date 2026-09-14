@@ -104,13 +104,13 @@
       match: "Jordan 1 Low 'Reverse Bred'",
 
       grid: {
-        scale: 0.65,
+        scale: 0.55,
         x: 0,
         y: 0
       },
 
       view3d: {
-        scale: 0.65,
+        scale: 0.55,
         x: 0,
         y: 0
       }
@@ -130,13 +130,13 @@
       grid: {
         scale: 1,
         x: 0,
-        y: 12
+        y: 0
       },
 
       view3d: {
         scale: 1,
         x: 0,
-        y: 12
+        y: 0
       }
     },
 
