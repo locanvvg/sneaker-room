@@ -753,7 +753,7 @@
 ========================================================= */
 
 (() => {
-  const JORDAN_LOW_SCALE = 0.70;
+  const JORDAN_LOW_SCALE = 0.64;
 
   function resizeJordan1LowReverseBred() {
 
