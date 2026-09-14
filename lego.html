@@ -149,6 +149,7 @@
         <div
           id="lego-density-control"
           class="category-grid-density"
+          data-density-label="LƯỚI · 2 CỘT"
         >
 
           <button
@@ -170,6 +171,17 @@
             value="2"
             aria-label="Grid columns"
           >
+
+          <div
+            class="category-density-ticks"
+            aria-hidden="true"
+          >
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+          </div>
 
           <button
             type="button"
@@ -228,7 +240,7 @@
 
   <script src="./lego-data.js?v=20260913-clean-nav"></script>
 
-  <script src="./category-view.js?v=20260914-category-view-v2"></script>
+  <script src="./category-view.js?v=20260914-category-view-v3"></script>
 
   <script>
     const LEGO_LANGUAGES = ["vi", "en"];
@@ -596,6 +608,11 @@
 
                 defaultColumns:
                   2,
+
+                control:
+                  document.getElementById(
+                    "lego-density-control"
+                  ),
 
                 range:
                   document.getElementById(

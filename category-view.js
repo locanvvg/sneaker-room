@@ -1,5 +1,5 @@
 /* =========================================================
-   LỘC AN — UNIVERSAL CATEGORY VIEW v2 — GRID DENSITY
+   LỘC AN — UNIVERSAL CATEGORY VIEW v3 — SNEAKERS TOOLBAR MATCH
    Shared GRID / 3D gallery for:
    - LEGO
    - SNEAKER MASK
@@ -43,6 +43,7 @@
 
       /* =====================================================
          GRID / 3D TOOLBAR
+         MATCHES THE SNEAKERS CONTROL BAR
       ===================================================== */
 
       .category-view-toolbar {
@@ -51,17 +52,17 @@
 
         grid-template-columns:
           minmax(
-            280px,
+            420px,
             1fr
           )
-          150px
+          142px
           max-content;
 
         align-items:
-          center;
+          stretch;
 
         gap:
-          14px;
+          18px;
 
         margin:
           18px
@@ -72,11 +73,46 @@
 
       .category-view-toolbar
       .collection-count {
-        justify-self:
-          end;
+        display:
+          flex;
+
+        align-items:
+          center;
+
+        justify-content:
+          center;
+
+        min-height:
+          48px;
 
         margin:
           0 !important;
+
+        padding:
+          0
+          18px;
+
+        color:
+          #8d8d93;
+
+        background:
+          #171719;
+
+        border:
+          1px solid
+          #2a2a2d;
+
+        border-radius:
+          10px;
+
+        font-size:
+          .62rem;
+
+        font-weight:
+          900;
+
+        letter-spacing:
+          .85px;
 
         white-space:
           nowrap;
@@ -84,30 +120,94 @@
 
 
       /* =====================================================
-         GRID DENSITY SLIDER
+         GRID DENSITY — SAME VISUAL LANGUAGE AS SNEAKERS
       ===================================================== */
 
       .category-grid-density {
+        position:
+          relative;
+
         display:
           grid;
 
         grid-template-columns:
           34px
           minmax(
-            120px,
+            160px,
             1fr
           )
-          34px
-          auto;
+          34px;
+
+        grid-template-rows:
+          auto
+          36px
+          13px;
 
         align-items:
           center;
 
-        gap:
-          9px;
+        column-gap:
+          11px;
+
+        row-gap:
+          2px;
 
         width:
           100%;
+
+        min-height:
+          48px;
+
+        padding:
+          7px
+          13px
+          8px;
+
+        background:
+          #171719;
+
+        border:
+          1px solid
+          #2a2a2d;
+
+        border-radius:
+          10px;
+      }
+
+
+      .category-grid-density::before {
+        content:
+          attr(data-density-label);
+
+        grid-column:
+          1 / -1;
+
+        grid-row:
+          1;
+
+        justify-self:
+          center;
+
+        color:
+          #77777e;
+
+        font-size:
+          .58rem;
+
+        font-weight:
+          900;
+
+        letter-spacing:
+          .85px;
+
+        line-height:
+          1;
+
+        text-transform:
+          uppercase;
+
+        white-space:
+          nowrap;
       }
 
 
@@ -125,33 +225,23 @@
           center;
 
         width:
-          34px;
+          30px;
 
         height:
-          34px;
+          30px;
 
         padding:
           0;
 
         color:
-          #aaa;
+          #77777e;
 
         background:
-          rgba(
-            255,
-            255,
-            255,
-            .025
-          );
+          #1b1b1e;
 
         border:
           1px solid
-          rgba(
-            255,
-            255,
-            255,
-            .10
-          );
+          #303034;
 
         border-radius:
           50%;
@@ -160,10 +250,42 @@
           pointer;
 
         font-size:
-          1rem;
+          .92rem;
 
         font-weight:
           900;
+
+        line-height:
+          1;
+
+        transition:
+          color
+          .18s
+          ease,
+          border-color
+          .18s
+          ease,
+          background
+          .18s
+          ease;
+      }
+
+
+      .category-density-button:first-of-type {
+        grid-column:
+          1;
+
+        grid-row:
+          2;
+      }
+
+
+      .category-density-button:last-of-type {
+        grid-column:
+          3;
+
+        grid-row:
+          2;
       }
 
 
@@ -172,12 +294,15 @@
         color:
           #ffcc00;
 
+        background:
+          #202023;
+
         border-color:
           rgba(
             255,
             204,
             0,
-            .35
+            .32
           );
 
         outline:
@@ -186,8 +311,20 @@
 
 
       .category-density-range {
+        grid-column:
+          2;
+
+        grid-row:
+          2;
+
         width:
           100%;
+
+        height:
+          18px;
+
+        margin:
+          0;
 
         accent-color:
           #ffcc00;
@@ -197,29 +334,52 @@
       }
 
 
-      .category-density-value {
-        min-width:
-          52px;
+      .category-density-ticks {
+        grid-column:
+          2;
+
+        grid-row:
+          3;
+
+        display:
+          flex;
+
+        align-items:
+          center;
+
+        justify-content:
+          space-between;
+
+        padding:
+          0
+          1px;
 
         color:
-          #777;
+          #4f4f55;
 
         font-size:
-          .63rem;
+          .48rem;
 
         font-weight:
-          900;
+          800;
 
-        letter-spacing:
-          .7px;
+        line-height:
+          1;
 
-        text-align:
-          right;
-
-        white-space:
-          nowrap;
+        pointer-events:
+          none;
       }
 
+
+      .category-density-value {
+        display:
+          none !important;
+      }
+
+
+      /* =====================================================
+         VIEW TOGGLE — SAME SHAPE AS SNEAKERS
+      ===================================================== */
 
       .category-view-toggle {
         display:
@@ -231,38 +391,28 @@
         justify-content:
           center;
 
-        min-width:
-          138px;
+        width:
+          142px;
 
         min-height:
-          44px;
+          48px;
 
         padding:
-          9px
+          0
           14px;
 
         color:
-          #9b9ba2;
+          #8d8d93;
 
         background:
-          rgba(
-            255,
-            255,
-            255,
-            .025
-          );
+          #171719;
 
         border:
           1px solid
-          rgba(
-            255,
-            255,
-            255,
-            .10
-          );
+          #2a2a2d;
 
         border-radius:
-          999px;
+          10px;
 
         cursor:
           pointer;
@@ -274,7 +424,7 @@
           sans-serif;
 
         font-size:
-          .64rem;
+          .60rem;
 
         font-weight:
           900;
@@ -283,9 +433,15 @@
           .9px;
 
         transition:
-          color .2s ease,
-          border-color .2s ease,
-          background .2s ease;
+          color
+          .18s
+          ease,
+          border-color
+          .18s
+          ease,
+          background
+          .18s
+          ease;
       }
 
 
@@ -294,24 +450,110 @@
         color:
           #ffcc00;
 
+        background:
+          #1b1b1e;
+
         border-color:
           rgba(
             255,
             204,
             0,
-            .35
-          );
-
-        background:
-          rgba(
-            255,
-            204,
-            0,
-            .045
+            .32
           );
 
         outline:
           none;
+      }
+
+
+      @media
+      (
+        max-width:
+        950px
+      ) {
+
+        .category-view-toolbar {
+          grid-template-columns:
+            minmax(
+              300px,
+              1fr
+            )
+            132px
+            max-content;
+
+          gap:
+            12px;
+        }
+
+
+        .category-view-toggle {
+          width:
+            132px;
+        }
+
+      }
+
+
+      /* MOBILE:
+         TOTAL
+         GRID / 3D VIEW
+         GRID SLIDER
+      */
+
+      @media
+      (
+        max-width:
+        650px
+      ) {
+
+        .category-view-toolbar {
+          display:
+            flex;
+
+          flex-direction:
+            column;
+
+          gap:
+            10px;
+        }
+
+
+        .category-view-toolbar
+        .collection-count {
+          order:
+            1;
+
+          align-self:
+            stretch;
+
+          text-align:
+            center;
+        }
+
+
+        .category-view-toggle {
+          order:
+            2;
+
+          align-self:
+            center;
+
+          width:
+            min(
+              190px,
+              100%
+            );
+        }
+
+
+        .category-grid-density {
+          order:
+            3;
+
+          width:
+            100%;
+        }
+
       }
 
 
@@ -1154,6 +1396,13 @@
       if (density.value) {
         density.value.textContent =
           densityLabel();
+      }
+
+      if (density.control) {
+        density.control.dataset.densityLabel =
+          language() === "vi"
+            ? `LƯỚI · ${densityColumns} CỘT`
+            : `GRID · ${densityColumns} COL`;
       }
     }
 
