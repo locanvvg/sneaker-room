@@ -1,4 +1,4 @@
-/* LỘC AN SNEAKER COLLECTION — collection-view.js v13 — FINAL GLASS UNIFIED DISPLAY */
+/* LỘC AN SNEAKER COLLECTION — collection-view.js v14 — OWNED DENSITY + FINAL 3D GLASS */
 
 (() => {
   "use strict";
@@ -141,72 +141,73 @@
   }
 
 
-  function normalizeDensityControl(
-    control
+  function buildOwnedDensityControl(
+    legacyControl
   ) {
 
+    const existing =
+      document.getElementById(
+        "sneaker-density-control-final"
+      );
+
+
     if (
-      !control
-      ||
-      control.dataset.finalDensityReady === "true"
+      existing
     ) {
 
-      return;
+      return existing;
+
+    }
+
+
+    if (
+      !legacyControl
+    ) {
+
+      return null;
 
     }
 
 
     const oldRange =
-      control.querySelector(
+      legacyControl.querySelector(
         'input[type="range"]'
       );
 
 
-    const oldButtons =
-      Array.from(
-        control.querySelectorAll(
-          "button"
-        )
-      );
-
-
-    const oldValue =
-      Number(
-        oldRange?.value
-      );
-
-
-    const savedValue =
+    const saved =
       Number(
         localStorage.getItem(
-          "locan_sneaker_density_v12"
+          "locan_sneaker_density_final"
         )
+      );
+
+
+    const inherited =
+      Number(
+        oldRange?.value
       );
 
 
     const initial =
       clamp(
 
-        Number.isFinite(
-          savedValue
-        )
+        Number.isFinite(saved)
         &&
-        savedValue >= 1
+        saved >= 1
         &&
-        savedValue <= 5
+        saved <= 5
 
-          ? savedValue
+          ? saved
 
           : (
-              Number.isFinite(
-                oldValue
-              )
+              Number.isFinite(inherited)
               &&
-              oldValue >= 1
+              inherited >= 1
               &&
-              oldValue <= 5
+              inherited <= 5
 
-                ? oldValue
+                ? inherited
 
                 : 3
             ),
@@ -216,6 +217,20 @@
         5
 
       );
+
+
+    const control =
+      document.createElement(
+        "div"
+      );
+
+
+    control.id =
+      "sneaker-density-control-final";
+
+
+    control.className =
+      "unified-density-control";
 
 
     const minus =
@@ -236,28 +251,14 @@
       "−";
 
 
-    minus.setAttribute(
-      "aria-label",
-      sharedDensityLanguage() === "en"
-        ? "Fewer grid columns"
-        : "Giảm số cột"
-    );
-
-
-    if (
-      oldButtons[0]?.id
-    ) {
-
-      minus.id =
-        oldButtons[0].id;
-
-    }
-
-
     const range =
       document.createElement(
         "input"
       );
+
+
+    range.id =
+      "sneaker-density-range-final";
 
 
     range.type =
@@ -281,27 +282,7 @@
 
 
     range.value =
-      String(
-        initial
-      );
-
-
-    range.setAttribute(
-      "aria-label",
-      sharedDensityLanguage() === "en"
-        ? "Grid columns"
-        : "Số cột lưới"
-    );
-
-
-    if (
-      oldRange?.id
-    ) {
-
-      range.id =
-        oldRange.id;
-
-    }
+      String(initial);
 
 
     const plus =
@@ -320,28 +301,6 @@
 
     plus.textContent =
       "+";
-
-
-    plus.setAttribute(
-      "aria-label",
-      sharedDensityLanguage() === "en"
-        ? "More grid columns"
-        : "Tăng số cột"
-    );
-
-
-    if (
-      oldButtons[
-        oldButtons.length - 1
-      ]?.id
-    ) {
-
-      plus.id =
-        oldButtons[
-          oldButtons.length - 1
-        ].id;
-
-    }
 
 
     const ticks =
@@ -372,16 +331,7 @@
       "<span>5</span>";
 
 
-    control.classList.add(
-      "unified-density-control"
-    );
-
-
-    control.dataset.finalDensityReady =
-      "true";
-
-
-    control.replaceChildren(
+    control.append(
       minus,
       range,
       plus,
@@ -389,30 +339,68 @@
     );
 
 
-    const apply =
-      nextValue => {
+    /*
+      Replace the entire legacy control node.
 
-        const columns =
-          clamp(
-            Number(
-              nextValue
-            ),
-            1,
-            5
-          );
+      Any old script that stored references to the old
+      input/control can no longer change the visible slider.
+    */
+    legacyControl.replaceWith(
+      control
+    );
 
+
+    let selectedColumns =
+      initial;
+
+
+    const updateAccessibleText =
+      () => {
+
+        const english =
+          sharedDensityLanguage()
+          ===
+          "en";
+
+
+        minus.setAttribute(
+          "aria-label",
+          english
+            ? "Fewer grid columns"
+            : "Giảm số cột"
+        );
+
+
+        plus.setAttribute(
+          "aria-label",
+          english
+            ? "More grid columns"
+            : "Tăng số cột"
+        );
+
+
+        range.setAttribute(
+          "aria-label",
+          english
+            ? "Grid columns"
+            : "Số cột lưới"
+        );
+
+      };
+
+
+    const updateVisual =
+      () => {
 
         range.value =
           String(
-            columns
+            selectedColumns
           );
 
 
-        localStorage.setItem(
-          "locan_sneaker_density_v12",
-          String(
-            columns
-          )
+        updateSharedDensityLabel(
+          control,
+          range
         );
 
 
@@ -422,51 +410,86 @@
           );
 
 
-        grid?.style.setProperty(
-          "grid-template-columns",
-          `repeat(${columns}, minmax(0, 1fr))`,
-          "important"
-        );
+        if (
+          grid
+        ) {
 
+          grid.dataset.densityColumns =
+            String(
+              selectedColumns
+            );
 
-        updateSharedDensityLabel(
-          control,
-          range
-        );
+        }
 
       };
 
 
-    const setDisabled =
-      disabled => {
+    const applyGridColumns =
+      () => {
 
-        control.classList.toggle(
-          "is-disabled",
-          disabled
-        );
-
-
-        control.setAttribute(
-          "aria-disabled",
-          disabled
-            ? "true"
-            : "false"
-        );
-
-
-        [
-          range,
-          minus,
-          plus
-        ]
-          .forEach(
-            element => {
-
-              element.disabled =
-                disabled;
-
-            }
+        const grid =
+          document.getElementById(
+            "sneaker-grid"
           );
+
+
+        if (
+          !grid
+        ) {
+
+          return;
+
+        }
+
+
+        grid.dataset.densityColumns =
+          String(
+            selectedColumns
+          );
+
+
+        /*
+          Only the Grid uses this layout.
+          3D keeps the selected value but does not change it.
+        */
+        if (
+          !grid.querySelector(
+            ".sneaker-3d-gallery"
+          )
+        ) {
+
+          grid.style.setProperty(
+            "grid-template-columns",
+            `repeat(${selectedColumns}, minmax(0, 1fr))`,
+            "important"
+          );
+
+        }
+
+      };
+
+
+    const setColumns =
+      nextValue => {
+
+        selectedColumns =
+          clamp(
+            Number(nextValue),
+            1,
+            5
+          );
+
+
+        localStorage.setItem(
+          "locan_sneaker_density_final",
+          String(
+            selectedColumns
+          )
+        );
+
+
+        updateVisual();
+        applyGridColumns();
 
       };
 
@@ -488,9 +511,50 @@
           );
 
 
-        setDisabled(
+        control.classList.toggle(
+          "is-disabled",
           is3D
         );
+
+
+        control.setAttribute(
+          "aria-disabled",
+          is3D
+            ? "true"
+            : "false"
+        );
+
+
+        [
+          minus,
+          range,
+          plus
+        ]
+          .forEach(
+            element => {
+
+              element.disabled =
+                is3D;
+
+            }
+          );
+
+
+        /*
+          Critical fix:
+          switching mode NEVER rewrites range.value.
+          It only enables/disables the control.
+        */
+        updateVisual();
+
+
+        if (
+          !is3D
+        ) {
+
+          applyGridColumns();
+
+        }
 
       };
 
@@ -499,7 +563,7 @@
       "input",
       event => {
 
-        apply(
+        setColumns(
           event.target.value
         );
 
@@ -511,11 +575,8 @@
       "click",
       () => {
 
-        apply(
-          Number(
-            range.value
-          )
-          - 1
+        setColumns(
+          selectedColumns - 1
         );
 
       }
@@ -526,11 +587,8 @@
       "click",
       () => {
 
-        apply(
-          Number(
-            range.value
-          )
-          + 1
+        setColumns(
+          selectedColumns + 1
         );
 
       }
@@ -551,7 +609,17 @@
         new MutationObserver(
           () => {
 
-            syncMode();
+            /*
+              main.js / 3D rendering replaces grid children.
+              Re-apply OUR saved layout after every render.
+            */
+            requestAnimationFrame(
+              () => {
+
+                syncMode();
+
+              }
+            );
 
           }
         );
@@ -571,12 +639,13 @@
     }
 
 
-    apply(
-      initial
-    );
-
-
+    updateAccessibleText();
+    updateVisual();
+    applyGridColumns();
     syncMode();
+
+
+    return control;
 
   }
 
@@ -590,6 +659,10 @@
 
 
     const density =
+      document.getElementById(
+        "sneaker-density-control-final"
+      )
+      ||
       document.getElementById(
         "grid-density-control"
       );
@@ -653,9 +726,16 @@
     );
 
 
-    normalizeDensityControl(
-      density
-    );
+    if (
+      density.id !==
+      "sneaker-density-control-final"
+    ) {
+
+      buildOwnedDensityControl(
+        density
+      );
+
+    }
 
 
     return true;

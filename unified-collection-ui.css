@@ -1,5 +1,5 @@
 /* =========================================================
-   LỘC AN — FINAL SHARED COLLECTION UI v11
+   LỘC AN — FINAL SHARED COLLECTION UI v12
 
    ONE visual system for:
    - Sneakers
@@ -681,6 +681,216 @@ button.unified-view-toggle:focus-visible {
 }
 
 
+
+/* =========================================================
+   DENSE GRID — KEEP THE 3-COLUMN CARD PROPORTION
+
+   4 or 5 columns no longer stretch vertically.
+   The whole card becomes smaller, including type/padding.
+========================================================= */
+
+#sneaker-grid[data-density-columns="4"]
+.card-link,
+#sneaker-grid[data-density-columns="5"]
+.card-link {
+  height:
+    auto !important;
+
+  align-self:
+    start !important;
+
+  container-type:
+    inline-size;
+}
+
+
+#sneaker-grid[data-density-columns="4"]
+.card,
+#sneaker-grid[data-density-columns="5"]
+.card {
+  height:
+    auto !important;
+
+  min-height:
+    0 !important;
+
+  /*
+    Matches the approximate natural proportion
+    of the current 3-column museum card.
+  */
+  aspect-ratio:
+    10 / 13 !important;
+}
+
+
+#sneaker-grid[data-density-columns="4"]
+.card-info,
+#sneaker-grid[data-density-columns="5"]
+.card-info {
+  min-height:
+    0 !important;
+
+  padding:
+    clamp(
+      9px,
+      7cqw,
+      18px
+    )
+    !important;
+
+  overflow:
+    hidden !important;
+}
+
+
+#sneaker-grid[data-density-columns="4"]
+.card-info h3,
+#sneaker-grid[data-density-columns="5"]
+.card-info h3 {
+  margin-bottom:
+    clamp(
+      4px,
+      2.6cqw,
+      8px
+    )
+    !important;
+
+  font-size:
+    clamp(
+      .70rem,
+      6.2cqw,
+      1.08rem
+    )
+    !important;
+
+  line-height:
+    1.30 !important;
+
+  display:
+    -webkit-box;
+
+  -webkit-box-orient:
+    vertical;
+
+  -webkit-line-clamp:
+    4;
+
+  overflow:
+    hidden;
+}
+
+
+#sneaker-grid[data-density-columns="4"]
+.subtitle,
+#sneaker-grid[data-density-columns="5"]
+.subtitle {
+  margin-bottom:
+    clamp(
+      6px,
+      4cqw,
+      13px
+    )
+    !important;
+
+  font-size:
+    clamp(
+      .56rem,
+      4.6cqw,
+      .83rem
+    )
+    !important;
+
+  line-height:
+    1.42 !important;
+
+  display:
+    -webkit-box;
+
+  -webkit-box-orient:
+    vertical;
+
+  -webkit-line-clamp:
+    3;
+
+  overflow:
+    hidden;
+}
+
+
+#sneaker-grid[data-density-columns="4"]
+.card-meta,
+#sneaker-grid[data-density-columns="5"]
+.card-meta {
+  gap:
+    clamp(
+      4px,
+      3cqw,
+      10px
+    )
+    !important;
+
+  font-size:
+    clamp(
+      .52rem,
+      4.2cqw,
+      .78rem
+    )
+    !important;
+}
+
+
+#sneaker-grid[data-density-columns="4"]
+.badge,
+#sneaker-grid[data-density-columns="5"]
+.badge {
+  padding:
+    clamp(
+      3px,
+      2.2cqw,
+      5px
+    )
+    clamp(
+      5px,
+      3.7cqw,
+      9px
+    )
+    !important;
+
+  font-size:
+    inherit !important;
+}
+
+
+#sneaker-grid[data-density-columns="4"]
+.card-cta,
+#sneaker-grid[data-density-columns="5"]
+.card-cta {
+  margin-top:
+    clamp(
+      7px,
+      5cqw,
+      14px
+    )
+    !important;
+
+  padding-top:
+    clamp(
+      6px,
+      4cqw,
+      12px
+    )
+    !important;
+
+  font-size:
+    clamp(
+      .50rem,
+      4cqw,
+      .72rem
+    )
+    !important;
+}
+
+
 /* =========================================================
    3D — SAME LIQUID GLASS + SAME COMPOSITION
 ========================================================= */
@@ -764,7 +974,13 @@ button.unified-view-toggle:focus-visible {
     #ededf0 !important;
 
   background:
-    var(--locan-glass-card-3d) !important;
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, .022) 0%,
+      rgba(255, 255, 255, .008) 52%,
+      rgba(255, 255, 255, .003) 100%
+    )
+    !important;
 
   border:
     1px solid
@@ -784,13 +1000,16 @@ button.unified-view-toggle:focus-visible {
     55px
     rgba(0, 0, 0, .22) !important;
 
+  /*
+    No backdrop blur here:
+    the neighboring 3D card must stay visible through
+    the active liquid-glass card.
+  */
   backdrop-filter:
-    blur(3px)
-    saturate(108%);
+    none !important;
 
   -webkit-backdrop-filter:
-    blur(3px)
-    saturate(108%);
+    none !important;
 
   cursor:
     pointer !important;
@@ -820,6 +1039,15 @@ button.unified-view-toggle:focus-visible {
 
 
 .unified-3d-card.is-center {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, .028) 0%,
+      rgba(255, 255, 255, .010) 52%,
+      rgba(255, 255, 255, .004) 100%
+    )
+    !important;
+
   border-color:
     rgba(255, 204, 0, .34) !important;
 
