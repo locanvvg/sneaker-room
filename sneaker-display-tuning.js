@@ -127,41 +127,74 @@
     }
   },
 
-  {
-    match: "New Balance 2002R",
+  /* =====================================================
+   NEW BALANCE 2002R
+===================================================== */
 
-    grid: {
-      scaleX: 0.60,
-      scaleY: 0.60,
-      x: 0,
-      y: 0
-    },
+{
+  match: "New Balance 2002R",
 
-    view3d: {
-      scaleX: 0.55,
-      scaleY: 0.55,
-      x: 0,
-      y: 0
-    }
+  grid: {
+    scaleX: 0.53,
+    scaleY: 0.53,
+    x: 0,
+    y: 0
   },
 
-  {
-    match: "Jordan 1 Low 'Reverse Bred'",
+  view3d: {
+    scaleX: 0.50,
+    scaleY: 0.50,
+    x: 0,
+    y: 0
+  }
+},
 
-    grid: {
-      scaleX: 0.74,
-      scaleY: 0.74,
-      x: 0,
-      y: 0
-    },
 
-    view3d: {
-      scaleX: 0.72,
-      scaleY: 0.72,
-      x: 0,
-      y: 0
-    }
+/* =====================================================
+   JORDAN 1 LOW 'REVERSE BRED'
+===================================================== */
+
+{
+  match: "Jordan 1 Low 'Reverse Bred'",
+
+  grid: {
+    scaleX: 0.62,
+    scaleY: 0.62,
+    x: 0,
+    y: 0
   },
+
+  view3d: {
+    scaleX: 0.60,
+    scaleY: 0.60,
+    x: 0,
+    y: 0
+  }
+},
+
+
+/* =====================================================
+   BALENCIAGA DEFENDER 'BEIGE'
+   GIỮ NGANG — ÉP CHIỀU CAO
+===================================================== */
+
+{
+  match: "Balenciaga Defender",
+
+  grid: {
+    scaleX: 1.00,
+    scaleY: 0.76,
+    x: 0,
+    y: 0
+  },
+
+  view3d: {
+    scaleX: 1.00,
+    scaleY: 0.76,
+    x: 0,
+    y: 0
+  }
+},
 
   {
     match: "Vans Knu Skool",
@@ -180,141 +213,6 @@
       y: 0
     }
   },
-
-  {
-    match: "Balenciaga Defender",
-
-    grid: {
-      scaleX: 1,
-      scaleY: 0.88,
-      x: 0,
-      y: 0
-    },
-
-    view3d: {
-      scaleX: 1,
-      scaleY: 0.88,
-      x: 0,
-      y: 0
-    }
-  }
-
-];
-
-
-    /* =====================================================
-       NEW BALANCE 2002R
-    ===================================================== */
-
-    {
-      match: "New Balance 2002R",
-
-      grid: {
-        scale: 0.70,
-        x: 0,
-        y: 0
-      },
-
-      view3d: {
-        scale: 0.60,
-        x: 0,
-        y: 0
-      }
-    },
-
-
-    /* =====================================================
-       JORDAN 1 LOW 'REVERSE BRED'
-    ===================================================== */
-
-    {
-      match: "Jordan 1 Low 'Reverse Bred'",
-
-      grid: {
-        scale: 0.40,
-        x: 0,
-        y: 0
-      },
-
-      view3d: {
-        scale: 0.40,
-        x: 0,
-        y: 0
-      }
-    },
-
-
-    /* =====================================================
-       BALENCIAGA DEFENDER
-       Chỉ hạ xuống.
-       Không đổi chiều ngang.
-       Không đổi kích thước.
-    ===================================================== */
-
-    {
-  match: "Balenciaga Defender",
-
-  grid: {
-    scaleX: 1,
-    scaleY: 0.80,
-    x: 0,
-    y: 0
-  },
-
-  view3d: {
-    scaleX: 1,
-    scaleY: 0.80,
-    x: 0,
-    y: 0
-  }
-},
-
-     {
-         match: "Vans Knu Skool",
-
-         grid: {
-           scale: 0.85,
-           x: 0,
-           y: 0
-         },
-
-         view3d: {
-           scale: 0.85,
-           x: 0,
-           y: 0
-         }
-       },
-
-
-    /* =====================================================
-       THÊM CÁC ĐÔI KHÁC Ở ĐÂY
-
-       Ví dụ:
-
-       {
-         match: "Jordan 4 Retro Black Cement",
-
-         grid: {
-           scale: 0.90,
-           x: 0,
-           y: 0
-         },
-
-         view3d: {
-           scale: 0.85,
-           x: 0,
-           y: 0
-         }
-       },
-
-       Nếu một đôi đang hiển thị đẹp rồi
-       thì KHÔNG cần thêm vào đây.
-
-       Nó sẽ tự dùng:
-       scale: 1
-       x: 0
-       y: 0
-    ===================================================== */
 
 
   ];
