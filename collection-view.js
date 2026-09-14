@@ -1,4 +1,4 @@
-/* LỘC AN SNEAKER COLLECTION — collection-view.js v8 — SHARED DISPLAY CONFIG */
+/* LỘC AN SNEAKER COLLECTION — collection-view.js v9 — CATALOG ENGINE */
 
 (() => {
   "use strict";
@@ -289,7 +289,7 @@
 
             draggable="false"
 
-            data-sneaker-display="true"
+            data-catalog-image="true"
 
             data-sneaker-id="${escapeHTML(
               sneaker.id || ""
@@ -2004,6 +2004,22 @@
         </section>
 
       `;
+
+
+      /*
+        Prepare Grid/3D image normalization immediately.
+        Lazy-loaded 3D images already receive a load listener here.
+      */
+      if (
+        window.CatalogDisplay
+      ) {
+
+        window.CatalogDisplay
+          .prepareWithin(
+            grid
+          );
+
+      }
 
 
       bindEvents();

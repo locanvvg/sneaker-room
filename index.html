@@ -490,6 +490,24 @@
     src="./data.js?v=20260913-15pairs-v1"
   ></script>
 
+  <!-- =====================================================
+       FUTURE SNEAKERS
+       This is the only catalog file you edit later.
+  ====================================================== -->
+
+  <script
+    src="./catalog-additions.js?v=20260914-catalog-v1"
+  ></script>
+
+  <!-- =====================================================
+       CATALOG ENGINE
+       Normalizes legacy + future schemaVersion:2 entries.
+  ====================================================== -->
+
+  <script
+    src="./catalog-engine.js?v=20260914-catalog-v1"
+  ></script>
+
 
   <!-- =====================================================
        EXISTING COLLECTION LOGIC
@@ -500,12 +518,22 @@
   ></script>
 
   <!-- =====================================================
-       SHARED SNEAKER IMAGE DISPLAY CONFIG
-       Grid + 3D read the same scaleX / scaleY values
+       AUTO CATALOG UI
+       Edition / condition / size filters derive from data.
   ====================================================== -->
 
   <script
-    src="./sneaker-display-config.js?v=20260914-display-v1"
+    src="./catalog-ui.js?v=20260914-catalog-v1"
+  ></script>
+
+  <!-- =====================================================
+       SHARED GRID + 3D DISPLAY ENGINE
+       Existing tuned pairs preserved.
+       Future schemaVersion:2 pairs use Auto Fit.
+  ====================================================== -->
+
+  <script
+    src="./catalog-display.js?v=20260914-catalog-v1"
   ></script>
 
 
@@ -1147,7 +1175,7 @@
   ====================================================== -->
 
   <script
-    src="./collection-view.js?v=20260914-collection-view-v8"
+    src="./collection-view.js?v=20260914-collection-view-v9"
   ></script>
 
   <script

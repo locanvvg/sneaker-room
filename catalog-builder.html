@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <title>Catalog Builder | Lộc An</title>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family:
+        Arial,
+        "Segoe UI",
+        sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #0d0d0f;
+      color: #f3f3f5;
+    }
+
+    .builder {
+      width: min(1180px, calc(100% - 32px));
+      margin: 32px auto 64px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+    }
+
+    .intro {
+      margin: 0 0 28px;
+      color: #9b9ba3;
+      line-height: 1.6;
+    }
+
+    .panel {
+      padding: 20px;
+      margin-bottom: 18px;
+      background: #151518;
+      border: 1px solid #29292e;
+      border-radius: 14px;
+    }
+
+    .panel h2 {
+      margin: 0 0 16px;
+      font-size: 1rem;
+      letter-spacing: .7px;
+    }
+
+    .fields {
+      display: grid;
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    label {
+      display: grid;
+      gap: 7px;
+      color: #aaaab2;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .5px;
+    }
+
+    .wide {
+      grid-column: 1 / -1;
+    }
+
+    input,
+    select,
+    textarea,
+    button {
+      font: inherit;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 11px 12px;
+      color: #eee;
+      background: #0f0f11;
+      border: 1px solid #333338;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #ffcc00;
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+      line-height: 1.55;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 18px 0;
+    }
+
+    button {
+      padding: 11px 16px;
+      color: #111;
+      background: #ffcc00;
+      border: 0;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    button.secondary {
+      color: #eee;
+      background: #242429;
+      border: 1px solid #38383e;
+    }
+
+    pre {
+      min-height: 260px;
+      overflow: auto;
+      padding: 18px;
+      background: #080809;
+      color: #d8d8dc;
+      border: 1px solid #25252a;
+      border-radius: 12px;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .status {
+      min-height: 22px;
+      color: #71d895;
+      font-size: .85rem;
+    }
+
+    .note {
+      color: #85858d;
+      font-size: .82rem;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 700px) {
+      .fields {
+        grid-template-columns: 1fr;
+      }
+
+      .wide {
+        grid-column: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="builder">
+
+    <h1>
+      Lộc An Catalog Builder
+    </h1>
+
+    <p class="intro">
+      Điền thông tin một đôi giày → Generate Entry →
+      copy vào <b>catalog-additions.js</b>.
+      Grid, 3D, filter, search và detail page sẽ tự đọc.
+    </p>
+
+
+    <section class="panel">
+
+      <h2>THÔNG TIN CƠ BẢN</h2>
+
+      <div class="fields">
+
+        <label class="wide">
+          TITLE — OFFICIAL NAME
+          <input
+            id="title"
+            placeholder="Jordan 1 Retro High OG 'Shadow' (2009)"
+          >
+        </label>
+
+        <label>
+          SUBTITLE VI
+          <input
+            id="subtitleVi"
+            placeholder="Phiên bản lưu trữ (2009)"
+          >
+        </label>
+
+        <label>
+          SUBTITLE EN
+          <input
+            id="subtitleEn"
+            placeholder="Archive Edition (2009)"
+          >
+        </label>
+
+        <label>
+          SKU / STYLE CODE
+          <input
+            id="sku"
+            placeholder="332550-001"
+          >
+        </label>
+
+        <label>
+          COLORWAY
+          <input
+            id="colorway"
+            placeholder="Black/Shadow Grey-White"
+          >
+        </label>
+
+        <label>
+          RETAIL AMOUNT
+          <input
+            id="retailAmount"
+            type="number"
+            step="0.01"
+            placeholder="125"
+          >
+        </label>
+
+        <label>
+          CURRENCY
+          <select id="currency">
+            <option>USD</option>
+            <option>JPY</option>
+            <option>CAD</option>
+            <option>EUR</option>
+            <option>GBP</option>
+          </select>
+        </label>
+
+        <label>
+          RELEASE DATE
+          <input
+            id="releaseDate"
+            placeholder="2009-09-01"
+          >
+        </label>
+
+        <label>
+          SIZE
+          <input
+            id="size"
+            placeholder="10.5 US / 12W/10.5M"
+          >
+        </label>
+
+        <label>
+          EDITION
+          <select id="edition">
+            <option>GR</option>
+            <option>PE</option>
+            <option>Sample</option>
+            <option>PE Sample</option>
+            <option>F&F</option>
+            <option>Signature Signed</option>
+            <option>Custom 1/1</option>
+          </select>
+        </label>
+
+        <label>
+          CONDITION
+          <select id="condition">
+            <option>Deadstock</option>
+            <option>Used</option>
+          </select>
+        </label>
+
+        <label class="wide">
+          IMAGE FILES — một dòng mỗi ảnh
+          <textarea
+            id="images"
+            placeholder="pictures/shoe.png&#10;pictures/shoe_1.png"
+          ></textarea>
+        </label>
+
+      </div>
+
+    </section>
+
+
+    <section class="panel">
+
+      <h2>STORY</h2>
+
+      <div class="fields">
+
+        <label>
+          STORY VI
+          <textarea
+            id="storyVi"
+            placeholder="Có thể nhập HTML <p>...</p> hoặc văn bản thường. Mỗi đoạn cách nhau bằng một dòng trống."
+          ></textarea>
+        </label>
+
+        <label>
+          STORY EN
+          <textarea
+            id="storyEn"
+            placeholder="HTML or normal paragraphs."
+          ></textarea>
+        </label>
+
+      </div>
+
+      <p class="note">
+        Builder không tự thêm SKU, retail, release date,
+        condition hoặc size vào Story — tránh lặp metadata.
+      </p>
+
+    </section>
+
+
+    <section class="panel">
+
+      <h2>OUTPUT</h2>
+
+      <div class="actions">
+
+        <button
+          type="button"
+          onclick="generateEntry()"
+        >
+          GENERATE ENTRY
+        </button>
+
+        <button
+          type="button"
+          class="secondary"
+          onclick="copyEntry()"
+        >
+          COPY
+        </button>
+
+        <button
+          type="button"
+          class="secondary"
+          onclick="clearForm()"
+        >
+          CLEAR
+        </button>
+
+      </div>
+
+      <div
+        id="status"
+        class="status"
+      ></div>
+
+      <pre id="output">// Entry sẽ xuất hiện ở đây.</pre>
+
+    </section>
+
+  </main>
+
+
+  <script>
+
+    function slugify(value) {
+      return String(value || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .replace(/&/g, " and ")
+        .replace(/['’"]/g, "")
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "")
+        .replace(/-{2,}/g, "-");
+    }
+
+
+    function value(id) {
+      return document
+        .getElementById(id)
+        .value
+        .trim();
+    }
+
+
+    function escapeTemplate(value) {
+      return String(value)
+        .replace(/\\/g, "\\\\")
+        .replace(/`/g, "\\`")
+        .replace(/\$\{/g, "\\${");
+    }
+
+
+    function paragraphs(value) {
+      const text =
+        String(value || "").trim();
+
+      if (!text) {
+        return "";
+      }
+
+      if (
+        /<\s*(p|div|ul|ol|blockquote|h[1-6])\b/i
+          .test(text)
+      ) {
+        return text;
+      }
+
+      return text
+        .split(/\n\s*\n/)
+        .map(part =>
+          `<p>${part
+            .replace(/\n/g, " ")
+            .trim()}</p>`
+        )
+        .join("\n");
+    }
+
+
+    function categoriesFor(edition) {
+      const upper =
+        edition.toUpperCase();
+
+      const result =
+        [];
+
+      if (
+        /\bPE\b/.test(upper)
+      ) {
+        result.push("PE");
+      }
+
+      if (
+        upper.includes("SAMPLE")
+      ) {
+        result.push("Sample");
+      }
+
+      if (
+        upper.includes("F&F")
+      ) {
+        result.push("F&F");
+      }
+
+      if (
+        upper.includes(
+          "SIGNATURE SIGNED"
+        )
+      ) {
+        result.push(
+          "Signature Signed"
+        );
+      }
+
+      if (
+        upper.includes(
+          "CUSTOM 1/1"
+        )
+      ) {
+        result.push(
+          "Custom 1/1"
+        );
+      }
+
+      if (
+        upper === "GR" ||
+        result.length === 0
+      ) {
+        result.push("GR");
+      }
+
+      return [
+        ...new Set(result)
+      ];
+    }
+
+
+    function retailCode() {
+      const raw =
+        value("retailAmount");
+
+      if (!raw) {
+        return `retailPrice: "N/A"`;
+      }
+
+      const amount =
+        Number(raw);
+
+      const currency =
+        value("currency") ||
+        "USD";
+
+      return [
+        "retail: {",
+        `  amount: ${Number.isFinite(amount) ? amount : JSON.stringify(raw)},`,
+        `  currency: ${JSON.stringify(currency)}`,
+        "}"
+      ].join("\n      ");
+    }
+
+
+    function generateEntry() {
+
+      const title =
+        value("title");
+
+      const images =
+        value("images")
+          .split(/\n+/)
+          .map(line => line.trim())
+          .filter(Boolean);
+
+      if (!title) {
+        document
+          .getElementById("status")
+          .textContent =
+          "Cần nhập TITLE.";
+
+        return;
+      }
+
+      if (!images.length) {
+        document
+          .getElementById("status")
+          .textContent =
+          "Cần ít nhất 1 IMAGE.";
+
+        return;
+      }
+
+      const edition =
+        value("edition");
+
+      const categories =
+        categoriesFor(edition);
+
+      const storyVi =
+        escapeTemplate(
+          paragraphs(
+            value("storyVi")
+          )
+        );
+
+      const storyEn =
+        escapeTemplate(
+          paragraphs(
+            value("storyEn")
+          )
+        );
+
+      const imageLines =
+        images
+          .map(image =>
+            `      ${JSON.stringify(image)}`
+          )
+          .join(",\n");
+
+      const categoryLines =
+        categories
+          .map(category =>
+            `      ${JSON.stringify(category)}`
+          )
+          .join(",\n");
+
+      const retail =
+        retailCode();
+
+      const code =
+`  {
+    schemaVersion: 2,
+
+    id: ${JSON.stringify(slugify(title))},
+
+    title: {
+      vi: ${JSON.stringify(title)},
+      en: ${JSON.stringify(title)}
+    },
+
+    subtitle: {
+      vi: ${JSON.stringify(value("subtitleVi"))},
+      en: ${JSON.stringify(value("subtitleEn"))}
+    },
+
+    sku: ${JSON.stringify(value("sku"))},
+
+    colorway: ${JSON.stringify(value("colorway"))},
+
+    ${retail},
+
+    releaseDate: ${JSON.stringify(value("releaseDate"))},
+
+    edition: ${JSON.stringify(edition)},
+
+    categories: [
+${categoryLines}
+    ],
+
+    condition: ${JSON.stringify(value("condition"))},
+
+    size: ${JSON.stringify(value("size"))},
+
+    images: [
+${imageLines}
+    ],
+
+    story: {
+      vi: \`
+${storyVi}
+      \`,
+
+      en: \`
+${storyEn}
+      \`
+    }
+  },`;
+
+      document
+        .getElementById("output")
+        .textContent =
+        code;
+
+      document
+        .getElementById("status")
+        .textContent =
+        "Entry đã được tạo. Auto Fit mặc định bật cho schemaVersion 2.";
+    }
+
+
+    async function copyEntry() {
+      const code =
+        document
+          .getElementById("output")
+          .textContent;
+
+      try {
+        await navigator
+          .clipboard
+          .writeText(code);
+
+        document
+          .getElementById("status")
+          .textContent =
+          "Đã copy entry.";
+      } catch (_) {
+        document
+          .getElementById("status")
+          .textContent =
+          "Không copy tự động được — hãy chọn text trong OUTPUT và copy thủ công.";
+      }
+    }
+
+
+    function clearForm() {
+      document
+        .querySelectorAll(
+          "input, textarea"
+        )
+        .forEach(element => {
+          element.value = "";
+        });
+
+      document
+        .getElementById("edition")
+        .value =
+        "GR";
+
+      document
+        .getElementById("condition")
+        .value =
+        "Deadstock";
+
+      document
+        .getElementById("currency")
+        .value =
+        "USD";
+
+      document
+        .getElementById("output")
+        .textContent =
+        "// Entry sẽ xuất hiện ở đây.";
+
+      document
+        .getElementById("status")
+        .textContent =
+        "";
+    }
+
+  </script>
+
+</body>
+</html>

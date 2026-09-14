@@ -2,7 +2,6 @@
 <html lang="vi">
 
 <head>
-
   <meta charset="UTF-8">
 
   <meta
@@ -12,7 +11,7 @@
 
   <meta
     name="description"
-    content="Lộc An Sneaker Collection - Sneaker Detail"
+    content="Lộc An Sneaker Collection - Sneaker Exhibition Detail"
   >
 
   <meta
@@ -20,188 +19,40 @@
     content="#0d0d0d"
   >
 
-  <title>
-    Lộc An Sneaker Collection
-  </title>
-
+  <title>Lộc An Sneaker Collection</title>
 
   <link
     rel="icon"
     type="image/svg+xml"
-    href="./favicon.svg"
+    href="favicon.svg"
   >
 
   <link
     rel="apple-touch-icon"
-    href="./apple-touch-icon.png"
+    href="apple-touch-icon.png"
   >
 
   <link
     rel="manifest"
-    href="./site.webmanifest"
+    href="site.webmanifest"
   >
 
   <link
     rel="stylesheet"
-    href="./style.css?v=20260913-gallery-1"
+    href="style.css?v=20260914-catalog-v1"
   >
-
-
-  <!-- =====================================================
-       DETAIL IMAGE GALLERY
-       Chỉ bổ sung cho trang detail.
-       Không thay đổi style.css hiện tại.
-  ====================================================== -->
-
-  <style>
-
-    /* =====================================================
-       GALLERY CONTAINER
-    ===================================================== */
-
-    .shoe-gallery-thumbnails {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-
-      margin-top: 14px;
-      padding: 2px;
-    }
-
-
-    .shoe-gallery-thumbnails[hidden] {
-      display: none !important;
-    }
-
-
-    /* =====================================================
-       THUMBNAIL BUTTON
-    ===================================================== */
-
-    .shoe-gallery-thumb {
-      width: 76px;
-      height: 76px;
-
-      padding: 4px;
-
-      background: #141416;
-
-      border:
-        1px solid #303034;
-
-      border-radius: 9px;
-
-      cursor: pointer;
-
-      overflow: hidden;
-
-      transition:
-        border-color 0.18s ease,
-        transform 0.18s ease,
-        box-shadow 0.18s ease;
-    }
-
-
-    .shoe-gallery-thumb:hover {
-      transform:
-        translateY(-2px);
-
-      border-color:
-        #777;
-    }
-
-
-    .shoe-gallery-thumb.active {
-      border-color:
-        #ffcc00;
-
-      box-shadow:
-        0 0 0 1px
-        rgba(255, 204, 0, 0.25);
-    }
-
-
-    /*
-      Override rule hiện tại:
-      .shoe-image-section img { width:100%; ... }
-
-      để thumbnail không bị phóng lớn.
-    */
-
-    .shoe-image-section
-    .shoe-gallery-thumb
-    img {
-      display: block;
-
-      width: 100% !important;
-      height: 100% !important;
-
-      padding: 0;
-
-      object-fit: contain !important;
-      object-position: center;
-
-      background: transparent;
-
-      border-radius: 5px;
-    }
-
-
-    /* =====================================================
-       MAIN IMAGE TRANSITION
-    ===================================================== */
-
-    #shoe-image {
-      transition:
-        opacity 0.15s ease;
-    }
-
-
-    #shoe-image.gallery-changing {
-      opacity: 0.55;
-    }
-
-
-    /* =====================================================
-       MOBILE
-    ===================================================== */
-
-    @media screen and (max-width: 700px) {
-
-      .shoe-gallery-thumbnails {
-        gap: 8px;
-        margin-top: 10px;
-      }
-
-
-      .shoe-gallery-thumb {
-        width: 64px;
-        height: 64px;
-      }
-
-    }
-
-  </style>
-
 </head>
-
 
 <body>
 
   <div class="container">
 
-
-    <!-- =====================================================
-         HEADER
-    ====================================================== -->
-
     <header class="site-header">
-
 
       <div class="site-header-left">
 
         <a
-          href="./index.html"
+          href="index.html"
           class="back-btn"
           id="back-link"
         >
@@ -212,7 +63,7 @@
 
 
       <a
-        href="./index.html"
+        href="index.html"
         class="site-brand"
       >
         Lộc An Sneaker Collection
@@ -221,9 +72,8 @@
 
       <div class="site-header-actions">
 
-
         <a
-          href="./about.html"
+          href="about.html"
           class="header-about-link"
         >
           ABOUT
@@ -241,7 +91,6 @@
             VI
           </button>
 
-
           <button
             type="button"
             id="btn-en"
@@ -258,60 +107,26 @@
     </header>
 
 
-
-    <!-- =====================================================
-         SHOE DETAIL
-    ====================================================== -->
-
     <main
       id="shoe-detail"
       class="shoe-detail-container"
     >
 
-
-      <!-- =================================================
-           IMAGE + GALLERY
-      ================================================== -->
-
       <div class="shoe-image-section">
-
-
-        <!-- MAIN IMAGE -->
 
         <img
           id="shoe-image"
           src=""
-          alt=""
+          alt="Sneaker"
           decoding="async"
         >
-
-
-        <!--
-          Thumbnails chỉ xuất hiện
-          khi sneaker có từ 2 ảnh trở lên.
-        -->
-
-        <div
-          id="shoe-gallery-thumbnails"
-          class="shoe-gallery-thumbnails"
-          hidden
-          aria-label="Sneaker image gallery"
-        ></div>
-
 
       </div>
 
 
-
-      <!-- =================================================
-           INFORMATION
-      ================================================== -->
-
       <div class="shoe-info-section">
 
-
         <h2 id="shoe-title"></h2>
-
 
         <p
           id="shoe-subtitle"
@@ -319,14 +134,9 @@
         ></p>
 
 
-
         <div class="specs-grid">
 
-
-          <!-- SKU -->
-
           <div class="spec-item">
-
             <span
               class="spec-label"
               id="label-sku"
@@ -335,18 +145,13 @@
             </span>
 
             <span
-              class="spec-value"
               id="shoe-sku"
+              class="spec-value"
             ></span>
-
           </div>
 
 
-
-          <!-- COLORWAY -->
-
           <div class="spec-item">
-
             <span
               class="spec-label"
               id="label-colorway"
@@ -355,18 +160,13 @@
             </span>
 
             <span
-              class="spec-value"
               id="shoe-colorway"
+              class="spec-value"
             ></span>
-
           </div>
 
 
-
-          <!-- RETAIL -->
-
           <div class="spec-item">
-
             <span
               class="spec-label"
               id="label-retail"
@@ -375,18 +175,13 @@
             </span>
 
             <span
-              class="spec-value"
               id="shoe-retail"
+              class="spec-value"
             ></span>
-
           </div>
 
 
-
-          <!-- DATE -->
-
           <div class="spec-item">
-
             <span
               class="spec-label"
               id="label-date"
@@ -395,18 +190,13 @@
             </span>
 
             <span
-              class="spec-value"
               id="shoe-date"
+              class="spec-value"
             ></span>
-
           </div>
 
 
-
-          <!-- CONDITION -->
-
           <div class="spec-item">
-
             <span
               class="spec-label"
               id="label-condition"
@@ -415,18 +205,13 @@
             </span>
 
             <span
-              class="spec-value condition-value"
               id="shoe-condition"
+              class="spec-value highlight"
             ></span>
-
           </div>
 
 
-
-          <!-- SIZE -->
-
           <div class="spec-item">
-
             <span
               class="spec-label"
               id="label-size"
@@ -435,1293 +220,61 @@
             </span>
 
             <span
-              class="spec-value size-highlight"
               id="shoe-size"
+              class="spec-value size-highlight"
             ></span>
-
           </div>
-
 
         </div>
 
       </div>
 
-
     </main>
 
 
-
-    <!-- =====================================================
-         STORY
-    ====================================================== -->
-
     <section
-      id="story-section"
       class="story-section"
+      id="story-section"
     >
 
       <h3 id="story-title">
         Câu chuyện &amp; Bối cảnh thiết kế
       </h3>
 
-
       <div id="shoe-story"></div>
 
     </section>
 
 
-
-    <!-- =====================================================
-         FOOTER
-    ====================================================== -->
-
     <footer>
-
       <p>
         &copy; 2026 Lộc An Sneaker Collection.
         All Rights Reserved.
       </p>
-
     </footer>
-
 
   </div>
 
 
-
-  <!-- =====================================================
-       DATA
-
-       data.js:
-       thông tin sneaker
-
-       sneaker-gallery.js:
-       danh sách hình ảnh của từng sneaker
-  ====================================================== -->
-
+  <!-- BASE CATALOG -->
   <script
-  src="./data.js?v=20260913-15pairs-v2"
-></script>
-
-<script
-  src="./sneaker-gallery.js?v=20260913-15pairs-v2"
-></script>
-
-
-
-  <!-- =====================================================
-       DETAIL PAGE LOGIC
-  ====================================================== -->
-
-  <script>
-
-    /* =====================================================
-       LANGUAGE
-    ====================================================== */
-
-    const supportedLanguages = [
-      "vi",
-      "en"
-    ];
-
-
-    function normalizeLanguage(lang) {
-
-      return supportedLanguages.includes(
-        lang
-      )
-        ? lang
-        : "vi";
-
-    }
-
-
-    const params =
-      new URLSearchParams(
-        window.location.search
-      );
-
-
-    const shoeId =
-      params.get(
-        "id"
-      );
-
-
-    let currentLang =
-      normalizeLanguage(
-
-        params.get("lang")
-
-        ||
-
-        localStorage.getItem(
-          "locan_lang"
-        )
-
-        ||
-
-        "vi"
-
-      );
-
-
-
-    /* =====================================================
-       TRANSLATIONS
-    ====================================================== */
-
-    const labels = {
-
-
-      vi: {
-
-        back:
-          "← Quay lại Bộ sưu tập",
-
-        sku:
-          "MÃ SẢN PHẨM",
-
-        colorway:
-          "PHỐI MÀU",
-
-        retail:
-          "GIÁ PHÁT HÀNH",
-
-        date:
-          "NGÀY RA MẮT",
-
-        condition:
-          "TÌNH TRẠNG",
-
-        size:
-          "KÍCH CỠ",
-
-        story:
-          "Câu chuyện & Bối cảnh thiết kế",
-
-        notFound:
-          "Không tìm thấy thông tin đôi giày này.",
-
-        image:
-          "Ảnh"
-
-      },
-
-
-      en: {
-
-        back:
-          "← Back to Collection",
-
-        sku:
-          "SKU",
-
-        colorway:
-          "COLORWAY",
-
-        retail:
-          "RETAIL PRICE",
-
-        date:
-          "RELEASE DATE",
-
-        condition:
-          "CONDITION",
-
-        size:
-          "SIZE",
-
-        story:
-          "Story & Design Background",
-
-        notFound:
-          "Sneaker information not found.",
-
-        image:
-          "Image"
-
-      }
-
-    };
-
-
-
-    /* =====================================================
-       LOCALIZED VALUE
-    ====================================================== */
-
-    function localized(value) {
-
-      if (!value) {
-        return "";
-      }
-
-
-      if (
-        typeof value === "string"
-      ) {
-
-        return value;
-
-      }
-
-
-      return (
-
-        value[currentLang]
-
-        ||
-
-        value.en
-
-        ||
-
-        value.vi
-
-        ||
-
-        ""
-
-      );
-
-    }
-
-
-
-    /* =====================================================
-       DATE FORMATTER
-    ====================================================== */
-
-    function formatDate(value) {
-
-      if (!value) {
-        return "N/A";
-      }
-
-
-      /*
-        YYYY-MM-DD
-      */
-
-      if (
-        /^\d{4}-\d{2}-\d{2}$/.test(
-          value
-        )
-      ) {
-
-        const [
-          year,
-          month,
-          day
-        ] =
-          value
-            .split("-")
-            .map(Number);
-
-
-        const date =
-          new Date(
-
-            Date.UTC(
-              year,
-              month - 1,
-              day
-            )
-
-          );
-
-
-        return date.toLocaleDateString(
-
-          currentLang === "vi"
-            ? "vi-VN"
-            : "en-US",
-
-          {
-
-            year:
-              "numeric",
-
-            month:
-              "long",
-
-            day:
-              "numeric",
-
-            timeZone:
-              "UTC"
-
-          }
-
-        );
-
-      }
-
-
-      /*
-        YYYY-MM
-      */
-
-      if (
-        /^\d{4}-\d{2}$/.test(
-          value
-        )
-      ) {
-
-        const [
-          year,
-          month
-        ] =
-          value
-            .split("-")
-            .map(Number);
-
-
-        const date =
-          new Date(
-
-            Date.UTC(
-              year,
-              month - 1,
-              1
-            )
-
-          );
-
-
-        return date.toLocaleDateString(
-
-          currentLang === "vi"
-            ? "vi-VN"
-            : "en-US",
-
-          {
-
-            year:
-              "numeric",
-
-            month:
-              "long",
-
-            timeZone:
-              "UTC"
-
-          }
-
-        );
-
-      }
-
-
-      return value;
-
-    }
-
-
-
-    /* =====================================================
-       CONDITION COLOR
-    ====================================================== */
-
-    function updateConditionColor(
-      condition
-    ) {
-
-      const element =
-        document.getElementById(
-          "shoe-condition"
-        );
-
-
-      if (!element) {
-        return;
-      }
-
-
-      element.classList.remove(
-        "condition-deadstock",
-        "condition-used"
-      );
-
-
-      const normalized =
-        String(
-          condition
-        )
-          .trim()
-          .toLowerCase();
-
-
-      if (
-        normalized ===
-        "deadstock"
-      ) {
-
-        element.classList.add(
-          "condition-deadstock"
-        );
-
-      }
-
-
-      if (
-        normalized ===
-        "used"
-      ) {
-
-        element.classList.add(
-          "condition-used"
-        );
-
-      }
-
-    }
-
-
-
-    /* =====================================================
-       LANGUAGE INTERFACE
-    ====================================================== */
-
-    function updateLanguageInterface() {
-
-      const language =
-        labels[currentLang];
-
-
-      document.documentElement.lang =
-        currentLang;
-
-
-      document
-        .getElementById(
-          "btn-vi"
-        )
-        .classList.toggle(
-
-          "active",
-
-          currentLang === "vi"
-
-        );
-
-
-      document
-        .getElementById(
-          "btn-en"
-        )
-        .classList.toggle(
-
-          "active",
-
-          currentLang === "en"
-
-        );
-
-
-      const back =
-        document.getElementById(
-          "back-link"
-        );
-
-
-      back.textContent =
-        language.back;
-
-
-      back.href =
-        `./index.html?lang=${encodeURIComponent(currentLang)}`;
-
-
-      document
-        .getElementById(
-          "label-sku"
-        )
-        .textContent =
-        language.sku;
-
-
-      document
-        .getElementById(
-          "label-colorway"
-        )
-        .textContent =
-        language.colorway;
-
-
-      document
-        .getElementById(
-          "label-retail"
-        )
-        .textContent =
-        language.retail;
-
-
-      document
-        .getElementById(
-          "label-date"
-        )
-        .textContent =
-        language.date;
-
-
-      document
-        .getElementById(
-          "label-condition"
-        )
-        .textContent =
-        language.condition;
-
-
-      document
-        .getElementById(
-          "label-size"
-        )
-        .textContent =
-        language.size;
-
-
-      document
-        .getElementById(
-          "story-title"
-        )
-        .textContent =
-        language.story;
-
-    }
-
-
-
-    /* =====================================================
-       CHANGE LANGUAGE
-    ====================================================== */
-
-    function changeLang(lang) {
-
-      currentLang =
-        normalizeLanguage(
-          lang
-        );
-
-
-      localStorage.setItem(
-        "locan_lang",
-        currentLang
-      );
-
-
-      const url =
-        new URL(
-          window.location.href
-        );
-
-
-      url.searchParams.set(
-        "lang",
-        currentLang
-      );
-
-
-      window.history.replaceState(
-
-        {},
-
-        "",
-
-        url.pathname +
-        url.search +
-        url.hash
-
-      );
-
-
-      loadShoe();
-
-    }
-
-
-
-    /* =====================================================
-       GALLERY STATE
-    ====================================================== */
-
-    let currentGalleryImages =
-      [];
-
-
-    let currentGalleryIndex =
-      0;
-
-
-    let currentGalleryTitle =
-      "";
-
-
-
-    /* =====================================================
-       GET IMAGES
-
-       Priority:
-       1. sneaker-gallery.js
-       2. sneaker.image from data.js
-    ====================================================== */
-
-    function getSneakerImages(
-      sneaker
-    ) {
-
-      const galleries =
-        window.SNEAKER_GALLERIES
-        ||
-        {};
-
-
-      const mapped =
-        galleries[
-          sneaker.id
-        ];
-
-
-      let images =
-        [];
-
-
-      if (
-        Array.isArray(mapped)
-        &&
-        mapped.length > 0
-      ) {
-
-        images =
-          mapped;
-
-      } else if (
-        sneaker.image
-      ) {
-
-        images = [
-          sneaker.image
-        ];
-
-      }
-
-
-      /*
-        Remove empty values
-        and duplicate filenames.
-      */
-
-      return [
-        ...new Set(
-
-          images.filter(
-            Boolean
-          )
-
-        )
-      ];
-
-    }
-
-
-
-    /* =====================================================
-       SELECT GALLERY IMAGE
-    ====================================================== */
-
-    function selectGalleryImage(
-      index
-    ) {
-
-      if (
-        index < 0
-        ||
-        index >= currentGalleryImages.length
-      ) {
-        return;
-      }
-
-
-      currentGalleryIndex =
-        index;
-
-
-      const image =
-        document.getElementById(
-          "shoe-image"
-        );
-
-
-      image.classList.add(
-        "gallery-changing"
-      );
-
-
-      image.src =
-        currentGalleryImages[
-          index
-        ];
-
-
-      image.alt =
-        `${currentGalleryTitle} - ${labels[currentLang].image} ${index + 1}`;
-
-
-      window.setTimeout(
-        () => {
-
-          image.classList.remove(
-            "gallery-changing"
-          );
-
-        },
-        120
-      );
-
-
-      updateGalleryActiveState();
-
-    }
-
-
-
-    /* =====================================================
-       ACTIVE THUMBNAIL
-    ====================================================== */
-
-    function updateGalleryActiveState() {
-
-      document
-        .querySelectorAll(
-          ".shoe-gallery-thumb"
-        )
-        .forEach(
-          (
-            button,
-            index
-          ) => {
-
-            const active =
-              index ===
-              currentGalleryIndex;
-
-
-            button.classList.toggle(
-              "active",
-              active
-            );
-
-
-            button.setAttribute(
-              "aria-current",
-              active
-                ? "true"
-                : "false"
-            );
-
-          }
-        );
-
-    }
-
-
-
-    /* =====================================================
-       RENDER GALLERY
-    ====================================================== */
-
-    function renderGallery(
-      sneaker,
-      title
-    ) {
-
-      currentGalleryImages =
-        getSneakerImages(
-          sneaker
-        );
-
-
-      currentGalleryIndex =
-        0;
-
-
-      currentGalleryTitle =
-        title;
-
-
-      const mainImage =
-        document.getElementById(
-          "shoe-image"
-        );
-
-
-      const thumbnails =
-        document.getElementById(
-          "shoe-gallery-thumbnails"
-        );
-
-
-      /*
-        Fallback
-      */
-
-      if (
-        currentGalleryImages.length === 0
-      ) {
-
-        mainImage.src =
-          sneaker.image ||
-          "";
-
-
-        mainImage.alt =
-          title;
-
-
-        thumbnails.innerHTML =
-          "";
-
-
-        thumbnails.hidden =
-          true;
-
-
-        return;
-
-      }
-
-
-      /*
-        Cover image = index 0
-      */
-
-      mainImage.src =
-        currentGalleryImages[
-          0
-        ];
-
-
-      mainImage.alt =
-        `${title} - ${labels[currentLang].image} 1`;
-
-
-      /*
-        Only one image:
-        no thumbnails needed.
-      */
-
-      if (
-        currentGalleryImages.length <= 1
-      ) {
-
-        thumbnails.innerHTML =
-          "";
-
-
-        thumbnails.hidden =
-          true;
-
-
-        return;
-
-      }
-
-
-      /*
-        Two or more images:
-        create thumbnail gallery.
-      */
-
-      thumbnails.innerHTML =
-        "";
-
-
-      thumbnails.hidden =
-        false;
-
-
-      currentGalleryImages
-        .forEach(
-          (
-            src,
-            index
-          ) => {
-
-
-            const button =
-              document.createElement(
-                "button"
-              );
-
-
-            button.type =
-              "button";
-
-
-            button.className =
-              "shoe-gallery-thumb";
-
-
-            button.setAttribute(
-              "aria-label",
-              `${labels[currentLang].image} ${index + 1}`
-            );
-
-
-            button.addEventListener(
-              "click",
-              () => {
-
-                selectGalleryImage(
-                  index
-                );
-
-              }
-            );
-
-
-            const thumb =
-              document.createElement(
-                "img"
-              );
-
-
-            thumb.src =
-              src;
-
-
-            thumb.alt =
-              `${title} - ${labels[currentLang].image} ${index + 1}`;
-
-
-            thumb.loading =
-              "lazy";
-
-
-            thumb.decoding =
-              "async";
-
-
-            button.appendChild(
-              thumb
-            );
-
-
-            thumbnails.appendChild(
-              button
-            );
-
-          }
-        );
-
-
-      updateGalleryActiveState();
-
-    }
-
-
-
-    /* =====================================================
-       NOT FOUND
-    ====================================================== */
-
-    function showNotFound() {
-
-      const message =
-        labels[currentLang]
-          .notFound;
-
-
-      document.title =
-        message;
-
-
-      document
-        .getElementById(
-          "shoe-detail"
-        )
-        .innerHTML = `
-
-          <div class="not-found">
-
-            <p>
-              ${message}
-            </p>
-
-            <a
-              href="./index.html"
-              class="primary-action"
-            >
-              COLLECTION
-            </a>
-
-          </div>
-
-        `;
-
-
-      document
-        .getElementById(
-          "story-section"
-        )
-        .style.display =
-        "none";
-
-    }
-
-
-
-    /* =====================================================
-       LOAD SHOE
-    ====================================================== */
-
-    function loadShoe() {
-
-      updateLanguageInterface();
-
-
-      /*
-        Verify data.js
-      */
-
-      if (
-        typeof sneakers ===
-        "undefined"
-
-        ||
-
-        !Array.isArray(
-          sneakers
-        )
-      ) {
-
-        console.error(
-          "data.js was not loaded correctly."
-        );
-
-
-        showNotFound();
-
-        return;
-
-      }
-
-
-      /*
-        Verify ID
-      */
-
-      if (!shoeId) {
-
-        console.error(
-          "No sneaker ID found in URL."
-        );
-
-
-        showNotFound();
-
-        return;
-
-      }
-
-
-      /*
-        Find sneaker
-      */
-
-      const sneaker =
-        sneakers.find(
-          item =>
-
-            String(
-              item.id
-            )
-
-            ===
-
-            String(
-              shoeId
-            )
-        );
-
-
-      if (!sneaker) {
-
-        console.error(
-          "Sneaker ID not found:",
-          shoeId
-        );
-
-
-        showNotFound();
-
-        return;
-
-      }
-
-
-      /*
-        Story section
-      */
-
-      document
-        .getElementById(
-          "story-section"
-        )
-        .style.display =
-        "block";
-
-
-      const title =
-        localized(
-          sneaker.title
-        );
-
-
-      const subtitle =
-        localized(
-          sneaker.subtitle
-        );
-
-
-      const condition =
-        localized(
-          sneaker.condition
-        )
-        ||
-        "N/A";
-
-
-      /*
-        Browser title
-      */
-
-      document.title =
-        `${title} | Lộc An Sneaker Collection`;
-
-
-      /*
-        Main information
-      */
-
-      document
-        .getElementById(
-          "shoe-title"
-        )
-        .textContent =
-        title;
-
-
-      document
-        .getElementById(
-          "shoe-subtitle"
-        )
-        .textContent =
-        subtitle;
-
-
-      document
-        .getElementById(
-          "shoe-sku"
-        )
-        .textContent =
-        sneaker.sku
-        ||
-        "N/A";
-
-
-      document
-        .getElementById(
-          "shoe-colorway"
-        )
-        .textContent =
-        sneaker.colorway
-        ||
-        "N/A";
-
-
-      document
-        .getElementById(
-          "shoe-retail"
-        )
-        .textContent =
-        sneaker.retailPrice
-        ||
-        "N/A";
-
-
-      document
-        .getElementById(
-          "shoe-date"
-        )
-        .textContent =
-        formatDate(
-          sneaker.releaseDate
-        );
-
-
-      document
-        .getElementById(
-          "shoe-condition"
-        )
-        .textContent =
-        condition;
-
-
-      updateConditionColor(
-        condition
-      );
-
-
-      document
-        .getElementById(
-          "shoe-size"
-        )
-        .textContent =
-        sneaker.size
-        ||
-        "N/A";
-
-
-      /*
-        IMAGE GALLERY
-      */
-
-      renderGallery(
-        sneaker,
-        title
-      );
-
-
-      /*
-        STORY
-      */
-
-      document
-        .getElementById(
-          "shoe-story"
-        )
-        .innerHTML =
-        localized(
-          sneaker.story
-        );
-
-    }
-
-
-
-    /* =====================================================
-       INIT
-    ====================================================== */
-
-    document.addEventListener(
-      "DOMContentLoaded",
-      loadShoe
-    );
-
-  </script>
+    src="./data.js?v=20260913-15pairs-v1"
+  ></script>
+
+  <!-- ONLY FILE YOU EDIT FOR FUTURE SHOES -->
+  <script
+    src="./catalog-additions.js?v=20260914-catalog-v1"
+  ></script>
+
+  <!-- NORMALIZES BOTH OLD + NEW DATA -->
+  <script
+    src="./catalog-engine.js?v=20260914-catalog-v1"
+  ></script>
+
+  <!-- DETAIL PAGE RENDERER -->
+  <script
+    src="./shoe-page.js?v=20260914-catalog-v1"
+  ></script>
 
 </body>
-
 </html>
