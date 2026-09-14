@@ -97,8 +97,8 @@
         "reverse bred"
       ],
 
-      scaleX: 0.61,
-      scaleY: 0.61,
+      scaleX: 0.55,
+      scaleY: 0.55,
 
       x: 0,
       y: 0
@@ -130,7 +130,7 @@
       ],
 
       scaleX: 1.00,
-      scaleY: 0.76,
+      scaleY: 0.84,
 
       x: 0,
       y: 0
