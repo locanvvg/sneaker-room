@@ -3384,8 +3384,8 @@ const sneakers = [
     id: "new-balance-2002r-custom",
 
     title: {
-      vi: "New Balance 2002R (Custom)",
-      en: "New Balance 2002R (Custom)"
+      vi: "New Balance 2002R",
+      en: "New Balance 2002R"
     },
 
     subtitle: {
