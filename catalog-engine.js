@@ -1,5 +1,5 @@
 /* =========================================================
-   LỘC AN — CATALOG ENGINE v1
+   LỘC AN — CATALOG ENGINE v2 — CANONICAL US SIZE
 
    Purpose:
    - Existing data.js remains compatible.
@@ -261,47 +261,161 @@
     return [...categories];
   }
 
-  function getSizeTokens(item) {
+  /* =========================================================
+     CANONICAL US SIZE
+
+     FILTER / SORT CONVENTION
+     ------------------------
+     The filter bar uses only ONE generic US size number.
+
+     Examples:
+       "8M/9.5W"      -> 8 US
+       "9.5W/8M"      -> 8 US
+       "12W/10.5M"    -> 10.5 US
+       "10.5 US"      -> 10.5 US
+
+     The original sneaker.size string is NOT changed.
+     Detail/card information can still show:
+       "9.5W/8M"
+
+     If only a women's size is available:
+       W -> canonical US = W - 1.5
+
+     This is the collection's internal filtering convention.
+  ========================================================= */
+
+  function roundUSSize(value) {
+    if (!Number.isFinite(value)) {
+      return null;
+    }
+
+    return Math.round(value * 2) / 2;
+  }
+
+
+  function canonicalUSSizeFromLabel(size) {
     const raw =
-      String(item?.size ?? "")
+      String(size ?? "")
         .toUpperCase()
+        .replace(/[–—]/g, "-")
         .trim();
 
-    if (!raw) return [];
-
-    const tokens = [];
+    if (!raw) {
+      return null;
+    }
 
     /*
-      Examples:
-      12W/10.5M  -> 12W, 10.5M
-      9.5W / 8M  -> 9.5W, 8M
-      10.5 US    -> 10.5
-      12 US      -> 12
+      1) Prefer men's size whenever M is explicitly present.
+         This directly implements:
+         8M/9.5W -> 8 US.
     */
-    const gendered =
-      raw.match(/\d+(?:\.\d+)?\s*[WM]/g);
+    const men =
+      raw.match(
+        /(\d+(?:\.\d+)?)\s*M\b/
+      );
 
-    if (gendered?.length) {
-      gendered.forEach(token => {
-        tokens.push(
-          token.replace(/\s+/g, "")
-        );
-      });
+    if (men) {
+      const value =
+        Number(men[1]);
 
-      return [
-        ...new Set(tokens)
-      ];
+      return Number.isFinite(value)
+        ? roundUSSize(value)
+        : null;
     }
 
-    const regular =
-      raw.match(/\d+(?:\.\d+)?/);
 
-    if (regular) {
-      tokens.push(regular[0]);
+    /*
+      2) Plain generic US size.
+    */
+    const genericUS =
+      raw.match(
+        /(\d+(?:\.\d+)?)\s*US\b/
+      );
+
+    if (genericUS) {
+      const value =
+        Number(genericUS[1]);
+
+      return Number.isFinite(value)
+        ? roundUSSize(value)
+        : null;
     }
 
-    return tokens;
+
+    /*
+      3) Women's-only label.
+         Convert to the collection's generic US convention.
+    */
+    const women =
+      raw.match(
+        /(\d+(?:\.\d+)?)\s*W\b/
+      );
+
+    if (women) {
+      const value =
+        Number(women[1]);
+
+      if (!Number.isFinite(value)) {
+        return null;
+      }
+
+      return roundUSSize(
+        value - 1.5
+      );
+    }
+
+
+    /*
+      4) Legacy/fallback:
+         a simple number is already treated as US.
+    */
+    const fallback =
+      raw.match(
+        /(\d+(?:\.\d+)?)/
+      );
+
+    if (!fallback) {
+      return null;
+    }
+
+    const value =
+      Number(fallback[1]);
+
+    return Number.isFinite(value)
+      ? roundUSSize(value)
+      : null;
   }
+
+
+  function sizeToken(value) {
+    if (!Number.isFinite(value)) {
+      return "";
+    }
+
+    return String(value);
+  }
+
+
+  function getCanonicalUSSize(item) {
+    return canonicalUSSizeFromLabel(
+      item?.size
+    );
+  }
+
+
+  function getSizeTokens(item) {
+    const value =
+      getCanonicalUSSize(item);
+
+    if (value === null) {
+      return [];
+    }
+
+    return [
+      sizeToken(value)
+    ];
+  }
+
 
   function getCondition(item) {
     const value =
@@ -436,6 +550,13 @@
       inferCategories(item);
 
     /*
+      Canonical filter/sort size.
+      IMPORTANT: item.size itself remains untouched.
+    */
+    item.catalogSizeUS =
+      getCanonicalUSSize(item);
+
+    /*
       New schema defaults to automatic visual normalization.
       Existing legacy entries remain unchanged unless explicitly
       marked autoFit:true or covered by a migration preset.
@@ -537,6 +658,8 @@
     getAllCategories,
     getCondition,
     getSizeTokens,
+    getCanonicalUSSize,
+    canonicalUSSizeFromLabel,
     text
   };
 

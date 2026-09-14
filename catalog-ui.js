@@ -1,5 +1,5 @@
 /* =========================================================
-   LỘC AN — AUTO FILTER UI v1
+   LỘC AN — AUTO FILTER UI v2 — US SIZE ONLY
 
    - Edition filters generated from sneaker data.
    - Condition filters generated from sneaker data.
@@ -36,6 +36,80 @@
   function conditionCategory(item) {
     return CatalogEngine.getCondition(item);
   }
+
+
+  /* =========================================================
+     SIZE CONVENTION BRIDGE
+
+     main.js already uses getNumericSize() for size sorting.
+     Replace that helper so sorting follows exactly the same
+     canonical US convention as the filter.
+
+     Example:
+       9.5W/8M -> 8
+       12W/10.5M -> 10.5
+  ========================================================= */
+
+  if (
+    typeof getNumericSize ===
+    "function"
+  ) {
+    getNumericSize =
+      function catalogNumericUSSize(size) {
+        return CatalogEngine
+          .canonicalUSSizeFromLabel(size);
+      };
+  }
+
+
+  if (
+    typeof normalizeSizeValue ===
+    "function"
+  ) {
+    normalizeSizeValue =
+      function catalogNormalizeUSSize(size) {
+        const value =
+          CatalogEngine
+            .canonicalUSSizeFromLabel(size);
+
+        return value === null
+          ? ""
+          : String(value);
+      };
+  }
+
+
+  if (
+    typeof getAvailableSizes ===
+    "function"
+  ) {
+    getAvailableSizes =
+      function catalogAvailableUSSizes() {
+        if (
+          typeof sneakers === "undefined" ||
+          !Array.isArray(sneakers)
+        ) {
+          return [];
+        }
+
+        return [
+          ...new Set(
+            sneakers
+              .map(item =>
+                CatalogEngine
+                  .getCanonicalUSSize(item)
+              )
+              .filter(value =>
+                value !== null
+              )
+          )
+        ].sort(
+          (a, b) =>
+            a - b
+        );
+      };
+  }
+
 
   /*
     Replace the original hard-coded helpers in main.js.
@@ -125,34 +199,16 @@
   }
 
   function sortSizeToken(value) {
-    const text =
-      String(value);
-
     const number =
-      Number.parseFloat(text);
-
-    const suffix =
-      text.replace(
-        /^[\d.]+/,
-        ""
+      Number.parseFloat(
+        String(value)
       );
 
-    const suffixRank =
-      suffix === "M"
-        ? 0
-        : suffix === "W"
-          ? 1
-          : 2;
-
-    return {
-      number:
-        Number.isFinite(number)
-          ? number
-          : 999,
-      suffixRank,
-      text
-    };
+    return Number.isFinite(number)
+      ? number
+      : 999;
   }
+
 
   function allSizeTokens() {
     if (
@@ -174,26 +230,19 @@
     });
 
     return [...set]
-      .sort((a, b) => {
-        const A =
-          sortSizeToken(a);
-
-        const B =
-          sortSizeToken(b);
-
-        return (
-          A.number - B.number ||
-          A.suffixRank - B.suffixRank ||
-          A.text.localeCompare(B.text)
-        );
-      });
+      .sort(
+        (a, b) =>
+          sortSizeToken(a) -
+          sortSizeToken(b)
+      );
   }
 
-  function sizeLabel(value) {
-    if (/[WM]$/i.test(value)) {
-      return value.toUpperCase();
-    }
 
+  function sizeLabel(value) {
+    /*
+      Filter bar NEVER shows M or W.
+      Original W/M notation remains in sneaker information.
+    */
     return `${value} US`;
   }
 
@@ -369,6 +418,6 @@
   }
 
   console.info(
-    "Lộc An auto filter UI v1 loaded"
+    "Lộc An auto filter UI v2 loaded — canonical US sizes only"
   );
 })();

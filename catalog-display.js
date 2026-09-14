@@ -1,5 +1,5 @@
 /* =========================================================
-   LỘC AN — CATALOG DISPLAY ENGINE v3
+   LỘC AN — CATALOG DISPLAY ENGINE v4 — MOBILE 3D
 
    PURPOSE
    -------
@@ -46,7 +46,17 @@
       height: 0.66
     },
 
-    minScale: 0.48,
+    /*
+      Phone 3D cards are narrower/taller than desktop cards.
+      New schemaVersion:2 shoes therefore use a smaller
+      visual target automatically on mobile.
+    */
+    view3dMobile: {
+      width: 0.66,
+      height: 0.54
+    },
+
+    minScale: 0.40,
     maxScale: 1.45,
 
     alphaThreshold: 18,
@@ -98,6 +108,13 @@
         scaleY: 0.68,
         x: 0,
         y: 0
+      },
+
+      view3dMobile: {
+        scaleX: 0.53,
+        scaleY: 0.53,
+        x: 0,
+        y: 0
       }
     },
 
@@ -119,6 +136,13 @@
       view3d: {
         scaleX: 0.70,
         scaleY: 0.70,
+        x: 0,
+        y: 0
+      },
+
+      view3dMobile: {
+        scaleX: 0.55,
+        scaleY: 0.55,
         x: 0,
         y: 0
       }
@@ -144,6 +168,13 @@
         scaleY: 1.02,
         x: 0,
         y: 0
+      },
+
+      view3dMobile: {
+        scaleX: 0.78,
+        scaleY: 0.78,
+        x: 0,
+        y: 0
       }
     },
 
@@ -167,6 +198,13 @@
         scaleY: 0.78,
         x: 0,
         y: 0
+      },
+
+      view3dMobile: {
+        scaleX: 0.60,
+        scaleY: 0.60,
+        x: 0,
+        y: 0
       }
     },
 
@@ -188,6 +226,13 @@
       view3d: {
         scaleX: 0.78,
         scaleY: 0.78,
+        x: 0,
+        y: 0
+      },
+
+      view3dMobile: {
+        scaleX: 0.60,
+        scaleY: 0.60,
         x: 0,
         y: 0
       }
@@ -237,6 +282,32 @@
       view3d: {
         scaleX: 1.00,
         scaleY: 0.84,
+        x: 0,
+        y: 0
+      },
+
+      view3dMobile: {
+        scaleX: 0.76,
+        scaleY: 0.64,
+        x: 0,
+        y: 0
+      }
+    },
+
+
+    /*
+      Puma Speedcat — desktop is already visually correct.
+      Only reduce it in phone 3D mode.
+    */
+    {
+      all: [
+        "puma",
+        "speedcat"
+      ],
+
+      view3dMobile: {
+        scaleX: 0.74,
+        scaleY: 0.74,
         x: 0,
         y: 0
       }
@@ -432,13 +503,31 @@
      MODE
   ========================================================= */
 
+  function isMobile3DViewport() {
+
+    return window.matchMedia(
+      "(max-width: 650px)"
+    ).matches;
+
+  }
+
+
   function imageMode(img) {
 
-    return img.closest(
-      ".sneaker-3d-image"
-    )
-      ? "view3d"
-      : "grid";
+    if (
+      img.closest(
+        ".sneaker-3d-image"
+      )
+    ) {
+
+      return isMobile3DViewport()
+        ? "view3dMobile"
+        : "view3d";
+
+    }
+
+
+    return "grid";
 
   }
 
@@ -554,8 +643,19 @@
     }
 
 
+    const fallbackMode =
+      mode === "view3dMobile"
+        ? "view3d"
+        : mode;
+
+
+    const modeValue =
+      display[mode] ??
+      display[fallbackMode];
+
+
     if (
-      display[mode] ===
+      modeValue ===
       "auto"
     ) {
 
@@ -566,7 +666,7 @@
 
     const modeObject =
       normalizeDisplayObject(
-        display[mode]
+        modeValue
       );
 
 
@@ -633,8 +733,19 @@
     }
 
 
+    const fallbackMode =
+      mode === "view3dMobile"
+        ? "view3d"
+        : mode;
+
+
+    const modeValue =
+      preset[mode] ??
+      preset[fallbackMode];
+
+
     if (
-      preset[mode] ===
+      modeValue ===
       "auto"
     ) {
 
@@ -644,7 +755,7 @@
 
 
     return normalizeDisplayObject(
-      preset[mode]
+      modeValue
     );
 
   }
@@ -718,6 +829,8 @@
 
     if (
       mode !== "view3d"
+      &&
+      mode !== "view3dMobile"
     ) {
 
       return 1;
@@ -1982,7 +2095,7 @@
 
 
   console.info(
-    "Lộc An catalog display engine v3 loaded — legacy 3D exceptions + future Auto Fit"
+    "Lộc An catalog display engine v4 loaded — desktop preserved + smaller phone 3D + future Auto Fit"
   );
 
 })();
