@@ -1,5 +1,5 @@
 /* =========================================================
-   LỘC AN — UNIVERSAL CATEGORY VIEW v6 — CLEAN UNIFIED DISPLAY
+   LỘC AN — UNIVERSAL CATEGORY VIEW v7 — FINAL GLASS UNIFIED DISPLAY
    Shared GRID / 3D gallery for:
    - LEGO
    - SNEAKER MASK
@@ -24,20 +24,7 @@
       .replaceAll("'", "&#039;");
   }
 
-  function installStyles() {
-
-    document
-      .getElementById(
-        "locan-category-view-v1"
-      )
-      ?.remove();
-
-  }
-
-
   function create(options) {
-    installStyles();
-
     const {
       key,
       root,
@@ -720,14 +707,14 @@
 
             const opacity =
               absolute >
-              2.65
+              1.55
                 ? 0
                 : clamp(
                     1
                     -
                     absolute *
                     .30,
-                    .10,
+                    .18,
                     1
                   );
 
@@ -781,7 +768,7 @@
 
             card.style.pointerEvents =
               absolute <=
-              2.25
+              1.55
                 ? "auto"
                 : "none";
 

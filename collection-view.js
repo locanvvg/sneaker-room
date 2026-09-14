@@ -1,4 +1,4 @@
-/* LỘC AN SNEAKER COLLECTION — collection-view.js v12 — CLEAN UNIFIED DISPLAY */
+/* LỘC AN SNEAKER COLLECTION — collection-view.js v13 — FINAL GLASS UNIFIED DISPLAY */
 
 (() => {
   "use strict";
@@ -137,49 +137,6 @@
     control.style.setProperty(
       "--density-pct",
       `${pct}%`
-    );
-  }
-
-
-  function syncSharedDensityDisabledState(
-    control,
-    range
-  ) {
-    if (
-      !control
-      ||
-      !range
-    ) {
-      return;
-    }
-
-    const disabled =
-      Boolean(
-        range.disabled
-        ||
-        control.getAttribute(
-          "aria-disabled"
-        ) === "true"
-        ||
-        control.classList.contains(
-          "disabled"
-        )
-        ||
-        control.classList.contains(
-          "is-disabled"
-        )
-      );
-
-    control.classList.toggle(
-      "shared-density-disabled",
-      disabled
-    );
-
-    control.setAttribute(
-      "data-shared-disabled",
-      disabled
-        ? "true"
-        : "false"
     );
   }
 
@@ -1136,7 +1093,7 @@
 
           const opacity =
 
-            absolute > 2.65
+            absolute > 1.55
 
               ? 0
 
@@ -1146,7 +1103,7 @@
                   -
                   absolute * 0.30,
 
-                  0.10,
+                  0.18,
 
                   1
 
@@ -1241,7 +1198,7 @@
 
           card.style.pointerEvents =
 
-            absolute <= 2.25
+            absolute <= 1.55
 
               ? "auto"
 
@@ -2726,29 +2683,10 @@
 
 
   /* =====================================================
-     VISUAL CSS
-     v10+ uses unified-collection-ui.css only.
-  ===================================================== */
-
-  function installStyles() {
-
-    document
-      .getElementById(
-        "collection-view-patch-v7"
-      )
-      ?.remove();
-
-  }
-
-
-  /* =====================================================
      INIT
   ===================================================== */
 
   function init() {
-
-    installStyles();
-
 
     if (
       !arrangeControls()

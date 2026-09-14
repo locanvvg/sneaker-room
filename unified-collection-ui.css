@@ -1,17 +1,54 @@
 /* =========================================================
-   LỘC AN — FINAL UNIFIED COLLECTION UI v10
+   LỘC AN — FINAL SHARED COLLECTION UI v11
 
-   SINGLE VISUAL AUTHORITY FOR:
-   - SNEAKERS
+   ONE visual system for:
+   - Sneakers
    - LEGO
-   - SNEAKER MASK
+   - Sneaker Mask
 
-   Old JS-injected visual CSS is removed in v10.
+   This file is intentionally loaded LAST.
+   It overrides the old generic .card / .card-img-wrapper
+   backgrounds only inside the three collection galleries.
    ========================================================= */
+
+:root {
+  --locan-glass-card:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, .060) 0%,
+      rgba(255, 255, 255, .024) 48%,
+      rgba(255, 255, 255, .012) 100%
+    );
+
+  --locan-glass-card-3d:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, .050) 0%,
+      rgba(255, 255, 255, .018) 52%,
+      rgba(255, 255, 255, .008) 100%
+    );
+
+  --locan-glass-image:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, .040) 0%,
+      rgba(255, 255, 255, .018) 60%,
+      rgba(255, 255, 255, .008) 100%
+    );
+
+  --locan-glass-border:
+    rgba(255, 255, 255, .095);
+
+  --locan-glass-border-hover:
+    rgba(255, 255, 255, .18);
+
+  --locan-gold:
+    #ffcc00;
+}
 
 
 /* =========================================================
-   DISPLAY TOOLBAR — IDENTICAL ON ALL THREE PAGES
+   TOOLBAR — SAME ON ALL THREE PAGES
 ========================================================= */
 
 .unified-display-toolbar {
@@ -211,7 +248,7 @@
 .unified-density-control
 .category-density-button:focus-visible {
   color:
-    #ffcc00 !important;
+    var(--locan-gold) !important;
 
   border-color:
     rgba(255, 204, 0, .34) !important;
@@ -220,8 +257,6 @@
     none !important;
 }
 
-
-/* Exact same range implementation everywhere. */
 
 .unified-density-control
 .category-density-range {
@@ -264,8 +299,8 @@
   background:
     linear-gradient(
       to right,
-      #ffcc00 0,
-      #ffcc00 var(--density-pct),
+      var(--locan-gold) 0,
+      var(--locan-gold) var(--density-pct),
       #55555a var(--density-pct),
       #55555a 100%
     )
@@ -313,7 +348,7 @@
     -7px !important;
 
   background:
-    #ffcc00 !important;
+    var(--locan-gold) !important;
 
   border:
     0 !important;
@@ -358,7 +393,7 @@
     4px !important;
 
   background:
-    #ffcc00 !important;
+    var(--locan-gold) !important;
 
   border:
     0 !important;
@@ -377,7 +412,7 @@
     18px !important;
 
   background:
-    #ffcc00 !important;
+    var(--locan-gold) !important;
 
   border:
     0 !important;
@@ -439,8 +474,6 @@
     none !important;
 }
 
-
-/* 3D mode = Grid controls are clearly disabled. */
 
 .unified-density-control.is-disabled,
 .unified-density-control.shared-density-disabled,
@@ -524,7 +557,7 @@ button.unified-view-toggle {
 button.unified-view-toggle:hover,
 button.unified-view-toggle:focus-visible {
   color:
-    #ffcc00 !important;
+    var(--locan-gold) !important;
 
   border-color:
     rgba(255, 204, 0, .34) !important;
@@ -535,58 +568,104 @@ button.unified-view-toggle:focus-visible {
 
 
 /* =========================================================
-   GRID — TRANSPARENT CARDS / IMAGE STAGES
+   GRID CARDS — SAME LIQUID GLASS ON ALL THREE PAGES
 ========================================================= */
 
-.unified-collection-grid
+/*
+  These selectors intentionally outrank:
+  .card { background:#161618 }
+  .grid .card-img-wrapper { background:#f5f5f5 }
+  .mask-grid .card-img-wrapper { background:#101012 }
+*/
+
+#sneaker-grid.unified-collection-grid
+.card,
+#lego-grid.unified-collection-grid
+.card,
+#mask-grid.unified-collection-grid
 .card {
   overflow:
     hidden !important;
 
   background:
-    transparent !important;
+    var(--locan-glass-card) !important;
 
   border:
     1px solid
-    rgba(255, 255, 255, .10) !important;
+    var(--locan-glass-border) !important;
 
   border-radius:
     14px !important;
 
   box-shadow:
-    none !important;
+    inset
+    0
+    1px
+    0
+    rgba(255, 255, 255, .035),
+    0
+    12px
+    32px
+    rgba(0, 0, 0, .20) !important;
+
+  backdrop-filter:
+    blur(10px)
+    saturate(112%);
+
+  -webkit-backdrop-filter:
+    blur(10px)
+    saturate(112%);
 }
 
 
-.unified-collection-grid
+#sneaker-grid.unified-collection-grid
+.card:hover,
+#lego-grid.unified-collection-grid
+.card:hover,
+#mask-grid.unified-collection-grid
 .card:hover {
   border-color:
-    rgba(255, 204, 0, .20) !important;
+    var(--locan-glass-border-hover) !important;
 
   box-shadow:
+    inset
     0
-    14px
-    30px
-    rgba(0, 0, 0, .20) !important;
+    1px
+    0
+    rgba(255, 255, 255, .055),
+    0
+    16px
+    34px
+    rgba(0, 0, 0, .28) !important;
 }
 
 
-.unified-collection-grid
+#sneaker-grid.unified-collection-grid
 .card-img-wrapper,
-.unified-collection-grid
-.card-info,
-.unified-collection-grid
-.card-img-wrapper img {
+#lego-grid.unified-collection-grid
+.card-img-wrapper,
+#mask-grid.unified-collection-grid
+.card-img-wrapper {
   background:
-    transparent !important;
+    var(--locan-glass-image) !important;
+
+  border:
+    0 !important;
 }
 
 
-.unified-collection-grid
+#sneaker-grid.unified-collection-grid
+.card-info,
+#lego-grid.unified-collection-grid
+.card-info,
+#mask-grid.unified-collection-grid
 .card-info {
+  background:
+    rgba(13, 13, 15, .18) !important;
+
   border-top:
     1px solid
-    rgba(255, 255, 255, .055) !important;
+    rgba(255, 255, 255, .060) !important;
 }
 
 
@@ -603,7 +682,7 @@ button.unified-view-toggle:focus-visible {
 
 
 /* =========================================================
-   3D — EXACT SAME TRANSLUCENT CARD SYSTEM
+   3D — SAME LIQUID GLASS + SAME COMPOSITION
 ========================================================= */
 
 .unified-3d-root,
@@ -669,34 +748,49 @@ button.unified-view-toggle:focus-visible {
   width:
     min(370px, 74vw) !important;
 
+  height:
+    440px !important;
+
   min-height:
     440px !important;
 
   overflow:
     hidden !important;
 
+  box-sizing:
+    border-box !important;
+
   color:
     #ededf0 !important;
 
-  /*
-    Very low-alpha panel:
-    the neighboring card remains visible through it.
-  */
   background:
-    rgba(18, 18, 20, .14) !important;
+    var(--locan-glass-card-3d) !important;
 
   border:
     1px solid
-    rgba(255, 255, 255, .09) !important;
+    var(--locan-glass-border) !important;
 
   border-radius:
     16px !important;
 
   box-shadow:
+    inset
+    0
+    1px
+    0
+    rgba(255, 255, 255, .035),
     0
     22px
     55px
     rgba(0, 0, 0, .22) !important;
+
+  backdrop-filter:
+    blur(3px)
+    saturate(108%);
+
+  -webkit-backdrop-filter:
+    blur(3px)
+    saturate(108%);
 
   cursor:
     pointer !important;
@@ -726,21 +820,21 @@ button.unified-view-toggle:focus-visible {
 
 
 .unified-3d-card.is-center {
-  background:
-    rgba(18, 18, 20, .17) !important;
-
   border-color:
-    rgba(255, 204, 0, .30) !important;
+    rgba(255, 204, 0, .34) !important;
 
   box-shadow:
+    inset
+    0
+    1px
+    0
+    rgba(255, 255, 255, .05),
     0
     28px
     68px
-    rgba(0, 0, 0, .28) !important;
+    rgba(0, 0, 0, .27) !important;
 }
 
-
-/* No white / black image panel. */
 
 .unified-3d-image {
   display:
@@ -756,7 +850,7 @@ button.unified-view-toggle:focus-visible {
     100% !important;
 
   height:
-    310px !important;
+    292px !important;
 
   padding:
     14px !important;
@@ -787,7 +881,8 @@ button.unified-view-toggle:focus-visible {
 }
 
 
-.category-3d-image.unified-3d-image img {
+.category-3d-image.unified-3d-image
+img {
   display:
     block !important;
 
@@ -806,13 +901,19 @@ button.unified-view-toggle:focus-visible {
 
 
 .unified-3d-info {
+  height:
+    148px !important;
+
+  min-height:
+    148px !important;
+
   padding:
-    18px
+    16px
     20px
-    20px !important;
+    18px !important;
 
   background:
-    transparent !important;
+    rgba(13, 13, 15, .09) !important;
 
   border-top:
     1px solid
@@ -820,6 +921,9 @@ button.unified-view-toggle:focus-visible {
 
   pointer-events:
     none !important;
+
+  overflow:
+    hidden !important;
 }
 
 
@@ -827,16 +931,28 @@ button.unified-view-toggle:focus-visible {
   margin:
     0
     0
-    8px !important;
+    7px !important;
 
   color:
     #f3f3f5 !important;
 
   font-size:
-    1rem !important;
+    .96rem !important;
 
   line-height:
-    1.35 !important;
+    1.32 !important;
+
+  display:
+    -webkit-box;
+
+  -webkit-box-orient:
+    vertical;
+
+  -webkit-line-clamp:
+    2;
+
+  overflow:
+    hidden;
 }
 
 
@@ -844,16 +960,25 @@ button.unified-view-toggle:focus-visible {
   margin:
     0
     0
-    14px !important;
+    12px !important;
 
   color:
     #8f8f96 !important;
 
   font-size:
-    .77rem !important;
+    .74rem !important;
 
   line-height:
-    1.55 !important;
+    1.45 !important;
+
+  white-space:
+    nowrap;
+
+  overflow:
+    hidden;
+
+  text-overflow:
+    ellipsis;
 }
 
 
@@ -874,20 +999,20 @@ button.unified-view-toggle:focus-visible {
     #9b9ba1 !important;
 
   font-size:
-    .67rem !important;
+    .66rem !important;
 
   font-weight:
     800 !important;
 
   letter-spacing:
-    .6px !important;
+    .55px !important;
 }
 
 
 .unified-3d-meta
 span:first-child {
   color:
-    #ffcc00 !important;
+    var(--locan-gold) !important;
 }
 
 
@@ -966,7 +1091,7 @@ span:first-child {
 
 .unified-3d-nav:hover {
   color:
-    #ffcc00 !important;
+    var(--locan-gold) !important;
 
   border-color:
     rgba(255, 204, 0, .32) !important;
@@ -1005,7 +1130,7 @@ span:first-child {
 
 .unified-3d-counter {
   color:
-    #ffcc00 !important;
+    var(--locan-gold) !important;
 
   font-size:
     .68rem !important;
@@ -1153,19 +1278,22 @@ screen and
 
   .unified-3d-gallery {
     min-height:
-      535px !important;
+      510px !important;
   }
 
 
   .unified-3d-stage {
     height:
-      480px !important;
+      455px !important;
   }
 
 
   .unified-3d-card {
     width:
       min(78vw, 345px) !important;
+
+    height:
+      410px !important;
 
     min-height:
       410px !important;
@@ -1174,7 +1302,7 @@ screen and
 
   .unified-3d-image {
     height:
-      285px !important;
+      270px !important;
 
     padding:
       12px !important;
@@ -1182,10 +1310,16 @@ screen and
 
 
   .unified-3d-info {
+    height:
+      140px !important;
+
+    min-height:
+      140px !important;
+
     padding:
-      15px
+      14px
       17px
-      18px !important;
+      16px !important;
   }
 
 
