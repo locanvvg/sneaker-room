@@ -104,13 +104,13 @@
       match: "Jordan 1 Low 'Reverse Bred'",
 
       grid: {
-        scale: 0.55,
+        scale: 0.40,
         x: 0,
         y: 0
       },
 
       view3d: {
-        scale: 0.55,
+        scale: 0.40,
         x: 0,
         y: 0
       }
@@ -129,18 +129,34 @@
 
   grid: {
     scaleX: 1,
-    scaleY: 0.85,
+    scaleY: 0.65,
     x: 0,
     y: 0
   },
 
   view3d: {
     scaleX: 1,
-    scaleY: 0.85,
+    scaleY: 0.65,
     x: 0,
     y: 0
   }
 },
+
+     {
+         match: "Vans Knu Skool",
+
+         grid: {
+           scale: 0.85,
+           x: 0,
+           y: 0
+         },
+
+         view3d: {
+           scale: 0.85,
+           x: 0,
+           y: 0
+         }
+       },
 
 
     /* =====================================================
