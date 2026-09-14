@@ -1,22 +1,17 @@
 /* =========================================================
-   LỘC AN — UNIFIED COLLECTION UI v9
+   LỘC AN — FINAL UNIFIED COLLECTION UI v10
 
-   One visual system for:
+   SINGLE VISUAL AUTHORITY FOR:
    - SNEAKERS
    - LEGO
    - SNEAKER MASK
 
-   Covers:
-   - display toolbar
-   - density slider
-   - Grid cards
-   - transparent image stages
-   - 3D cards / arrows / footer
+   Old JS-injected visual CSS is removed in v10.
    ========================================================= */
 
 
 /* =========================================================
-   SHARED DISPLAY TOOLBAR
+   DISPLAY TOOLBAR — IDENTICAL ON ALL THREE PAGES
 ========================================================= */
 
 .unified-display-toolbar {
@@ -35,12 +30,6 @@
     18px
     0
     20px !important;
-}
-
-
-.unified-display-toolbar
-.unified-density-control {
-  min-width: 0;
 }
 
 
@@ -67,6 +56,7 @@
   row-gap: 2px !important;
 
   width: 100% !important;
+  min-width: 0 !important;
   min-height: 48px !important;
 
   padding:
@@ -83,6 +73,9 @@
 
   border-radius:
     10px !important;
+
+  box-sizing:
+    border-box !important;
 
   transition:
     opacity .22s ease,
@@ -129,22 +122,38 @@
 
 .unified-density-control
 .category-density-button {
-  appearance: none !important;
-  -webkit-appearance: none !important;
+  appearance:
+    none !important;
 
-  display: flex !important;
+  -webkit-appearance:
+    none !important;
 
-  align-items: center !important;
-  justify-content: center !important;
+  display:
+    flex !important;
 
-  width: 30px !important;
-  height: 30px !important;
+  align-items:
+    center !important;
 
-  min-width: 30px !important;
-  min-height: 30px !important;
+  justify-content:
+    center !important;
 
-  padding: 0 !important;
-  margin: 0 !important;
+  width:
+    30px !important;
+
+  height:
+    30px !important;
+
+  min-width:
+    30px !important;
+
+  min-height:
+    30px !important;
+
+  padding:
+    0 !important;
+
+  margin:
+    0 !important;
 
   color:
     #77777e !important;
@@ -160,7 +169,7 @@
     50% !important;
 
   cursor:
-    pointer;
+    pointer !important;
 
   font-size:
     .92rem !important;
@@ -212,7 +221,7 @@
 }
 
 
-/* Exact same slider in all 3 sections. */
+/* Exact same range implementation everywhere. */
 
 .unified-density-control
 .category-density-range {
@@ -234,6 +243,9 @@
   height:
     4px !important;
 
+  min-height:
+    4px !important;
+
   padding:
     0 !important;
 
@@ -247,7 +259,7 @@
     999px !important;
 
   outline:
-    none !important;
+    0 !important;
 
   background:
     linear-gradient(
@@ -260,23 +272,26 @@
     !important;
 
   cursor:
-    pointer;
+    pointer !important;
 }
 
 
 .unified-density-control
 .category-density-range::-webkit-slider-runnable-track {
+  width:
+    100% !important;
+
   height:
     4px !important;
+
+  background:
+    transparent !important;
 
   border:
     0 !important;
 
   border-radius:
     999px !important;
-
-  background:
-    transparent !important;
 }
 
 
@@ -320,6 +335,9 @@
 
 .unified-density-control
 .category-density-range::-moz-range-track {
+  width:
+    100% !important;
+
   height:
     4px !important;
 
@@ -341,6 +359,9 @@
 
   background:
     #ffcc00 !important;
+
+  border:
+    0 !important;
 
   border-radius:
     999px !important;
@@ -419,27 +440,24 @@
 }
 
 
-/* Grid control is visibly inactive during 3D mode. */
+/* 3D mode = Grid controls are clearly disabled. */
 
 .unified-density-control.is-disabled,
 .unified-density-control.shared-density-disabled,
 .unified-density-control[aria-disabled="true"],
-.unified-density-control[data-shared-disabled="true"],
-.unified-density-control:has(
-  .category-density-range:disabled
-) {
+.unified-density-control[data-shared-disabled="true"] {
   opacity:
-    .28 !important;
+    .25 !important;
 
   filter:
-    grayscale(.55)
-    saturate(.25) !important;
+    grayscale(.65)
+    saturate(.20) !important;
 
   pointer-events:
     none !important;
 
   border-color:
-    #232326 !important;
+    #222225 !important;
 }
 
 
@@ -488,6 +506,9 @@
 
   white-space:
     nowrap !important;
+
+  box-sizing:
+    border-box !important;
 }
 
 
@@ -514,7 +535,7 @@ button.unified-view-toggle:focus-visible {
 
 
 /* =========================================================
-   GRID — SAME CARD / TRANSPARENT IMAGE STAGE
+   GRID — TRANSPARENT CARDS / IMAGE STAGES
 ========================================================= */
 
 .unified-collection-grid
@@ -523,30 +544,37 @@ button.unified-view-toggle:focus-visible {
     hidden !important;
 
   background:
-    rgba(22, 22, 24, .58) !important;
+    transparent !important;
 
   border:
     1px solid
-    rgba(255, 255, 255, .09) !important;
+    rgba(255, 255, 255, .10) !important;
 
   border-radius:
     14px !important;
 
   box-shadow:
-    0
-    12px
-    30px
-    rgba(0, 0, 0, .18) !important;
+    none !important;
 }
 
 
 .unified-collection-grid
-.card-img-wrapper {
-  background:
-    transparent !important;
+.card:hover {
+  border-color:
+    rgba(255, 204, 0, .20) !important;
+
+  box-shadow:
+    0
+    14px
+    30px
+    rgba(0, 0, 0, .20) !important;
 }
 
 
+.unified-collection-grid
+.card-img-wrapper,
+.unified-collection-grid
+.card-info,
 .unified-collection-grid
 .card-img-wrapper img {
   background:
@@ -554,7 +582,13 @@ button.unified-view-toggle:focus-visible {
 }
 
 
-/* LEGO / Mask should show the entire object without a white frame. */
+.unified-collection-grid
+.card-info {
+  border-top:
+    1px solid
+    rgba(255, 255, 255, .055) !important;
+}
+
 
 #lego-grid.unified-collection-grid
 .card-img-wrapper img,
@@ -568,19 +602,8 @@ button.unified-view-toggle:focus-visible {
 }
 
 
-.unified-collection-grid
-.card-info {
-  background:
-    rgba(18, 18, 20, .34) !important;
-
-  border-top:
-    1px solid
-    rgba(255, 255, 255, .055) !important;
-}
-
-
 /* =========================================================
-   3D — ONE CARD SYSTEM FOR ALL 3 COLLECTIONS
+   3D — EXACT SAME TRANSLUCENT CARD SYSTEM
 ========================================================= */
 
 .unified-3d-root,
@@ -656,11 +679,11 @@ button.unified-view-toggle:focus-visible {
     #ededf0 !important;
 
   /*
-    Deliberately translucent:
-    neighboring cards remain visible through the card.
+    Very low-alpha panel:
+    the neighboring card remains visible through it.
   */
   background:
-    rgba(18, 18, 20, .50) !important;
+    rgba(18, 18, 20, .14) !important;
 
   border:
     1px solid
@@ -673,7 +696,7 @@ button.unified-view-toggle:focus-visible {
     0
     22px
     55px
-    rgba(0, 0, 0, .30) !important;
+    rgba(0, 0, 0, .22) !important;
 
   cursor:
     pointer !important;
@@ -703,6 +726,9 @@ button.unified-view-toggle:focus-visible {
 
 
 .unified-3d-card.is-center {
+  background:
+    rgba(18, 18, 20, .17) !important;
+
   border-color:
     rgba(255, 204, 0, .30) !important;
 
@@ -710,14 +736,11 @@ button.unified-view-toggle:focus-visible {
     0
     28px
     68px
-    rgba(0, 0, 0, .38) !important;
+    rgba(0, 0, 0, .28) !important;
 }
 
 
-/*
-  Most important transparency change:
-  there is NO black/white image panel behind the object.
-*/
+/* No white / black image panel. */
 
 .unified-3d-image {
   display:
@@ -764,9 +787,6 @@ button.unified-view-toggle:focus-visible {
 }
 
 
-/* Category images need generic contain behavior.
-   Sneaker per-pair scale/tuning remains untouched. */
-
 .category-3d-image.unified-3d-image img {
   display:
     block !important;
@@ -792,7 +812,7 @@ button.unified-view-toggle:focus-visible {
     20px !important;
 
   background:
-    rgba(18, 18, 20, .24) !important;
+    transparent !important;
 
   border-top:
     1px solid
@@ -903,7 +923,7 @@ span:first-child {
     #aaaab0 !important;
 
   background:
-    rgba(15, 15, 17, .72) !important;
+    rgba(15, 15, 17, .62) !important;
 
   border:
     1px solid
@@ -1048,18 +1068,6 @@ span:first-child {
 }
 
 
-.unified-3d-open:hover {
-  color:
-    #ffcc00 !important;
-
-  border-color:
-    rgba(255, 204, 0, .32) !important;
-
-  background:
-    rgba(255, 204, 0, .045) !important;
-}
-
-
 /* =========================================================
    TABLET
 ========================================================= */
@@ -1111,9 +1119,6 @@ screen and
   .unified-count {
     order:
       1;
-
-    align-self:
-      stretch !important;
 
     width:
       100% !important;

@@ -1,4 +1,4 @@
-/* LỘC AN SNEAKER COLLECTION — collection-view.js v11 — UNIFIED THREE-COLLECTION DISPLAY */
+/* LỘC AN SNEAKER COLLECTION — collection-view.js v12 — CLEAN UNIFIED DISPLAY */
 
 (() => {
   "use strict";
@@ -187,217 +187,440 @@
   function normalizeDensityControl(
     control
   ) {
+
     if (
       !control
       ||
-      control.dataset.sharedDensityReady === "true"
+      control.dataset.finalDensityReady === "true"
     ) {
+
       return;
+
     }
 
-    const range =
+
+    const oldRange =
       control.querySelector(
         'input[type="range"]'
       );
 
-    const buttons =
+
+    const oldButtons =
       Array.from(
         control.querySelectorAll(
           "button"
         )
       );
 
-    if (
-      !range
-      ||
-      buttons.length < 2
-    ) {
-      return;
-    }
+
+    const oldValue =
+      Number(
+        oldRange?.value
+      );
+
+
+    const savedValue =
+      Number(
+        localStorage.getItem(
+          "locan_sneaker_density_v12"
+        )
+      );
+
+
+    const initial =
+      clamp(
+
+        Number.isFinite(
+          savedValue
+        )
+        &&
+        savedValue >= 1
+        &&
+        savedValue <= 5
+
+          ? savedValue
+
+          : (
+              Number.isFinite(
+                oldValue
+              )
+              &&
+              oldValue >= 1
+              &&
+              oldValue <= 5
+
+                ? oldValue
+
+                : 3
+            ),
+
+        1,
+
+        5
+
+      );
+
 
     const minus =
-      buttons[0];
-
-    const plus =
-      buttons[
-        buttons.length - 1
-      ];
-
-    const keep =
-      new Set([
-        range,
-        minus,
-        plus
-      ]);
-
-    const hidden =
       document.createElement(
-        "div"
+        "button"
       );
 
-    hidden.className =
-      "shared-density-original-hidden";
 
-    Array.from(
-      control.children
-    )
-      .forEach(
-        child => {
-          if (
-            !keep.has(
-              child
-            )
-          ) {
-            hidden.appendChild(
-              child
-            );
-          }
-        }
-      );
+    minus.type =
+      "button";
 
-    range.classList.add(
-      "category-density-range"
-    );
 
-    minus.classList.add(
-      "category-density-button",
-      "shared-density-minus"
-    );
+    minus.className =
+      "category-density-button shared-density-minus";
 
-    plus.classList.add(
-      "category-density-button",
-      "shared-density-plus"
-    );
 
     minus.textContent =
       "−";
 
+
+    minus.setAttribute(
+      "aria-label",
+      sharedDensityLanguage() === "en"
+        ? "Fewer grid columns"
+        : "Giảm số cột"
+    );
+
+
+    if (
+      oldButtons[0]?.id
+    ) {
+
+      minus.id =
+        oldButtons[0].id;
+
+    }
+
+
+    const range =
+      document.createElement(
+        "input"
+      );
+
+
+    range.type =
+      "range";
+
+
+    range.className =
+      "category-density-range";
+
+
+    range.min =
+      "1";
+
+
+    range.max =
+      "5";
+
+
+    range.step =
+      "1";
+
+
+    range.value =
+      String(
+        initial
+      );
+
+
+    range.setAttribute(
+      "aria-label",
+      sharedDensityLanguage() === "en"
+        ? "Grid columns"
+        : "Số cột lưới"
+    );
+
+
+    if (
+      oldRange?.id
+    ) {
+
+      range.id =
+        oldRange.id;
+
+    }
+
+
+    const plus =
+      document.createElement(
+        "button"
+      );
+
+
+    plus.type =
+      "button";
+
+
+    plus.className =
+      "category-density-button shared-density-plus";
+
+
     plus.textContent =
       "+";
+
+
+    plus.setAttribute(
+      "aria-label",
+      sharedDensityLanguage() === "en"
+        ? "More grid columns"
+        : "Tăng số cột"
+    );
+
+
+    if (
+      oldButtons[
+        oldButtons.length - 1
+      ]?.id
+    ) {
+
+      plus.id =
+        oldButtons[
+          oldButtons.length - 1
+        ].id;
+
+    }
+
 
     const ticks =
       document.createElement(
         "div"
       );
 
+
     ticks.className =
       "category-density-ticks";
+
 
     ticks.setAttribute(
       "aria-hidden",
       "true"
     );
 
+
     ticks.innerHTML =
-      "<span>1</span>" +
-      "<span>2</span>" +
-      "<span>3</span>" +
-      "<span>4</span>" +
+      "<span>1</span>"
+      +
+      "<span>2</span>"
+      +
+      "<span>3</span>"
+      +
+      "<span>4</span>"
+      +
       "<span>5</span>";
 
+
     control.classList.add(
-      "shared-density-control"
+      "unified-density-control"
     );
 
-    control.dataset.sharedDensityReady =
+
+    control.dataset.finalDensityReady =
       "true";
+
 
     control.replaceChildren(
       minus,
       range,
       plus,
-      ticks,
-      hidden
+      ticks
     );
 
-    updateSharedDensityLabel(
-      control,
-      range
-    );
 
-    syncSharedDensityDisabledState(
-      control,
-      range
-    );
+    const apply =
+      nextValue => {
 
-    range.addEventListener(
-      "input",
-      () => {
+        const columns =
+          clamp(
+            Number(
+              nextValue
+            ),
+            1,
+            5
+          );
+
+
+        range.value =
+          String(
+            columns
+          );
+
+
+        localStorage.setItem(
+          "locan_sneaker_density_v12",
+          String(
+            columns
+          )
+        );
+
+
+        const grid =
+          document.getElementById(
+            "sneaker-grid"
+          );
+
+
+        grid?.style.setProperty(
+          "grid-template-columns",
+          `repeat(${columns}, minmax(0, 1fr))`,
+          "important"
+        );
+
+
         updateSharedDensityLabel(
           control,
           range
         );
+
+      };
+
+
+    const setDisabled =
+      disabled => {
+
+        control.classList.toggle(
+          "is-disabled",
+          disabled
+        );
+
+
+        control.setAttribute(
+          "aria-disabled",
+          disabled
+            ? "true"
+            : "false"
+        );
+
+
+        [
+          range,
+          minus,
+          plus
+        ]
+          .forEach(
+            element => {
+
+              element.disabled =
+                disabled;
+
+            }
+          );
+
+      };
+
+
+    const syncMode =
+      () => {
+
+        const grid =
+          document.getElementById(
+            "sneaker-grid"
+          );
+
+
+        const is3D =
+          Boolean(
+            grid?.querySelector(
+              ".sneaker-3d-gallery"
+            )
+          );
+
+
+        setDisabled(
+          is3D
+        );
+
+      };
+
+
+    range.addEventListener(
+      "input",
+      event => {
+
+        apply(
+          event.target.value
+        );
+
       }
     );
 
-    const observer =
-      new MutationObserver(
-        () => {
-          updateSharedDensityLabel(
-            control,
-            range
-          );
 
-          syncSharedDensityDisabledState(
-            control,
-            range
-          );
+    minus.addEventListener(
+      "click",
+      () => {
+
+        apply(
+          Number(
+            range.value
+          )
+          - 1
+        );
+
+      }
+    );
+
+
+    plus.addEventListener(
+      "click",
+      () => {
+
+        apply(
+          Number(
+            range.value
+          )
+          + 1
+        );
+
+      }
+    );
+
+
+    const grid =
+      document.getElementById(
+        "sneaker-grid"
+      );
+
+
+    if (
+      grid
+    ) {
+
+      const observer =
+        new MutationObserver(
+          () => {
+
+            syncMode();
+
+          }
+        );
+
+
+      observer.observe(
+        grid,
+        {
+          childList:
+            true,
+
+          subtree:
+            false
         }
       );
 
-    observer.observe(
-      range,
-      {
-        attributes:
-          true,
+    }
 
-        attributeFilter: [
-          "disabled",
-          "value"
-        ]
-      }
+
+    apply(
+      initial
     );
 
-    observer.observe(
-      control,
-      {
-        attributes:
-          true,
 
-        attributeFilter: [
-          "class",
-          "aria-disabled"
-        ]
-      }
-    );
+    syncMode();
 
-    const toggle =
-      document.getElementById(
-        "collection-3d-toggle"
-      );
-
-    toggle?.addEventListener(
-      "click",
-      () => {
-        requestAnimationFrame(
-          () => {
-            requestAnimationFrame(
-              () => {
-                syncSharedDensityDisabledState(
-                  control,
-                  range
-                );
-
-                updateSharedDensityLabel(
-                  control,
-                  range
-                );
-              }
-            );
-          }
-        );
-      }
-    );
   }
 
 
@@ -2503,755 +2726,17 @@
 
 
   /* =====================================================
-     CSS PATCH
+     VISUAL CSS
+     v10+ uses unified-collection-ui.css only.
   ===================================================== */
 
   function installStyles() {
 
     document
-
       .getElementById(
         "collection-view-patch-v7"
       )
-
       ?.remove();
-
-
-    const style =
-      document.createElement(
-        "style"
-      );
-
-
-    style.id =
-      "collection-view-patch-v7";
-
-
-    style.textContent = `
-
-      /* DESKTOP:
-         [ GRID SLIDER ] [ GRID/3D VIEW ] [ TOTAL ] */
-
-      .collection-display-row {
-
-        grid-template-columns:
-
-          minmax(
-            420px,
-            1fr
-          )
-
-          142px
-
-          max-content
-
-          !important;
-
-        gap:
-          18px !important;
-
-      }
-
-
-      .collection-display-spacer {
-
-        display:
-          none !important;
-
-      }
-
-
-      .collection-display-row
-      >
-      #grid-density-control {
-
-        justify-self:
-          stretch !important;
-
-        width:
-          100% !important;
-
-      }
-
-
-      .collection-display-row
-      >
-      #collection-3d-toggle {
-
-        justify-self:
-          center !important;
-
-        width:
-          142px !important;
-
-        min-height:
-          48px !important;
-
-        margin:
-          0 !important;
-
-      }
-
-
-      .collection-display-row
-      >
-      #collection-count {
-
-        justify-self:
-          end !important;
-
-        margin:
-          0 !important;
-
-        white-space:
-          nowrap;
-
-      }
-
-
-
-      /* =====================================================
-         UNIFIED GRID DENSITY BAR
-
-         Sneakers now uses the same visual structure as
-         LEGO and Sneaker Mask.
-      ===================================================== */
-
-      #grid-density-control.shared-density-control {
-
-        position:
-          relative !important;
-
-        display:
-          grid !important;
-
-        grid-template-columns:
-
-          34px
-
-          minmax(
-            160px,
-            1fr
-          )
-
-          34px
-
-          !important;
-
-        grid-template-rows:
-
-          auto
-          36px
-          13px
-
-          !important;
-
-        align-items:
-          center !important;
-
-        column-gap:
-          11px !important;
-
-        row-gap:
-          2px !important;
-
-        min-height:
-          48px !important;
-
-        padding:
-          7px 13px 8px !important;
-
-        background:
-          #171719 !important;
-
-        border:
-          1px solid
-          #2a2a2d !important;
-
-        border-radius:
-          10px !important;
-
-        transition:
-
-          opacity
-          .22s ease,
-
-          filter
-          .22s ease,
-
-          border-color
-          .22s ease
-
-          !important;
-
-      }
-
-
-      #grid-density-control.shared-density-control::before {
-
-        content:
-          attr(
-            data-density-label
-          );
-
-        grid-column:
-          1 / -1;
-
-        grid-row:
-          1;
-
-        justify-self:
-          center;
-
-        color:
-          #77777e;
-
-        font-size:
-          .58rem;
-
-        font-weight:
-          900;
-
-        letter-spacing:
-          .85px;
-
-        line-height:
-          1;
-
-        text-transform:
-          uppercase;
-
-        white-space:
-          nowrap;
-
-      }
-
-
-      #grid-density-control.shared-density-control
-      .category-density-button {
-
-        appearance:
-          none;
-
-        display:
-          flex;
-
-        align-items:
-          center;
-
-        justify-content:
-          center;
-
-        width:
-          30px !important;
-
-        height:
-          30px !important;
-
-        min-width:
-          30px !important;
-
-        min-height:
-          30px !important;
-
-        padding:
-          0 !important;
-
-        margin:
-          0 !important;
-
-        color:
-          #77777e !important;
-
-        background:
-          #1b1b1e !important;
-
-        border:
-          1px solid
-          #303034 !important;
-
-        border-radius:
-          50% !important;
-
-        cursor:
-          pointer;
-
-        font-size:
-          .92rem !important;
-
-        font-weight:
-          900 !important;
-
-        line-height:
-          1 !important;
-
-      }
-
-
-      #grid-density-control.shared-density-control
-      .shared-density-minus {
-
-        grid-column:
-          1;
-
-        grid-row:
-          2;
-
-      }
-
-
-      #grid-density-control.shared-density-control
-      .shared-density-plus {
-
-        grid-column:
-          3;
-
-        grid-row:
-          2;
-
-      }
-
-
-      #grid-density-control.shared-density-control
-      .category-density-range {
-
-        grid-column:
-          2;
-
-        grid-row:
-          2;
-
-        width:
-          100% !important;
-
-        height:
-          18px !important;
-
-        margin:
-          0 !important;
-
-        accent-color:
-          #ffcc00;
-
-        cursor:
-          pointer;
-
-      }
-
-
-      #grid-density-control.shared-density-control
-      .category-density-ticks {
-
-        grid-column:
-          2;
-
-        grid-row:
-          3;
-
-        display:
-          flex;
-
-        align-items:
-          center;
-
-        justify-content:
-          space-between;
-
-        width:
-          100%;
-
-        padding:
-          0 1px;
-
-        color:
-          #4f4f55;
-
-        font-size:
-          .48rem;
-
-        font-weight:
-          800;
-
-        line-height:
-          1;
-
-        pointer-events:
-          none;
-
-      }
-
-
-      #grid-density-control.shared-density-control
-      .shared-density-original-hidden {
-
-        display:
-          none !important;
-
-      }
-
-
-      #grid-density-control.shared-density-control.shared-density-disabled,
-      #grid-density-control.shared-density-control[data-shared-disabled="true"],
-      #grid-density-control.shared-density-control:has(
-        input[type="range"]:disabled
-      ) {
-
-        opacity:
-          .30 !important;
-
-        filter:
-
-          grayscale(.45)
-          saturate(.35)
-
-          !important;
-
-        pointer-events:
-          none !important;
-
-        border-color:
-          #232326 !important;
-
-      }
-
-
-      /* SMOOTH 3D */
-
-      .sneaker-3d-card {
-
-        will-change:
-
-          transform,
-          opacity,
-          filter;
-
-        transform-style:
-          preserve-3d;
-
-        transition:
-
-          transform
-          .46s
-          cubic-bezier(
-            .22,
-            .78,
-            .22,
-            1
-          ),
-
-          opacity
-          .34s ease,
-
-          filter
-          .34s ease,
-
-          border-color
-          .24s ease,
-
-          box-shadow
-          .24s ease
-
-          !important;
-
-      }
-
-
-      .sneaker-3d-gallery.is-dragging
-      .sneaker-3d-card {
-
-        transition:
-          none !important;
-
-      }
-
-
-      .sneaker-3d-card.is-center {
-
-        border-color:
-          rgba(
-            255,
-            204,
-            0,
-            .24
-          )
-          !important;
-
-      }
-
-
-      .sneaker-3d-nav {
-
-        z-index:
-          1000 !important;
-
-        pointer-events:
-          auto !important;
-
-        touch-action:
-          manipulation;
-
-      }
-
-
-      .sneaker-3d-image,
-
-      .sneaker-3d-image img,
-
-      .sneaker-3d-info {
-
-        pointer-events:
-          none;
-
-      }
-
-
-      /* COUNTER + XEM THÊM ONLY */
-
-      .sneaker-3d-footer {
-
-        z-index:
-          1200 !important;
-
-        gap:
-          9px !important;
-
-        pointer-events:
-          none !important;
-
-      }
-
-
-      .sneaker-3d-open {
-
-        pointer-events:
-          auto;
-
-        display:
-          inline-flex;
-
-        align-items:
-          center;
-
-        justify-content:
-          center;
-
-        min-height:
-          34px;
-
-        padding:
-          7px 12px;
-
-        color:
-          #8e929a;
-
-        background:
-          rgba(
-            255,
-            255,
-            255,
-            .025
-          );
-
-        border:
-          1px solid
-          rgba(
-            255,
-            255,
-            255,
-            .085
-          );
-
-        border-radius:
-          999px;
-
-        cursor:
-          pointer;
-
-        font:
-          inherit;
-
-        font-size:
-          .58rem;
-
-        font-weight:
-          900;
-
-        letter-spacing:
-          .9px;
-
-      }
-
-
-      .sneaker-3d-open:hover {
-
-        color:
-          #ffcc00;
-
-        border-color:
-          rgba(
-            255,
-            204,
-            0,
-            .32
-          );
-
-        background:
-          rgba(
-            255,
-            204,
-            0,
-            .045
-          );
-
-      }
-
-
-      /* TABLET */
-
-      @media
-      (
-        max-width:
-        950px
-      ) {
-
-        .collection-display-row {
-
-          grid-template-columns:
-
-            minmax(
-              300px,
-              1fr
-            )
-
-            132px
-
-            max-content
-
-            !important;
-
-          gap:
-            12px !important;
-
-        }
-
-
-        .collection-display-row
-        >
-        #collection-3d-toggle {
-
-          width:
-            132px !important;
-
-        }
-
-      }
-
-
-      /* MOBILE:
-         TOTAL
-         GRID / 3D VIEW
-         GRID SLIDER */
-
-      @media
-      (
-        max-width:
-        650px
-      ) {
-
-        .collection-display-row {
-
-          display:
-            flex !important;
-
-          flex-direction:
-            column !important;
-
-          gap:
-            10px !important;
-
-        }
-
-
-        .collection-display-row
-        >
-        #collection-count {
-
-          order:
-            1;
-
-          align-self:
-            stretch;
-
-          text-align:
-            center;
-
-        }
-
-
-        .collection-display-row
-        >
-        #collection-3d-toggle {
-
-          order:
-            2;
-
-          width:
-
-            min(
-              190px,
-              100%
-            )
-
-            !important;
-
-          align-self:
-            center;
-
-        }
-
-
-        .collection-display-row
-        >
-        #grid-density-control {
-
-          order:
-            3;
-
-          width:
-            100% !important;
-
-        }
-
-
-        .sneaker-3d-nav {
-
-          display:
-            none !important;
-
-        }
-
-
-        .sneaker-3d-open {
-
-          min-height:
-            32px;
-
-          padding:
-            6px 11px;
-
-          font-size:
-            .56rem;
-
-        }
-
-      }
-
-    `;
-
-
-    document.head.appendChild(
-      style
-    );
 
   }
 
