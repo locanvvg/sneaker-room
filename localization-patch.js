@@ -856,5 +856,130 @@
   );
 
 })();
+
+   /* =========================================================
+   BALENCIAGA DEFENDER 'BEIGE'
+   MOVE DOWN ONLY — GRID + 3D
+========================================================= */
+
+(() => {
+  const BALENCIAGA_Y = 12; // px — tăng số này nếu muốn thấp hơn
+
+  function moveBalenciagaDown() {
+
+    let targetImage = "";
+
+    /*
+      Tự tìm đúng ảnh Balenciaga từ data.js
+    */
+    if (
+      typeof sneakers !== "undefined" &&
+      Array.isArray(sneakers)
+    ) {
+      const targetSneaker =
+        sneakers.find(item => {
+
+          const title =
+            String(
+              item?.title?.en || ""
+            ).toLowerCase();
+
+          return (
+            title.includes("balenciaga defender")
+          );
+        });
+
+      if (targetSneaker?.image) {
+        targetImage =
+          String(targetSneaker.image)
+            .split("/")
+            .pop()
+            .toLowerCase();
+      }
+    }
+
+    /*
+      Áp dụng cho cả Grid View và 3D View
+    */
+    document
+      .querySelectorAll("img")
+      .forEach(img => {
+
+        const src =
+          String(
+            img.getAttribute("src") || ""
+          )
+            .split("/")
+            .pop()
+            .toLowerCase();
+
+        const alt =
+          String(
+            img.getAttribute("alt") || ""
+          )
+            .toLowerCase();
+
+        const isBalenciaga =
+          (
+            targetImage &&
+            src === targetImage
+          )
+          ||
+          alt.includes(
+            "balenciaga defender"
+          );
+
+        if (!isBalenciaga) return;
+
+        /*
+          Chỉ di chuyển theo chiều dọc.
+          KHÔNG scale.
+          KHÔNG thay đổi chiều ngang.
+          KHÔNG ghi đè transform của 3D.
+        */
+        img.style.setProperty(
+          "translate",
+          `0 ${BALENCIAGA_Y}px`,
+          "important"
+        );
+
+        img.style.setProperty(
+          "transform-origin",
+          "center center",
+          "important"
+        );
+      });
+  }
+
+  /*
+    Chạy ngay
+  */
+  moveBalenciagaDown();
+
+  /*
+    Chạy lại khi trang load
+  */
+  window.addEventListener(
+    "load",
+    moveBalenciagaDown
+  );
+
+  /*
+    Chạy lại khi chuyển Grid ↔ 3D
+  */
+  const balenciagaObserver =
+    new MutationObserver(
+      moveBalenciagaDown
+    );
+
+  balenciagaObserver.observe(
+    document.body,
+    {
+      childList: true,
+      subtree: true
+    }
+  );
+
+})();
    
 })();
