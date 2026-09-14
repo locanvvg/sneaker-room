@@ -746,4 +746,32 @@
       subtree: true
     }
   );
+
+   /* =========================================================
+   JORDAN 1 LOW REVERSE BRED — DISPLAY SCALE
+   Áp dụng cho cả Grid View và 3D View
+========================================================= */
+
+function scaleJordan1LowReverseBred() {
+  const TARGET_SCALE = 0.88; // thử 0.88 trước, nếu còn to thì 0.85
+
+  document.querySelectorAll("img").forEach(img => {
+    const card = img.closest(".card, .card-link, .coverflow-card, .gallery-card, .slider-card, .collection-3d-card");
+    const wrapperText = (card?.textContent || img.alt || "").replace(/\s+/g, " ").trim().toLowerCase();
+    const src = (img.src || "").toLowerCase();
+
+    const isTarget =
+      wrapperText.includes("jordan 1 low 'reverse bred'") ||
+      wrapperText.includes("jordan 1 low reverse bred") ||
+      src.includes("reverse_bred") ||
+      src.includes("reverse-bred");
+
+    if (!isTarget) return;
+
+    img.style.setProperty("transform", `scale(${TARGET_SCALE})`, "important");
+    img.style.setProperty("transform-origin", "center center", "important");
+    img.style.setProperty("object-fit", "contain", "important");
+  });
+}
+   
 })();
