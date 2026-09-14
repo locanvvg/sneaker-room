@@ -630,3 +630,54 @@
 
   [100, 300, 800, 1500].forEach(ms => setTimeout(applyAll, ms));
 })();
+
+/* =========================================================
+   NEW BALANCE 2002R — SMALLER IMAGE
+========================================================= */
+
+(() => {
+  const NB_SCALE = 0.60;
+
+  function resizeNewBalance2002R() {
+    document.querySelectorAll(".card").forEach(card => {
+      const cardText = card.textContent || "";
+
+      if (!cardText.includes("New Balance 2002R")) return;
+
+      const image = card.querySelector("img");
+
+      if (image) {
+        image.style.setProperty(
+          "transform",
+          `scale(${NB_SCALE})`,
+          "important"
+        );
+
+        image.style.setProperty(
+          "transform-origin",
+          "center center",
+          "important"
+        );
+
+        image.style.setProperty(
+          "object-fit",
+          "contain",
+          "important"
+        );
+      }
+    });
+  }
+
+  resizeNewBalance2002R();
+
+  window.addEventListener("load", resizeNewBalance2002R);
+
+  const observer = new MutationObserver(
+    resizeNewBalance2002R
+  );
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+})();
