@@ -3415,7 +3415,7 @@ const sneakers = [
 
     image: "pictures/nb_2002r.png",
 
-    imageScale: 0.40,
+    imageScale: 0.60,
 
     story: {
       vi: `
