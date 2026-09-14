@@ -125,20 +125,22 @@
     ===================================================== */
 
     {
-      match: "Balenciaga Defender",
+  match: "Balenciaga Defender",
 
-      grid: {
-        scale: 1,
-        x: 0,
-        y: 0
-      },
+  grid: {
+    scaleX: 1,
+    scaleY: 0.85,
+    x: 0,
+    y: 0
+  },
 
-      view3d: {
-        scale: 1,
-        x: 0,
-        y: 0
-      }
-    },
+  view3d: {
+    scaleX: 1,
+    scaleY: 0.85,
+    x: 0,
+    y: 0
+  }
+},
 
 
     /* =====================================================
