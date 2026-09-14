@@ -3,11 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <meta
     name="description"
@@ -19,9 +15,7 @@
     content="#0d0d0d"
   >
 
-  <title>
-    LEGO | Lộc An Sneaker Collection
-  </title>
+  <title>LEGO | Lộc An Sneaker Collection</title>
 
   <link
     rel="icon"
@@ -48,505 +42,19 @@
     rel="stylesheet"
     href="./collection-menu.css?v=20260913-clean-nav"
   >
-
-
-  <!-- =====================================================
-       LEGO LIQUID GLASS CARD
-  ====================================================== -->
-
-  <style>
-
-    /* =====================================================
-       LEGO GRID
-    ====================================================== */
-
-    #lego-grid {
-      display: grid;
-      grid-template-columns:
-        repeat(
-          2,
-          minmax(0, 1fr)
-        );
-
-      gap: 28px;
-
-      align-items: stretch;
-
-      margin-top: 28px;
-    }
-
-
-    #lego-grid .card-link {
-      display: flex;
-
-      width: 100%;
-      height: 100%;
-
-      color: inherit;
-
-      text-decoration: none;
-    }
-
-
-    /* =====================================================
-       LIQUID GLASS CARD
-    ====================================================== */
-
-    #lego-grid .card {
-      position: relative;
-
-      display: flex;
-
-      flex-direction: column;
-
-      width: 100%;
-      height: 100%;
-
-      overflow: hidden;
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(255, 255, 255, 0.075) 0%,
-          rgba(255, 255, 255, 0.035) 38%,
-          rgba(255, 255, 255, 0.018) 72%,
-          rgba(255, 255, 255, 0.028) 100%
-        );
-
-      border:
-        1px solid
-        rgba(255, 255, 255, 0.10);
-
-      border-radius: 18px;
-
-      box-shadow:
-        inset
-        0
-        1px
-        0
-        rgba(255, 255, 255, 0.075),
-
-        0
-        18px
-        42px
-        rgba(0, 0, 0, 0.24);
-
-      backdrop-filter:
-        blur(22px)
-        saturate(135%);
-
-      -webkit-backdrop-filter:
-        blur(22px)
-        saturate(135%);
-
-      transform:
-        translateY(0);
-
-      transition:
-        transform 0.28s ease,
-        border-color 0.28s ease,
-        box-shadow 0.28s ease,
-        background 0.28s ease;
-    }
-
-
-    #lego-grid .card::before {
-      content: "";
-
-      position: absolute;
-
-      top: 0;
-      left: 6%;
-      right: 6%;
-
-      height: 1px;
-
-      z-index: 4;
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          rgba(255, 255, 255, 0.16),
-          transparent
-        );
-
-      pointer-events: none;
-    }
-
-
-    #lego-grid .card::after {
-      content: "";
-
-      position: absolute;
-
-      inset: 0;
-
-      z-index: 0;
-
-      background:
-        radial-gradient(
-          circle at 22% 0%,
-          rgba(255, 255, 255, 0.055),
-          transparent 34%
-        );
-
-      pointer-events: none;
-    }
-
-
-    #lego-grid .card:hover {
-      transform:
-        translateY(-5px);
-
-      border-color:
-        rgba(255, 204, 0, 0.20);
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(255, 255, 255, 0.09),
-          rgba(255, 255, 255, 0.04) 42%,
-          rgba(255, 255, 255, 0.022) 100%
-        );
-
-      box-shadow:
-        inset
-        0
-        1px
-        0
-        rgba(255, 255, 255, 0.09),
-
-        0
-        22px
-        52px
-        rgba(0, 0, 0, 0.38);
-    }
-
-
-    /* =====================================================
-       IMAGE AREA
-    ====================================================== */
-
-    #lego-grid .card-img-wrapper {
-      position: relative;
-
-      z-index: 1;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      width: 100%;
-
-      aspect-ratio: 4 / 3;
-
-      overflow: hidden;
-
-      background:
-        radial-gradient(
-          circle at 50% 40%,
-          rgba(255, 255, 255, 0.085),
-          rgba(255, 255, 255, 0.025) 42%,
-          rgba(255, 255, 255, 0.008) 72%,
-          transparent 100%
-        ) !important;
-
-      border-bottom:
-        1px solid
-        rgba(255, 255, 255, 0.055);
-    }
-
-
-    #lego-grid .card-img-wrapper::before {
-      content: "";
-
-      position: absolute;
-
-      inset: 10% 14%;
-
-      background:
-        radial-gradient(
-          ellipse at center,
-          rgba(255, 255, 255, 0.055),
-          transparent 70%
-        );
-
-      filter:
-        blur(18px);
-
-      pointer-events: none;
-    }
-
-
-    #lego-grid .card-img-wrapper img {
-      position: absolute;
-
-      top: 5% !important;
-      left: 5% !important;
-
-      width: 90% !important;
-      height: 90% !important;
-
-      max-width: none !important;
-      max-height: none !important;
-
-      padding: 0 !important;
-
-      object-fit: contain !important;
-      object-position: center !important;
-
-      background: transparent !important;
-
-      filter:
-        drop-shadow(
-          0
-          16px
-          18px
-          rgba(0, 0, 0, 0.28)
-        );
-
-      transform:
-        scale(1);
-
-      transition:
-        transform 0.30s ease,
-        filter 0.30s ease;
-    }
-
-
-    #lego-grid .card:hover
-    .card-img-wrapper img {
-      transform:
-        scale(1.035);
-
-      filter:
-        drop-shadow(
-          0
-          18px
-          22px
-          rgba(0, 0, 0, 0.34)
-        );
-    }
-
-
-    /* =====================================================
-       CARD INFORMATION
-    ====================================================== */
-
-    #lego-grid .card-info {
-      position: relative;
-
-      z-index: 2;
-
-      display: flex;
-
-      flex-direction: column;
-
-      flex: 1;
-
-      min-height: 190px;
-
-      padding: 20px;
-
-      background:
-        transparent !important;
-    }
-
-
-    #lego-grid .card-info h3 {
-      margin:
-        0
-        0
-        8px;
-
-      color: #f3f3f5;
-
-      font-size: 1.08rem;
-
-      font-weight: 800;
-
-      line-height: 1.4;
-    }
-
-
-    #lego-grid .subtitle {
-      margin:
-        0
-        0
-        16px;
-
-      color: #8f9096;
-
-      font-size: 0.85rem;
-
-      line-height: 1.5;
-    }
-
-
-    #lego-grid .card-meta {
-      display: flex;
-
-      align-items: center;
-
-      justify-content: space-between;
-
-      gap: 12px;
-
-      margin-top: auto;
-    }
-
-
-    #lego-grid .badge {
-      display: inline-flex;
-
-      align-items: center;
-
-      min-height: 29px;
-
-      padding:
-        5px
-        9px;
-
-      color: #ffcc00;
-
-      background:
-        rgba(255, 255, 255, 0.085);
-
-      border:
-        1px solid
-        rgba(255, 255, 255, 0.06);
-
-      border-radius: 6px;
-
-      font-size: 0.76rem;
-
-      font-weight: 700;
-    }
-
-
-    #lego-grid .size {
-      color: #a9abb1;
-
-      font-size: 0.78rem;
-    }
-
-
-    #lego-grid .card-cta {
-      display: block;
-
-      margin-top: 18px;
-
-      padding-top: 14px;
-
-      color: #8c8e95;
-
-      border-top:
-        1px solid
-        rgba(255, 255, 255, 0.07);
-
-      font-size: 0.69rem;
-
-      font-weight: 850;
-
-      letter-spacing: 1.05px;
-
-      transition:
-        color 0.2s ease,
-        letter-spacing 0.2s ease;
-    }
-
-
-    #lego-grid .card:hover
-    .card-cta {
-      color: #ffcc00;
-
-      letter-spacing: 1.25px;
-    }
-
-
-    /* =====================================================
-       TABLET
-    ====================================================== */
-
-    @media screen and (max-width: 900px) {
-
-      #lego-grid {
-        gap: 20px;
-      }
-
-    }
-
-
-    /* =====================================================
-       MOBILE
-    ====================================================== */
-
-    @media screen and (max-width: 700px) {
-
-      #lego-grid {
-        grid-template-columns: 1fr;
-
-        gap: 22px;
-
-        margin-top: 22px;
-      }
-
-
-      #lego-grid .card {
-        border-radius: 16px;
-      }
-
-
-      #lego-grid .card-img-wrapper img {
-        top: 4% !important;
-        left: 4% !important;
-
-        width: 92% !important;
-        height: 92% !important;
-      }
-
-
-      #lego-grid .card:hover {
-        transform: none;
-      }
-
-
-      #lego-grid .card:hover
-      .card-img-wrapper img {
-        transform:
-          scale(1);
-      }
-
-    }
-
-  </style>
-
 </head>
-
 
 <body>
 
   <div class="container">
 
-
-    <!-- =====================================================
-         HEADER
-    ====================================================== -->
-
     <header class="home-header">
 
       <div class="header-corner-tools">
 
-        <a
-          href="./about.html"
-          class="about-corner-link"
-        >
+        <a href="./about.html" class="about-corner-link">
           ABOUT
         </a>
-
 
         <div class="lang-switcher">
 
@@ -558,7 +66,6 @@
           >
             VI
           </button>
-
 
           <button
             type="button"
@@ -573,11 +80,9 @@
 
       </div>
 
-
       <h1>
         LỘC AN SNEAKER COLLECTION
       </h1>
-
 
       <p
         id="lego-main-subtitle"
@@ -587,19 +92,11 @@
         Không gian lưu trữ &amp; Bảo tàng Sneaker Kỹ thuật số
       </p>
 
+      <nav class="museum-nav" aria-label="Collection navigation">
 
-      <nav
-        class="museum-nav"
-        aria-label="Collection navigation"
-      >
-
-        <a
-          href="./index.html"
-          class="museum-nav-link"
-        >
+        <a href="./index.html" class="museum-nav-link">
           SNEAKERS
         </a>
-
 
         <a
           href="./lego.html"
@@ -609,11 +106,7 @@
           LEGO
         </a>
 
-
-        <a
-          href="./sneaker-mask.html"
-          class="museum-nav-link"
-        >
+        <a href="./sneaker-mask.html" class="museum-nav-link">
           SNEAKER MASK
         </a>
 
@@ -621,13 +114,7 @@
 
     </header>
 
-
-    <!-- =====================================================
-         MAIN
-    ====================================================== -->
-
     <main>
-
 
       <section class="collection-category-hero">
 
@@ -635,11 +122,9 @@
           LEGO ARCHIVE
         </p>
 
-
         <h2>
           Nike x LEGO
         </h2>
-
 
         <p
           id="lego-page-description"
@@ -653,149 +138,279 @@
 
       </section>
 
+      <!--
+        Intentionally simple:
+        no filter
+        no sort
+        no density slider
+      -->
+      <div class="category-view-toolbar">
 
-      <div
-        id="lego-count"
-        class="collection-count"
-      >
-        TỔNG SỐ: 0 BỘ
+        <button
+          type="button"
+          id="lego-view-toggle"
+          class="category-view-toggle"
+          aria-pressed="false"
+        >
+          CHẾ ĐỘ 3D
+        </button>
+
+        <div
+          id="lego-count"
+          class="collection-count"
+        >
+          TỔNG SỐ: 0 BỘ
+        </div>
+
       </div>
-
 
       <div
         id="lego-grid"
         class="grid"
+        data-grid-class="grid"
       ></div>
 
     </main>
 
-
-    <!-- =====================================================
-         FOOTER
-    ====================================================== -->
-
     <footer>
-
       <p>
         &copy; 2026 Lộc An Sneaker Collection.
         All Rights Reserved.
       </p>
-
     </footer>
 
   </div>
 
+  <script src="./lego-data.js?v=20260913-clean-nav"></script>
 
-  <!-- =====================================================
-       DATA
-  ====================================================== -->
-
-  <script
-    src="./lego-data.js?v=20260913-liquid-glass-v1"
-  ></script>
-
-
-  <!-- =====================================================
-       PAGE LOGIC
-  ====================================================== -->
+  <script src="./category-view.js?v=20260914-category-view-v1"></script>
 
   <script>
-
-    const LEGO_LANGUAGES = [
-      "vi",
-      "en"
-    ];
-
+    const LEGO_LANGUAGES = ["vi", "en"];
 
     let legoLanguage =
-
-      new URLSearchParams(
-        window.location.search
-      ).get("lang")
-
-      ||
-
-      localStorage.getItem(
-        "locan_lang"
-      )
-
-      ||
-
+      new URLSearchParams(window.location.search).get("lang") ||
+      localStorage.getItem("locan_lang") ||
       "vi";
 
-
-    if (
-      !LEGO_LANGUAGES.includes(
-        legoLanguage
-      )
-    ) {
-
+    if (!LEGO_LANGUAGES.includes(legoLanguage)) {
       legoLanguage = "vi";
+    }
 
+    let legoView =
+      null;
+
+
+    function numberWithComma(value) {
+      return Number(value).toLocaleString("en-CA");
     }
 
 
-    /* =====================================================
-       NUMBER
-    ====================================================== */
+    function getLegoTitle(lego) {
+      return (
+        lego?.title?.[legoLanguage] ||
+        lego?.title?.en ||
+        lego?.title?.vi ||
+        ""
+      );
+    }
 
-    function numberWithComma(
-      value
-    ) {
 
-      return Number(
-        value
-      ).toLocaleString(
-        "en-CA"
+    function getLegoSubtitle(lego) {
+      return (
+        lego?.subtitle?.[legoLanguage] ||
+        lego?.subtitle?.en ||
+        lego?.subtitle?.vi ||
+        ""
+      );
+    }
+
+
+    function legoDetailURL(lego) {
+      return (
+        `./lego-detail.html?id=${encodeURIComponent(lego.id)}` +
+        `&lang=${encodeURIComponent(legoLanguage)}`
+      );
+    }
+
+
+    function createLegoGridCard(lego) {
+      const link =
+        document.createElement("a");
+
+      link.className =
+        "card-link";
+
+      link.href =
+        legoDetailURL(lego);
+
+
+      const card =
+        document.createElement("article");
+
+      card.className =
+        "card";
+
+
+      const imageWrapper =
+        document.createElement("div");
+
+      imageWrapper.className =
+        "card-img-wrapper";
+
+
+      const image =
+        document.createElement("img");
+
+      image.src =
+        lego.image;
+
+      image.alt =
+        getLegoTitle(lego);
+
+      image.loading =
+        "lazy";
+
+      image.decoding =
+        "async";
+
+
+      imageWrapper.appendChild(
+        image
       );
 
+
+      const info =
+        document.createElement("div");
+
+      info.className =
+        "card-info";
+
+
+      const title =
+        document.createElement("h3");
+
+      title.textContent =
+        getLegoTitle(lego);
+
+
+      const subtitle =
+        document.createElement("p");
+
+      subtitle.className =
+        "subtitle";
+
+      subtitle.textContent =
+        getLegoSubtitle(lego);
+
+
+      const meta =
+        document.createElement("div");
+
+      meta.className =
+        "card-meta";
+
+
+      const badge =
+        document.createElement("span");
+
+      badge.className =
+        "badge";
+
+      badge.textContent =
+        "NIKE x LEGO";
+
+
+      const pieces =
+        document.createElement("span");
+
+      pieces.className =
+        "size";
+
+      pieces.textContent =
+        `${numberWithComma(lego.pieces)} PCS`;
+
+
+      const cta =
+        document.createElement("span");
+
+      cta.className =
+        "card-cta";
+
+      cta.textContent =
+        legoLanguage === "vi"
+          ? "XEM THÊM →"
+          : "VIEW MORE →";
+
+
+      meta.appendChild(
+        badge
+      );
+
+      meta.appendChild(
+        pieces
+      );
+
+
+      info.appendChild(
+        title
+      );
+
+      info.appendChild(
+        subtitle
+      );
+
+      info.appendChild(
+        meta
+      );
+
+      info.appendChild(
+        cta
+      );
+
+
+      card.appendChild(
+        imageWrapper
+      );
+
+      card.appendChild(
+        info
+      );
+
+
+      link.appendChild(
+        card
+      );
+
+
+      return link;
     }
 
 
-    /* =====================================================
-       LANGUAGE
-    ====================================================== */
-
-    function setLegoLanguage(
-      lang
-    ) {
-
+    function setLegoLanguage(lang) {
       legoLanguage =
-
-        LEGO_LANGUAGES.includes(
-          lang
-        )
-
+        LEGO_LANGUAGES.includes(lang)
           ? lang
-
           : "vi";
-
 
       localStorage.setItem(
         "locan_lang",
         legoLanguage
       );
 
-
       document.documentElement.lang =
         legoLanguage;
 
-
       document
-        .getElementById(
-          "btn-vi"
-        )
+        .getElementById("btn-vi")
         .classList
         .toggle(
           "active",
           legoLanguage === "vi"
         );
 
-
       document
-        .getElementById(
-          "btn-en"
-        )
+        .getElementById("btn-en")
         .classList
         .toggle(
           "active",
@@ -808,7 +423,6 @@
           "lego-main-subtitle"
         );
 
-
       const description =
         document.getElementById(
           "lego-page-description"
@@ -819,7 +433,6 @@
         subtitle.dataset[
           legoLanguage
         ];
-
 
       description.textContent =
         description.dataset[
@@ -832,15 +445,13 @@
           "lego-count"
         )
         .textContent =
-
           legoLanguage === "vi"
-
             ? `TỔNG SỐ: ${legoSets.length} BỘ`
-
             : `TOTAL: ${legoSets.length} SETS`;
 
 
-      renderLegoCollection();
+      legoView
+        ?.setLanguage();
 
 
       const url =
@@ -848,322 +459,101 @@
           window.location.href
         );
 
-
       url.searchParams.set(
         "lang",
         legoLanguage
       );
 
-
       window.history.replaceState(
         {},
         "",
-        url.pathname
-        +
-        url.search
-        +
+        url.pathname +
+        url.search +
         url.hash
       );
-
     }
 
-
-    /* =====================================================
-       RENDER
-    ====================================================== */
-
-    function renderLegoCollection() {
-
-      const grid =
-        document.getElementById(
-          "lego-grid"
-        );
-
-
-      if (
-
-        typeof legoSets === "undefined"
-
-        ||
-
-        !Array.isArray(
-          legoSets
-        )
-
-      ) {
-
-        grid.innerHTML = `
-
-          <div class="not-found">
-
-            LEGO data could not be loaded.
-
-          </div>
-
-        `;
-
-
-        return;
-
-      }
-
-
-      grid.innerHTML = "";
-
-
-      legoSets.forEach(
-        lego => {
-
-          const link =
-            document.createElement(
-              "a"
-            );
-
-
-          link.className =
-            "card-link";
-
-
-          link.href =
-
-            `./lego-detail.html?id=${encodeURIComponent(
-              lego.id
-            )}`
-
-            +
-
-            `&lang=${encodeURIComponent(
-              legoLanguage
-            )}`;
-
-
-          const card =
-            document.createElement(
-              "article"
-            );
-
-
-          card.className =
-            "card";
-
-
-          /* IMAGE */
-
-          const imageWrapper =
-            document.createElement(
-              "div"
-            );
-
-
-          imageWrapper.className =
-            "card-img-wrapper";
-
-
-          const image =
-            document.createElement(
-              "img"
-            );
-
-
-          image.src =
-            `${lego.image}?v=20260913-liquid-glass-v1`;
-
-
-          image.alt =
-            lego.title[
-              legoLanguage
-            ];
-
-
-          image.loading =
-            "lazy";
-
-
-          image.decoding =
-            "async";
-
-
-          imageWrapper.appendChild(
-            image
-          );
-
-
-          /* INFO */
-
-          const info =
-            document.createElement(
-              "div"
-            );
-
-
-          info.className =
-            "card-info";
-
-
-          const title =
-            document.createElement(
-              "h3"
-            );
-
-
-          title.textContent =
-            lego.title[
-              legoLanguage
-            ];
-
-
-          const subtitle =
-            document.createElement(
-              "p"
-            );
-
-
-          subtitle.className =
-            "subtitle";
-
-
-          subtitle.textContent =
-            lego.subtitle[
-              legoLanguage
-            ];
-
-
-          const meta =
-            document.createElement(
-              "div"
-            );
-
-
-          meta.className =
-            "card-meta";
-
-
-          const badge =
-            document.createElement(
-              "span"
-            );
-
-
-          badge.className =
-            "badge";
-
-
-          badge.textContent =
-            "NIKE x LEGO";
-
-
-          const pieces =
-            document.createElement(
-              "span"
-            );
-
-
-          pieces.className =
-            "size";
-
-
-          pieces.textContent =
-
-            `${numberWithComma(
-              lego.pieces
-            )} PCS`;
-
-
-          const cta =
-            document.createElement(
-              "span"
-            );
-
-
-          cta.className =
-            "card-cta";
-
-
-          cta.textContent =
-
-            legoLanguage === "vi"
-
-              ? "XEM THÊM →"
-
-              : "VIEW MORE →";
-
-
-          meta.appendChild(
-            badge
-          );
-
-
-          meta.appendChild(
-            pieces
-          );
-
-
-          info.appendChild(
-            title
-          );
-
-
-          info.appendChild(
-            subtitle
-          );
-
-
-          info.appendChild(
-            meta
-          );
-
-
-          info.appendChild(
-            cta
-          );
-
-
-          card.appendChild(
-            imageWrapper
-          );
-
-
-          card.appendChild(
-            info
-          );
-
-
-          link.appendChild(
-            card
-          );
-
-
-          grid.appendChild(
-            link
-          );
-
-        }
-      );
-
-    }
-
-
-    /* =====================================================
-       INIT
-    ====================================================== */
 
     document.addEventListener(
-
       "DOMContentLoaded",
-
       () => {
+
+        const root =
+          document.getElementById(
+            "lego-grid"
+          );
+
+        const toggle =
+          document.getElementById(
+            "lego-view-toggle"
+          );
+
+
+        if (
+          typeof legoSets !==
+            "undefined"
+          &&
+          Array.isArray(
+            legoSets
+          )
+        ) {
+
+          legoView =
+            LocAnCategoryView.create({
+
+              key:
+                "lego",
+
+              root,
+
+              toggle,
+
+              items:
+                legoSets,
+
+              getLanguage:
+                () =>
+                  legoLanguage,
+
+              getTitle:
+                getLegoTitle,
+
+              getSubtitle:
+                getLegoSubtitle,
+
+              getImage:
+                lego =>
+                  lego.image ||
+                  "",
+
+              getMetaPrimary:
+                () =>
+                  "NIKE x LEGO",
+
+              getMetaSecondary:
+                lego =>
+                  `${numberWithComma(
+                    lego.pieces
+                  )} PCS`,
+
+              getURL:
+                legoDetailURL,
+
+              renderGridCard:
+                createLegoGridCard
+
+            });
+
+        }
+
 
         setLegoLanguage(
           legoLanguage
         );
 
       }
-
     );
-
   </script>
-
-  <script src="./localization-patch.js?v=20260913-full-vi-en"></script>
 
 </body>
 
