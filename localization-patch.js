@@ -636,7 +636,7 @@
 ========================================================= */
 
 (() => {
-  const NB_SCALE = 0.80;
+  const NB_SCALE = 0.70;
 
   function resizeNewBalance2002R() {
     document.querySelectorAll(".card").forEach(card => {
