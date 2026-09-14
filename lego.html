@@ -16,24 +16,7 @@
   >
 
   <title>LEGO | Lộc An Sneaker Collection</title>
-
-  <link
-    rel="icon"
-    type="image/svg+xml"
-    href="./favicon.svg"
-  >
-
-  <link
-    rel="apple-touch-icon"
-    href="./apple-touch-icon.png"
-  >
-
-  <link
-    rel="manifest"
-    href="./site.webmanifest"
-  >
-
-  <link
+<link
     rel="stylesheet"
     href="./style.css?v=20260913-clean-nav"
   >
@@ -90,6 +73,42 @@
 
   </style>
 
+
+  <!-- Lộc An brand icons -->
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="512x512"
+    href="./locan-logo.png?v=20260914-white"
+  >
+
+  <link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="./apple-touch-icon.png?v=20260914-white"
+  >
+
+  <link
+    rel="manifest"
+    href="./site.webmanifest?v=20260914-white"
+  >
+
+
+  <meta
+    name="apple-mobile-web-app-capable"
+    content="yes"
+  >
+
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent"
+  >
+
+  <meta
+    name="apple-mobile-web-app-title"
+    content="Lộc An"
+  >
+
 </head>
 
 <body>
@@ -101,8 +120,11 @@
       <a
         href="./about.html"
         class="about-corner-link about-left-fixed"
+        id="lego-about-link"
+        data-vi="GIỚI THIỆU"
+        data-en="ABOUT"
       >
-        ABOUT
+        GIỚI THIỆU
       </a>
 
       <div class="header-corner-tools">
@@ -131,22 +153,32 @@
 
       </div>
 
-      <h1>
-        LỘC AN SNEAKER COLLECTION
+      <h1
+        id="lego-main-title"
+        data-vi="BỘ SƯU TẬP GIÀY LỘC AN"
+        data-en="LỘC AN SNEAKER COLLECTION"
+      >
+        BỘ SƯU TẬP GIÀY LỘC AN
       </h1>
 
       <p
         id="lego-main-subtitle"
-        data-vi="Không gian lưu trữ & Bảo tàng Sneaker Kỹ thuật số"
+        data-vi="Không gian lưu trữ & Bảo tàng Giày Kỹ thuật số"
         data-en="Digital Sneaker Archive & Museum"
       >
-        Không gian lưu trữ &amp; Bảo tàng Sneaker Kỹ thuật số
+        Không gian lưu trữ &amp; Bảo tàng Giày Kỹ thuật số
       </p>
 
       <nav class="museum-nav" aria-label="Collection navigation">
 
-        <a href="./index.html" class="museum-nav-link">
-          SNEAKERS
+        <a
+          href="./index.html"
+          class="museum-nav-link"
+          id="lego-nav-sneakers"
+          data-vi="GIÀY"
+          data-en="SNEAKERS"
+        >
+          GIÀY
         </a>
 
         <a
@@ -157,8 +189,14 @@
           LEGO
         </a>
 
-        <a href="./sneaker-mask.html" class="museum-nav-link">
-          SNEAKER MASK
+        <a
+          href="./sneaker-mask.html"
+          class="museum-nav-link"
+          id="lego-nav-mask"
+          data-vi="MẶT NẠ GIÀY"
+          data-en="SNEAKER MASK"
+        >
+          MẶT NẠ GIÀY
         </a>
 
       </nav>
@@ -169,8 +207,13 @@
 
       <section class="collection-category-hero">
 
-        <p class="collection-category-eyebrow">
-          LEGO ARCHIVE
+        <p
+          class="collection-category-eyebrow"
+          id="lego-archive-label"
+          data-vi="KHO LƯU TRỮ LEGO"
+          data-en="LEGO ARCHIVE"
+        >
+          KHO LƯU TRỮ LEGO
         </p>
 
         <h2>
@@ -179,11 +222,11 @@
 
         <p
           id="lego-page-description"
-          data-vi="Kho lưu trữ các bộ Nike x LEGO trong Lộc An Sneaker Collection, ghi nhận sự giao thoa giữa sneaker culture, basketball và thiết kế LEGO."
+          data-vi="Kho lưu trữ các bộ Nike x LEGO trong Bộ Sưu Tập Giày Lộc An, ghi nhận sự giao thoa giữa văn hóa sneaker, bóng rổ và thiết kế LEGO."
           data-en="An archive of Nike x LEGO sets within the Lộc An Sneaker Collection, documenting the intersection of sneaker culture, basketball, and LEGO design."
         >
-          Kho lưu trữ các bộ Nike x LEGO trong Lộc An Sneaker Collection,
-          ghi nhận sự giao thoa giữa sneaker culture, basketball
+          Kho lưu trữ các bộ Nike x LEGO trong Bộ Sưu Tập Giày Lộc An,
+          ghi nhận sự giao thoa giữa văn hóa sneaker, bóng rổ
           và thiết kế LEGO.
         </p>
 
@@ -281,9 +324,12 @@
     </main>
 
     <footer>
-      <p>
-        &copy; 2026 Lộc An Sneaker Collection.
-        All Rights Reserved.
+      <p
+        id="lego-footer"
+        data-vi="© 2026 Bộ sưu tập giày Lộc An. Bảo lưu mọi quyền."
+        data-en="© 2026 Lộc An Sneaker Collection. All Rights Reserved."
+      >
+        © 2026 Bộ sưu tập giày Lộc An. Bảo lưu mọi quyền.
       </p>
     </footer>
 
@@ -508,6 +554,26 @@
 
       document.documentElement.lang =
         legoLanguage;
+
+
+      document.title =
+        legoLanguage === "vi"
+          ? "LEGO | Bộ Sưu Tập Giày Lộc An"
+          : "LEGO | Lộc An Sneaker Collection";
+
+
+      document
+        .querySelectorAll(
+          "[data-vi][data-en]"
+        )
+        .forEach(
+          element => {
+            element.textContent =
+              element.dataset[
+                legoLanguage
+              ];
+          }
+        );
 
       document
         .getElementById("btn-vi")

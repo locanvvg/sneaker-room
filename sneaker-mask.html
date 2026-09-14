@@ -16,24 +16,7 @@
   >
 
   <title>Sneaker Mask | Lộc An Sneaker Collection</title>
-
-  <link
-    rel="icon"
-    type="image/svg+xml"
-    href="./favicon.svg"
-  >
-
-  <link
-    rel="apple-touch-icon"
-    href="./apple-touch-icon.png"
-  >
-
-  <link
-    rel="manifest"
-    href="./site.webmanifest"
-  >
-
-  <link
+<link
     rel="stylesheet"
     href="./style.css?v=20260913-clean-nav"
   >
@@ -90,6 +73,42 @@
 
   </style>
 
+
+  <!-- Lộc An brand icons -->
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="512x512"
+    href="./locan-logo.png?v=20260914-white"
+  >
+
+  <link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="./apple-touch-icon.png?v=20260914-white"
+  >
+
+  <link
+    rel="manifest"
+    href="./site.webmanifest?v=20260914-white"
+  >
+
+
+  <meta
+    name="apple-mobile-web-app-capable"
+    content="yes"
+  >
+
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent"
+  >
+
+  <meta
+    name="apple-mobile-web-app-title"
+    content="Lộc An"
+  >
+
 </head>
 
 <body>
@@ -101,8 +120,11 @@
       <a
         href="./about.html"
         class="about-corner-link about-left-fixed"
+        id="mask-about-link"
+        data-vi="GIỚI THIỆU"
+        data-en="ABOUT"
       >
-        ABOUT
+        GIỚI THIỆU
       </a>
 
       <div class="header-corner-tools">
@@ -131,25 +153,41 @@
 
       </div>
 
-      <h1>
-        LỘC AN SNEAKER COLLECTION
+      <h1
+        id="mask-main-title"
+        data-vi="BỘ SƯU TẬP GIÀY LỘC AN"
+        data-en="LỘC AN SNEAKER COLLECTION"
+      >
+        BỘ SƯU TẬP GIÀY LỘC AN
       </h1>
 
       <p
         id="mask-main-subtitle"
-        data-vi="Không gian lưu trữ & Bảo tàng Sneaker Kỹ thuật số"
+        data-vi="Không gian lưu trữ & Bảo tàng Giày Kỹ thuật số"
         data-en="Digital Sneaker Archive & Museum"
       >
-        Không gian lưu trữ &amp; Bảo tàng Sneaker Kỹ thuật số
+        Không gian lưu trữ &amp; Bảo tàng Giày Kỹ thuật số
       </p>
 
       <nav class="museum-nav" aria-label="Collection navigation">
 
-        <a href="./index.html" class="museum-nav-link">
-          SNEAKERS
+        <a
+          href="./index.html"
+          class="museum-nav-link"
+          id="mask-nav-sneakers"
+          data-vi="GIÀY"
+          data-en="SNEAKERS"
+        >
+          GIÀY
         </a>
 
-        <a href="./lego.html" class="museum-nav-link">
+        <a
+          href="./lego.html"
+          class="museum-nav-link"
+          id="mask-nav-lego"
+          data-vi="LEGO"
+          data-en="LEGO"
+        >
           LEGO
         </a>
 
@@ -169,20 +207,29 @@
 
       <section class="collection-category-hero">
 
-        <p class="collection-category-eyebrow">
-          SNEAKER MASK ARCHIVE
+        <p
+          class="collection-category-eyebrow"
+          id="mask-archive-label"
+          data-vi="KHO LƯU TRỮ MẶT NẠ GIÀY"
+          data-en="SNEAKER MASK ARCHIVE"
+        >
+          KHO LƯU TRỮ MẶT NẠ GIÀY
         </p>
 
-        <h2>
-          Handcrafted Sneaker Masks
+        <h2
+          id="mask-page-title"
+          data-vi="Mặt Nạ Giày Thủ Công"
+          data-en="Handcrafted Sneaker Masks"
+        >
+          Mặt Nạ Giày Thủ Công
         </h2>
 
         <p
           id="mask-page-description"
-          data-vi="Kho lưu trữ các tác phẩm Sneaker Mask độc bản được cắt tay và chế tác hoàn toàn thủ công từ những đôi sneaker nguyên bản."
+          data-vi="Kho lưu trữ các tác phẩm Mặt Nạ Giày độc bản được cắt tay và chế tác hoàn toàn thủ công từ những đôi sneaker nguyên bản."
           data-en="An archive of unique Sneaker Mask artifacts, hand-cut and entirely handmade from original sneakers."
         >
-          Kho lưu trữ các tác phẩm Sneaker Mask độc bản được cắt tay
+          Kho lưu trữ các tác phẩm Mặt Nạ Giày độc bản được cắt tay
           và chế tác hoàn toàn thủ công từ những đôi sneaker nguyên bản.
         </p>
 
@@ -280,9 +327,12 @@
     </main>
 
     <footer>
-      <p>
-        &copy; 2026 Lộc An Sneaker Collection.
-        All Rights Reserved.
+      <p
+        id="mask-footer"
+        data-vi="© 2026 Bộ sưu tập giày Lộc An. Bảo lưu mọi quyền."
+        data-en="© 2026 Lộc An Sneaker Collection. All Rights Reserved."
+      >
+        © 2026 Bộ sưu tập giày Lộc An. Bảo lưu mọi quyền.
       </p>
     </footer>
 
@@ -490,6 +540,26 @@
         maskLanguage;
 
 
+      document.title =
+        maskLanguage === "vi"
+          ? "Mặt Nạ Giày | Bộ Sưu Tập Giày Lộc An"
+          : "Sneaker Mask | Lộc An Sneaker Collection";
+
+
+      document
+        .querySelectorAll(
+          "[data-vi][data-en]"
+        )
+        .forEach(
+          element => {
+            element.textContent =
+              element.dataset[
+                maskLanguage
+              ];
+          }
+        );
+
+
       document
         .getElementById("btn-vi")
         .classList
@@ -535,7 +605,7 @@
         )
         .textContent =
           maskLanguage === "vi"
-            ? `TỔNG SỐ: ${sneakerMasks.length} MASK`
+            ? `TỔNG SỐ: ${sneakerMasks.length} MẶT NẠ`
             : `TOTAL: ${sneakerMasks.length} MASKS`;
 
 
