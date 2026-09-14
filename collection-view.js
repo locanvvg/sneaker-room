@@ -1,4 +1,4 @@
-/* LỘC AN SNEAKER COLLECTION — collection-view.js v10 — UNIFIED GRID CONTROL */
+/* LỘC AN SNEAKER COLLECTION — collection-view.js v11 — UNIFIED THREE-COLLECTION DISPLAY */
 
 (() => {
   "use strict";
@@ -101,6 +101,43 @@
       sharedDensityLanguage() === "en"
         ? `GRID · ${value} COL`
         : `LƯỚI · ${value} CỘT`;
+
+    const min =
+      Number(
+        range.min || 1
+      );
+
+    const max =
+      Number(
+        range.max || 5
+      );
+
+    const numeric =
+      Number(
+        range.value || min
+      );
+
+    const span =
+      Math.max(
+        1,
+        max - min
+      );
+
+    const pct =
+      (
+        (
+          numeric - min
+        )
+        /
+        span
+      )
+      *
+      100;
+
+    control.style.setProperty(
+      "--density-pct",
+      `${pct}%`
+    );
   }
 
 
@@ -412,6 +449,23 @@
       ?.remove();
 
 
+    row.classList.add(
+      "unified-display-toolbar"
+    );
+
+    density.classList.add(
+      "unified-density-control"
+    );
+
+    toggle.classList.add(
+      "unified-view-toggle"
+    );
+
+    count.classList.add(
+      "unified-count"
+    );
+
+
     row.append(
       density,
       toggle,
@@ -510,11 +564,11 @@
 
     return clamp(
 
-      width * 0.27,
+      width * 0.30,
 
-      245,
+      215,
 
-      360
+      350
 
     );
 
@@ -558,7 +612,7 @@
 
       <article
 
-        class="sneaker-3d-card"
+        class="sneaker-3d-card unified-3d-card"
 
         data-index="${index}"
 
@@ -573,7 +627,7 @@
       >
 
 
-        <div class="sneaker-3d-image">
+        <div class="sneaker-3d-image unified-3d-image">
 
 
           <img
@@ -606,7 +660,7 @@
         </div>
 
 
-        <div class="sneaker-3d-info">
+        <div class="sneaker-3d-info unified-3d-info">
 
 
           <h3>
@@ -627,7 +681,7 @@
           </p>
 
 
-          <div class="sneaker-3d-meta">
+          <div class="sneaker-3d-meta unified-3d-meta">
 
 
             <span>
@@ -2196,7 +2250,7 @@
 
           id="sneaker-3d-gallery"
 
-          class="sneaker-3d-gallery"
+          class="sneaker-3d-gallery unified-3d-gallery"
 
           tabindex="0"
 
@@ -2212,6 +2266,8 @@
             class="
               sneaker-3d-nav
               sneaker-3d-prev
+              unified-3d-nav
+              unified-3d-prev
             "
 
             aria-label="${escapeHTML(
@@ -2229,7 +2285,7 @@
 
             id="sneaker-3d-stage"
 
-            class="sneaker-3d-stage"
+            class="sneaker-3d-stage unified-3d-stage"
 
           >
 
@@ -2251,6 +2307,8 @@
             class="
               sneaker-3d-nav
               sneaker-3d-next
+              unified-3d-nav
+              unified-3d-next
             "
 
             aria-label="${escapeHTML(
@@ -2264,11 +2322,12 @@
           </button>
 
 
-          <div class="sneaker-3d-footer">
+          <div class="sneaker-3d-footer unified-3d-footer">
 
 
             <strong
               id="sneaker-3d-counter"
+              class="unified-3d-counter"
             >
 
               ${slideIndex + 1}
@@ -2284,7 +2343,7 @@
 
               id="sneaker-3d-open"
 
-              class="sneaker-3d-open"
+              class="sneaker-3d-open unified-3d-open"
 
               aria-label="${escapeHTML(
                 t.moreAria

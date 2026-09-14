@@ -214,6 +214,11 @@
     content="https://locanvvg.github.io/sneaker-room/locan-social-preview.png?v=20260914-brand-v8"
   >
 
+  <link
+    rel="stylesheet"
+    href="./unified-collection-ui.css?v=20260914-unified-v9"
+  >
+
 </head>
 
 <body>
@@ -346,11 +351,11 @@
         no sort
         no density slider
       -->
-      <div class="category-view-toolbar">
+      <div class="category-view-toolbar unified-display-toolbar">
 
         <div
           id="mask-density-control"
-          class="category-grid-density"
+          class="category-grid-density unified-density-control"
           data-density-label="LƯỚI · 2 CỘT"
         >
 
@@ -407,7 +412,7 @@
         <button
           type="button"
           id="mask-view-toggle"
-          class="category-view-toggle"
+          class="category-view-toggle unified-view-toggle"
           aria-pressed="false"
         >
           CHẾ ĐỘ 3D
@@ -416,7 +421,7 @@
 
         <div
           id="mask-count"
-          class="collection-count"
+          class="collection-count unified-count"
         >
           TỔNG SỐ: 0 MASK
         </div>
@@ -425,7 +430,7 @@
 
       <div
         id="mask-grid"
-        class="grid mask-grid"
+        class="grid unified-collection-grid mask-grid"
         data-grid-class="grid mask-grid"
       ></div>
 
@@ -445,7 +450,7 @@
 
   <script src="./sneaker-mask-data.js?v=20260913-clean-nav"></script>
 
-  <script src="./category-view.js?v=20260914-mode-aware-v4"></script>
+  <script src="./category-view.js?v=20260914-unified-three-v5"></script>
 
   <script>
     const MASK_LANGUAGES = ["vi", "en"];

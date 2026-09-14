@@ -1,5 +1,5 @@
 /* =========================================================
-   LỘC AN — UNIVERSAL CATEGORY VIEW v4 — MODE-AWARE GRID CONTROL
+   LỘC AN — UNIVERSAL CATEGORY VIEW v5 — UNIFIED THREE-COLLECTION DISPLAY
    Shared GRID / 3D gallery for:
    - LEGO
    - SNEAKER MASK
@@ -1453,6 +1453,28 @@
           language() === "vi"
             ? `LƯỚI · ${densityColumns} CỘT`
             : `GRID · ${densityColumns} COL`;
+
+        const span =
+          Math.max(
+            1,
+            densityMax - densityMin
+          );
+
+        const pct =
+          (
+            (
+              densityColumns - densityMin
+            )
+            /
+            span
+          )
+          *
+          100;
+
+        density.control.style.setProperty(
+          "--density-pct",
+          `${pct}%`
+        );
       }
     }
 
@@ -1744,7 +1766,7 @@
       return `
 
         <article
-          class="category-3d-card"
+          class="category-3d-card unified-3d-card"
           data-index="${index}"
           tabindex="0"
           role="button"
@@ -1753,7 +1775,7 @@
           )}"
         >
 
-          <div class="category-3d-image">
+          <div class="category-3d-image unified-3d-image">
 
             <img
               data-src="${escapeHTML(
@@ -1768,7 +1790,7 @@
 
           </div>
 
-          <div class="category-3d-info">
+          <div class="category-3d-info unified-3d-info">
 
             <h3>
               ${escapeHTML(
@@ -1782,7 +1804,7 @@
               )}
             </p>
 
-            <div class="category-3d-meta">
+            <div class="category-3d-meta unified-3d-meta">
 
               <span>
                 ${escapeHTML(
@@ -2559,7 +2581,7 @@
 
     function render3D() {
       root.className =
-        "category-3d-root";
+        "category-3d-root unified-3d-root";
 
       root.style.removeProperty(
         "grid-template-columns"
@@ -2571,7 +2593,7 @@
       root.innerHTML = `
 
         <section
-          class="category-3d-gallery"
+          class="category-3d-gallery unified-3d-gallery"
           tabindex="0"
         >
 
@@ -2580,6 +2602,8 @@
             class="
               category-3d-nav
               category-3d-prev
+              unified-3d-nav
+              unified-3d-prev
             "
             aria-label="${escapeHTML(
               t.previous
@@ -2589,7 +2613,7 @@
           </button>
 
           <div
-            class="category-3d-stage"
+            class="category-3d-stage unified-3d-stage"
           >
             ${list
               .map(
@@ -2603,6 +2627,8 @@
             class="
               category-3d-nav
               category-3d-next
+              unified-3d-nav
+              unified-3d-next
             "
             aria-label="${escapeHTML(
               t.next
@@ -2612,18 +2638,18 @@
           </button>
 
           <div
-            class="category-3d-footer"
+            class="category-3d-footer unified-3d-footer"
           >
 
             <strong
-              class="category-3d-counter"
+              class="category-3d-counter unified-3d-counter"
             >
               ${centerIndex + 1} / ${list.length}
             </strong>
 
             <button
               type="button"
-              class="category-3d-open"
+              class="category-3d-open unified-3d-open"
               aria-label="${escapeHTML(
                 t.moreAria
               )}"

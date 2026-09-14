@@ -1,0 +1,1205 @@
+/* =========================================================
+   LỘC AN — UNIFIED COLLECTION UI v9
+
+   One visual system for:
+   - SNEAKERS
+   - LEGO
+   - SNEAKER MASK
+
+   Covers:
+   - display toolbar
+   - density slider
+   - Grid cards
+   - transparent image stages
+   - 3D cards / arrows / footer
+   ========================================================= */
+
+
+/* =========================================================
+   SHARED DISPLAY TOOLBAR
+========================================================= */
+
+.unified-display-toolbar {
+  display: grid !important;
+
+  grid-template-columns:
+    minmax(420px, 1fr)
+    142px
+    max-content !important;
+
+  align-items: stretch !important;
+
+  gap: 18px !important;
+
+  margin:
+    18px
+    0
+    20px !important;
+}
+
+
+.unified-display-toolbar
+.unified-density-control {
+  min-width: 0;
+}
+
+
+.unified-density-control {
+  --density-pct: 50%;
+
+  position: relative !important;
+
+  display: grid !important;
+
+  grid-template-columns:
+    34px
+    minmax(160px, 1fr)
+    34px !important;
+
+  grid-template-rows:
+    auto
+    36px
+    13px !important;
+
+  align-items: center !important;
+
+  column-gap: 11px !important;
+  row-gap: 2px !important;
+
+  width: 100% !important;
+  min-height: 48px !important;
+
+  padding:
+    7px
+    13px
+    8px !important;
+
+  background:
+    #171719 !important;
+
+  border:
+    1px solid
+    #2a2a2d !important;
+
+  border-radius:
+    10px !important;
+
+  transition:
+    opacity .22s ease,
+    filter .22s ease,
+    border-color .22s ease !important;
+}
+
+
+.unified-density-control::before {
+  content:
+    attr(data-density-label);
+
+  grid-column:
+    1 / -1;
+
+  grid-row:
+    1;
+
+  justify-self:
+    center;
+
+  color:
+    #77777e;
+
+  font-size:
+    .58rem;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    .85px;
+
+  line-height:
+    1;
+
+  text-transform:
+    uppercase;
+
+  white-space:
+    nowrap;
+}
+
+
+.unified-density-control
+.category-density-button {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+
+  display: flex !important;
+
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: 30px !important;
+  height: 30px !important;
+
+  min-width: 30px !important;
+  min-height: 30px !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  color:
+    #77777e !important;
+
+  background:
+    #1b1b1e !important;
+
+  border:
+    1px solid
+    #303034 !important;
+
+  border-radius:
+    50% !important;
+
+  cursor:
+    pointer;
+
+  font-size:
+    .92rem !important;
+
+  font-weight:
+    900 !important;
+
+  line-height:
+    1 !important;
+}
+
+
+.unified-density-control
+.category-density-button:first-of-type,
+.unified-density-control
+.shared-density-minus {
+  grid-column:
+    1;
+
+  grid-row:
+    2;
+}
+
+
+.unified-density-control
+.category-density-button:last-of-type,
+.unified-density-control
+.shared-density-plus {
+  grid-column:
+    3;
+
+  grid-row:
+    2;
+}
+
+
+.unified-density-control
+.category-density-button:hover,
+.unified-density-control
+.category-density-button:focus-visible {
+  color:
+    #ffcc00 !important;
+
+  border-color:
+    rgba(255, 204, 0, .34) !important;
+
+  outline:
+    none !important;
+}
+
+
+/* Exact same slider in all 3 sections. */
+
+.unified-density-control
+.category-density-range {
+  appearance:
+    none !important;
+
+  -webkit-appearance:
+    none !important;
+
+  grid-column:
+    2;
+
+  grid-row:
+    2;
+
+  width:
+    100% !important;
+
+  height:
+    4px !important;
+
+  padding:
+    0 !important;
+
+  margin:
+    0 !important;
+
+  border:
+    0 !important;
+
+  border-radius:
+    999px !important;
+
+  outline:
+    none !important;
+
+  background:
+    linear-gradient(
+      to right,
+      #ffcc00 0,
+      #ffcc00 var(--density-pct),
+      #55555a var(--density-pct),
+      #55555a 100%
+    )
+    !important;
+
+  cursor:
+    pointer;
+}
+
+
+.unified-density-control
+.category-density-range::-webkit-slider-runnable-track {
+  height:
+    4px !important;
+
+  border:
+    0 !important;
+
+  border-radius:
+    999px !important;
+
+  background:
+    transparent !important;
+}
+
+
+.unified-density-control
+.category-density-range::-webkit-slider-thumb {
+  appearance:
+    none !important;
+
+  -webkit-appearance:
+    none !important;
+
+  width:
+    18px !important;
+
+  height:
+    18px !important;
+
+  margin-top:
+    -7px !important;
+
+  background:
+    #ffcc00 !important;
+
+  border:
+    0 !important;
+
+  border-radius:
+    50% !important;
+
+  box-shadow:
+    0
+    0
+    0
+    3px
+    rgba(255, 204, 0, .08) !important;
+
+  cursor:
+    grab !important;
+}
+
+
+.unified-density-control
+.category-density-range::-moz-range-track {
+  height:
+    4px !important;
+
+  background:
+    #55555a !important;
+
+  border:
+    0 !important;
+
+  border-radius:
+    999px !important;
+}
+
+
+.unified-density-control
+.category-density-range::-moz-range-progress {
+  height:
+    4px !important;
+
+  background:
+    #ffcc00 !important;
+
+  border-radius:
+    999px !important;
+}
+
+
+.unified-density-control
+.category-density-range::-moz-range-thumb {
+  width:
+    18px !important;
+
+  height:
+    18px !important;
+
+  background:
+    #ffcc00 !important;
+
+  border:
+    0 !important;
+
+  border-radius:
+    50% !important;
+
+  cursor:
+    grab !important;
+}
+
+
+.unified-density-control
+.category-density-ticks {
+  grid-column:
+    2;
+
+  grid-row:
+    3;
+
+  display:
+    flex !important;
+
+  align-items:
+    center !important;
+
+  justify-content:
+    space-between !important;
+
+  width:
+    100% !important;
+
+  padding:
+    0
+    1px !important;
+
+  color:
+    #4f4f55 !important;
+
+  font-size:
+    .48rem !important;
+
+  font-weight:
+    800 !important;
+
+  line-height:
+    1 !important;
+
+  pointer-events:
+    none !important;
+}
+
+
+.unified-density-control
+.category-density-value,
+.unified-density-control
+.shared-density-original-hidden {
+  display:
+    none !important;
+}
+
+
+/* Grid control is visibly inactive during 3D mode. */
+
+.unified-density-control.is-disabled,
+.unified-density-control.shared-density-disabled,
+.unified-density-control[aria-disabled="true"],
+.unified-density-control[data-shared-disabled="true"],
+.unified-density-control:has(
+  .category-density-range:disabled
+) {
+  opacity:
+    .28 !important;
+
+  filter:
+    grayscale(.55)
+    saturate(.25) !important;
+
+  pointer-events:
+    none !important;
+
+  border-color:
+    #232326 !important;
+}
+
+
+.unified-view-toggle,
+.unified-count {
+  display:
+    flex !important;
+
+  align-items:
+    center !important;
+
+  justify-content:
+    center !important;
+
+  min-height:
+    48px !important;
+
+  margin:
+    0 !important;
+
+  padding:
+    0
+    16px !important;
+
+  color:
+    #8d8d93 !important;
+
+  background:
+    #171719 !important;
+
+  border:
+    1px solid
+    #2a2a2d !important;
+
+  border-radius:
+    10px !important;
+
+  font-size:
+    .60rem !important;
+
+  font-weight:
+    900 !important;
+
+  letter-spacing:
+    .9px !important;
+
+  white-space:
+    nowrap !important;
+}
+
+
+button.unified-view-toggle {
+  width:
+    142px !important;
+
+  cursor:
+    pointer !important;
+}
+
+
+button.unified-view-toggle:hover,
+button.unified-view-toggle:focus-visible {
+  color:
+    #ffcc00 !important;
+
+  border-color:
+    rgba(255, 204, 0, .34) !important;
+
+  outline:
+    none !important;
+}
+
+
+/* =========================================================
+   GRID — SAME CARD / TRANSPARENT IMAGE STAGE
+========================================================= */
+
+.unified-collection-grid
+.card {
+  overflow:
+    hidden !important;
+
+  background:
+    rgba(22, 22, 24, .58) !important;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, .09) !important;
+
+  border-radius:
+    14px !important;
+
+  box-shadow:
+    0
+    12px
+    30px
+    rgba(0, 0, 0, .18) !important;
+}
+
+
+.unified-collection-grid
+.card-img-wrapper {
+  background:
+    transparent !important;
+}
+
+
+.unified-collection-grid
+.card-img-wrapper img {
+  background:
+    transparent !important;
+}
+
+
+/* LEGO / Mask should show the entire object without a white frame. */
+
+#lego-grid.unified-collection-grid
+.card-img-wrapper img,
+#mask-grid.unified-collection-grid
+.card-img-wrapper img {
+  object-fit:
+    contain !important;
+
+  object-position:
+    center center !important;
+}
+
+
+.unified-collection-grid
+.card-info {
+  background:
+    rgba(18, 18, 20, .34) !important;
+
+  border-top:
+    1px solid
+    rgba(255, 255, 255, .055) !important;
+}
+
+
+/* =========================================================
+   3D — ONE CARD SYSTEM FOR ALL 3 COLLECTIONS
+========================================================= */
+
+.unified-3d-root,
+.unified-3d-gallery,
+.unified-3d-stage {
+  background:
+    transparent !important;
+}
+
+
+.unified-3d-gallery {
+  position:
+    relative !important;
+
+  width:
+    100% !important;
+
+  min-height:
+    580px !important;
+
+  overflow:
+    hidden !important;
+
+  perspective:
+    1450px !important;
+
+  perspective-origin:
+    center center !important;
+
+  outline:
+    none !important;
+
+  touch-action:
+    pan-y !important;
+}
+
+
+.unified-3d-stage {
+  position:
+    relative !important;
+
+  width:
+    100% !important;
+
+  height:
+    520px !important;
+
+  transform-style:
+    preserve-3d !important;
+}
+
+
+.unified-3d-card {
+  position:
+    absolute !important;
+
+  top:
+    50% !important;
+
+  left:
+    50% !important;
+
+  width:
+    min(370px, 74vw) !important;
+
+  min-height:
+    440px !important;
+
+  overflow:
+    hidden !important;
+
+  color:
+    #ededf0 !important;
+
+  /*
+    Deliberately translucent:
+    neighboring cards remain visible through the card.
+  */
+  background:
+    rgba(18, 18, 20, .50) !important;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, .09) !important;
+
+  border-radius:
+    16px !important;
+
+  box-shadow:
+    0
+    22px
+    55px
+    rgba(0, 0, 0, .30) !important;
+
+  cursor:
+    pointer !important;
+
+  transform-style:
+    preserve-3d !important;
+
+  will-change:
+    transform,
+    opacity,
+    filter !important;
+
+  transition:
+    transform .46s cubic-bezier(.22, .78, .22, 1),
+    opacity .34s ease,
+    filter .34s ease,
+    border-color .24s ease,
+    box-shadow .24s ease !important;
+}
+
+
+.unified-3d-gallery.is-dragging
+.unified-3d-card {
+  transition:
+    none !important;
+}
+
+
+.unified-3d-card.is-center {
+  border-color:
+    rgba(255, 204, 0, .30) !important;
+
+  box-shadow:
+    0
+    28px
+    68px
+    rgba(0, 0, 0, .38) !important;
+}
+
+
+/*
+  Most important transparency change:
+  there is NO black/white image panel behind the object.
+*/
+
+.unified-3d-image {
+  display:
+    flex !important;
+
+  align-items:
+    center !important;
+
+  justify-content:
+    center !important;
+
+  width:
+    100% !important;
+
+  height:
+    310px !important;
+
+  padding:
+    14px !important;
+
+  background:
+    transparent !important;
+
+  border:
+    0 !important;
+
+  pointer-events:
+    none !important;
+}
+
+
+.unified-3d-image img {
+  background:
+    transparent !important;
+
+  pointer-events:
+    none !important;
+
+  -webkit-user-drag:
+    none !important;
+
+  user-select:
+    none !important;
+}
+
+
+/* Category images need generic contain behavior.
+   Sneaker per-pair scale/tuning remains untouched. */
+
+.category-3d-image.unified-3d-image img {
+  display:
+    block !important;
+
+  width:
+    100% !important;
+
+  height:
+    100% !important;
+
+  object-fit:
+    contain !important;
+
+  object-position:
+    center center !important;
+}
+
+
+.unified-3d-info {
+  padding:
+    18px
+    20px
+    20px !important;
+
+  background:
+    rgba(18, 18, 20, .24) !important;
+
+  border-top:
+    1px solid
+    rgba(255, 255, 255, .055) !important;
+
+  pointer-events:
+    none !important;
+}
+
+
+.unified-3d-info h3 {
+  margin:
+    0
+    0
+    8px !important;
+
+  color:
+    #f3f3f5 !important;
+
+  font-size:
+    1rem !important;
+
+  line-height:
+    1.35 !important;
+}
+
+
+.unified-3d-info p {
+  margin:
+    0
+    0
+    14px !important;
+
+  color:
+    #8f8f96 !important;
+
+  font-size:
+    .77rem !important;
+
+  line-height:
+    1.55 !important;
+}
+
+
+.unified-3d-meta {
+  display:
+    flex !important;
+
+  align-items:
+    center !important;
+
+  justify-content:
+    space-between !important;
+
+  gap:
+    12px !important;
+
+  color:
+    #9b9ba1 !important;
+
+  font-size:
+    .67rem !important;
+
+  font-weight:
+    800 !important;
+
+  letter-spacing:
+    .6px !important;
+}
+
+
+.unified-3d-meta
+span:first-child {
+  color:
+    #ffcc00 !important;
+}
+
+
+.unified-3d-nav {
+  position:
+    absolute !important;
+
+  top:
+    45% !important;
+
+  z-index:
+    1000 !important;
+
+  display:
+    flex !important;
+
+  align-items:
+    center !important;
+
+  justify-content:
+    center !important;
+
+  width:
+    44px !important;
+
+  height:
+    44px !important;
+
+  padding:
+    0 !important;
+
+  color:
+    #aaaab0 !important;
+
+  background:
+    rgba(15, 15, 17, .72) !important;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, .11) !important;
+
+  border-radius:
+    50% !important;
+
+  cursor:
+    pointer !important;
+
+  font-size:
+    1.55rem !important;
+
+  line-height:
+    1 !important;
+
+  transform:
+    translateY(-50%) !important;
+
+  pointer-events:
+    auto !important;
+
+  touch-action:
+    manipulation !important;
+}
+
+
+.unified-3d-prev {
+  left:
+    10px !important;
+}
+
+
+.unified-3d-next {
+  right:
+    10px !important;
+}
+
+
+.unified-3d-nav:hover {
+  color:
+    #ffcc00 !important;
+
+  border-color:
+    rgba(255, 204, 0, .32) !important;
+}
+
+
+.unified-3d-footer {
+  position:
+    absolute !important;
+
+  left:
+    50% !important;
+
+  bottom:
+    4px !important;
+
+  z-index:
+    1200 !important;
+
+  display:
+    flex !important;
+
+  align-items:
+    center !important;
+
+  gap:
+    9px !important;
+
+  transform:
+    translateX(-50%) !important;
+
+  pointer-events:
+    none !important;
+}
+
+
+.unified-3d-counter {
+  color:
+    #ffcc00 !important;
+
+  font-size:
+    .68rem !important;
+
+  font-weight:
+    900 !important;
+
+  letter-spacing:
+    .7px !important;
+}
+
+
+.unified-3d-open {
+  pointer-events:
+    auto !important;
+
+  display:
+    inline-flex !important;
+
+  align-items:
+    center !important;
+
+  justify-content:
+    center !important;
+
+  min-height:
+    34px !important;
+
+  padding:
+    7px
+    12px !important;
+
+  color:
+    #8e929a !important;
+
+  background:
+    rgba(255, 255, 255, .025) !important;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, .085) !important;
+
+  border-radius:
+    999px !important;
+
+  cursor:
+    pointer !important;
+
+  font:
+    inherit !important;
+
+  font-size:
+    .58rem !important;
+
+  font-weight:
+    900 !important;
+
+  letter-spacing:
+    .9px !important;
+}
+
+
+.unified-3d-open:hover {
+  color:
+    #ffcc00 !important;
+
+  border-color:
+    rgba(255, 204, 0, .32) !important;
+
+  background:
+    rgba(255, 204, 0, .045) !important;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media
+screen and
+(max-width: 950px) {
+
+  .unified-display-toolbar {
+    grid-template-columns:
+      minmax(300px, 1fr)
+      132px
+      max-content !important;
+
+    gap:
+      12px !important;
+  }
+
+
+  button.unified-view-toggle {
+    width:
+      132px !important;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media
+screen and
+(max-width: 650px) {
+
+  .unified-display-toolbar {
+    display:
+      flex !important;
+
+    flex-direction:
+      column !important;
+
+    gap:
+      10px !important;
+  }
+
+
+  .unified-display-toolbar
+  .unified-count {
+    order:
+      1;
+
+    align-self:
+      stretch !important;
+
+    width:
+      100% !important;
+
+    text-align:
+      center !important;
+  }
+
+
+  .unified-display-toolbar
+  .unified-view-toggle {
+    order:
+      2;
+
+    align-self:
+      center !important;
+
+    width:
+      min(190px, 100%) !important;
+  }
+
+
+  .unified-display-toolbar
+  .unified-density-control {
+    order:
+      3;
+
+    width:
+      100% !important;
+  }
+
+
+  .unified-3d-gallery {
+    min-height:
+      535px !important;
+  }
+
+
+  .unified-3d-stage {
+    height:
+      480px !important;
+  }
+
+
+  .unified-3d-card {
+    width:
+      min(78vw, 345px) !important;
+
+    min-height:
+      410px !important;
+  }
+
+
+  .unified-3d-image {
+    height:
+      285px !important;
+
+    padding:
+      12px !important;
+  }
+
+
+  .unified-3d-info {
+    padding:
+      15px
+      17px
+      18px !important;
+  }
+
+
+  .unified-3d-nav {
+    display:
+      none !important;
+  }
+
+
+  .unified-3d-open {
+    min-height:
+      32px !important;
+
+    padding:
+      6px
+      11px !important;
+
+    font-size:
+      .56rem !important;
+  }
+
+}
