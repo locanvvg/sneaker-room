@@ -1,336 +1,839 @@
 /* =========================================================
-   LỘC AN — CATALOG DISPLAY ENGINE v1
+   LỘC AN — CATALOG DISPLAY ENGINE v2
 
-   GOAL:
-   - Existing calibrated shoes keep their current visual size.
-   - New schemaVersion:2 shoes use AUTO FIT by default.
-   - Grid + 3D use the exact same display result.
-   - Manual override stays possible inside the sneaker object.
+   PURPOSE
+   -------
+   1) GRID của các đôi cũ đã cân đẹp: GIỮ NGUYÊN.
+   2) 3D: dùng visual bounding-box auto fit cho các đôi legacy
+      đang lệch kích thước.
+   3) Giày mới (schemaVersion: 2): Auto Fit ở cả Grid + 3D.
+   4) Một đôi đặc biệt vẫn có thể override trong chính entry.
 
-   Future new sneaker:
-     autoFit is automatic.
+   WHY v2
+   ------
+   Cùng một "scale: 0.90" không có nghĩa Grid và 3D nhìn bằng
+   nhau, vì khung ảnh của hai mode có kích thước/tỷ lệ khác nhau.
 
-   Only if Auto Fit is imperfect:
-     display: {
-       scaleX: 0.95,
-       scaleY: 0.95,
-       x: 0,
-       y: 0
-     }
+   v2 không cố dùng cùng một con số scale.
+   v2 dùng cùng một MỤC TIÊU KÍCH THƯỚC THỊ GIÁC:
+     transparent PNG
+          ↓
+     alpha bounding box
+          ↓
+     scale + center theo khung thật của mode
+          ↓
+     Grid / 3D nhìn cân hơn
+
    ========================================================= */
 
 (() => {
   "use strict";
 
+
+  /* =========================================================
+     AUTO FIT TARGETS
+  ========================================================= */
+
   const AUTO_TARGET = {
-    width: 0.82,
-    height: 0.68,
-    minScale: 0.52,
-    maxScale: 1.38,
+
+    grid: {
+      width: 0.82,
+      height: 0.68
+    },
+
+    view3d: {
+      width: 0.80,
+      height: 0.66
+    },
+
+    minScale: 0.48,
+    maxScale: 1.45,
+
     alphaThreshold: 18,
-    sampleMax: 280
+
+    /*
+      Downsample before reading pixels.
+      Keeps Auto Fit fast even with large PNG files.
+    */
+    sampleMax: 300
   };
 
-  /*
-    MIGRATION PRESETS:
-    Preserve the current visual calibration of the shoes
-    already tuned manually.
 
-    Future shoes do NOT need to be added here.
-  */
+  /* =========================================================
+     LEGACY MIGRATION PRESETS
+
+     GRID:
+       Keep the values already calibrated by hand.
+
+     3D:
+       "auto" means:
+       use actual transparent-pixel bounding box instead of
+       blindly reusing the Grid scale.
+
+     visualWeight:
+       a small optical correction AFTER automatic measurement.
+       This is only for already-existing legacy images.
+
+       Future schemaVersion:2 shoes do NOT need to be added here.
+  ========================================================= */
+
   const MIGRATION_PRESETS = [
+
+    /* BAPE — Grid good, 3D currently too large */
     {
       any: [
         "bape x stussy",
         "bape x stüssy"
       ],
-      scaleX: 0.90,
-      scaleY: 0.90
+
+      grid: {
+        scaleX: 0.90,
+        scaleY: 0.90,
+        x: 0,
+        y: 0
+      },
+
+      view3d: "auto",
+
+      visualWeight3d: 0.96
     },
 
+
+    /* Off-White Waffle — Grid good, 3D currently too large */
     {
       any: [
         "waffle racer",
         "off-white waffle"
       ],
-      scaleX: 0.88,
-      scaleY: 0.88
+
+      grid: {
+        scaleX: 0.88,
+        scaleY: 0.88,
+        x: 0,
+        y: 0
+      },
+
+      view3d: "auto",
+
+      visualWeight3d: 0.97
     },
 
+
+    /* Jordan 4 Black Cement — Grid good, 3D currently too small */
     {
       all: [
         "jordan 4",
         "black cement"
       ],
-      scaleX: 0.90,
-      scaleY: 0.90
+
+      grid: {
+        scaleX: 0.90,
+        scaleY: 0.90,
+        x: 0,
+        y: 0
+      },
+
+      view3d: "auto",
+
+      visualWeight3d: 1.04
     },
 
+
+    /* New Balance 2002R — Grid good, 3D currently too small */
     {
       all: [
         "new balance",
         "2002r"
       ],
-      scaleX: 0.54,
-      scaleY: 0.54
+
+      grid: {
+        scaleX: 0.54,
+        scaleY: 0.54,
+        x: 0,
+        y: 0
+      },
+
+      view3d: "auto",
+
+      visualWeight3d: 1.07
     },
 
+
+    /* Reverse Bred — keep current calibration */
     {
       all: [
         "jordan 1 low",
         "reverse bred"
       ],
-      scaleX: 0.55,
-      scaleY: 0.55
+
+      grid: {
+        scaleX: 0.55,
+        scaleY: 0.55,
+        x: 0,
+        y: 0
+      },
+
+      view3d: {
+        scaleX: 0.55,
+        scaleY: 0.55,
+        x: 0,
+        y: 0
+      }
     },
 
+
+    /* Vans — keep current calibration */
     {
       all: [
         "vans",
         "knu skool"
       ],
-      scaleX: 1.00,
-      scaleY: 1.00
+
+      grid: {
+        scaleX: 1.00,
+        scaleY: 1.00,
+        x: 0,
+        y: 0
+      },
+
+      view3d: {
+        scaleX: 1.00,
+        scaleY: 1.00,
+        x: 0,
+        y: 0
+      }
     },
 
+
+    /*
+      Balenciaga — keep the intentional height compression.
+      scaleY 0.84 means: same width, shorter height.
+    */
     {
       all: [
         "balenciaga",
         "defender"
       ],
-      scaleX: 1.00,
-      scaleY: 0.84
+
+      grid: {
+        scaleX: 1.00,
+        scaleY: 0.84,
+        x: 0,
+        y: 0
+      },
+
+      view3d: {
+        scaleX: 1.00,
+        scaleY: 0.84,
+        x: 0,
+        y: 0
+      }
     }
+
   ];
 
+
+  /* =========================================================
+     TEXT HELPERS
+  ========================================================= */
+
   function normalize(value) {
+
     return String(value ?? "")
+
       .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/[“”‘’]/g, "'")
+
+      .replace(
+        /[\u0300-\u036f]/g,
+        ""
+      )
+
+      .replace(
+        /[“”‘’]/g,
+        "'"
+      )
+
       .toLowerCase()
-      .replace(/\s+/g, " ")
+
+      .replace(
+        /\s+/g,
+        " "
+      )
+
       .trim();
+
   }
 
+
   function corpus(sneaker) {
-    return normalize([
-      sneaker?.id,
-      sneaker?.title?.vi,
-      sneaker?.title?.en,
-      typeof sneaker?.title === "string"
-        ? sneaker.title
-        : "",
-      sneaker?.image,
-      ...(Array.isArray(sneaker?.images)
-        ? sneaker.images
-        : [])
-    ]
-      .filter(Boolean)
-      .join(" "));
+
+    return normalize(
+      [
+
+        sneaker?.id,
+
+        sneaker?.title?.vi,
+
+        sneaker?.title?.en,
+
+        typeof sneaker?.title ===
+          "string"
+            ? sneaker.title
+            : "",
+
+        sneaker?.image,
+
+        ...(
+          Array.isArray(
+            sneaker?.images
+          )
+            ? sneaker.images
+            : []
+        )
+
+      ]
+
+        .filter(Boolean)
+
+        .join(" ")
+    );
+
   }
+
 
   function matchesPreset(
     sneaker,
     preset
   ) {
+
     const text =
       corpus(sneaker);
 
+
     const any =
-      Array.isArray(preset.any)
+      Array.isArray(
+        preset.any
+      )
         ? preset.any
         : [];
 
+
     const all =
-      Array.isArray(preset.all)
+      Array.isArray(
+        preset.all
+      )
         ? preset.all
         : [];
 
+
     const anyOK =
-      any.length === 0 ||
-      any.some(keyword =>
-        text.includes(
-          normalize(keyword)
-        )
+
+      any.length === 0
+
+      ||
+
+      any.some(
+        keyword =>
+          text.includes(
+            normalize(keyword)
+          )
       );
+
 
     const allOK =
-      all.length === 0 ||
-      all.every(keyword =>
-        text.includes(
-          normalize(keyword)
-        )
+
+      all.length === 0
+
+      ||
+
+      all.every(
+        keyword =>
+          text.includes(
+            normalize(keyword)
+          )
       );
 
+
     return (
-      (any.length > 0 || all.length > 0) &&
-      anyOK &&
+
+      (
+        any.length > 0
+        ||
+        all.length > 0
+      )
+
+      &&
+
+      anyOK
+
+      &&
+
       allOK
+
     );
+
   }
 
-  function migrationPreset(sneaker) {
+
+  function migrationPreset(
+    sneaker
+  ) {
+
     return (
+
       MIGRATION_PRESETS.find(
         preset =>
           matchesPreset(
             sneaker,
             preset
           )
-      ) ||
+      )
+
+      ||
+
       null
+
     );
+
   }
+
 
   function numeric(
     value,
     fallback
   ) {
+
     const number =
       Number(value);
 
-    return Number.isFinite(number)
+
+    return Number.isFinite(
+      number
+    )
       ? number
       : fallback;
+
   }
 
-  function manualDisplay(sneaker) {
+
+  /* =========================================================
+     MODE
+  ========================================================= */
+
+  function imageMode(img) {
+
+    return img.closest(
+      ".sneaker-3d-image"
+    )
+      ? "view3d"
+      : "grid";
+
+  }
+
+
+  /* =========================================================
+     DISPLAY OVERRIDES
+
+     New sneaker can use:
+
+     display: {
+       scaleX: 0.95,
+       scaleY: 0.95,
+       x: 0,
+       y: 0
+     }
+
+     -> applies to BOTH modes.
+
+     Or:
+
+     display: {
+       grid: {
+         scaleX: 0.95,
+         scaleY: 0.95
+       },
+
+       view3d: "auto"
+     }
+
+     -> separate behavior only when needed.
+  ========================================================= */
+
+  function normalizeDisplayObject(
+    value
+  ) {
+
     if (
-      sneaker?.display &&
-      typeof sneaker.display === "object"
+      !value
+      ||
+      typeof value !==
+        "object"
+      ||
+      Array.isArray(value)
     ) {
-      return {
-        scaleX:
-          numeric(
-            sneaker.display.scaleX ??
-            sneaker.display.scale,
-            1
-          ),
 
-        scaleY:
-          numeric(
-            sneaker.display.scaleY ??
-            sneaker.display.scale,
-            1
-          ),
+      return null;
 
-        x:
-          numeric(
-            sneaker.display.x,
-            0
-          ),
-
-        y:
-          numeric(
-            sneaker.display.y,
-            0
-          )
-      };
     }
 
-    const preset =
-      migrationPreset(sneaker);
 
-    if (preset) {
-      return {
-        scaleX:
-          numeric(
-            preset.scaleX,
-            1
-          ),
+    return {
 
-        scaleY:
-          numeric(
-            preset.scaleY,
-            1
-          ),
+      scaleX:
+        numeric(
+          value.scaleX ??
+          value.scale,
+          1
+        ),
 
-        x:
-          numeric(
-            preset.x,
-            0
-          ),
+      scaleY:
+        numeric(
+          value.scaleY ??
+          value.scale,
+          1
+        ),
 
-        y:
-          numeric(
-            preset.y,
-            0
-          )
-      };
+      x:
+        numeric(
+          value.x,
+          0
+        ),
+
+      y:
+        numeric(
+          value.y,
+          0
+        )
+
+    };
+
+  }
+
+
+  function inlineModeSetting(
+    sneaker,
+    mode
+  ) {
+
+    const display =
+      sneaker?.display;
+
+
+    if (
+      display === "auto"
+    ) {
+
+      return "auto";
+
     }
+
+
+    if (
+      !display
+      ||
+      typeof display !==
+        "object"
+      ||
+      Array.isArray(display)
+    ) {
+
+      return null;
+
+    }
+
+
+    if (
+      display[mode] ===
+      "auto"
+    ) {
+
+      return "auto";
+
+    }
+
+
+    const modeObject =
+      normalizeDisplayObject(
+        display[mode]
+      );
+
+
+    if (modeObject) {
+
+      return modeObject;
+
+    }
+
+
+    /*
+      Flat display object applies to both Grid + 3D.
+    */
+
+    if (
+
+      "scale" in display
+
+      ||
+
+      "scaleX" in display
+
+      ||
+
+      "scaleY" in display
+
+      ||
+
+      "x" in display
+
+      ||
+
+      "y" in display
+
+    ) {
+
+      return normalizeDisplayObject(
+        display
+      );
+
+    }
+
 
     return null;
+
   }
 
-  function shouldAutoFit(sneaker) {
-    if (manualDisplay(sneaker)) {
-      return false;
+
+  function legacyModeSetting(
+    sneaker,
+    mode
+  ) {
+
+    const preset =
+      migrationPreset(
+        sneaker
+      );
+
+
+    if (!preset) {
+
+      return null;
+
     }
 
-    return (
-      sneaker?.autoFit === true ||
-      sneaker?.display === "auto" ||
-      sneaker?.schemaVersion >= 2
+
+    if (
+      preset[mode] ===
+      "auto"
+    ) {
+
+      return "auto";
+
+    }
+
+
+    return normalizeDisplayObject(
+      preset[mode]
     );
+
   }
+
+
+  function modeSetting(
+    sneaker,
+    mode
+  ) {
+
+    const inline =
+      inlineModeSetting(
+        sneaker,
+        mode
+      );
+
+
+    if (inline) {
+
+      return inline;
+
+    }
+
+
+    const legacy =
+      legacyModeSetting(
+        sneaker,
+        mode
+      );
+
+
+    if (legacy) {
+
+      return legacy;
+
+    }
+
+
+    /*
+      Every new schemaVersion:2 sneaker gets Auto Fit
+      by default in BOTH modes.
+    */
+
+    if (
+      sneaker?.autoFit === true
+
+      ||
+
+      sneaker?.schemaVersion >= 2
+    ) {
+
+      return "auto";
+
+    }
+
+
+    /*
+      Existing uncalibrated legacy entries:
+      leave their old layout untouched.
+    */
+
+    return null;
+
+  }
+
+
+  function visualWeight(
+    sneaker,
+    mode
+  ) {
+
+    if (
+      mode !== "view3d"
+    ) {
+
+      return 1;
+
+    }
+
+
+    const preset =
+      migrationPreset(
+        sneaker
+      );
+
+
+    return numeric(
+      preset?.visualWeight3d,
+      1
+    );
+
+  }
+
+
+  /* =========================================================
+     SNEAKER LOOKUP
+  ========================================================= */
 
   function findSneaker(id) {
+
     if (
-      typeof sneakers === "undefined" ||
-      !Array.isArray(sneakers)
+
+      typeof sneakers ===
+        "undefined"
+
+      ||
+
+      !Array.isArray(
+        sneakers
+      )
+
     ) {
+
       return null;
+
     }
 
+
     return (
+
       sneakers.find(
         item =>
           String(item.id) ===
           String(id)
-      ) ||
+      )
+
+      ||
+
       null
+
     );
+
   }
 
-  function styleString(sneaker) {
-    const display =
-      manualDisplay(sneaker);
 
-    if (!display) {
-      return [
-        "--shoe-scale-x:1",
-        "--shoe-scale-y:1",
-        "--shoe-x:0%",
-        "--shoe-y:0%"
-      ].join(";");
-    }
+  /* =========================================================
+     INITIAL INLINE STYLE
+  ========================================================= */
+
+  function styleString(
+    sneaker
+  ) {
+
+    /*
+      Initial neutral values.
+      The exact mode-specific values are applied after the
+      <img> exists in the Grid or 3D DOM.
+    */
 
     return [
-      `--shoe-scale-x:${display.scaleX}`,
-      `--shoe-scale-y:${display.scaleY}`,
-      `--shoe-x:${display.x}%`,
-      `--shoe-y:${display.y}%`
+      "--shoe-scale-x:1",
+      "--shoe-scale-y:1",
+      "--shoe-x:0%",
+      "--shoe-y:0%"
     ].join(";");
+
   }
 
+
+  /* =========================================================
+     CSS
+  ========================================================= */
+
   function installCSS() {
+
     document
+
+      .getElementById(
+        "locan-catalog-display-v2"
+      )
+
+      ?.remove();
+
+
+    /*
+      Remove v1 style if browser has both during cache transition.
+    */
+
+    document
+
       .getElementById(
         "locan-catalog-display-v1"
       )
+
       ?.remove();
+
 
     const style =
       document.createElement(
         "style"
       );
 
+
     style.id =
-      "locan-catalog-display-v1";
+      "locan-catalog-display-v2";
+
 
     style.textContent = `
-      .grid .card-img-wrapper
+
+      .grid
+      .card-img-wrapper
       img[data-catalog-image="true"],
 
       .sneaker-3d-image
@@ -357,7 +860,9 @@
         object-position:
           center center
           !important;
+
       }
+
 
       .sneaker-3d-image
       img[data-catalog-image="true"] {
@@ -376,66 +881,104 @@
 
         margin:
           0 !important;
+
       }
+
     `;
+
 
     document.head.appendChild(
       style
     );
+
   }
 
+
+  /* =========================================================
+     ALPHA BOUNDING BOX
+
+     Reads transparent pixels from PNG/WebP.
+  ========================================================= */
+
   function alphaBounds(img) {
+
     const naturalWidth =
       img.naturalWidth;
+
 
     const naturalHeight =
       img.naturalHeight;
 
+
     if (
-      !naturalWidth ||
+
+      !naturalWidth
+
+      ||
+
       !naturalHeight
+
     ) {
+
       return null;
+
     }
+
 
     const sampleScale =
       Math.min(
+
         1,
-        AUTO_TARGET.sampleMax /
+
+        AUTO_TARGET.sampleMax
+        /
         Math.max(
           naturalWidth,
           naturalHeight
         )
+
       );
+
 
     const width =
       Math.max(
+
         1,
+
         Math.round(
           naturalWidth *
           sampleScale
         )
+
       );
+
 
     const height =
       Math.max(
+
         1,
+
         Math.round(
           naturalHeight *
           sampleScale
         )
+
       );
+
 
     const canvas =
       document.createElement(
         "canvas"
       );
 
+
     canvas.width =
       width;
 
+
     canvas.height =
       height;
+
 
     const context =
       canvas.getContext(
@@ -446,17 +989,23 @@
         }
       );
 
+
     if (!context) {
+
       return null;
+
     }
 
+
     try {
+
       context.clearRect(
         0,
         0,
         width,
         height
       );
+
 
       context.drawImage(
         img,
@@ -466,6 +1015,7 @@
         height
       );
 
+
       const data =
         context.getImageData(
           0,
@@ -474,72 +1024,111 @@
           height
         ).data;
 
+
       let minX =
         width;
+
 
       let minY =
         height;
 
+
       let maxX =
         -1;
+
 
       let maxY =
         -1;
 
+
       const threshold =
-        AUTO_TARGET.alphaThreshold;
+        AUTO_TARGET
+          .alphaThreshold;
+
 
       for (
         let y = 0;
         y < height;
         y += 1
       ) {
+
         for (
           let x = 0;
           x < width;
           x += 1
         ) {
+
           const alpha =
             data[
               (
                 y * width +
                 x
-              ) * 4 +
+              )
+              *
+              4
+              +
               3
             ];
+
 
           if (
             alpha <= threshold
           ) {
+
             continue;
+
           }
+
 
           if (x < minX) {
+
             minX = x;
+
           }
+
 
           if (x > maxX) {
+
             maxX = x;
+
           }
+
 
           if (y < minY) {
+
             minY = y;
+
           }
+
 
           if (y > maxY) {
+
             maxY = y;
+
           }
+
         }
+
       }
+
 
       if (
-        maxX < minX ||
+
+        maxX < minX
+
+        ||
+
         maxY < minY
+
       ) {
+
         return null;
+
       }
 
+
       return {
+
         left:
           minX / width,
 
@@ -547,464 +1136,742 @@
           minY / height,
 
         right:
-          (maxX + 1) / width,
+          (maxX + 1)
+          /
+          width,
 
         bottom:
-          (maxY + 1) / height
+          (maxY + 1)
+          /
+          height
+
       };
 
+
     } catch (error) {
-      /*
-        Same-origin GitHub Pages images should work.
-        If a future external image blocks canvas access,
-        simply fall back to scale 1.
-      */
+
       console.warn(
         "[Catalog Display] Auto Fit skipped:",
         error
       );
 
+
       return null;
+
     }
+
   }
+
+
+  /* =========================================================
+     MANUAL DISPLAY
+  ========================================================= */
 
   function applyManual(
     img,
-    display
+    display,
+    mode
   ) {
+
     img.style.setProperty(
       "--shoe-scale-x",
-      String(display.scaleX)
+      String(
+        display.scaleX
+      )
     );
+
 
     img.style.setProperty(
       "--shoe-scale-y",
-      String(display.scaleY)
+      String(
+        display.scaleY
+      )
     );
+
 
     img.style.setProperty(
       "--shoe-x",
       `${display.x}%`
     );
 
+
     img.style.setProperty(
       "--shoe-y",
       `${display.y}%`
     );
 
+
     img.dataset.catalogFit =
-      "manual";
+      `manual-${mode}`;
+
   }
+
+
+  /* =========================================================
+     AUTO DISPLAY
+  ========================================================= */
 
   function applyAuto(
     img,
-    sneaker
+    sneaker,
+    mode
   ) {
+
     const bounds =
       alphaBounds(img);
 
+
     if (!bounds) {
+
       img.dataset.catalogFit =
-        "fallback";
+        `fallback-${mode}`;
+
 
       return;
+
     }
+
 
     const rect =
       img.getBoundingClientRect();
 
+
     const elementWidth =
       rect.width;
+
 
     const elementHeight =
       rect.height;
 
+
     if (
-      !elementWidth ||
+
+      !elementWidth
+
+      ||
+
       !elementHeight
+
     ) {
+
       requestAnimationFrame(
         () =>
           applyAuto(
             img,
-            sneaker
+            sneaker,
+            mode
           )
       );
 
+
       return;
+
     }
+
 
     const naturalWidth =
       img.naturalWidth;
 
+
     const naturalHeight =
       img.naturalHeight;
 
+
     const baseScale =
       Math.min(
+
         elementWidth /
         naturalWidth,
 
         elementHeight /
         naturalHeight
+
       );
+
 
     const renderedWidth =
       naturalWidth *
       baseScale;
 
+
     const renderedHeight =
       naturalHeight *
       baseScale;
+
 
     const offsetX =
       (
         elementWidth -
         renderedWidth
-      ) / 2;
+      )
+      /
+      2;
+
 
     const offsetY =
       (
         elementHeight -
         renderedHeight
-      ) / 2;
+      )
+      /
+      2;
+
 
     const bboxWidth =
       (
         bounds.right -
         bounds.left
-      ) *
+      )
+      *
       renderedWidth;
+
 
     const bboxHeight =
       (
         bounds.bottom -
         bounds.top
-      ) *
+      )
+      *
       renderedHeight;
+
+
+    const target =
+      AUTO_TARGET[
+        mode
+      ];
+
 
     const targetWidth =
       elementWidth *
-      AUTO_TARGET.width;
+      target.width;
+
 
     const targetHeight =
       elementHeight *
-      AUTO_TARGET.height;
+      target.height;
+
 
     let fitScale =
       Math.min(
-        targetWidth /
-          Math.max(
-            bboxWidth,
-            1
-          ),
 
-        targetHeight /
-          Math.max(
-            bboxHeight,
-            1
-          )
+        targetWidth
+        /
+        Math.max(
+          bboxWidth,
+          1
+        ),
+
+        targetHeight
+        /
+        Math.max(
+          bboxHeight,
+          1
+        )
+
       );
+
+
+    /*
+      Small optical correction for existing legacy pairs.
+      Future shoes normally use weight = 1.
+    */
+
+    fitScale *=
+      visualWeight(
+        sneaker,
+        mode
+      );
+
 
     fitScale =
       Math.max(
+
         AUTO_TARGET.minScale,
 
         Math.min(
           AUTO_TARGET.maxScale,
           fitScale
         )
+
       );
 
+
     const centerX =
-      offsetX +
+      offsetX
+      +
       (
         (
           bounds.left +
           bounds.right
-        ) / 2
-      ) *
+        )
+        /
+        2
+      )
+      *
       renderedWidth;
 
+
     const centerY =
-      offsetY +
+      offsetY
+      +
       (
         (
           bounds.top +
           bounds.bottom
-        ) / 2
-      ) *
+        )
+        /
+        2
+      )
+      *
       renderedHeight;
 
-    /*
-      Translate in percentages so the alignment remains
-      proportional when the grid-density slider resizes cards.
-    */
+
     const dxPercent =
       (
         (
-          elementWidth / 2 -
+          elementWidth / 2
+          -
           centerX
-        ) /
+        )
+        /
         elementWidth
-      ) * 100;
+      )
+      *
+      100;
+
 
     const dyPercent =
       (
         (
-          elementHeight / 2 -
+          elementHeight / 2
+          -
           centerY
-        ) /
+        )
+        /
         elementHeight
-      ) * 100;
+      )
+      *
+      100;
+
 
     img.style.setProperty(
       "--shoe-scale-x",
-      String(fitScale)
+      String(
+        fitScale
+      )
     );
+
 
     img.style.setProperty(
       "--shoe-scale-y",
-      String(fitScale)
+      String(
+        fitScale
+      )
     );
+
 
     img.style.setProperty(
       "--shoe-x",
       `${dxPercent}%`
     );
 
+
     img.style.setProperty(
       "--shoe-y",
       `${dyPercent}%`
     );
 
+
     img.dataset.catalogFit =
-      "auto";
+      `auto-${mode}`;
+
 
     img.dataset.catalogAutoScale =
       fitScale.toFixed(4);
+
   }
 
+
+  /* =========================================================
+     FIT ONE IMAGE
+  ========================================================= */
+
   function fitImage(img) {
+
     const id =
       img.dataset.sneakerId;
+
 
     const sneaker =
       findSneaker(id);
 
+
     if (!sneaker) {
+
       return;
+
     }
 
-    const manual =
-      manualDisplay(sneaker);
 
-    if (manual) {
-      applyManual(
-        img,
-        manual
+    const mode =
+      imageMode(img);
+
+
+    const setting =
+      modeSetting(
+        sneaker,
+        mode
       );
 
-      return;
-    }
 
-    if (!shouldAutoFit(sneaker)) {
+    /*
+      Existing legacy item with no migration rule:
+      leave old behavior unchanged.
+    */
+
+    if (!setting) {
+
       img.dataset.catalogFit =
-        "legacy-default";
+        `legacy-default-${mode}`;
+
 
       return;
+
     }
+
 
     if (
-      !img.complete ||
-      !img.naturalWidth ||
-      !img.naturalHeight
+      setting === "auto"
     ) {
+
+      if (
+
+        !img.complete
+
+        ||
+
+        !img.naturalWidth
+
+        ||
+
+        !img.naturalHeight
+
+      ) {
+
+        return;
+
+      }
+
+
+      applyAuto(
+        img,
+        sneaker,
+        mode
+      );
+
+
       return;
+
     }
 
-    applyAuto(
+
+    applyManual(
       img,
-      sneaker
+      setting,
+      mode
     );
+
   }
 
+
+  /* =========================================================
+     PREPARE IMAGES
+  ========================================================= */
+
   function prepareImage(img) {
-    if (
-      !img ||
-      img.dataset.catalogPrepared ===
-        "true"
-    ) {
+
+    if (!img) {
+
       return;
+
     }
 
-    img.dataset.catalogPrepared =
-      "true";
 
-    img.addEventListener(
-      "load",
-      () =>
-        requestAnimationFrame(
-          () =>
-            fitImage(img)
-        )
-    );
+    /*
+      Always allow refit after Grid density / responsive
+      layout changes, but bind load handler only once.
+    */
 
     if (
-      img.complete &&
-      img.naturalWidth
+      img.dataset
+        .catalogPrepared !==
+        "true"
     ) {
+
+      img.dataset.catalogPrepared =
+        "true";
+
+
+      img.addEventListener(
+        "load",
+        () =>
+
+          requestAnimationFrame(
+            () =>
+              fitImage(img)
+          )
+      );
+
+    }
+
+
+    if (
+
+      img.complete
+
+      &&
+
+      img.naturalWidth
+
+    ) {
+
       requestAnimationFrame(
         () =>
           fitImage(img)
       );
+
     }
+
   }
 
+
   function prepareWithin(root) {
-    if (!root) return;
+
+    if (!root) {
+
+      return;
+
+    }
+
 
     root
+
       .querySelectorAll(
         'img[data-catalog-image="true"]'
       )
+
       .forEach(
         prepareImage
       );
+
   }
 
-  /*
-    GRID renderer override.
-    Existing main.js filter/sort/search behavior stays intact.
-  */
+
+  /* =========================================================
+     GRID RENDERER OVERRIDE
+  ========================================================= */
+
   function installGridRenderer() {
+
     if (
       typeof renderCard !==
       "function"
     ) {
+
       console.warn(
         "[Catalog Display] renderCard not found."
       );
 
+
       return;
+
     }
+
 
     renderCard =
       function catalogRenderCard(
         sneaker
       ) {
+
         const title =
           getLocalizedText(
             sneaker.title
           );
+
 
         const subtitle =
           getLocalizedText(
             sneaker.subtitle
           );
 
+
         const edition =
           getLocalizedText(
             sneaker.editionType
           );
 
+
         const detailURL =
+
           `./shoe.html?id=${encodeURIComponent(
             sneaker.id
-          )}` +
+          )}`
+
+          +
+
           `&lang=${encodeURIComponent(
             currentLang
           )}`;
 
-        const badge =
-          edition
-            ? `<span class="badge">${escapeHTML(
-                edition
-              )}</span>`
-            : `<span class="badge badge-placeholder">&nbsp;</span>`;
 
-        const initialStyle =
-          styleString(
-            sneaker
-          );
+        const badge =
+
+          edition
+
+            ?
+
+            `<span class="badge">${escapeHTML(
+              edition
+            )}</span>`
+
+            :
+
+            `<span class="badge badge-placeholder">&nbsp;</span>`;
+
 
         return `
+
           <a
+
             href="${detailURL}"
+
             class="card-link"
-            aria-label="${escapeHTML(title)}"
+
+            aria-label="${escapeHTML(
+              title
+            )}"
+
           >
+
             <article
+
               class="card"
+
               data-sneaker-id="${escapeHTML(
                 sneaker.id || ""
               )}"
+
             >
+
 
               <div class="card-img-wrapper">
 
+
                 <img
+
                   src="${escapeHTML(
                     sneaker.image || ""
                   )}"
-                  alt="${escapeHTML(title)}"
+
+                  alt="${escapeHTML(
+                    title
+                  )}"
+
                   loading="lazy"
+
                   decoding="async"
+
                   data-catalog-image="true"
+
                   data-sneaker-id="${escapeHTML(
                     sneaker.id || ""
                   )}"
+
                   style="${escapeHTML(
-                    initialStyle
+                    styleString(
+                      sneaker
+                    )
                   )}"
+
                 >
 
+
               </div>
+
 
               <div class="card-info">
 
+
                 <h3>
-                  ${escapeHTML(title)}
+
+                  ${escapeHTML(
+                    title
+                  )}
+
                 </h3>
 
+
                 <p class="subtitle">
-                  ${escapeHTML(subtitle)}
+
+                  ${escapeHTML(
+                    subtitle
+                  )}
+
                 </p>
+
 
                 <div class="card-meta">
 
+
                   ${badge}
 
+
                   <span class="size">
+
                     ${escapeHTML(
                       sneaker.size || ""
                     )}
+
                   </span>
+
 
                 </div>
 
+
                 <span class="card-cta">
+
                   ${translations[currentLang].viewMore}
+
                 </span>
+
 
               </div>
 
+
             </article>
+
           </a>
+
         `;
+
       };
+
 
     if (
       typeof renderGrid ===
       "function"
     ) {
+
       const originalRenderGrid =
         renderGrid;
 
+
       renderGrid =
         function catalogRenderGrid() {
+
           const result =
             originalRenderGrid();
+
 
           requestAnimationFrame(
             () =>
@@ -1015,31 +1882,95 @@
               )
           );
 
+
           return result;
+
         };
+
     }
+
   }
 
+
+  /* =========================================================
+     REFIT AFTER RESIZE / GRID DENSITY
+  ========================================================= */
+
+  let resizeTimer =
+    0;
+
+
+  function refitVisibleImages() {
+
+    clearTimeout(
+      resizeTimer
+    );
+
+
+    resizeTimer =
+      window.setTimeout(
+        () => {
+
+          prepareWithin(
+            document.getElementById(
+              "sneaker-grid"
+            )
+          );
+
+        },
+        80
+      );
+
+  }
+
+
+  /* =========================================================
+     INIT
+  ========================================================= */
+
   installCSS();
+
   installGridRenderer();
+
+
+  window.addEventListener(
+    "resize",
+    refitVisibleImages,
+    {
+      passive: true
+    }
+  );
+
 
   window.getSneakerDisplayStyle =
     styleString;
 
+
   window.CatalogDisplay = {
+
     prepareImage,
+
     prepareWithin,
+
     fitImage,
+
     styleString,
-    manualDisplay,
-    shouldAutoFit,
+
+    modeSetting,
+
+    migrationPreset,
+
     presets:
       MIGRATION_PRESETS,
+
     autoTarget:
       AUTO_TARGET
+
   };
 
+
   console.info(
-    "Lộc An catalog display engine v1 loaded"
+    "Lộc An catalog display engine v2 loaded — mode-aware Auto Fit"
   );
+
 })();
