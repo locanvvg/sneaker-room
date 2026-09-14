@@ -1,5 +1,5 @@
 /* =========================================================
-   LỘC AN — UNIVERSAL CATEGORY VIEW v3 — SNEAKERS TOOLBAR MATCH
+   LỘC AN — UNIVERSAL CATEGORY VIEW v4 — MODE-AWARE GRID CONTROL
    Shared GRID / 3D gallery for:
    - LEGO
    - SNEAKER MASK
@@ -554,6 +554,56 @@
             100%;
         }
 
+      }
+
+
+
+      /* =====================================================
+         GRID CONTROL STATE
+         GRID  = active
+         3D    = muted + disabled
+      ===================================================== */
+
+      .category-grid-density {
+        transition:
+          opacity .22s ease,
+          filter .22s ease,
+          border-color .22s ease;
+      }
+
+
+      .category-grid-density.is-disabled,
+      .category-grid-density[aria-disabled="true"] {
+        opacity:
+          .30;
+
+        filter:
+          grayscale(.45)
+          saturate(.35);
+
+        pointer-events:
+          none;
+
+        border-color:
+          #232326;
+      }
+
+
+      .category-grid-density.is-disabled
+      .category-density-range,
+      .category-grid-density[aria-disabled="true"]
+      .category-density-range {
+        cursor:
+          not-allowed;
+      }
+
+
+      .category-grid-density.is-disabled
+      .category-density-button,
+      .category-grid-density[aria-disabled="true"]
+      .category-density-button {
+        cursor:
+          not-allowed;
       }
 
 
@@ -1484,6 +1534,51 @@
         );
 
       updateDensityUI();
+    }
+
+
+    function updateDensityModeState() {
+      if (!density) {
+        return;
+      }
+
+      const disabled =
+        mode === "3d";
+
+      density.control
+        ?.classList
+        .toggle(
+          "is-disabled",
+          disabled
+        );
+
+      density.control
+        ?.setAttribute(
+          "aria-disabled",
+          disabled
+            ? "true"
+            : "false"
+        );
+
+      [
+        density.range,
+        density.minus,
+        density.plus
+      ]
+        .filter(Boolean)
+        .forEach(
+          element => {
+            element.disabled =
+              disabled;
+
+            element.setAttribute(
+              "aria-disabled",
+              disabled
+                ? "true"
+                : "false"
+            );
+          }
+        );
     }
 
 
@@ -2558,6 +2653,7 @@
 
     function render() {
       updateToggle();
+      updateDensityModeState();
 
       if (
         mode === "3d"

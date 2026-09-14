@@ -1,4 +1,4 @@
-/* LỘC AN SNEAKER COLLECTION — collection-view.js v9 — CATALOG ENGINE */
+/* LỘC AN SNEAKER COLLECTION — collection-view.js v10 — UNIFIED GRID CONTROL */
 
 (() => {
   "use strict";
@@ -68,6 +68,302 @@
      CONTROL POSITION
   ===================================================== */
 
+  function sharedDensityLanguage() {
+    try {
+      return currentLang === "en"
+        ? "en"
+        : "vi";
+    } catch (_) {
+      return "vi";
+    }
+  }
+
+
+  function updateSharedDensityLabel(
+    control,
+    range
+  ) {
+    if (
+      !control
+      ||
+      !range
+    ) {
+      return;
+    }
+
+    const value =
+      String(
+        range.value ||
+        "1"
+      );
+
+    control.dataset.densityLabel =
+      sharedDensityLanguage() === "en"
+        ? `GRID · ${value} COL`
+        : `LƯỚI · ${value} CỘT`;
+  }
+
+
+  function syncSharedDensityDisabledState(
+    control,
+    range
+  ) {
+    if (
+      !control
+      ||
+      !range
+    ) {
+      return;
+    }
+
+    const disabled =
+      Boolean(
+        range.disabled
+        ||
+        control.getAttribute(
+          "aria-disabled"
+        ) === "true"
+        ||
+        control.classList.contains(
+          "disabled"
+        )
+        ||
+        control.classList.contains(
+          "is-disabled"
+        )
+      );
+
+    control.classList.toggle(
+      "shared-density-disabled",
+      disabled
+    );
+
+    control.setAttribute(
+      "data-shared-disabled",
+      disabled
+        ? "true"
+        : "false"
+    );
+  }
+
+
+  function normalizeDensityControl(
+    control
+  ) {
+    if (
+      !control
+      ||
+      control.dataset.sharedDensityReady === "true"
+    ) {
+      return;
+    }
+
+    const range =
+      control.querySelector(
+        'input[type="range"]'
+      );
+
+    const buttons =
+      Array.from(
+        control.querySelectorAll(
+          "button"
+        )
+      );
+
+    if (
+      !range
+      ||
+      buttons.length < 2
+    ) {
+      return;
+    }
+
+    const minus =
+      buttons[0];
+
+    const plus =
+      buttons[
+        buttons.length - 1
+      ];
+
+    const keep =
+      new Set([
+        range,
+        minus,
+        plus
+      ]);
+
+    const hidden =
+      document.createElement(
+        "div"
+      );
+
+    hidden.className =
+      "shared-density-original-hidden";
+
+    Array.from(
+      control.children
+    )
+      .forEach(
+        child => {
+          if (
+            !keep.has(
+              child
+            )
+          ) {
+            hidden.appendChild(
+              child
+            );
+          }
+        }
+      );
+
+    range.classList.add(
+      "category-density-range"
+    );
+
+    minus.classList.add(
+      "category-density-button",
+      "shared-density-minus"
+    );
+
+    plus.classList.add(
+      "category-density-button",
+      "shared-density-plus"
+    );
+
+    minus.textContent =
+      "−";
+
+    plus.textContent =
+      "+";
+
+    const ticks =
+      document.createElement(
+        "div"
+      );
+
+    ticks.className =
+      "category-density-ticks";
+
+    ticks.setAttribute(
+      "aria-hidden",
+      "true"
+    );
+
+    ticks.innerHTML =
+      "<span>1</span>" +
+      "<span>2</span>" +
+      "<span>3</span>" +
+      "<span>4</span>" +
+      "<span>5</span>";
+
+    control.classList.add(
+      "shared-density-control"
+    );
+
+    control.dataset.sharedDensityReady =
+      "true";
+
+    control.replaceChildren(
+      minus,
+      range,
+      plus,
+      ticks,
+      hidden
+    );
+
+    updateSharedDensityLabel(
+      control,
+      range
+    );
+
+    syncSharedDensityDisabledState(
+      control,
+      range
+    );
+
+    range.addEventListener(
+      "input",
+      () => {
+        updateSharedDensityLabel(
+          control,
+          range
+        );
+      }
+    );
+
+    const observer =
+      new MutationObserver(
+        () => {
+          updateSharedDensityLabel(
+            control,
+            range
+          );
+
+          syncSharedDensityDisabledState(
+            control,
+            range
+          );
+        }
+      );
+
+    observer.observe(
+      range,
+      {
+        attributes:
+          true,
+
+        attributeFilter: [
+          "disabled",
+          "value"
+        ]
+      }
+    );
+
+    observer.observe(
+      control,
+      {
+        attributes:
+          true,
+
+        attributeFilter: [
+          "class",
+          "aria-disabled"
+        ]
+      }
+    );
+
+    const toggle =
+      document.getElementById(
+        "collection-3d-toggle"
+      );
+
+    toggle?.addEventListener(
+      "click",
+      () => {
+        requestAnimationFrame(
+          () => {
+            requestAnimationFrame(
+              () => {
+                syncSharedDensityDisabledState(
+                  control,
+                  range
+                );
+
+                updateSharedDensityLabel(
+                  control,
+                  range
+                );
+              }
+            );
+          }
+        );
+      }
+    );
+  }
+
+
   function arrangeControls() {
 
     const row =
@@ -120,6 +416,11 @@
       density,
       toggle,
       count
+    );
+
+
+    normalizeDensityControl(
+      density
     );
 
 
@@ -289,7 +590,7 @@
 
             draggable="false"
 
-            data-catalog-image="true"
+            data-sneaker-display="true"
 
             data-sneaker-id="${escapeHTML(
               sneaker.id || ""
@@ -2006,22 +2307,6 @@
       `;
 
 
-      /*
-        Prepare Grid/3D image normalization immediately.
-        Lazy-loaded 3D images already receive a load listener here.
-      */
-      if (
-        window.CatalogDisplay
-      ) {
-
-        window.CatalogDisplay
-          .prepareWithin(
-            grid
-          );
-
-      }
-
-
       bindEvents();
 
 
@@ -2261,6 +2546,312 @@
 
         white-space:
           nowrap;
+
+      }
+
+
+
+      /* =====================================================
+         UNIFIED GRID DENSITY BAR
+
+         Sneakers now uses the same visual structure as
+         LEGO and Sneaker Mask.
+      ===================================================== */
+
+      #grid-density-control.shared-density-control {
+
+        position:
+          relative !important;
+
+        display:
+          grid !important;
+
+        grid-template-columns:
+
+          34px
+
+          minmax(
+            160px,
+            1fr
+          )
+
+          34px
+
+          !important;
+
+        grid-template-rows:
+
+          auto
+          36px
+          13px
+
+          !important;
+
+        align-items:
+          center !important;
+
+        column-gap:
+          11px !important;
+
+        row-gap:
+          2px !important;
+
+        min-height:
+          48px !important;
+
+        padding:
+          7px 13px 8px !important;
+
+        background:
+          #171719 !important;
+
+        border:
+          1px solid
+          #2a2a2d !important;
+
+        border-radius:
+          10px !important;
+
+        transition:
+
+          opacity
+          .22s ease,
+
+          filter
+          .22s ease,
+
+          border-color
+          .22s ease
+
+          !important;
+
+      }
+
+
+      #grid-density-control.shared-density-control::before {
+
+        content:
+          attr(
+            data-density-label
+          );
+
+        grid-column:
+          1 / -1;
+
+        grid-row:
+          1;
+
+        justify-self:
+          center;
+
+        color:
+          #77777e;
+
+        font-size:
+          .58rem;
+
+        font-weight:
+          900;
+
+        letter-spacing:
+          .85px;
+
+        line-height:
+          1;
+
+        text-transform:
+          uppercase;
+
+        white-space:
+          nowrap;
+
+      }
+
+
+      #grid-density-control.shared-density-control
+      .category-density-button {
+
+        appearance:
+          none;
+
+        display:
+          flex;
+
+        align-items:
+          center;
+
+        justify-content:
+          center;
+
+        width:
+          30px !important;
+
+        height:
+          30px !important;
+
+        min-width:
+          30px !important;
+
+        min-height:
+          30px !important;
+
+        padding:
+          0 !important;
+
+        margin:
+          0 !important;
+
+        color:
+          #77777e !important;
+
+        background:
+          #1b1b1e !important;
+
+        border:
+          1px solid
+          #303034 !important;
+
+        border-radius:
+          50% !important;
+
+        cursor:
+          pointer;
+
+        font-size:
+          .92rem !important;
+
+        font-weight:
+          900 !important;
+
+        line-height:
+          1 !important;
+
+      }
+
+
+      #grid-density-control.shared-density-control
+      .shared-density-minus {
+
+        grid-column:
+          1;
+
+        grid-row:
+          2;
+
+      }
+
+
+      #grid-density-control.shared-density-control
+      .shared-density-plus {
+
+        grid-column:
+          3;
+
+        grid-row:
+          2;
+
+      }
+
+
+      #grid-density-control.shared-density-control
+      .category-density-range {
+
+        grid-column:
+          2;
+
+        grid-row:
+          2;
+
+        width:
+          100% !important;
+
+        height:
+          18px !important;
+
+        margin:
+          0 !important;
+
+        accent-color:
+          #ffcc00;
+
+        cursor:
+          pointer;
+
+      }
+
+
+      #grid-density-control.shared-density-control
+      .category-density-ticks {
+
+        grid-column:
+          2;
+
+        grid-row:
+          3;
+
+        display:
+          flex;
+
+        align-items:
+          center;
+
+        justify-content:
+          space-between;
+
+        width:
+          100%;
+
+        padding:
+          0 1px;
+
+        color:
+          #4f4f55;
+
+        font-size:
+          .48rem;
+
+        font-weight:
+          800;
+
+        line-height:
+          1;
+
+        pointer-events:
+          none;
+
+      }
+
+
+      #grid-density-control.shared-density-control
+      .shared-density-original-hidden {
+
+        display:
+          none !important;
+
+      }
+
+
+      #grid-density-control.shared-density-control.shared-density-disabled,
+      #grid-density-control.shared-density-control[data-shared-disabled="true"],
+      #grid-density-control.shared-density-control:has(
+        input[type="range"]:disabled
+      ) {
+
+        opacity:
+          .30 !important;
+
+        filter:
+
+          grayscale(.45)
+          saturate(.35)
+
+          !important;
+
+        pointer-events:
+          none !important;
+
+        border-color:
+          #232326 !important;
 
       }
 
