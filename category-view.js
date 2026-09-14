@@ -1,5 +1,5 @@
 /* =========================================================
-   LỘC AN — UNIVERSAL CATEGORY VIEW v7 — FINAL GLASS UNIFIED DISPLAY
+   LỘC AN — UNIVERSAL CATEGORY VIEW v8 — DENSE GRID DATA STATE
    Shared GRID / 3D gallery for:
    - LEGO
    - SNEAKER MASK
@@ -241,6 +241,11 @@
           densityColumns
         )
       );
+
+      root.dataset.densityColumns =
+        String(
+          densityColumns
+        );
 
       root.style
         .setProperty(

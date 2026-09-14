@@ -1,5 +1,5 @@
 /* =========================================================
-   LỘC AN — FINAL SHARED COLLECTION UI v12
+   LỘC AN — FINAL SHARED COLLECTION UI v13
 
    ONE visual system for:
    - Sneakers
@@ -683,18 +683,35 @@ button.unified-view-toggle:focus-visible {
 
 
 /* =========================================================
-   DENSE GRID — KEEP THE 3-COLUMN CARD PROPORTION
+   DENSE GRID — ALL 3 COLLECTIONS
 
-   4 or 5 columns no longer stretch vertically.
-   The whole card becomes smaller, including type/padding.
+   4 / 5 columns:
+   - cards shrink instead of becoming tall
+   - same proportion across Sneakers / LEGO / Sneaker Mask
+   - FULL item title stays visible
+   - typography/padding shrink progressively
 ========================================================= */
 
-#sneaker-grid[data-density-columns="4"]
+
+/* ---------- 4 + 5 columns: shared card geometry ---------- */
+
+:is(
+  #sneaker-grid,
+  #lego-grid,
+  #mask-grid
+).unified-collection-grid[data-density-columns="4"]
 .card-link,
-#sneaker-grid[data-density-columns="5"]
+:is(
+  #sneaker-grid,
+  #lego-grid,
+  #mask-grid
+).unified-collection-grid[data-density-columns="5"]
 .card-link {
   height:
     auto !important;
+
+  min-height:
+    0 !important;
 
   align-self:
     start !important;
@@ -704,10 +721,25 @@ button.unified-view-toggle:focus-visible {
 }
 
 
-#sneaker-grid[data-density-columns="4"]
+:is(
+  #sneaker-grid,
+  #lego-grid,
+  #mask-grid
+).unified-collection-grid[data-density-columns="4"]
 .card,
-#sneaker-grid[data-density-columns="5"]
+:is(
+  #sneaker-grid,
+  #lego-grid,
+  #mask-grid
+).unified-collection-grid[data-density-columns="5"]
 .card {
+  display:
+    grid !important;
+
+  grid-template-rows:
+    45%
+    55% !important;
+
   height:
     auto !important;
 
@@ -715,39 +747,230 @@ button.unified-view-toggle:focus-visible {
     0 !important;
 
   /*
-    Matches the approximate natural proportion
-    of the current 3-column museum card.
+    This is close to the visual proportion of the normal
+    3-column museum card, but scaled down as one object.
   */
   aspect-ratio:
-    10 / 13 !important;
-}
-
-
-#sneaker-grid[data-density-columns="4"]
-.card-info,
-#sneaker-grid[data-density-columns="5"]
-.card-info {
-  min-height:
-    0 !important;
-
-  padding:
-    clamp(
-      9px,
-      7cqw,
-      18px
-    )
-    !important;
+    2 / 3 !important;
 
   overflow:
     hidden !important;
 }
 
 
-#sneaker-grid[data-density-columns="4"]
+:is(
+  #sneaker-grid,
+  #lego-grid,
+  #mask-grid
+).unified-collection-grid[data-density-columns="4"]
+.card-img-wrapper,
+:is(
+  #sneaker-grid,
+  #lego-grid,
+  #mask-grid
+).unified-collection-grid[data-density-columns="5"]
+.card-img-wrapper {
+  width:
+    100% !important;
+
+  height:
+    100% !important;
+
+  min-height:
+    0 !important;
+
+  aspect-ratio:
+    auto !important;
+
+  overflow:
+    hidden !important;
+}
+
+
+:is(
+  #sneaker-grid,
+  #lego-grid,
+  #mask-grid
+).unified-collection-grid[data-density-columns="4"]
+.card-img-wrapper img,
+:is(
+  #sneaker-grid,
+  #lego-grid,
+  #mask-grid
+).unified-collection-grid[data-density-columns="5"]
+.card-img-wrapper img {
+  width:
+    100% !important;
+
+  height:
+    100% !important;
+}
+
+
+:is(
+  #sneaker-grid,
+  #lego-grid,
+  #mask-grid
+).unified-collection-grid[data-density-columns="4"]
+.card-info,
+:is(
+  #sneaker-grid,
+  #lego-grid,
+  #mask-grid
+).unified-collection-grid[data-density-columns="5"]
+.card-info {
+  display:
+    flex !important;
+
+  flex-direction:
+    column !important;
+
+  width:
+    100% !important;
+
+  height:
+    100% !important;
+
+  min-height:
+    0 !important;
+
+  overflow:
+    hidden !important;
+}
+
+
+/* ---------- FULL title: never line-clamp item name ---------- */
+
+:is(
+  #sneaker-grid,
+  #lego-grid,
+  #mask-grid
+).unified-collection-grid[data-density-columns="4"]
 .card-info h3,
-#sneaker-grid[data-density-columns="5"]
+:is(
+  #sneaker-grid,
+  #lego-grid,
+  #mask-grid
+).unified-collection-grid[data-density-columns="5"]
 .card-info h3 {
+  display:
+    block !important;
+
+  max-height:
+    none !important;
+
+  overflow:
+    visible !important;
+
+  -webkit-line-clamp:
+    unset !important;
+
+  -webkit-box-orient:
+    initial !important;
+
+  text-overflow:
+    clip !important;
+
+  overflow-wrap:
+    anywhere;
+
+  word-break:
+    normal;
+}
+
+
+/* ---------- 4 columns ---------- */
+
+:is(
+  #sneaker-grid,
+  #lego-grid,
+  #mask-grid
+).unified-collection-grid[data-density-columns="4"]
+.card-info {
+  padding:
+    clamp(
+      8px,
+      6.2cqw,
+      16px
+    )
+    !important;
+}
+
+
+:is(
+  #sneaker-grid,
+  #lego-grid,
+  #mask-grid
+).unified-collection-grid[data-density-columns="4"]
+.card-info h3 {
+  margin:
+    0
+    0
+    clamp(4px, 2.3cqw, 7px)
+    !important;
+
+  font-size:
+    clamp(
+      .61rem,
+      5.2cqw,
+      .92rem
+    )
+    !important;
+
+  line-height:
+    1.22 !important;
+}
+
+
+:is(
+  #sneaker-grid,
+  #lego-grid,
+  #mask-grid
+).unified-collection-grid[data-density-columns="4"]
+.subtitle {
   margin-bottom:
+    clamp(
+      5px,
+      3.2cqw,
+      10px
+    )
+    !important;
+
+  font-size:
+    clamp(
+      .49rem,
+      3.8cqw,
+      .72rem
+    )
+    !important;
+
+  line-height:
+    1.32 !important;
+
+  display:
+    -webkit-box !important;
+
+  -webkit-box-orient:
+    vertical !important;
+
+  -webkit-line-clamp:
+    2 !important;
+
+  overflow:
+    hidden !important;
+}
+
+
+:is(
+  #sneaker-grid,
+  #lego-grid,
+  #mask-grid
+).unified-collection-grid[data-density-columns="4"]
+.card-meta {
+  margin-top:
+    auto !important;
+
+  gap:
     clamp(
       4px,
       2.6cqw,
@@ -757,103 +980,23 @@ button.unified-view-toggle:focus-visible {
 
   font-size:
     clamp(
-      .70rem,
-      6.2cqw,
-      1.08rem
-    )
-    !important;
-
-  line-height:
-    1.30 !important;
-
-  display:
-    -webkit-box;
-
-  -webkit-box-orient:
-    vertical;
-
-  -webkit-line-clamp:
-    4;
-
-  overflow:
-    hidden;
-}
-
-
-#sneaker-grid[data-density-columns="4"]
-.subtitle,
-#sneaker-grid[data-density-columns="5"]
-.subtitle {
-  margin-bottom:
-    clamp(
-      6px,
-      4cqw,
-      13px
-    )
-    !important;
-
-  font-size:
-    clamp(
-      .56rem,
-      4.6cqw,
-      .83rem
-    )
-    !important;
-
-  line-height:
-    1.42 !important;
-
-  display:
-    -webkit-box;
-
-  -webkit-box-orient:
-    vertical;
-
-  -webkit-line-clamp:
-    3;
-
-  overflow:
-    hidden;
-}
-
-
-#sneaker-grid[data-density-columns="4"]
-.card-meta,
-#sneaker-grid[data-density-columns="5"]
-.card-meta {
-  gap:
-    clamp(
-      4px,
-      3cqw,
-      10px
-    )
-    !important;
-
-  font-size:
-    clamp(
-      .52rem,
-      4.2cqw,
-      .78rem
+      .48rem,
+      3.6cqw,
+      .70rem
     )
     !important;
 }
 
 
-#sneaker-grid[data-density-columns="4"]
-.badge,
-#sneaker-grid[data-density-columns="5"]
+:is(
+  #sneaker-grid,
+  #lego-grid,
+  #mask-grid
+).unified-collection-grid[data-density-columns="4"]
 .badge {
   padding:
-    clamp(
-      3px,
-      2.2cqw,
-      5px
-    )
-    clamp(
-      5px,
-      3.7cqw,
-      9px
-    )
+    clamp(3px, 1.8cqw, 5px)
+    clamp(5px, 3cqw, 8px)
     !important;
 
   font-size:
@@ -861,31 +1004,209 @@ button.unified-view-toggle:focus-visible {
 }
 
 
-#sneaker-grid[data-density-columns="4"]
-.card-cta,
-#sneaker-grid[data-density-columns="5"]
+:is(
+  #sneaker-grid,
+  #lego-grid,
+  #mask-grid
+).unified-collection-grid[data-density-columns="4"]
 .card-cta {
   margin-top:
     clamp(
-      7px,
-      5cqw,
-      14px
+      5px,
+      3.2cqw,
+      10px
     )
     !important;
 
   padding-top:
     clamp(
-      6px,
-      4cqw,
-      12px
+      5px,
+      3cqw,
+      9px
     )
     !important;
 
   font-size:
     clamp(
+      .47rem,
+      3.5cqw,
+      .68rem
+    )
+    !important;
+}
+
+
+/* ---------- 5 columns: more compact, but title remains complete ---------- */
+
+:is(
+  #sneaker-grid,
+  #lego-grid,
+  #mask-grid
+).unified-collection-grid[data-density-columns="5"]
+.card-info {
+  padding:
+    clamp(
+      6px,
+      5cqw,
+      12px
+    )
+    !important;
+}
+
+
+:is(
+  #sneaker-grid,
+  #lego-grid,
+  #mask-grid
+).unified-collection-grid[data-density-columns="5"]
+.card-info h3 {
+  margin:
+    0
+    0
+    clamp(3px, 1.9cqw, 5px)
+    !important;
+
+  /*
+    Intentionally smaller than v12 so even long names such as
+    Fragment x Union / Archive / Sample remain readable in full.
+  */
+  font-size:
+    clamp(
       .50rem,
-      4cqw,
-      .72rem
+      4.35cqw,
+      .74rem
+    )
+    !important;
+
+  line-height:
+    1.16 !important;
+
+  letter-spacing:
+    -.012em;
+}
+
+
+:is(
+  #sneaker-grid,
+  #lego-grid,
+  #mask-grid
+).unified-collection-grid[data-density-columns="5"]
+.subtitle {
+  margin-bottom:
+    clamp(
+      3px,
+      2.4cqw,
+      7px
+    )
+    !important;
+
+  font-size:
+    clamp(
+      .43rem,
+      3.25cqw,
+      .60rem
+    )
+    !important;
+
+  line-height:
+    1.24 !important;
+
+  display:
+    -webkit-box !important;
+
+  -webkit-box-orient:
+    vertical !important;
+
+  -webkit-line-clamp:
+    2 !important;
+
+  overflow:
+    hidden !important;
+}
+
+
+:is(
+  #sneaker-grid,
+  #lego-grid,
+  #mask-grid
+).unified-collection-grid[data-density-columns="5"]
+.card-meta {
+  margin-top:
+    auto !important;
+
+  gap:
+    3px !important;
+
+  font-size:
+    clamp(
+      .42rem,
+      3cqw,
+      .58rem
+    )
+    !important;
+}
+
+
+:is(
+  #sneaker-grid,
+  #lego-grid,
+  #mask-grid
+).unified-collection-grid[data-density-columns="5"]
+.badge {
+  padding:
+    2px
+    clamp(4px, 2.4cqw, 6px)
+    !important;
+
+  font-size:
+    inherit !important;
+
+  line-height:
+    1.25 !important;
+}
+
+
+:is(
+  #sneaker-grid,
+  #lego-grid,
+  #mask-grid
+).unified-collection-grid[data-density-columns="5"]
+.size {
+  font-size:
+    inherit !important;
+
+  line-height:
+    1.25 !important;
+}
+
+
+:is(
+  #sneaker-grid,
+  #lego-grid,
+  #mask-grid
+).unified-collection-grid[data-density-columns="5"]
+.card-cta {
+  margin-top:
+    clamp(
+      4px,
+      2.6cqw,
+      7px
+    )
+    !important;
+
+  padding-top:
+    clamp(
+      4px,
+      2.4cqw,
+      7px
+    )
+    !important;
+
+  font-size:
+    clamp(
+      .41rem,
+      2.9cqw,
+      .56rem
     )
     !important;
 }
