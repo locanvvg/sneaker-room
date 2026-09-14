@@ -1,5 +1,5 @@
 /* =========================================================
-   LỘC AN — FINAL SHARED COLLECTION UI v13
+   LỘC AN — FINAL SHARED COLLECTION UI v14
 
    ONE visual system for:
    - Sneakers
@@ -1208,6 +1208,469 @@ button.unified-view-toggle:focus-visible {
       2.9cqw,
       .56rem
     )
+    !important;
+}
+
+
+
+/* =========================================================
+   LEGO + SNEAKER MASK — HARD CARD SIZE LOCK
+
+   This block deliberately uses simple explicit selectors.
+   At density 4 / 5 these cards have the same physical
+   proportion as the Sneakers dense cards.
+
+   Width comes from the same 4/5-column grid.
+   Height is locked by the same 2:3 aspect ratio.
+========================================================= */
+
+
+/* ---------- Geometry: 4 columns ---------- */
+
+#lego-grid.density-4 .card-link,
+#mask-grid.density-4 .card-link,
+#lego-grid[data-density-columns="4"] .card-link,
+#mask-grid[data-density-columns="4"] .card-link {
+  height:
+    auto !important;
+
+  min-height:
+    0 !important;
+
+  align-self:
+    start !important;
+
+  container-type:
+    inline-size;
+}
+
+
+#lego-grid.density-4 .card,
+#mask-grid.density-4 .card,
+#lego-grid[data-density-columns="4"] .card,
+#mask-grid[data-density-columns="4"] .card {
+  display:
+    grid !important;
+
+  grid-template-rows:
+    45%
+    55% !important;
+
+  width:
+    100% !important;
+
+  height:
+    auto !important;
+
+  min-height:
+    0 !important;
+
+  aspect-ratio:
+    2 / 3 !important;
+
+  overflow:
+    hidden !important;
+}
+
+
+/* ---------- Geometry: 5 columns ---------- */
+
+#lego-grid.density-5 .card-link,
+#mask-grid.density-5 .card-link,
+#lego-grid[data-density-columns="5"] .card-link,
+#mask-grid[data-density-columns="5"] .card-link {
+  height:
+    auto !important;
+
+  min-height:
+    0 !important;
+
+  align-self:
+    start !important;
+
+  container-type:
+    inline-size;
+}
+
+
+#lego-grid.density-5 .card,
+#mask-grid.density-5 .card,
+#lego-grid[data-density-columns="5"] .card,
+#mask-grid[data-density-columns="5"] .card {
+  display:
+    grid !important;
+
+  grid-template-rows:
+    45%
+    55% !important;
+
+  width:
+    100% !important;
+
+  height:
+    auto !important;
+
+  min-height:
+    0 !important;
+
+  aspect-ratio:
+    2 / 3 !important;
+
+  overflow:
+    hidden !important;
+}
+
+
+/* ---------- Shared image region ---------- */
+
+#lego-grid.density-4 .card-img-wrapper,
+#lego-grid.density-5 .card-img-wrapper,
+#mask-grid.density-4 .card-img-wrapper,
+#mask-grid.density-5 .card-img-wrapper,
+#lego-grid[data-density-columns="4"] .card-img-wrapper,
+#lego-grid[data-density-columns="5"] .card-img-wrapper,
+#mask-grid[data-density-columns="4"] .card-img-wrapper,
+#mask-grid[data-density-columns="5"] .card-img-wrapper {
+  width:
+    100% !important;
+
+  height:
+    100% !important;
+
+  min-height:
+    0 !important;
+
+  aspect-ratio:
+    auto !important;
+
+  overflow:
+    hidden !important;
+}
+
+
+#lego-grid.density-4 .card-img-wrapper img,
+#lego-grid.density-5 .card-img-wrapper img,
+#mask-grid.density-4 .card-img-wrapper img,
+#mask-grid.density-5 .card-img-wrapper img,
+#lego-grid[data-density-columns="4"] .card-img-wrapper img,
+#lego-grid[data-density-columns="5"] .card-img-wrapper img,
+#mask-grid[data-density-columns="4"] .card-img-wrapper img,
+#mask-grid[data-density-columns="5"] .card-img-wrapper img {
+  width:
+    100% !important;
+
+  height:
+    100% !important;
+
+  object-fit:
+    contain !important;
+
+  object-position:
+    center center !important;
+}
+
+
+/* ---------- Shared information region ---------- */
+
+#lego-grid.density-4 .card-info,
+#lego-grid.density-5 .card-info,
+#mask-grid.density-4 .card-info,
+#mask-grid.density-5 .card-info,
+#lego-grid[data-density-columns="4"] .card-info,
+#lego-grid[data-density-columns="5"] .card-info,
+#mask-grid[data-density-columns="4"] .card-info,
+#mask-grid[data-density-columns="5"] .card-info {
+  display:
+    flex !important;
+
+  flex-direction:
+    column !important;
+
+  width:
+    100% !important;
+
+  height:
+    100% !important;
+
+  min-height:
+    0 !important;
+
+  overflow:
+    hidden !important;
+}
+
+
+/* =========================================================
+   4 COLUMNS — SAME DENSE SCALE AS SNEAKERS
+========================================================= */
+
+#lego-grid.density-4 .card-info,
+#mask-grid.density-4 .card-info,
+#lego-grid[data-density-columns="4"] .card-info,
+#mask-grid[data-density-columns="4"] .card-info {
+  padding:
+    clamp(8px, 6.2cqw, 16px)
+    !important;
+}
+
+
+#lego-grid.density-4 .card-info h3,
+#mask-grid.density-4 .card-info h3,
+#lego-grid[data-density-columns="4"] .card-info h3,
+#mask-grid[data-density-columns="4"] .card-info h3 {
+  display:
+    block !important;
+
+  margin:
+    0
+    0
+    clamp(4px, 2.3cqw, 7px)
+    !important;
+
+  max-height:
+    none !important;
+
+  overflow:
+    visible !important;
+
+  font-size:
+    clamp(.61rem, 5.2cqw, .92rem)
+    !important;
+
+  line-height:
+    1.22 !important;
+
+  -webkit-line-clamp:
+    unset !important;
+
+  -webkit-box-orient:
+    initial !important;
+
+  overflow-wrap:
+    anywhere;
+}
+
+
+#lego-grid.density-4 .subtitle,
+#mask-grid.density-4 .subtitle,
+#lego-grid[data-density-columns="4"] .subtitle,
+#mask-grid[data-density-columns="4"] .subtitle {
+  margin-bottom:
+    clamp(5px, 3.2cqw, 10px)
+    !important;
+
+  font-size:
+    clamp(.49rem, 3.8cqw, .72rem)
+    !important;
+
+  line-height:
+    1.32 !important;
+
+  display:
+    -webkit-box !important;
+
+  -webkit-box-orient:
+    vertical !important;
+
+  -webkit-line-clamp:
+    2 !important;
+
+  overflow:
+    hidden !important;
+}
+
+
+#lego-grid.density-4 .card-meta,
+#mask-grid.density-4 .card-meta,
+#lego-grid[data-density-columns="4"] .card-meta,
+#mask-grid[data-density-columns="4"] .card-meta {
+  margin-top:
+    auto !important;
+
+  gap:
+    clamp(4px, 2.6cqw, 8px)
+    !important;
+
+  font-size:
+    clamp(.48rem, 3.6cqw, .70rem)
+    !important;
+}
+
+
+#lego-grid.density-4 .badge,
+#mask-grid.density-4 .badge,
+#lego-grid[data-density-columns="4"] .badge,
+#mask-grid[data-density-columns="4"] .badge {
+  padding:
+    clamp(3px, 1.8cqw, 5px)
+    clamp(5px, 3cqw, 8px)
+    !important;
+
+  font-size:
+    inherit !important;
+}
+
+
+#lego-grid.density-4 .card-cta,
+#mask-grid.density-4 .card-cta,
+#lego-grid[data-density-columns="4"] .card-cta,
+#mask-grid[data-density-columns="4"] .card-cta {
+  margin-top:
+    clamp(5px, 3.2cqw, 10px)
+    !important;
+
+  padding-top:
+    clamp(5px, 3cqw, 9px)
+    !important;
+
+  font-size:
+    clamp(.47rem, 3.5cqw, .68rem)
+    !important;
+}
+
+
+/* =========================================================
+   5 COLUMNS — SAME MINIATURE SCALE AS SNEAKERS
+========================================================= */
+
+#lego-grid.density-5 .card-info,
+#mask-grid.density-5 .card-info,
+#lego-grid[data-density-columns="5"] .card-info,
+#mask-grid[data-density-columns="5"] .card-info {
+  padding:
+    clamp(6px, 5cqw, 12px)
+    !important;
+}
+
+
+#lego-grid.density-5 .card-info h3,
+#mask-grid.density-5 .card-info h3,
+#lego-grid[data-density-columns="5"] .card-info h3,
+#mask-grid[data-density-columns="5"] .card-info h3 {
+  display:
+    block !important;
+
+  margin:
+    0
+    0
+    clamp(3px, 1.9cqw, 5px)
+    !important;
+
+  max-height:
+    none !important;
+
+  overflow:
+    visible !important;
+
+  font-size:
+    clamp(.50rem, 4.35cqw, .74rem)
+    !important;
+
+  line-height:
+    1.16 !important;
+
+  letter-spacing:
+    -.012em;
+
+  -webkit-line-clamp:
+    unset !important;
+
+  -webkit-box-orient:
+    initial !important;
+
+  overflow-wrap:
+    anywhere;
+}
+
+
+#lego-grid.density-5 .subtitle,
+#mask-grid.density-5 .subtitle,
+#lego-grid[data-density-columns="5"] .subtitle,
+#mask-grid[data-density-columns="5"] .subtitle {
+  margin-bottom:
+    clamp(3px, 2.4cqw, 7px)
+    !important;
+
+  font-size:
+    clamp(.43rem, 3.25cqw, .60rem)
+    !important;
+
+  line-height:
+    1.24 !important;
+
+  display:
+    -webkit-box !important;
+
+  -webkit-box-orient:
+    vertical !important;
+
+  -webkit-line-clamp:
+    2 !important;
+
+  overflow:
+    hidden !important;
+}
+
+
+#lego-grid.density-5 .card-meta,
+#mask-grid.density-5 .card-meta,
+#lego-grid[data-density-columns="5"] .card-meta,
+#mask-grid[data-density-columns="5"] .card-meta {
+  margin-top:
+    auto !important;
+
+  gap:
+    3px !important;
+
+  font-size:
+    clamp(.42rem, 3cqw, .58rem)
+    !important;
+}
+
+
+#lego-grid.density-5 .badge,
+#mask-grid.density-5 .badge,
+#lego-grid[data-density-columns="5"] .badge,
+#mask-grid[data-density-columns="5"] .badge {
+  padding:
+    2px
+    clamp(4px, 2.4cqw, 6px)
+    !important;
+
+  font-size:
+    inherit !important;
+
+  line-height:
+    1.25 !important;
+}
+
+
+#lego-grid.density-5 .size,
+#mask-grid.density-5 .size,
+#lego-grid[data-density-columns="5"] .size,
+#mask-grid[data-density-columns="5"] .size {
+  font-size:
+    inherit !important;
+
+  line-height:
+    1.25 !important;
+}
+
+
+#lego-grid.density-5 .card-cta,
+#mask-grid.density-5 .card-cta,
+#lego-grid[data-density-columns="5"] .card-cta,
+#mask-grid[data-density-columns="5"] .card-cta {
+  margin-top:
+    clamp(4px, 2.6cqw, 7px)
+    !important;
+
+  padding-top:
+    clamp(4px, 2.4cqw, 7px)
+    !important;
+
+  font-size:
+    clamp(.41rem, 2.9cqw, .56rem)
     !important;
 }
 

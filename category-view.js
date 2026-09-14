@@ -1,5 +1,5 @@
 /* =========================================================
-   LỘC AN — UNIVERSAL CATEGORY VIEW v8 — DENSE GRID DATA STATE
+   LỘC AN — UNIVERSAL CATEGORY VIEW v9 — CARD SIZE LOCK
    Shared GRID / 3D gallery for:
    - LEGO
    - SNEAKER MASK
@@ -246,6 +246,25 @@
         String(
           densityColumns
         );
+
+      [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+        .forEach(
+          value => {
+            root.classList.remove(
+              `density-${value}`
+            );
+          }
+        );
+
+      root.classList.add(
+        `density-${densityColumns}`
+      );
 
       root.style
         .setProperty(
