@@ -129,14 +129,14 @@
 
   grid: {
     scaleX: 1,
-    scaleY: 0.65,
+    scaleY: 0.80,
     x: 0,
     y: 0
   },
 
   view3d: {
     scaleX: 1,
-    scaleY: 0.65,
+    scaleY: 0.80,
     x: 0,
     y: 0
   }
