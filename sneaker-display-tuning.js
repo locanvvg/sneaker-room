@@ -32,21 +32,20 @@
   ========================================================= */
 
   const DEFAULT_TUNING = {
+  grid: {
+    scaleX: 1,
+    scaleY: 1,
+    x: 0,
+    y: 0
+  },
 
-    grid: {
-      scale: 1,
-      x: 0,
-      y: 0
-    },
-
-    view3d: {
-      scale: 1,
-      x: 0,
-      y: 0
-    }
-
-  };
-
+  view3d: {
+    scaleX: 1,
+    scaleY: 1,
+    x: 0,
+    y: 0
+  }
+};
 
   /* =========================================================
      2. CHỈNH RIÊNG TỪNG ĐÔI
@@ -73,6 +72,134 @@
   ========================================================= */
 
   const OVERRIDES = [
+
+  {
+    match: "BAPE x Stussy Camo Canvas Hi Top",
+
+    grid: {
+      scaleX: 0.90,
+      scaleY: 0.90,
+      x: 0,
+      y: 0
+    },
+
+    view3d: {
+      scaleX: 0.88,
+      scaleY: 0.88,
+      x: 0,
+      y: 0
+    }
+  },
+
+  {
+    match: "Nike x Off-White Waffle Racer SP 'White'",
+
+    grid: {
+      scaleX: 0.88,
+      scaleY: 0.88,
+      x: 0,
+      y: 0
+    },
+
+    view3d: {
+      scaleX: 0.86,
+      scaleY: 0.86,
+      x: 0,
+      y: 0
+    }
+  },
+
+  {
+    match: "Jordan 4 Retro 'Black Cement' 1999",
+
+    grid: {
+      scaleX: 0.90,
+      scaleY: 0.90,
+      x: 0,
+      y: 0
+    },
+
+    view3d: {
+      scaleX: 0.88,
+      scaleY: 0.88,
+      x: 0,
+      y: 0
+    }
+  },
+
+  {
+    match: "New Balance 2002R",
+
+    grid: {
+      scaleX: 0.60,
+      scaleY: 0.60,
+      x: 0,
+      y: 0
+    },
+
+    view3d: {
+      scaleX: 0.55,
+      scaleY: 0.55,
+      x: 0,
+      y: 0
+    }
+  },
+
+  {
+    match: "Jordan 1 Low 'Reverse Bred'",
+
+    grid: {
+      scaleX: 0.74,
+      scaleY: 0.74,
+      x: 0,
+      y: 0
+    },
+
+    view3d: {
+      scaleX: 0.72,
+      scaleY: 0.72,
+      x: 0,
+      y: 0
+    }
+  },
+
+  {
+    match: "Vans Knu Skool",
+
+    grid: {
+      scaleX: 1.08,
+      scaleY: 1.08,
+      x: 0,
+      y: 0
+    },
+
+    view3d: {
+      scaleX: 1.10,
+      scaleY: 1.10,
+      x: 0,
+      y: 0
+    }
+  },
+
+  {
+    match: "Balenciaga Defender",
+
+    grid: {
+      scaleX: 1,
+      scaleY: 0.88,
+      x: 0,
+      y: 0
+    },
+
+    view3d: {
+      scaleX: 1,
+      scaleY: 0.88,
+      x: 0,
+      y: 0
+    }
+  }
+
+];
 
 
     /* =====================================================
@@ -223,36 +350,29 @@
      MODE VALUES
   ========================================================= */
 
-  function cloneMode(
-    mode
-  ) {
+  function cloneMode(mode) {
+  return {
+    scaleX:
+      Number.isFinite(mode?.scaleX)
+        ? mode.scaleX
+        : 1,
 
-    return {
+    scaleY:
+      Number.isFinite(mode?.scaleY)
+        ? mode.scaleY
+        : 1,
 
-      scale:
-        Number.isFinite(
-          mode?.scale
-        )
-          ? mode.scale
-          : 1,
+    x:
+      Number.isFinite(mode?.x)
+        ? mode.x
+        : 0,
 
-      x:
-        Number.isFinite(
-          mode?.x
-        )
-          ? mode.x
-          : 0,
-
-      y:
-        Number.isFinite(
-          mode?.y
-        )
-          ? mode.y
-          : 0
-
-    };
-
-  }
+    y:
+      Number.isFinite(mode?.y)
+        ? mode.y
+        : 0
+  };
+}
 
 
   /* =========================================================
@@ -632,42 +752,31 @@
      APPLY SCALE / POSITION
   ========================================================= */
 
-  function applyValues(
-    img,
-    values
-  ) {
+ function applyValues(img, values) {
+  img.style.setProperty(
+    "scale",
+    `${values.scaleX} ${values.scaleY}`,
+    "important"
+  );
 
-    /*
-      SCALE
+  img.style.setProperty(
+    "translate",
+    `${values.x}px ${values.y}px`,
+    "important"
+  );
 
-      Individual CSS property.
-      Không ghi đè transform animation.
-    */
+  img.style.setProperty(
+    "transform-origin",
+    "center center",
+    "important"
+  );
 
-    img.style.setProperty(
-      "scale",
-      String(
-        values.scale
-      ),
-      "important"
-    );
-
-
-    /*
-      TRANSLATE
-
-      x = ngang
-      y = dọc
-    */
-
-    img.style.setProperty(
-      "translate",
-
-      `${values.x}px ${values.y}px`,
-
-      "important"
-    );
-
+  img.style.setProperty(
+    "object-fit",
+    "contain",
+    "important"
+  );
+}
 
     /*
       Luôn scale quanh tâm ảnh.
