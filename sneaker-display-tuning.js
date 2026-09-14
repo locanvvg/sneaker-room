@@ -1,37 +1,47 @@
 /* =========================================================
    LỘC AN — SNEAKER DISPLAY TUNING
-   SIMPLE / RELIABLE VERSION
-   GRID + 3D
+   SHARED SIZE — GRID + 3D
+
+   QUY TẮC:
+   - Grid và 3D dùng CHÍNH XÁC cùng một kích thước.
+   - Không có scale riêng cho 3D.
+   - Các giá trị bên dưới là các giá trị đã được chỉnh
+     và chốt từ Grid.
    ========================================================= */
 
 (() => {
   "use strict";
 
+
   /* =========================================================
-     CHỈNH KÍCH THƯỚC Ở ĐÂY
+     SNEAKER SIZE CONFIG
 
-     scaleX
-       = chiều ngang
-
-     scaleY
-       = chiều cao
+     scaleX = chiều ngang
+     scaleY = chiều cao
 
      1.00 = 100%
      0.90 = 90%
      1.10 = 110%
 
-     x
+     x:
        + sang phải
        - sang trái
 
-     y
+     y:
        + xuống
        - lên
+
+     QUAN TRỌNG:
+     Các giá trị này được dùng CHUNG cho:
+     - GRID
+     - 3D
   ========================================================= */
 
   const TUNING = [
 
-    /* BAPE — nhỏ lại một chút */
+    /* =====================================================
+       BAPE x STUSSY
+    ===================================================== */
     {
       match: [
         "bape x stussy",
@@ -46,7 +56,9 @@
     },
 
 
-    /* OFF-WHITE WAFFLE — nhỏ lại */
+    /* =====================================================
+       OFF-WHITE WAFFLE RACER
+    ===================================================== */
     {
       match: [
         "waffle racer",
@@ -61,7 +73,9 @@
     },
 
 
-    /* JORDAN 4 BLACK CEMENT — nhỏ lại */
+    /* =====================================================
+       JORDAN 4 BLACK CEMENT 1999
+    ===================================================== */
     {
       match: [
         "jordan 4 retro",
@@ -76,7 +90,9 @@
     },
 
 
-    /* NEW BALANCE — giảm đáng kể */
+    /* =====================================================
+       NEW BALANCE 2002R
+    ===================================================== */
     {
       match: [
         "new balance 2002r"
@@ -90,7 +106,9 @@
     },
 
 
-    /* JORDAN 1 LOW — nhỏ hơn hiện tại */
+    /* =====================================================
+       JORDAN 1 LOW REVERSE BRED
+    ===================================================== */
     {
       match: [
         "jordan 1 low",
@@ -105,25 +123,28 @@
     },
 
 
-    /* VANS — to lên */
+    /* =====================================================
+       VANS KNU SKOOL
+    ===================================================== */
     {
       match: [
         "vans knu skool"
       ],
 
-      scaleX: 1.10,
-      scaleY: 1.10,
+      scaleX: 1.00,
+      scaleY: 1.00,
 
       x: 0,
       y: 0
     },
 
 
-    /* BALENCIAGA
-       Giữ nguyên chiều ngang.
-       ÉP CHIỀU CAO xuống còn 76%.
-       Đây là "lùn lại", KHÔNG phải dịch xuống.
-    */
+    /* =====================================================
+       BALENCIAGA DEFENDER
+
+       Giữ chiều ngang 100%.
+       Chiều cao 84%.
+    ===================================================== */
     {
       match: [
         "balenciaga defender"
@@ -140,7 +161,7 @@
 
 
   /* =========================================================
-     KHÔNG CẦN CHỈNH PHẦN DƯỚI
+     NORMALIZE TEXT
   ========================================================= */
 
   function normalize(value) {
@@ -170,6 +191,17 @@
 
   }
 
+
+  /* =========================================================
+     GET IMAGE INFORMATION
+
+     Dùng:
+     - alt
+     - src
+     - card text
+
+     để nhận diện chính xác đôi giày.
+  ========================================================= */
 
   function getImageText(img) {
 
@@ -219,67 +251,112 @@
   }
 
 
+  /* =========================================================
+     FIND TUNING RULE
+  ========================================================= */
+
   function findRule(img) {
 
     const text =
-      getImageText(
-        img
-      );
+      getImageText(img);
 
 
     return TUNING.find(
-      rule => {
+      rule =>
 
-        return rule.match.some(
+        rule.match.some(
           keyword =>
 
             text.includes(
               normalize(keyword)
             )
-
-        );
-
-      }
+        )
     );
 
   }
 
 
-  function applyRule(
-    img,
-    rule
-  ) {
+  /* =========================================================
+     APPLY ONE SHARED SIZE
+
+     QUAN TRỌNG:
+     Không detect Grid / 3D ở đây.
+
+     Grid và 3D đều nhận CÙNG:
+       scaleX
+       scaleY
+       x
+       y
+  ========================================================= */
+
+  function applyRule(img, rule) {
 
     /*
-      Individual SCALE property:
-
-      scaleX scaleY
-
-      Ví dụ:
-      1 0.76
-
-      = giữ ngang 100%
-        ép chiều cao xuống 76%
+      Đảm bảo image box giống nhau giữa các mode.
     */
 
     img.style.setProperty(
-      "scale",
+      "width",
+      "100%",
+      "important"
+    );
 
-      `${rule.scaleX} ${rule.scaleY}`,
+    img.style.setProperty(
+      "height",
+      "100%",
+      "important"
+    );
 
+    img.style.setProperty(
+      "max-width",
+      "none",
+      "important"
+    );
+
+    img.style.setProperty(
+      "max-height",
+      "none",
       "important"
     );
 
 
     /*
-      Vị trí riêng.
+      Không crop ảnh.
+    */
+
+    img.style.setProperty(
+      "object-fit",
+      "contain",
+      "important"
+    );
+
+    img.style.setProperty(
+      "object-position",
+      "center center",
+      "important"
+    );
+
+
+    /*
+      KÍCH THƯỚC CHUNG
+      cho Grid + 3D.
+    */
+
+    img.style.setProperty(
+      "scale",
+      `${rule.scaleX} ${rule.scaleY}`,
+      "important"
+    );
+
+
+    /*
+      POSITION CHUNG
+      cho Grid + 3D.
     */
 
     img.style.setProperty(
       "translate",
-
       `${rule.x}px ${rule.y}px`,
-
       "important"
     );
 
@@ -291,34 +368,37 @@
     );
 
 
-    img.style.setProperty(
-      "object-fit",
-      "contain",
-      "important"
-    );
-
-
     /*
-      Đánh dấu để dễ kiểm tra bằng DevTools.
+      Marker để kiểm tra DevTools.
     */
 
     img.dataset.locanTuned =
       "true";
 
+    img.dataset.locanScaleX =
+      String(rule.scaleX);
+
+    img.dataset.locanScaleY =
+      String(rule.scaleY);
+
   }
 
+
+  /* =========================================================
+     APPLY ALL
+  ========================================================= */
 
   function applySneakerTuning() {
 
     document
-      .querySelectorAll("img")
+      .querySelectorAll(
+        "#sneaker-grid img"
+      )
       .forEach(
         img => {
 
           const rule =
-            findRule(
-              img
-            );
+            findRule(img);
 
 
           if (!rule) {
@@ -338,56 +418,100 @@
 
 
   /* =========================================================
-     INITIAL LOAD
+     SCHEDULER
+
+     Tránh chạy quá nhiều lần cùng lúc.
+  ========================================================= */
+
+  let applyQueued =
+    false;
+
+
+  function scheduleApply() {
+
+    if (applyQueued) {
+      return;
+    }
+
+
+    applyQueued =
+      true;
+
+
+    requestAnimationFrame(
+      () => {
+
+        applyQueued =
+          false;
+
+        applySneakerTuning();
+
+      }
+    );
+
+  }
+
+
+  /* =========================================================
+     INITIALIZE
   ========================================================= */
 
   function init() {
 
+    /*
+      Lần đầu.
+    */
+
     applySneakerTuning();
 
 
-    /*
-      Khi website render lại:
-      - Grid
-      - 3D
-      - Search
-      - Filter
-      - Sort
-      - Language
+    /* =====================================================
+       DOM OBSERVER
 
-      script sẽ áp dụng lại.
-    */
+       childList:
+       - render Grid mới
+       - render 3D mới
+       - search
+       - filter
+       - sort
+       - language
 
-    let scheduled =
-      false;
-
+       attributes / class:
+       - đổi Grid -> 3D
+       - đổi 3D -> Grid
+       - active card
+    ===================================================== */
 
     const observer =
       new MutationObserver(
-        () => {
+        mutations => {
 
-          if (
-            scheduled
-          ) {
-            return;
+          const relevant =
+            mutations.some(
+              mutation =>
+
+                mutation.type ===
+                  "childList"
+
+                ||
+
+                (
+                  mutation.type ===
+                    "attributes"
+
+                  &&
+
+                  mutation.attributeName ===
+                    "class"
+                )
+            );
+
+
+          if (relevant) {
+
+            scheduleApply();
+
           }
-
-
-          scheduled =
-            true;
-
-
-          requestAnimationFrame(
-            () => {
-
-              scheduled =
-                false;
-
-
-              applySneakerTuning();
-
-            }
-          );
 
         }
       );
@@ -397,21 +521,32 @@
       document.body,
       {
         childList: true,
-        subtree: true
+        subtree: true,
+
+        attributes: true,
+        attributeFilter: [
+          "class"
+        ]
       }
     );
 
 
-    /*
-      Một vài lần chạy dự phòng.
-    */
+    /* =====================================================
+       EXTRA PASSES
+
+       3D view có animation/render delay,
+       nên áp lại vài lần.
+    ===================================================== */
 
     [
+      50,
       100,
-      300,
-      600,
-      1000,
-      1600
+      200,
+      350,
+      500,
+      800,
+      1200,
+      1800
     ]
 
       .forEach(
@@ -425,12 +560,73 @@
         }
       );
 
+
+    /* =====================================================
+       USER INTERACTION
+
+       Khi click nút Grid / 3D,
+       filter, sort...
+       áp lại sau animation.
+    ===================================================== */
+
+    document.addEventListener(
+      "click",
+      () => {
+
+        requestAnimationFrame(
+          scheduleApply
+        );
+
+
+        setTimeout(
+          scheduleApply,
+          80
+        );
+
+
+        setTimeout(
+          scheduleApply,
+          200
+        );
+
+
+        setTimeout(
+          scheduleApply,
+          400
+        );
+
+      },
+      true
+    );
+
+
+    /* =====================================================
+       RESIZE
+
+       Desktop/mobile hoặc thay đổi viewport.
+    ===================================================== */
+
+    window.addEventListener(
+      "resize",
+      () => {
+
+        scheduleApply();
+
+      },
+      {
+        passive: true
+      }
+    );
+
   }
 
 
+  /* =========================================================
+     START
+  ========================================================= */
+
   if (
-    document.readyState
-    ===
+    document.readyState ===
     "loading"
   ) {
 
@@ -449,8 +645,26 @@
   }
 
 
+  /* =========================================================
+     MANUAL DEBUG / REAPPLY
+
+     Console:
+     LocAnSneakerTuning.apply()
+  ========================================================= */
+
+  window.LocAnSneakerTuning = {
+
+    apply:
+      applySneakerTuning,
+
+    tuning:
+      TUNING
+
+  };
+
+
   console.info(
-    "Lộc An sneaker-display-tuning v7 loaded"
+    "Lộc An sneaker-display-tuning SHARED Grid/3D v10 loaded"
   );
 
 })();
