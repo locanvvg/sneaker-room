@@ -1,5 +1,5 @@
 /* =========================================================
-   LỘC AN — CATALOG DISPLAY ENGINE v2
+   LỘC AN — CATALOG DISPLAY ENGINE v3
 
    PURPOSE
    -------
@@ -79,7 +79,7 @@
 
   const MIGRATION_PRESETS = [
 
-    /* BAPE — Grid good, 3D currently too large */
+    /* BAPE — legacy 3D exception */
     {
       any: [
         "bape x stussy",
@@ -93,13 +93,16 @@
         y: 0
       },
 
-      view3d: "auto",
-
-      visualWeight3d: 0.96
+      view3d: {
+        scaleX: 0.68,
+        scaleY: 0.68,
+        x: 0,
+        y: 0
+      }
     },
 
 
-    /* Off-White Waffle — Grid good, 3D currently too large */
+    /* Off-White Waffle — legacy 3D exception */
     {
       any: [
         "waffle racer",
@@ -113,13 +116,16 @@
         y: 0
       },
 
-      view3d: "auto",
-
-      visualWeight3d: 0.97
+      view3d: {
+        scaleX: 0.70,
+        scaleY: 0.70,
+        x: 0,
+        y: 0
+      }
     },
 
 
-    /* Jordan 4 Black Cement — Grid good, 3D currently too small */
+    /* Jordan 4 Black Cement — legacy 3D exception */
     {
       all: [
         "jordan 4",
@@ -133,13 +139,16 @@
         y: 0
       },
 
-      view3d: "auto",
-
-      visualWeight3d: 1.04
+      view3d: {
+        scaleX: 1.02,
+        scaleY: 1.02,
+        x: 0,
+        y: 0
+      }
     },
 
 
-    /* New Balance 2002R — Grid good, 3D currently too small */
+    /* New Balance 2002R — legacy 3D exception */
     {
       all: [
         "new balance",
@@ -153,13 +162,16 @@
         y: 0
       },
 
-      view3d: "auto",
-
-      visualWeight3d: 1.07
+      view3d: {
+        scaleX: 0.78,
+        scaleY: 0.78,
+        x: 0,
+        y: 0
+      }
     },
 
 
-    /* Reverse Bred — keep current calibration */
+    /* Reverse Bred — legacy 3D exception */
     {
       all: [
         "jordan 1 low",
@@ -174,8 +186,8 @@
       },
 
       view3d: {
-        scaleX: 0.55,
-        scaleY: 0.55,
+        scaleX: 0.78,
+        scaleY: 0.78,
         x: 0,
         y: 0
       }
@@ -1970,7 +1982,7 @@
 
 
   console.info(
-    "Lộc An catalog display engine v2 loaded — mode-aware Auto Fit"
+    "Lộc An catalog display engine v3 loaded — legacy 3D exceptions + future Auto Fit"
   );
 
 })();
