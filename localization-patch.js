@@ -747,31 +747,114 @@
     }
   );
 
-   /* =========================================================
-   JORDAN 1 LOW REVERSE BRED — DISPLAY SCALE
-   Áp dụng cho cả Grid View và 3D View
+  /* =========================================================
+   JORDAN 1 LOW 'REVERSE BRED'
+   SAME IMAGE SIZE — GRID + 3D
 ========================================================= */
 
-function scaleJordan1LowReverseBred() {
-  const TARGET_SCALE = 0.88; // thử 0.88 trước, nếu còn to thì 0.85
+(() => {
+  const JORDAN_LOW_SCALE = 0.70;
 
-  document.querySelectorAll("img").forEach(img => {
-    const card = img.closest(".card, .card-link, .coverflow-card, .gallery-card, .slider-card, .collection-3d-card");
-    const wrapperText = (card?.textContent || img.alt || "").replace(/\s+/g, " ").trim().toLowerCase();
-    const src = (img.src || "").toLowerCase();
+  function resizeJordan1LowReverseBred() {
 
-    const isTarget =
-      wrapperText.includes("jordan 1 low 'reverse bred'") ||
-      wrapperText.includes("jordan 1 low reverse bred") ||
-      src.includes("reverse_bred") ||
-      src.includes("reverse-bred");
+    /* Tìm đúng entry trong data.js */
+    let targetImage = "";
 
-    if (!isTarget) return;
+    if (
+      typeof sneakers !== "undefined" &&
+      Array.isArray(sneakers)
+    ) {
+      const targetSneaker = sneakers.find(item => {
+        const title =
+          String(item?.title?.en || "")
+            .toLowerCase();
 
-    img.style.setProperty("transform", `scale(${TARGET_SCALE})`, "important");
-    img.style.setProperty("transform-origin", "center center", "important");
-    img.style.setProperty("object-fit", "contain", "important");
-  });
-}
+        return (
+          title.includes("jordan 1 low") &&
+          title.includes("reverse bred")
+        );
+      });
+
+      if (targetSneaker?.image) {
+        targetImage =
+          String(targetSneaker.image)
+            .split("/")
+            .pop()
+            .toLowerCase();
+      }
+    }
+
+    document
+      .querySelectorAll("img")
+      .forEach(img => {
+
+        const src =
+          String(img.getAttribute("src") || "")
+            .split("/")
+            .pop()
+            .toLowerCase();
+
+        const alt =
+          String(img.getAttribute("alt") || "")
+            .toLowerCase();
+
+        const isTarget =
+          (
+            targetImage &&
+            src === targetImage
+          )
+          ||
+          (
+            alt.includes("jordan 1 low") &&
+            alt.includes("reverse bred")
+          );
+
+        if (!isTarget) return;
+
+        /*
+          Dùng CSS scale riêng,
+          không ghi đè transform của Grid / 3D.
+        */
+        img.style.setProperty(
+          "scale",
+          String(JORDAN_LOW_SCALE),
+          "important"
+        );
+
+        img.style.setProperty(
+          "transform-origin",
+          "center center",
+          "important"
+        );
+
+        img.style.setProperty(
+          "object-fit",
+          "contain",
+          "important"
+        );
+      });
+  }
+
+  resizeJordan1LowReverseBred();
+
+  window.addEventListener(
+    "load",
+    resizeJordan1LowReverseBred
+  );
+
+  const jordanObserver =
+    new MutationObserver(
+      resizeJordan1LowReverseBred
+    );
+
+  jordanObserver.observe(
+    document.body,
+    {
+      childList: true,
+      subtree: true
+    }
+  );
+
+})();
    
 })();
