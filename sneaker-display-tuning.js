@@ -1,12 +1,13 @@
 /* =========================================================
    LỘC AN — SNEAKER DISPLAY TUNING
-   GRID + 3D INDEPENDENT VISUAL CALIBRATION
+   VERSION 13
 
    GRID:
-   Giữ nguyên kích thước đã chỉnh và đang đẹp.
+   Giữ nguyên kích thước hiện tại vì Grid đã đẹp.
 
    3D:
-   Chỉ hiệu chỉnh những đôi đang nhìn quá lớn / quá cao.
+   Hiệu chỉnh riêng để các đôi có cảm giác kích thước
+   cân bằng với nhau hơn.
 
    scaleX = chiều ngang
    scaleY = chiều cao
@@ -27,7 +28,7 @@
   /* =========================================================
      TUNING CONFIG
 
-     Chỉ cần chỉnh số ở phần này về sau.
+     TỪ SAU CHỈ CẦN CHỈNH SỐ TRONG PHẦN NÀY.
   ========================================================= */
 
   const TUNING = [
@@ -35,8 +36,9 @@
 
     /* =====================================================
        BAPE x STÜSSY
-       Grid đang đẹp.
-       3D hiện đang quá lớn -> giảm riêng 3D.
+
+       GRID: giữ nguyên 0.90
+       3D: tăng từ 0.78 -> 0.82
     ===================================================== */
 
     {
@@ -53,8 +55,8 @@
       },
 
       view3d: {
-        scaleX: 0.78,
-        scaleY: 0.78,
+        scaleX: 0.82,
+        scaleY: 0.82,
         x: 0,
         y: 0
       }
@@ -63,8 +65,9 @@
 
     /* =====================================================
        NIKE x OFF-WHITE WAFFLE RACER
-       Grid đang đẹp.
-       3D đang quá lớn.
+
+       GRID: giữ nguyên 0.88
+       3D: tăng từ 0.76 -> 0.80
     ===================================================== */
 
     {
@@ -81,8 +84,8 @@
       },
 
       view3d: {
-        scaleX: 0.76,
-        scaleY: 0.76,
+        scaleX: 0.80,
+        scaleY: 0.80,
         x: 0,
         y: 0
       }
@@ -90,9 +93,9 @@
 
 
     /* =====================================================
-       JORDAN 4 BLACK CEMENT
-       Hiện tại không có vấn đề.
-       Giữ nguyên cả Grid và 3D.
+       JORDAN 4 BLACK CEMENT 1999
+
+       Giữ nguyên.
     ===================================================== */
 
     {
@@ -119,8 +122,9 @@
 
     /* =====================================================
        NEW BALANCE 2002R
-       Grid = 0.54 đang đẹp.
-       3D đang quá lớn -> giảm riêng.
+
+       GRID: giữ nguyên 0.54
+       3D: giảm mạnh hơn 0.44 -> 0.38
     ===================================================== */
 
     {
@@ -136,8 +140,8 @@
       },
 
       view3d: {
-        scaleX: 0.44,
-        scaleY: 0.44,
+        scaleX: 0.38,
+        scaleY: 0.38,
         x: 0,
         y: 0
       }
@@ -146,8 +150,9 @@
 
     /* =====================================================
        JORDAN 1 LOW REVERSE BRED
-       Grid = 0.55 đang đẹp.
-       3D đang quá lớn.
+
+       GRID: giữ nguyên 0.55
+       3D: giảm 0.45 -> 0.40
     ===================================================== */
 
     {
@@ -164,8 +169,8 @@
       },
 
       view3d: {
-        scaleX: 0.45,
-        scaleY: 0.45,
+        scaleX: 0.40,
+        scaleY: 0.40,
         x: 0,
         y: 0
       }
@@ -174,7 +179,8 @@
 
     /* =====================================================
        VANS KNU SKOOL
-       Hiện tại ổn.
+
+       Hiện tại giữ nguyên.
     ===================================================== */
 
     {
@@ -202,15 +208,15 @@
        BALENCIAGA DEFENDER
 
        GRID:
-       ngang 100%
-       cao 84%
+         ngang = 1.00
+         cao   = 0.84
 
        3D:
-       ngang vẫn 100%
-       chỉ ép chiều cao xuống 68%
+         ngang = 1.00
+         cao   = 0.60
 
-       -> không làm đôi giày hẹp lại
-       -> chỉ làm nó LÙN hơn
+       Chỉ ép chiều cao.
+       Không làm hẹp chiều ngang.
     ===================================================== */
 
     {
@@ -227,7 +233,7 @@
 
       view3d: {
         scaleX: 1.00,
-        scaleY: 0.68,
+        scaleY: 0.60,
         x: 0,
         y: 0
       }
@@ -269,14 +275,14 @@
 
 
   /* =========================================================
-     GET IMAGE TEXT
+     GET IMAGE INFORMATION
 
      Dùng:
      - alt
      - src
-     - text trên card
+     - text gần ảnh
 
-     để nhận diện sneaker.
+     để xác định đúng sneaker.
   ========================================================= */
 
   function getImageText(img) {
@@ -305,7 +311,8 @@
           "[class*='coverflow']",
           "[class*='gallery']",
           "[class*='slider']",
-          "[class*='carousel']"
+          "[class*='carousel']",
+          "[class*='3d']"
         ].join(",")
       );
 
@@ -355,22 +362,13 @@
 
   /* =========================================================
      DETECT GRID / 3D
-
-     Cấu trúc hiện tại:
-
-     GRID:
-       image nằm trong .card
-
-     3D:
-       image không nằm trong .card
-       hoặc nằm trong coverflow / slider / 3D container
   ========================================================= */
 
   function is3DImage(img) {
 
 
     /* -----------------------------------------------------
-       Các container 3D rõ ràng
+       Nếu nằm trong các container 3D rõ ràng
     ----------------------------------------------------- */
 
     if (
@@ -395,7 +393,7 @@
 
 
     /* -----------------------------------------------------
-       Grid card chuẩn của site
+       Card Grid bình thường
     ----------------------------------------------------- */
 
     if (
@@ -408,8 +406,8 @@
 
 
     /* -----------------------------------------------------
-       Trong sneaker-grid nhưng không phải .card
-       => 3D rendered item
+       Nếu nằm trong sneaker-grid nhưng không nằm trong
+       .card thì coi như item được render bởi 3D mode.
     ----------------------------------------------------- */
 
     if (
@@ -451,10 +449,10 @@
 
 
     /* -----------------------------------------------------
-       SIZE
+       SCALE
 
-       CSS individual scale property.
-       Không đụng transform của card 3D.
+       Dùng CSS individual "scale".
+       Không ghi đè transform của hệ thống 3D.
     ----------------------------------------------------- */
 
     img.style.setProperty(
@@ -505,12 +503,13 @@
 
 
     /* -----------------------------------------------------
-       DEBUG MARKERS
+       DEBUG DATA
 
-       Có thể Inspect ảnh để xem:
-       data-locan-mode
-       data-locan-scale-x
-       data-locan-scale-y
+       Khi Inspect image có thể thấy:
+
+       data-locan-mode="grid"
+       hoặc
+       data-locan-mode="3d"
     ----------------------------------------------------- */
 
     img.dataset.locanTuned =
@@ -538,7 +537,7 @@
 
 
   /* =========================================================
-     APPLY ALL TUNING
+     APPLY ALL
   ========================================================= */
 
   function applySneakerTuning() {
@@ -580,7 +579,7 @@
 
 
   /* =========================================================
-     SCHEDULE APPLY
+     SCHEDULE
   ========================================================= */
 
   let scheduled =
@@ -616,8 +615,8 @@
   /* =========================================================
      APPLY AFTER VIEW CHANGE
 
-     3D có animation/render delay,
-     nên chạy nhiều lần sau interaction.
+     Chế độ 3D có thể render / animation chậm hơn,
+     nên apply lại vài lần.
   ========================================================= */
 
   function applyAfterViewChange() {
@@ -663,7 +662,7 @@
 
 
     /* -----------------------------------------------------
-       DOM observer
+       OBSERVER
 
        Theo dõi:
        - Grid render
@@ -672,7 +671,7 @@
        - Filter
        - Sort
        - Language
-       - switch view
+       - chuyển mode
     ----------------------------------------------------- */
 
     const observer =
@@ -742,13 +741,14 @@
 
 
     /* -----------------------------------------------------
-       Click
+       CLICK
 
-       Bao gồm:
+       Hỗ trợ:
        - Grid / 3D
        - filter
        - sort
        - language
+       - slider controls
     ----------------------------------------------------- */
 
     document.addEventListener(
@@ -759,9 +759,9 @@
 
 
     /* -----------------------------------------------------
-       Keyboard
+       KEYBOARD
 
-       Arrow trong 3D.
+       Hỗ trợ arrow navigation trong 3D.
     ----------------------------------------------------- */
 
     document.addEventListener(
@@ -787,7 +787,7 @@
 
 
     /* -----------------------------------------------------
-       Window resize
+       RESIZE
     ----------------------------------------------------- */
 
     window.addEventListener(
@@ -800,7 +800,7 @@
 
 
     /* -----------------------------------------------------
-       Backup passes
+       BACKUP PASSES
     ----------------------------------------------------- */
 
     [
@@ -851,13 +851,13 @@
 
 
   /* =========================================================
-     MANUAL DEBUG
+     DEBUG / MANUAL REAPPLY
 
-     Console:
+     Có thể chạy trong Console:
 
      LocAnSneakerTuning.apply()
 
-     hoặc:
+     Xem config:
 
      LocAnSneakerTuning.rules
   ========================================================= */
@@ -874,7 +874,7 @@
 
 
   console.info(
-    "Lộc An sneaker-display-tuning v12 loaded"
+    "Lộc An sneaker-display-tuning v13 loaded"
   );
 
 })();
