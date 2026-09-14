@@ -42,6 +42,483 @@
     rel="stylesheet"
     href="./collection-menu.css?v=20260913-clean-nav"
   >
+
+<style id="about-layout-v3">
+
+    /* =====================================================
+       ABOUT — ARCHIVE CARDS v3
+       Order:
+       1. Authenticity & Ownership
+       2. Classification
+       3. Condition
+    ===================================================== */
+
+    .about-archive-card {
+      margin:
+        22px
+        0;
+
+      padding:
+        30px
+        32px;
+
+      background:
+        #161618;
+
+      border:
+        1px solid
+        #252525;
+
+      border-radius:
+        14px;
+    }
+
+
+    .about-archive-card h3 {
+      margin:
+        8px
+        0
+        20px;
+
+      color:
+        #f3f3f5;
+
+      font-size:
+        1.3rem;
+
+      line-height:
+        1.35;
+    }
+
+
+    /* =====================================================
+       AUTHENTICITY / OWNERSHIP
+    ===================================================== */
+
+    .authenticity-grid {
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(
+          3,
+          minmax(
+            0,
+            1fr
+          )
+        );
+
+      gap:
+        14px;
+
+      margin-top:
+        20px;
+    }
+
+
+    .authenticity-item {
+      min-width:
+        0;
+
+      padding:
+        18px;
+
+      background:
+        #1c1c1f;
+
+      border:
+        1px solid
+        #2c2c30;
+
+      border-radius:
+        10px;
+    }
+
+
+    .authenticity-item strong {
+      display:
+        block;
+
+      margin-bottom:
+        9px;
+
+      color:
+        #f5f5f7;
+
+      font-size:
+        .86rem;
+
+      line-height:
+        1.4;
+    }
+
+
+    .authenticity-item p {
+      margin:
+        0;
+
+      color:
+        #9999a0;
+
+      font-size:
+        .80rem;
+
+      line-height:
+        1.65;
+    }
+
+
+    .authenticity-notice {
+      margin-top:
+        18px;
+
+      padding:
+        16px
+        18px;
+
+      color:
+        #ff6969;
+
+      background:
+        rgba(
+          255,
+          71,
+          71,
+          .055
+        );
+
+      border:
+        1px solid
+        rgba(
+          255,
+          71,
+          71,
+          .26
+        );
+
+      border-left:
+        4px solid
+        #ff5252;
+
+      border-radius:
+        9px;
+
+      font-size:
+        .80rem;
+
+      font-weight:
+        800;
+
+      line-height:
+        1.55;
+    }
+
+
+    /* =====================================================
+       CLASSIFICATION — HORIZONTAL
+    ===================================================== */
+
+    .taxonomy-row {
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(
+          5,
+          minmax(
+            0,
+            1fr
+          )
+        );
+
+      gap:
+        12px;
+
+      margin-top:
+        18px;
+    }
+
+
+    .taxonomy-card {
+      min-width:
+        0;
+
+      padding:
+        16px;
+
+      background:
+        #1c1c1f;
+
+      border:
+        1px solid
+        #2c2c30;
+
+      border-radius:
+        10px;
+    }
+
+
+    .taxonomy-card strong {
+      display:
+        block;
+
+      margin-bottom:
+        9px;
+
+      color:
+        #f5f5f7;
+
+      font-size:
+        .82rem;
+
+      line-height:
+        1.35;
+    }
+
+
+    .taxonomy-card p {
+      margin:
+        0;
+
+      color:
+        #929299;
+
+      font-size:
+        .76rem;
+
+      line-height:
+        1.58;
+    }
+
+
+    /* =====================================================
+       CONDITION — CENTERED HORIZONTAL ROW
+    ===================================================== */
+
+    .condition-center-row {
+      display:
+        flex;
+
+      align-items:
+        stretch;
+
+      justify-content:
+        center;
+
+      gap:
+        18px;
+
+      width:
+        100%;
+
+      margin:
+        22px
+        auto
+        18px;
+    }
+
+
+    .condition-center-item {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      gap:
+        16px;
+
+      width:
+        min(
+          360px,
+          42%
+        );
+
+      min-height:
+        74px;
+
+      padding:
+        16px
+        20px;
+
+      background:
+        #1c1c1f;
+
+      border:
+        1px solid
+        #2c2c30;
+
+      border-radius:
+        11px;
+
+      text-align:
+        left;
+    }
+
+
+    .condition-center-item p {
+      margin:
+        0;
+
+      color:
+        #a0a0a6;
+
+      font-size:
+        .86rem;
+
+      line-height:
+        1.45;
+    }
+
+
+    .condition-explanation {
+      max-width:
+        920px;
+
+      margin:
+        16px
+        auto
+        0;
+
+      padding-top:
+        17px;
+
+      color:
+        #85858c;
+
+      border-top:
+        1px solid
+        #29292d;
+
+      font-size:
+        .80rem;
+
+      line-height:
+        1.65;
+
+      text-align:
+        center;
+    }
+
+
+    .condition-explanation strong {
+      color:
+        #b7b7bd;
+    }
+
+
+    /* =====================================================
+       RESPONSIVE
+    ===================================================== */
+
+    @media
+    (
+      max-width:
+      1000px
+    ) {
+
+      .authenticity-grid {
+        grid-template-columns:
+          1fr;
+      }
+
+
+      .taxonomy-row {
+        display:
+          flex;
+
+        overflow-x:
+          auto;
+
+        gap:
+          12px;
+
+        padding-bottom:
+          8px;
+
+        scroll-snap-type:
+          x
+          proximity;
+      }
+
+
+      .taxonomy-card {
+        flex:
+          0
+          0
+          min(
+            285px,
+            76vw
+          );
+
+        scroll-snap-align:
+          start;
+      }
+
+    }
+
+
+    @media
+    (
+      max-width:
+      650px
+    ) {
+
+      .about-archive-card {
+        padding:
+          22px
+          20px;
+      }
+
+
+      .condition-center-row {
+        gap:
+          10px;
+      }
+
+
+      .condition-center-item {
+        flex-direction:
+          column;
+
+        width:
+          calc(
+            50% - 5px
+          );
+
+        padding:
+          14px
+          10px;
+
+        text-align:
+          center;
+      }
+
+
+      .condition-center-item p {
+        font-size:
+          .78rem;
+      }
+
+
+      .condition-pill {
+        min-width:
+          112px;
+      }
+
+
+      .condition-explanation {
+        font-size:
+          .76rem;
+      }
+
+    }
+
+  </style>
+
 </head>
 
 <body>
@@ -112,6 +589,10 @@
 
     <main class="about-page">
 
+      <!-- =====================================================
+           ABOUT HERO
+      ====================================================== -->
+
       <section
         class="about-hero lang-panel"
         data-lang="vi"
@@ -143,6 +624,7 @@
 
       </section>
 
+
       <section
         class="about-hero lang-panel"
         data-lang="en"
@@ -162,7 +644,7 @@
           Lộc An Sneaker Collection is a private sneaker archive
           built as a digital catalogue.
           Each pair is documented through imagery,
-          release information, provenance,
+          release information, origin,
           condition, and design context.
         </p>
 
@@ -176,286 +658,16 @@
       </section>
 
 
-      <section class="archive-principles">
-
-        <article
-          class="archive-panel lang-panel"
-          data-lang="vi"
-        >
-
-          <p class="about-kicker">
-            PHÂN LOẠI
-          </p>
-
-          <h3>
-            Hệ thống phân loại hiện vật
-          </h3>
-
-          <div class="definition-item">
-            <strong>
-              General Release (GR)
-            </strong>
-
-            <span>
-              Phiên bản được sản xuất để phát hành thương mại công khai
-              qua các kênh bán lẻ chính thức hoặc được ủy quyền,
-              dành cho thị trường người tiêu dùng nói chung.
-            </span>
-          </div>
-
-          <div class="definition-item">
-            <strong>
-              Player Exclusive (PE)
-            </strong>
-
-            <span>
-              Phiên bản được thương hiệu sản xuất hoặc tùy chỉnh
-              dành riêng cho vận động viên, đội thi đấu
-              hay cá nhân được chỉ định,
-              và thường không phát hành bán lẻ công khai.
-            </span>
-          </div>
-
-          <div class="definition-item">
-            <strong>
-              Friends &amp; Family (F&amp;F)
-            </strong>
-
-            <span>
-              Phiên bản không phát hành bán lẻ công khai,
-              được thương hiệu, nhà thiết kế hoặc đối tác sáng tạo
-              phân phối trực tiếp cho gia đình, bạn bè,
-              cộng sự và những cá nhân thuộc mạng lưới thân cận của dự án.
-            </span>
-          </div>
-
-          <div class="definition-item">
-            <strong>
-              Sample
-            </strong>
-
-            <span>
-              Phiên bản được tạo trong quá trình phát triển,
-              thử nghiệm hoặc tiền sản xuất nhằm đánh giá
-              thiết kế, vật liệu, màu sắc hay cấu trúc
-              trước khi sản phẩm được hoàn thiện.
-            </span>
-          </div>
-
-          <div class="definition-item">
-            <strong>
-              Signature Signed
-            </strong>
-
-            <span>
-              Hiện vật có chữ ký trực tiếp của vận động viên,
-              nhà thiết kế, nghệ sĩ hoặc nhân vật gắn liền với sản phẩm,
-              qua đó bổ sung provenance và giá trị lưu trữ cho hiện vật.
-            </span>
-          </div>
-
-          <p class="about-small">
-            Một hiện vật có thể thuộc nhiều nhóm cùng lúc.
-            Ví dụ, một đôi có thể vừa là Player Exclusive,
-            vừa là Sample hoặc Friends &amp; Family.
-          </p>
-
-        </article>
-
-
-        <article
-          class="archive-panel lang-panel"
-          data-lang="en"
-          hidden
-        >
-
-          <p class="about-kicker">
-            CLASSIFICATION
-          </p>
-
-          <h3>
-            Archive classification system
-          </h3>
-
-          <div class="definition-item">
-            <strong>
-              General Release (GR)
-            </strong>
-
-            <span>
-              An edition produced for public commercial release
-              through official or authorized retail channels,
-              intended for the general consumer market.
-            </span>
-          </div>
-
-          <div class="definition-item">
-            <strong>
-              Player Exclusive (PE)
-            </strong>
-
-            <span>
-              An edition produced or customized by the brand
-              specifically for athletes, teams,
-              or designated individuals,
-              and typically not offered through public retail.
-            </span>
-          </div>
-
-          <div class="definition-item">
-            <strong>
-              Friends &amp; Family (F&amp;F)
-            </strong>
-
-            <span>
-              A non-public-retail edition distributed directly
-              by the brand, designer, or creative partner
-              to family, friends, collaborators,
-              and individuals within the project's close network.
-            </span>
-          </div>
-
-          <div class="definition-item">
-            <strong>
-              Sample
-            </strong>
-
-            <span>
-              An edition created during development,
-              testing, or pre-production to evaluate
-              design, materials, colors, or construction
-              before the product is finalized.
-            </span>
-          </div>
-
-          <div class="definition-item">
-            <strong>
-              Signature Signed
-            </strong>
-
-            <span>
-              An artifact carrying a direct signature
-              from an athlete, designer, artist,
-              or individual associated with the product,
-              adding documented provenance and archival significance.
-            </span>
-          </div>
-
-          <p class="about-small">
-            An artifact may belong to more than one category.
-            For example, a pair may simultaneously be
-            a Player Exclusive, Sample,
-            or Friends &amp; Family edition.
-          </p>
-
-        </article>
-
-
-        <article
-          class="archive-panel lang-panel"
-          data-lang="vi"
-        >
-
-          <p class="about-kicker">
-            TÌNH TRẠNG
-          </p>
-
-          <h3>
-            Hệ thống Condition
-          </h3>
-
-          <div class="condition-key">
-
-            <span class="condition-pill deadstock">
-              Deadstock
-            </span>
-
-            <span>
-              Chưa qua sử dụng.
-            </span>
-
-          </div>
-
-          <div class="condition-key">
-
-            <span class="condition-pill used">
-              Used
-            </span>
-
-            <span>
-              Đã qua sử dụng.
-            </span>
-
-          </div>
-
-          <p class="about-small">
-            GR, PE, F&amp;F, Sample và Signature Signed
-            mô tả loại phiên bản hoặc provenance,
-            không phải tình trạng sử dụng.
-          </p>
-
-        </article>
-
-
-        <article
-          class="archive-panel lang-panel"
-          data-lang="en"
-          hidden
-        >
-
-          <p class="about-kicker">
-            CONDITION
-          </p>
-
-          <h3>
-            Condition system
-          </h3>
-
-          <div class="condition-key">
-
-            <span class="condition-pill deadstock">
-              Deadstock
-            </span>
-
-            <span>
-              Unworn.
-            </span>
-
-          </div>
-
-          <div class="condition-key">
-
-            <span class="condition-pill used">
-              Used
-            </span>
-
-            <span>
-              Previously worn.
-            </span>
-
-          </div>
-
-          <p class="about-small">
-            GR, PE, F&amp;F, Sample and Signature Signed
-            describe edition type or provenance,
-            not condition.
-          </p>
-
-        </article>
-
-      </section>
-
-
       <!-- =====================================================
-           AUTHENTICITY / IMAGE RIGHTS / OWNERSHIP
+           1. AUTHENTICITY & OWNERSHIP — CARD
       ====================================================== -->
 
       <section
-        class="authenticity-section lang-panel"
+        class="about-archive-card lang-panel"
         data-lang="vi"
       >
 
-        <p class="authenticity-kicker">
+        <p class="about-kicker">
           XÁC THỰC &amp; QUYỀN SỞ HỮU
         </p>
 
@@ -463,36 +675,64 @@
           Tính xác thực của kho lưu trữ
         </h3>
 
-        <p class="authenticity-text">
-          <strong>Xác thực.</strong>
-          Tất cả <strong>Sneakers</strong> và hiện vật
-          được trưng bày trong bộ sưu tập
-          đều là sản phẩm chính hãng.
-          Lộc An không trưng bày hàng giả,
-          hàng sao chép hoặc sản phẩm
-          không xác định được tính xác thực.
-        </p>
+        <div class="authenticity-grid">
 
-        <p class="authenticity-text">
-          <strong>Bản quyền hình ảnh.</strong>
-          Tất cả hình ảnh được sử dụng trên website này
-          là hình ảnh thuộc bộ sưu tập cá nhân Lộc An
-          và thuộc quyền sở hữu của cá nhân Lộc An.
-          Website không sử dụng hình ảnh mượn,
-          sao chép hoặc lấy từ cá nhân,
-          cửa hàng hay nguồn bên thứ ba.
-        </p>
+          <article class="authenticity-item">
 
-        <p class="authenticity-text">
-          <strong>Quyền sở hữu bộ sưu tập.</strong>
-          Tất cả <strong>Sneakers</strong>, LEGO,
-          Sneaker Mask và các hiện vật
-          được giới thiệu trên website
-          đều là tài sản thuộc sở hữu cá nhân của Lộc An.
-          Không có hiện vật nào được vay mượn
-          hoặc đưa vào bộ sưu tập
-          chỉ nhằm mục đích minh họa.
-        </p>
+            <strong>
+              XÁC THỰC
+            </strong>
+
+            <p>
+              Tất cả <strong>SNEAKERS</strong> và hiện vật
+              được trưng bày trong bộ sưu tập
+              đều là sản phẩm chính hãng.
+              Lộc An không trưng bày hàng giả,
+              hàng sao chép hoặc sản phẩm
+              không xác định được tính xác thực.
+            </p>
+
+          </article>
+
+
+          <article class="authenticity-item">
+
+            <strong>
+              BẢN QUYỀN HÌNH ẢNH
+            </strong>
+
+            <p>
+              Tất cả hình ảnh được sử dụng trên website này
+              là hình ảnh thuộc bộ sưu tập cá nhân Lộc An
+              và thuộc quyền sở hữu của cá nhân Lộc An.
+              Website không sử dụng hình ảnh mượn,
+              sao chép hoặc lấy từ cá nhân,
+              cửa hàng hay nguồn bên thứ ba.
+            </p>
+
+          </article>
+
+
+          <article class="authenticity-item">
+
+            <strong>
+              QUYỀN SỞ HỮU BỘ SƯU TẬP
+            </strong>
+
+            <p>
+              Tất cả <strong>SNEAKERS</strong>,
+              <strong>LEGO</strong>,
+              <strong>SNEAKER MASK</strong>
+              và các hiện vật được giới thiệu trên website
+              đều là tài sản thuộc sở hữu cá nhân của Lộc An.
+              Không có hiện vật nào được vay mượn
+              hoặc đưa vào bộ sưu tập
+              chỉ nhằm mục đích minh họa.
+            </p>
+
+          </article>
+
+        </div>
 
         <div class="authenticity-notice">
           <strong>LƯU Ý:</strong>
@@ -506,12 +746,12 @@
 
 
       <section
-        class="authenticity-section lang-panel"
+        class="about-archive-card lang-panel"
         data-lang="en"
         hidden
       >
 
-        <p class="authenticity-kicker">
+        <p class="about-kicker">
           AUTHENTICITY &amp; OWNERSHIP
         </p>
 
@@ -519,34 +759,63 @@
           Archive authenticity
         </h3>
 
-        <p class="authenticity-text">
-          <strong>Authenticity.</strong>
-          All <strong>Sneakers</strong> and objects
-          presented in this collection are authentic.
-          Lộc An does not display counterfeit,
-          replica, or unverifiable items
-          as part of the collection.
-        </p>
+        <div class="authenticity-grid">
 
-        <p class="authenticity-text">
-          <strong>Image rights.</strong>
-          All images displayed on this website
-          are images associated with the private Lộc An collection
-          and are owned by Lộc An.
-          No images are borrowed, copied,
-          or taken from individuals,
-          retailers, or third-party sources.
-        </p>
+          <article class="authenticity-item">
 
-        <p class="authenticity-text">
-          <strong>Collection ownership.</strong>
-          All <strong>Sneakers</strong>, LEGO sets,
-          Sneaker Masks, and other objects
-          presented on this website
-          are personally owned by Lộc An.
-          No displayed object is borrowed
-          or included solely for illustrative purposes.
-        </p>
+            <strong>
+              AUTHENTICITY
+            </strong>
+
+            <p>
+              All <strong>SNEAKERS</strong> and objects
+              presented in this collection are authentic.
+              Lộc An does not display counterfeit,
+              replica, or unverifiable items
+              as part of the collection.
+            </p>
+
+          </article>
+
+
+          <article class="authenticity-item">
+
+            <strong>
+              IMAGE RIGHTS
+            </strong>
+
+            <p>
+              All images displayed on this website
+              are images associated with the private Lộc An collection
+              and are owned by Lộc An.
+              No images are borrowed, copied,
+              or taken from individuals,
+              retailers, or third-party sources.
+            </p>
+
+          </article>
+
+
+          <article class="authenticity-item">
+
+            <strong>
+              COLLECTION OWNERSHIP
+            </strong>
+
+            <p>
+              All <strong>SNEAKERS</strong>,
+              <strong>LEGO</strong>,
+              <strong>SNEAKER MASK</strong>
+              objects, and other artifacts
+              presented on this website
+              are personally owned by Lộc An.
+              No displayed object is borrowed
+              or included solely for illustrative purposes.
+            </p>
+
+          </article>
+
+        </div>
 
         <div class="authenticity-notice">
           <strong>NOTICE:</strong>
@@ -557,6 +826,319 @@
 
       </section>
 
+
+      <!-- =====================================================
+           2. CLASSIFICATION — HORIZONTAL CARD
+      ====================================================== -->
+
+      <section
+        class="about-archive-card lang-panel"
+        data-lang="vi"
+      >
+
+        <p class="about-kicker">
+          PHÂN LOẠI
+        </p>
+
+        <h3>
+          Hệ thống phân loại hiện vật
+        </h3>
+
+        <div class="taxonomy-row">
+
+          <article class="taxonomy-card">
+            <strong>
+              General Release (GR)
+            </strong>
+
+            <p>
+              Phiên bản được sản xuất để phát hành thương mại công khai
+              qua các kênh bán lẻ chính thức hoặc được ủy quyền,
+              dành cho thị trường người tiêu dùng nói chung.
+            </p>
+          </article>
+
+
+          <article class="taxonomy-card">
+            <strong>
+              Player Exclusive (PE)
+            </strong>
+
+            <p>
+              Phiên bản được thương hiệu sản xuất hoặc tùy chỉnh
+              dành riêng cho vận động viên, đội thi đấu
+              hay cá nhân được chỉ định,
+              và thường không phát hành bán lẻ công khai.
+            </p>
+          </article>
+
+
+          <article class="taxonomy-card">
+            <strong>
+              Friends &amp; Family (F&amp;F)
+            </strong>
+
+            <p>
+              Phiên bản không phát hành bán lẻ công khai,
+              được thương hiệu, nhà thiết kế hoặc đối tác sáng tạo
+              phân phối trực tiếp cho gia đình, bạn bè,
+              cộng sự và những cá nhân thuộc mạng lưới thân cận của dự án.
+            </p>
+          </article>
+
+
+          <article class="taxonomy-card">
+            <strong>
+              Sample
+            </strong>
+
+            <p>
+              Phiên bản được tạo trong quá trình phát triển,
+              thử nghiệm hoặc tiền sản xuất nhằm đánh giá
+              thiết kế, vật liệu, màu sắc hay cấu trúc
+              trước khi sản phẩm được hoàn thiện.
+            </p>
+          </article>
+
+
+          <article class="taxonomy-card">
+            <strong>
+              Signature Signed
+            </strong>
+
+            <p>
+              Hiện vật có chữ ký trực tiếp của vận động viên,
+              nhà thiết kế, nghệ sĩ hoặc nhân vật gắn liền với sản phẩm,
+              qua đó bổ sung giá trị lưu trữ cho hiện vật.
+            </p>
+          </article>
+
+        </div>
+
+        <p class="about-small">
+          Một hiện vật có thể thuộc nhiều nhóm cùng lúc.
+          Ví dụ, một đôi có thể vừa là Player Exclusive,
+          vừa là Sample hoặc Friends &amp; Family.
+        </p>
+
+      </section>
+
+
+      <section
+        class="about-archive-card lang-panel"
+        data-lang="en"
+        hidden
+      >
+
+        <p class="about-kicker">
+          CLASSIFICATION
+        </p>
+
+        <h3>
+          Archive classification system
+        </h3>
+
+        <div class="taxonomy-row">
+
+          <article class="taxonomy-card">
+            <strong>
+              General Release (GR)
+            </strong>
+
+            <p>
+              An edition produced for public commercial release
+              through official or authorized retail channels,
+              intended for the general consumer market.
+            </p>
+          </article>
+
+
+          <article class="taxonomy-card">
+            <strong>
+              Player Exclusive (PE)
+            </strong>
+
+            <p>
+              An edition produced or customized by the brand
+              specifically for athletes, teams,
+              or designated individuals,
+              and typically not offered through public retail.
+            </p>
+          </article>
+
+
+          <article class="taxonomy-card">
+            <strong>
+              Friends &amp; Family (F&amp;F)
+            </strong>
+
+            <p>
+              A non-public-retail edition distributed directly
+              by the brand, designer, or creative partner
+              to family, friends, collaborators,
+              and individuals within the project's close network.
+            </p>
+          </article>
+
+
+          <article class="taxonomy-card">
+            <strong>
+              Sample
+            </strong>
+
+            <p>
+              An edition created during development,
+              testing, or pre-production to evaluate
+              design, materials, colors, or construction
+              before the product is finalized.
+            </p>
+          </article>
+
+
+          <article class="taxonomy-card">
+            <strong>
+              Signature Signed
+            </strong>
+
+            <p>
+              An artifact carrying a direct signature
+              from an athlete, designer, artist,
+              or individual associated with the product,
+              adding archival significance to the object.
+            </p>
+          </article>
+
+        </div>
+
+        <p class="about-small">
+          An artifact may belong to more than one category.
+          For example, a pair may simultaneously be
+          a Player Exclusive, Sample,
+          or Friends &amp; Family edition.
+        </p>
+
+      </section>
+
+
+      <!-- =====================================================
+           3. CONDITION — CENTERED HORIZONTAL CARD
+      ====================================================== -->
+
+      <section
+        class="about-archive-card lang-panel"
+        data-lang="vi"
+      >
+
+        <p class="about-kicker">
+          TÌNH TRẠNG
+        </p>
+
+        <h3>
+          Hệ thống Condition
+        </h3>
+
+        <div class="condition-center-row">
+
+          <article class="condition-center-item">
+
+            <span class="condition-pill deadstock">
+              Deadstock
+            </span>
+
+            <p>
+              Chưa qua sử dụng.
+            </p>
+
+          </article>
+
+
+          <article class="condition-center-item">
+
+            <span class="condition-pill used">
+              Used
+            </span>
+
+            <p>
+              Đã qua sử dụng.
+            </p>
+
+          </article>
+
+        </div>
+
+        <p class="condition-explanation">
+          <strong>
+            GR, PE, F&amp;F, Sample và Signature Signed
+          </strong>
+          là các nhóm dùng để mô tả loại phiên bản
+          hoặc đặc điểm đặc biệt của một đôi sneaker;
+          chúng không phải là tình trạng sử dụng.
+          Tình trạng của hiện vật chỉ được ghi nhận là
+          <strong>Deadstock</strong> hoặc <strong>Used</strong>.
+        </p>
+
+      </section>
+
+
+      <section
+        class="about-archive-card lang-panel"
+        data-lang="en"
+        hidden
+      >
+
+        <p class="about-kicker">
+          CONDITION
+        </p>
+
+        <h3>
+          Condition system
+        </h3>
+
+        <div class="condition-center-row">
+
+          <article class="condition-center-item">
+
+            <span class="condition-pill deadstock">
+              Deadstock
+            </span>
+
+            <p>
+              Unworn.
+            </p>
+
+          </article>
+
+
+          <article class="condition-center-item">
+
+            <span class="condition-pill used">
+              Used
+            </span>
+
+            <p>
+              Previously worn.
+            </p>
+
+          </article>
+
+        </div>
+
+        <p class="condition-explanation">
+          <strong>
+            GR, PE, F&amp;F, Sample and Signature Signed
+          </strong>
+          describe an edition type or a distinguishing category
+          of a sneaker; they do not describe wear condition.
+          Object condition is recorded only as
+          <strong>Deadstock</strong> or <strong>Used</strong>.
+        </p>
+
+      </section>
+
+
+      <!-- =====================================================
+           CATALOGUE RECORD
+      ====================================================== -->
 
       <section class="catalogue-section">
 

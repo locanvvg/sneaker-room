@@ -146,6 +146,50 @@
       -->
       <div class="category-view-toolbar">
 
+        <div
+          id="lego-density-control"
+          class="category-grid-density"
+        >
+
+          <button
+            type="button"
+            id="lego-density-minus"
+            class="category-density-button"
+            aria-label="Fewer grid columns"
+          >
+            −
+          </button>
+
+          <input
+            id="lego-density-range"
+            class="category-density-range"
+            type="range"
+            min="1"
+            max="5"
+            step="1"
+            value="2"
+            aria-label="Grid columns"
+          >
+
+          <button
+            type="button"
+            id="lego-density-plus"
+            class="category-density-button"
+            aria-label="More grid columns"
+          >
+            +
+          </button>
+
+          <span
+            id="lego-density-value"
+            class="category-density-value"
+          >
+            2 CỘT
+          </span>
+
+        </div>
+
+
         <button
           type="button"
           id="lego-view-toggle"
@@ -154,6 +198,7 @@
         >
           CHẾ ĐỘ 3D
         </button>
+
 
         <div
           id="lego-count"
@@ -183,7 +228,7 @@
 
   <script src="./lego-data.js?v=20260913-clean-nav"></script>
 
-  <script src="./category-view.js?v=20260914-category-view-v1"></script>
+  <script src="./category-view.js?v=20260914-category-view-v2"></script>
 
   <script>
     const LEGO_LANGUAGES = ["vi", "en"];
@@ -540,7 +585,38 @@
                 legoDetailURL,
 
               renderGridCard:
-                createLegoGridCard
+                createLegoGridCard,
+
+              density: {
+                min:
+                  1,
+
+                max:
+                  5,
+
+                defaultColumns:
+                  2,
+
+                range:
+                  document.getElementById(
+                    "lego-density-range"
+                  ),
+
+                minus:
+                  document.getElementById(
+                    "lego-density-minus"
+                  ),
+
+                plus:
+                  document.getElementById(
+                    "lego-density-plus"
+                  ),
+
+                value:
+                  document.getElementById(
+                    "lego-density-value"
+                  )
+              }
 
             });
 

@@ -1,5 +1,5 @@
 /* =========================================================
-   LỘC AN — UNIVERSAL CATEGORY VIEW v1
+   LỘC AN — UNIVERSAL CATEGORY VIEW v2 — GRID DENSITY
    Shared GRID / 3D gallery for:
    - LEGO
    - SNEAKER MASK
@@ -47,16 +47,21 @@
 
       .category-view-toolbar {
         display:
-          flex;
+          grid;
+
+        grid-template-columns:
+          minmax(
+            280px,
+            1fr
+          )
+          150px
+          max-content;
 
         align-items:
           center;
 
-        justify-content:
-          flex-end;
-
         gap:
-          12px;
+          14px;
 
         margin:
           18px
@@ -67,8 +72,152 @@
 
       .category-view-toolbar
       .collection-count {
+        justify-self:
+          end;
+
         margin:
           0 !important;
+
+        white-space:
+          nowrap;
+      }
+
+
+      /* =====================================================
+         GRID DENSITY SLIDER
+      ===================================================== */
+
+      .category-grid-density {
+        display:
+          grid;
+
+        grid-template-columns:
+          34px
+          minmax(
+            120px,
+            1fr
+          )
+          34px
+          auto;
+
+        align-items:
+          center;
+
+        gap:
+          9px;
+
+        width:
+          100%;
+      }
+
+
+      .category-density-button {
+        appearance:
+          none;
+
+        display:
+          flex;
+
+        align-items:
+          center;
+
+        justify-content:
+          center;
+
+        width:
+          34px;
+
+        height:
+          34px;
+
+        padding:
+          0;
+
+        color:
+          #aaa;
+
+        background:
+          rgba(
+            255,
+            255,
+            255,
+            .025
+          );
+
+        border:
+          1px solid
+          rgba(
+            255,
+            255,
+            255,
+            .10
+          );
+
+        border-radius:
+          50%;
+
+        cursor:
+          pointer;
+
+        font-size:
+          1rem;
+
+        font-weight:
+          900;
+      }
+
+
+      .category-density-button:hover,
+      .category-density-button:focus-visible {
+        color:
+          #ffcc00;
+
+        border-color:
+          rgba(
+            255,
+            204,
+            0,
+            .35
+          );
+
+        outline:
+          none;
+      }
+
+
+      .category-density-range {
+        width:
+          100%;
+
+        accent-color:
+          #ffcc00;
+
+        cursor:
+          pointer;
+      }
+
+
+      .category-density-value {
+        min-width:
+          52px;
+
+        color:
+          #777;
+
+        font-size:
+          .63rem;
+
+        font-weight:
+          900;
+
+        letter-spacing:
+          .7px;
+
+        text-align:
+          right;
+
+        white-space:
+          nowrap;
       }
 
 
@@ -713,20 +862,51 @@
       ) {
 
         .category-view-toolbar {
-          justify-content:
-            center;
+          display:
+            flex;
 
-          flex-wrap:
-            wrap;
+          flex-direction:
+            column;
+
+          align-items:
+            stretch;
 
           gap:
             10px;
         }
 
 
+        .category-view-toolbar
+        .collection-count {
+          order:
+            1;
+
+          align-self:
+            stretch;
+
+          text-align:
+            center;
+        }
+
+
         .category-view-toggle {
+          order:
+            2;
+
+          align-self:
+            center;
+
           min-width:
             150px;
+        }
+
+
+        .category-grid-density {
+          order:
+            3;
+
+          width:
+            100%;
         }
 
 
@@ -814,7 +994,8 @@
       getMetaPrimary,
       getMetaSecondary,
       getURL,
-      renderGridCard
+      renderGridCard,
+      density
     } = options;
 
     if (!root || !toggle) {
@@ -840,6 +1021,46 @@
 
     let centerIndex =
       0;
+
+
+    const densityStorageKey =
+      `locan_category_density_${key}`;
+
+
+    const densityMin =
+      Number(
+        density?.min ??
+        1
+      );
+
+
+    const densityMax =
+      Number(
+        density?.max ??
+        5
+      );
+
+
+    const densityDefault =
+      Number(
+        density?.defaultColumns ??
+        2
+      );
+
+
+    let densityColumns =
+      clamp(
+        Number(
+          localStorage.getItem(
+            densityStorageKey
+          )
+        )
+        ||
+        densityDefault,
+        densityMin,
+        densityMax
+      );
+
 
     let drag = {
       active: false,
@@ -908,6 +1129,112 @@
             moreAria:
               "Open the object in the center"
           };
+    }
+
+
+    function densityLabel() {
+      return language() === "vi"
+        ? `${densityColumns} CỘT`
+        : `${densityColumns} COL`;
+    }
+
+
+    function updateDensityUI() {
+      if (!density) {
+        return;
+      }
+
+      if (density.range) {
+        density.range.value =
+          String(
+            densityColumns
+          );
+      }
+
+      if (density.value) {
+        density.value.textContent =
+          densityLabel();
+      }
+    }
+
+
+    function applyGridDensity() {
+      if (!density) {
+        return;
+      }
+
+      localStorage.setItem(
+        densityStorageKey,
+        String(
+          densityColumns
+        )
+      );
+
+      root.style
+        .setProperty(
+          "grid-template-columns",
+          `repeat(${densityColumns}, minmax(0, 1fr))`,
+          "important"
+        );
+
+      updateDensityUI();
+    }
+
+
+    function setDensity(nextValue) {
+      densityColumns =
+        clamp(
+          Number(nextValue),
+          densityMin,
+          densityMax
+        );
+
+      updateDensityUI();
+
+      if (
+        mode === "grid"
+      ) {
+        applyGridDensity();
+      }
+    }
+
+
+    function bindDensity() {
+      if (!density) {
+        return;
+      }
+
+      density.range
+        ?.addEventListener(
+          "input",
+          event => {
+            setDensity(
+              event.target.value
+            );
+          }
+        );
+
+      density.minus
+        ?.addEventListener(
+          "click",
+          () => {
+            setDensity(
+              densityColumns - 1
+            );
+          }
+        );
+
+      density.plus
+        ?.addEventListener(
+          "click",
+          () => {
+            setDensity(
+              densityColumns + 1
+            );
+          }
+        );
+
+      updateDensityUI();
     }
 
 
@@ -1017,6 +1344,8 @@
 
       root.innerHTML =
         "";
+
+      applyGridDensity();
 
       list.forEach(
         (item, index) => {
@@ -1888,6 +2217,10 @@
       root.className =
         "category-3d-root";
 
+      root.style.removeProperty(
+        "grid-template-columns"
+      );
+
       const t =
         labels();
 
@@ -2003,6 +2336,7 @@
 
 
     function setLanguage() {
+      updateDensityUI();
       render();
     }
 
@@ -2017,6 +2351,9 @@
         );
       }
     );
+
+
+    bindDensity();
 
 
     window.addEventListener(

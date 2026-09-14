@@ -145,6 +145,50 @@
       -->
       <div class="category-view-toolbar">
 
+        <div
+          id="mask-density-control"
+          class="category-grid-density"
+        >
+
+          <button
+            type="button"
+            id="mask-density-minus"
+            class="category-density-button"
+            aria-label="Fewer grid columns"
+          >
+            −
+          </button>
+
+          <input
+            id="mask-density-range"
+            class="category-density-range"
+            type="range"
+            min="1"
+            max="5"
+            step="1"
+            value="2"
+            aria-label="Grid columns"
+          >
+
+          <button
+            type="button"
+            id="mask-density-plus"
+            class="category-density-button"
+            aria-label="More grid columns"
+          >
+            +
+          </button>
+
+          <span
+            id="mask-density-value"
+            class="category-density-value"
+          >
+            2 CỘT
+          </span>
+
+        </div>
+
+
         <button
           type="button"
           id="mask-view-toggle"
@@ -153,6 +197,7 @@
         >
           CHẾ ĐỘ 3D
         </button>
+
 
         <div
           id="mask-count"
@@ -182,7 +227,7 @@
 
   <script src="./sneaker-mask-data.js?v=20260913-clean-nav"></script>
 
-  <script src="./category-view.js?v=20260914-category-view-v1"></script>
+  <script src="./category-view.js?v=20260914-category-view-v2"></script>
 
   <script>
     const MASK_LANGUAGES = ["vi", "en"];
@@ -548,7 +593,38 @@
                 maskDetailURL,
 
               renderGridCard:
-                createMaskGridCard
+                createMaskGridCard,
+
+              density: {
+                min:
+                  1,
+
+                max:
+                  5,
+
+                defaultColumns:
+                  2,
+
+                range:
+                  document.getElementById(
+                    "mask-density-range"
+                  ),
+
+                minus:
+                  document.getElementById(
+                    "mask-density-minus"
+                  ),
+
+                plus:
+                  document.getElementById(
+                    "mask-density-plus"
+                  ),
+
+                value:
+                  document.getElementById(
+                    "mask-density-value"
+                  )
+              }
 
             });
 
