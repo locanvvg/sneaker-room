@@ -436,6 +436,7 @@ const sneakers = [
     editionType: { vi: "GR", en: "GR" },
     condition: { vi: "Used", en: "Used" },
     size: "11 US",
+    collectionStatus: "sold",
     image: "pictures/jordan1_cityofflight.png",
     story: {
       vi: `
@@ -594,3 +595,673 @@ const sneakers = [
   }
 
 ];
+
+/* =========================================================
+   OWN / SOLD COLLECTION STATUS
+   - OWN is the default collection view.
+   - SOLD ignores Edition / Condition / Size filters.
+   - Search and Sort remain available in SOLD.
+   - Sold cards are slightly faded and receive a SOLD badge.
+   - Sold detail pages receive a COLLECTION STATUS field.
+========================================================= */
+
+(() => {
+  "use strict";
+
+  const STATUS_OWN = "own";
+  const STATUS_SOLD = "sold";
+
+  let collectionStatusView = STATUS_OWN;
+
+  /* ---------------------------------------------------------
+     DATA NORMALIZATION
+  --------------------------------------------------------- */
+
+  if (
+    typeof sneakers !== "undefined" &&
+    Array.isArray(sneakers)
+  ) {
+    sneakers.forEach(item => {
+      const raw = String(item.collectionStatus || STATUS_OWN)
+        .trim()
+        .toLowerCase();
+
+      item.collectionStatus =
+        raw === STATUS_SOLD
+          ? STATUS_SOLD
+          : STATUS_OWN;
+    });
+  }
+
+  function statusOf(item) {
+    return String(item?.collectionStatus || STATUS_OWN)
+      .trim()
+      .toLowerCase() === STATUS_SOLD
+        ? STATUS_SOLD
+        : STATUS_OWN;
+  }
+
+  function itemsForStatus(status) {
+    if (
+      typeof sneakers === "undefined" ||
+      !Array.isArray(sneakers)
+    ) {
+      return [];
+    }
+
+    return sneakers.filter(item => statusOf(item) === status);
+  }
+
+  /* ---------------------------------------------------------
+     SEARCH-ONLY FILTER FOR SOLD
+     Edition / Condition / Size are intentionally ignored.
+  --------------------------------------------------------- */
+
+  function normalizeSearchText(value) {
+    return String(value ?? "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .trim();
+  }
+
+  function flattenSearchValue(value) {
+    if (value == null) return "";
+
+    if (
+      typeof value === "string" ||
+      typeof value === "number"
+    ) {
+      return String(value);
+    }
+
+    if (Array.isArray(value)) {
+      return value.map(flattenSearchValue).join(" ");
+    }
+
+    if (typeof value === "object") {
+      return Object.values(value)
+        .map(flattenSearchValue)
+        .join(" ");
+    }
+
+    return "";
+  }
+
+  function searchOnly(items) {
+    let query = "";
+
+    try {
+      if (typeof archiveSearchQuery !== "undefined") {
+        query = normalizeSearchText(archiveSearchQuery);
+      }
+    } catch (_) {
+      query = "";
+    }
+
+    if (!query) return items;
+
+    const terms = query.split(/\s+/).filter(Boolean);
+
+    return items.filter(item => {
+      const corpus = normalizeSearchText(
+        [
+          item.title,
+          item.subtitle,
+          item.brand,
+          item.collaboration,
+          item.sku,
+          item.styleCode,
+          item.colorway,
+          item.editionType,
+          item.condition,
+          item.size,
+          item.releaseDate,
+          item.retail,
+          item.retailPrice
+        ]
+          .map(flattenSearchValue)
+          .join(" ")
+      );
+
+      return terms.every(term => corpus.includes(term));
+    });
+  }
+
+  /* ---------------------------------------------------------
+     STATUS FILTER UI
+  --------------------------------------------------------- */
+
+  function createStatusFilterUI() {
+    const panel = document.querySelector(".filter-panel");
+    if (!panel) return;
+
+    let group = document.getElementById("collection-status-filter-group");
+
+    if (!group) {
+      group = document.createElement("div");
+      group.id = "collection-status-filter-group";
+      group.className = "filter-group collection-status-filter-group";
+
+      group.innerHTML = `
+        <div
+          id="collection-status-filter-label"
+          class="filter-group-label"
+        >
+          BỘ SƯU TẬP
+        </div>
+
+        <div class="filter-chips collection-status-chips">
+          <button
+            type="button"
+            id="collection-status-own"
+            class="filter-chip collection-status-chip collection-status-chip-own"
+            data-collection-status="own"
+            aria-pressed="true"
+          >
+            OWN
+          </button>
+
+          <button
+            type="button"
+            id="collection-status-sold"
+            class="filter-chip collection-status-chip collection-status-chip-sold"
+            data-collection-status="sold"
+            aria-pressed="false"
+          >
+            SOLD
+          </button>
+        </div>
+      `;
+
+      const firstFilterGroup = panel.querySelector(".filter-group");
+
+      if (firstFilterGroup) {
+        panel.insertBefore(group, firstFilterGroup);
+      } else {
+        panel.appendChild(group);
+      }
+
+      group
+        .querySelectorAll("[data-collection-status]")
+        .forEach(button => {
+          button.addEventListener("click", () => {
+            setCollectionStatusView(button.dataset.collectionStatus);
+          });
+        });
+    }
+
+    updateStatusFilterUI();
+  }
+
+  function updateStatusFilterUI() {
+    const ownButton = document.getElementById("collection-status-own");
+    const soldButton = document.getElementById("collection-status-sold");
+    const label = document.getElementById("collection-status-filter-label");
+
+    const isSold = collectionStatusView === STATUS_SOLD;
+
+    ownButton?.classList.toggle("active", !isSold);
+    soldButton?.classList.toggle("active", isSold);
+
+    ownButton?.setAttribute("aria-pressed", String(!isSold));
+    soldButton?.setAttribute("aria-pressed", String(isSold));
+
+    let lang = "vi";
+
+    try {
+      if (typeof currentLang !== "undefined") {
+        lang = currentLang === "en" ? "en" : "vi";
+      }
+    } catch (_) {}
+
+    if (label) {
+      label.textContent =
+        lang === "en"
+          ? "COLLECTION STATUS"
+          : "BỘ SƯU TẬP";
+    }
+
+    document.body?.classList.toggle("collection-status-sold", isSold);
+    document.body?.classList.toggle("collection-status-own", !isSold);
+
+    document
+      .querySelectorAll(".filter-panel > .filter-group")
+      .forEach(filterGroup => {
+        if (filterGroup.id === "collection-status-filter-group") return;
+
+        filterGroup.classList.toggle(
+          "collection-filter-ignored",
+          isSold
+        );
+
+        filterGroup.setAttribute(
+          "aria-disabled",
+          isSold ? "true" : "false"
+        );
+      });
+
+    if (isSold) {
+      document.getElementById("clear-filters")?.classList.remove("visible");
+    } else if (typeof updateFilterInterface === "function") {
+      updateFilterInterface();
+    }
+  }
+
+  function setCollectionStatusView(status) {
+    const next = status === STATUS_SOLD ? STATUS_SOLD : STATUS_OWN;
+
+    if (collectionStatusView === next) {
+      updateStatusFilterUI();
+      return;
+    }
+
+    collectionStatusView = next;
+    updateStatusFilterUI();
+
+    try {
+      if (typeof reset3DPosition === "function") {
+        reset3DPosition();
+      }
+    } catch (_) {}
+
+    if (typeof renderGrid === "function") {
+      renderGrid();
+    }
+  }
+
+  /* ---------------------------------------------------------
+     SOLD CARD DECORATION
+  --------------------------------------------------------- */
+
+  function decorateVisibleCards() {
+    const grid = document.getElementById("sneaker-grid");
+    if (!grid) return;
+
+    const soldMode = collectionStatusView === STATUS_SOLD;
+
+    grid
+      .querySelectorAll(".card, .sneaker-3d-card")
+      .forEach(card => {
+        card.classList.toggle("is-sold-card", soldMode);
+
+        let badge = card.querySelector(":scope > .collection-sold-badge");
+
+        if (soldMode && !badge) {
+          badge = document.createElement("span");
+          badge.className = "collection-sold-badge";
+          badge.textContent = "SOLD";
+          badge.setAttribute("aria-label", "Sold");
+          card.appendChild(badge);
+        }
+
+        if (!soldMode && badge) {
+          badge.remove();
+        }
+      });
+  }
+
+  /* ---------------------------------------------------------
+     DETAIL PAGE STATUS
+  --------------------------------------------------------- */
+
+  function updateDetailStatusText() {
+    const label = document.getElementById("label-collection-status");
+    const value = document.getElementById("shoe-collection-status");
+
+    if (!label || !value) return;
+
+    let lang = "vi";
+
+    try {
+      if (typeof currentLang !== "undefined") {
+        lang = currentLang === "en" ? "en" : "vi";
+      }
+    } catch (_) {}
+
+    label.textContent =
+      lang === "en"
+        ? "COLLECTION STATUS"
+        : "TRẠNG THÁI BỘ SƯU TẬP";
+
+    value.textContent = "SOLD";
+  }
+
+  function installDetailStatus() {
+    const detail = document.getElementById("shoe-detail");
+    if (!detail) return;
+
+    const shoeId = new URLSearchParams(window.location.search).get("id");
+
+    if (
+      typeof sneakers === "undefined" ||
+      !Array.isArray(sneakers)
+    ) {
+      return;
+    }
+
+    const sneaker = sneakers.find(item => item.id === shoeId);
+
+    if (!sneaker || statusOf(sneaker) !== STATUS_SOLD) return;
+
+    const specs = document.querySelector(".specs-grid");
+    if (!specs) return;
+
+    if (!document.getElementById("shoe-collection-status")) {
+      const item = document.createElement("div");
+      item.className = "spec-item collection-status-detail-item";
+      item.innerHTML = `
+        <span
+          class="spec-label"
+          id="label-collection-status"
+        ></span>
+
+        <span
+          id="shoe-collection-status"
+          class="spec-value collection-status-detail-value"
+        >
+          SOLD
+        </span>
+      `;
+
+      specs.appendChild(item);
+    }
+
+    detail.classList.add("is-sold-detail");
+    updateDetailStatusText();
+  }
+
+  /* ---------------------------------------------------------
+     STYLES
+  --------------------------------------------------------- */
+
+  function installStatusStyles() {
+    if (document.getElementById("collection-status-styles")) return;
+
+    const style = document.createElement("style");
+    style.id = "collection-status-styles";
+
+    style.textContent = `
+      /* OWN / SOLD — keep the existing archive filter design */
+      .collection-status-filter-group {
+        border-top: 0 !important;
+      }
+
+      .collection-status-chip-own.active {
+        background: #e8e4dc !important;
+        border-color: #e8e4dc !important;
+        color: #111113 !important;
+      }
+
+      .collection-status-chip-sold.active {
+        background: #b85c5c !important;
+        border-color: #b85c5c !important;
+        color: #fff !important;
+      }
+
+      .collection-status-chip-sold:not(.active):hover {
+        color: #d88787 !important;
+        border-color: rgba(184, 92, 92, .7) !important;
+      }
+
+      .collection-filter-ignored {
+        opacity: .34;
+        pointer-events: none;
+        user-select: none;
+      }
+
+      body.collection-status-sold #clear-filters {
+        opacity: 0 !important;
+        pointer-events: none !important;
+      }
+
+      .card.is-sold-card,
+      .sneaker-3d-card.is-sold-card {
+        position: relative !important;
+      }
+
+      .card.is-sold-card > .card-img-wrapper,
+      .card.is-sold-card > .card-info,
+      .sneaker-3d-card.is-sold-card > .sneaker-3d-image,
+      .sneaker-3d-card.is-sold-card > .sneaker-3d-info {
+        opacity: .76;
+        transition: opacity .22s ease;
+      }
+
+      .card.is-sold-card:hover > .card-img-wrapper,
+      .card.is-sold-card:hover > .card-info,
+      .sneaker-3d-card.is-sold-card:hover > .sneaker-3d-image,
+      .sneaker-3d-card.is-sold-card:hover > .sneaker-3d-info {
+        opacity: .88;
+      }
+
+      .collection-sold-badge {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        z-index: 40;
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        min-height: 28px;
+        padding: 6px 10px;
+
+        background: rgba(184, 92, 92, .94);
+        color: #fff;
+
+        border: 1px solid rgba(255, 255, 255, .12);
+        border-radius: 6px;
+
+        box-shadow: 0 5px 16px rgba(0, 0, 0, .25);
+
+        font-size: .62rem;
+        font-weight: 900;
+        line-height: 1;
+        letter-spacing: 1.15px;
+
+        pointer-events: none;
+      }
+
+      .collection-status-detail-value {
+        color: #c96f6f !important;
+        font-weight: 800;
+        letter-spacing: .7px;
+      }
+
+      .is-sold-detail .shoe-image-section {
+        opacity: .90;
+      }
+
+      @media screen and (max-width: 650px) {
+        .collection-sold-badge {
+          top: 8px;
+          right: 8px;
+          min-height: 24px;
+          padding: 5px 8px;
+          font-size: .55rem;
+        }
+      }
+    `;
+
+    document.head.appendChild(style);
+  }
+
+  installStatusStyles();
+
+  /* ---------------------------------------------------------
+     PATCH THE FINAL HOMEPAGE FUNCTIONS AFTER ALL SCRIPTS LOAD
+  --------------------------------------------------------- */
+
+  document.addEventListener("DOMContentLoaded", () => {
+    installDetailStatus();
+
+    const filterPanel = document.querySelector(".filter-panel");
+
+    if (!filterPanel) {
+      /* Detail page: keep SOLD status localized when language changes. */
+      if (typeof updateLanguageInterface === "function") {
+        const originalUpdateLanguageInterface = updateLanguageInterface;
+
+        updateLanguageInterface = function () {
+          originalUpdateLanguageInterface();
+          updateDetailStatusText();
+        };
+      }
+
+      return;
+    }
+
+    createStatusFilterUI();
+
+    /* Existing filter + search function as it exists after index.html patches. */
+    if (typeof filterSneakers === "function") {
+      const filterWithExistingSystem = filterSneakers;
+
+      filterSneakers = function (items) {
+        const statusItems = items.filter(
+          item => statusOf(item) === collectionStatusView
+        );
+
+        if (collectionStatusView === STATUS_SOLD) {
+          return searchOnly(statusItems);
+        }
+
+        return filterWithExistingSystem(statusItems);
+      };
+    }
+
+    /* Size choices should describe the owned collection, not former pairs. */
+    if (typeof getAvailableSizes === "function") {
+      getAvailableSizes = function () {
+        return [
+          ...new Set(
+            itemsForStatus(STATUS_OWN)
+              .map(item => {
+                const match = String(item.size ?? "").match(/(\d+(?:\.\d+)?)/);
+                return match ? Number(match[1]) : null;
+              })
+              .filter(value => value !== null && Number.isFinite(value))
+          )
+        ].sort((a, b) => a - b);
+      };
+
+      if (typeof renderSizeFilters === "function") {
+        renderSizeFilters();
+      }
+    }
+
+    /* Clear button remains hidden while SOLD ignores normal filters. */
+    if (typeof updateFilterInterface === "function") {
+      const originalUpdateFilterInterface = updateFilterInterface;
+
+      updateFilterInterface = function () {
+        originalUpdateFilterInterface();
+
+        if (collectionStatusView === STATUS_SOLD) {
+          document.getElementById("clear-filters")?.classList.remove("visible");
+        }
+
+        updateStatusFilterUI();
+      };
+    }
+
+    /* Translate the new status label with the rest of the interface. */
+    if (typeof updateStaticText === "function") {
+      const originalUpdateStaticText = updateStaticText;
+
+      updateStaticText = function () {
+        originalUpdateStaticText();
+        updateStatusFilterUI();
+      };
+    }
+
+    /* Counter is scoped to OWN or SOLD, not the combined archive. */
+    if (typeof updateCollectionCount === "function") {
+      updateCollectionCount = function (count) {
+        const element = document.getElementById("collection-count");
+        if (!element) return;
+
+        const total = itemsForStatus(collectionStatusView).length;
+
+        let lang = "vi";
+        try {
+          if (typeof currentLang !== "undefined") {
+            lang = currentLang === "en" ? "en" : "vi";
+          }
+        } catch (_) {}
+
+        let searchActive = false;
+        try {
+          searchActive =
+            typeof archiveSearchQuery !== "undefined" &&
+            String(archiveSearchQuery).trim().length > 0;
+        } catch (_) {}
+
+        let normalFiltersActive = false;
+
+        if (collectionStatusView === STATUS_OWN) {
+          try {
+            normalFiltersActive =
+              typeof activeFilters !== "undefined" &&
+              (
+                activeFilters.edition.size > 0 ||
+                activeFilters.condition.size > 0 ||
+                activeFilters.size.size > 0
+              );
+          } catch (_) {}
+        }
+
+        if (searchActive || normalFiltersActive) {
+          element.textContent =
+            lang === "en"
+              ? `SHOWING: ${count} / ${total} PAIRS`
+              : `HIỂN THỊ: ${count} / ${total} ĐÔI`;
+        } else {
+          element.textContent =
+            lang === "en"
+              ? `TOTAL: ${total} PAIRS`
+              : `TỔNG SỐ: ${total} ĐÔI`;
+        }
+      };
+    }
+
+    /* Decorate normal Grid cards and 3D cards after every render. */
+    if (typeof renderGrid === "function") {
+      const originalRenderGrid = renderGrid;
+
+      renderGrid = function (...args) {
+        const result = originalRenderGrid(...args);
+
+        requestAnimationFrame(() => {
+          decorateVisibleCards();
+          updateStatusFilterUI();
+        });
+
+        return result;
+      };
+    }
+
+    /* Catch asynchronous 3D DOM rebuilds as well. */
+    const grid = document.getElementById("sneaker-grid");
+
+    if (grid) {
+      const observer = new MutationObserver(() => {
+        decorateVisibleCards();
+      });
+
+      observer.observe(grid, {
+        childList: true,
+        subtree: true
+      });
+    }
+
+    updateStatusFilterUI();
+
+    if (typeof renderGrid === "function") {
+      renderGrid();
+    }
+  });
+})();
+
