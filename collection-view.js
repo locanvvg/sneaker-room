@@ -1,4 +1,4 @@
-/* LỘC AN SNEAKER COLLECTION — collection-view.js v14 — OWNED DENSITY + FINAL 3D GLASS */
+/* LỘC AN SNEAKER COLLECTION — collection-view.js v15 — 3D CATALOG CALIBRATION ACTIVE */
 
 (() => {
   "use strict";
@@ -905,6 +905,8 @@
             draggable="false"
 
             data-sneaker-display="true"
+
+            data-catalog-image="true"
 
             data-sneaker-id="${escapeHTML(
               sneaker.id || ""
@@ -2624,6 +2626,19 @@
         </section>
 
       `;
+
+
+      /*
+        Critical:
+        3D images are created dynamically by collection-view.js.
+        Register them with CatalogDisplay BEFORE the lazy loader
+        assigns img.src, so each pair receives its calibrated
+        view3d / view3dMobile scale when the image loads.
+      */
+      window.CatalogDisplay
+        ?.prepareWithin(
+          grid
+        );
 
 
       bindEvents();

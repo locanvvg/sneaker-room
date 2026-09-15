@@ -280,15 +280,15 @@
       },
 
       view3d: {
-        scaleX: 1.00,
-        scaleY: 0.78,
+        scaleX: 0.94,
+        scaleY: 0.76,
         x: 0,
         y: 0
       },
 
       view3dMobile: {
-        scaleX: 0.80,
-        scaleY: 0.64,
+        scaleX: 0.76,
+        scaleY: 0.62,
         x: 0,
         y: 0
       }
@@ -2095,7 +2095,7 @@
 
 
   console.info(
-    "Lộc An catalog display engine v4c loaded — NB / Reverse Bred reduced, Balenciaga height fine-tuned"
+    "Lộc An catalog display engine v4d loaded — 3D calibration active; NB/Bred reduced; Balenciaga corrected"
   );
 
 })();
