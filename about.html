@@ -771,26 +771,48 @@
 
       </div>
 
-      <p class="eyebrow">
-        PRIVATE DIGITAL ARCHIVE
+      <p
+        class="eyebrow"
+        data-vi="KHO LƯU TRỮ KỸ THUẬT SỐ TƯ NHÂN"
+        data-en="PRIVATE DIGITAL ARCHIVE"
+      >
+        KHO LƯU TRỮ KỸ THUẬT SỐ TƯ NHÂN
       </p>
 
-      <h1>
-        LỘC AN SNEAKER COLLECTION
+      <h1
+        data-vi="BỘ SƯU TẬP GIÀY LỘC AN"
+        data-en="LỘC AN SNEAKER COLLECTION"
+      >
+        BỘ SƯU TẬP GIÀY LỘC AN
       </h1>
 
       <nav class="museum-nav" aria-label="Collection navigation">
 
-        <a href="./index.html" class="museum-nav-link">
-          SNEAKERS
+        <a
+          href="./index.html"
+          class="museum-nav-link"
+          data-vi="GIÀY"
+          data-en="SNEAKERS"
+        >
+          GIÀY
         </a>
 
-        <a href="./lego.html" class="museum-nav-link">
+        <a
+          href="./lego.html"
+          class="museum-nav-link"
+          data-vi="LEGO"
+          data-en="LEGO"
+        >
           LEGO
         </a>
 
-        <a href="./sneaker-mask.html" class="museum-nav-link">
-          SNEAKER MASK
+        <a
+          href="./sneaker-mask.html"
+          class="museum-nav-link"
+          data-vi="MẶT NẠ GIÀY"
+          data-en="SNEAKER MASK"
+        >
+          MẶT NẠ GIÀY
         </a>
 
       </nav>
@@ -1410,9 +1432,11 @@
     </main>
 
     <footer>
-      <p>
-        &copy; 2026 Lộc An Sneaker Collection.
-        All Rights Reserved.
+      <p
+        data-vi="© 2026 Bộ sưu tập giày Lộc An. Bảo lưu mọi quyền."
+        data-en="© 2026 Lộc An Sneaker Collection. All Rights Reserved."
+      >
+        © 2026 Bộ sưu tập giày Lộc An. Bảo lưu mọi quyền.
       </p>
     </footer>
 
@@ -1464,6 +1488,20 @@
         aboutLanguage;
 
 
+      document
+        .querySelectorAll(
+          "[data-vi][data-en]"
+        )
+        .forEach(
+          element => {
+            element.textContent =
+              aboutLanguage === "vi"
+                ? element.dataset.vi
+                : element.dataset.en;
+          }
+        );
+
+
       const aboutActiveLink =
         document.getElementById(
           "about-active-link"
@@ -1505,6 +1543,12 @@
               aboutLanguage;
           }
         );
+
+      document.title =
+        aboutLanguage === "vi"
+          ? "Giới Thiệu | Bộ Sưu Tập Giày Lộc An"
+          : "About | Lộc An Sneaker Collection";
+
 
       const url =
         new URL(
