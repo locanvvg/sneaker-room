@@ -1,5 +1,5 @@
 /* =========================================================
-   LỘC AN — FINAL SHARED COLLECTION UI v14
+   LỘC AN — FINAL SHARED COLLECTION UI v18 — SNEAKER 3D SIZE RESTORE
 
    ONE visual system for:
    - Sneakers
@@ -2354,3 +2354,70 @@ screen and
   }
 
 }
+
+/* =========================================================
+   SNEAKERS ONLY — RESTORE LAST CALIBRATED 3D IMAGE FRAME
+
+   The per-shoe values in catalog-display.js v4b were calibrated
+   against the larger 3D image stage.
+
+   Later UI unification changed the shared image stage to:
+     desktop 292px
+     mobile  270px
+
+   That changed the optical size of the shoes even though the
+   individual calibration numbers themselves were still correct.
+
+   Restore ONLY the Sneakers 3D frame:
+     desktop 310px image + 130px info = 440px card
+     mobile  285px image + 125px info = 410px card
+
+   No Grid / LEGO / Mask / navigation / language changes.
+========================================================= */
+
+.sneaker-3d-image.unified-3d-image {
+  height:
+    310px !important;
+}
+
+
+.sneaker-3d-info.unified-3d-info {
+  height:
+    130px !important;
+
+  min-height:
+    130px !important;
+
+  padding:
+    14px
+    20px
+    16px !important;
+}
+
+
+@media
+screen and
+(max-width: 650px) {
+
+  .sneaker-3d-image.unified-3d-image {
+    height:
+      285px !important;
+  }
+
+
+  .sneaker-3d-info.unified-3d-info {
+    height:
+      125px !important;
+
+    min-height:
+      125px !important;
+
+    padding:
+      12px
+      17px
+      14px !important;
+  }
+
+}
+
+
