@@ -2999,3 +2999,171 @@ screen and
 }
 
 
+/* =========================================================
+   MOBILE DENSE BADGE SCALE v25
+   Classification / edition badges shrink with card width
+   across Sneakers / LEGO / Sneaker Mask.
+========================================================= */
+
+@media screen and (max-width: 650px) {
+
+  /* Base behavior shared by all 3 pages */
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="3"] .badge,
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="4"] .badge,
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="5"] .badge {
+    display:
+      inline-flex !important;
+
+    align-items:
+      center !important;
+
+    justify-content:
+      center !important;
+
+    width:
+      auto !important;
+
+    min-width:
+      0 !important;
+
+    max-width:
+      100% !important;
+
+    height:
+      auto !important;
+
+    white-space:
+      normal !important;
+
+    overflow-wrap:
+      anywhere !important;
+
+    word-break:
+      normal !important;
+
+    box-sizing:
+      border-box !important;
+
+    flex:
+      0 1 auto !important;
+  }
+
+
+  /* 3 columns */
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="3"] .badge {
+    font-size:
+      clamp(.34rem, 4.0cqw, .46rem)
+      !important;
+
+    line-height:
+      1.10 !important;
+
+    padding:
+      clamp(1px, 1.3cqw, 2px)
+      clamp(3px, 2.8cqw, 5px)
+      !important;
+
+    border-radius:
+      clamp(4px, 3.5cqw, 7px)
+      !important;
+  }
+
+
+  /* 4 columns */
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="4"] .badge {
+    font-size:
+      clamp(.28rem, 3.5cqw, .39rem)
+      !important;
+
+    line-height:
+      1.06 !important;
+
+    padding:
+      1px
+      clamp(2px, 2.3cqw, 4px)
+      !important;
+
+    border-radius:
+      clamp(3px, 3cqw, 6px)
+      !important;
+  }
+
+
+  /* 5 columns */
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="5"] .badge {
+    font-size:
+      clamp(.23rem, 3.0cqw, .33rem)
+      !important;
+
+    line-height:
+      1.02 !important;
+
+    padding:
+      1px
+      clamp(2px, 1.9cqw, 3px)
+      !important;
+
+    border-radius:
+      clamp(2px, 2.5cqw, 5px)
+      !important;
+  }
+
+
+  /*
+    Keep the metadata row itself compact so long labels such as
+    NIKE x LEGO / HANDCRAFTED 1/1 do not force the card wider/taller.
+  */
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="3"] .card-meta,
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="4"] .card-meta,
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="5"] .card-meta {
+    min-width:
+      0 !important;
+
+    width:
+      100% !important;
+
+    align-content:
+      flex-start !important;
+  }
+
+}
+
+
