@@ -1,5 +1,5 @@
 /* =========================================================
-   LỘC AN — FINAL SHARED COLLECTION UI v18 — SNEAKER 3D SIZE RESTORE
+   LỘC AN — FINAL SHARED COLLECTION UI v14
 
    ONE visual system for:
    - Sneakers
@@ -2355,67 +2355,645 @@ screen and
 
 }
 
+
 /* =========================================================
-   SNEAKERS ONLY — RESTORE LAST CALIBRATED 3D IMAGE FRAME
-
-   The per-shoe values in catalog-display.js v4b were calibrated
-   against the larger 3D image stage.
-
-   Later UI unification changed the shared image stage to:
-     desktop 292px
-     mobile  270px
-
-   That changed the optical size of the shoes even though the
-   individual calibration numbers themselves were still correct.
-
-   Restore ONLY the Sneakers 3D frame:
-     desktop 310px image + 130px info = 440px card
-     mobile  285px image + 125px info = 410px card
-
-   No Grid / LEGO / Mask / navigation / language changes.
+   MOBILE DENSE GRID v24 — SNEAKERS / LEGO / SNEAKER MASK
+   Applies ONLY on phones and ONLY at 3 / 4 / 5 columns.
 ========================================================= */
 
-.sneaker-3d-image.unified-3d-image {
-  height:
-    310px !important;
-}
+@media screen and (max-width: 650px) {
 
+  /* ---------- same compact physical card on all 3 pages ---------- */
 
-.sneaker-3d-info.unified-3d-info {
-  height:
-    130px !important;
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="3"] .card-link,
 
-  min-height:
-    130px !important;
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="4"] .card-link,
 
-  padding:
-    14px
-    20px
-    16px !important;
-}
-
-
-@media
-screen and
-(max-width: 650px) {
-
-  .sneaker-3d-image.unified-3d-image {
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="5"] .card-link {
     height:
-      285px !important;
+      auto !important;
+
+    min-height:
+      0 !important;
+
+    align-self:
+      start !important;
+
+    container-type:
+      inline-size;
   }
 
 
-  .sneaker-3d-info.unified-3d-info {
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="3"] .card,
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="4"] .card,
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="5"] .card {
+    display:
+      grid !important;
+
+    grid-template-rows:
+      37%
+      63% !important;
+
+    width:
+      100% !important;
+
     height:
-      125px !important;
+      auto !important;
 
     min-height:
-      125px !important;
+      0 !important;
 
+    /*
+      Slightly taller than the old 2:3 mini card so the phone can
+      keep subtitle + metadata + CTA visible, while remaining far
+      shorter than the old LEGO / Mask cards.
+    */
+    aspect-ratio:
+      7 / 12 !important;
+
+    overflow:
+      hidden !important;
+  }
+
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="3"] .card-img-wrapper,
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="4"] .card-img-wrapper,
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="5"] .card-img-wrapper {
+    width:
+      100% !important;
+
+    height:
+      100% !important;
+
+    min-height:
+      0 !important;
+
+    aspect-ratio:
+      auto !important;
+
+    overflow:
+      hidden !important;
+  }
+
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="3"] .card-info,
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="4"] .card-info,
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="5"] .card-info {
+    display:
+      flex !important;
+
+    flex-direction:
+      column !important;
+
+    width:
+      100% !important;
+
+    height:
+      100% !important;
+
+    min-height:
+      0 !important;
+
+    overflow:
+      hidden !important;
+
+    box-sizing:
+      border-box !important;
+  }
+
+
+  /* ---------- force the information back on-screen ---------- */
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="3"] .subtitle,
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="4"] .subtitle,
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="5"] .subtitle {
+    display:
+      -webkit-box !important;
+
+    -webkit-box-orient:
+      vertical !important;
+
+    -webkit-line-clamp:
+      2 !important;
+
+    overflow:
+      hidden !important;
+
+    min-height:
+      0 !important;
+  }
+
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="3"] .card-meta,
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="4"] .card-meta,
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="5"] .card-meta {
+    display:
+      flex !important;
+
+    flex-wrap:
+      wrap !important;
+
+    align-items:
+      center !important;
+
+    justify-content:
+      space-between !important;
+
+    margin-top:
+      auto !important;
+
+    min-height:
+      0 !important;
+  }
+
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="3"] .badge,
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="4"] .badge,
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="5"] .badge {
+    white-space:
+      normal !important;
+
+    overflow-wrap:
+      anywhere !important;
+
+    max-width:
+      100% !important;
+  }
+
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="3"] .card-cta,
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="4"] .card-cta,
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="5"] .card-cta {
+    display:
+      block !important;
+
+    flex:
+      0 0 auto !important;
+
+    white-space:
+      nowrap !important;
+  }
+
+
+  /* =====================================================
+     3 COLUMNS
+  ===================================================== */
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="3"] .card-info {
     padding:
-      12px
-      17px
-      14px !important;
+      clamp(5px, 5.2cqw, 9px)
+      !important;
+  }
+
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="3"] .card-info h3 {
+    display:
+      block !important;
+
+    margin:
+      0
+      0
+      clamp(3px, 2.2cqw, 5px)
+      !important;
+
+    max-height:
+      none !important;
+
+    overflow:
+      visible !important;
+
+    font-size:
+      clamp(.54rem, 7.0cqw, .68rem)
+      !important;
+
+    line-height:
+      1.13 !important;
+
+    -webkit-line-clamp:
+      unset !important;
+
+    overflow-wrap:
+      anywhere !important;
+  }
+
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="3"] .subtitle {
+    margin:
+      0
+      0
+      clamp(3px, 2.2cqw, 5px)
+      !important;
+
+    font-size:
+      clamp(.39rem, 4.8cqw, .52rem)
+      !important;
+
+    line-height:
+      1.18 !important;
+  }
+
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="3"] .card-meta {
+    gap:
+      3px !important;
+
+    font-size:
+      clamp(.36rem, 4.2cqw, .48rem)
+      !important;
+  }
+
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="3"] .badge {
+    padding:
+      2px
+      4px !important;
+
+    line-height:
+      1.15 !important;
+  }
+
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="3"] .card-cta {
+    margin-top:
+      clamp(3px, 2.1cqw, 5px)
+      !important;
+
+    padding-top:
+      clamp(3px, 2cqw, 5px)
+      !important;
+
+    font-size:
+      clamp(.36rem, 4.1cqw, .47rem)
+      !important;
+
+    line-height:
+      1.1 !important;
+  }
+
+
+  /* =====================================================
+     4 COLUMNS
+  ===================================================== */
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="4"] .card-info {
+    padding:
+      clamp(4px, 4.3cqw, 7px)
+      !important;
+  }
+
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="4"] .card-info h3 {
+    display:
+      block !important;
+
+    margin:
+      0
+      0
+      2px !important;
+
+    max-height:
+      none !important;
+
+    overflow:
+      visible !important;
+
+    font-size:
+      clamp(.44rem, 6.2cqw, .58rem)
+      !important;
+
+    line-height:
+      1.10 !important;
+
+    -webkit-line-clamp:
+      unset !important;
+
+    overflow-wrap:
+      anywhere !important;
+  }
+
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="4"] .subtitle {
+    margin:
+      0
+      0
+      2px !important;
+
+    font-size:
+      clamp(.33rem, 4.2cqw, .44rem)
+      !important;
+
+    line-height:
+      1.14 !important;
+  }
+
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="4"] .card-meta {
+    gap:
+      2px !important;
+
+    font-size:
+      clamp(.31rem, 3.8cqw, .41rem)
+      !important;
+  }
+
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="4"] .badge {
+    padding:
+      1px
+      3px !important;
+
+    line-height:
+      1.12 !important;
+  }
+
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="4"] .card-cta {
+    margin-top:
+      2px !important;
+
+    padding-top:
+      2px !important;
+
+    font-size:
+      clamp(.31rem, 3.7cqw, .40rem)
+      !important;
+
+    line-height:
+      1.05 !important;
+  }
+
+
+  /* =====================================================
+     5 COLUMNS
+  ===================================================== */
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="5"] .card-info {
+    padding:
+      clamp(3px, 3.8cqw, 5px)
+      !important;
+  }
+
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="5"] .card-info h3 {
+    display:
+      block !important;
+
+    margin:
+      0
+      0
+      2px !important;
+
+    max-height:
+      none !important;
+
+    overflow:
+      visible !important;
+
+    font-size:
+      clamp(.36rem, 5.7cqw, .48rem)
+      !important;
+
+    line-height:
+      1.06 !important;
+
+    -webkit-line-clamp:
+      unset !important;
+
+    overflow-wrap:
+      anywhere !important;
+  }
+
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="5"] .subtitle {
+    margin:
+      0
+      0
+      1px !important;
+
+    font-size:
+      clamp(.28rem, 3.9cqw, .36rem)
+      !important;
+
+    line-height:
+      1.10 !important;
+  }
+
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="5"] .card-meta {
+    gap:
+      1px !important;
+
+    font-size:
+      clamp(.27rem, 3.5cqw, .34rem)
+      !important;
+  }
+
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="5"] .badge {
+    padding:
+      1px
+      2px !important;
+
+    line-height:
+      1.08 !important;
+  }
+
+
+  :is(
+    #sneaker-grid,
+    #lego-grid,
+    #mask-grid
+  )[data-density-columns="5"] .card-cta {
+    margin-top:
+      1px !important;
+
+    padding-top:
+      1px !important;
+
+    font-size:
+      clamp(.27rem, 3.4cqw, .34rem)
+      !important;
+
+    line-height:
+      1.05 !important;
   }
 
 }

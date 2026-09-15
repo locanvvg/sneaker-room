@@ -1,4 +1,4 @@
-/* LỘC AN SNEAKER COLLECTION — collection-view.js v18 — MULTI-PAIR 3D FINE TUNE */
+/* LỘC AN SNEAKER COLLECTION — collection-view.js v19 — MOBILE 3D POLISH */
 
 (() => {
   "use strict";
@@ -998,6 +998,16 @@
 
 
 
+    if (
+      corpus.includes("puma")
+      &&
+      corpus.includes("speedcat")
+    ) {
+      return "puma-speedcat";
+    }
+
+
+
     return "";
 
   }
@@ -1165,8 +1175,8 @@
 
           transform:
             scale(
-              .55,
-              .55
+              .61,
+              .61
             )
             !important;
 
@@ -1178,8 +1188,8 @@
 
           transform:
             scale(
-              .80,
-              .64
+              .86,
+              .69
             )
             !important;
 
@@ -1190,8 +1200,8 @@
 
           transform:
             scale(
-              .72,
-              .72
+              .78,
+              .78
             )
             !important;
 
@@ -1199,26 +1209,34 @@
 
         .sneaker-3d-image
         img[data-3d-calibration="bape-stussy"] {
-          transform: scale(.46, .46) !important;
+          transform: scale(.52, .52) !important;
         }
 
 
         .sneaker-3d-image
         img[data-3d-calibration="waffle-offwhite"] {
-          transform: scale(.48, .48) !important;
+          transform: scale(.54, .54) !important;
         }
 
 
         .sneaker-3d-image
         img[data-3d-calibration="jordan-1-city-of-flight"] {
-          transform: scale(.78, .78) !important;
+          transform: scale(.84, .84) !important;
         }
 
 
         .sneaker-3d-image
         img[data-3d-calibration="vans-knu-skool"] {
-          transform: scale(.78, .78) !important;
+          transform: scale(.84, .84) !important;
         }
+
+        .sneaker-3d-image
+        img[data-3d-calibration="puma-speedcat"] {
+          scale: 1 1 !important;
+          transform: scale(.84, .84) !important;
+          transform-origin: center center !important;
+        }
+
 
 
 
