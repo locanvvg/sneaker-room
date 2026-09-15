@@ -1,4 +1,4 @@
-/* LỘC AN SNEAKER COLLECTION — collection-view.js v16 — DIRECT 3D CALIBRATION */
+/* LỘC AN SNEAKER COLLECTION — collection-view.js v17 — FINAL 3D FINE TUNE */
 
 (() => {
   "use strict";
@@ -938,6 +938,25 @@
     }
 
 
+    if (
+
+      corpus.includes(
+        "jordan 4"
+      )
+
+      &&
+      corpus.includes(
+        "black cement"
+      )
+
+    ) {
+
+      return "jordan-4-black-cement";
+
+    }
+
+
+
     return "";
 
   }
@@ -982,8 +1001,8 @@
 
         transform:
           scale(
-            .50,
-            .50
+            .56,
+            .56
           )
           !important;
 
@@ -1003,8 +1022,8 @@
 
         transform:
           scale(
-            .50,
-            .50
+            .56,
+            .56
           )
           !important;
 
@@ -1036,6 +1055,28 @@
       }
 
 
+      .sneaker-3d-image
+      img[data-3d-calibration="jordan-4-black-cement"] {
+
+        scale:
+          1 1
+          !important;
+
+        transform:
+          scale(
+            .96,
+            .96
+          )
+          !important;
+
+        transform-origin:
+          center center
+          !important;
+
+      }
+
+
+
       @media
       (
         max-width:
@@ -1050,8 +1091,8 @@
 
           transform:
             scale(
-              .44,
-              .44
+              .49,
+              .49
             )
             !important;
 
@@ -1069,6 +1110,19 @@
             !important;
 
         }
+
+        .sneaker-3d-image
+        img[data-3d-calibration="jordan-4-black-cement"] {
+
+          transform:
+            scale(
+              .78,
+              .78
+            )
+            !important;
+
+        }
+
 
       }
 
