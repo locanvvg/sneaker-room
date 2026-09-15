@@ -21,6 +21,7 @@ const sneakers = [
     editionType: { vi: "PE Sample", en: "PE Sample" },
     condition: { vi: "Deadstock", en: "Deadstock" },
     size: "7 US",
+    collectionStatus: "own",
     image: "pictures/jordan1_pe_bloodline_friendsandfamily_sample.png",
     story: {
       vi: `
@@ -57,6 +58,7 @@ const sneakers = [
     editionType: { vi: "F&F", en: "F&F" },
     condition: { vi: "Deadstock", en: "Deadstock" },
     size: "12.5 US",
+    collectionStatus: "own",
     image: "pictures/jordan1_quai54_ff_v2.png",
     story: {
       vi: `
@@ -93,6 +95,7 @@ const sneakers = [
     editionType: { vi: "Signature Signed", en: "Signature Signed" },
     condition: { vi: "Deadstock", en: "Deadstock" },
     size: "12 US",
+    collectionStatus: "own",
     image: "pictures/sbdunk_yutohorigome_matcha.png",
     story: {
       vi: `
@@ -129,6 +132,7 @@ const sneakers = [
     editionType: { vi: "GR", en: "GR" },
     condition: { vi: "Deadstock", en: "Deadstock" },
     size: "10 US",
+    collectionStatus: "own",
     image: "pictures/jordan1_vaa_alaska_v2.png",
     story: {
       vi: `
@@ -165,6 +169,7 @@ const sneakers = [
     editionType: { vi: "Sample", en: "Sample" },
     condition: { vi: "Deadstock", en: "Deadstock" },
     size: "12 US",
+    collectionStatus: "own",
     image: "pictures/jordan1_fragmentunion_sample.png",
     story: {
       vi: `
@@ -200,6 +205,7 @@ const sneakers = [
     editionType: { vi: "GR", en: "GR" },
     condition: { vi: "Used", en: "Used" },
     size: "10.5 US",
+    collectionStatus: "own",
     image: "pictures/jordan1_shadow_2009.png",
     story: {
       vi: `
@@ -235,6 +241,7 @@ const sneakers = [
     editionType: { vi: "GR", en: "GR" },
     condition: { vi: "Used", en: "Used" },
     size: "9 US",
+    collectionStatus: "own",
     image: "pictures/bapesta_stussy.png",
     imageScale: 1.18,
     story: {
@@ -271,6 +278,7 @@ const sneakers = [
     editionType: { vi: "GR", en: "GR" },
     condition: { vi: "Used", en: "Used" },
     size: "12W / 10.5M US",
+    collectionStatus: "own",
     image: "pictures/nike_waffle_racer_ow.png",
     imageScale: 1.18,
     story: {
@@ -307,6 +315,7 @@ const sneakers = [
     editionType: { vi: "GR", en: "GR" },
     condition: { vi: "Deadstock", en: "Deadstock" },
     size: "9.5W / 8M US",
+    collectionStatus: "own",
     image: "pictures/puma_rose.png",
     story: {
       vi: `
@@ -342,6 +351,7 @@ const sneakers = [
     editionType: { vi: "GR", en: "GR" },
     condition: { vi: "Used", en: "Used" },
     size: "9.5 US",
+    collectionStatus: "own",
     image: "pictures/jordan4_bred_1999.png",
     story: {
       vi: `
@@ -371,6 +381,7 @@ const sneakers = [
     editionType: { vi: "Custom 1/1", en: "Custom 1/1" },
     condition: { vi: "Used", en: "Used" },
     size: "10 US",
+    collectionStatus: "own",
     image: "pictures/nb_2002r.png",
     imageScale: 0.60,
     story: {
@@ -401,6 +412,7 @@ const sneakers = [
     editionType: { vi: "GR", en: "GR" },
     condition: { vi: "Used", en: "Used" },
     size: "10 US",
+    collectionStatus: "own",
     image: "pictures/balenciaga_defender.png",
     story: {
       vi: `
@@ -469,6 +481,7 @@ const sneakers = [
     editionType: { vi: "GR", en: "GR" },
     condition: { vi: "Used", en: "Used" },
     size: "11 US",
+    collectionStatus: "own",
     image: "pictures/jordan1_low_reversebred.png",
     story: {
       vi: `
@@ -498,6 +511,7 @@ const sneakers = [
     editionType: { vi: "GR", en: "GR" },
     condition: { vi: "Used", en: "Used" },
     size: "11 US",
+    collectionStatus: "own",
     image: "pictures/vans_knuskool.png",
     story: {
       vi: `
@@ -548,6 +562,7 @@ const sneakers = [
     },
 
     size: "10 US",
+    collectionStatus: "own",
 
     image: "pictures/jordan13_dmp.png",
 
@@ -1115,20 +1130,51 @@ const sneakers = [
 
     createStatusFilterUI();
 
-    /* Existing filter + search function as it exists after index.html patches. */
+    /* OWN / SOLD filtering.
+       OWN uses Edition / Condition / Size.
+       SOLD deliberately ignores those filters.
+       Search remains available in both views. */
     if (typeof filterSneakers === "function") {
-      const filterWithExistingSystem = filterSneakers;
-
       filterSneakers = function (items) {
-        const statusItems = items.filter(
+        const source = Array.isArray(items) ? items : [];
+
+        let result = source.filter(
           item => statusOf(item) === collectionStatusView
         );
 
-        if (collectionStatusView === STATUS_SOLD) {
-          return searchOnly(statusItems);
+        if (collectionStatusView === STATUS_OWN) {
+          result = result.filter(sneaker => {
+            if (
+              activeFilters.edition.size > 0 &&
+              ![...activeFilters.edition].some(
+                value => getEditionCategories(sneaker).has(value)
+              )
+            ) {
+              return false;
+            }
+
+            if (
+              activeFilters.condition.size > 0 &&
+              !activeFilters.condition.has(
+                getConditionCategory(sneaker)
+              )
+            ) {
+              return false;
+            }
+
+            if (activeFilters.size.size > 0) {
+              const size = normalizeSizeValue(sneaker.size);
+
+              if (!activeFilters.size.has(size)) {
+                return false;
+              }
+            }
+
+            return true;
+          });
         }
 
-        return filterWithExistingSystem(statusItems);
+        return searchOnly(result);
       };
     }
 
