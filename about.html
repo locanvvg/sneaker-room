@@ -675,6 +675,56 @@
     content="https://locanvvg.github.io/sneaker-room/locan-social-preview.png?v=20260914-brand-v8"
   >
 
+
+  <style id="about-page-corner-fix-v15">
+
+    /* Keep the active About link in the same top-left position
+       used by Sneakers / LEGO / Sneaker Mask. */
+
+    .about-header {
+      position:
+        relative;
+    }
+
+
+    .about-header
+    > .about-corner-link.about-left-fixed {
+      position:
+        absolute !important;
+
+      top:
+        8px !important;
+
+      left:
+        0 !important;
+
+      right:
+        auto !important;
+
+      margin:
+        0 !important;
+
+      z-index:
+        50;
+    }
+
+
+    @media
+    (
+      max-width:
+      650px
+    ) {
+
+      .about-header
+      > .about-corner-link.about-left-fixed {
+        top:
+          4px !important;
+      }
+
+    }
+
+  </style>
+
 </head>
 
 <body>
@@ -683,15 +733,19 @@
 
     <header class="about-header">
 
-      <div class="header-corner-tools">
+      <a
+        href="./about.html"
+        class="about-corner-link active about-left-fixed"
+        id="about-active-link"
+        aria-current="page"
+        data-vi="GIỚI THIỆU"
+        data-en="ABOUT"
+      >
+        GIỚI THIỆU
+      </a>
 
-        <a
-          href="./about.html"
-          class="about-corner-link active"
-          aria-current="page"
-        >
-          ABOUT
-        </a>
+
+      <div class="header-corner-tools">
 
         <div class="lang-switcher">
 
@@ -1367,14 +1421,28 @@
   <script>
     const ABOUT_LANGUAGES = ["vi", "en"];
 
-    let aboutLanguage =
-      new URLSearchParams(window.location.search).get("lang") ||
-      localStorage.getItem("locan_lang") ||
-      "vi";
+    const aboutQueryLanguage =
+      new URLSearchParams(
+        window.location.search
+      ).get("lang");
 
-    if (!ABOUT_LANGUAGES.includes(aboutLanguage)) {
-      aboutLanguage = "vi";
-    }
+    const aboutStoredLanguage =
+      localStorage.getItem(
+        "locan_lang"
+      );
+
+    let aboutLanguage =
+      ABOUT_LANGUAGES.includes(
+        aboutQueryLanguage
+      )
+        ? aboutQueryLanguage
+        : (
+            ABOUT_LANGUAGES.includes(
+              aboutStoredLanguage
+            )
+              ? aboutStoredLanguage
+              : "vi"
+          );
 
     function setAboutLanguage(lang) {
       aboutLanguage =
@@ -1387,8 +1455,28 @@
         aboutLanguage
       );
 
+      window.LocAnLanguageSync
+        ?.set(
+          aboutLanguage
+        );
+
       document.documentElement.lang =
         aboutLanguage;
+
+
+      const aboutActiveLink =
+        document.getElementById(
+          "about-active-link"
+        );
+
+      if (
+        aboutActiveLink
+      ) {
+        aboutActiveLink.textContent =
+          aboutLanguage === "vi"
+            ? "GIỚI THIỆU"
+            : "ABOUT";
+      }
 
       document
         .getElementById("btn-vi")
@@ -1446,6 +1534,10 @@
       }
     );
   </script>
+
+  <script
+    src="./language-navigation-fix.js?v=20260914-lang-sync-v16"
+  ></script>
 
 </body>
 

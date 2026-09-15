@@ -663,6 +663,11 @@
         legoLanguage
       );
 
+      window.LocAnLanguageSync
+        ?.set(
+          legoLanguage
+        );
+
       document.documentElement.lang =
         legoLanguage;
 
@@ -875,6 +880,10 @@
       }
     );
   </script>
+
+  <script
+    src="./language-navigation-fix.js?v=20260914-lang-sync-v16"
+  ></script>
 
 </body>
 

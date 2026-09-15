@@ -648,6 +648,11 @@
         maskLanguage
       );
 
+      window.LocAnLanguageSync
+        ?.set(
+          maskLanguage
+        );
+
       document.documentElement.lang =
         maskLanguage;
 
@@ -888,6 +893,10 @@
       }
     );
   </script>
+
+  <script
+    src="./language-navigation-fix.js?v=20260914-lang-sync-v16"
+  ></script>
 
 </body>
 
