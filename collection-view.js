@@ -1,4 +1,4 @@
-/* LỘC AN SNEAKER COLLECTION — collection-view.js v17 — FINAL 3D FINE TUNE */
+/* LỘC AN SNEAKER COLLECTION — collection-view.js v18 — MULTI-PAIR 3D FINE TUNE */
 
 (() => {
   "use strict";
@@ -957,6 +957,47 @@
 
 
 
+    if (
+      corpus.includes("bape")
+      &&
+      corpus.includes("stussy")
+    ) {
+      return "bape-stussy";
+    }
+
+
+    if (
+      corpus.includes("waffle racer")
+      &&
+      (
+        corpus.includes("off white")
+        ||
+        corpus.includes("offwhite")
+      )
+    ) {
+      return "waffle-offwhite";
+    }
+
+
+    if (
+      corpus.includes("city of flight")
+      ||
+      corpus.includes("city flight")
+    ) {
+      return "jordan-1-city-of-flight";
+    }
+
+
+    if (
+      corpus.includes("vans")
+      &&
+      corpus.includes("knu skool")
+    ) {
+      return "vans-knu-skool";
+    }
+
+
+
     return "";
 
   }
@@ -1001,8 +1042,8 @@
 
         transform:
           scale(
-            .56,
-            .56
+            .62,
+            .62
           )
           !important;
 
@@ -1022,8 +1063,8 @@
 
         transform:
           scale(
-            .56,
-            .56
+            .62,
+            .62
           )
           !important;
 
@@ -1064,8 +1105,8 @@
 
         transform:
           scale(
-            .96,
-            .96
+            .90,
+            .90
           )
           !important;
 
@@ -1073,6 +1114,39 @@
           center center
           !important;
 
+      }
+
+
+
+      .sneaker-3d-image
+      img[data-3d-calibration="bape-stussy"] {
+        scale: 1 1 !important;
+        transform: scale(.60, .60) !important;
+        transform-origin: center center !important;
+      }
+
+
+      .sneaker-3d-image
+      img[data-3d-calibration="waffle-offwhite"] {
+        scale: 1 1 !important;
+        transform: scale(.62, .62) !important;
+        transform-origin: center center !important;
+      }
+
+
+      .sneaker-3d-image
+      img[data-3d-calibration="jordan-1-city-of-flight"] {
+        scale: 1 1 !important;
+        transform: scale(.90, .90) !important;
+        transform-origin: center center !important;
+      }
+
+
+      .sneaker-3d-image
+      img[data-3d-calibration="vans-knu-skool"] {
+        scale: 1 1 !important;
+        transform: scale(.90, .90) !important;
+        transform-origin: center center !important;
       }
 
 
@@ -1091,8 +1165,8 @@
 
           transform:
             scale(
-              .49,
-              .49
+              .55,
+              .55
             )
             !important;
 
@@ -1116,12 +1190,36 @@
 
           transform:
             scale(
-              .78,
-              .78
+              .72,
+              .72
             )
             !important;
 
         }
+
+        .sneaker-3d-image
+        img[data-3d-calibration="bape-stussy"] {
+          transform: scale(.46, .46) !important;
+        }
+
+
+        .sneaker-3d-image
+        img[data-3d-calibration="waffle-offwhite"] {
+          transform: scale(.48, .48) !important;
+        }
+
+
+        .sneaker-3d-image
+        img[data-3d-calibration="jordan-1-city-of-flight"] {
+          transform: scale(.78, .78) !important;
+        }
+
+
+        .sneaker-3d-image
+        img[data-3d-calibration="vans-knu-skool"] {
+          transform: scale(.78, .78) !important;
+        }
+
 
 
       }
