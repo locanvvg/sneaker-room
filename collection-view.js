@@ -1,4 +1,4 @@
-/* LỘC AN SNEAKER COLLECTION — collection-view.js v15 — 3D CATALOG CALIBRATION ACTIVE */
+/* LỘC AN SNEAKER COLLECTION — collection-view.js v16 — DIRECT 3D CALIBRATION */
 
 (() => {
   "use strict";
@@ -836,6 +836,253 @@
 
 
   /* =====================================================
+     DIRECT 3D CALIBRATION
+
+     These three legacy images have unusual transparent-canvas
+     proportions. Their 3D sizing is owned directly by this
+     renderer, independent of CatalogDisplay detection.
+  ===================================================== */
+
+  function direct3DCalibrationKey(
+    sneaker
+  ) {
+
+    const values = [
+
+      sneaker?.id,
+
+      sneaker?.image,
+
+      typeof sneaker?.title === "string"
+        ? sneaker.title
+        : sneaker?.title?.vi,
+
+      sneaker?.title?.en
+
+    ];
+
+
+    const corpus = values
+
+      .filter(Boolean)
+
+      .join(" ")
+
+      .toLowerCase()
+
+      .replace(
+        /[_-]+/g,
+        " "
+      )
+
+      .replace(
+        /\s+/g,
+        " "
+      );
+
+
+    if (
+      corpus.includes(
+        "new balance 2002r"
+      )
+    ) {
+
+      return "nb-2002r";
+
+    }
+
+
+    if (
+
+      corpus.includes(
+        "reverse bred"
+      )
+
+      ||
+
+      (
+        corpus.includes(
+          "jordan 1 low"
+        )
+
+        &&
+
+        corpus.includes(
+          "bred"
+        )
+      )
+
+    ) {
+
+      return "reverse-bred";
+
+    }
+
+
+    if (
+
+      corpus.includes(
+        "balenciaga"
+      )
+
+      &&
+
+      corpus.includes(
+        "defender"
+      )
+
+    ) {
+
+      return "balenciaga-defender";
+
+    }
+
+
+    return "";
+
+  }
+
+
+  function installDirect3DCalibrationStyles() {
+
+    document
+      .getElementById(
+        "locan-direct-3d-calibration-v21"
+      )
+      ?.remove();
+
+
+    const style =
+      document.createElement(
+        "style"
+      );
+
+
+    style.id =
+      "locan-direct-3d-calibration-v21";
+
+
+    style.textContent = `
+
+      /*
+        These rules affect ONLY the three named images inside
+        Sneakers 3D View. Grid View remains completely untouched.
+
+        scale: 1 1 neutralizes CatalogDisplay's individual-scale
+        property. transform: scale(...) then becomes the single
+        source of truth for these three 3D images.
+      */
+
+      .sneaker-3d-image
+      img[data-3d-calibration="nb-2002r"] {
+
+        scale:
+          1 1
+          !important;
+
+        transform:
+          scale(
+            .50,
+            .50
+          )
+          !important;
+
+        transform-origin:
+          center center
+          !important;
+
+      }
+
+
+      .sneaker-3d-image
+      img[data-3d-calibration="reverse-bred"] {
+
+        scale:
+          1 1
+          !important;
+
+        transform:
+          scale(
+            .50,
+            .50
+          )
+          !important;
+
+        transform-origin:
+          center center
+          !important;
+
+      }
+
+
+      .sneaker-3d-image
+      img[data-3d-calibration="balenciaga-defender"] {
+
+        scale:
+          1 1
+          !important;
+
+        transform:
+          scale(
+            1,
+            .78
+          )
+          !important;
+
+        transform-origin:
+          center center
+          !important;
+
+      }
+
+
+      @media
+      (
+        max-width:
+        650px
+      ) {
+
+        .sneaker-3d-image
+        img[data-3d-calibration="nb-2002r"],
+
+        .sneaker-3d-image
+        img[data-3d-calibration="reverse-bred"] {
+
+          transform:
+            scale(
+              .44,
+              .44
+            )
+            !important;
+
+        }
+
+
+        .sneaker-3d-image
+        img[data-3d-calibration="balenciaga-defender"] {
+
+          transform:
+            scale(
+              .80,
+              .64
+            )
+            !important;
+
+        }
+
+      }
+
+    `;
+
+
+    document.head.appendChild(
+      style
+    );
+
+  }
+
+
+  /* =====================================================
      3D CARD
   ===================================================== */
 
@@ -859,6 +1106,12 @@
     const edition =
       getLocalizedText(
         sneaker.editionType
+      );
+
+
+    const directCalibration =
+      direct3DCalibrationKey(
+        sneaker
       );
 
 
@@ -910,6 +1163,10 @@
 
             data-sneaker-id="${escapeHTML(
               sneaker.id || ""
+            )}"
+
+            data-3d-calibration="${escapeHTML(
+              directCalibration
             )}"
 
             style="${escapeHTML(
@@ -2782,6 +3039,9 @@
   ===================================================== */
 
   function init() {
+
+    installDirect3DCalibrationStyles();
+
 
     if (
       !arrangeControls()

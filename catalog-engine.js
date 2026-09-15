@@ -1,5 +1,5 @@
 /* =========================================================
-   LỘC AN — CATALOG ENGINE v2 — CANONICAL US SIZE
+   LỘC AN — CATALOG ENGINE v2.1 — CANONICAL US SIZE + CUSTOM 2026
 
    Purpose:
    - Existing data.js remains compatible.
@@ -440,6 +440,171 @@
     ) {
       return item;
     }
+
+    /*
+      ARCHIVE METADATA CORRECTION:
+      The New Balance 2002R Custom 1/1 in this collection is a
+      2026 custom piece. Give it a real sortable date before
+      main.js performs date sorting.
+    */
+
+    const metadataCorpus = [
+
+      item.id,
+
+      text(
+        item.title,
+        "vi"
+      ),
+
+      text(
+        item.title,
+        "en"
+      ),
+
+      text(
+        item.subtitle,
+        "vi"
+      ),
+
+      text(
+        item.subtitle,
+        "en"
+      ),
+
+      text(
+        item.editionType,
+        "en"
+      ),
+
+      item.edition
+
+    ]
+
+      .filter(Boolean)
+
+      .join(" ")
+
+      .toLowerCase();
+
+
+    if (
+
+      metadataCorpus.includes(
+        "new balance 2002r"
+      )
+
+      &&
+
+      (
+        metadataCorpus.includes(
+          "custom 1/1"
+        )
+
+        ||
+
+        metadataCorpus.includes(
+          "personal custom"
+        )
+
+      )
+
+    ) {
+
+      item.releaseDate =
+        "2026-01-01";
+
+
+      const updateCustomSubtitle =
+        value => {
+
+          const current =
+            String(
+              value || ""
+            ).trim();
+
+
+          if (!current) {
+
+            return "Personal Custom 1/1 (2026)";
+
+          }
+
+
+          if (
+            /\(\s*\d{4}\s*\)/.test(
+              current
+            )
+          ) {
+
+            return current.replace(
+              /\(\s*\d{4}\s*\)/,
+              "(2026)"
+            );
+
+          }
+
+
+          if (
+            /\b2026\b/.test(
+              current
+            )
+          ) {
+
+            return current;
+
+          }
+
+
+          return `${current} (2026)`;
+
+        };
+
+
+      if (
+        item.subtitle
+        &&
+        typeof item.subtitle === "object"
+        &&
+        !Array.isArray(
+          item.subtitle
+        )
+      ) {
+
+        const originalVi =
+          item.subtitle.vi
+          ??
+          item.subtitle.en;
+
+
+        const originalEn =
+          item.subtitle.en
+          ??
+          item.subtitle.vi;
+
+
+        item.subtitle.vi =
+          updateCustomSubtitle(
+            originalVi
+          );
+
+
+        item.subtitle.en =
+          updateCustomSubtitle(
+            originalEn
+          );
+
+      } else {
+
+        item.subtitle =
+          updateCustomSubtitle(
+            item.subtitle
+          );
+
+      }
+
+    }
+
 
     /*
       New simplified fields -> existing site fields.
