@@ -2576,16 +2576,22 @@ const sneakers = [
       }
 
       /* ---------------------------------------------------
-         NEW PRE-OWNED IMAGE FIT
-         Force the newly added transparent cutouts to match
-         the visual scale of the original collection cards.
+         PRE-OWNED IMAGE FIT — V2
 
-         Base style.css forces every image to 100% x 100%.
-         Therefore transform: scale() is used here instead of
-         width/inset so the size change is guaranteed.
+         GRID:
+         The new archive cutouts are intentionally much smaller
+         than before so they visually match the original collection.
+
+         3D:
+         IMPORTANT — do NOT use transform: scale() on the image.
+         The 3D gallery already relies on transforms for cover-flow.
+         Use width/height only so navigation and positioning remain
+         stable.
       --------------------------------------------------- */
 
-      .card.archive-normalized-card .card-img-wrapper img {
+      /* GRID — 1 to 3 columns */
+      .card.archive-normalized-card
+      .card-img-wrapper img {
         inset: 0 !important;
         width: 100% !important;
         height: 100% !important;
@@ -2596,27 +2602,28 @@ const sneakers = [
         object-fit: contain !important;
         object-position: center center !important;
 
-        transform: scale(.70) !important;
+        transform: scale(.50) !important;
         transform-origin: center center !important;
 
         transition:
-          transform .25s ease,
+          transform .22s ease,
           opacity .20s ease,
           filter .20s ease !important;
       }
 
-      .card.archive-normalized-card:hover .card-img-wrapper img {
-        transform: scale(.72) !important;
+      .card.archive-normalized-card:hover
+      .card-img-wrapper img {
+        transform: scale(.51) !important;
       }
 
-      /* 4–5 columns need a little more breathing room. */
+      /* GRID — dense 4 / 5 column layouts */
       #sneaker-grid.grid-cols-4
       .card.archive-normalized-card
       .card-img-wrapper img,
       #sneaker-grid.grid-cols-5
       .card.archive-normalized-card
       .card-img-wrapper img {
-        transform: scale(.66) !important;
+        transform: scale(.46) !important;
       }
 
       #sneaker-grid.grid-cols-4
@@ -2625,20 +2632,25 @@ const sneakers = [
       #sneaker-grid.grid-cols-5
       .card.archive-normalized-card:hover
       .card-img-wrapper img {
-        transform: scale(.68) !important;
+        transform: scale(.47) !important;
       }
 
-      /* 3D view — same visual language as Grid. */
+      /*
+        3D VIEW
+        Restore a transform-free image.
+        The main 3D gallery centers images with flex, so width/height
+        are sufficient and will not interfere with cover-flow.
+      */
       .sneaker-3d-card.archive-normalized-card
       .sneaker-3d-image img {
-        width: 100% !important;
-        height: 100% !important;
+        width: 56% !important;
+        height: 56% !important;
 
         object-fit: contain !important;
         object-position: center center !important;
 
-        transform: scale(.70) !important;
-        transform-origin: center center !important;
+        transform: none !important;
+        transform-origin: initial !important;
       }
 
       /* ---------------------------------------------------
@@ -2741,7 +2753,7 @@ const sneakers = [
           inset: 0 !important;
           width: 100% !important;
           height: 100% !important;
-          transform: scale(.70) !important;
+          transform: scale(.48) !important;
         }
 
         #sneaker-grid.grid-cols-4
@@ -2750,16 +2762,27 @@ const sneakers = [
         #sneaker-grid.grid-cols-5
         .card.archive-normalized-card
         .card-img-wrapper img {
-          transform: scale(.64) !important;
+          transform: scale(.44) !important;
         }
 
         .sneaker-3d-card.archive-normalized-card
         .sneaker-3d-image img {
-          width: 100% !important;
-          height: 100% !important;
-          transform: scale(.70) !important;
+          width: 60% !important;
+          height: 60% !important;
+          transform: none !important;
         }
       }
+
+      /*
+        Final 3D safety override:
+        keep the PRE-OWNED image centered and transform-free.
+      */
+      #sneaker-grid.locan-3d-view
+      .sneaker-3d-card.archive-normalized-card
+      .sneaker-3d-image img {
+        transform: none !important;
+      }
+
     `;
 
     document.head.appendChild(style);
