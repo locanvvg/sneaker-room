@@ -449,6 +449,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "11 US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/jordan1_cityofflight.png",
     story: {
       vi: `
@@ -2397,7 +2398,7 @@ const sneakers = [
 
     grid
       .querySelectorAll(
-        ".card, .sneaker-3d-card"
+        ".card"
       )
       .forEach(card => {
         const sneaker =
@@ -2576,20 +2577,19 @@ const sneakers = [
       }
 
       /* ---------------------------------------------------
-         PRE-OWNED IMAGE FIT — V2
+         PRE-OWNED IMAGE FIT — V3
 
-         GRID:
-         The new archive cutouts are intentionally much smaller
-         than before so they visually match the original collection.
+         GRID ONLY:
+         Keep the same visual scale from 1 to 5 columns.
+         This prevents PRE-OWNED images from appearing to
+         stretch/grow as the grid gets denser.
 
          3D:
-         IMPORTANT — do NOT use transform: scale() on the image.
-         The 3D gallery already relies on transforms for cover-flow.
-         Use width/height only so navigation and positioning remain
-         stable.
+         Intentionally left untouched so the original native
+         cover-flow code behaves exactly like OWN.
       --------------------------------------------------- */
 
-      /* GRID — 1 to 3 columns */
+      #sneaker-grid.locan-grid-view
       .card.archive-normalized-card
       .card-img-wrapper img {
         inset: 0 !important;
@@ -2611,59 +2611,88 @@ const sneakers = [
           filter .20s ease !important;
       }
 
+      #sneaker-grid.locan-grid-view
       .card.archive-normalized-card:hover
       .card-img-wrapper img {
         transform: scale(.51) !important;
       }
 
-      /* GRID — dense 4 / 5 column layouts */
-      #sneaker-grid.grid-cols-4
+      /*
+        City of Flight was uploaded later and its transparent
+        canvas places the shoe closer to the image edges.
+        Shrink only this pair so it matches the other archive
+        cutouts visually.
+      */
+      #sneaker-grid.locan-grid-view
       .card.archive-normalized-card
-      .card-img-wrapper img,
-      #sneaker-grid.grid-cols-5
-      .card.archive-normalized-card
-      .card-img-wrapper img {
-        transform: scale(.46) !important;
+      .card-img-wrapper
+      img[src*="jordan1_cityofflight.png"] {
+        transform: scale(.43) !important;
       }
 
-      #sneaker-grid.grid-cols-4
+      #sneaker-grid.locan-grid-view
       .card.archive-normalized-card:hover
-      .card-img-wrapper img,
-      #sneaker-grid.grid-cols-5
-      .card.archive-normalized-card:hover
-      .card-img-wrapper img {
-        transform: scale(.47) !important;
+      .card-img-wrapper
+      img[src*="jordan1_cityofflight.png"] {
+        transform: scale(.44) !important;
       }
 
       /*
-        3D VIEW
-        Restore a transform-free image.
-        The main 3D gallery centers images with flex, so width/height
-        are sufficient and will not interfere with cover-flow.
+        3D stays native. Only City of Flight needs a slightly
+        smaller image box because its PNG subject fills more
+        of the canvas than the other shoes.
       */
-      .sneaker-3d-card.archive-normalized-card
-      .sneaker-3d-image img {
-        width: 56% !important;
-        height: 56% !important;
-
+      #sneaker-grid.locan-3d-view
+      .sneaker-3d-image
+      img[src*="jordan1_cityofflight.png"] {
+        width: 72% !important;
+        height: 72% !important;
         object-fit: contain !important;
-        object-position: center center !important;
+        object-position: center !important;
+      }
 
-        transform: none !important;
-        transform-origin: initial !important;
+      /* ---------------------------------------------------
+         GRID GEOMETRY SAFETY
+         PRE-OWNED uses the exact same card geometry as OWN.
+      --------------------------------------------------- */
+
+      #sneaker-grid.locan-grid-view > .card-link {
+        min-width: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+
+      #sneaker-grid.locan-grid-view .card {
+        min-width: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      #sneaker-grid.locan-grid-view .card-img-wrapper {
+        min-width: 0 !important;
+        width: 100% !important;
+      }
+
+      #sneaker-grid.locan-grid-view .card-info,
+      #sneaker-grid.locan-grid-view .card-meta {
+        min-width: 0 !important;
+      }
+
+      .card-edition-status {
+        min-width: 0 !important;
+        max-width: 100% !important;
       }
 
       /* ---------------------------------------------------
          SOLD CARD — FADED, BUT SOLD BADGE STAYS CLEAR
       --------------------------------------------------- */
 
-      .card.is-sold-card,
-      .sneaker-3d-card.is-sold-card {
+      .card.is-sold-card {
         position: relative !important;
       }
 
-      .card.is-sold-card .card-img-wrapper img,
-      .sneaker-3d-card.is-sold-card .sneaker-3d-image img {
+      .card.is-sold-card .card-img-wrapper img {
         opacity: .58 !important;
         filter:
           saturate(.74)
@@ -2747,41 +2776,8 @@ const sneakers = [
         }
       }
 
-      @media screen and (max-width: 650px) {
-        .card.archive-normalized-card
-        .card-img-wrapper img {
-          inset: 0 !important;
-          width: 100% !important;
-          height: 100% !important;
-          transform: scale(.48) !important;
-        }
 
-        #sneaker-grid.grid-cols-4
-        .card.archive-normalized-card
-        .card-img-wrapper img,
-        #sneaker-grid.grid-cols-5
-        .card.archive-normalized-card
-        .card-img-wrapper img {
-          transform: scale(.44) !important;
-        }
 
-        .sneaker-3d-card.archive-normalized-card
-        .sneaker-3d-image img {
-          width: 60% !important;
-          height: 60% !important;
-          transform: none !important;
-        }
-      }
-
-      /*
-        Final 3D safety override:
-        keep the PRE-OWNED image centered and transform-free.
-      */
-      #sneaker-grid.locan-3d-view
-      .sneaker-3d-card.archive-normalized-card
-      .sneaker-3d-image img {
-        transform: none !important;
-      }
 
     `;
 
@@ -3069,35 +3065,23 @@ const sneakers = [
             );
 
           requestAnimationFrame(() => {
-            decorateVisibleCards();
+            /*
+              PRE-OWNED visual decoration belongs to Grid only.
+              Never mutate the 3D cover-flow DOM.
+            */
+            try {
+              if (collectionViewMode === "grid") {
+                decorateVisibleCards();
+              }
+            } catch (_) {
+              decorateVisibleCards();
+            }
+
             updateStatusFilterUI();
           });
 
           return result;
         };
-    }
-
-    /*
-      3D renderer may rebuild the DOM asynchronously.
-    */
-    const grid =
-      document.getElementById(
-        "sneaker-grid"
-      );
-
-    if (grid) {
-      const observer =
-        new MutationObserver(() => {
-          decorateVisibleCards();
-        });
-
-      observer.observe(
-        grid,
-        {
-          childList: true,
-          subtree: true
-        }
-      );
     }
 
     /*
