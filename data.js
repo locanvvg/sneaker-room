@@ -2027,7 +2027,7 @@ const sneakers = [
             data-collection-status="sold"
             aria-pressed="false"
           >
-            SOLD
+            PRE-OWNED
           </button>
         </div>
       `;
@@ -2039,6 +2039,9 @@ const sneakers = [
             setCollectionStatusView(button.dataset.collectionStatus);
           });
         });
+
+      // Attach the group before reordering it.
+      panel.appendChild(group);
     }
 
     reorderFilterGroups();
@@ -2331,11 +2334,11 @@ const sneakers = [
           "collection-sold-badge";
 
         soldBadge.textContent =
-          "SOLD";
+          "PRE-OWNED";
 
         soldBadge.setAttribute(
           "aria-label",
-          "Sold"
+          "Pre-owned"
         );
 
         wrapper.appendChild(
@@ -2371,7 +2374,12 @@ const sneakers = [
           "collection-sold-badge";
 
         soldBadge.textContent =
-          "SOLD";
+          "PRE-OWNED";
+
+        soldBadge.setAttribute(
+          "aria-label",
+          "Pre-owned"
+        );
 
         editionBadge.insertAdjacentElement(
           "afterend",
@@ -2441,7 +2449,7 @@ const sneakers = [
         ? "COLLECTION STATUS"
         : "TRẠNG THÁI BỘ SƯU TẬP";
 
-    value.textContent = "SOLD";
+    value.textContent = "PRE-OWNED";
   }
 
   function installDetailStatus() {
@@ -2498,7 +2506,7 @@ const sneakers = [
           id="shoe-collection-status"
           class="spec-value collection-status-detail-value"
         >
-          SOLD
+          PRE-OWNED
         </span>
       `;
 
@@ -2658,10 +2666,10 @@ const sneakers = [
 
         color: #fff;
 
-        font-size: .68em;
+        font-size: .64em;
         font-weight: 900;
         line-height: 1.2;
-        letter-spacing: .8px;
+        letter-spacing: .55px;
         white-space: nowrap;
 
         opacity: 1 !important;
@@ -2689,8 +2697,8 @@ const sneakers = [
         .collection-sold-badge {
           padding: 3px 5px !important;
           border-radius: 4px !important;
-          font-size: .48rem !important;
-          letter-spacing: .4px !important;
+          font-size: .42rem !important;
+          letter-spacing: .2px !important;
         }
       }
 
