@@ -2576,36 +2576,69 @@ const sneakers = [
       }
 
       /* ---------------------------------------------------
-         NEW SOLD IMAGE FIT
-         Keep the previously approved archive sizing.
+         NEW PRE-OWNED IMAGE FIT
+         Force the newly added transparent cutouts to match
+         the visual scale of the original collection cards.
+
+         Base style.css forces every image to 100% x 100%.
+         Therefore transform: scale() is used here instead of
+         width/inset so the size change is guaranteed.
       --------------------------------------------------- */
 
       .card.archive-normalized-card .card-img-wrapper img {
-        inset: 7% !important;
-        width: 86% !important;
-        height: 86% !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+
         padding: 0 !important;
+        margin: 0 !important;
+
         object-fit: contain !important;
-        object-position: center !important;
-        transform: none !important;
+        object-position: center center !important;
+
+        transform: scale(.70) !important;
+        transform-origin: center center !important;
+
+        transition:
+          transform .25s ease,
+          opacity .20s ease,
+          filter .20s ease !important;
       }
 
-      .sneaker-3d-card.archive-normalized-card .sneaker-3d-image img {
-        width: 78% !important;
-        height: 78% !important;
-        object-fit: contain !important;
-        object-position: center !important;
+      .card.archive-normalized-card:hover .card-img-wrapper img {
+        transform: scale(.72) !important;
       }
 
+      /* 4–5 columns need a little more breathing room. */
       #sneaker-grid.grid-cols-4
       .card.archive-normalized-card
       .card-img-wrapper img,
       #sneaker-grid.grid-cols-5
       .card.archive-normalized-card
       .card-img-wrapper img {
-        inset: 8% !important;
-        width: 84% !important;
-        height: 84% !important;
+        transform: scale(.66) !important;
+      }
+
+      #sneaker-grid.grid-cols-4
+      .card.archive-normalized-card:hover
+      .card-img-wrapper img,
+      #sneaker-grid.grid-cols-5
+      .card.archive-normalized-card:hover
+      .card-img-wrapper img {
+        transform: scale(.68) !important;
+      }
+
+      /* 3D view — same visual language as Grid. */
+      .sneaker-3d-card.archive-normalized-card
+      .sneaker-3d-image img {
+        width: 100% !important;
+        height: 100% !important;
+
+        object-fit: contain !important;
+        object-position: center center !important;
+
+        transform: scale(.70) !important;
+        transform-origin: center center !important;
       }
 
       /* ---------------------------------------------------
@@ -2705,15 +2738,26 @@ const sneakers = [
       @media screen and (max-width: 650px) {
         .card.archive-normalized-card
         .card-img-wrapper img {
-          inset: 6% !important;
-          width: 88% !important;
-          height: 88% !important;
+          inset: 0 !important;
+          width: 100% !important;
+          height: 100% !important;
+          transform: scale(.70) !important;
+        }
+
+        #sneaker-grid.grid-cols-4
+        .card.archive-normalized-card
+        .card-img-wrapper img,
+        #sneaker-grid.grid-cols-5
+        .card.archive-normalized-card
+        .card-img-wrapper img {
+          transform: scale(.64) !important;
         }
 
         .sneaker-3d-card.archive-normalized-card
         .sneaker-3d-image img {
-          width: 80% !important;
-          height: 80% !important;
+          width: 100% !important;
+          height: 100% !important;
+          transform: scale(.70) !important;
         }
       }
     `;
