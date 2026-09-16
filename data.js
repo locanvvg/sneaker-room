@@ -632,6 +632,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "11 US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/jordan1_h2h.png",
     story: {
       vi: `
@@ -666,6 +667,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "11 US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/jordan1_yelloworche.png",
     story: {
       vi: `
@@ -700,6 +702,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "11 US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/jordan1_royaltoe.png",
     story: {
       vi: `
@@ -734,6 +737,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "11 US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/jordan1_diamond.png",
     story: {
       vi: `
@@ -768,6 +772,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "8W / 6.5M US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/jordan4_ow.png",
     story: {
       vi: `
@@ -802,6 +807,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "11 US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/jordan1_gymred.png",
     story: {
       vi: `
@@ -836,6 +842,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "11 US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/jordan1_crimson.png",
     story: {
       vi: `
@@ -870,6 +877,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10 US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/yz700.png",
     story: {
       vi: `
@@ -904,6 +912,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10.5 US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/airtrainer_ts.png",
     story: {
       vi: `
@@ -938,6 +947,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10 US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/blazer_ow.png",
     story: {
       vi: `
@@ -972,6 +982,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10 US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/yz_fm_rnr.png",
     story: {
       vi: `
@@ -1006,6 +1017,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10.5 US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/dunkpanda.png",
     story: {
       vi: `
@@ -1040,6 +1052,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10.5 US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/foamposite.png",
     story: {
       vi: `
@@ -1074,6 +1087,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "7M US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/blazer_acro.png",
     story: {
       vi: `
@@ -1108,6 +1122,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10 US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/nike_fog_skylon.png",
     story: {
       vi: `
@@ -1142,6 +1157,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "11 US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/jordan5_bronze.png",
     story: {
       vi: `
@@ -1176,6 +1192,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "11 US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/dunkiowa.png",
     story: {
       vi: `
@@ -1210,6 +1227,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10 US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/jordan1_brotherhood.png",
     story: {
       vi: `
@@ -1244,6 +1262,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10.5 US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/jordan1_turbogreen.png",
     story: {
       vi: `
@@ -1278,6 +1297,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10 US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/dunk_frag.png",
     story: {
       vi: `
@@ -1312,6 +1332,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10.5 US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/jordan4_royalty.png",
     story: {
       vi: `
@@ -1346,6 +1367,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10.5 US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/blazer_sacai.png",
     story: {
       vi: `
@@ -1380,6 +1402,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10 US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/nb_levis.png",
     story: {
       vi: `
@@ -1414,6 +1437,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10.5 US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/jordan1low_gymred.png",
     story: {
       vi: `
@@ -1448,6 +1472,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10 US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/airmax720.png",
     story: {
       vi: `
@@ -1482,6 +1507,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10.5 US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/yz500.png",
     story: {
       vi: `
@@ -1516,6 +1542,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10 US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/dunk_safari.png",
     story: {
       vi: `
@@ -1550,6 +1577,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10.5 US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/dunkhigh_lightbone.png",
     imageSource: "GOAT",
     story: {
@@ -1585,6 +1613,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10 US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/cv_cdg_w.png",
     story: {
       vi: `
@@ -1619,6 +1648,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "12 US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/cv_cdg_b.png",
     story: {
       vi: `
@@ -1653,6 +1683,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "11.5W / 10M US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/kiger_ow.png",
     story: {
       vi: `
@@ -1687,6 +1718,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "11.5 US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/jordan4_firered.png",
     story: {
       vi: `
@@ -1721,6 +1753,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10 US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/jordan1low_fuchsia.png",
     story: {
       vi: `
@@ -1755,6 +1788,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10 US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/jordan1low_noblered.png",
     story: {
       vi: `
@@ -1789,6 +1823,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10 US",
     collectionStatus: "sold",
+    archiveFit: true,
     image: "pictures/nike_fog_1.png",
     story: {
       vi: `
@@ -2080,6 +2115,42 @@ const sneakers = [
      SOLD CARD DECORATION
   --------------------------------------------------------- */
 
+  function getRenderedSneaker(card) {
+    if (typeof sneakers === "undefined" || !Array.isArray(sneakers)) {
+      return null;
+    }
+
+    const link = card.closest("a.card-link");
+
+    if (link) {
+      try {
+        const url = new URL(link.href, window.location.href);
+        const id = url.searchParams.get("id");
+        const byId = sneakers.find(item => item.id === id);
+        if (byId) return byId;
+      } catch (_) {}
+    }
+
+    const image = card.querySelector("img");
+    const renderedSrc =
+      image?.getAttribute("src") ||
+      image?.getAttribute("data-src") ||
+      "";
+
+    if (!renderedSrc) return null;
+
+    const renderedName = renderedSrc.split("/").pop()?.split("?")[0] || "";
+
+    return sneakers.find(item => {
+      const itemName = String(item.image || "")
+        .split("/")
+        .pop()
+        ?.split("?")[0] || "";
+
+      return itemName && itemName === renderedName;
+    }) || null;
+  }
+
   function decorateVisibleCards() {
     const grid = document.getElementById("sneaker-grid");
     if (!grid) return;
@@ -2089,7 +2160,11 @@ const sneakers = [
     grid
       .querySelectorAll(".card, .sneaker-3d-card")
       .forEach(card => {
+        const sneaker = getRenderedSneaker(card);
+        const normalizedArchiveImage = Boolean(sneaker?.archiveFit);
+
         card.classList.toggle("is-sold-card", soldMode);
+        card.classList.toggle("archive-normalized-card", normalizedArchiveImage);
 
         let badge = card.querySelector(":scope > .collection-sold-badge");
 
@@ -2221,6 +2296,31 @@ const sneakers = [
         pointer-events: none !important;
       }
 
+      /* Normalize the 35 newly archived SOLD images only. */
+      .card.archive-normalized-card .card-img-wrapper img {
+        inset: 7% !important;
+        width: 86% !important;
+        height: 86% !important;
+        padding: 0 !important;
+        object-fit: contain !important;
+        object-position: center !important;
+        transform: none !important;
+      }
+
+      .sneaker-3d-card.archive-normalized-card .sneaker-3d-image img {
+        width: 78% !important;
+        height: 78% !important;
+        object-fit: contain !important;
+        object-position: center !important;
+      }
+
+      #sneaker-grid.grid-cols-4 .card.archive-normalized-card .card-img-wrapper img,
+      #sneaker-grid.grid-cols-5 .card.archive-normalized-card .card-img-wrapper img {
+        inset: 8% !important;
+        width: 84% !important;
+        height: 84% !important;
+      }
+
       .card.is-sold-card,
       .sneaker-3d-card.is-sold-card {
         position: relative !important;
@@ -2245,7 +2345,7 @@ const sneakers = [
         position: absolute;
         top: 12px;
         right: 12px;
-        z-index: 40;
+        z-index: 999;
 
         display: inline-flex;
         align-items: center;
@@ -2280,7 +2380,28 @@ const sneakers = [
         opacity: .90;
       }
 
+      #sneaker-grid.grid-cols-5 .collection-sold-badge {
+        top: 8px;
+        right: 8px;
+        min-height: 22px;
+        padding: 5px 7px;
+        border-radius: 5px;
+        font-size: .52rem;
+        letter-spacing: .9px;
+      }
+
       @media screen and (max-width: 650px) {
+        .card.archive-normalized-card .card-img-wrapper img {
+          inset: 6% !important;
+          width: 88% !important;
+          height: 88% !important;
+        }
+
+        .sneaker-3d-card.archive-normalized-card .sneaker-3d-image img {
+          width: 80% !important;
+          height: 80% !important;
+        }
+
         .collection-sold-badge {
           top: 8px;
           right: 8px;
