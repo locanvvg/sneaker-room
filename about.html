@@ -3,729 +3,53 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <meta
     name="description"
     content="About Lộc An Sneaker Collection"
   >
 
-  <meta name="theme-color" content="#000000">
-
-  <title>About | Lộc An Sneaker Collection</title>
-<link
-    rel="stylesheet"
-    href="./style.css?v=20260913-clean-nav"
-  >
-
-  <link
-    rel="stylesheet"
-    href="./collection-menu.css?v=20260913-clean-nav"
-  >
-
-<style id="about-layout-v3">
-
-    /* =====================================================
-       ABOUT — ARCHIVE CARDS v3
-       Order:
-       1. Authenticity & Ownership
-       2. Classification
-       3. Condition
-    ===================================================== */
-
-    .about-archive-card {
-      margin:
-        22px
-        0;
-
-      padding:
-        30px
-        32px;
-
-      background:
-        #161618;
-
-      border:
-        1px solid
-        #252525;
-
-      border-radius:
-        14px;
-    }
-
-
-    .about-archive-card h3 {
-      margin:
-        8px
-        0
-        20px;
-
-      color:
-        #f3f3f5;
-
-      font-size:
-        1.3rem;
-
-      line-height:
-        1.35;
-    }
-
-
-    /* =====================================================
-       AUTHENTICITY / OWNERSHIP
-    ===================================================== */
-
-    .authenticity-grid {
-      display:
-        grid;
-
-      grid-template-columns:
-        repeat(
-          3,
-          minmax(
-            0,
-            1fr
-          )
-        );
-
-      gap:
-        14px;
-
-      margin-top:
-        20px;
-    }
-
-
-    .authenticity-item {
-      min-width:
-        0;
-
-      padding:
-        18px;
-
-      background:
-        #1c1c1f;
-
-      border:
-        1px solid
-        #2c2c30;
-
-      border-radius:
-        10px;
-    }
-
-
-    .authenticity-item strong {
-      display:
-        block;
-
-      margin-bottom:
-        9px;
-
-      color:
-        #f5f5f7;
-
-      font-size:
-        .86rem;
-
-      line-height:
-        1.4;
-    }
-
-
-    .authenticity-item p {
-      margin:
-        0;
-
-      color:
-        #9999a0;
-
-      font-size:
-        .80rem;
-
-      line-height:
-        1.65;
-    }
-
-
-    .authenticity-notice {
-      margin-top:
-        18px;
-
-      padding:
-        16px
-        18px;
-
-      color:
-        #ff6969;
-
-      background:
-        rgba(
-          255,
-          71,
-          71,
-          .055
-        );
-
-      border:
-        1px solid
-        rgba(
-          255,
-          71,
-          71,
-          .26
-        );
-
-      border-left:
-        4px solid
-        #ff5252;
-
-      border-radius:
-        9px;
-
-      font-size:
-        .80rem;
-
-      font-weight:
-        800;
-
-      line-height:
-        1.55;
-    }
-
-
-    /* =====================================================
-       CLASSIFICATION — HORIZONTAL
-    ===================================================== */
-
-    .taxonomy-row {
-      display:
-        grid;
-
-      grid-template-columns:
-        repeat(
-          5,
-          minmax(
-            0,
-            1fr
-          )
-        );
-
-      gap:
-        12px;
-
-      margin-top:
-        18px;
-    }
-
-
-    .taxonomy-card {
-      min-width:
-        0;
-
-      padding:
-        16px;
-
-      background:
-        #1c1c1f;
-
-      border:
-        1px solid
-        #2c2c30;
-
-      border-radius:
-        10px;
-    }
-
-
-    .taxonomy-card strong {
-      display:
-        block;
-
-      margin-bottom:
-        9px;
-
-      color:
-        #f5f5f7;
-
-      font-size:
-        .82rem;
-
-      line-height:
-        1.35;
-    }
-
-
-    .taxonomy-card p {
-      margin:
-        0;
-
-      color:
-        #929299;
-
-      font-size:
-        .76rem;
-
-      line-height:
-        1.58;
-    }
-
-
-    /* =====================================================
-       CONDITION — CENTERED HORIZONTAL ROW
-    ===================================================== */
-
-    .condition-center-row {
-      display:
-        flex;
-
-      align-items:
-        stretch;
-
-      justify-content:
-        center;
-
-      gap:
-        18px;
-
-      width:
-        100%;
-
-      margin:
-        22px
-        auto
-        18px;
-    }
-
-
-    .condition-center-item {
-      display:
-        flex;
-
-      align-items:
-        center;
-
-      justify-content:
-        center;
-
-      gap:
-        16px;
-
-      width:
-        min(
-          360px,
-          42%
-        );
-
-      min-height:
-        74px;
-
-      padding:
-        16px
-        20px;
-
-      background:
-        #1c1c1f;
-
-      border:
-        1px solid
-        #2c2c30;
-
-      border-radius:
-        11px;
-
-      text-align:
-        left;
-    }
-
-
-    .condition-center-item p {
-      margin:
-        0;
-
-      color:
-        #a0a0a6;
-
-      font-size:
-        .86rem;
-
-      line-height:
-        1.45;
-    }
-
-
-    .condition-explanation {
-      max-width:
-        920px;
-
-      margin:
-        16px
-        auto
-        0;
-
-      padding-top:
-        17px;
-
-      color:
-        #85858c;
-
-      border-top:
-        1px solid
-        #29292d;
-
-      font-size:
-        .80rem;
-
-      line-height:
-        1.65;
-
-      text-align:
-        center;
-    }
-
-
-    .condition-explanation strong {
-      color:
-        #b7b7bd;
-    }
-
-
-
-
-    /* ABOUT v4:
-       keep each authenticity statement in one continuous paragraph */
-
-    .authenticity-item > strong {
-      display:
-        block;
-    }
-
-
-    .authenticity-item p strong {
-      display:
-        inline;
-
-      margin:
-        0;
-
-      color:
-        inherit;
-
-      font-size:
-        inherit;
-
-      font-weight:
-        900;
-
-      line-height:
-        inherit;
-    }
-
-
-    /* =====================================================
-       RESPONSIVE
-    ===================================================== */
-
-    @media
-    (
-      max-width:
-      1000px
-    ) {
-
-      .authenticity-grid {
-        grid-template-columns:
-          1fr;
-      }
-
-
-      .taxonomy-row {
-        display:
-          flex;
-
-        overflow-x:
-          auto;
-
-        gap:
-          12px;
-
-        padding-bottom:
-          8px;
-
-        scroll-snap-type:
-          x
-          proximity;
-      }
-
-
-      .taxonomy-card {
-        flex:
-          0
-          0
-          min(
-            285px,
-            76vw
-          );
-
-        scroll-snap-align:
-          start;
-      }
-
-    }
-
-
-    @media
-    (
-      max-width:
-      650px
-    ) {
-
-      .about-archive-card {
-        padding:
-          22px
-          20px;
-      }
-
-
-      .condition-center-row {
-        gap:
-          10px;
-      }
-
-
-      .condition-center-item {
-        flex-direction:
-          column;
-
-        width:
-          calc(
-            50% - 5px
-          );
-
-        padding:
-          14px
-          10px;
-
-        text-align:
-          center;
-      }
-
-
-      .condition-center-item p {
-        font-size:
-          .78rem;
-      }
-
-
-      .condition-pill {
-        min-width:
-          112px;
-      }
-
-
-      .condition-explanation {
-        font-size:
-          .76rem;
-      }
-
-    }
-
-  </style>
-
-
-  <!-- Lộc An brand icons -->
-<meta
-    name="apple-mobile-web-app-capable"
-    content="yes"
-  >
-
   <meta
-    name="apple-mobile-web-app-status-bar-style"
-    content="black-translucent"
+    name="theme-color"
+    content="#0d0d0d"
   >
 
-  <meta
-    name="apple-mobile-web-app-title"
-    content="Lộc An"
-  >
-
-
-  <!-- =====================================================
-       LỘC AN BRAND — BLACK / GOLD EVERYWHERE
-  ====================================================== -->
-
-  <link
-    rel="canonical"
-    href="https://locanvvg.github.io/sneaker-room/about.html"
-  >
-
-  <!-- Browser / desktop favicon -->
-  <link
-    rel="icon"
-    type="image/x-icon"
-    href="./favicon.ico?v=20260914-brand-v8"
-  >
+  <title>
+    About | Lộc An Sneaker Collection
+  </title>
 
   <link
     rel="icon"
-    type="image/png"
-    sizes="32x32"
-    href="./favicon-32.png?v=20260914-brand-v8"
+    type="image/svg+xml"
+    href="./favicon.svg"
   >
 
-  <link
-    rel="icon"
-    type="image/png"
-    sizes="16x16"
-    href="./favicon-16.png?v=20260914-brand-v8"
-  >
-
-  <!-- iPhone / iPad Home Screen -->
   <link
     rel="apple-touch-icon"
-    sizes="180x180"
-    href="./apple-touch-icon.png?v=20260914-brand-v8"
+    href="./apple-touch-icon.png"
   >
 
-  <!-- PWA / Android -->
   <link
     rel="manifest"
-    href="./site.webmanifest?v=20260914-brand-v8"
+    href="./site.webmanifest"
   >
 
-  <meta
-    name="msapplication-TileColor"
-    content="#000000"
+  <link
+    rel="stylesheet"
+    href="./style.css?v=20260912-about-navfix"
   >
 
-  <!-- Open Graph:
-       Facebook, Messenger, iMessage, Discord, LinkedIn, etc. -->
-  <meta
-    property="og:title"
-    content="About | Lộc An Sneaker Collection"
+  <link
+    rel="stylesheet"
+    href="./collection-menu.css?v=20260912-about-navfix"
   >
-
-  <meta
-    property="og:description"
-    content="About the Lộc An Sneaker Collection private digital archive."
-  >
-
-  <meta
-    property="og:type"
-    content="website"
-  >
-
-  <meta
-    property="og:site_name"
-    content="Lộc An Sneaker Collection"
-  >
-
-  <meta
-    property="og:url"
-    content="https://locanvvg.github.io/sneaker-room/about.html"
-  >
-
-  <meta
-    property="og:image"
-    content="https://locanvvg.github.io/sneaker-room/locan-social-preview.png?v=20260914-brand-v8"
-  >
-
-  <meta
-    property="og:image:secure_url"
-    content="https://locanvvg.github.io/sneaker-room/locan-social-preview.png?v=20260914-brand-v8"
-  >
-
-  <meta
-    property="og:image:type"
-    content="image/png"
-  >
-
-  <meta
-    property="og:image:width"
-    content="1200"
-  >
-
-  <meta
-    property="og:image:height"
-    content="630"
-  >
-
-  <meta
-    property="og:image:alt"
-    content="Lộc An Sneaker Collection black and gold logo"
-  >
-
-  <!-- X / Twitter -->
-  <meta
-    name="twitter:card"
-    content="summary_large_image"
-  >
-
-  <meta
-    name="twitter:title"
-    content="About | Lộc An Sneaker Collection"
-  >
-
-  <meta
-    name="twitter:description"
-    content="About the Lộc An Sneaker Collection private digital archive."
-  >
-
-  <meta
-    name="twitter:image"
-    content="https://locanvvg.github.io/sneaker-room/locan-social-preview.png?v=20260914-brand-v8"
-  >
-
-
-  <style id="about-page-corner-fix-v15">
-
-    /* Keep the active About link in the same top-left position
-       used by Sneakers / LEGO / Sneaker Mask. */
-
-    .about-header {
-      position:
-        relative;
-    }
-
-
-    .about-header
-    > .about-corner-link.about-left-fixed {
-      position:
-        absolute !important;
-
-      top:
-        8px !important;
-
-      left:
-        0 !important;
-
-      right:
-        auto !important;
-
-      margin:
-        0 !important;
-
-      z-index:
-        50;
-    }
-
-
-    @media
-    (
-      max-width:
-      650px
-    ) {
-
-      .about-header
-      > .about-corner-link.about-left-fixed {
-        top:
-          4px !important;
-      }
-
-    }
-
-  </style>
-
 </head>
+
 
 <body>
 
@@ -733,19 +57,15 @@
 
     <header class="about-header">
 
-      <a
-        href="./about.html"
-        class="about-corner-link active about-left-fixed"
-        id="about-active-link"
-        aria-current="page"
-        data-vi="GIỚI THIỆU"
-        data-en="ABOUT"
-      >
-        GIỚI THIỆU
-      </a>
-
-
       <div class="header-corner-tools">
+
+        <a
+          href="./about.html"
+          class="about-corner-link active"
+          aria-current="page"
+        >
+          ABOUT
+        </a>
 
         <div class="lang-switcher">
 
@@ -771,37 +91,32 @@
 
       </div>
 
-      <p
-        class="eyebrow"
-        data-vi="KHO LƯU TRỮ KỸ THUẬT SỐ TƯ NHÂN"
-        data-en="PRIVATE DIGITAL ARCHIVE"
-      >
-        KHO LƯU TRỮ KỸ THUẬT SỐ TƯ NHÂN
+
+      <p class="eyebrow">
+        PRIVATE DIGITAL ARCHIVE
       </p>
 
-      <h1
-        data-vi="BỘ SƯU TẬP GIÀY LỘC AN"
-        data-en="LỘC AN SNEAKER COLLECTION"
-      >
-        BỘ SƯU TẬP GIÀY LỘC AN
+
+      <h1>
+        LỘC AN SNEAKER COLLECTION
       </h1>
 
-      <nav class="museum-nav" aria-label="Collection navigation">
+
+      <nav
+        class="museum-nav"
+        aria-label="Collection navigation"
+      >
 
         <a
           href="./index.html"
           class="museum-nav-link"
-          data-vi="GIÀY"
-          data-en="SNEAKERS"
         >
-          GIÀY
+          SNEAKERS
         </a>
 
         <a
           href="./lego.html"
           class="museum-nav-link"
-          data-vi="LEGO"
-          data-en="LEGO"
         >
           LEGO
         </a>
@@ -809,21 +124,20 @@
         <a
           href="./sneaker-mask.html"
           class="museum-nav-link"
-          data-vi="MẶT NẠ GIÀY"
-          data-en="SNEAKER MASK"
         >
-          MẶT NẠ GIÀY
+          SNEAKER MASK
         </a>
 
       </nav>
 
     </header>
 
+
     <main class="about-page">
 
-      <!-- =====================================================
-           ABOUT HERO
-      ====================================================== -->
+      <!-- =================================================
+           ABOUT VI
+      ================================================== -->
 
       <section
         class="about-hero lang-panel"
@@ -835,27 +149,39 @@
         </p>
 
         <h2>
-          Sneaker như một hiện vật thiết kế,
-          văn hóa và lịch sử.
+          Sneaker như một hiện vật
+          thiết kế, văn hóa và lịch sử.
         </h2>
 
         <p>
-          Lộc An Sneaker Collection là một kho lưu trữ sneaker tư nhân
+          Lộc An Sneaker Collection
+          là một kho lưu trữ sneaker tư nhân
           được xây dựng theo hướng catalogue kỹ thuật số.
-          Mỗi đôi giày được ghi nhận không chỉ bằng hình ảnh,
-          mà còn bằng thông tin phát hành, nguồn gốc,
-          tình trạng và câu chuyện thiết kế.
+          Mỗi đôi giày được ghi nhận
+          không chỉ bằng hình ảnh,
+          mà còn bằng thông tin phát hành,
+          nguồn gốc,
+          tình trạng
+          và câu chuyện thiết kế.
         </p>
 
         <p>
-          Bộ sưu tập bao gồm General Release,
-          Player Exclusive, Friends &amp; Family,
-          Sample, Signature Signed
-          cùng những hiện vật đặc biệt khác thuộc văn hóa sneaker.
+          Bộ sưu tập bao gồm
+          General Release,
+          Player Exclusive,
+          Friends &amp; Family,
+          Sample,
+          Signature Signed
+          cùng những hiện vật đặc biệt khác
+          thuộc văn hóa sneaker.
         </p>
 
       </section>
 
+
+      <!-- =================================================
+           ABOUT EN
+      ================================================== -->
 
       <section
         class="about-hero lang-panel"
@@ -873,503 +199,490 @@
         </h2>
 
         <p>
-          Lộc An Sneaker Collection is a private sneaker archive
+          Lộc An Sneaker Collection
+          is a private sneaker archive
           built as a digital catalogue.
-          Each pair is documented through imagery,
-          release information, origin,
-          condition, and design context.
+          Each pair is documented
+          through imagery,
+          release information,
+          provenance,
+          condition,
+          and design context.
         </p>
 
         <p>
-          The collection includes General Releases,
-          Player Exclusives, Friends &amp; Family editions,
-          Samples, Signature Signed pieces,
-          and other distinctive sneaker-culture artifacts.
+          The collection includes
+          General Releases,
+          Player Exclusives,
+          Friends &amp; Family editions,
+          Samples,
+          Signature Signed pieces,
+          and other distinctive
+          sneaker-culture artifacts.
         </p>
 
       </section>
 
 
-      <!-- =====================================================
-           1. AUTHENTICITY & OWNERSHIP — CARD
-      ====================================================== -->
+      <section class="archive-principles">
 
-      <section
-        class="about-archive-card lang-panel"
-        data-lang="vi"
-      >
+        <!-- =================================================
+             CLASSIFICATION VI
+        ================================================== -->
 
-        <p class="about-kicker">
-          XÁC THỰC &amp; QUYỀN SỞ HỮU
-        </p>
+        <article
+          class="archive-panel lang-panel"
+          data-lang="vi"
+        >
 
-        <h3>
-          Tính xác thực của kho lưu trữ
-        </h3>
+          <p class="about-kicker">
+            PHÂN LOẠI PHIÊN BẢN
+          </p>
 
-        <div class="authenticity-grid">
+          <h3>
+            Hệ thống phân loại trong bộ sưu tập
+          </h3>
 
-          <article class="authenticity-item">
-
-            <strong>
-              XÁC THỰC
-            </strong>
-
-            <p>
-              Tất cả <strong>Sneakers</strong> và hiện vật
-              được trưng bày trong bộ sưu tập
-              đều là sản phẩm chính hãng.
-              Lộc An không trưng bày hàng giả,
-              hàng sao chép hoặc sản phẩm
-              không xác định được tính xác thực.
-            </p>
-
-          </article>
-
-
-          <article class="authenticity-item">
-
-            <strong>
-              BẢN QUYỀN HÌNH ẢNH
-            </strong>
-
-            <p>
-              Tất cả hình ảnh được sử dụng trên website này
-              là hình ảnh thuộc bộ sưu tập cá nhân Lộc An
-              và thuộc quyền sở hữu của cá nhân Lộc An.
-              Website không sử dụng hình ảnh mượn,
-              sao chép hoặc lấy từ cá nhân,
-              cửa hàng hay nguồn bên thứ ba.
-            </p>
-
-          </article>
-
-
-          <article class="authenticity-item">
-
-            <strong>
-              QUYỀN SỞ HỮU BỘ SƯU TẬP
-            </strong>
-
-            <p>
-              Tất cả <strong>Sneakers</strong>,
-              <strong>LEGO</strong>,
-              <strong>Sneaker Mask</strong>
-              và các hiện vật được giới thiệu trên website
-              đều là tài sản thuộc sở hữu cá nhân của Lộc An.
-              Không có hiện vật nào được vay mượn
-              hoặc đưa vào bộ sưu tập
-              chỉ nhằm mục đích minh họa.
-            </p>
-
-          </article>
-
-        </div>
-
-        <div class="authenticity-notice">
-          <strong>LƯU Ý:</strong>
-          Website này là hồ sơ kỹ thuật số
-          của một bộ sưu tập cá nhân thực tế,
-          không phải danh mục hình ảnh
-          tổng hợp từ Internet.
-        </div>
-
-      </section>
-
-
-      <section
-        class="about-archive-card lang-panel"
-        data-lang="en"
-        hidden
-      >
-
-        <p class="about-kicker">
-          AUTHENTICITY &amp; OWNERSHIP
-        </p>
-
-        <h3>
-          Archive authenticity
-        </h3>
-
-        <div class="authenticity-grid">
-
-          <article class="authenticity-item">
-
-            <strong>
-              AUTHENTICITY
-            </strong>
-
-            <p>
-              All <strong>Sneakers</strong> and objects
-              presented in this collection are authentic.
-              Lộc An does not display counterfeit,
-              replica, or unverifiable items
-              as part of the collection.
-            </p>
-
-          </article>
-
-
-          <article class="authenticity-item">
-
-            <strong>
-              IMAGE RIGHTS
-            </strong>
-
-            <p>
-              All images displayed on this website
-              are images associated with the private Lộc An collection
-              and are owned by Lộc An.
-              No images are borrowed, copied,
-              or taken from individuals,
-              retailers, or third-party sources.
-            </p>
-
-          </article>
-
-
-          <article class="authenticity-item">
-
-            <strong>
-              COLLECTION OWNERSHIP
-            </strong>
-
-            <p>
-              All <strong>Sneakers</strong>,
-              <strong>LEGO</strong>,
-              <strong>Sneaker Mask</strong>
-              objects, and other artifacts
-              presented on this website
-              are personally owned by Lộc An.
-              No displayed object is borrowed
-              or included solely for illustrative purposes.
-            </p>
-
-          </article>
-
-        </div>
-
-        <div class="authenticity-notice">
-          <strong>NOTICE:</strong>
-          This website is a digital record
-          of a privately owned physical collection,
-          not an image catalogue compiled from the Internet.
-        </div>
-
-      </section>
-
-
-      <!-- =====================================================
-           2. CLASSIFICATION — HORIZONTAL CARD
-      ====================================================== -->
-
-      <section
-        class="about-archive-card lang-panel"
-        data-lang="vi"
-      >
-
-        <p class="about-kicker">
-          PHÂN LOẠI
-        </p>
-
-        <h3>
-          Hệ thống phân loại hiện vật
-        </h3>
-
-        <div class="taxonomy-row">
-
-          <article class="taxonomy-card">
+          <div class="definition-item">
             <strong>
               General Release (GR)
             </strong>
 
-            <p>
-              Phiên bản được sản xuất để phát hành thương mại công khai
-              qua các kênh bán lẻ chính thức hoặc được ủy quyền,
-              dành cho thị trường người tiêu dùng nói chung.
-            </p>
-          </article>
+            <span>
+              Phiên bản được sản xuất và phân phối thương mại
+              công khai thông qua các kênh bán lẻ chính thức
+              hoặc được ủy quyền, dành cho thị trường
+              người tiêu dùng nói chung.
+            </span>
+          </div>
 
-
-          <article class="taxonomy-card">
+          <div class="definition-item">
             <strong>
               Player Exclusive (PE)
             </strong>
 
-            <p>
-              Phiên bản được thương hiệu sản xuất hoặc tùy chỉnh
-              dành riêng cho vận động viên, đội thi đấu
-              hay cá nhân được chỉ định,
-              và thường không phát hành bán lẻ công khai.
-            </p>
-          </article>
+            <span>
+              Phiên bản được thương hiệu sản xuất
+              hoặc tùy chỉnh dành riêng cho vận động viên,
+              đội thi đấu hoặc cá nhân được chỉ định,
+              và thường không được phát hành bán lẻ công khai.
+            </span>
+          </div>
 
-
-          <article class="taxonomy-card">
+          <div class="definition-item">
             <strong>
               Friends &amp; Family (F&amp;F)
             </strong>
 
-            <p>
+            <span>
               Phiên bản không phát hành bán lẻ công khai,
               được thương hiệu, nhà thiết kế hoặc đối tác sáng tạo
               phân phối trực tiếp cho gia đình, bạn bè,
-              cộng sự và những cá nhân thuộc mạng lưới thân cận của dự án.
-            </p>
-          </article>
+              cộng sự và những cá nhân thuộc
+              mạng lưới thân cận của dự án.
+            </span>
+          </div>
 
-
-          <article class="taxonomy-card">
+          <div class="definition-item">
             <strong>
               Sample
             </strong>
 
-            <p>
+            <span>
               Phiên bản được tạo trong quá trình phát triển,
               thử nghiệm hoặc tiền sản xuất nhằm đánh giá
-              thiết kế, vật liệu, màu sắc hay cấu trúc
-              trước khi sản phẩm được hoàn thiện.
-            </p>
-          </article>
+              thiết kế, vật liệu, màu sắc hoặc cấu trúc
+              trước khi sản phẩm được hoàn thiện
+              hoặc phát hành chính thức.
+            </span>
+          </div>
 
-
-          <article class="taxonomy-card">
+          <div class="definition-item">
             <strong>
               Signature Signed
             </strong>
 
-            <p>
+            <span>
               Hiện vật có chữ ký trực tiếp của vận động viên,
-              nhà thiết kế, nghệ sĩ hoặc nhân vật gắn liền với sản phẩm,
-              qua đó bổ sung giá trị lưu trữ cho hiện vật.
-            </p>
-          </article>
+              nhà thiết kế, nghệ sĩ hoặc nhân vật
+              có mối liên hệ trực tiếp với sản phẩm,
+              qua đó bổ sung provenance
+              và giá trị lưu trữ cho hiện vật.
+            </span>
+          </div>
 
-        </div>
+          <p class="about-small">
+            Một hiện vật có thể thuộc
+            nhiều nhóm cùng lúc.
+            Ví dụ, một đôi có thể vừa là
+            Player Exclusive,
+            vừa là Sample
+            hoặc Friends &amp; Family.
+          </p>
 
-        <p class="about-small">
-          Một hiện vật có thể thuộc nhiều nhóm cùng lúc.
-          Ví dụ, một đôi có thể vừa là Player Exclusive,
-          vừa là Sample hoặc Friends &amp; Family.
-        </p>
-
-      </section>
+        </article>
 
 
-      <section
-        class="about-archive-card lang-panel"
-        data-lang="en"
-        hidden
-      >
+        <!-- =================================================
+             CLASSIFICATION EN
+        ================================================== -->
 
-        <p class="about-kicker">
-          CLASSIFICATION
-        </p>
+        <article
+          class="archive-panel lang-panel"
+          data-lang="en"
+          hidden
+        >
 
-        <h3>
-          Archive classification system
-        </h3>
+          <p class="about-kicker">
+            EDITION CLASSIFICATION
+          </p>
 
-        <div class="taxonomy-row">
+          <h3>
+            Collection classification system
+          </h3>
 
-          <article class="taxonomy-card">
+          <div class="definition-item">
             <strong>
               General Release (GR)
             </strong>
 
-            <p>
-              An edition produced for public commercial release
+            <span>
+              An edition produced and distributed
+              for public commercial release
               through official or authorized retail channels,
               intended for the general consumer market.
-            </p>
-          </article>
+            </span>
+          </div>
 
-
-          <article class="taxonomy-card">
+          <div class="definition-item">
             <strong>
               Player Exclusive (PE)
             </strong>
 
-            <p>
+            <span>
               An edition produced or customized by the brand
               specifically for athletes, teams,
               or designated individuals,
               and typically not offered through public retail.
-            </p>
-          </article>
+            </span>
+          </div>
 
-
-          <article class="taxonomy-card">
+          <div class="definition-item">
             <strong>
               Friends &amp; Family (F&amp;F)
             </strong>
 
-            <p>
+            <span>
               A non-public-retail edition distributed directly
               by the brand, designer, or creative partner
               to family, friends, collaborators,
               and individuals within the project's close network.
-            </p>
-          </article>
+            </span>
+          </div>
 
-
-          <article class="taxonomy-card">
+          <div class="definition-item">
             <strong>
               Sample
             </strong>
 
-            <p>
+            <span>
               An edition created during development,
               testing, or pre-production to evaluate
               design, materials, colors, or construction
-              before the product is finalized.
-            </p>
-          </article>
+              before the product is finalized
+              or officially released.
+            </span>
+          </div>
 
-
-          <article class="taxonomy-card">
+          <div class="definition-item">
             <strong>
               Signature Signed
             </strong>
 
-            <p>
+            <span>
               An artifact carrying a direct signature
               from an athlete, designer, artist,
-              or individual associated with the product,
-              adding archival significance to the object.
-            </p>
-          </article>
+              or individual directly associated with the product,
+              adding documented provenance
+              and archival significance.
+            </span>
+          </div>
 
-        </div>
+          <p class="about-small">
+            An artifact may belong
+            to more than one category.
+            For example,
+            a pair may simultaneously be
+            a Player Exclusive,
+            Sample,
+            or Friends &amp; Family edition.
+          </p>
 
-        <p class="about-small">
-          An artifact may belong to more than one category.
-          For example, a pair may simultaneously be
-          a Player Exclusive, Sample,
-          or Friends &amp; Family edition.
-        </p>
-
-      </section>
+        </article>
 
 
-      <!-- =====================================================
-           3. CONDITION — CENTERED HORIZONTAL CARD
-      ====================================================== -->
+        <!-- =================================================
+             CONDITION + IMAGE PROVENANCE VI
+        ================================================== -->
 
-      <section
-        class="about-archive-card lang-panel"
-        data-lang="vi"
-      >
+        <article
+          class="archive-panel lang-panel"
+          data-lang="vi"
+        >
 
-        <p class="about-kicker">
-          TÌNH TRẠNG
-        </p>
+          <p class="about-kicker">
+            TÌNH TRẠNG
+          </p>
 
-        <h3>
-          Hệ thống Condition
-        </h3>
+          <h3>
+            Hệ thống Condition
+          </h3>
 
-        <div class="condition-center-row">
-
-          <article class="condition-center-item">
+          <div class="condition-key">
 
             <span class="condition-pill deadstock">
               Deadstock
             </span>
 
-            <p>
+            <span>
               Chưa qua sử dụng.
-            </p>
+            </span>
 
-          </article>
+          </div>
 
-
-          <article class="condition-center-item">
+          <div class="condition-key">
 
             <span class="condition-pill used">
               Used
             </span>
 
-            <p>
+            <span>
               Đã qua sử dụng.
+            </span>
+
+          </div>
+
+          <p class="about-small">
+            GR, PE, F&amp;F,
+            Sample và Signature Signed
+            mô tả loại phiên bản
+            hoặc provenance,
+            không phải tình trạng sử dụng.
+          </p>
+
+
+          <div class="authenticity-section">
+
+            <p class="authenticity-kicker">
+              XÁC THỰC &amp; NGUỒN TƯ LIỆU HÌNH ẢNH
             </p>
 
-          </article>
+            <h3>
+              Nguyên tắc hình ảnh của digital archive
+            </h3>
 
-        </div>
+            <p class="authenticity-text">
+              Đối với những đôi giày
+              <strong>hiện vẫn thuộc bộ sưu tập cá nhân</strong>,
+              hình ảnh sử dụng trong
+              <strong>Lộc An Sneaker Collection</strong>
+              được chính chủ sở hữu trực tiếp chụp
+              từ hiện vật thực tế
+              và chuẩn bị riêng cho hồ sơ lưu trữ kỹ thuật số.
+              Khi cần xử lý hình ảnh,
+              các điều chỉnh chỉ nhằm chuẩn hóa cách trình bày
+              như tách nền, bố cục, ánh sáng hoặc độ rõ,
+              đồng thời giữ nguyên hình dáng,
+              màu sắc và các chi tiết nhận diện
+              của đôi giày thực tế.
+            </p>
 
-        <p class="condition-explanation">
-          <strong>
-            GR, PE, F&amp;F, Sample và Signature Signed
-          </strong>
-          là các nhóm dùng để mô tả loại phiên bản
-          hoặc đặc điểm đặc biệt của một đôi sneaker;
-          chúng không phải là tình trạng sử dụng.
-          Tình trạng của hiện vật chỉ được ghi nhận là
-          <strong>Deadstock</strong> hoặc <strong>Used</strong>.
-        </p>
+            <p class="authenticity-text">
+              Một số đôi thuộc nhóm
+              <strong>PRE-OWNED</strong>
+              đã được bán hoặc chuyển nhượng
+              trước khi digital archive này được xây dựng.
+              Vì việc lưu trữ kỹ thuật số
+              chưa tồn tại tại thời điểm những đôi đó còn được sở hữu,
+              bộ ảnh do chính chủ chụp
+              không phải lúc nào cũng còn đầy đủ.
+              Trong những trường hợp như vậy,
+              archive có thể sử dụng
+              <strong>hình ảnh tham chiếu từ nguồn bên ngoài</strong>
+              để minh họa đúng model,
+              colorway và phiên bản
+              đã từng thuộc bộ sưu tập.
+            </p>
 
-      </section>
+            <p class="authenticity-text">
+              Hình ảnh tham chiếu bên ngoài
+              chỉ được sử dụng như tư liệu nhận diện
+              cho hồ sơ lịch sử.
+              Những hình ảnh này
+              không được trình bày như ảnh do chủ sở hữu trực tiếp chụp
+              và cũng không hàm ý rằng
+              đôi giày minh họa vẫn đang thuộc bộ sưu tập hiện tại.
+              Khi nguồn hình ảnh có thể được xác định rõ ràng,
+              thông tin nguồn sẽ được ghi nhận
+              hoặc lưu cùng hồ sơ tư liệu tương ứng.
+            </p>
+
+            <div class="authenticity-notice">
+              <strong>
+                QUY ƯỚC HÌNH ẢNH —
+              </strong>
+
+              <b>OWN</b>:
+              hình ảnh được chụp trực tiếp
+              từ hiện vật hiện đang thuộc bộ sưu tập cá nhân.
+
+              <b>PRE-OWNED</b>:
+              có thể sử dụng hình ảnh tham chiếu bên ngoài
+              khi bộ ảnh gốc không còn đầy đủ
+              do hiện vật đã được chuyển nhượng
+              trước khi digital archive được hình thành.
+            </div>
+
+          </div>
+
+        </article>
 
 
-      <section
-        class="about-archive-card lang-panel"
-        data-lang="en"
-        hidden
-      >
+        <!-- =================================================
+             CONDITION + IMAGE PROVENANCE EN
+        ================================================== -->
 
-        <p class="about-kicker">
-          CONDITION
-        </p>
+        <article
+          class="archive-panel lang-panel"
+          data-lang="en"
+          hidden
+        >
 
-        <h3>
-          Condition system
-        </h3>
+          <p class="about-kicker">
+            CONDITION
+          </p>
 
-        <div class="condition-center-row">
+          <h3>
+            Condition system
+          </h3>
 
-          <article class="condition-center-item">
+          <div class="condition-key">
 
             <span class="condition-pill deadstock">
               Deadstock
             </span>
 
-            <p>
+            <span>
               Unworn.
-            </p>
+            </span>
 
-          </article>
+          </div>
 
-
-          <article class="condition-center-item">
+          <div class="condition-key">
 
             <span class="condition-pill used">
               Used
             </span>
 
-            <p>
+            <span>
               Previously worn.
+            </span>
+
+          </div>
+
+          <p class="about-small">
+            GR, PE, F&amp;F,
+            Sample and Signature Signed
+            describe edition type
+            or provenance,
+            not condition.
+          </p>
+
+
+          <div class="authenticity-section">
+
+            <p class="authenticity-kicker">
+              AUTHENTICITY &amp; IMAGE PROVENANCE
             </p>
 
-          </article>
+            <h3>
+              Photographic policy of the digital archive
+            </h3>
 
-        </div>
+            <p class="authenticity-text">
+              For sneakers that
+              <strong>remain in the private collection</strong>,
+              imagery presented in the
+              <strong>Lộc An Sneaker Collection</strong>
+              is photographed directly by the owner
+              from the physical artifacts
+              and prepared specifically
+              for their digital archival records.
+              Where image processing is applied,
+              adjustments are limited to presentation
+              such as background removal,
+              composition, lighting, or clarity,
+              while preserving the form,
+              color, and identifying details
+              of the physical pair.
+            </p>
 
-        <p class="condition-explanation">
-          <strong>
-            GR, PE, F&amp;F, Sample and Signature Signed
-          </strong>
-          describe an edition type or a distinguishing category
-          of a sneaker; they do not describe wear condition.
-          Object condition is recorded only as
-          <strong>Deadstock</strong> or <strong>Used</strong>.
-        </p>
+            <p class="authenticity-text">
+              Some pairs classified as
+              <strong>PRE-OWNED</strong>
+              were sold or transferred
+              before this digital archive was established.
+              Because systematic digital documentation
+              did not yet exist while those pairs were still owned,
+              a complete set of owner-taken photographs
+              is not available for every previously owned artifact.
+              In such cases,
+              the archive may use
+              <strong>external reference imagery</strong>
+              to accurately represent
+              the model, colorway, and edition
+              that formed part of the collection's history.
+            </p>
+
+            <p class="authenticity-text">
+              External reference imagery
+              is used only as documentary material
+              for historical identification.
+              It is not presented as photography taken by the owner,
+              nor does it imply that the illustrated pair
+              remains in the current collection.
+              Where a source can be clearly identified,
+              source information is credited
+              or retained with the corresponding archival record.
+            </p>
+
+            <div class="authenticity-notice">
+              <strong>
+                IMAGE POLICY —
+              </strong>
+
+              <b>OWN</b>:
+              imagery is photographed directly
+              from artifacts currently held
+              in the private collection.
+
+              <b>PRE-OWNED</b>:
+              external reference imagery may be used
+              when original owner-taken documentation
+              is incomplete because the artifact
+              was transferred before
+              the digital archive was established.
+            </div>
+
+          </div>
+
+        </article>
 
       </section>
 
 
       <!-- =====================================================
-           CATALOGUE RECORD
+           CATALOGUE
       ====================================================== -->
 
       <section class="catalogue-section">
@@ -1399,6 +712,7 @@
           </div>
 
         </div>
+
 
         <div
           class="lang-panel"
@@ -1431,106 +745,95 @@
 
     </main>
 
+
     <footer>
-      <p
-        data-vi="© 2026 Bộ sưu tập giày Lộc An. Bảo lưu mọi quyền."
-        data-en="© 2026 Lộc An Sneaker Collection. All Rights Reserved."
-      >
-        © 2026 Bộ sưu tập giày Lộc An. Bảo lưu mọi quyền.
+
+      <p>
+        &copy; 2026 Lộc An Sneaker Collection.
+        All Rights Reserved.
       </p>
+
     </footer>
 
   </div>
 
+
   <script>
-    const ABOUT_LANGUAGES = ["vi", "en"];
 
-    const aboutQueryLanguage =
-      new URLSearchParams(
-        window.location.search
-      ).get("lang");
+    const ABOUT_LANGUAGES = [
+      "vi",
+      "en"
+    ];
 
-    const aboutStoredLanguage =
-      localStorage.getItem(
-        "locan_lang"
-      );
 
     let aboutLanguage =
-      ABOUT_LANGUAGES.includes(
-        aboutQueryLanguage
+
+      new URLSearchParams(
+        window.location.search
+      ).get("lang")
+
+      ||
+
+      localStorage.getItem(
+        "locan_lang"
       )
-        ? aboutQueryLanguage
-        : (
-            ABOUT_LANGUAGES.includes(
-              aboutStoredLanguage
-            )
-              ? aboutStoredLanguage
-              : "vi"
-          );
+
+      ||
+
+      "vi";
+
+
+    if (
+      !ABOUT_LANGUAGES.includes(
+        aboutLanguage
+      )
+    ) {
+
+      aboutLanguage =
+        "vi";
+
+    }
+
 
     function setAboutLanguage(lang) {
+
       aboutLanguage =
-        ABOUT_LANGUAGES.includes(lang)
+        ABOUT_LANGUAGES.includes(
+          lang
+        )
           ? lang
           : "vi";
+
 
       localStorage.setItem(
         "locan_lang",
         aboutLanguage
       );
 
-      window.LocAnLanguageSync
-        ?.set(
-          aboutLanguage
-        );
 
       document.documentElement.lang =
         aboutLanguage;
 
 
       document
-        .querySelectorAll(
-          "[data-vi][data-en]"
+        .getElementById(
+          "btn-vi"
         )
-        .forEach(
-          element => {
-            element.textContent =
-              aboutLanguage === "vi"
-                ? element.dataset.vi
-                : element.dataset.en;
-          }
-        );
-
-
-      const aboutActiveLink =
-        document.getElementById(
-          "about-active-link"
-        );
-
-      if (
-        aboutActiveLink
-      ) {
-        aboutActiveLink.textContent =
-          aboutLanguage === "vi"
-            ? "GIỚI THIỆU"
-            : "ABOUT";
-      }
-
-      document
-        .getElementById("btn-vi")
-        .classList
-        .toggle(
+        .classList.toggle(
           "active",
           aboutLanguage === "vi"
         );
 
+
       document
-        .getElementById("btn-en")
-        .classList
-        .toggle(
+        .getElementById(
+          "btn-en"
+        )
+        .classList.toggle(
           "active",
           aboutLanguage === "en"
         );
+
 
       document
         .querySelectorAll(
@@ -1538,16 +841,13 @@
         )
         .forEach(
           element => {
+
             element.hidden =
               element.dataset.lang !==
               aboutLanguage;
+
           }
         );
-
-      document.title =
-        aboutLanguage === "vi"
-          ? "Giới Thiệu | Bộ Sưu Tập Giày Lộc An"
-          : "About | Lộc An Sneaker Collection";
 
 
       const url =
@@ -1555,10 +855,12 @@
           window.location.href
         );
 
+
       url.searchParams.set(
         "lang",
         aboutLanguage
       );
+
 
       window.history.replaceState(
         {},
@@ -1567,21 +869,22 @@
         url.search +
         url.hash
       );
+
     }
+
 
     document.addEventListener(
       "DOMContentLoaded",
       () => {
+
         setAboutLanguage(
           aboutLanguage
         );
+
       }
     );
-  </script>
 
-  <script
-    src="./language-navigation-fix.js?v=20260914-lang-sync-v16"
-  ></script>
+  </script>
 
 </body>
 

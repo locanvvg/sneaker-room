@@ -2,15 +2,19 @@
    LỘC AN SNEAKER COLLECTION
    SNEAKER IMAGE GALLERIES — v2
 
+   IMPORTANT:
+   - File này KHÔNG thay đổi data.js.
+   - File này KHÔNG thay đổi sneaker story.
    - Ảnh đầu tiên luôn là COVER / ảnh bìa.
    - Các ảnh tiếp theo là DETAIL / ảnh phụ.
    - Homepage vẫn dùng sneaker.image trong data.js.
    - File này chỉ phục vụ gallery trên shoe.html.
 
    v2:
-   - Quai 54: bắt buộc 2 ảnh.
-   - Yuto Matcha: bắt buộc 2 ảnh.
-   - Có fallback cho các cách đặt tên detail image cũ.
+   - Quai 54: 2 ảnh.
+   - Yuto Matcha: 2 ảnh.
+   - Thêm fallback cho các convention tên file detail
+     đã từng được dùng trong project.
 ========================================================= */
 
 window.SNEAKER_GALLERIES = {
@@ -26,8 +30,8 @@ window.SNEAKER_GALLERIES = {
 
   /* =====================================================
      2. JORDAN 1 QUAI 54 F&F
-     Ảnh 1 = cover
-     Ảnh 2 = detail
+     IMAGE 1 = COVER
+     IMAGE 2 = DETAIL
   ===================================================== */
 
   "jordan-1-quai54-ff": [
@@ -38,8 +42,8 @@ window.SNEAKER_GALLERIES = {
 
   /* =====================================================
      3. NIKE SB DUNK LOW YUTO HORIGOME MATCHA
-     Ảnh 1 = cover
-     Ảnh 2 = detail
+     IMAGE 1 = COVER
+     IMAGE 2 = DETAIL
   ===================================================== */
 
   "nike-sb-dunk-yuto-matcha": [
@@ -114,131 +118,139 @@ window.SNEAKER_GALLERIES = {
 
 
 /* =========================================================
-   DETAIL IMAGE FALLBACK
+   DETAIL IMAGE FALLBACK RESOLUTION
 
-   Repo đã từng dùng nhiều convention khác nhau:
-   "...matcha1.png" và "...matcha_1.png", v.v.
+   Chỉ chạy cho Quai 54 và Yuto Matcha.
 
-   Nếu detail path chính không load được, script thử các tên
-   cũ. Khi tìm được file hợp lệ, shoe.html được render lại.
+   Nếu filename chính của ảnh detail không tồn tại,
+   script sẽ thử các tên cũ đã từng được dùng trong project.
 ========================================================= */
 
 (() => {
   "use strict";
 
-  const candidates = {
 
-    "jordan-1-quai54-ff": [
-      "pictures/jordan1_quai54_ff_v2_1.png",
-      "pictures/jordan1_quai54_ff_1.png",
-      "pictures/jordan1_quai54_1.png"
-    ],
+  const DETAIL_CANDIDATES = {
 
-    "nike-sb-dunk-yuto-matcha": [
-      "pictures/sbdunk_yutohorigome_matcha1.png",
-      "pictures/sbdunk_yutohorigome_matcha_1.png",
-      "pictures/jordan1_yuto_matcha_1.png"
-    ]
+    "jordan-1-quai54-ff": {
+      cover:
+        "pictures/jordan1_quai54_ff_v2.png",
+
+      details: [
+        "pictures/jordan1_quai54_ff_v2_1.png",
+        "pictures/jordan1_quai54_ff_1.png",
+        "pictures/jordan1_quai54_1.png",
+        "pictures/jordan1_quai54.png",
+        "pictures/jordan_quai54_friendsandfamily_1.png"
+      ]
+    },
+
+
+    "nike-sb-dunk-yuto-matcha": {
+      cover:
+        "pictures/sbdunk_yutohorigome_matcha.png",
+
+      details: [
+        "pictures/sbdunk_yutohorigome_matcha1.png",
+        "pictures/sbdunk_yutohorigome_matcha_1.png",
+        "pictures/jordan1_yuto_matcha_1.png",
+        "pictures/jordan1_yuto_matcha1.png"
+      ]
+    }
 
   };
 
 
-  function imageExists(src) {
-    return new Promise(resolve => {
+  function probeImage(src) {
 
-      const image =
-        new Image();
+    return new Promise(
+      resolve => {
 
-
-      const done =
-        result => {
-
-          image.onload =
-            null;
-
-          image.onerror =
-            null;
-
-          resolve(
-            result
-          );
-
-        };
+        const image =
+          new Image();
 
 
-      image.onload =
-        () => done(true);
+        const finish =
+          result => {
+
+            image.onload =
+              null;
+
+            image.onerror =
+              null;
+
+            resolve(
+              result
+            );
+
+          };
 
 
-      image.onerror =
-        () => done(false);
+        image.onload =
+          () => finish(true);
 
 
-      /*
-        Cache-bust only the probe.
-        The final gallery path stays clean.
-      */
-      image.src =
-        `${src}?gallery_probe=20260915`;
+        image.onerror =
+          () => finish(false);
 
-    });
+
+        /*
+          Cache-bust probe only.
+          Final gallery path stays clean.
+        */
+        image.src =
+          `${src}?gallery_probe=20260916-v2`;
+
+      }
+    );
+
   }
 
 
-  async function resolveSecondImage(
-    sneakerId
+  async function resolveGallery(
+    sneakerId,
+    config
   ) {
 
-    const gallery =
-      window.SNEAKER_GALLERIES[
-        sneakerId
-      ];
-
-
-    if (
-      !Array.isArray(gallery)
-      ||
-      gallery.length === 0
-    ) {
-      return false;
-    }
-
-
-    const cover =
-      gallery[0];
-
-
-    const options =
-      candidates[
-        sneakerId
-      ]
-      ||
-      [];
-
-
     for (
-      const candidate
-      of options
+      const detail
+      of config.details
     ) {
+
+      const exists =
+        await probeImage(
+          detail
+        );
+
 
       if (
-        await imageExists(
-          candidate
-        )
+        exists
       ) {
 
         window.SNEAKER_GALLERIES[
           sneakerId
         ] = [
-          cover,
-          candidate
+          config.cover,
+          detail
         ];
+
 
         return true;
 
       }
 
     }
+
+
+    /*
+      Nếu không tìm thấy detail image nào,
+      giữ cover thay vì để thumbnail broken.
+    */
+    window.SNEAKER_GALLERIES[
+      sneakerId
+    ] = [
+      config.cover
+    ];
 
 
     return false;
@@ -248,23 +260,57 @@ window.SNEAKER_GALLERIES = {
 
   async function resolveRequiredGalleries() {
 
-    const changed = [
+    let changed =
+      false;
 
-      await resolveSecondImage(
-        "jordan-1-quai54-ff"
-      ),
 
-      await resolveSecondImage(
-        "nike-sb-dunk-yuto-matcha"
+    for (
+      const [
+        sneakerId,
+        config
+      ]
+      of Object.entries(
+        DETAIL_CANDIDATES
       )
+    ) {
 
-    ].some(Boolean);
+      const before =
+        JSON.stringify(
+          window.SNEAKER_GALLERIES[
+            sneakerId
+          ]
+        );
+
+
+      await resolveGallery(
+        sneakerId,
+        config
+      );
+
+
+      const after =
+        JSON.stringify(
+          window.SNEAKER_GALLERIES[
+            sneakerId
+          ]
+        );
+
+
+      if (
+        before !== after
+      ) {
+
+        changed =
+          true;
+
+      }
+
+    }
 
 
     /*
-      shoe.html declares loadShoe() in its inline classic script.
-      At window.load it is available globally.
-      Re-render once after filename resolution.
+      shoe.html defines loadShoe() in a classic inline script.
+      Re-render after fallback resolution if necessary.
     */
     if (
       changed
@@ -280,6 +326,9 @@ window.SNEAKER_GALLERIES = {
   }
 
 
+  /*
+    Run after the detail-page script is available.
+  */
   window.addEventListener(
     "load",
     resolveRequiredGalleries,
