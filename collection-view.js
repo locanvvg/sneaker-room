@@ -1,4 +1,4 @@
-/* LỘC AN SNEAKER COLLECTION — collection-view.js v19 — MOBILE 3D POLISH */
+/* LỘC AN SNEAKER COLLECTION — collection-view.js v20 — PRE-OWNED 3D SCALE + BADGE */
 
 (() => {
   "use strict";
@@ -1017,7 +1017,7 @@
 
     document
       .getElementById(
-        "locan-direct-3d-calibration-v21"
+        "locan-direct-3d-calibration-v22"
       )
       ?.remove();
 
@@ -1029,7 +1029,7 @@
 
 
     style.id =
-      "locan-direct-3d-calibration-v21";
+      "locan-direct-3d-calibration-v22";
 
 
     style.textContent = `
@@ -1242,6 +1242,171 @@
 
       }
 
+
+      /* =====================================================
+         PRE-OWNED 3D SCALE + BADGE
+
+         CSS scale is used as a multiplier so existing
+         per-pair transform calibration remains active.
+
+         Desktop:
+         - normal PRE-OWNED: .82
+         - City of Flight: .91 x .90 ~= .82
+
+         Mobile:
+         - normal PRE-OWNED: .80
+         - City of Flight: .95 x .84 ~= .80
+      ===================================================== */
+
+      .sneaker-3d-card.is-preowned-3d
+      .sneaker-3d-image img {
+        scale:
+          .82 .82
+          !important;
+
+        transform-origin:
+          center center
+          !important;
+      }
+
+
+      .sneaker-3d-card.is-preowned-3d
+      .sneaker-3d-image
+      img[data-3d-calibration="jordan-1-city-of-flight"] {
+        scale:
+          .91 .91
+          !important;
+      }
+
+
+      .sneaker-3d-meta-left {
+        display:
+          inline-flex;
+
+        align-items:
+          center;
+
+        flex-wrap:
+          wrap;
+
+        gap:
+          5px;
+
+        min-width:
+          0;
+      }
+
+
+      .sneaker-3d-meta-left
+      .preowned-3d-badge {
+        display:
+          inline-flex
+          !important;
+
+        align-items:
+          center;
+
+        justify-content:
+          center;
+
+        padding:
+          5px
+          7px
+          !important;
+
+        color:
+          #fff
+          !important;
+
+        background:
+          #b85c5c
+          !important;
+
+        border:
+          1px solid
+          rgba(
+            255,
+            255,
+            255,
+            .12
+          )
+          !important;
+
+        border-radius:
+          6px
+          !important;
+
+        font-size:
+          .60rem
+          !important;
+
+        font-weight:
+          900
+          !important;
+
+        line-height:
+          1.15
+          !important;
+
+        letter-spacing:
+          .45px
+          !important;
+
+        white-space:
+          nowrap;
+
+        opacity:
+          1
+          !important;
+
+        filter:
+          none
+          !important;
+      }
+
+
+      @media
+      (
+        max-width:
+        650px
+      ) {
+
+        .sneaker-3d-card.is-preowned-3d
+        .sneaker-3d-image img {
+          scale:
+            .80 .80
+            !important;
+        }
+
+
+        .sneaker-3d-card.is-preowned-3d
+        .sneaker-3d-image
+        img[data-3d-calibration="jordan-1-city-of-flight"] {
+          scale:
+            .95 .95
+            !important;
+        }
+
+
+        .sneaker-3d-meta-left
+        .preowned-3d-badge {
+          padding:
+            4px
+            6px
+            !important;
+
+          font-size:
+            .52rem
+            !important;
+
+          letter-spacing:
+            .28px
+            !important;
+        }
+
+      }
+
+
     `;
 
 
@@ -1285,6 +1450,37 @@
       );
 
 
+    const isPreOwned =
+      String(
+        sneaker?.collectionStatus
+        ||
+        "own"
+      )
+        .trim()
+        .toLowerCase()
+      ===
+      "sold";
+
+
+    const preOwnedClass =
+      isPreOwned
+        ? " is-preowned-3d"
+        : "";
+
+
+    const preOwnedBadge =
+      isPreOwned
+        ? `
+            <span
+              class="preowned-3d-badge"
+              aria-label="Pre-owned"
+            >
+              PRE-OWNED
+            </span>
+          `
+        : "";
+
+
     const imageStyle =
       typeof getSneakerDisplayStyle === "function"
         ? getSneakerDisplayStyle(sneaker)
@@ -1295,7 +1491,7 @@
 
       <article
 
-        class="sneaker-3d-card unified-3d-card"
+        class="sneaker-3d-card unified-3d-card${preOwnedClass}"
 
         data-index="${index}"
 
@@ -1373,13 +1569,22 @@
           <div class="sneaker-3d-meta unified-3d-meta">
 
 
-            <span>
+            <div class="sneaker-3d-meta-left">
 
-              ${escapeHTML(
-                edition || "—"
-              )}
 
-            </span>
+              <span>
+
+                ${escapeHTML(
+                  edition || "—"
+                )}
+
+              </span>
+
+
+              ${preOwnedBadge}
+
+
+            </div>
 
 
             <small>
