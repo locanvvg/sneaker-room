@@ -1838,12 +1838,16 @@ const sneakers = [
 ];
 
 /* =========================================================
-   OWN / SOLD COLLECTION STATUS
-   - OWN is the default collection view.
-   - SOLD ignores Edition / Condition / Size filters.
-   - Search and Sort remain available in SOLD.
-   - Sold cards are slightly faded and receive a SOLD badge.
-   - Sold detail pages receive a COLLECTION STATUS field.
+   OWN / SOLD COLLECTION STATUS — V3
+   Requested behavior:
+   1) Filter order:
+      COLLECTION -> CONDITION -> EDITION -> SIZE
+   2) OWN and SOLD can always be switched reliably.
+   3) Switching OWN/SOLD clears old search + normal filters
+      so an old filter can never make OWN appear empty.
+   4) SOLD ignores Condition / Edition / Size filters.
+   5) SOLD cards are visibly faded.
+   6) SOLD badge sits BESIDE the edition/category badge.
 ========================================================= */
 
 (() => {
@@ -1853,26 +1857,11 @@ const sneakers = [
   const STATUS_SOLD = "sold";
 
   let collectionStatusView = STATUS_OWN;
+  let initialized = false;
 
   /* ---------------------------------------------------------
-     DATA NORMALIZATION
+     DATA STATUS
   --------------------------------------------------------- */
-
-  if (
-    typeof sneakers !== "undefined" &&
-    Array.isArray(sneakers)
-  ) {
-    sneakers.forEach(item => {
-      const raw = String(item.collectionStatus || STATUS_OWN)
-        .trim()
-        .toLowerCase();
-
-      item.collectionStatus =
-        raw === STATUS_SOLD
-          ? STATUS_SOLD
-          : STATUS_OWN;
-    });
-  }
 
   function statusOf(item) {
     return String(item?.collectionStatus || STATUS_OWN)
@@ -1883,10 +1872,7 @@ const sneakers = [
   }
 
   function itemsForStatus(status) {
-    if (
-      typeof sneakers === "undefined" ||
-      !Array.isArray(sneakers)
-    ) {
+    if (typeof sneakers === "undefined" || !Array.isArray(sneakers)) {
       return [];
     }
 
@@ -1894,8 +1880,8 @@ const sneakers = [
   }
 
   /* ---------------------------------------------------------
-     SEARCH-ONLY FILTER FOR SOLD
-     Edition / Condition / Size are intentionally ignored.
+     SEARCH HELPERS
+     SOLD intentionally ignores normal filters but keeps search.
   --------------------------------------------------------- */
 
   function normalizeSearchText(value) {
@@ -1909,10 +1895,7 @@ const sneakers = [
   function flattenSearchValue(value) {
     if (value == null) return "";
 
-    if (
-      typeof value === "string" ||
-      typeof value === "number"
-    ) {
+    if (typeof value === "string" || typeof value === "number") {
       return String(value);
     }
 
@@ -1933,9 +1916,7 @@ const sneakers = [
     let query = "";
 
     try {
-      if (typeof archiveSearchQuery !== "undefined") {
-        query = normalizeSearchText(archiveSearchQuery);
-      }
+      query = normalizeSearchText(archiveSearchQuery);
     } catch (_) {
       query = "";
     }
@@ -1970,7 +1951,43 @@ const sneakers = [
   }
 
   /* ---------------------------------------------------------
-     STATUS FILTER UI
+     RESET OLD FILTER STATE WHEN SWITCHING OWN / SOLD
+     This fixes OWN becoming empty because a previous filter
+     or search was still active.
+  --------------------------------------------------------- */
+
+  function clearTransientFiltering() {
+    try {
+      activeFilters.edition.clear();
+      activeFilters.condition.clear();
+      activeFilters.size.clear();
+    } catch (_) {}
+
+    try {
+      archiveSearchQuery = "";
+    } catch (_) {}
+
+    const input = document.getElementById("archive-search-input");
+
+    if (input) {
+      input.value = "";
+    }
+
+    try {
+      if (typeof updateArchiveSearchUI === "function") {
+        updateArchiveSearchUI();
+      }
+    } catch (_) {}
+
+    try {
+      if (typeof updateFilterInterface === "function") {
+        updateFilterInterface();
+      }
+    } catch (_) {}
+  }
+
+  /* ---------------------------------------------------------
+     FILTER UI
   --------------------------------------------------------- */
 
   function createStatusFilterUI() {
@@ -2015,14 +2032,6 @@ const sneakers = [
         </div>
       `;
 
-      const firstFilterGroup = panel.querySelector(".filter-group");
-
-      if (firstFilterGroup) {
-        panel.insertBefore(group, firstFilterGroup);
-      } else {
-        panel.appendChild(group);
-      }
-
       group
         .querySelectorAll("[data-collection-status]")
         .forEach(button => {
@@ -2032,72 +2041,144 @@ const sneakers = [
         });
     }
 
+    reorderFilterGroups();
     updateStatusFilterUI();
   }
 
-  function updateStatusFilterUI() {
-    const ownButton = document.getElementById("collection-status-own");
-    const soldButton = document.getElementById("collection-status-sold");
-    const label = document.getElementById("collection-status-filter-label");
+  function reorderFilterGroups() {
+    const panel = document.querySelector(".filter-panel");
+    if (!panel) return;
 
-    const isSold = collectionStatusView === STATUS_SOLD;
+    const statusGroup =
+      document.getElementById("collection-status-filter-group");
+
+    const conditionGroup =
+      document.getElementById("condition-filter-label")
+        ?.closest(".filter-group");
+
+    const editionGroup =
+      document.getElementById("edition-filter-label")
+        ?.closest(".filter-group");
+
+    const sizeGroup =
+      document.getElementById("size-filter-label")
+        ?.closest(".filter-group");
+
+    /*
+      append() moves existing nodes without recreating them.
+      Header remains first because these are appended after it.
+    */
+    [
+      statusGroup,
+      conditionGroup,
+      editionGroup,
+      sizeGroup
+    ]
+      .filter(Boolean)
+      .forEach(group => panel.appendChild(group));
+  }
+
+  function getCurrentLang() {
+    try {
+      return currentLang === "en" ? "en" : "vi";
+    } catch (_) {
+      return "vi";
+    }
+  }
+
+  function updateStatusFilterUI() {
+    const ownButton =
+      document.getElementById("collection-status-own");
+
+    const soldButton =
+      document.getElementById("collection-status-sold");
+
+    const label =
+      document.getElementById("collection-status-filter-label");
+
+    const isSold =
+      collectionStatusView === STATUS_SOLD;
 
     ownButton?.classList.toggle("active", !isSold);
     soldButton?.classList.toggle("active", isSold);
 
-    ownButton?.setAttribute("aria-pressed", String(!isSold));
-    soldButton?.setAttribute("aria-pressed", String(isSold));
+    ownButton?.setAttribute(
+      "aria-pressed",
+      String(!isSold)
+    );
 
-    let lang = "vi";
-
-    try {
-      if (typeof currentLang !== "undefined") {
-        lang = currentLang === "en" ? "en" : "vi";
-      }
-    } catch (_) {}
+    soldButton?.setAttribute(
+      "aria-pressed",
+      String(isSold)
+    );
 
     if (label) {
       label.textContent =
-        lang === "en"
-          ? "COLLECTION STATUS"
+        getCurrentLang() === "en"
+          ? "COLLECTION"
           : "BỘ SƯU TẬP";
     }
 
-    document.body?.classList.toggle("collection-status-sold", isSold);
-    document.body?.classList.toggle("collection-status-own", !isSold);
+    document.body?.classList.toggle(
+      "collection-status-own",
+      !isSold
+    );
 
-    document
-      .querySelectorAll(".filter-panel > .filter-group")
-      .forEach(filterGroup => {
-        if (filterGroup.id === "collection-status-filter-group") return;
+    document.body?.classList.toggle(
+      "collection-status-sold",
+      isSold
+    );
 
-        filterGroup.classList.toggle(
-          "collection-filter-ignored",
-          isSold
-        );
+    /*
+      SOLD keeps these controls visible in the requested order,
+      but they are intentionally inactive because SOLD must show
+      all former pairs regardless of category / condition / size.
+    */
+    const normalGroups = [
+      document.getElementById("condition-filter-label")
+        ?.closest(".filter-group"),
+      document.getElementById("edition-filter-label")
+        ?.closest(".filter-group"),
+      document.getElementById("size-filter-label")
+        ?.closest(".filter-group")
+    ].filter(Boolean);
 
-        filterGroup.setAttribute(
-          "aria-disabled",
-          isSold ? "true" : "false"
-        );
-      });
+    normalGroups.forEach(group => {
+      group.classList.toggle(
+        "collection-filter-ignored",
+        isSold
+      );
+
+      group.setAttribute(
+        "aria-disabled",
+        isSold ? "true" : "false"
+      );
+    });
 
     if (isSold) {
-      document.getElementById("clear-filters")?.classList.remove("visible");
-    } else if (typeof updateFilterInterface === "function") {
-      updateFilterInterface();
+      document
+        .getElementById("clear-filters")
+        ?.classList.remove("visible");
     }
+
+    reorderFilterGroups();
   }
 
   function setCollectionStatusView(status) {
-    const next = status === STATUS_SOLD ? STATUS_SOLD : STATUS_OWN;
+    const next =
+      status === STATUS_SOLD
+        ? STATUS_SOLD
+        : STATUS_OWN;
 
-    if (collectionStatusView === next) {
-      updateStatusFilterUI();
-      return;
-    }
+    /*
+      Always clear old search/filter state, even when clicking
+      the currently active tab. This guarantees OWN can recover
+      immediately from a stale filter state.
+    */
+    clearTransientFiltering();
 
     collectionStatusView = next;
+
     updateStatusFilterUI();
 
     try {
@@ -2112,7 +2193,7 @@ const sneakers = [
   }
 
   /* ---------------------------------------------------------
-     SOLD CARD DECORATION
+     FIND DATA ITEM REPRESENTED BY A RENDERED CARD
   --------------------------------------------------------- */
 
   function getRenderedSneaker(card) {
@@ -2124,14 +2205,21 @@ const sneakers = [
 
     if (link) {
       try {
-        const url = new URL(link.href, window.location.href);
-        const id = url.searchParams.get("id");
-        const byId = sneakers.find(item => item.id === id);
+        const url =
+          new URL(link.href, window.location.href);
+
+        const id =
+          url.searchParams.get("id");
+
+        const byId =
+          sneakers.find(item => item.id === id);
+
         if (byId) return byId;
       } catch (_) {}
     }
 
     const image = card.querySelector("img");
+
     const renderedSrc =
       image?.getAttribute("src") ||
       image?.getAttribute("data-src") ||
@@ -2139,45 +2227,194 @@ const sneakers = [
 
     if (!renderedSrc) return null;
 
-    const renderedName = renderedSrc.split("/").pop()?.split("?")[0] || "";
-
-    return sneakers.find(item => {
-      const itemName = String(item.image || "")
+    const renderedName =
+      renderedSrc
         .split("/")
         .pop()
         ?.split("?")[0] || "";
 
-      return itemName && itemName === renderedName;
+    return sneakers.find(item => {
+      const itemName =
+        String(item.image || "")
+          .split("/")
+          .pop()
+          ?.split("?")[0] || "";
+
+      return itemName &&
+        itemName === renderedName;
     }) || null;
   }
 
-  function decorateVisibleCards() {
-    const grid = document.getElementById("sneaker-grid");
-    if (!grid) return;
+  /* ---------------------------------------------------------
+     SOLD BADGE BESIDE EDITION / CATEGORY
+  --------------------------------------------------------- */
 
-    const soldMode = collectionStatusView === STATUS_SOLD;
+  function removeSoldBadge(card) {
+    card
+      .querySelectorAll(".collection-sold-badge")
+      .forEach(badge => badge.remove());
 
-    grid
-      .querySelectorAll(".card, .sneaker-3d-card")
-      .forEach(card => {
-        const sneaker = getRenderedSneaker(card);
-        const normalizedArchiveImage = Boolean(sneaker?.archiveFit);
+    card
+      .querySelectorAll(".card-edition-status")
+      .forEach(wrapper => {
+        const editionBadge =
+          wrapper.querySelector(
+            ".badge:not(.collection-sold-badge)"
+          );
 
-        card.classList.toggle("is-sold-card", soldMode);
-        card.classList.toggle("archive-normalized-card", normalizedArchiveImage);
+        const meta =
+          wrapper.closest(".card-meta");
 
-        let badge = card.querySelector(":scope > .collection-sold-badge");
-
-        if (soldMode && !badge) {
-          badge = document.createElement("span");
-          badge.className = "collection-sold-badge";
-          badge.textContent = "SOLD";
-          badge.setAttribute("aria-label", "Sold");
-          card.appendChild(badge);
+        if (editionBadge && meta) {
+          meta.insertBefore(
+            editionBadge,
+            wrapper
+          );
         }
 
-        if (!soldMode && badge) {
-          badge.remove();
+        wrapper.remove();
+      });
+  }
+
+  function addSoldBadgeBesideEdition(card) {
+    /*
+      GRID CARD:
+      .card-meta normally contains:
+      [ edition badge ] [ size ]
+    */
+    const meta =
+      card.querySelector(".card-meta");
+
+    if (meta) {
+      let wrapper =
+        meta.querySelector(".card-edition-status");
+
+      const editionBadge =
+        meta.querySelector(
+          ".badge:not(.collection-sold-badge)"
+        );
+
+      if (!wrapper) {
+        wrapper =
+          document.createElement("span");
+
+        wrapper.className =
+          "card-edition-status";
+
+        if (editionBadge) {
+          meta.insertBefore(
+            wrapper,
+            editionBadge
+          );
+
+          wrapper.appendChild(
+            editionBadge
+          );
+        } else {
+          meta.insertBefore(
+            wrapper,
+            meta.firstChild
+          );
+        }
+      }
+
+      let soldBadge =
+        wrapper.querySelector(
+          ".collection-sold-badge"
+        );
+
+      if (!soldBadge) {
+        soldBadge =
+          document.createElement("span");
+
+        soldBadge.className =
+          "collection-sold-badge";
+
+        soldBadge.textContent =
+          "SOLD";
+
+        soldBadge.setAttribute(
+          "aria-label",
+          "Sold"
+        );
+
+        wrapper.appendChild(
+          soldBadge
+        );
+      }
+
+      return;
+    }
+
+    /*
+      3D card fallback:
+      place SOLD beside the first edition badge if the 3D
+      renderer has a comparable badge element.
+    */
+    const editionBadge =
+      card.querySelector(
+        ".badge:not(.collection-sold-badge)"
+      );
+
+    if (editionBadge) {
+      let soldBadge =
+        editionBadge.parentElement
+          ?.querySelector(
+            ".collection-sold-badge"
+          );
+
+      if (!soldBadge) {
+        soldBadge =
+          document.createElement("span");
+
+        soldBadge.className =
+          "collection-sold-badge";
+
+        soldBadge.textContent =
+          "SOLD";
+
+        editionBadge.insertAdjacentElement(
+          "afterend",
+          soldBadge
+        );
+      }
+    }
+  }
+
+  function decorateVisibleCards() {
+    const grid =
+      document.getElementById("sneaker-grid");
+
+    if (!grid) return;
+
+    grid
+      .querySelectorAll(
+        ".card, .sneaker-3d-card"
+      )
+      .forEach(card => {
+        const sneaker =
+          getRenderedSneaker(card);
+
+        const isSold =
+          statusOf(sneaker) === STATUS_SOLD;
+
+        const archiveFit =
+          Boolean(sneaker?.archiveFit);
+
+        card.classList.toggle(
+          "is-sold-card",
+          isSold
+        );
+
+        card.classList.toggle(
+          "archive-normalized-card",
+          archiveFit
+        );
+
+        if (isSold) {
+          addSoldBadgeBesideEdition(card);
+        } else {
+          removeSoldBadge(card);
         }
       });
   }
@@ -2187,21 +2424,20 @@ const sneakers = [
   --------------------------------------------------------- */
 
   function updateDetailStatusText() {
-    const label = document.getElementById("label-collection-status");
-    const value = document.getElementById("shoe-collection-status");
+    const label =
+      document.getElementById(
+        "label-collection-status"
+      );
+
+    const value =
+      document.getElementById(
+        "shoe-collection-status"
+      );
 
     if (!label || !value) return;
 
-    let lang = "vi";
-
-    try {
-      if (typeof currentLang !== "undefined") {
-        lang = currentLang === "en" ? "en" : "vi";
-      }
-    } catch (_) {}
-
     label.textContent =
-      lang === "en"
+      getCurrentLang() === "en"
         ? "COLLECTION STATUS"
         : "TRẠNG THÁI BỘ SƯU TẬP";
 
@@ -2209,10 +2445,15 @@ const sneakers = [
   }
 
   function installDetailStatus() {
-    const detail = document.getElementById("shoe-detail");
+    const detail =
+      document.getElementById("shoe-detail");
+
     if (!detail) return;
 
-    const shoeId = new URLSearchParams(window.location.search).get("id");
+    const shoeId =
+      new URLSearchParams(
+        window.location.search
+      ).get("id");
 
     if (
       typeof sneakers === "undefined" ||
@@ -2221,16 +2462,32 @@ const sneakers = [
       return;
     }
 
-    const sneaker = sneakers.find(item => item.id === shoeId);
+    const sneaker =
+      sneakers.find(item => item.id === shoeId);
 
-    if (!sneaker || statusOf(sneaker) !== STATUS_SOLD) return;
+    if (
+      !sneaker ||
+      statusOf(sneaker) !== STATUS_SOLD
+    ) {
+      return;
+    }
 
-    const specs = document.querySelector(".specs-grid");
+    const specs =
+      document.querySelector(".specs-grid");
+
     if (!specs) return;
 
-    if (!document.getElementById("shoe-collection-status")) {
-      const item = document.createElement("div");
-      item.className = "spec-item collection-status-detail-item";
+    if (
+      !document.getElementById(
+        "shoe-collection-status"
+      )
+    ) {
+      const item =
+        document.createElement("div");
+
+      item.className =
+        "spec-item collection-status-detail-item";
+
       item.innerHTML = `
         <span
           class="spec-label"
@@ -2248,7 +2505,10 @@ const sneakers = [
       specs.appendChild(item);
     }
 
-    detail.classList.add("is-sold-detail");
+    detail.classList.add(
+      "is-sold-detail"
+    );
+
     updateDetailStatusText();
   }
 
@@ -2257,13 +2517,24 @@ const sneakers = [
   --------------------------------------------------------- */
 
   function installStatusStyles() {
-    if (document.getElementById("collection-status-styles")) return;
+    const oldStyle =
+      document.getElementById(
+        "collection-status-styles"
+      );
 
-    const style = document.createElement("style");
-    style.id = "collection-status-styles";
+    oldStyle?.remove();
+
+    const style =
+      document.createElement("style");
+
+    style.id =
+      "collection-status-styles";
 
     style.textContent = `
-      /* OWN / SOLD — keep the existing archive filter design */
+      /* ---------------------------------------------------
+         OWN / SOLD FILTER
+      --------------------------------------------------- */
+
       .collection-status-filter-group {
         border-top: 0 !important;
       }
@@ -2282,11 +2553,11 @@ const sneakers = [
 
       .collection-status-chip-sold:not(.active):hover {
         color: #d88787 !important;
-        border-color: rgba(184, 92, 92, .7) !important;
+        border-color: rgba(184, 92, 92, .72) !important;
       }
 
       .collection-filter-ignored {
-        opacity: .34;
+        opacity: .32;
         pointer-events: none;
         user-select: none;
       }
@@ -2296,7 +2567,11 @@ const sneakers = [
         pointer-events: none !important;
       }
 
-      /* Normalize the 35 newly archived SOLD images only. */
+      /* ---------------------------------------------------
+         NEW SOLD IMAGE FIT
+         Keep the previously approved archive sizing.
+      --------------------------------------------------- */
+
       .card.archive-normalized-card .card-img-wrapper img {
         inset: 7% !important;
         width: 86% !important;
@@ -2314,60 +2589,83 @@ const sneakers = [
         object-position: center !important;
       }
 
-      #sneaker-grid.grid-cols-4 .card.archive-normalized-card .card-img-wrapper img,
-      #sneaker-grid.grid-cols-5 .card.archive-normalized-card .card-img-wrapper img {
+      #sneaker-grid.grid-cols-4
+      .card.archive-normalized-card
+      .card-img-wrapper img,
+      #sneaker-grid.grid-cols-5
+      .card.archive-normalized-card
+      .card-img-wrapper img {
         inset: 8% !important;
         width: 84% !important;
         height: 84% !important;
       }
+
+      /* ---------------------------------------------------
+         SOLD CARD — FADED, BUT SOLD BADGE STAYS CLEAR
+      --------------------------------------------------- */
 
       .card.is-sold-card,
       .sneaker-3d-card.is-sold-card {
         position: relative !important;
       }
 
-      .card.is-sold-card > .card-img-wrapper,
-      .card.is-sold-card > .card-info,
-      .sneaker-3d-card.is-sold-card > .sneaker-3d-image,
-      .sneaker-3d-card.is-sold-card > .sneaker-3d-info {
-        opacity: .76;
-        transition: opacity .22s ease;
+      .card.is-sold-card .card-img-wrapper img,
+      .sneaker-3d-card.is-sold-card .sneaker-3d-image img {
+        opacity: .58 !important;
+        filter:
+          saturate(.74)
+          contrast(.92)
+          brightness(.91);
+        transition:
+          opacity .2s ease,
+          filter .2s ease;
       }
 
-      .card.is-sold-card:hover > .card-img-wrapper,
-      .card.is-sold-card:hover > .card-info,
-      .sneaker-3d-card.is-sold-card:hover > .sneaker-3d-image,
-      .sneaker-3d-card.is-sold-card:hover > .sneaker-3d-info {
-        opacity: .88;
+      .card.is-sold-card .card-info h3,
+      .card.is-sold-card .card-info > .subtitle,
+      .card.is-sold-card .card-info > .card-cta,
+      .card.is-sold-card .card-meta > .size,
+      .card.is-sold-card
+      .card-edition-status
+      > .badge:not(.collection-sold-badge) {
+        opacity: .58 !important;
+      }
+
+      .card.is-sold-card:hover .card-img-wrapper img {
+        opacity: .68 !important;
+      }
+
+      /* Edition + SOLD stay together on the LEFT.
+         Size remains on the RIGHT exactly as before. */
+      .card-edition-status {
+        display: inline-flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 5px;
+        min-width: 0;
       }
 
       .collection-sold-badge {
-        position: absolute;
-        top: 12px;
-        right: 12px;
-        z-index: 999;
-
         display: inline-flex;
         align-items: center;
         justify-content: center;
 
-        min-height: 28px;
-        padding: 6px 10px;
+        padding: 5px 8px;
 
-        background: rgba(184, 92, 92, .94);
+        background: #b85c5c;
+        border: 1px solid rgba(255, 255, 255, .12);
+        border-radius: 5px;
+
         color: #fff;
 
-        border: 1px solid rgba(255, 255, 255, .12);
-        border-radius: 6px;
-
-        box-shadow: 0 5px 16px rgba(0, 0, 0, .25);
-
-        font-size: .62rem;
+        font-size: .68em;
         font-weight: 900;
-        line-height: 1;
-        letter-spacing: 1.15px;
+        line-height: 1.2;
+        letter-spacing: .8px;
+        white-space: nowrap;
 
-        pointer-events: none;
+        opacity: 1 !important;
+        filter: none !important;
       }
 
       .collection-status-detail-value {
@@ -2380,34 +2678,34 @@ const sneakers = [
         opacity: .90;
       }
 
-      #sneaker-grid.grid-cols-5 .collection-sold-badge {
-        top: 8px;
-        right: 8px;
-        min-height: 22px;
-        padding: 5px 7px;
-        border-radius: 5px;
-        font-size: .52rem;
-        letter-spacing: .9px;
+      @container sneaker-card
+        (min-width: 135px)
+        and (max-width: 220px) {
+
+        .card-edition-status {
+          gap: 3px !important;
+        }
+
+        .collection-sold-badge {
+          padding: 3px 5px !important;
+          border-radius: 4px !important;
+          font-size: .48rem !important;
+          letter-spacing: .4px !important;
+        }
       }
 
       @media screen and (max-width: 650px) {
-        .card.archive-normalized-card .card-img-wrapper img {
+        .card.archive-normalized-card
+        .card-img-wrapper img {
           inset: 6% !important;
           width: 88% !important;
           height: 88% !important;
         }
 
-        .sneaker-3d-card.archive-normalized-card .sneaker-3d-image img {
+        .sneaker-3d-card.archive-normalized-card
+        .sneaker-3d-image img {
           width: 80% !important;
           height: 80% !important;
-        }
-
-        .collection-sold-badge {
-          top: 8px;
-          right: 8px;
-          min-height: 24px;
-          padding: 5px 8px;
-          font-size: .55rem;
         }
       }
     `;
@@ -2415,26 +2713,44 @@ const sneakers = [
     document.head.appendChild(style);
   }
 
-  installStatusStyles();
-
   /* ---------------------------------------------------------
-     PATCH THE FINAL HOMEPAGE FUNCTIONS AFTER ALL SCRIPTS LOAD
+     FINAL PATCH
+     Runs on window.load, after main.js and the inline search
+     extension have both finished replacing their functions.
   --------------------------------------------------------- */
 
-  document.addEventListener("DOMContentLoaded", () => {
+  function initializeOwnSoldPatch() {
+    if (initialized) return;
+    initialized = true;
+
+    installStatusStyles();
     installDetailStatus();
 
-    const filterPanel = document.querySelector(".filter-panel");
+    const filterPanel =
+      document.querySelector(".filter-panel");
 
+    /*
+      Detail page has no homepage filter panel.
+    */
     if (!filterPanel) {
-      /* Detail page: keep SOLD status localized when language changes. */
-      if (typeof updateLanguageInterface === "function") {
-        const originalUpdateLanguageInterface = updateLanguageInterface;
+      if (
+        typeof updateLanguageInterface === "function"
+      ) {
+        const previousLanguageUpdate =
+          updateLanguageInterface;
 
-        updateLanguageInterface = function () {
-          originalUpdateLanguageInterface();
-          updateDetailStatusText();
-        };
+        updateLanguageInterface =
+          function (...args) {
+            const result =
+              previousLanguageUpdate.apply(
+                this,
+                args
+              );
+
+            updateDetailStatusText();
+
+            return result;
+          };
       }
 
       return;
@@ -2442,184 +2758,302 @@ const sneakers = [
 
     createStatusFilterUI();
 
-    /* OWN / SOLD filtering.
-       OWN uses Edition / Condition / Size.
-       SOLD deliberately ignores those filters.
-       Search remains available in both views. */
-    if (typeof filterSneakers === "function") {
-      filterSneakers = function (items) {
-        const source = Array.isArray(items) ? items : [];
+    /*
+      Capture the FINAL existing filter:
+      main.js filters + the existing search extension.
+    */
+    const finalExistingFilter =
+      typeof filterSneakers === "function"
+        ? filterSneakers
+        : items => items;
 
-        let result = source.filter(
-          item => statusOf(item) === collectionStatusView
+    filterSneakers =
+      function (items) {
+        const source =
+          Array.isArray(items)
+            ? items
+            : [];
+
+        const statusItems =
+          source.filter(
+            item =>
+              statusOf(item) ===
+              collectionStatusView
+          );
+
+        /*
+          SOLD:
+          ignore edition / condition / size.
+          Search still works.
+        */
+        if (
+          collectionStatusView ===
+          STATUS_SOLD
+        ) {
+          return searchOnly(statusItems);
+        }
+
+        /*
+          OWN:
+          use the site's original filters + search.
+        */
+        return finalExistingFilter(
+          statusItems
         );
+      };
 
-        if (collectionStatusView === STATUS_OWN) {
-          result = result.filter(sneaker => {
-            if (
-              activeFilters.edition.size > 0 &&
-              ![...activeFilters.edition].some(
-                value => getEditionCategories(sneaker).has(value)
-              )
-            ) {
-              return false;
-            }
+    /*
+      Size chips always describe OWN.
+      SOLD ignores size filters anyway.
+    */
+    if (
+      typeof getAvailableSizes === "function"
+    ) {
+      getAvailableSizes =
+        function () {
+          return [
+            ...new Set(
+              itemsForStatus(STATUS_OWN)
+                .map(item => {
+                  const match =
+                    String(
+                      item.size ?? ""
+                    ).match(
+                      /(\d+(?:\.\d+)?)/
+                    );
 
-            if (
-              activeFilters.condition.size > 0 &&
-              !activeFilters.condition.has(
-                getConditionCategory(sneaker)
-              )
-            ) {
-              return false;
-            }
+                  return match
+                    ? Number(match[1])
+                    : null;
+                })
+                .filter(
+                  value =>
+                    value !== null &&
+                    Number.isFinite(value)
+                )
+            )
+          ].sort((a, b) => a - b);
+        };
 
-            if (activeFilters.size.size > 0) {
-              const size = normalizeSizeValue(sneaker.size);
-
-              if (!activeFilters.size.has(size)) {
-                return false;
-              }
-            }
-
-            return true;
-          });
+      try {
+        if (
+          typeof renderSizeFilterButtons ===
+          "function"
+        ) {
+          renderSizeFilterButtons();
+        } else if (
+          typeof renderSizeFilters ===
+          "function"
+        ) {
+          renderSizeFilters();
         }
-
-        return searchOnly(result);
-      };
+      } catch (_) {}
     }
 
-    /* Size choices should describe the owned collection, not former pairs. */
-    if (typeof getAvailableSizes === "function") {
-      getAvailableSizes = function () {
-        return [
-          ...new Set(
-            itemsForStatus(STATUS_OWN)
-              .map(item => {
-                const match = String(item.size ?? "").match(/(\d+(?:\.\d+)?)/);
-                return match ? Number(match[1]) : null;
-              })
-              .filter(value => value !== null && Number.isFinite(value))
-          )
-        ].sort((a, b) => a - b);
-      };
+    /*
+      Preserve the site's filter updater, then restore
+      our status UI and order after every update.
+    */
+    if (
+      typeof updateFilterInterface ===
+      "function"
+    ) {
+      const previousFilterUpdate =
+        updateFilterInterface;
 
-      if (typeof renderSizeFilters === "function") {
-        renderSizeFilters();
-      }
-    }
+      updateFilterInterface =
+        function (...args) {
+          const result =
+            previousFilterUpdate.apply(
+              this,
+              args
+            );
 
-    /* Clear button remains hidden while SOLD ignores normal filters. */
-    if (typeof updateFilterInterface === "function") {
-      const originalUpdateFilterInterface = updateFilterInterface;
+          updateStatusFilterUI();
 
-      updateFilterInterface = function () {
-        originalUpdateFilterInterface();
-
-        if (collectionStatusView === STATUS_SOLD) {
-          document.getElementById("clear-filters")?.classList.remove("visible");
-        }
-
-        updateStatusFilterUI();
-      };
-    }
-
-    /* Translate the new status label with the rest of the interface. */
-    if (typeof updateStaticText === "function") {
-      const originalUpdateStaticText = updateStaticText;
-
-      updateStaticText = function () {
-        originalUpdateStaticText();
-        updateStatusFilterUI();
-      };
-    }
-
-    /* Counter is scoped to OWN or SOLD, not the combined archive. */
-    if (typeof updateCollectionCount === "function") {
-      updateCollectionCount = function (count) {
-        const element = document.getElementById("collection-count");
-        if (!element) return;
-
-        const total = itemsForStatus(collectionStatusView).length;
-
-        let lang = "vi";
-        try {
-          if (typeof currentLang !== "undefined") {
-            lang = currentLang === "en" ? "en" : "vi";
+          if (
+            collectionStatusView ===
+            STATUS_SOLD
+          ) {
+            document
+              .getElementById(
+                "clear-filters"
+              )
+              ?.classList.remove(
+                "visible"
+              );
           }
-        } catch (_) {}
 
-        let searchActive = false;
-        try {
-          searchActive =
-            typeof archiveSearchQuery !== "undefined" &&
-            String(archiveSearchQuery).trim().length > 0;
-        } catch (_) {}
+          return result;
+        };
+    }
 
-        let normalFiltersActive = false;
+    /*
+      Keep the new COLLECTION label translated when the
+      existing VI / EN interface refreshes.
+    */
+    if (
+      typeof updateStaticText === "function"
+    ) {
+      const previousStaticText =
+        updateStaticText;
 
-        if (collectionStatusView === STATUS_OWN) {
+      updateStaticText =
+        function (...args) {
+          const result =
+            previousStaticText.apply(
+              this,
+              args
+            );
+
+          updateStatusFilterUI();
+
+          return result;
+        };
+    }
+
+    /*
+      Counter is scoped to the active collection state.
+    */
+    if (
+      typeof updateCollectionCount ===
+      "function"
+    ) {
+      updateCollectionCount =
+        function (count) {
+          const element =
+            document.getElementById(
+              "collection-count"
+            );
+
+          if (!element) return;
+
+          const total =
+            itemsForStatus(
+              collectionStatusView
+            ).length;
+
+          const lang =
+            getCurrentLang();
+
+          let searchActive = false;
+
           try {
-            normalFiltersActive =
-              typeof activeFilters !== "undefined" &&
-              (
+            searchActive =
+              String(
+                archiveSearchQuery || ""
+              ).trim().length > 0;
+          } catch (_) {}
+
+          let filtersActive = false;
+
+          if (
+            collectionStatusView ===
+            STATUS_OWN
+          ) {
+            try {
+              filtersActive =
                 activeFilters.edition.size > 0 ||
                 activeFilters.condition.size > 0 ||
-                activeFilters.size.size > 0
-              );
-          } catch (_) {}
-        }
+                activeFilters.size.size > 0;
+            } catch (_) {}
+          }
 
-        if (searchActive || normalFiltersActive) {
-          element.textContent =
-            lang === "en"
-              ? `SHOWING: ${count} / ${total} PAIRS`
-              : `HIỂN THỊ: ${count} / ${total} ĐÔI`;
-        } else {
-          element.textContent =
-            lang === "en"
-              ? `TOTAL: ${total} PAIRS`
-              : `TỔNG SỐ: ${total} ĐÔI`;
-        }
-      };
+          if (
+            searchActive ||
+            filtersActive
+          ) {
+            element.textContent =
+              lang === "en"
+                ? `SHOWING: ${count} / ${total} PAIRS`
+                : `HIỂN THỊ: ${count} / ${total} ĐÔI`;
+          } else {
+            element.textContent =
+              lang === "en"
+                ? `TOTAL: ${total} PAIRS`
+                : `TỔNG SỐ: ${total} ĐÔI`;
+          }
+        };
     }
 
-    /* Decorate normal Grid cards and 3D cards after every render. */
-    if (typeof renderGrid === "function") {
-      const originalRenderGrid = renderGrid;
+    /*
+      Decorate cards after every Grid / 3D render.
+    */
+    if (
+      typeof renderGrid === "function"
+    ) {
+      const previousRenderGrid =
+        renderGrid;
 
-      renderGrid = function (...args) {
-        const result = originalRenderGrid(...args);
+      renderGrid =
+        function (...args) {
+          const result =
+            previousRenderGrid.apply(
+              this,
+              args
+            );
 
-        requestAnimationFrame(() => {
-          decorateVisibleCards();
-          updateStatusFilterUI();
-        });
+          requestAnimationFrame(() => {
+            decorateVisibleCards();
+            updateStatusFilterUI();
+          });
 
-        return result;
-      };
+          return result;
+        };
     }
 
-    /* Catch asynchronous 3D DOM rebuilds as well. */
-    const grid = document.getElementById("sneaker-grid");
+    /*
+      3D renderer may rebuild the DOM asynchronously.
+    */
+    const grid =
+      document.getElementById(
+        "sneaker-grid"
+      );
 
     if (grid) {
-      const observer = new MutationObserver(() => {
-        decorateVisibleCards();
-      });
+      const observer =
+        new MutationObserver(() => {
+          decorateVisibleCards();
+        });
 
-      observer.observe(grid, {
-        childList: true,
-        subtree: true
-      });
+      observer.observe(
+        grid,
+        {
+          childList: true,
+          subtree: true
+        }
+      );
     }
 
+    /*
+      Default safely to OWN and clear any stale filter state
+      left by older patch versions / browser history.
+    */
+    collectionStatusView =
+      STATUS_OWN;
+
+    clearTransientFiltering();
     updateStatusFilterUI();
 
-    if (typeof renderGrid === "function") {
+    if (
+      typeof renderGrid === "function"
+    ) {
       renderGrid();
     }
-  });
-})();
+  }
 
+  if (
+    document.readyState === "complete"
+  ) {
+    setTimeout(
+      initializeOwnSoldPatch,
+      0
+    );
+  } else {
+    window.addEventListener(
+      "load",
+      initializeOwnSoldPatch,
+      { once: true }
+    );
+  }
+})();
