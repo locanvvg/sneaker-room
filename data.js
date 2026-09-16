@@ -2636,21 +2636,6 @@ const sneakers = [
       img[src*="jordan1_cityofflight.png"] {
         transform: scale(.44) !important;
       }
-
-      /*
-        3D stays native. Only City of Flight needs a slightly
-        smaller image box because its PNG subject fills more
-        of the canvas than the other shoes.
-      */
-      #sneaker-grid.locan-3d-view
-      .sneaker-3d-image
-      img[src*="jordan1_cityofflight.png"] {
-        width: 72% !important;
-        height: 72% !important;
-        object-fit: contain !important;
-        object-position: center !important;
-      }
-
       /* ---------------------------------------------------
          GRID GEOMETRY SAFETY
          PRE-OWNED uses the exact same card geometry as OWN.
@@ -2750,20 +2735,6 @@ const sneakers = [
         filter: none !important;
       }
 
-      /* 3D PRE-OWNED badge */
-      #sneaker-grid.locan-3d-view .card-edition-status {
-        display: inline-flex !important;
-        align-items: center !important;
-        gap: 5px !important;
-        flex-wrap: wrap !important;
-      }
-
-      #sneaker-grid.locan-3d-view .collection-sold-badge {
-        opacity: 1 !important;
-        filter: none !important;
-        transform: none !important;
-      }
-
       .collection-status-detail-value {
         color: #c96f6f !important;
         font-weight: 800;
@@ -2795,65 +2766,86 @@ const sneakers = [
 
 
       /* ---------------------------------------------------
-         PRE-OWNED 3D IMAGE SCALE — FINAL TUNING
+         PRE-OWNED 3D — FINAL
 
-         Keep the native 3D card transforms untouched.
-         Only reduce the shoe image inside each 3D card.
+         The class is placed directly on every PRE-OWNED 3D card,
+         so this does not depend on a BODY class or current filter.
+         It therefore survives every 3D re-render / slide movement.
       --------------------------------------------------- */
 
-      body.collection-status-sold
       #sneaker-grid.locan-3d-view
+      .sneaker-3d-card.is-preowned-3d
       .sneaker-3d-image img {
-        width: 47% !important;
-        height: 47% !important;
-
-        max-width: 47% !important;
-        max-height: 47% !important;
+        width: 44% !important;
+        height: 44% !important;
+        max-width: 44% !important;
+        max-height: 44% !important;
 
         object-fit: contain !important;
         object-position: center center !important;
 
+        /*
+          Do not transform the image itself.
+          The native cover-flow transform stays on the CARD.
+        */
         transform: none !important;
       }
 
-      /* City of Flight still fills its PNG canvas more than the others. */
-      body.collection-status-sold
       #sneaker-grid.locan-3d-view
-      .sneaker-3d-image
-      img[src*="jordan1_cityofflight.png"] {
-        width: 49% !important;
-        height: 49% !important;
+      .sneaker-3d-card.is-preowned-3d
+      .sneaker-3d-meta-left {
+        display: inline-flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 5px;
+        min-width: 0;
+      }
 
-        max-width: 49% !important;
-        max-height: 49% !important;
+      #sneaker-grid.locan-3d-view
+      .sneaker-3d-card.is-preowned-3d
+      .preowned-3d-badge {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
 
-        transform: none !important;
+        padding: 5px 7px !important;
+
+        color: #fff !important;
+        background: #b85c5c !important;
+
+        border:
+          1px solid
+          rgba(255, 255, 255, .12) !important;
+
+        border-radius: 6px !important;
+
+        font-size: .60rem !important;
+        font-weight: 900 !important;
+        line-height: 1.15 !important;
+        letter-spacing: .45px !important;
+        white-space: nowrap;
+
+        opacity: 1 !important;
+        filter: none !important;
       }
 
       @media screen and (max-width: 650px) {
-        body.collection-status-sold
         #sneaker-grid.locan-3d-view
+        .sneaker-3d-card.is-preowned-3d
         .sneaker-3d-image img {
-          width: 49% !important;
-          height: 49% !important;
-
-          max-width: 49% !important;
-          max-height: 49% !important;
-
+          width: 46% !important;
+          height: 46% !important;
+          max-width: 46% !important;
+          max-height: 46% !important;
           transform: none !important;
         }
 
-        body.collection-status-sold
         #sneaker-grid.locan-3d-view
-        .sneaker-3d-image
-        img[src*="jordan1_cityofflight.png"] {
-          width: 51% !important;
-          height: 51% !important;
-
-          max-width: 51% !important;
-          max-height: 51% !important;
-
-          transform: none !important;
+        .sneaker-3d-card.is-preowned-3d
+        .preowned-3d-badge {
+          padding: 4px 6px !important;
+          font-size: .54rem !important;
+          letter-spacing: .3px !important;
         }
       }
 
@@ -2906,6 +2898,128 @@ const sneakers = [
     }
 
     createStatusFilterUI();
+
+    /*
+      PRE-OWNED 3D CARD RENDERER
+      --------------------------
+      Patch the site's native 3D card renderer once main.js exists.
+      Every time the cover-flow re-renders, PRE-OWNED markup and
+      badge are generated correctly from the data itself.
+    */
+    if (typeof render3DCard === "function") {
+      render3DCard =
+        function (
+          sneaker,
+          index,
+          offset
+        ) {
+          const title =
+            getLocalizedText(
+              sneaker.title
+            );
+
+          const subtitle =
+            getLocalizedText(
+              sneaker.subtitle
+            );
+
+          const edition =
+            getLocalizedText(
+              sneaker.editionType
+            );
+
+          const isPreOwned =
+            statusOf(sneaker) ===
+            STATUS_SOLD;
+
+          const preOwnedClass =
+            isPreOwned
+              ? " is-preowned-3d"
+              : "";
+
+          const preOwnedBadge =
+            isPreOwned
+              ? `
+                  <span
+                    class="preowned-3d-badge"
+                  >
+                    PRE-OWNED
+                  </span>
+                `
+              : "";
+
+          return `
+            <article
+              class="sneaker-3d-card${preOwnedClass}"
+              data-index="${index}"
+              data-offset="${offset}"
+              tabindex="0"
+              role="button"
+              aria-label="${escapeHTML(
+                title
+              )}"
+            >
+
+              <div class="sneaker-3d-image">
+                <img
+                  src="${escapeHTML(
+                    sneaker.image || ""
+                  )}"
+                  alt="${escapeHTML(
+                    title
+                  )}"
+                  loading="${
+                    offset === 0
+                      ? "eager"
+                      : "lazy"
+                  }"
+                  decoding="async"
+                  draggable="false"
+                >
+              </div>
+
+              <div class="sneaker-3d-info">
+
+                <h3>
+                  ${escapeHTML(
+                    title
+                  )}
+                </h3>
+
+                <p>
+                  ${escapeHTML(
+                    subtitle
+                  )}
+                </p>
+
+                <div class="sneaker-3d-meta">
+
+                  <div
+                    class="sneaker-3d-meta-left"
+                  >
+                    <span>
+                      ${escapeHTML(
+                        edition || "—"
+                      )}
+                    </span>
+
+                    ${preOwnedBadge}
+                  </div>
+
+                  <small>
+                    ${escapeHTML(
+                      sneaker.size || ""
+                    )}
+                  </small>
+
+                </div>
+
+              </div>
+
+            </article>
+          `;
+        };
+    }
 
     /*
       Capture the FINAL existing filter:
@@ -3144,13 +3258,16 @@ const sneakers = [
 
           requestAnimationFrame(() => {
             /*
-              Apply PRE-OWNED decoration in both Grid and 3D:
-              - faded PRE-OWNED cards
-              - PRE-OWNED badge beside edition badge
+              PRE-OWNED visual decoration belongs to Grid only.
+              Never mutate the 3D cover-flow DOM.
             */
             try {
+              if (collectionViewMode === "grid") {
+                decorateVisibleCards();
+              }
+            } catch (_) {
               decorateVisibleCards();
-            } catch (_) {}
+            }
 
             updateStatusFilterUI();
           });
