@@ -2779,6 +2779,70 @@ const sneakers = [
 
 
 
+
+      /* ---------------------------------------------------
+         PRE-OWNED 3D IMAGE SCALE — FINAL TUNING
+
+         Keep the native 3D card transforms untouched.
+         Only reduce the shoe image inside each 3D card.
+      --------------------------------------------------- */
+
+      body.collection-status-sold
+      #sneaker-grid.locan-3d-view
+      .sneaker-3d-image img {
+        width: 50% !important;
+        height: 50% !important;
+
+        max-width: 50% !important;
+        max-height: 50% !important;
+
+        object-fit: contain !important;
+        object-position: center center !important;
+
+        transform: none !important;
+      }
+
+      /* City of Flight still fills its PNG canvas more than the others. */
+      body.collection-status-sold
+      #sneaker-grid.locan-3d-view
+      .sneaker-3d-image
+      img[src*="jordan1_cityofflight.png"] {
+        width: 50% !important;
+        height: 50% !important;
+
+        max-width: 50% !important;
+        max-height: 50% !important;
+
+        transform: none !important;
+      }
+
+      @media screen and (max-width: 650px) {
+        body.collection-status-sold
+        #sneaker-grid.locan-3d-view
+        .sneaker-3d-image img {
+          width: 52% !important;
+          height: 52% !important;
+
+          max-width: 52% !important;
+          max-height: 52% !important;
+
+          transform: none !important;
+        }
+
+        body.collection-status-sold
+        #sneaker-grid.locan-3d-view
+        .sneaker-3d-image
+        img[src*="jordan1_cityofflight.png"] {
+          width: 52% !important;
+          height: 52% !important;
+
+          max-width: 52% !important;
+          max-height: 52% !important;
+
+          transform: none !important;
+        }
+      }
+
     `;
 
     document.head.appendChild(style);
