@@ -2636,6 +2636,21 @@ const sneakers = [
       img[src*="jordan1_cityofflight.png"] {
         transform: scale(.44) !important;
       }
+
+      /*
+        3D stays native. Only City of Flight needs a slightly
+        smaller image box because its PNG subject fills more
+        of the canvas than the other shoes.
+      */
+      #sneaker-grid.locan-3d-view
+      .sneaker-3d-image
+      img[src*="jordan1_cityofflight.png"] {
+        width: 72% !important;
+        height: 72% !important;
+        object-fit: contain !important;
+        object-position: center !important;
+      }
+
       /* ---------------------------------------------------
          GRID GEOMETRY SAFETY
          PRE-OWNED uses the exact same card geometry as OWN.
@@ -2766,86 +2781,65 @@ const sneakers = [
 
 
       /* ---------------------------------------------------
-         PRE-OWNED 3D — FINAL
+         PRE-OWNED 3D IMAGE SCALE — FINAL TUNING
 
-         The class is placed directly on every PRE-OWNED 3D card,
-         so this does not depend on a BODY class or current filter.
-         It therefore survives every 3D re-render / slide movement.
+         Keep the native 3D card transforms untouched.
+         Only reduce the shoe image inside each 3D card.
       --------------------------------------------------- */
 
+      body.collection-status-sold
       #sneaker-grid.locan-3d-view
-      .sneaker-3d-card.is-preowned-3d
       .sneaker-3d-image img {
-        width: 44% !important;
-        height: 44% !important;
-        max-width: 44% !important;
-        max-height: 44% !important;
+        width: 50% !important;
+        height: 50% !important;
+
+        max-width: 50% !important;
+        max-height: 50% !important;
 
         object-fit: contain !important;
         object-position: center center !important;
 
-        /*
-          Do not transform the image itself.
-          The native cover-flow transform stays on the CARD.
-        */
         transform: none !important;
       }
 
+      /* City of Flight still fills its PNG canvas more than the others. */
+      body.collection-status-sold
       #sneaker-grid.locan-3d-view
-      .sneaker-3d-card.is-preowned-3d
-      .sneaker-3d-meta-left {
-        display: inline-flex;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 5px;
-        min-width: 0;
-      }
+      .sneaker-3d-image
+      img[src*="jordan1_cityofflight.png"] {
+        width: 50% !important;
+        height: 50% !important;
 
-      #sneaker-grid.locan-3d-view
-      .sneaker-3d-card.is-preowned-3d
-      .preowned-3d-badge {
-        display: inline-flex !important;
-        align-items: center;
-        justify-content: center;
+        max-width: 50% !important;
+        max-height: 50% !important;
 
-        padding: 5px 7px !important;
-
-        color: #fff !important;
-        background: #b85c5c !important;
-
-        border:
-          1px solid
-          rgba(255, 255, 255, .12) !important;
-
-        border-radius: 6px !important;
-
-        font-size: .60rem !important;
-        font-weight: 900 !important;
-        line-height: 1.15 !important;
-        letter-spacing: .45px !important;
-        white-space: nowrap;
-
-        opacity: 1 !important;
-        filter: none !important;
+        transform: none !important;
       }
 
       @media screen and (max-width: 650px) {
+        body.collection-status-sold
         #sneaker-grid.locan-3d-view
-        .sneaker-3d-card.is-preowned-3d
         .sneaker-3d-image img {
-          width: 46% !important;
-          height: 46% !important;
-          max-width: 46% !important;
-          max-height: 46% !important;
+          width: 52% !important;
+          height: 52% !important;
+
+          max-width: 52% !important;
+          max-height: 52% !important;
+
           transform: none !important;
         }
 
+        body.collection-status-sold
         #sneaker-grid.locan-3d-view
-        .sneaker-3d-card.is-preowned-3d
-        .preowned-3d-badge {
-          padding: 4px 6px !important;
-          font-size: .54rem !important;
-          letter-spacing: .3px !important;
+        .sneaker-3d-image
+        img[src*="jordan1_cityofflight.png"] {
+          width: 52% !important;
+          height: 52% !important;
+
+          max-width: 52% !important;
+          max-height: 52% !important;
+
+          transform: none !important;
         }
       }
 
@@ -2898,128 +2892,6 @@ const sneakers = [
     }
 
     createStatusFilterUI();
-
-    /*
-      PRE-OWNED 3D CARD RENDERER
-      --------------------------
-      Patch the site's native 3D card renderer once main.js exists.
-      Every time the cover-flow re-renders, PRE-OWNED markup and
-      badge are generated correctly from the data itself.
-    */
-    if (typeof render3DCard === "function") {
-      render3DCard =
-        function (
-          sneaker,
-          index,
-          offset
-        ) {
-          const title =
-            getLocalizedText(
-              sneaker.title
-            );
-
-          const subtitle =
-            getLocalizedText(
-              sneaker.subtitle
-            );
-
-          const edition =
-            getLocalizedText(
-              sneaker.editionType
-            );
-
-          const isPreOwned =
-            statusOf(sneaker) ===
-            STATUS_SOLD;
-
-          const preOwnedClass =
-            isPreOwned
-              ? " is-preowned-3d"
-              : "";
-
-          const preOwnedBadge =
-            isPreOwned
-              ? `
-                  <span
-                    class="preowned-3d-badge"
-                  >
-                    PRE-OWNED
-                  </span>
-                `
-              : "";
-
-          return `
-            <article
-              class="sneaker-3d-card${preOwnedClass}"
-              data-index="${index}"
-              data-offset="${offset}"
-              tabindex="0"
-              role="button"
-              aria-label="${escapeHTML(
-                title
-              )}"
-            >
-
-              <div class="sneaker-3d-image">
-                <img
-                  src="${escapeHTML(
-                    sneaker.image || ""
-                  )}"
-                  alt="${escapeHTML(
-                    title
-                  )}"
-                  loading="${
-                    offset === 0
-                      ? "eager"
-                      : "lazy"
-                  }"
-                  decoding="async"
-                  draggable="false"
-                >
-              </div>
-
-              <div class="sneaker-3d-info">
-
-                <h3>
-                  ${escapeHTML(
-                    title
-                  )}
-                </h3>
-
-                <p>
-                  ${escapeHTML(
-                    subtitle
-                  )}
-                </p>
-
-                <div class="sneaker-3d-meta">
-
-                  <div
-                    class="sneaker-3d-meta-left"
-                  >
-                    <span>
-                      ${escapeHTML(
-                        edition || "—"
-                      )}
-                    </span>
-
-                    ${preOwnedBadge}
-                  </div>
-
-                  <small>
-                    ${escapeHTML(
-                      sneaker.size || ""
-                    )}
-                  </small>
-
-                </div>
-
-              </div>
-
-            </article>
-          `;
-        };
-    }
 
     /*
       Capture the FINAL existing filter:
@@ -3305,6 +3177,367 @@ const sneakers = [
       "load",
       initializeOwnSoldPatch,
       { once: true }
+    );
+  }
+})();
+
+/* =========================================================
+   PRE-OWNED 3D ACTIVE-RENDERER FIX
+   ---------------------------------------------------------
+   collection-view.js is loaded AFTER data.js and replaces
+   the 3D renderer. Therefore this patch waits until the final
+   collection-view renderer is installed, then wraps it.
+
+   Result:
+   - PRE-OWNED shoes are visibly smaller in 3D.
+   - City of Flight is visually normalized because its PNG
+     contains more transparent space.
+   - PRE-OWNED badge appears beside the edition badge in 3D.
+   - Grid mode is untouched.
+========================================================= */
+
+(() => {
+  "use strict";
+
+  let installed = false;
+  let attempts = 0;
+
+  function cleanImageKey(value) {
+    return String(value || "")
+      .split("?")[0]
+      .split("#")[0]
+      .split("/")
+      .pop()
+      .toLowerCase();
+  }
+
+  function getSneakerFor3DCard(card) {
+    if (
+      typeof sneakers === "undefined" ||
+      !Array.isArray(sneakers)
+    ) {
+      return null;
+    }
+
+    const image = card.querySelector(
+      ".sneaker-3d-image img"
+    );
+
+    if (!image) return null;
+
+    const renderedKey = cleanImageKey(
+      image.getAttribute("src") ||
+      image.getAttribute("data-src") ||
+      image.dataset?.src ||
+      ""
+    );
+
+    if (!renderedKey) return null;
+
+    return sneakers.find(item => {
+      return cleanImageKey(item.image) === renderedKey;
+    }) || null;
+  }
+
+  function isPreOwned(item) {
+    return String(
+      item?.collectionStatus || "own"
+    )
+      .trim()
+      .toLowerCase() === "sold";
+  }
+
+  function ensure3DBadge(card) {
+    const meta = card.querySelector(
+      ".sneaker-3d-meta"
+    );
+
+    if (!meta) return;
+
+    let left = meta.querySelector(
+      ".preowned-3d-meta-left"
+    );
+
+    const edition = meta.querySelector(
+      ":scope > span"
+    );
+
+    if (!left) {
+      left = document.createElement("div");
+      left.className = "preowned-3d-meta-left";
+
+      if (edition) {
+        meta.insertBefore(left, edition);
+        left.appendChild(edition);
+      } else {
+        meta.insertBefore(
+          left,
+          meta.firstChild
+        );
+      }
+    }
+
+    let badge = left.querySelector(
+      ".preowned-3d-badge"
+    );
+
+    if (!badge) {
+      badge = document.createElement("span");
+      badge.className = "preowned-3d-badge";
+      badge.textContent = "PRE-OWNED";
+      badge.setAttribute(
+        "aria-label",
+        "Pre-owned"
+      );
+      left.appendChild(badge);
+    }
+  }
+
+  function decoratePreOwned3D() {
+    const stage = document.getElementById(
+      "sneaker-3d-stage"
+    );
+
+    if (!stage) return;
+
+    stage
+      .querySelectorAll(".sneaker-3d-card")
+      .forEach(card => {
+        const sneaker =
+          getSneakerFor3DCard(card);
+
+        if (!isPreOwned(sneaker)) {
+          return;
+        }
+
+        card.classList.add(
+          "is-preowned-3d-fixed"
+        );
+
+        const image = card.querySelector(
+          ".sneaker-3d-image img"
+        );
+
+        if (image) {
+          const isCity =
+            String(sneaker?.id || "") ===
+              "jordan-1-city-of-flight-2018"
+            ||
+            cleanImageKey(sneaker?.image)
+              .includes("cityofflight");
+
+          /*
+            StockX-style cutouts generally fill their PNG canvas
+            more than the newly edited City of Flight image.
+            62% keeps the archive pairs smaller than the native
+            88% renderer. City gets 68% to match them visually.
+          */
+          const desktopPercent =
+            isCity ? "68%" : "62%";
+
+          image.style.setProperty(
+            "width",
+            desktopPercent,
+            "important"
+          );
+
+          image.style.setProperty(
+            "height",
+            desktopPercent,
+            "important"
+          );
+
+          image.style.setProperty(
+            "max-width",
+            desktopPercent,
+            "important"
+          );
+
+          image.style.setProperty(
+            "max-height",
+            desktopPercent,
+            "important"
+          );
+
+          image.style.setProperty(
+            "object-fit",
+            "contain",
+            "important"
+          );
+
+          image.style.setProperty(
+            "object-position",
+            "center center",
+            "important"
+          );
+        }
+
+        ensure3DBadge(card);
+      });
+  }
+
+  function install3DStyles() {
+    const old = document.getElementById(
+      "preowned-3d-active-fix-style"
+    );
+
+    old?.remove();
+
+    const style =
+      document.createElement("style");
+
+    style.id =
+      "preowned-3d-active-fix-style";
+
+    style.textContent = `
+      #sneaker-grid
+      .sneaker-3d-card.is-preowned-3d-fixed
+      .preowned-3d-meta-left {
+        display: inline-flex !important;
+        align-items: center !important;
+        flex-wrap: wrap !important;
+        gap: 5px !important;
+        min-width: 0 !important;
+      }
+
+      #sneaker-grid
+      .sneaker-3d-card.is-preowned-3d-fixed
+      .preowned-3d-meta-left
+      > span:first-child {
+        margin: 0 !important;
+      }
+
+      #sneaker-grid
+      .sneaker-3d-card.is-preowned-3d-fixed
+      .preowned-3d-badge {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        padding: 5px 7px !important;
+
+        color: #fff !important;
+        background: #b85c5c !important;
+
+        border:
+          1px solid
+          rgba(255, 255, 255, .12)
+          !important;
+
+        border-radius: 6px !important;
+
+        font-size: .60rem !important;
+        font-weight: 900 !important;
+        line-height: 1.15 !important;
+        letter-spacing: .45px !important;
+        white-space: nowrap !important;
+
+        opacity: 1 !important;
+        filter: none !important;
+      }
+
+      @media screen and (max-width: 650px) {
+        #sneaker-grid
+        .sneaker-3d-card.is-preowned-3d-fixed
+        .preowned-3d-badge {
+          padding: 4px 6px !important;
+          font-size: .52rem !important;
+          letter-spacing: .25px !important;
+        }
+      }
+    `;
+
+    document.head.appendChild(style);
+  }
+
+  function attachToFinal3DRenderer() {
+    if (installed) return;
+
+    /*
+      collection-view.js installs this style when its active
+      3D controller is ready. Waiting for it ensures we wrap
+      the renderer that is actually used by the website.
+    */
+    const collectionViewReady =
+      document.getElementById(
+        "collection-view-patch-v7"
+      );
+
+    const finalRenderer =
+      window.render3DGallery;
+
+    if (
+      !collectionViewReady ||
+      typeof finalRenderer !== "function"
+    ) {
+      attempts += 1;
+
+      if (attempts < 120) {
+        setTimeout(
+          attachToFinal3DRenderer,
+          50
+        );
+      }
+
+      return;
+    }
+
+    const originalRender3DGallery =
+      finalRenderer;
+
+    const wrappedRender3DGallery =
+      function (...args) {
+        const result =
+          originalRender3DGallery.apply(
+            this,
+            args
+          );
+
+        requestAnimationFrame(
+          decoratePreOwned3D
+        );
+
+        return result;
+      };
+
+    wrappedRender3DGallery
+      .__locanPreOwned3DFix = true;
+
+    window.render3DGallery =
+      wrappedRender3DGallery;
+
+    install3DStyles();
+
+    installed = true;
+
+    /*
+      Also decorate a 3D gallery that might already be visible
+      when the script finishes installing.
+    */
+    requestAnimationFrame(
+      decoratePreOwned3D
+    );
+  }
+
+  if (
+    document.readyState === "complete"
+  ) {
+    setTimeout(
+      attachToFinal3DRenderer,
+      0
+    );
+  } else {
+    window.addEventListener(
+      "load",
+      () => {
+        setTimeout(
+          attachToFinal3DRenderer,
+          0
+        );
+      },
+      {
+        once: true
+      }
     );
   }
 })();
