@@ -2750,6 +2750,20 @@ const sneakers = [
         filter: none !important;
       }
 
+      /* 3D PRE-OWNED badge */
+      #sneaker-grid.locan-3d-view .card-edition-status {
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 5px !important;
+        flex-wrap: wrap !important;
+      }
+
+      #sneaker-grid.locan-3d-view .collection-sold-badge {
+        opacity: 1 !important;
+        filter: none !important;
+        transform: none !important;
+      }
+
       .collection-status-detail-value {
         color: #c96f6f !important;
         font-weight: 800;
@@ -2790,11 +2804,11 @@ const sneakers = [
       body.collection-status-sold
       #sneaker-grid.locan-3d-view
       .sneaker-3d-image img {
-        width: 50% !important;
-        height: 50% !important;
+        width: 47% !important;
+        height: 47% !important;
 
-        max-width: 50% !important;
-        max-height: 50% !important;
+        max-width: 47% !important;
+        max-height: 47% !important;
 
         object-fit: contain !important;
         object-position: center center !important;
@@ -2807,11 +2821,11 @@ const sneakers = [
       #sneaker-grid.locan-3d-view
       .sneaker-3d-image
       img[src*="jordan1_cityofflight.png"] {
-        width: 50% !important;
-        height: 50% !important;
+        width: 49% !important;
+        height: 49% !important;
 
-        max-width: 50% !important;
-        max-height: 50% !important;
+        max-width: 49% !important;
+        max-height: 49% !important;
 
         transform: none !important;
       }
@@ -2820,11 +2834,11 @@ const sneakers = [
         body.collection-status-sold
         #sneaker-grid.locan-3d-view
         .sneaker-3d-image img {
-          width: 52% !important;
-          height: 52% !important;
+          width: 49% !important;
+          height: 49% !important;
 
-          max-width: 52% !important;
-          max-height: 52% !important;
+          max-width: 49% !important;
+          max-height: 49% !important;
 
           transform: none !important;
         }
@@ -2833,11 +2847,11 @@ const sneakers = [
         #sneaker-grid.locan-3d-view
         .sneaker-3d-image
         img[src*="jordan1_cityofflight.png"] {
-          width: 52% !important;
-          height: 52% !important;
+          width: 51% !important;
+          height: 51% !important;
 
-          max-width: 52% !important;
-          max-height: 52% !important;
+          max-width: 51% !important;
+          max-height: 51% !important;
 
           transform: none !important;
         }
@@ -3130,16 +3144,13 @@ const sneakers = [
 
           requestAnimationFrame(() => {
             /*
-              PRE-OWNED visual decoration belongs to Grid only.
-              Never mutate the 3D cover-flow DOM.
+              Apply PRE-OWNED decoration in both Grid and 3D:
+              - faded PRE-OWNED cards
+              - PRE-OWNED badge beside edition badge
             */
             try {
-              if (collectionViewMode === "grid") {
-                decorateVisibleCards();
-              }
-            } catch (_) {
               decorateVisibleCards();
-            }
+            } catch (_) {}
 
             updateStatusFilterUI();
           });
