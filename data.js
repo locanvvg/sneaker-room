@@ -632,7 +632,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "11 US",
     collectionStatus: "sold",
-    image: "pictures/aj1_homage_to_home_nn.png",
+    image: "pictures/jordan1_h2h.png",
     story: {
       vi: `
         <p><b>Jordan 1 Retro High OG 'Homage to Home'</b> ghép hai hệ màu quan trọng nhất của Air Jordan 1 — Chicago và Bred — vào cùng một đôi giày. Ý tưởng này trực tiếp nhắc tới mối liên hệ giữa Michael Jordan với thành phố Chicago và di sản hình ảnh đã định nghĩa toàn bộ dòng Air Jordan.</p><p>Thay vì chỉ tái phát hành một phối màu OG quen thuộc, Jordan Brand chọn cách cắt đôi color blocking để biến đôi giày thành một phiên bản tổng hợp mang tính kể chuyện rõ rệt. Với Lộc An archive, đây là một ví dụ tiêu biểu cho cách Jordan Brand dùng chính lịch sử của Air Jordan 1 để tạo ra một hiện vật có tính biểu tượng mạnh.</p>
@@ -666,7 +666,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "11 US",
     collectionStatus: "sold",
-    image: "pictures/aj1_yellow_ochre.png",
+    image: "pictures/jordan1_yelloworche.png",
     story: {
       vi: `
         <p><b>Jordan 1 Retro High OG 'Yellow Ochre'</b> tiếp tục truyền thống của Air Jordan 1 trong việc khai thác những bảng màu gần với ngôn ngữ OG mà vẫn tạo ra cá tính riêng. Sắc vàng đất kết hợp đen và Sail khiến đôi giày gợi nhớ đến Taxi hay University Gold nhưng trầm và cổ điển hơn.</p><p>Điểm mạnh của phiên bản này nằm ở cách nó giữ cấu trúc quen thuộc của Jordan 1 High OG trong khi đẩy trọng tâm sang cảm giác vintage và khả năng phối đồ hằng ngày. Đây là một phối màu mới nhưng vẫn bám chặt vào tinh thần lưu trữ của dòng AJ1.</p>
@@ -700,7 +700,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "11 US",
     collectionStatus: "sold",
-    image: "pictures/aj1_game_royal.png",
+    image: "pictures/jordan1_royaltoe.png",
     story: {
       vi: `
         <p><b>Jordan 1 Retro High OG 'Game Royal'</b> là một biến thể hiện đại dựa trên ngôn ngữ của Royal, một trong những hệ màu quan trọng nhất trong lịch sử Air Jordan 1. Cách dùng xanh dương ở heel, collar và outsole khiến đôi giày duy trì liên hệ trực tiếp với di sản OG mà không phải là một bản sao hoàn toàn.</p><p>Phối màu này được ưa chuộng vì dễ gợi liên tưởng đến Royal và Fragment, nhưng vẫn đủ khác biệt để tồn tại như một bản phát hành độc lập. Nó cho thấy sức bền của color blocking Black Toe/Royal trong lịch sử Air Jordan.</p>
@@ -734,7 +734,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "11 US",
     collectionStatus: "sold",
-    image: "pictures/aj1_mid_diamond_shorts.png",
+    image: "pictures/jordan1_diamond.png",
     story: {
       vi: `
         <p><b>Jordan 1 Mid 'Diamond Shorts'</b> lấy cảm hứng từ chiếc quần short lấp lánh Michael Jordan từng mặc trong bức ảnh quảng bá nổi tiếng thời kỳ đầu. Jordan Brand dùng tông trắng, đen và bạc để tạo một bản Jordan 1 Mid mang cảm giác sạch sẽ, bóng bẩy và thiên về biểu tượng hình ảnh.</p><p>Tag hình quả bóng rổ dạng kim cương và những chi tiết phản quang giúp đôi giày khác biệt so với các bản Mid thông thường. Nó là ví dụ cho cách Jordan Brand khai thác kho hình ảnh xung quanh Michael Jordan thay vì chỉ dựa vào các phối màu thi đấu quen thuộc.</p>
@@ -768,7 +768,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "8W / 6.5M US",
     collectionStatus: "sold",
-    image: "pictures/aj4_offwhite_sail.png",
+    image: "pictures/jordan4_ow.png",
     story: {
       vi: `
         <p><b>Jordan 4 x Off-White 'Sail'</b> tiếp tục ngôn ngữ deconstructed của Virgil Abloh trên nền Air Jordan 4. Các cut-out ở quarter panel, phần vật liệu bán trong suốt và typography quen thuộc của Off-White đưa một silhouette Tinker Hatfield kinh điển vào một hệ thẩm mỹ đương đại hơn.</p><p>Khác với nhiều bản Off-White dùng độ tương phản mạnh, phối màu Sail giữ tổng thể mềm và thanh lịch, khiến kết cấu vật liệu trở thành trọng tâm. Đây là một trong những đôi cộng tác quan trọng nhất của giai đoạn cuối thập niên 2010 đầu 2020s trong lịch sử Air Jordan.</p>
@@ -802,7 +802,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "11 US",
     collectionStatus: "sold",
-    image: "pictures/aj1_black_gym_red.png",
+    image: "pictures/jordan1_gymred.png",
     story: {
       vi: `
         <p><b>Jordan 1 Retro High OG 'Black Gym Red'</b> đi theo quỹ đạo của Bred nhưng sử dụng cách phân bố màu khác để tạo một bản phát hành riêng. Toe box đen, panel đỏ và phần nền trắng làm cho đôi giày vừa quen thuộc vừa đủ khác biệt so với những phối màu lịch sử trực tiếp.</p><p>Đây là dạng Jordan 1 được ưa chuộng nhờ ngôn ngữ màu sắc mạnh và gần với DNA Chicago/Bred. Nó thể hiện cách Jordan Brand liên tục khai thác nhóm màu đen–đỏ–trắng mà vẫn tạo ra các biến thể có cá tính riêng.</p>
@@ -836,7 +836,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "11 US",
     collectionStatus: "sold",
-    image: "pictures/aj1_neutral_grey_hyper_crimson.png",
+    image: "pictures/jordan1_crimson.png",
     story: {
       vi: `
         <p><b>Jordan 1 Retro High OG 'Neutral Grey Hyper Crimson'</b> nổi bật bởi phần cổ giày cắt raw-edge và đường nhấn màu Hyper Crimson tạo tương phản mạnh trên nền xám, đen và trắng. Phiên bản này mang tinh thần thử nghiệm nhiều hơn các phối màu OG-oriented thông thường.</p><p>Thay vì dựa vào nostalgia thuần túy, đôi giày nhấn mạnh sự phá cách trong hoàn thiện vật liệu. Nó ghi lại một giai đoạn Jordan Brand đẩy Air Jordan 1 sang những xử lý hiện đại hơn nhưng vẫn giữ nền tảng cấu trúc truyền thống.</p>
@@ -870,7 +870,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10 US",
     collectionStatus: "sold",
-    image: "pictures/yeezy_700_mauve.png",
+    image: "pictures/yz700.png",
     story: {
       vi: `
         <p><b>Yeezy Boost 700 'Mauve'</b> thuộc giai đoạn đỉnh cao của dòng 700, khi ngôn ngữ chunky runner của Kanye West và adidas trở thành một phần trung tâm của sneaker culture cuối thập niên 2010. Phối màu Mauve sử dụng những tông nâu tím, olive và black rất gần với bảng màu đất đặc trưng của Yeezy.</p><p>So với Wave Runner, phiên bản Mauve ít rực rỡ hơn và tập trung nhiều hơn vào tính đeo thường ngày. Nó là đại diện rõ nét cho triết lý của Yeezy: hình khối mạnh, bảng màu trầm và cảm giác lifestyle đặt lên trên các motif thể thao truyền thống.</p>
@@ -904,7 +904,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10.5 US",
     collectionStatus: "sold",
-    image: "pictures/nike_air_trainer1_travis_grey_haze.png",
+    image: "pictures/airtrainer_ts.png",
     story: {
       vi: `
         <p><b>Nike Air Trainer 1 SP x Travis Scott 'Grey Haze'</b> đưa mẫu cross-training kinh điển của Tinker Hatfield vào thế giới thẩm mỹ mang tính utility và outdoor của Travis Scott. Zipper shroud, straps và các lớp branding phụ biến một model tập luyện thập niên 1980 thành một hiện vật mang tính survival gear.</p><p>Điểm thú vị của dự án là việc nó không dựa trên một model hype đương đại, mà quay lại một nền tảng Nike cổ điển rồi tái diễn giải hoàn toàn bằng ngôn ngữ Cactus Jack. Đây là một ví dụ rõ về cách cộng tác có thể làm mới một di sản ít được chú ý hơn.</p>
@@ -938,7 +938,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10 US",
     collectionStatus: "sold",
-    image: "pictures/nike_blazer_low_offwhite_university_red.png",
+    image: "pictures/blazer_ow.png",
     story: {
       vi: `
         <p><b>Nike Blazer Low x Off-White 'University Red'</b> tiếp tục quá trình Virgil Abloh giải cấu trúc Blazer, lần này ở phom low-top với hệ đế gai lớn và upper mang cảm giác thử nghiệm. Dự án đẩy Blazer ra khỏi vùng tennis/basketball heritage truyền thống và sang một lãnh địa gần với concept object hơn.</p><p>University Red tạo một điểm nhấn mạnh trên nền trắng và đen, trong khi hệ dây đôi cùng các chi tiết typography giữ kết nối trực tiếp với ngôn ngữ Off-White. Đây là một phát hành cho thấy Virgil luôn sẵn sàng đẩy các biểu tượng Nike tới những giới hạn thị giác mới.</p>
@@ -972,7 +972,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10 US",
     collectionStatus: "sold",
-    image: "pictures/yeezy_foam_rnnr_stone_sage.png",
+    image: "pictures/yz_fm_rnr.png",
     story: {
       vi: `
         <p><b>Yeezy Foam RNNR 'Stone Sage'</b> đại diện cho giai đoạn Yeezy đẩy footwear sang một hình thái gần như hoàn toàn mới: một khối foam đục lỗ có hình khối hữu cơ, không còn phụ thuộc vào ngôn ngữ upper–midsole truyền thống. Stone Sage giữ đúng DNA màu đất tối giản của dòng Yeezy.</p><p>Foam RNNR là một trong những thiết kế phân cực nhất của thập niên 2020, nhưng cũng là một trong những đôi mang tính định hình cao nhất. Nó phản ánh tham vọng của Yeezy trong việc tái nghĩ lại hình dạng cơ bản của sneaker/sandal lifestyle.</p>
@@ -1006,7 +1006,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10.5 US",
     collectionStatus: "sold",
-    image: "pictures/nike_dunk_low_retro_white_black.png",
+    image: "pictures/dunkpanda.png",
     story: {
       vi: `
         <p><b>Nike Dunk Low 'White Black'</b>, thường được cộng đồng gọi là Panda, là một trong những đôi giày có ảnh hưởng thương mại lớn nhất đầu thập niên 2020. Bảng màu đen–trắng tối giản khiến nó vượt qua biên giới của sneaker collecting để trở thành một item thời trang phổ biến đại chúng.</p><p>Sức hút của đôi giày không nằm ở một câu chuyện phức tạp mà ở tính dễ dùng và khả năng thích nghi với gần như mọi bối cảnh. Trong archive, nó đại diện cho thời điểm Nike Dunk trở lại đỉnh cao văn hóa đại chúng.</p>
@@ -1040,7 +1040,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10.5 US",
     collectionStatus: "sold",
-    image: "pictures/foamposite_one_eggplant_2017.png",
+    image: "pictures/foamposite.png",
     story: {
       vi: `
         <p><b>Nike Air Foamposite One 'Eggplant'</b> là một trong những phối màu kinh điển nhất của Foamposite, nổi bật với lớp shell tím ánh kim đổi màu. Đôi giày gắn liền với tinh thần future-forward của bóng rổ Nike cuối thập niên 1990 và với di sản của Penny Hardaway.</p><p>Phiên bản 2017 đưa Eggplant trở lại cho thế hệ sưu tầm mới, đồng thời nhắc lại giai đoạn Foamposite từng là một trong những đôi performance basketball táo bạo nhất về hình thức. Đây là một cột mốc quan trọng trong lịch sử footwear molded-shell của Nike.</p>
@@ -1074,7 +1074,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "7M US",
     collectionStatus: "sold",
-    image: "pictures/nike_blazer_low_acronym_night_maroon.png",
+    image: "pictures/blazer_acro.png",
     story: {
       vi: `
         <p><b>Nike Blazer Low x Acronym 'Night Maroon'</b> cho thấy cách Errolson Hugh và Acronym tiếp cận heritage sneaker bằng tư duy modular và kỹ thuật. Upper bị cắt tách, tái lắp ghép và bổ sung zip hệ thống, khiến Blazer gần với một đối tượng thiết kế công nghiệp hơn một đôi retro đơn thuần.</p><p>Night Maroon cùng các điểm nhấn sáng làm nổi rõ phần split construction. Đây là một dự án cộng tác dành cho người quan tâm đến cấu trúc và ý tưởng hơn là nostalgia truyền thống.</p>
@@ -1108,7 +1108,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10 US",
     collectionStatus: "sold",
-    image: "pictures/nike_air_skylon2_fog_black_sail.png",
+    image: "pictures/nike_fog_skylon.png",
     story: {
       vi: `
         <p><b>Nike Air Skylon 2 x Fear of God 'Black Sail'</b> là một phần trong giai đoạn Jerry Lorenzo khai thác Nike running heritage song song với dự án Nike Air Fear of God. Dự án giữ phom runner cổ điển của Skylon 2 nhưng làm dịu nó bằng bảng màu đen–Sail và branding tiết chế.</p><p>Khác với Air Fear of God 1 mang tính performance-basketball mạnh, Skylon 2 FOG đi theo hướng nhẹ nhàng hơn và gần với lifestyle. Nó cho thấy biên độ thẩm mỹ khá rộng trong mối quan hệ giữa Nike và Fear of God.</p>
@@ -1176,7 +1176,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "11 US",
     collectionStatus: "sold",
-    image: "pictures/nike_dunk_high_black_varsity_maize.png",
+    image: "pictures/dunkiowa.png",
     story: {
       vi: `
         <p><b>Nike Dunk High 'Black Varsity Maize'</b> lập tức gợi liên tưởng đến phối màu Wu-Tang huyền thoại, dù đây không phải là một bản retro chính thức của đôi hiếm năm 1999. Chính liên tưởng đó khiến nó trở thành một trong những đôi Dunk High được chú ý nhất của làn sóng phục hưng Dunk đầu thập niên 2020.</p><p>Với bảng màu vàng–đen cực mạnh, đôi giày cho thấy sức nặng văn hóa của chỉ riêng color blocking. Nó là một ví dụ rõ ràng về việc Nike có thể tái kích hoạt ký ức archive mà không cần sao chép hoàn toàn một bản phát hành gốc.</p>
@@ -1210,7 +1210,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10 US",
     collectionStatus: "sold",
-    image: "pictures/aj1_brotherhood.png",
+    image: "pictures/jordan1_brotherhood.png",
     story: {
       vi: `
         <p><b>Jordan 1 Retro High OG 'Brotherhood'</b> lấy cảm hứng từ hội sinh viên Omega Psi Phi mà Michael Jordan từng tham gia tại UNC. University Gold và Light Bordeaux chuyển một mối liên hệ đời sống cá nhân của Jordan thành một phát hành mang tính câu chuyện rõ ràng.</p><p>Điểm thú vị của đôi giày nằm ở việc nó mở rộng thế giới Air Jordan ra ngoài sân bóng và các phối màu Chicago/Bulls quen thuộc. Đây là một bản AJ1 gắn trực tiếp với tiểu sử của Michael Jordan hơn là chỉ với sự nghiệp thi đấu của ông.</p>
@@ -1244,7 +1244,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10.5 US",
     collectionStatus: "sold",
-    image: "pictures/aj1_turbo_green.png",
+    image: "pictures/jordan1_turbogreen.png",
     story: {
       vi: `
         <p><b>Jordan 1 Retro High OG 'Turbo Green'</b> là một trong những bản AJ1 nổi bật nhất của giai đoạn Jordan Brand thử nghiệm mạnh với hiệu ứng vintage. Màu Turbo Green, nền Sail ngả vàng và phần chữ ghi chú ở lateral side giúp đôi giày mang cảm giác lưu trữ nhưng không thuần phục dựng.</p><p>Điều làm đôi này được yêu thích là khả năng vừa mềm về màu sắc vừa giàu dấu ấn thị giác. Nó nằm giữa archive aesthetic, lifestyle styling và tinh thần DIY ghi chú khá khác thường đối với Air Jordan 1.</p>
@@ -1278,7 +1278,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10 US",
     collectionStatus: "sold",
-    image: "pictures/nike_dunk_high_fragment_beijing.png",
+    image: "pictures/dunk_frag.png",
     story: {
       vi: `
         <p><b>Nike Dunk High x Fragment Design 'Beijing'</b> là bản tái diễn giải của đôi Fragment Dunk High trong City Pack 2010, một dự án từng có ảnh hưởng lớn tới cộng đồng sưu tầm Dunk. Phiên bản 2021 giữ lại nền màu tím rượu và đen đặc trưng, đồng thời bổ sung branding hiện đại hơn của Fragment.</p><p>Giá trị của đôi giày nằm ở việc nó nối lại ký ức của một chapter quan trọng trong lịch sử Dunk cộng tác, thay vì chỉ là một phối màu đẹp đơn lẻ. Nó là dạng retro-collaboration hiếm khi chạm thẳng vào trí nhớ của giới collector như vậy.</p>
@@ -1312,7 +1312,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10.5 US",
     collectionStatus: "sold",
-    image: "pictures/aj4_royalty.png",
+    image: "pictures/jordan4_royalty.png",
     story: {
       vi: `
         <p><b>Jordan 4 Retro 'Royalty'</b> đưa ngôn ngữ sang trọng vào Air Jordan 4 bằng nền nubuck đen và các chi tiết Metallic Gold. Dù không phải phối màu OG, nó có sức hút rất mạnh nhờ cách dùng màu dễ khiến người xem liên tưởng đến một phiên bản 'elevated' của Bred hoặc Black Cement.</p><p>Royalty là ví dụ tốt cho kiểu phát hành Jordan Brand hướng đến sự nổi bật ngay lập tức bằng finish và hardware, thay vì dựa trên nguồn gốc thi đấu. Nó cho thấy AJ4 có thể chuyển từ performance heritage sang luxury-styled retro khá tự nhiên.</p>
@@ -1346,7 +1346,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10.5 US",
     collectionStatus: "sold",
-    image: "pictures/nike_blazer_low_sacai_british_tan.png",
+    image: "pictures/blazer_sacai.png",
     story: {
       vi: `
         <p><b>Nike Blazer Low x sacai 'British Tan'</b> tiếp tục phương pháp layering mang tính chữ ký của Chitose Abe: Swoosh chồng, lưỡi kép và midsole kéo dài. Trên nền màu British Tan, các lớp cấu trúc càng trở nên dễ đọc và cho thấy cách sacai biến một model Nike cổ điển thành một dạng hybrid mới.</p><p>Dự án này quan trọng vì nó khẳng định sacai không chỉ thành công với LDWaffle mà còn có thể áp dụng cùng triết lý vào các di sản Nike khác. Blazer Low trở thành nền tảng cho tư duy đa lớp rất đặc trưng của thương hiệu Nhật Bản.</p>
@@ -1380,7 +1380,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10 US",
     collectionStatus: "sold",
-    image: "pictures/nb327_levis_navy.png",
+    image: "pictures/nb_levis.png",
     story: {
       vi: `
         <p><b>New Balance 327 x Levi's 'Navy'</b> kết hợp một trong những silhouette retro-runner thành công nhất của New Balance với ngôn ngữ denim kinh điển của Levi's. Việc sử dụng indigo denim trên phần upper khiến đôi 327 mang cảm giác rất khác so với các colorway nylon/suede thông thường.</p><p>Sự cộng tác này hoạt động tốt vì bản thân 327 đã có phom vừa thời trang vừa dễ ứng dụng. Khi ghép với vật liệu đậm tính biểu tượng của Levi's, nó trở thành một hiện vật nằm giữa sneaker culture và heritage casualwear.</p>
@@ -1414,7 +1414,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10.5 US",
     collectionStatus: "sold",
-    image: "pictures/aj1_low_light_smoke_grey_gym_red.png",
+    image: "pictures/jordan1low_gymred.png",
     story: {
       vi: `
         <p><b>Jordan 1 Low 'Light Smoke Grey Gym Red'</b> là một ví dụ điển hình của Jordan 1 Low giai đoạn tăng mạnh về độ phổ biến đầu thập niên 2020. Light Smoke Grey tạo nền trung tính dễ dùng, trong khi Gym Red mang lại đủ năng lượng thị giác để đôi giày không trở nên quá hiền.</p><p>Điều làm các bản Jordan 1 Low như thế này hấp dẫn là khả năng chuyển ngôn ngữ AJ1 sang một định dạng nhẹ và đời thường hơn. Nó đại diện cho hướng lifestyle hóa ngày càng rõ của Jordan Brand.</p>
@@ -1448,7 +1448,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10 US",
     collectionStatus: "sold",
-    image: "pictures/nike_air_max_720_black_mesh.png",
+    image: "pictures/airmax720.png",
     story: {
       vi: `
         <p><b>Nike Air Max 720 'Black Mesh'</b> thuộc giai đoạn Nike đẩy visible Air tới cực điểm với bộ đệm 720 độ cao và lớn nhất của thời điểm đó. Thiết kế này nghiêng mạnh về cảm giác tương lai, với phần đế rất cao và upper dạng mesh tối giản để nhấn vào bộ Air.</p><p>Colorway Black Mesh cho thấy rõ triết lý ấy: phần upper lùi lại để đế Air trở thành tâm điểm. Nó là hiện vật tiêu biểu cho làn sóng Air Max thiên về hình khối và công nghệ thị giác cuối thập niên 2010.</p>
@@ -1482,7 +1482,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10.5 US",
     collectionStatus: "sold",
-    image: "pictures/yeezy_500_utility_black.png",
+    image: "pictures/yz500.png",
     story: {
       vi: `
         <p><b>Yeezy 500 'Utility Black'</b> là một trong những phối màu cốt lõi của dòng 500, sử dụng hoàn toàn một tông đen để nhấn mạnh hình khối nặng và gần như công nghiệp của silhouette. Dòng 500 vốn khác các Yeezy Boost khác ở chỗ không dùng Boost mà dựa trên nền adiPRENE và tư duy thiết kế 'desert rat'.</p><p>Utility Black được đánh giá cao vì nó làm rõ ngôn ngữ hình thể của đôi giày hơn bất kỳ phối màu phức tạp nào. Đây là một hiện vật quan trọng nếu nhìn vào giai đoạn Yeezy mở rộng mạnh mẽ khỏi runner truyền thống.</p>
@@ -1516,7 +1516,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10 US",
     collectionStatus: "sold",
-    image: "pictures/nike_sb_dunk_low_olympics_safari.png",
+    image: "pictures/dunk_safari.png",
     story: {
       vi: `
         <p><b>Nike SB Dunk Low 'Olympics Safari'</b> kết hợp họa tiết safari với một bảng màu gợi không khí Olympic, tạo nên một phiên bản SB Dunk giàu chi tiết bề mặt. Nike SB thường thành công ở những đôi có nhiều lớp texture, và đôi này đi đúng hướng đó.</p><p>Sự hấp dẫn của phiên bản nằm ở việc nó không phụ thuộc vào một câu chuyện cộng tác lớn mà dựa vào chính cách vật liệu và pattern được sắp đặt. Đó là kiểu SB Dunk thiên về visual language và độ vui mắt của thiết kế.</p>
@@ -1550,7 +1550,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10.5 US",
     collectionStatus: "sold",
-    image: "pictures/nike_dunk_high_light_bone.png",
+    image: "pictures/dunkhigh_lightbone.png",
     imageSource: "GOAT",
     story: {
       vi: `
@@ -1585,7 +1585,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10 US",
     collectionStatus: "sold",
-    image: "pictures/converse_cdg_play_low_white.png",
+    image: "pictures/cv_cdg_w.png",
     story: {
       vi: `
         <p><b>Converse x Comme des Garçons PLAY Chuck 70 Low 'White'</b> là một trong những đôi sneaker cộng tác nổi tiếng và phổ biến nhất của thập niên 2010. Thiết kế gần như giữ nguyên Chuck 70 cổ điển, chỉ thêm biểu tượng trái tim mắt lác của Filip Pagowski — một can thiệp nhỏ nhưng đủ để tạo nên bản sắc ngay lập tức.</p><p>Sức mạnh của dự án nằm ở sự tối giản: CDG PLAY không cố tái thiết kế Chuck Taylor, mà chỉ đặt biểu tượng của mình lên một biểu tượng đã quá quen thuộc. Chính sự tiết chế đó khiến đôi giày tồn tại bền bỉ trong cả thời trang đại chúng lẫn giới sưu tầm.</p>
@@ -1619,7 +1619,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "12 US",
     collectionStatus: "sold",
-    image: "pictures/converse_cdg_play_low_black.png",
+    image: "pictures/cv_cdg_b.png",
     story: {
       vi: `
         <p><b>Converse x Comme des Garçons PLAY Chuck 70 Low 'Black'</b> là biến thể tối màu hơn của dự án cộng tác kinh điển giữa Converse và CDG PLAY. Nền canvas đen giúp logo trái tim đỏ trở nên nổi bật hơn và tạo một bản phát hành mang tính thời trang rõ hơn bản trắng.</p><p>Giống như các phiên bản CDG PLAY khác, đôi giày chứng minh rằng một chi tiết đồ họa rất nhỏ có thể đủ để tái định nghĩa một biểu tượng văn hóa đại chúng. Đây là kiểu collaboration sống rất lâu nhờ tính nhận diện tức thì và khả năng dùng hằng ngày.</p>
@@ -1653,7 +1653,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "11.5W / 10M US",
     collectionStatus: "sold",
-    image: "pictures/nike_zoom_terra_kiger5_ow_white.png",
+    image: "pictures/kiger_ow.png",
     story: {
       vi: `
         <p><b>Nike Zoom Terra Kiger 5 x Off-White 'White'</b> thuộc dự án <b>Athlete in Progress</b> của Virgil Abloh, nơi running và trail footwear trở thành chất liệu để ông tiếp tục giải cấu trúc Nike. Cấu trúc nhẹ, hệ dây phụ và phần spike outsole làm cho đôi giày đứng giữa performance runner và object thời trang.</p><p>Khác với The Ten thiên về các biểu tượng quen thuộc, Terra Kiger 5 cho thấy Virgil quan tâm tới những dòng sản phẩm ít hiển nhiên hơn. Nó mở rộng đáng kể phạm vi visual language của Off-White x Nike.</p>
@@ -1687,7 +1687,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "11.5 US",
     collectionStatus: "sold",
-    image: "pictures/aj4_fire_red_2020.png",
+    image: "pictures/jordan4_firered.png",
     story: {
       vi: `
         <p><b>Jordan 4 Retro 'Fire Red' 2020</b> là một trong những bản retro quan trọng nhất của Air Jordan 4 trong thập niên 2020, đặc biệt vì sự trở lại của <b>Nike Air</b> ở gót. Fire Red là một phối màu OG quan trọng, gắn chặt với giai đoạn đầu của dòng AJ4.</p><p>Phiên bản 2020 được đón nhận mạnh nhờ mức độ tôn trọng thiết kế gốc cao hơn nhiều đợt retro cũ. Đối với archive, đây là kiểu phát hành có giá trị lịch sử rõ rệt hơn nhiều so với một colorway mới đơn thuần.</p>
@@ -1721,7 +1721,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10 US",
     collectionStatus: "sold",
-    image: "pictures/aj1_low_black_active_fuchsia.png",
+    image: "pictures/jordan1low_fuchsia.png",
     story: {
       vi: `
         <p><b>Jordan 1 Low 'Black Active Fuchsia'</b> dùng nền đen làm cơ sở và thêm Active Fuchsia như một điểm nhấn mạnh ở branding và các chi tiết nhỏ. Đây là một dạng Jordan 1 Low thiên về lifestyle và mang tinh thần color accent rất rõ.</p><p>Những phối màu như thế này cho thấy Jordan 1 Low có thể linh hoạt hơn Jordan 1 High trong việc thử các bảng màu đời thường hoặc thời trang hơn. Nó ít phụ thuộc vào di sản OG nhưng vẫn giữ được cấu trúc nhận diện của AJ1.</p>
@@ -1755,7 +1755,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10 US",
     collectionStatus: "sold",
-    image: "pictures/aj1_low_noble_red.png",
+    image: "pictures/jordan1low_noblered.png",
     story: {
       vi: `
         <p><b>Jordan 1 Low 'Noble Red'</b> là một ví dụ điển hình cho hướng phát triển đời thường của Jordan 1 Low. Noble Red tạo một diện mạo đậm hơn các phối màu xám hoặc trắng thường gặp, nhưng vẫn đủ gọn để giữ khả năng phối đồ hằng ngày.</p><p>Giống nhiều bản Jordan 1 Low khác cùng giai đoạn, đôi giày cho thấy Jordan Brand đang mở rộng đối tượng người dùng của AJ1 bằng các màu sắc đơn giản, dễ dùng và có mức tiếp cận rộng hơn.</p>
@@ -1789,7 +1789,7 @@ const sneakers = [
     condition: { vi: "Used", en: "Used" },
     size: "10 US",
     collectionStatus: "sold",
-    image: "pictures/nike_air_fear_of_god_1_sail_black.png",
+    image: "pictures/nike_fog_1.png",
     story: {
       vi: `
         <p><b>Nike Air Fear of God 1 'Sail Black'</b> là một trong những dự án quan trọng nhất giữa Nike và Jerry Lorenzo. Silhouette cao cổ, cage ở gót và zip closure tạo nên một cấu trúc nằm giữa performance basketball, luxury fashion và footwear mang tính kiến trúc.</p><p>Khác với các đôi retro basketball truyền thống, Air Fear of God 1 gần như xây dựng một thế giới riêng cho mình. Phiên bản Sail/Black đặc biệt làm rõ chất lượng vật liệu và tinh thần tối giản, vốn là trung tâm trong ngôn ngữ Fear of God.</p>
