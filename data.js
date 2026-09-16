@@ -607,6 +607,1197 @@ const sneakers = [
         </p>
       `
     }
+  },
+
+
+  /* =====================================================
+     17. SOLD
+        JORDAN 1 RETRO HIGH OG 'HOMAGE TO HOME' NON-NUMBERED
+  ===================================================== */
+  {
+    id: "jordan-1-homage-to-home-non-numbered",
+    title: {
+      vi: "Jordan 1 Retro High OG 'Homage to Home' Non-Numbered",
+      en: "Jordan 1 Retro High OG 'Homage to Home' Non-Numbered"
+    },
+    subtitle: {
+      vi: "Chicago / Bred Split Edition (2018)",
+      en: "Chicago / Bred Split Edition (2018)"
+    },
+    sku: "861428-061",
+    colorway: "Black/Black-University Red-White",
+    retailPrice: "$160",
+    releaseDate: "2018-05-19",
+    editionType: { vi: "GR", en: "GR" },
+    condition: { vi: "Used", en: "Used" },
+    size: "11 US",
+    collectionStatus: "sold",
+    image: "pictures/aj1_homage_to_home_nn.png",
+    story: {
+      vi: `
+        <p><b>Jordan 1 Retro High OG 'Homage to Home'</b> ghép hai hệ màu quan trọng nhất của Air Jordan 1 — Chicago và Bred — vào cùng một đôi giày. Ý tưởng này trực tiếp nhắc tới mối liên hệ giữa Michael Jordan với thành phố Chicago và di sản hình ảnh đã định nghĩa toàn bộ dòng Air Jordan.</p><p>Thay vì chỉ tái phát hành một phối màu OG quen thuộc, Jordan Brand chọn cách cắt đôi color blocking để biến đôi giày thành một phiên bản tổng hợp mang tính kể chuyện rõ rệt. Với Lộc An archive, đây là một ví dụ tiêu biểu cho cách Jordan Brand dùng chính lịch sử của Air Jordan 1 để tạo ra một hiện vật có tính biểu tượng mạnh.</p>
+      `,
+      en: `
+        <p><b>The Jordan 1 Retro High OG 'Homage to Home'</b> combines the two most important Air Jordan 1 color stories — Chicago and Bred — into a single split construction. The concept directly references Michael Jordan's relationship with Chicago and the visual legacy that shaped the entire Air Jordan line.</p><p>Rather than simply reissuing one familiar OG colorway, Jordan Brand split the blocking down the middle, turning the sneaker into a narrative object in its own right. Within the Lộc An archive, it stands as a clear example of how Jordan Brand reworked Air Jordan history into a highly symbolic commemorative release.</p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     18. SOLD
+        JORDAN 1 RETRO HIGH OG 'YELLOW OCHRE'
+  ===================================================== */
+  {
+    id: "jordan-1-yellow-ochre",
+    title: {
+      vi: "Jordan 1 Retro High OG 'Yellow Ochre'",
+      en: "Jordan 1 Retro High OG 'Yellow Ochre'"
+    },
+    subtitle: {
+      vi: "OG-Inspired Yellow Ochre Edition (2024)",
+      en: "OG-Inspired Yellow Ochre Edition (2024)"
+    },
+    sku: "DZ5485-701",
+    colorway: "Yellow Ochre/Black-Sail",
+    retailPrice: "$180",
+    releaseDate: "2024-01-27",
+    editionType: { vi: "GR", en: "GR" },
+    condition: { vi: "Used", en: "Used" },
+    size: "11 US",
+    collectionStatus: "sold",
+    image: "pictures/aj1_yellow_ochre.png",
+    story: {
+      vi: `
+        <p><b>Jordan 1 Retro High OG 'Yellow Ochre'</b> tiếp tục truyền thống của Air Jordan 1 trong việc khai thác những bảng màu gần với ngôn ngữ OG mà vẫn tạo ra cá tính riêng. Sắc vàng đất kết hợp đen và Sail khiến đôi giày gợi nhớ đến Taxi hay University Gold nhưng trầm và cổ điển hơn.</p><p>Điểm mạnh của phiên bản này nằm ở cách nó giữ cấu trúc quen thuộc của Jordan 1 High OG trong khi đẩy trọng tâm sang cảm giác vintage và khả năng phối đồ hằng ngày. Đây là một phối màu mới nhưng vẫn bám chặt vào tinh thần lưu trữ của dòng AJ1.</p>
+      `,
+      en: `
+        <p><b>The Jordan 1 Retro High OG 'Yellow Ochre'</b> continues the Air Jordan 1 tradition of exploring color palettes adjacent to the OG canon while still establishing a distinct personality. The Yellow Ochre, black, and Sail combination recalls pairs such as Taxi or University Gold, but with a more muted, earthy character.</p><p>Its appeal lies in preserving the familiar Air Jordan 1 High OG structure while shifting the emphasis toward a vintage mood and versatile everyday wear. It is a newer colorway that still feels closely tied to the archival language of the AJ1.</p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     19. SOLD
+        JORDAN 1 RETRO HIGH OG 'GAME ROYAL'
+  ===================================================== */
+  {
+    id: "jordan-1-game-royal-2018",
+    title: {
+      vi: "Jordan 1 Retro High OG 'Game Royal'",
+      en: "Jordan 1 Retro High OG 'Game Royal'"
+    },
+    subtitle: {
+      vi: "Royal-Inspired Colorway (2018)",
+      en: "Royal-Inspired Colorway (2018)"
+    },
+    sku: "555088-041",
+    colorway: "Black/Game Royal-White",
+    retailPrice: "$160",
+    releaseDate: "2018-03-24",
+    editionType: { vi: "GR", en: "GR" },
+    condition: { vi: "Used", en: "Used" },
+    size: "11 US",
+    collectionStatus: "sold",
+    image: "pictures/aj1_game_royal.png",
+    story: {
+      vi: `
+        <p><b>Jordan 1 Retro High OG 'Game Royal'</b> là một biến thể hiện đại dựa trên ngôn ngữ của Royal, một trong những hệ màu quan trọng nhất trong lịch sử Air Jordan 1. Cách dùng xanh dương ở heel, collar và outsole khiến đôi giày duy trì liên hệ trực tiếp với di sản OG mà không phải là một bản sao hoàn toàn.</p><p>Phối màu này được ưa chuộng vì dễ gợi liên tưởng đến Royal và Fragment, nhưng vẫn đủ khác biệt để tồn tại như một bản phát hành độc lập. Nó cho thấy sức bền của color blocking Black Toe/Royal trong lịch sử Air Jordan.</p>
+      `,
+      en: `
+        <p><b>The Jordan 1 Retro High OG 'Game Royal'</b> is a modern variation on the language of Royal, one of the most important color stories in Air Jordan 1 history. The use of blue across the heel, collar, and outsole keeps the shoe visually connected to OG heritage without making it a direct reproduction.</p><p>The pair became popular because it evokes both Royal and Fragment associations while still standing on its own as a separate release. It demonstrates the lasting power of black-and-blue Jordan 1 blocking within the broader AJ1 archive.</p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     20. SOLD
+        JORDAN 1 MID 'DIAMOND SHORTS'
+  ===================================================== */
+  {
+    id: "jordan-1-mid-diamond-shorts",
+    title: {
+      vi: "Jordan 1 Mid 'Diamond Shorts'",
+      en: "Jordan 1 Mid 'Diamond Shorts'"
+    },
+    subtitle: {
+      vi: "Diamond Basketball Tribute (2021)",
+      en: "Diamond Basketball Tribute (2021)"
+    },
+    sku: "DC7294-103",
+    colorway: "White/Black-Wolf Grey-Metallic Silver",
+    retailPrice: "$125",
+    releaseDate: "2021-09-16",
+    editionType: { vi: "GR", en: "GR" },
+    condition: { vi: "Used", en: "Used" },
+    size: "11 US",
+    collectionStatus: "sold",
+    image: "pictures/aj1_mid_diamond_shorts.png",
+    story: {
+      vi: `
+        <p><b>Jordan 1 Mid 'Diamond Shorts'</b> lấy cảm hứng từ chiếc quần short lấp lánh Michael Jordan từng mặc trong bức ảnh quảng bá nổi tiếng thời kỳ đầu. Jordan Brand dùng tông trắng, đen và bạc để tạo một bản Jordan 1 Mid mang cảm giác sạch sẽ, bóng bẩy và thiên về biểu tượng hình ảnh.</p><p>Tag hình quả bóng rổ dạng kim cương và những chi tiết phản quang giúp đôi giày khác biệt so với các bản Mid thông thường. Nó là ví dụ cho cách Jordan Brand khai thác kho hình ảnh xung quanh Michael Jordan thay vì chỉ dựa vào các phối màu thi đấu quen thuộc.</p>
+      `,
+      en: `
+        <p><b>The Jordan 1 Mid 'Diamond Shorts'</b> draws inspiration from the sparkling shorts Michael Jordan wore in a well-known early promotional image. Jordan Brand translated that reference through a white, black, and silver palette, giving the Jordan 1 Mid a clean, polished, image-driven identity.</p><p>The diamond basketball hangtag and reflective accents set it apart from more standard Mid releases. It shows how Jordan Brand can build a sneaker around a visual moment from Jordan's wider image culture rather than relying only on familiar on-court colorways.</p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     21. SOLD
+        JORDAN 4 RETRO X OFF-WHITE 'SAIL' (W)
+  ===================================================== */
+  {
+    id: "jordan-4-off-white-sail",
+    title: {
+      vi: "Jordan 4 Retro x Off-White 'Sail' (W)",
+      en: "Jordan 4 Retro x Off-White 'Sail' (W)"
+    },
+    subtitle: {
+      vi: "Off-White Deconstructed Edition (2020)",
+      en: "Off-White Deconstructed Edition (2020)"
+    },
+    sku: "CV9388-100",
+    colorway: "Sail/Muslin-White-Black",
+    retailPrice: "$200",
+    releaseDate: "2020-07-25",
+    editionType: { vi: "GR", en: "GR" },
+    condition: { vi: "Used", en: "Used" },
+    size: "8W / 6.5M US",
+    collectionStatus: "sold",
+    image: "pictures/aj4_offwhite_sail.png",
+    story: {
+      vi: `
+        <p><b>Jordan 4 x Off-White 'Sail'</b> tiếp tục ngôn ngữ deconstructed của Virgil Abloh trên nền Air Jordan 4. Các cut-out ở quarter panel, phần vật liệu bán trong suốt và typography quen thuộc của Off-White đưa một silhouette Tinker Hatfield kinh điển vào một hệ thẩm mỹ đương đại hơn.</p><p>Khác với nhiều bản Off-White dùng độ tương phản mạnh, phối màu Sail giữ tổng thể mềm và thanh lịch, khiến kết cấu vật liệu trở thành trọng tâm. Đây là một trong những đôi cộng tác quan trọng nhất của giai đoạn cuối thập niên 2010 đầu 2020s trong lịch sử Air Jordan.</p>
+      `,
+      en: `
+        <p><b>The Jordan 4 x Off-White 'Sail'</b> extends Virgil Abloh's deconstructed design language onto the Air Jordan 4. Cut-out quarter panels, translucent materials, and familiar Off-White typography move a classic Tinker Hatfield silhouette into a more contemporary visual system.</p><p>Unlike some Off-White releases that rely on sharper contrast, the Sail palette keeps the overall composition soft and refined, placing greater emphasis on structure and material treatment. It remains one of the key collaboration releases of the late-2010s and early-2020s Air Jordan era.</p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     22. SOLD
+        JORDAN 1 RETRO HIGH OG 'BLACK GYM RED'
+  ===================================================== */
+  {
+    id: "jordan-1-black-gym-red",
+    title: {
+      vi: "Jordan 1 Retro High OG 'Black Gym Red'",
+      en: "Jordan 1 Retro High OG 'Black Gym Red'"
+    },
+    subtitle: {
+      vi: "Bred-Inspired Black / Red Edition (2018)",
+      en: "Bred-Inspired Black / Red Edition (2018)"
+    },
+    sku: "555088-060",
+    colorway: "Black/Gym Red-White",
+    retailPrice: "$160",
+    releaseDate: "2018-06-29",
+    editionType: { vi: "GR", en: "GR" },
+    condition: { vi: "Used", en: "Used" },
+    size: "11 US",
+    collectionStatus: "sold",
+    image: "pictures/aj1_black_gym_red.png",
+    story: {
+      vi: `
+        <p><b>Jordan 1 Retro High OG 'Black Gym Red'</b> đi theo quỹ đạo của Bred nhưng sử dụng cách phân bố màu khác để tạo một bản phát hành riêng. Toe box đen, panel đỏ và phần nền trắng làm cho đôi giày vừa quen thuộc vừa đủ khác biệt so với những phối màu lịch sử trực tiếp.</p><p>Đây là dạng Jordan 1 được ưa chuộng nhờ ngôn ngữ màu sắc mạnh và gần với DNA Chicago/Bred. Nó thể hiện cách Jordan Brand liên tục khai thác nhóm màu đen–đỏ–trắng mà vẫn tạo ra các biến thể có cá tính riêng.</p>
+      `,
+      en: `
+        <p><b>The Jordan 1 Retro High OG 'Black Gym Red'</b> follows the broader Bred orbit while redistributing its colors into a distinct release of its own. A black toe, red side paneling, and white base make the shoe feel both familiar and separate from the direct historic classics.</p><p>Pairs like this remain popular because they stay close to the black-red-white DNA associated with Chicago and Bred. It shows how Jordan Brand continues to revisit that palette while still producing individual identities within the Jordan 1 line.</p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     23. SOLD
+        JORDAN 1 RETRO HIGH OG 'NEUTRAL GREY HYPER CRIMSON'
+  ===================================================== */
+  {
+    id: "jordan-1-neutral-grey-hyper-crimson",
+    title: {
+      vi: "Jordan 1 Retro High OG 'Neutral Grey Hyper Crimson'",
+      en: "Jordan 1 Retro High OG 'Neutral Grey Hyper Crimson'"
+    },
+    subtitle: {
+      vi: "Raw Collar Contrast Edition (2019)",
+      en: "Raw Collar Contrast Edition (2019)"
+    },
+    sku: "555088-018",
+    colorway: "Neutral Grey/Black-Hyper Crimson-White",
+    retailPrice: "$160",
+    releaseDate: "2019-01-24",
+    editionType: { vi: "GR", en: "GR" },
+    condition: { vi: "Used", en: "Used" },
+    size: "11 US",
+    collectionStatus: "sold",
+    image: "pictures/aj1_neutral_grey_hyper_crimson.png",
+    story: {
+      vi: `
+        <p><b>Jordan 1 Retro High OG 'Neutral Grey Hyper Crimson'</b> nổi bật bởi phần cổ giày cắt raw-edge và đường nhấn màu Hyper Crimson tạo tương phản mạnh trên nền xám, đen và trắng. Phiên bản này mang tinh thần thử nghiệm nhiều hơn các phối màu OG-oriented thông thường.</p><p>Thay vì dựa vào nostalgia thuần túy, đôi giày nhấn mạnh sự phá cách trong hoàn thiện vật liệu. Nó ghi lại một giai đoạn Jordan Brand đẩy Air Jordan 1 sang những xử lý hiện đại hơn nhưng vẫn giữ nền tảng cấu trúc truyền thống.</p>
+      `,
+      en: `
+        <p><b>The Jordan 1 Retro High OG 'Neutral Grey Hyper Crimson'</b> stands out through its raw-edge collar construction and Hyper Crimson accents set against a grey, black, and white foundation. The result is a release with a more experimental tone than many strictly OG-oriented Jordan 1 colorways.</p><p>Rather than relying on nostalgia alone, the shoe emphasizes material treatment and disruption. It records a period when Jordan Brand pushed the Air Jordan 1 toward more contemporary finishes while preserving its underlying traditional structure.</p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     24. SOLD
+        ADIDAS YEEZY BOOST 700 'MAUVE'
+  ===================================================== */
+  {
+    id: "yeezy-boost-700-mauve",
+    title: {
+      vi: "adidas Yeezy Boost 700 'Mauve'",
+      en: "adidas Yeezy Boost 700 'Mauve'"
+    },
+    subtitle: {
+      vi: "Earth-Toned Yeezy 700 Edition (2018)",
+      en: "Earth-Toned Yeezy 700 Edition (2018)"
+    },
+    sku: "EE9614",
+    colorway: "Mauve/Mauve/Mauve",
+    retailPrice: "$300",
+    releaseDate: "2018-10-27",
+    editionType: { vi: "GR", en: "GR" },
+    condition: { vi: "Used", en: "Used" },
+    size: "10 US",
+    collectionStatus: "sold",
+    image: "pictures/yeezy_700_mauve.png",
+    story: {
+      vi: `
+        <p><b>Yeezy Boost 700 'Mauve'</b> thuộc giai đoạn đỉnh cao của dòng 700, khi ngôn ngữ chunky runner của Kanye West và adidas trở thành một phần trung tâm của sneaker culture cuối thập niên 2010. Phối màu Mauve sử dụng những tông nâu tím, olive và black rất gần với bảng màu đất đặc trưng của Yeezy.</p><p>So với Wave Runner, phiên bản Mauve ít rực rỡ hơn và tập trung nhiều hơn vào tính đeo thường ngày. Nó là đại diện rõ nét cho triết lý của Yeezy: hình khối mạnh, bảng màu trầm và cảm giác lifestyle đặt lên trên các motif thể thao truyền thống.</p>
+      `,
+      en: `
+        <p><b>The Yeezy Boost 700 'Mauve'</b> belongs to the peak era of the 700 line, when Kanye West and adidas helped push the chunky runner aesthetic to the center of late-2010s sneaker culture. The Mauve colorway uses brown-purple, olive, and black tones closely aligned with the earthy palette typical of Yeezy.</p><p>Compared with the brighter Wave Runner, the Mauve release is more subdued and more squarely focused on everyday wearability. It represents the Yeezy formula clearly: strong shape, muted palette, and lifestyle presence over conventional sportswear cues.</p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     25. SOLD
+        NIKE AIR TRAINER 1 SP X TRAVIS SCOTT 'GREY HAZE'
+  ===================================================== */
+  {
+    id: "nike-air-trainer-1-travis-scott-grey-haze",
+    title: {
+      vi: "Nike Air Trainer 1 SP x Travis Scott 'Grey Haze'",
+      en: "Nike Air Trainer 1 SP x Travis Scott 'Grey Haze'"
+    },
+    subtitle: {
+      vi: "Travis Scott Utility Runner (2022)",
+      en: "Travis Scott Utility Runner (2022)"
+    },
+    sku: "DR7515-001",
+    colorway: "Grey Haze/Dusty Sage",
+    retailPrice: "$140",
+    releaseDate: "2022-05-27",
+    editionType: { vi: "GR", en: "GR" },
+    condition: { vi: "Used", en: "Used" },
+    size: "10.5 US",
+    collectionStatus: "sold",
+    image: "pictures/nike_air_trainer1_travis_grey_haze.png",
+    story: {
+      vi: `
+        <p><b>Nike Air Trainer 1 SP x Travis Scott 'Grey Haze'</b> đưa mẫu cross-training kinh điển của Tinker Hatfield vào thế giới thẩm mỹ mang tính utility và outdoor của Travis Scott. Zipper shroud, straps và các lớp branding phụ biến một model tập luyện thập niên 1980 thành một hiện vật mang tính survival gear.</p><p>Điểm thú vị của dự án là việc nó không dựa trên một model hype đương đại, mà quay lại một nền tảng Nike cổ điển rồi tái diễn giải hoàn toàn bằng ngôn ngữ Cactus Jack. Đây là một ví dụ rõ về cách cộng tác có thể làm mới một di sản ít được chú ý hơn.</p>
+      `,
+      en: `
+        <p><b>The Nike Air Trainer 1 SP x Travis Scott 'Grey Haze'</b> brings Tinker Hatfield's classic cross-training silhouette into Travis Scott's utility-driven, outdoor-leaning visual world. Zippered shrouds, straps, and secondary branding transform an 1980s training shoe into something closer to survival gear.</p><p>One of the most interesting aspects of the project is that it does not rely on a current hype silhouette. Instead, it reinterprets a classic Nike foundation entirely through the language of Cactus Jack, showing how collaboration can refresh a less obvious heritage model.</p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     26. SOLD
+        NIKE BLAZER LOW X OFF-WHITE 'UNIVERSITY RED'
+  ===================================================== */
+  {
+    id: "nike-blazer-low-off-white-university-red",
+    title: {
+      vi: "Nike Blazer Low x Off-White 'University Red'",
+      en: "Nike Blazer Low x Off-White 'University Red'"
+    },
+    subtitle: {
+      vi: "Off-White Low Blazer Edition (2022)",
+      en: "Off-White Low Blazer Edition (2022)"
+    },
+    sku: "DH7863-100",
+    colorway: "White/University Red-Black",
+    retailPrice: "$140",
+    releaseDate: "2022-04-08",
+    editionType: { vi: "GR", en: "GR" },
+    condition: { vi: "Used", en: "Used" },
+    size: "10 US",
+    collectionStatus: "sold",
+    image: "pictures/nike_blazer_low_offwhite_university_red.png",
+    story: {
+      vi: `
+        <p><b>Nike Blazer Low x Off-White 'University Red'</b> tiếp tục quá trình Virgil Abloh giải cấu trúc Blazer, lần này ở phom low-top với hệ đế gai lớn và upper mang cảm giác thử nghiệm. Dự án đẩy Blazer ra khỏi vùng tennis/basketball heritage truyền thống và sang một lãnh địa gần với concept object hơn.</p><p>University Red tạo một điểm nhấn mạnh trên nền trắng và đen, trong khi hệ dây đôi cùng các chi tiết typography giữ kết nối trực tiếp với ngôn ngữ Off-White. Đây là một phát hành cho thấy Virgil luôn sẵn sàng đẩy các biểu tượng Nike tới những giới hạn thị giác mới.</p>
+      `,
+      en: `
+        <p><b>The Nike Blazer Low x Off-White 'University Red'</b> continues Virgil Abloh's deconstruction of the Blazer, this time on a low-top form with oversized spiked tooling and a more experimental upper. The project moves the Blazer away from straightforward tennis or basketball heritage and closer to the territory of a concept object.</p><p>University Red provides a strong focal accent against the white and black base, while the double-lace system and typography maintain a direct connection to the broader Off-White vocabulary. It is a release that shows Virgil's willingness to push Nike icons toward new visual extremes.</p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     27. SOLD
+        ADIDAS YEEZY FOAM RNNR 'STONE SAGE'
+  ===================================================== */
+  {
+    id: "yeezy-foam-rnnr-stone-sage",
+    title: {
+      vi: "adidas Yeezy Foam RNNR 'Stone Sage'",
+      en: "adidas Yeezy Foam RNNR 'Stone Sage'"
+    },
+    subtitle: {
+      vi: "Molded Foam Yeezy Edition (2022)",
+      en: "Molded Foam Yeezy Edition (2022)"
+    },
+    sku: "GX4472",
+    colorway: "Stone Sage/Stone Sage/Stone Sage",
+    retailPrice: "$90",
+    releaseDate: "2022-05-26",
+    editionType: { vi: "GR", en: "GR" },
+    condition: { vi: "Used", en: "Used" },
+    size: "10 US",
+    collectionStatus: "sold",
+    image: "pictures/yeezy_foam_rnnr_stone_sage.png",
+    story: {
+      vi: `
+        <p><b>Yeezy Foam RNNR 'Stone Sage'</b> đại diện cho giai đoạn Yeezy đẩy footwear sang một hình thái gần như hoàn toàn mới: một khối foam đục lỗ có hình khối hữu cơ, không còn phụ thuộc vào ngôn ngữ upper–midsole truyền thống. Stone Sage giữ đúng DNA màu đất tối giản của dòng Yeezy.</p><p>Foam RNNR là một trong những thiết kế phân cực nhất của thập niên 2020, nhưng cũng là một trong những đôi mang tính định hình cao nhất. Nó phản ánh tham vọng của Yeezy trong việc tái nghĩ lại hình dạng cơ bản của sneaker/sandal lifestyle.</p>
+      `,
+      en: `
+        <p><b>The Yeezy Foam RNNR 'Stone Sage'</b> represents the period when Yeezy pushed footwear toward an almost entirely new form: a perforated molded foam object no longer dependent on the traditional upper–midsole language of sneakers. Stone Sage stays true to the muted, earthy Yeezy palette.</p><p>The Foam RNNR is one of the most polarizing designs of the 2020s, but also one of the most defining. It reflects Yeezy's ambition to rethink the basic shape and identity of lifestyle footwear itself.</p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     28. SOLD
+        NIKE DUNK LOW RETRO 'WHITE BLACK' (2021)
+  ===================================================== */
+  {
+    id: "nike-dunk-low-retro-white-black-2021",
+    title: {
+      vi: "Nike Dunk Low Retro 'White Black' (2021)",
+      en: "Nike Dunk Low Retro 'White Black' (2021)"
+    },
+    subtitle: {
+      vi: "Panda Dunk Low (2021)",
+      en: "Panda Dunk Low (2021)"
+    },
+    sku: "DD1391-100",
+    colorway: "White/Black",
+    retailPrice: "$100",
+    releaseDate: "2021-03-10",
+    editionType: { vi: "GR", en: "GR" },
+    condition: { vi: "Used", en: "Used" },
+    size: "10.5 US",
+    collectionStatus: "sold",
+    image: "pictures/nike_dunk_low_retro_white_black.png",
+    story: {
+      vi: `
+        <p><b>Nike Dunk Low 'White Black'</b>, thường được cộng đồng gọi là Panda, là một trong những đôi giày có ảnh hưởng thương mại lớn nhất đầu thập niên 2020. Bảng màu đen–trắng tối giản khiến nó vượt qua biên giới của sneaker collecting để trở thành một item thời trang phổ biến đại chúng.</p><p>Sức hút của đôi giày không nằm ở một câu chuyện phức tạp mà ở tính dễ dùng và khả năng thích nghi với gần như mọi bối cảnh. Trong archive, nó đại diện cho thời điểm Nike Dunk trở lại đỉnh cao văn hóa đại chúng.</p>
+      `,
+      en: `
+        <p><b>The Nike Dunk Low 'White Black'</b>, widely known as the Panda, became one of the most commercially influential sneakers of the early 2020s. Its simple black-and-white palette allowed it to move beyond sneaker collecting and become a mainstream fashion staple.</p><p>The appeal of the pair lies less in a complicated backstory and more in its sheer versatility. Within the archive, it marks the moment when the Nike Dunk returned to the center of mass-market sneaker culture.</p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     29. SOLD
+        NIKE AIR FOAMPOSITE ONE 'EGGPLANT' (2017)
+  ===================================================== */
+  {
+    id: "nike-air-foamposite-one-eggplant-2017",
+    title: {
+      vi: "Nike Air Foamposite One 'Eggplant' (2017)",
+      en: "Nike Air Foamposite One 'Eggplant' (2017)"
+    },
+    subtitle: {
+      vi: "Iridescent Foamposite Return (2017)",
+      en: "Iridescent Foamposite Return (2017)"
+    },
+    sku: "314996-008",
+    colorway: "Black/Varsity Purple",
+    retailPrice: "$230",
+    releaseDate: "2017-07-29",
+    editionType: { vi: "GR", en: "GR" },
+    condition: { vi: "Used", en: "Used" },
+    size: "10.5 US",
+    collectionStatus: "sold",
+    image: "pictures/foamposite_one_eggplant_2017.png",
+    story: {
+      vi: `
+        <p><b>Nike Air Foamposite One 'Eggplant'</b> là một trong những phối màu kinh điển nhất của Foamposite, nổi bật với lớp shell tím ánh kim đổi màu. Đôi giày gắn liền với tinh thần future-forward của bóng rổ Nike cuối thập niên 1990 và với di sản của Penny Hardaway.</p><p>Phiên bản 2017 đưa Eggplant trở lại cho thế hệ sưu tầm mới, đồng thời nhắc lại giai đoạn Foamposite từng là một trong những đôi performance basketball táo bạo nhất về hình thức. Đây là một cột mốc quan trọng trong lịch sử footwear molded-shell của Nike.</p>
+      `,
+      en: `
+        <p><b>The Nike Air Foamposite One 'Eggplant'</b> is one of the defining Foamposite colorways, famous for its iridescent purple shell. The shoe remains closely linked to the futuristic ambitions of late-1990s Nike Basketball and to the legacy of Penny Hardaway.</p><p>The 2017 release brought Eggplant back for a newer generation of collectors while recalling the period when the Foamposite stood among the boldest performance basketball designs on the market. It is a key archival moment in Nike's molded-shell footwear history.</p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     30. SOLD
+        NIKE BLAZER LOW X ACRONYM 'NIGHT MAROON'
+  ===================================================== */
+  {
+    id: "nike-blazer-low-acronym-night-maroon",
+    title: {
+      vi: "Nike Blazer Low x Acronym 'Night Maroon'",
+      en: "Nike Blazer Low x Acronym 'Night Maroon'"
+    },
+    subtitle: {
+      vi: "Acronym Rebuilt Blazer Low (2022)",
+      en: "Acronym Rebuilt Blazer Low (2022)"
+    },
+    sku: "DO9373-600",
+    colorway: "Night Maroon/Lemon Venom-Black",
+    retailPrice: "$140",
+    releaseDate: "2022-02-09",
+    editionType: { vi: "GR", en: "GR" },
+    condition: { vi: "Used", en: "Used" },
+    size: "7M US",
+    collectionStatus: "sold",
+    image: "pictures/nike_blazer_low_acronym_night_maroon.png",
+    story: {
+      vi: `
+        <p><b>Nike Blazer Low x Acronym 'Night Maroon'</b> cho thấy cách Errolson Hugh và Acronym tiếp cận heritage sneaker bằng tư duy modular và kỹ thuật. Upper bị cắt tách, tái lắp ghép và bổ sung zip hệ thống, khiến Blazer gần với một đối tượng thiết kế công nghiệp hơn một đôi retro đơn thuần.</p><p>Night Maroon cùng các điểm nhấn sáng làm nổi rõ phần split construction. Đây là một dự án cộng tác dành cho người quan tâm đến cấu trúc và ý tưởng hơn là nostalgia truyền thống.</p>
+      `,
+      en: `
+        <p><b>The Nike Blazer Low x Acronym 'Night Maroon'</b> demonstrates how Errolson Hugh and Acronym approach heritage sneakers through a modular, technical mindset. The upper is cut apart, rebuilt, and fitted with zipper systems, pushing the Blazer closer to an industrial design object than a straightforward retro.</p><p>The Night Maroon palette and bright accents emphasize the split construction clearly. It is a collaboration aimed less at traditional nostalgia and more at design structure and concept.</p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     31. SOLD
+        NIKE AIR SKYLON 2 X FEAR OF GOD 'BLACK SAIL'
+  ===================================================== */
+  {
+    id: "nike-air-skylon-2-fear-of-god-black-sail",
+    title: {
+      vi: "Nike Air Skylon 2 x Fear of God 'Black Sail'",
+      en: "Nike Air Skylon 2 x Fear of God 'Black Sail'"
+    },
+    subtitle: {
+      vi: "Fear of God Runner Collaboration (2018)",
+      en: "Fear of God Runner Collaboration (2018)"
+    },
+    sku: "BQ2752-001",
+    colorway: "Black/Sail",
+    retailPrice: "$140",
+    releaseDate: "2018-12-27",
+    editionType: { vi: "GR", en: "GR" },
+    condition: { vi: "Used", en: "Used" },
+    size: "10 US",
+    collectionStatus: "sold",
+    image: "pictures/nike_air_skylon2_fog_black_sail.png",
+    story: {
+      vi: `
+        <p><b>Nike Air Skylon 2 x Fear of God 'Black Sail'</b> là một phần trong giai đoạn Jerry Lorenzo khai thác Nike running heritage song song với dự án Nike Air Fear of God. Dự án giữ phom runner cổ điển của Skylon 2 nhưng làm dịu nó bằng bảng màu đen–Sail và branding tiết chế.</p><p>Khác với Air Fear of God 1 mang tính performance-basketball mạnh, Skylon 2 FOG đi theo hướng nhẹ nhàng hơn và gần với lifestyle. Nó cho thấy biên độ thẩm mỹ khá rộng trong mối quan hệ giữa Nike và Fear of God.</p>
+      `,
+      en: `
+        <p><b>The Nike Air Skylon 2 x Fear of God 'Black Sail'</b> belongs to the period when Jerry Lorenzo explored Nike running heritage alongside the broader Nike Air Fear of God project. The pair preserves the classic runner shape of the Skylon 2 while softening it through a black-and-Sail palette and restrained branding.</p><p>Unlike the more overtly performance-basketball identity of the Air Fear of God 1, the Skylon 2 FOG feels quieter and more lifestyle-oriented. It shows the wider aesthetic range present in the Nike x Fear of God partnership.</p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     32. SOLD
+        JORDAN 5 RETRO 'BRONZE'
+  ===================================================== */
+  {
+    id: "jordan-5-bronze",
+    title: {
+      vi: "Jordan 5 Retro 'Bronze'",
+      en: "Jordan 5 Retro 'Bronze'"
+    },
+    subtitle: {
+      vi: "Olympic Bronze-Inspired Release (2016)",
+      en: "Olympic Bronze-Inspired Release (2016)"
+    },
+    sku: "136027-416",
+    colorway: "Obsidian/White-Metallic Red Bronze",
+    retailPrice: "$190",
+    releaseDate: "2016-09-24",
+    editionType: { vi: "GR", en: "GR" },
+    condition: { vi: "Used", en: "Used" },
+    size: "11 US",
+    collectionStatus: "sold",
+    image: "pictures/jordan5_bronze.png",
+    story: {
+      vi: `
+        <p><b>Jordan 5 Retro 'Bronze'</b> được phát hành trong bối cảnh Jordan Brand khai thác chủ đề huy chương Olympic. Trên nền Obsidian, những chi tiết Bronze ở lưỡi phản quang, shark teeth và lining tạo nên một bản AJ5 khá khác biệt so với các phối màu quân đội hoặc OG-inspired quen thuộc.</p><p>Air Jordan 5 vốn luôn là một silhouette giàu tính thị giác, và Bronze tận dụng điều đó rất tốt bằng cách dùng màu kim loại như một lớp hoàn thiện biểu tượng. Đây là một bản phát hành thể hiện rõ khả năng của AJ5 trong các phối màu giàu hiệu ứng.</p>
+      `,
+      en: `
+        <p><b>The Jordan 5 Retro 'Bronze'</b> was released during a period when Jordan Brand explored Olympic medal themes. Set against an Obsidian base, Bronze detailing across the reflective tongue, shark teeth, and lining gives the AJ5 a character distinct from more familiar military or OG-inspired colorways.</p><p>The Air Jordan 5 has always been a visually expressive silhouette, and Bronze uses that quality effectively by turning metallic accents into a central symbolic finish. It is a release that highlights the AJ5's capacity for bold, effect-driven color stories.</p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     33. SOLD
+        NIKE DUNK HIGH 'BLACK VARSITY MAIZE'
+  ===================================================== */
+  {
+    id: "nike-dunk-high-black-varsity-maize",
+    title: {
+      vi: "Nike Dunk High 'Black Varsity Maize'",
+      en: "Nike Dunk High 'Black Varsity Maize'"
+    },
+    subtitle: {
+      vi: "Wu-Tang Inspired Dunk High (2020)",
+      en: "Wu-Tang Inspired Dunk High (2020)"
+    },
+    sku: "DD1399-700",
+    colorway: "Varsity Maize/Black",
+    retailPrice: "$120",
+    releaseDate: "2020-12-09",
+    editionType: { vi: "GR", en: "GR" },
+    condition: { vi: "Used", en: "Used" },
+    size: "11 US",
+    collectionStatus: "sold",
+    image: "pictures/nike_dunk_high_black_varsity_maize.png",
+    story: {
+      vi: `
+        <p><b>Nike Dunk High 'Black Varsity Maize'</b> lập tức gợi liên tưởng đến phối màu Wu-Tang huyền thoại, dù đây không phải là một bản retro chính thức của đôi hiếm năm 1999. Chính liên tưởng đó khiến nó trở thành một trong những đôi Dunk High được chú ý nhất của làn sóng phục hưng Dunk đầu thập niên 2020.</p><p>Với bảng màu vàng–đen cực mạnh, đôi giày cho thấy sức nặng văn hóa của chỉ riêng color blocking. Nó là một ví dụ rõ ràng về việc Nike có thể tái kích hoạt ký ức archive mà không cần sao chép hoàn toàn một bản phát hành gốc.</p>
+      `,
+      en: `
+        <p><b>The Nike Dunk High 'Black Varsity Maize'</b> immediately recalls the legendary Wu-Tang colorway, even though it is not an official retro of the rare 1999 pair. That association alone made it one of the most talked-about Dunk High releases during the early-2020s Dunk revival.</p><p>With its powerful yellow-and-black palette, the shoe demonstrates how much cultural weight color blocking alone can carry. It is a clear example of Nike reactivating archival memory without directly reproducing an original release.</p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     34. SOLD
+        JORDAN 1 RETRO HIGH OG 'BROTHERHOOD'
+  ===================================================== */
+  {
+    id: "jordan-1-brotherhood",
+    title: {
+      vi: "Jordan 1 Retro High OG 'Brotherhood'",
+      en: "Jordan 1 Retro High OG 'Brotherhood'"
+    },
+    subtitle: {
+      vi: "Omega Psi Phi Tribute (2022)",
+      en: "Omega Psi Phi Tribute (2022)"
+    },
+    sku: "555088-706",
+    colorway: "University Gold/Light Bordeaux-White",
+    retailPrice: "$170",
+    releaseDate: "2022-02-26",
+    editionType: { vi: "GR", en: "GR" },
+    condition: { vi: "Used", en: "Used" },
+    size: "10 US",
+    collectionStatus: "sold",
+    image: "pictures/aj1_brotherhood.png",
+    story: {
+      vi: `
+        <p><b>Jordan 1 Retro High OG 'Brotherhood'</b> lấy cảm hứng từ hội sinh viên Omega Psi Phi mà Michael Jordan từng tham gia tại UNC. University Gold và Light Bordeaux chuyển một mối liên hệ đời sống cá nhân của Jordan thành một phát hành mang tính câu chuyện rõ ràng.</p><p>Điểm thú vị của đôi giày nằm ở việc nó mở rộng thế giới Air Jordan ra ngoài sân bóng và các phối màu Chicago/Bulls quen thuộc. Đây là một bản AJ1 gắn trực tiếp với tiểu sử của Michael Jordan hơn là chỉ với sự nghiệp thi đấu của ông.</p>
+      `,
+      en: `
+        <p><b>The Jordan 1 Retro High OG 'Brotherhood'</b> draws inspiration from Omega Psi Phi, the fraternity Michael Jordan joined while at UNC. University Gold and Light Bordeaux turn a piece of Jordan's personal biography into a release with a clear narrative identity.</p><p>What makes the pair interesting is the way it extends the Air Jordan universe beyond on-court imagery and familiar Bulls-related palettes. It is an AJ1 tied directly to Michael Jordan's broader life story rather than only his playing career.</p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     35. SOLD
+        JORDAN 1 RETRO HIGH OG 'TURBO GREEN'
+  ===================================================== */
+  {
+    id: "jordan-1-turbo-green",
+    title: {
+      vi: "Jordan 1 Retro High OG 'Turbo Green'",
+      en: "Jordan 1 Retro High OG 'Turbo Green'"
+    },
+    subtitle: {
+      vi: "Distressed Turbo Green Edition (2019)",
+      en: "Distressed Turbo Green Edition (2019)"
+    },
+    sku: "555088-311",
+    colorway: "Turbo Green/Sail-White-Light Smoke Grey",
+    retailPrice: "$160",
+    releaseDate: "2019-02-15",
+    editionType: { vi: "GR", en: "GR" },
+    condition: { vi: "Used", en: "Used" },
+    size: "10.5 US",
+    collectionStatus: "sold",
+    image: "pictures/aj1_turbo_green.png",
+    story: {
+      vi: `
+        <p><b>Jordan 1 Retro High OG 'Turbo Green'</b> là một trong những bản AJ1 nổi bật nhất của giai đoạn Jordan Brand thử nghiệm mạnh với hiệu ứng vintage. Màu Turbo Green, nền Sail ngả vàng và phần chữ ghi chú ở lateral side giúp đôi giày mang cảm giác lưu trữ nhưng không thuần phục dựng.</p><p>Điều làm đôi này được yêu thích là khả năng vừa mềm về màu sắc vừa giàu dấu ấn thị giác. Nó nằm giữa archive aesthetic, lifestyle styling và tinh thần DIY ghi chú khá khác thường đối với Air Jordan 1.</p>
+      `,
+      en: `
+        <p><b>The Jordan 1 Retro High OG 'Turbo Green'</b> stands among the most memorable AJ1 releases from the period when Jordan Brand leaned heavily into vintage effects. The Turbo Green overlays, yellowed Sail base, and handwritten-style lateral notes give the sneaker an archival feel without making it a simple reproduction.</p><p>Its appeal comes from balancing softness in color with strong visual character. The pair sits somewhere between archive aesthetics, lifestyle wearability, and a lightly DIY graphic sensibility unusual for the Air Jordan 1.</p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     36. SOLD
+        NIKE DUNK HIGH X FRAGMENT DESIGN 'BEIJING' (2021)
+  ===================================================== */
+  {
+    id: "nike-dunk-high-fragment-beijing-2021",
+    title: {
+      vi: "Nike Dunk High x Fragment Design 'Beijing' (2021)",
+      en: "Nike Dunk High x Fragment Design 'Beijing' (2021)"
+    },
+    subtitle: {
+      vi: "City Pack Redux — Beijing (2021)",
+      en: "City Pack Redux — Beijing (2021)"
+    },
+    sku: "DJ0382-600",
+    colorway: "Wine/Black-White",
+    retailPrice: "$150",
+    releaseDate: "2021-06-05",
+    editionType: { vi: "GR", en: "GR" },
+    condition: { vi: "Used", en: "Used" },
+    size: "10 US",
+    collectionStatus: "sold",
+    image: "pictures/nike_dunk_high_fragment_beijing.png",
+    story: {
+      vi: `
+        <p><b>Nike Dunk High x Fragment Design 'Beijing'</b> là bản tái diễn giải của đôi Fragment Dunk High trong City Pack 2010, một dự án từng có ảnh hưởng lớn tới cộng đồng sưu tầm Dunk. Phiên bản 2021 giữ lại nền màu tím rượu và đen đặc trưng, đồng thời bổ sung branding hiện đại hơn của Fragment.</p><p>Giá trị của đôi giày nằm ở việc nó nối lại ký ức của một chapter quan trọng trong lịch sử Dunk cộng tác, thay vì chỉ là một phối màu đẹp đơn lẻ. Nó là dạng retro-collaboration hiếm khi chạm thẳng vào trí nhớ của giới collector như vậy.</p>
+      `,
+      en: `
+        <p><b>The Nike Dunk High x Fragment Design 'Beijing'</b> reinterprets the original Fragment Dunk High from the influential 2010 City Pack. The 2021 edition preserves the recognizable wine-and-black palette while adding more contemporary Fragment branding.</p><p>Its importance comes from reconnecting directly with a major chapter in the history of collaborative Dunks rather than functioning only as a visually appealing standalone colorway. Few retro-style collaborations tap collector memory as directly as this one.</p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     37. SOLD
+        JORDAN 4 RETRO 'ROYALTY'
+  ===================================================== */
+  {
+    id: "jordan-4-royalty",
+    title: {
+      vi: "Jordan 4 Retro 'Royalty'",
+      en: "Jordan 4 Retro 'Royalty'"
+    },
+    subtitle: {
+      vi: "Black / Gold Luxury Edition (2017)",
+      en: "Black / Gold Luxury Edition (2017)"
+    },
+    sku: "308497-032",
+    colorway: "Black/Metallic Gold-White",
+    retailPrice: "$190",
+    releaseDate: "2017-02-04",
+    editionType: { vi: "GR", en: "GR" },
+    condition: { vi: "Used", en: "Used" },
+    size: "10.5 US",
+    collectionStatus: "sold",
+    image: "pictures/aj4_royalty.png",
+    story: {
+      vi: `
+        <p><b>Jordan 4 Retro 'Royalty'</b> đưa ngôn ngữ sang trọng vào Air Jordan 4 bằng nền nubuck đen và các chi tiết Metallic Gold. Dù không phải phối màu OG, nó có sức hút rất mạnh nhờ cách dùng màu dễ khiến người xem liên tưởng đến một phiên bản 'elevated' của Bred hoặc Black Cement.</p><p>Royalty là ví dụ tốt cho kiểu phát hành Jordan Brand hướng đến sự nổi bật ngay lập tức bằng finish và hardware, thay vì dựa trên nguồn gốc thi đấu. Nó cho thấy AJ4 có thể chuyển từ performance heritage sang luxury-styled retro khá tự nhiên.</p>
+      `,
+      en: `
+        <p><b>The Jordan 4 Retro 'Royalty'</b> brings a more luxurious language to the Air Jordan 4 through a black nubuck upper and Metallic Gold accents. Even without OG status, the pair proved compelling because the color treatment makes it feel like an elevated cousin to Bred or Black Cement.</p><p>Royalty is a strong example of Jordan Brand releasing a retro aimed at immediate visual impact through finish and hardware rather than on-court backstory. It shows how naturally the AJ4 can move from performance heritage into a more luxury-styled presentation.</p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     38. SOLD
+        NIKE BLAZER LOW X SACAI 'BRITISH TAN'
+  ===================================================== */
+  {
+    id: "nike-blazer-low-sacai-british-tan",
+    title: {
+      vi: "Nike Blazer Low x sacai 'British Tan'",
+      en: "Nike Blazer Low x sacai 'British Tan'"
+    },
+    subtitle: {
+      vi: "sacai Layered Blazer Low (2021)",
+      en: "sacai Layered Blazer Low (2021)"
+    },
+    sku: "DD1877-200",
+    colorway: "British Tan/White-University Red",
+    retailPrice: "$120",
+    releaseDate: "2021-08-10",
+    editionType: { vi: "GR", en: "GR" },
+    condition: { vi: "Used", en: "Used" },
+    size: "10.5 US",
+    collectionStatus: "sold",
+    image: "pictures/nike_blazer_low_sacai_british_tan.png",
+    story: {
+      vi: `
+        <p><b>Nike Blazer Low x sacai 'British Tan'</b> tiếp tục phương pháp layering mang tính chữ ký của Chitose Abe: Swoosh chồng, lưỡi kép và midsole kéo dài. Trên nền màu British Tan, các lớp cấu trúc càng trở nên dễ đọc và cho thấy cách sacai biến một model Nike cổ điển thành một dạng hybrid mới.</p><p>Dự án này quan trọng vì nó khẳng định sacai không chỉ thành công với LDWaffle mà còn có thể áp dụng cùng triết lý vào các di sản Nike khác. Blazer Low trở thành nền tảng cho tư duy đa lớp rất đặc trưng của thương hiệu Nhật Bản.</p>
+      `,
+      en: `
+        <p><b>The Nike Blazer Low x sacai 'British Tan'</b> continues Chitose Abe's signature layering method through doubled Swooshes, dual tongues, and extended midsoles. Against the British Tan base, those structural layers become especially legible, showing how sacai transforms a classic Nike model into a new hybrid object.</p><p>The project matters because it confirmed that sacai's success extended beyond the LDWaffle. The Blazer Low became another strong platform for the Japanese brand's distinctive multi-layer design language.</p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     39. SOLD
+        NEW BALANCE 327 X LEVI'S 'NAVY'
+  ===================================================== */
+  {
+    id: "new-balance-327-levis-navy",
+    title: {
+      vi: "New Balance 327 x Levi's 'Navy'",
+      en: "New Balance 327 x Levi's 'Navy'"
+    },
+    subtitle: {
+      vi: "Levi's Indigo Denim Collaboration (2020)",
+      en: "Levi's Indigo Denim Collaboration (2020)"
+    },
+    sku: "MS327LVA",
+    colorway: "Navy/White",
+    retailPrice: "$120",
+    releaseDate: "2020-08-27",
+    editionType: { vi: "GR", en: "GR" },
+    condition: { vi: "Used", en: "Used" },
+    size: "10 US",
+    collectionStatus: "sold",
+    image: "pictures/nb327_levis_navy.png",
+    story: {
+      vi: `
+        <p><b>New Balance 327 x Levi's 'Navy'</b> kết hợp một trong những silhouette retro-runner thành công nhất của New Balance với ngôn ngữ denim kinh điển của Levi's. Việc sử dụng indigo denim trên phần upper khiến đôi 327 mang cảm giác rất khác so với các colorway nylon/suede thông thường.</p><p>Sự cộng tác này hoạt động tốt vì bản thân 327 đã có phom vừa thời trang vừa dễ ứng dụng. Khi ghép với vật liệu đậm tính biểu tượng của Levi's, nó trở thành một hiện vật nằm giữa sneaker culture và heritage casualwear.</p>
+      `,
+      en: `
+        <p><b>The New Balance 327 x Levi's 'Navy'</b> combines one of New Balance's most successful retro-runner silhouettes with Levi's classic denim language. The use of indigo denim across the upper gives the 327 a very different personality from its more typical nylon-and-suede configurations.</p><p>The collaboration works because the 327 already occupies a space between sporty heritage and contemporary fashion. Paired with one of Levi's most iconic materials, it becomes an object that sits comfortably between sneaker culture and heritage casualwear.</p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     40. SOLD
+        JORDAN 1 LOW 'LIGHT SMOKE GREY GYM RED'
+  ===================================================== */
+  {
+    id: "jordan-1-low-light-smoke-grey-gym-red",
+    title: {
+      vi: "Jordan 1 Low 'Light Smoke Grey Gym Red'",
+      en: "Jordan 1 Low 'Light Smoke Grey Gym Red'"
+    },
+    subtitle: {
+      vi: "Low-Top Grey / Red Edition (2020)",
+      en: "Low-Top Grey / Red Edition (2020)"
+    },
+    sku: "553558-030",
+    colorway: "Light Smoke Grey/Gym Red-White",
+    retailPrice: "$90",
+    releaseDate: "2020-07-01",
+    editionType: { vi: "GR", en: "GR" },
+    condition: { vi: "Used", en: "Used" },
+    size: "10.5 US",
+    collectionStatus: "sold",
+    image: "pictures/aj1_low_light_smoke_grey_gym_red.png",
+    story: {
+      vi: `
+        <p><b>Jordan 1 Low 'Light Smoke Grey Gym Red'</b> là một ví dụ điển hình của Jordan 1 Low giai đoạn tăng mạnh về độ phổ biến đầu thập niên 2020. Light Smoke Grey tạo nền trung tính dễ dùng, trong khi Gym Red mang lại đủ năng lượng thị giác để đôi giày không trở nên quá hiền.</p><p>Điều làm các bản Jordan 1 Low như thế này hấp dẫn là khả năng chuyển ngôn ngữ AJ1 sang một định dạng nhẹ và đời thường hơn. Nó đại diện cho hướng lifestyle hóa ngày càng rõ của Jordan Brand.</p>
+      `,
+      en: `
+        <p><b>The Jordan 1 Low 'Light Smoke Grey Gym Red'</b> is a representative example of the Jordan 1 Low's surge in popularity during the early 2020s. Light Smoke Grey provides a neutral everyday foundation, while Gym Red adds enough visual energy to keep the pair from feeling too subdued.</p><p>What makes Jordan 1 Lows like this appealing is the way they translate the AJ1 language into a lighter, more casual format. It represents the increasingly lifestyle-oriented direction of Jordan Brand.</p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     41. SOLD
+        NIKE AIR MAX 720 'BLACK MESH'
+  ===================================================== */
+  {
+    id: "nike-air-max-720-black-mesh",
+    title: {
+      vi: "Nike Air Max 720 'Black Mesh'",
+      en: "Nike Air Max 720 'Black Mesh'"
+    },
+    subtitle: {
+      vi: "Full-Length 720 Air Edition (2019)",
+      en: "Full-Length 720 Air Edition (2019)"
+    },
+    sku: "AO2924-007",
+    colorway: "Black/Black-Black",
+    retailPrice: "$180",
+    releaseDate: "2019-02-01",
+    editionType: { vi: "GR", en: "GR" },
+    condition: { vi: "Used", en: "Used" },
+    size: "10 US",
+    collectionStatus: "sold",
+    image: "pictures/nike_air_max_720_black_mesh.png",
+    story: {
+      vi: `
+        <p><b>Nike Air Max 720 'Black Mesh'</b> thuộc giai đoạn Nike đẩy visible Air tới cực điểm với bộ đệm 720 độ cao và lớn nhất của thời điểm đó. Thiết kế này nghiêng mạnh về cảm giác tương lai, với phần đế rất cao và upper dạng mesh tối giản để nhấn vào bộ Air.</p><p>Colorway Black Mesh cho thấy rõ triết lý ấy: phần upper lùi lại để đế Air trở thành tâm điểm. Nó là hiện vật tiêu biểu cho làn sóng Air Max thiên về hình khối và công nghệ thị giác cuối thập niên 2010.</p>
+      `,
+      en: `
+        <p><b>The Nike Air Max 720 'Black Mesh'</b> belongs to the period when Nike pushed visible Air to an extreme through its tallest and largest 720-degree cushioning unit. The design leans heavily into a futuristic stance, with a towering sole and a relatively simple mesh upper built to emphasize the Air platform.</p><p>The Black Mesh colorway makes that philosophy especially clear: the upper steps back so that the cushioning becomes the main event. It stands as a strong artifact of the late-2010s wave of Air Max models centered on sculptural shape and visible technology.</p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     42. SOLD
+        ADIDAS YEEZY 500 'UTILITY BLACK'
+  ===================================================== */
+  {
+    id: "yeezy-500-utility-black",
+    title: {
+      vi: "adidas Yeezy 500 'Utility Black'",
+      en: "adidas Yeezy 500 'Utility Black'"
+    },
+    subtitle: {
+      vi: "Monochrome Desert-Rat Edition (2018)",
+      en: "Monochrome Desert-Rat Edition (2018)"
+    },
+    sku: "F36640",
+    colorway: "Utility Black/Utility Black/Utility Black",
+    retailPrice: "$200",
+    releaseDate: "2018-07-07",
+    editionType: { vi: "GR", en: "GR" },
+    condition: { vi: "Used", en: "Used" },
+    size: "10.5 US",
+    collectionStatus: "sold",
+    image: "pictures/yeezy_500_utility_black.png",
+    story: {
+      vi: `
+        <p><b>Yeezy 500 'Utility Black'</b> là một trong những phối màu cốt lõi của dòng 500, sử dụng hoàn toàn một tông đen để nhấn mạnh hình khối nặng và gần như công nghiệp của silhouette. Dòng 500 vốn khác các Yeezy Boost khác ở chỗ không dùng Boost mà dựa trên nền adiPRENE và tư duy thiết kế 'desert rat'.</p><p>Utility Black được đánh giá cao vì nó làm rõ ngôn ngữ hình thể của đôi giày hơn bất kỳ phối màu phức tạp nào. Đây là một hiện vật quan trọng nếu nhìn vào giai đoạn Yeezy mở rộng mạnh mẽ khỏi runner truyền thống.</p>
+      `,
+      en: `
+        <p><b>The Yeezy 500 'Utility Black'</b> is one of the foundational colorways of the 500 line, using an entirely black finish to emphasize the silhouette's heavy, almost industrial shape. The 500 differs from many other Yeezys by forgoing Boost in favor of an adiPRENE-based 'desert rat' concept.</p><p>Utility Black is especially well regarded because it clarifies the shoe's form more effectively than more complicated colorways. It is an important artifact from the period when Yeezy expanded far beyond conventional running-inspired footwear.</p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     43. SOLD
+        NIKE SB DUNK LOW 'OLYMPICS SAFARI'
+  ===================================================== */
+  {
+    id: "nike-sb-dunk-low-olympics-safari",
+    title: {
+      vi: "Nike SB Dunk Low 'Olympics Safari'",
+      en: "Nike SB Dunk Low 'Olympics Safari'"
+    },
+    subtitle: {
+      vi: "Olympics / Safari Graphic Dunk SB (2024)",
+      en: "Olympics / Safari Graphic Dunk SB (2024)"
+    },
+    sku: "FZ1233-002",
+    colorway: "Phantom/Black-Monarch-Summit White",
+    retailPrice: "$125",
+    releaseDate: "2024-08-09",
+    editionType: { vi: "GR", en: "GR" },
+    condition: { vi: "Used", en: "Used" },
+    size: "10 US",
+    collectionStatus: "sold",
+    image: "pictures/nike_sb_dunk_low_olympics_safari.png",
+    story: {
+      vi: `
+        <p><b>Nike SB Dunk Low 'Olympics Safari'</b> kết hợp họa tiết safari với một bảng màu gợi không khí Olympic, tạo nên một phiên bản SB Dunk giàu chi tiết bề mặt. Nike SB thường thành công ở những đôi có nhiều lớp texture, và đôi này đi đúng hướng đó.</p><p>Sự hấp dẫn của phiên bản nằm ở việc nó không phụ thuộc vào một câu chuyện cộng tác lớn mà dựa vào chính cách vật liệu và pattern được sắp đặt. Đó là kiểu SB Dunk thiên về visual language và độ vui mắt của thiết kế.</p>
+      `,
+      en: `
+        <p><b>The Nike SB Dunk Low 'Olympics Safari'</b> combines safari patterning with a palette that suggests an Olympic mood, creating a detail-rich SB Dunk built around surface texture. Nike SB often excels in releases that layer materials and graphics, and this pair follows that tradition closely.</p><p>Its appeal comes less from a major collaboration story and more from how effectively the materials and patterns are arranged. It is the kind of SB Dunk that relies on visual language and playful design energy.</p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     44. SOLD
+        NIKE DUNK HIGH 'LIGHT BONE'
+  ===================================================== */
+  {
+    id: "nike-dunk-high-light-bone",
+    title: {
+      vi: "Nike Dunk High 'Light Bone'",
+      en: "Nike Dunk High 'Light Bone'"
+    },
+    subtitle: {
+      vi: "Suede Dunk High (2017)",
+      en: "Suede Dunk High (2017)"
+    },
+    sku: "904233-002",
+    colorway: "Light Bone/Black",
+    retailPrice: "$110",
+    releaseDate: "2017-01-01",
+    editionType: { vi: "GR", en: "GR" },
+    condition: { vi: "Used", en: "Used" },
+    size: "10.5 US",
+    collectionStatus: "sold",
+    image: "pictures/nike_dunk_high_light_bone.png",
+    imageSource: "GOAT",
+    story: {
+      vi: `
+        <p><b>Nike Dunk High 'Light Bone'</b> sử dụng bảng màu trung tính cùng chất liệu suede để tạo nên một bản Dunk High có cảm giác mềm và understated hơn các bản college color truyền thống. Light Bone và black giúp đôi giày nghiêng rõ về lifestyle hơn là heritage team-color storytelling.</p><p>Những phát hành như thế này cho thấy Dunk không chỉ sống nhờ các phối màu biểu tượng hay các dự án hợp tác, mà còn nhờ khả năng thích ứng với những bảng màu rất tối giản. Đây là một kiểu Dunk dễ bị bỏ qua nhưng lại đại diện tốt cho mặt everyday của dòng này.</p>
+      `,
+      en: `
+        <p><b>The Nike Dunk High 'Light Bone'</b> uses a neutral palette and suede construction to create a softer, more understated take on the Dunk High than traditional college-color editions. Light Bone and black push the shoe more toward lifestyle wear than team-color heritage storytelling.</p><p>Releases like this show that the Dunk's longevity does not depend only on iconic colorways or collaborations, but also on its ability to adapt to stripped-down palettes. It is an easily overlooked pair that still represents the everyday side of the Dunk line very well.</p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     45. SOLD
+        CONVERSE CHUCK TAYLOR ALL STAR 70 OX X COMME DES GARÇONS PLAY 'WHITE'
+  ===================================================== */
+  {
+    id: "converse-cdg-play-chuck-70-low-white",
+    title: {
+      vi: "Converse Chuck Taylor All Star 70 Ox x Comme des Garçons PLAY 'White'",
+      en: "Converse Chuck Taylor All Star 70 Ox x Comme des Garçons PLAY 'White'"
+    },
+    subtitle: {
+      vi: "CDG PLAY Heart Logo Low (2015)",
+      en: "CDG PLAY Heart Logo Low (2015)"
+    },
+    sku: "150207C",
+    colorway: "White/Milk/Red",
+    retailPrice: "$120",
+    releaseDate: "2015-05-14",
+    editionType: { vi: "GR", en: "GR" },
+    condition: { vi: "Used", en: "Used" },
+    size: "10 US",
+    collectionStatus: "sold",
+    image: "pictures/converse_cdg_play_low_white.png",
+    story: {
+      vi: `
+        <p><b>Converse x Comme des Garçons PLAY Chuck 70 Low 'White'</b> là một trong những đôi sneaker cộng tác nổi tiếng và phổ biến nhất của thập niên 2010. Thiết kế gần như giữ nguyên Chuck 70 cổ điển, chỉ thêm biểu tượng trái tim mắt lác của Filip Pagowski — một can thiệp nhỏ nhưng đủ để tạo nên bản sắc ngay lập tức.</p><p>Sức mạnh của dự án nằm ở sự tối giản: CDG PLAY không cố tái thiết kế Chuck Taylor, mà chỉ đặt biểu tượng của mình lên một biểu tượng đã quá quen thuộc. Chính sự tiết chế đó khiến đôi giày tồn tại bền bỉ trong cả thời trang đại chúng lẫn giới sưu tầm.</p>
+      `,
+      en: `
+        <p><b>The Converse x Comme des Garçons PLAY Chuck 70 Low 'White'</b> is one of the most recognizable and widely worn sneaker collaborations of the 2010s. The design keeps the Chuck 70 almost intact, adding only Filip Pagowski's heart-with-eyes logo — a small intervention that nevertheless creates an instantly identifiable identity.</p><p>The power of the project lies in its restraint: CDG PLAY does not try to redesign the Chuck Taylor from scratch, but instead places its own symbol onto an already iconic canvas. That minimalism is exactly what has allowed the pair to endure across both mainstream fashion and collecting culture.</p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     46. SOLD
+        CONVERSE CHUCK TAYLOR ALL STAR 70 OX X COMME DES GARÇONS PLAY 'BLACK'
+  ===================================================== */
+  {
+    id: "converse-cdg-play-chuck-70-low-black",
+    title: {
+      vi: "Converse Chuck Taylor All Star 70 Ox x Comme des Garçons PLAY 'Black'",
+      en: "Converse Chuck Taylor All Star 70 Ox x Comme des Garçons PLAY 'Black'"
+    },
+    subtitle: {
+      vi: "CDG PLAY Heart Logo Low (2015)",
+      en: "CDG PLAY Heart Logo Low (2015)"
+    },
+    sku: "150206C",
+    colorway: "Black/Milk/Red",
+    retailPrice: "$120",
+    releaseDate: "2015-05-14",
+    editionType: { vi: "GR", en: "GR" },
+    condition: { vi: "Used", en: "Used" },
+    size: "12 US",
+    collectionStatus: "sold",
+    image: "pictures/converse_cdg_play_low_black.png",
+    story: {
+      vi: `
+        <p><b>Converse x Comme des Garçons PLAY Chuck 70 Low 'Black'</b> là biến thể tối màu hơn của dự án cộng tác kinh điển giữa Converse và CDG PLAY. Nền canvas đen giúp logo trái tim đỏ trở nên nổi bật hơn và tạo một bản phát hành mang tính thời trang rõ hơn bản trắng.</p><p>Giống như các phiên bản CDG PLAY khác, đôi giày chứng minh rằng một chi tiết đồ họa rất nhỏ có thể đủ để tái định nghĩa một biểu tượng văn hóa đại chúng. Đây là kiểu collaboration sống rất lâu nhờ tính nhận diện tức thì và khả năng dùng hằng ngày.</p>
+      `,
+      en: `
+        <p><b>The Converse x Comme des Garçons PLAY Chuck 70 Low 'Black'</b> is the darker counterpart to the now-classic Converse and CDG PLAY collaboration. The black canvas makes the red heart logo more pronounced and gives the pair a stronger fashion-oriented presence than the white version.</p><p>Like the other CDG PLAY editions, it proves that a very small graphic intervention can be enough to reframe a mass-cultural icon. It is the kind of collaboration that endures through immediate recognizability and everyday wearability.</p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     47. SOLD
+        NIKE ZOOM TERRA KIGER 5 X OFF-WHITE 'WHITE' (W)
+  ===================================================== */
+  {
+    id: "nike-zoom-terra-kiger-5-off-white-white",
+    title: {
+      vi: "Nike Zoom Terra Kiger 5 x Off-White 'White' (W)",
+      en: "Nike Zoom Terra Kiger 5 x Off-White 'White' (W)"
+    },
+    subtitle: {
+      vi: "Athlete in Progress Trail Runner (2019)",
+      en: "Athlete in Progress Trail Runner (2019)"
+    },
+    sku: "CD8179-100",
+    colorway: "White/Metallic Silver-Safety Orange",
+    retailPrice: "$180",
+    releaseDate: "2019-06-24",
+    editionType: { vi: "GR", en: "GR" },
+    condition: { vi: "Used", en: "Used" },
+    size: "11.5W / 10M US",
+    collectionStatus: "sold",
+    image: "pictures/nike_zoom_terra_kiger5_ow_white.png",
+    story: {
+      vi: `
+        <p><b>Nike Zoom Terra Kiger 5 x Off-White 'White'</b> thuộc dự án <b>Athlete in Progress</b> của Virgil Abloh, nơi running và trail footwear trở thành chất liệu để ông tiếp tục giải cấu trúc Nike. Cấu trúc nhẹ, hệ dây phụ và phần spike outsole làm cho đôi giày đứng giữa performance runner và object thời trang.</p><p>Khác với The Ten thiên về các biểu tượng quen thuộc, Terra Kiger 5 cho thấy Virgil quan tâm tới những dòng sản phẩm ít hiển nhiên hơn. Nó mở rộng đáng kể phạm vi visual language của Off-White x Nike.</p>
+      `,
+      en: `
+        <p><b>The Nike Zoom Terra Kiger 5 x Off-White 'White'</b> belongs to Virgil Abloh's <b>Athlete in Progress</b> project, where running and trail footwear became the basis for further Nike deconstruction. Its light construction, secondary lacing, and spiked outsole place the shoe somewhere between a performance runner and a fashion object.</p><p>Unlike The Ten, which focused on widely familiar icons, the Terra Kiger 5 showed Virgil's interest in less obvious parts of Nike's catalog. In doing so, it expanded the visual range of the Off-White x Nike partnership considerably.</p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     48. SOLD
+        JORDAN 4 RETRO 'FIRE RED' (2020)
+  ===================================================== */
+  {
+    id: "jordan-4-fire-red-2020",
+    title: {
+      vi: "Jordan 4 Retro 'Fire Red' (2020)",
+      en: "Jordan 4 Retro 'Fire Red' (2020)"
+    },
+    subtitle: {
+      vi: "Nike Air Heel Fire Red Retro (2020)",
+      en: "Nike Air Heel Fire Red Retro (2020)"
+    },
+    sku: "DC7770-160",
+    colorway: "White/Fire Red-Black-Tech Grey",
+    retailPrice: "$200",
+    releaseDate: "2020-11-28",
+    editionType: { vi: "GR", en: "GR" },
+    condition: { vi: "Used", en: "Used" },
+    size: "11.5 US",
+    collectionStatus: "sold",
+    image: "pictures/aj4_fire_red_2020.png",
+    story: {
+      vi: `
+        <p><b>Jordan 4 Retro 'Fire Red' 2020</b> là một trong những bản retro quan trọng nhất của Air Jordan 4 trong thập niên 2020, đặc biệt vì sự trở lại của <b>Nike Air</b> ở gót. Fire Red là một phối màu OG quan trọng, gắn chặt với giai đoạn đầu của dòng AJ4.</p><p>Phiên bản 2020 được đón nhận mạnh nhờ mức độ tôn trọng thiết kế gốc cao hơn nhiều đợt retro cũ. Đối với archive, đây là kiểu phát hành có giá trị lịch sử rõ rệt hơn nhiều so với một colorway mới đơn thuần.</p>
+      `,
+      en: `
+        <p><b>The Jordan 4 Retro 'Fire Red' 2020</b> is one of the most important Air Jordan 4 retros of the 2020s, especially because of the return of <b>Nike Air</b> branding on the heel. Fire Red is a major OG colorway, closely tied to the earliest era of the AJ4.</p><p>The 2020 release was widely appreciated for honoring the original design more faithfully than many previous retro cycles. Within the archive, it carries a historical weight very different from that of a simple new colorway.</p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     49. SOLD
+        JORDAN 1 LOW 'BLACK ACTIVE FUCHSIA'
+  ===================================================== */
+  {
+    id: "jordan-1-low-black-active-fuchsia",
+    title: {
+      vi: "Jordan 1 Low 'Black Active Fuchsia'",
+      en: "Jordan 1 Low 'Black Active Fuchsia'"
+    },
+    subtitle: {
+      vi: "Black / Pink Accent Low (2020)",
+      en: "Black / Pink Accent Low (2020)"
+    },
+    sku: "CK3022-005",
+    colorway: "Black/Active Fuchsia-White",
+    retailPrice: "$90",
+    releaseDate: "2020-05-14",
+    editionType: { vi: "GR", en: "GR" },
+    condition: { vi: "Used", en: "Used" },
+    size: "10 US",
+    collectionStatus: "sold",
+    image: "pictures/aj1_low_black_active_fuchsia.png",
+    story: {
+      vi: `
+        <p><b>Jordan 1 Low 'Black Active Fuchsia'</b> dùng nền đen làm cơ sở và thêm Active Fuchsia như một điểm nhấn mạnh ở branding và các chi tiết nhỏ. Đây là một dạng Jordan 1 Low thiên về lifestyle và mang tinh thần color accent rất rõ.</p><p>Những phối màu như thế này cho thấy Jordan 1 Low có thể linh hoạt hơn Jordan 1 High trong việc thử các bảng màu đời thường hoặc thời trang hơn. Nó ít phụ thuộc vào di sản OG nhưng vẫn giữ được cấu trúc nhận diện của AJ1.</p>
+      `,
+      en: `
+        <p><b>The Jordan 1 Low 'Black Active Fuchsia'</b> uses a black base and introduces Active Fuchsia as a sharp accent across branding and smaller design details. It is a Jordan 1 Low built more around lifestyle appeal and color-pop energy than historical backstory.</p><p>Pairs like this show how the Jordan 1 Low can be more flexible than the High in exploring everyday or fashion-leaning palettes. It depends less on OG heritage while still preserving the recognizable AJ1 structure.</p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     50. SOLD
+        JORDAN 1 LOW 'NOBLE RED'
+  ===================================================== */
+  {
+    id: "jordan-1-low-noble-red",
+    title: {
+      vi: "Jordan 1 Low 'Noble Red'",
+      en: "Jordan 1 Low 'Noble Red'"
+    },
+    subtitle: {
+      vi: "Noble Red Everyday Low (2019)",
+      en: "Noble Red Everyday Low (2019)"
+    },
+    sku: "553558-604",
+    colorway: "Noble Red/White-Black",
+    retailPrice: "$90",
+    releaseDate: "2019-12-20",
+    editionType: { vi: "GR", en: "GR" },
+    condition: { vi: "Used", en: "Used" },
+    size: "10 US",
+    collectionStatus: "sold",
+    image: "pictures/aj1_low_noble_red.png",
+    story: {
+      vi: `
+        <p><b>Jordan 1 Low 'Noble Red'</b> là một ví dụ điển hình cho hướng phát triển đời thường của Jordan 1 Low. Noble Red tạo một diện mạo đậm hơn các phối màu xám hoặc trắng thường gặp, nhưng vẫn đủ gọn để giữ khả năng phối đồ hằng ngày.</p><p>Giống nhiều bản Jordan 1 Low khác cùng giai đoạn, đôi giày cho thấy Jordan Brand đang mở rộng đối tượng người dùng của AJ1 bằng các màu sắc đơn giản, dễ dùng và có mức tiếp cận rộng hơn.</p>
+      `,
+      en: `
+        <p><b>The Jordan 1 Low 'Noble Red'</b> is a representative example of the Jordan 1 Low's everyday-oriented direction. Noble Red gives the sneaker a stronger visual identity than many grey or white-based low-top releases while remaining easy to style in daily wear.</p><p>Like many Jordan 1 Lows from the same period, it reflects Jordan Brand's effort to broaden the AJ1 audience through simple, accessible, and wearable colorways.</p>
+      `
+    }
+  },
+
+
+  /* =====================================================
+     51. SOLD
+        NIKE AIR FEAR OF GOD 1 'SAIL BLACK'
+  ===================================================== */
+  {
+    id: "nike-air-fear-of-god-1-sail-black",
+    title: {
+      vi: "Nike Air Fear of God 1 'Sail Black'",
+      en: "Nike Air Fear of God 1 'Sail Black'"
+    },
+    subtitle: {
+      vi: "Jerry Lorenzo Basketball-Luxury Hybrid (2019)",
+      en: "Jerry Lorenzo Basketball-Luxury Hybrid (2019)"
+    },
+    sku: "AR4237-100",
+    colorway: "Sail/Black",
+    retailPrice: "$350",
+    releaseDate: "2019-06-08",
+    editionType: { vi: "GR", en: "GR" },
+    condition: { vi: "Used", en: "Used" },
+    size: "10 US",
+    collectionStatus: "sold",
+    image: "pictures/nike_air_fear_of_god_1_sail_black.png",
+    story: {
+      vi: `
+        <p><b>Nike Air Fear of God 1 'Sail Black'</b> là một trong những dự án quan trọng nhất giữa Nike và Jerry Lorenzo. Silhouette cao cổ, cage ở gót và zip closure tạo nên một cấu trúc nằm giữa performance basketball, luxury fashion và footwear mang tính kiến trúc.</p><p>Khác với các đôi retro basketball truyền thống, Air Fear of God 1 gần như xây dựng một thế giới riêng cho mình. Phiên bản Sail/Black đặc biệt làm rõ chất lượng vật liệu và tinh thần tối giản, vốn là trung tâm trong ngôn ngữ Fear of God.</p>
+      `,
+      en: `
+        <p><b>The Nike Air Fear of God 1 'Sail Black'</b> is one of the most important projects in the Nike and Jerry Lorenzo partnership. Its high-cut silhouette, heel cage, and zipper closure create a structure positioned between performance basketball, luxury fashion, and architectural footwear design.</p><p>Unlike a traditional retro basketball shoe, the Air Fear of God 1 builds a visual world almost entirely of its own. The Sail/Black version especially highlights the material quality and minimal sensibility that sit at the center of Fear of God.</p>
+      `
+    }
   }
 
 ];
