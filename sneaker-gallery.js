@@ -1,11 +1,16 @@
 /* =========================================================
    LỘC AN SNEAKER COLLECTION
-   SNEAKER IMAGE GALLERIES
+   SNEAKER IMAGE GALLERIES — v2
 
    - Ảnh đầu tiên luôn là COVER / ảnh bìa.
    - Các ảnh tiếp theo là DETAIL / ảnh phụ.
    - Homepage vẫn dùng sneaker.image trong data.js.
    - File này chỉ phục vụ gallery trên shoe.html.
+
+   v2:
+   - Quai 54: bắt buộc 2 ảnh.
+   - Yuto Matcha: bắt buộc 2 ảnh.
+   - Có fallback cho các cách đặt tên detail image cũ.
 ========================================================= */
 
 window.SNEAKER_GALLERIES = {
@@ -106,3 +111,181 @@ window.SNEAKER_GALLERIES = {
   ]
 
 };
+
+
+/* =========================================================
+   DETAIL IMAGE FALLBACK
+
+   Repo đã từng dùng nhiều convention khác nhau:
+   "...matcha1.png" và "...matcha_1.png", v.v.
+
+   Nếu detail path chính không load được, script thử các tên
+   cũ. Khi tìm được file hợp lệ, shoe.html được render lại.
+========================================================= */
+
+(() => {
+  "use strict";
+
+  const candidates = {
+
+    "jordan-1-quai54-ff": [
+      "pictures/jordan1_quai54_ff_v2_1.png",
+      "pictures/jordan1_quai54_ff_1.png",
+      "pictures/jordan1_quai54_1.png"
+    ],
+
+    "nike-sb-dunk-yuto-matcha": [
+      "pictures/sbdunk_yutohorigome_matcha1.png",
+      "pictures/sbdunk_yutohorigome_matcha_1.png",
+      "pictures/jordan1_yuto_matcha_1.png"
+    ]
+
+  };
+
+
+  function imageExists(src) {
+    return new Promise(resolve => {
+
+      const image =
+        new Image();
+
+
+      const done =
+        result => {
+
+          image.onload =
+            null;
+
+          image.onerror =
+            null;
+
+          resolve(
+            result
+          );
+
+        };
+
+
+      image.onload =
+        () => done(true);
+
+
+      image.onerror =
+        () => done(false);
+
+
+      /*
+        Cache-bust only the probe.
+        The final gallery path stays clean.
+      */
+      image.src =
+        `${src}?gallery_probe=20260915`;
+
+    });
+  }
+
+
+  async function resolveSecondImage(
+    sneakerId
+  ) {
+
+    const gallery =
+      window.SNEAKER_GALLERIES[
+        sneakerId
+      ];
+
+
+    if (
+      !Array.isArray(gallery)
+      ||
+      gallery.length === 0
+    ) {
+      return false;
+    }
+
+
+    const cover =
+      gallery[0];
+
+
+    const options =
+      candidates[
+        sneakerId
+      ]
+      ||
+      [];
+
+
+    for (
+      const candidate
+      of options
+    ) {
+
+      if (
+        await imageExists(
+          candidate
+        )
+      ) {
+
+        window.SNEAKER_GALLERIES[
+          sneakerId
+        ] = [
+          cover,
+          candidate
+        ];
+
+        return true;
+
+      }
+
+    }
+
+
+    return false;
+
+  }
+
+
+  async function resolveRequiredGalleries() {
+
+    const changed = [
+
+      await resolveSecondImage(
+        "jordan-1-quai54-ff"
+      ),
+
+      await resolveSecondImage(
+        "nike-sb-dunk-yuto-matcha"
+      )
+
+    ].some(Boolean);
+
+
+    /*
+      shoe.html declares loadShoe() in its inline classic script.
+      At window.load it is available globally.
+      Re-render once after filename resolution.
+    */
+    if (
+      changed
+      &&
+      typeof window.loadShoe ===
+        "function"
+    ) {
+
+      window.loadShoe();
+
+    }
+
+  }
+
+
+  window.addEventListener(
+    "load",
+    resolveRequiredGalleries,
+    {
+      once: true
+    }
+  );
+
+})();
