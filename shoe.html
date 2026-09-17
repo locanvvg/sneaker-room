@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
 
@@ -10,7 +11,7 @@
 
   <meta
     name="description"
-    content="Lộc An Sneaker Collection - Sneaker Archive Detail"
+    content="Lộc An Sneaker Collection - Sneaker Exhibition Detail"
   >
 
   <meta
@@ -23,148 +24,54 @@
   <link
     rel="icon"
     type="image/svg+xml"
-    href="./favicon.svg"
+    href="favicon.svg"
   >
 
   <link
     rel="apple-touch-icon"
-    href="./apple-touch-icon.png"
+    href="apple-touch-icon.png"
   >
 
   <link
     rel="manifest"
-    href="./site.webmanifest"
+    href="site.webmanifest"
   >
 
   <link
     rel="stylesheet"
-    href="./style.css?v=20260917-gallery-final"
+    href="style.css?v=20260917-rollback"
   >
-
-  <link
-    rel="stylesheet"
-    href="./collection-menu.css?v=20260917-gallery-final"
-  >
-
-  <style>
-    /* Detail gallery extension only. Existing site design remains unchanged. */
-
-    .shoe-image-section {
-      position: relative;
-    }
-
-    .shoe-detail-gallery {
-      width: 100%;
-    }
-
-    .shoe-detail-main-frame {
-      position: relative;
-      width: 100%;
-    }
-
-    .shoe-detail-main-frame #shoe-image {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
-    .shoe-gallery-nav {
-      position: absolute;
-      inset: 50% 12px auto 12px;
-      transform: translateY(-50%);
-      display: flex;
-      justify-content: space-between;
-      pointer-events: none;
-      z-index: 4;
-    }
-
-    .shoe-gallery-arrow {
-      width: 42px;
-      height: 42px;
-      border: 1px solid rgba(255,255,255,.18);
-      border-radius: 999px;
-      background: rgba(13,13,13,.78);
-      color: #fff;
-      font-size: 22px;
-      cursor: pointer;
-      pointer-events: auto;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-
-    .shoe-gallery-arrow:hover {
-      border-color: rgba(255,255,255,.5);
-    }
-
-    .shoe-gallery-thumbnails {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .shoe-gallery-thumb {
-      width: 72px;
-      height: 72px;
-      padding: 4px;
-      border: 1px solid #303034;
-      border-radius: 9px;
-      background: #151517;
-      cursor: pointer;
-      opacity: .62;
-    }
-
-    .shoe-gallery-thumb.active {
-      opacity: 1;
-      border-color: #ffcc00;
-    }
-
-    .shoe-gallery-thumb img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-
-    .shoe-gallery-counter {
-      margin-top: 10px;
-      text-align: center;
-      color: #777;
-      font-size: .72rem;
-      letter-spacing: .08em;
-    }
-
-    .shoe-gallery-nav[hidden],
-    .shoe-gallery-thumbnails[hidden],
-    .shoe-gallery-counter[hidden] {
-      display: none !important;
-    }
-
-    @media (max-width: 650px) {
-      .shoe-gallery-arrow {
-        width: 38px;
-        height: 38px;
-      }
-
-      .shoe-gallery-thumb {
-        width: 62px;
-        height: 62px;
-      }
-    }
-  </style>
 </head>
 
+
 <body>
+
   <div class="container">
 
-    <header class="home-header">
+    <header class="site-header">
 
-      <div class="header-corner-tools">
+      <div class="site-header-left">
+        <a
+          href="index.html"
+          class="back-btn"
+          id="back-link"
+        >
+          ← Quay lại Bộ sưu tập
+        </a>
+      </div>
+
+      <a
+        href="index.html"
+        class="site-brand"
+      >
+        Lộc An Sneaker Collection
+      </a>
+
+      <div class="site-header-actions">
 
         <a
-          href="./about.html"
-          class="about-corner-link"
+          href="about.html"
+          class="header-about-link"
         >
           ABOUT
         </a>
@@ -174,7 +81,7 @@
           <button
             type="button"
             id="btn-vi"
-            class="lang-btn active"
+            class="lang-btn"
             onclick="changeLang('vi')"
           >
             VI
@@ -193,51 +100,8 @@
 
       </div>
 
-      <h1>
-        LỘC AN SNEAKER COLLECTION
-      </h1>
-
-      <p id="detail-main-subtitle">
-        Không gian lưu trữ &amp; Bảo tàng Sneaker Kỹ thuật số
-      </p>
-
-      <nav
-        class="museum-nav"
-        aria-label="Collection navigation"
-      >
-        <a
-          href="./index.html"
-          class="museum-nav-link active"
-        >
-          SNEAKERS
-        </a>
-
-        <a
-          href="./lego.html"
-          class="museum-nav-link"
-        >
-          LEGO
-        </a>
-
-        <a
-          href="./sneaker-mask.html"
-          class="museum-nav-link"
-        >
-          SNEAKER MASK
-        </a>
-      </nav>
-
     </header>
 
-    <div>
-      <a
-        id="back-link"
-        href="./index.html"
-        class="back-link"
-      >
-        ← Quay lại bộ sưu tập
-      </a>
-    </div>
 
     <main
       id="shoe-detail"
@@ -246,65 +110,15 @@
 
       <div class="shoe-image-section">
 
-        <div
-          id="shoe-gallery"
-          class="shoe-detail-gallery"
+        <img
+          id="shoe-image"
+          src=""
+          alt="Sneaker"
+          decoding="async"
         >
 
-          <div
-            class="shoe-detail-main-frame"
-            id="shoe-gallery-swipe-zone"
-          >
-
-            <img
-              id="shoe-image"
-              src=""
-              alt="Sneaker"
-              decoding="async"
-              draggable="false"
-            >
-
-            <div
-              id="shoe-gallery-nav"
-              class="shoe-gallery-nav"
-              hidden
-            >
-              <button
-                type="button"
-                id="shoe-gallery-prev"
-                class="shoe-gallery-arrow"
-                aria-label="Previous image"
-              >
-                ‹
-              </button>
-
-              <button
-                type="button"
-                id="shoe-gallery-next"
-                class="shoe-gallery-arrow"
-                aria-label="Next image"
-              >
-                ›
-              </button>
-            </div>
-
-          </div>
-
-          <div
-            id="shoe-gallery-thumbnails"
-            class="shoe-gallery-thumbnails"
-            hidden
-          ></div>
-
-          <div
-            id="shoe-gallery-counter"
-            class="shoe-gallery-counter"
-            hidden
-          ></div>
-
-        </div>
-
       </div>
+
 
       <div class="shoe-info-section">
 
@@ -315,6 +129,7 @@
           class="subtitle detail-subtitle"
         ></p>
 
+
         <div class="specs-grid">
 
           <div class="spec-item">
@@ -324,11 +139,13 @@
             >
               MÃ SẢN PHẨM
             </span>
+
             <span
               id="shoe-sku"
               class="spec-value"
             ></span>
           </div>
+
 
           <div class="spec-item">
             <span
@@ -337,11 +154,13 @@
             >
               PHỐI MÀU
             </span>
+
             <span
               id="shoe-colorway"
               class="spec-value"
             ></span>
           </div>
+
 
           <div class="spec-item">
             <span
@@ -350,11 +169,13 @@
             >
               GIÁ PHÁT HÀNH
             </span>
+
             <span
               id="shoe-retail"
               class="spec-value"
             ></span>
           </div>
+
 
           <div class="spec-item">
             <span
@@ -363,11 +184,13 @@
             >
               NGÀY RA MẮT
             </span>
+
             <span
               id="shoe-date"
               class="spec-value"
             ></span>
           </div>
+
 
           <div class="spec-item">
             <span
@@ -376,11 +199,13 @@
             >
               TÌNH TRẠNG
             </span>
+
             <span
               id="shoe-condition"
               class="spec-value highlight"
             ></span>
           </div>
+
 
           <div class="spec-item">
             <span
@@ -389,6 +214,7 @@
             >
               KÍCH CỠ
             </span>
+
             <span
               id="shoe-size"
               class="spec-value size-highlight"
@@ -401,16 +227,20 @@
 
     </main>
 
+
     <section
       class="story-section"
       id="story-section"
     >
+
       <h3 id="story-title">
         Câu chuyện &amp; Bối cảnh thiết kế
       </h3>
 
       <div id="shoe-story"></div>
+
     </section>
+
 
     <footer>
       <p>
@@ -421,156 +251,265 @@
 
   </div>
 
+
+  <!-- Original single-source data flow. No story/content override. -->
   <script src="./data.js?v=20260913-15pairs-v1"></script>
-  <script src="./collection-content-final.js?v=20260917-16pairs-final"></script>
+
 
   <script>
+
     const supportedLanguages = [
       "vi",
       "en"
     ];
+
+
+    function normalizeLanguage(lang) {
+
+      return supportedLanguages.includes(lang)
+        ? lang
+        : "vi";
+
+    }
+
 
     const params =
       new URLSearchParams(
         window.location.search
       );
 
+
     const shoeId =
       params.get("id");
 
+
     let currentLang =
       normalizeLanguage(
+
         params.get("lang") ||
-        localStorage.getItem("locan_lang") ||
+
+        localStorage.getItem(
+          "locan_lang"
+        ) ||
+
         "vi"
+
       );
 
-    let galleryState = {
-      images: [],
-      index: 0,
-      title: ""
-    };
+
+    localStorage.setItem(
+      "locan_lang",
+      currentLang
+    );
+
 
     const labels = {
+
       vi: {
-        back: "← QUAY LẠI BỘ SƯU TẬP",
-        sku: "MÃ SẢN PHẨM",
-        colorway: "PHỐI MÀU",
-        retail: "GIÁ PHÁT HÀNH",
-        date: "NGÀY RA MẮT",
-        condition: "TÌNH TRẠNG",
-        size: "KÍCH CỠ",
-        story: "CÂU CHUYỆN & BỐI CẢNH THIẾT KẾ",
-        notFound: "Không tìm thấy sneaker.",
-        subtitle: "Không gian lưu trữ & Bảo tàng Sneaker Kỹ thuật số",
-        previous: "Ảnh trước",
-        next: "Ảnh tiếp theo"
+
+        back:
+          "← Quay lại Bộ sưu tập",
+
+        sku:
+          "MÃ SẢN PHẨM",
+
+        colorway:
+          "PHỐI MÀU",
+
+        retail:
+          "GIÁ PHÁT HÀNH",
+
+        date:
+          "NGÀY RA MẮT",
+
+        condition:
+          "TÌNH TRẠNG",
+
+        size:
+          "KÍCH CỠ",
+
+        story:
+          "Câu chuyện & Bối cảnh thiết kế",
+
+        notFound:
+          "Không tìm thấy thông tin tác phẩm này."
+
       },
 
+
       en: {
-        back: "← BACK TO COLLECTION",
-        sku: "SKU / STYLE CODE",
-        colorway: "COLORWAY",
-        retail: "RETAIL",
-        date: "RELEASE DATE",
-        condition: "CONDITION",
-        size: "SIZE",
-        story: "STORY & DESIGN CONTEXT",
-        notFound: "Sneaker not found.",
-        subtitle: "Digital Sneaker Archive & Museum",
-        previous: "Previous image",
-        next: "Next image"
+
+        back:
+          "← Back to Collection",
+
+        sku:
+          "SKU",
+
+        colorway:
+          "COLORWAY",
+
+        retail:
+          "RETAIL PRICE",
+
+        date:
+          "RELEASE DATE",
+
+        condition:
+          "CONDITION",
+
+        size:
+          "SIZE",
+
+        story:
+          "Story & Design Background",
+
+        notFound:
+          "Piece information not found."
+
       }
+
     };
 
-    function normalizeLanguage(lang) {
-      return supportedLanguages.includes(lang)
-        ? lang
-        : "vi";
-    }
 
     function localized(value) {
-      if (
-        value === null ||
-        value === undefined
-      ) {
+
+      if (!value) {
         return "";
       }
 
       if (
-        typeof value === "string" ||
-        typeof value === "number"
+        typeof value === "string"
       ) {
-        return String(value);
+        return value;
       }
 
-      if (
-        typeof value === "object"
-      ) {
-        return (
-          value[currentLang] ??
-          value.vi ??
-          value.en ??
-          ""
-        );
-      }
+      return (
+        value[currentLang] ||
+        value.en ||
+        value.vi ||
+        ""
+      );
 
-      return "";
     }
 
+
     function formatDate(value) {
+
       if (!value) {
         return "N/A";
       }
 
-      const raw =
-        String(value);
 
-      const exact =
-        /^(\d{4})-(\d{2})-(\d{2})$/.exec(raw);
+      if (
+        /^\d{4}-\d{2}-\d{2}$/.test(value)
+      ) {
 
-      if (exact) {
-        const [, year, month, day] =
-          exact;
+        const [
+          year,
+          month,
+          day
+        ] =
+          value
+            .split("-")
+            .map(Number);
 
-        return currentLang === "vi"
-          ? `${day}/${month}/${year}`
-          : `${year}-${month}-${day}`;
+
+        const date =
+          new Date(
+            Date.UTC(
+              year,
+              month - 1,
+              day
+            )
+          );
+
+
+        return date.toLocaleDateString(
+
+          currentLang === "vi"
+            ? "vi-VN"
+            : "en-US",
+
+          {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            timeZone: "UTC"
+          }
+
+        );
+
       }
 
-      const monthOnly =
-        /^(\d{4})-(\d{2})$/.exec(raw);
 
-      if (monthOnly) {
-        const [, year, month] =
-          monthOnly;
+      if (
+        /^\d{4}-\d{2}$/.test(value)
+      ) {
 
-        return currentLang === "vi"
-          ? `${month}/${year}`
-          : `${year}-${month}`;
+        const [
+          year,
+          month
+        ] =
+          value
+            .split("-")
+            .map(Number);
+
+
+        const date =
+          new Date(
+            Date.UTC(
+              year,
+              month - 1,
+              1
+            )
+          );
+
+
+        return date.toLocaleDateString(
+
+          currentLang === "vi"
+            ? "vi-VN"
+            : "en-US",
+
+          {
+            year: "numeric",
+            month: "long",
+            timeZone: "UTC"
+          }
+
+        );
+
       }
 
-      return raw;
+
+      return value;
+
     }
 
+
     function changeLang(lang) {
+
       currentLang =
         normalizeLanguage(lang);
+
 
       localStorage.setItem(
         "locan_lang",
         currentLang
       );
 
+
       const newURL =
         new URL(
           window.location.href
         );
 
+
       newURL.searchParams.set(
         "lang",
         currentLang
       );
+
 
       window.history.replaceState(
         {},
@@ -580,15 +519,21 @@
         newURL.hash
       );
 
+
       loadShoe();
+
     }
 
+
     function updateLanguageInterface() {
+
       document.documentElement.lang =
         currentLang;
 
+
       const language =
         labels[currentLang];
+
 
       document
         .getElementById("btn-vi")
@@ -597,6 +542,7 @@
           currentLang === "vi"
         );
 
+
       document
         .getElementById("btn-en")
         .classList.toggle(
@@ -604,327 +550,83 @@
           currentLang === "en"
         );
 
-      document
-        .getElementById(
-          "detail-main-subtitle"
-        )
-        .textContent =
-        language.subtitle;
 
       const backLink =
         document.getElementById(
           "back-link"
         );
 
+
       backLink.textContent =
         language.back;
 
+
       backLink.href =
-        "./index.html?lang=" +
+        "index.html?lang=" +
         encodeURIComponent(
           currentLang
         );
+
 
       document
         .getElementById("label-sku")
         .textContent =
         language.sku;
 
+
       document
         .getElementById("label-colorway")
         .textContent =
         language.colorway;
+
 
       document
         .getElementById("label-retail")
         .textContent =
         language.retail;
 
+
       document
         .getElementById("label-date")
         .textContent =
         language.date;
+
 
       document
         .getElementById("label-condition")
         .textContent =
         language.condition;
 
+
       document
         .getElementById("label-size")
         .textContent =
         language.size;
+
 
       document
         .getElementById("story-title")
         .textContent =
         language.story;
 
-      document
-        .getElementById(
-          "shoe-gallery-prev"
-        )
-        .setAttribute(
-          "aria-label",
-          language.previous
-        );
-
-      document
-        .getElementById(
-          "shoe-gallery-next"
-        )
-        .setAttribute(
-          "aria-label",
-          language.next
-        );
     }
 
-    function canLoadImage(src) {
-      return new Promise(resolve => {
-        if (!src) {
-          resolve(false);
-          return;
-        }
 
-        const image =
-          new Image();
+    function loadShoe() {
 
-        image.onload =
-          () => resolve(true);
-
-        image.onerror =
-          () => resolve(false);
-
-        image.src =
-          src;
-      });
-    }
-
-    async function resolveGalleryImages(
-      sneaker
-    ) {
-      const candidates = [
-        sneaker.image,
-        ...(Array.isArray(
-          sneaker.imageCandidates
-        )
-          ? sneaker.imageCandidates
-          : []),
-        ...(Array.isArray(
-          sneaker.images
-        )
-          ? sneaker.images
-          : [])
-      ]
-        .filter(Boolean)
-        .filter(
-          (value, index, array) =>
-            array.indexOf(value) === index
-        );
-
-      const checks =
-        await Promise.all(
-          candidates.map(
-            async src => ({
-              src,
-              ok:
-                await canLoadImage(
-                  src
-                )
-            })
-          )
-        );
-
-      const valid =
-        checks
-          .filter(item => item.ok)
-          .map(item => item.src);
-
-      if (
-        !valid.length &&
-        sneaker.image
-      ) {
-        valid.push(
-          sneaker.image
-        );
-      }
-
-      return valid;
-    }
-
-    function renderGallery() {
-      const image =
-        document.getElementById(
-          "shoe-image"
-        );
-
-      const nav =
-        document.getElementById(
-          "shoe-gallery-nav"
-        );
-
-      const thumbnails =
-        document.getElementById(
-          "shoe-gallery-thumbnails"
-        );
-
-      const counter =
-        document.getElementById(
-          "shoe-gallery-counter"
-        );
-
-      if (
-        !galleryState.images.length
-      ) {
-        image.removeAttribute(
-          "src"
-        );
-
-        nav.hidden =
-          true;
-
-        thumbnails.hidden =
-          true;
-
-        counter.hidden =
-          true;
-
-        return;
-      }
-
-      galleryState.index =
-        (
-          galleryState.index +
-          galleryState.images.length
-        )
-        %
-        galleryState.images.length;
-
-      image.src =
-        galleryState.images[
-          galleryState.index
-        ];
-
-      image.alt =
-        galleryState.images.length > 1
-          ? `${galleryState.title} — ${galleryState.index + 1}`
-          : galleryState.title;
-
-      const multiple =
-        galleryState.images.length > 1;
-
-      nav.hidden =
-        !multiple;
-
-      thumbnails.hidden =
-        !multiple;
-
-      counter.hidden =
-        !multiple;
-
-      thumbnails.innerHTML =
-        "";
-
-      if (multiple) {
-        galleryState.images.forEach(
-          (src, index) => {
-            const button =
-              document.createElement(
-                "button"
-              );
-
-            button.type =
-              "button";
-
-            button.className =
-              "shoe-gallery-thumb" +
-              (
-                index ===
-                galleryState.index
-                  ? " active"
-                  : ""
-              );
-
-            button.setAttribute(
-              "aria-label",
-              `${galleryState.title} ${index + 1}`
-            );
-
-            const thumb =
-              document.createElement(
-                "img"
-              );
-
-            thumb.src =
-              src;
-
-            thumb.alt =
-              "";
-
-            thumb.decoding =
-              "async";
-
-            button.appendChild(
-              thumb
-            );
-
-            button.addEventListener(
-              "click",
-              () => {
-                galleryState.index =
-                  index;
-
-                renderGallery();
-              }
-            );
-
-            thumbnails.appendChild(
-              button
-            );
-          }
-        );
-
-        counter.textContent =
-          `${galleryState.index + 1} / ${galleryState.images.length}`;
-      }
-    }
-
-    function previousGalleryImage() {
-      galleryState.index -= 1;
-      renderGallery();
-    }
-
-    function nextGalleryImage() {
-      galleryState.index += 1;
-      renderGallery();
-    }
-
-    async function buildGallery(
-      sneaker,
-      title
-    ) {
-      galleryState = {
-        images:
-          await resolveGalleryImages(
-            sneaker
-          ),
-        index: 0,
-        title
-      };
-
-      renderGallery();
-    }
-
-    async function loadShoe() {
       updateLanguageInterface();
+
 
       if (
         typeof sneakers === "undefined" ||
         !Array.isArray(sneakers)
       ) {
+
         showNotFound();
         return;
+
       }
+
 
       const sneaker =
         sneakers.find(
@@ -932,132 +634,124 @@
             item.id === shoeId
         );
 
+
       if (!sneaker) {
+
         showNotFound();
         return;
+
       }
 
+
       document
-        .getElementById(
-          "story-section"
-        )
+        .getElementById("story-section")
         .style.display =
         "block";
+
 
       const title =
         localized(
           sneaker.title
         );
 
+
       document.title =
         title +
         " | Lộc An Sneaker Collection";
 
+
       document
-        .getElementById(
-          "shoe-title"
-        )
+        .getElementById("shoe-title")
         .textContent =
         title;
 
+
       document
-        .getElementById(
-          "shoe-subtitle"
-        )
+        .getElementById("shoe-subtitle")
         .textContent =
         localized(
           sneaker.subtitle
         );
 
+
       document
-        .getElementById(
-          "shoe-sku"
-        )
+        .getElementById("shoe-sku")
         .textContent =
         sneaker.sku ||
         "N/A";
 
+
       document
-        .getElementById(
-          "shoe-colorway"
-        )
+        .getElementById("shoe-colorway")
         .textContent =
         sneaker.colorway ||
         "N/A";
 
-      document
-        .getElementById(
-          "shoe-retail"
-        )
-        .textContent =
-        sneaker.retailPrice ||
-        sneaker.retail ||
-        "N/A";
 
       document
-        .getElementById(
-          "shoe-date"
-        )
+        .getElementById("shoe-retail")
+        .textContent =
+        sneaker.retailPrice ||
+        "N/A";
+
+
+      document
+        .getElementById("shoe-date")
         .textContent =
         formatDate(
           sneaker.releaseDate
         );
 
-      const condition =
+
+      document
+        .getElementById("shoe-condition")
+        .textContent =
         localized(
           sneaker.condition
         ) ||
         "N/A";
 
-      const conditionNode =
-        document.getElementById(
-          "shoe-condition"
-        );
-
-      conditionNode.textContent =
-        condition;
-
-      conditionNode.classList.toggle(
-        "condition-deadstock",
-        condition === "Deadstock"
-      );
-
-      conditionNode.classList.toggle(
-        "condition-used",
-        condition === "Used"
-      );
 
       document
-        .getElementById(
-          "shoe-size"
-        )
+        .getElementById("shoe-size")
         .textContent =
         sneaker.size ||
         "N/A";
 
+
+      const image =
+        document.getElementById(
+          "shoe-image"
+        );
+
+
+      image.src =
+        sneaker.image ||
+        "";
+
+
+      image.alt =
+        title;
+
+
       document
-        .getElementById(
-          "shoe-story"
-        )
+        .getElementById("shoe-story")
         .innerHTML =
         localized(
           sneaker.story
         );
 
-      await buildGallery(
-        sneaker,
-        title
-      );
     }
 
+
     function showNotFound() {
+
       document.title =
         labels[currentLang].notFound;
 
+
       document
-        .getElementById(
-          "shoe-detail"
-        )
+        .getElementById("shoe-detail")
         .innerHTML = `
           <div class="not-found">
             <p>
@@ -1066,124 +760,23 @@
           </div>
         `;
 
+
       document
-        .getElementById(
-          "story-section"
-        )
+        .getElementById("story-section")
         .style.display =
         "none";
+
     }
 
-    document
-      .getElementById(
-        "shoe-gallery-prev"
-      )
-      .addEventListener(
-        "click",
-        previousGalleryImage
-      );
-
-    document
-      .getElementById(
-        "shoe-gallery-next"
-      )
-      .addEventListener(
-        "click",
-        nextGalleryImage
-      );
-
-    document.addEventListener(
-      "keydown",
-      event => {
-        if (
-          galleryState.images.length <= 1
-        ) {
-          return;
-        }
-
-        if (
-          event.key === "ArrowLeft"
-        ) {
-          previousGalleryImage();
-        }
-
-        if (
-          event.key === "ArrowRight"
-        ) {
-          nextGalleryImage();
-        }
-      }
-    );
-
-    let touchStartX =
-      null;
-
-    const swipeZone =
-      document.getElementById(
-        "shoe-gallery-swipe-zone"
-      );
-
-    swipeZone.addEventListener(
-      "touchstart",
-      event => {
-        touchStartX =
-          event.touches?.[0]?.clientX ??
-          null;
-      },
-      {
-        passive: true
-      }
-    );
-
-    swipeZone.addEventListener(
-      "touchend",
-      event => {
-        if (
-          touchStartX === null ||
-          galleryState.images.length <= 1
-        ) {
-          touchStartX =
-            null;
-          return;
-        }
-
-        const endX =
-          event.changedTouches?.[0]?.clientX;
-
-        if (
-          typeof endX !== "number"
-        ) {
-          touchStartX =
-            null;
-          return;
-        }
-
-        const delta =
-          endX -
-          touchStartX;
-
-        if (
-          Math.abs(delta) >= 45
-        ) {
-          if (delta > 0) {
-            previousGalleryImage();
-          } else {
-            nextGalleryImage();
-          }
-        }
-
-        touchStartX =
-          null;
-      },
-      {
-        passive: true
-      }
-    );
 
     document.addEventListener(
       "DOMContentLoaded",
       loadShoe
     );
+
   </script>
+
+
 </body>
+
 </html>
