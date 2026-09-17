@@ -57,25 +57,24 @@ const CATALOG_ADDITIONS = [
 
     collectionStatus: "own",
 
-    /*
-      Raygun image has a visually large foreground area.
-      Keep ONLY this pair smaller in both collection modes.
-      Grid and 3D are calibrated separately so the rest of
-      the collection keeps its existing automatic sizing.
-    */
+    autoFit: false,
+
     display: {
       grid: {
-        scale: 0.76,
+        scaleX: 0.62,
+        scaleY: 0.62,
         x: 0,
         y: 0
       },
       view3d: {
-        scale: 0.70,
+        scaleX: 0.56,
+        scaleY: 0.56,
         x: 0,
         y: 0
       },
       view3dMobile: {
-        scale: 0.70,
+        scaleX: 0.52,
+        scaleY: 0.52,
         x: 0,
         y: 0
       }
@@ -120,3 +119,36 @@ if (
 ) {
   sneakers.push(...CATALOG_ADDITIONS);
 }
+
+
+/* =========================================================
+RAYGUN VISUAL SIZE LOCK
+Direct fallback so Auto Fit / renderer cannot enlarge Raygun.
+Only targets pictures/sb_raygun.png.
+========================================================= */
+(() => {
+  const styleId = "locan-raygun-size-lock";
+  document.getElementById(styleId)?.remove();
+
+  const style = document.createElement("style");
+  style.id = styleId;
+  style.textContent = `
+    .grid .card-img-wrapper img[src*="sb_raygun.png"] {
+      transform: scale(0.62) !important;
+      transform-origin: center center !important;
+    }
+
+    .sneaker-3d-image img[src*="sb_raygun.png"] {
+      transform: scale(0.56) !important;
+      transform-origin: center center !important;
+    }
+
+    @media (max-width: 650px) {
+      .sneaker-3d-image img[src*="sb_raygun.png"] {
+        transform: scale(0.52) !important;
+      }
+    }
+  `;
+
+  document.head.appendChild(style);
+})();
