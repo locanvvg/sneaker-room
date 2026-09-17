@@ -72,22 +72,22 @@ const CATALOG_ADDITIONS = [
     */
     display: {
       grid: {
-        scaleX: 0.76,
-        scaleY: 0.76,
+        scaleX: 0.72,
+        scaleY: 0.72,
         x: 0,
         y: 0
       },
 
       view3d: {
-        scaleX: 0.70,
-        scaleY: 0.70,
+        scaleX: 0.62,
+        scaleY: 0.62,
         x: 0,
         y: 0
       },
 
       view3dMobile: {
-        scaleX: 0.66,
-        scaleY: 0.66,
+        scaleX: 0.62,
+        scaleY: 0.62,
         x: 0,
         y: 0
       }
@@ -180,9 +180,9 @@ and use a higher-specificity selector so the requested visual
 size remains stable even if the shared engine recalculates an
 automatic fit.
 
-GRID:       0.76
-3D DESKTOP: 0.70
-3D MOBILE:  0.66
+GRID:       0.72
+3D DESKTOP: 0.66
+3D MOBILE:  0.62
 ========================================================= */
 
 (() => {
@@ -195,20 +195,20 @@ GRID:       0.76
 
   style.textContent = `
     html body .grid .card-img-wrapper img[src*="sb_raygun.png"] {
-      scale: 0.76 0.76 !important;
+      scale: 0.72 0.72 !important;
       transform-origin: center center !important;
       object-fit: contain !important;
     }
 
     html body .sneaker-3d-image img[src*="sb_raygun.png"] {
-      scale: 0.70 0.70 !important;
+      scale: 0.62 0.62 !important;
       transform-origin: center center !important;
       object-fit: contain !important;
     }
 
     @media (max-width: 650px) {
       html body .sneaker-3d-image img[src*="sb_raygun.png"] {
-        scale: 0.66 0.66 !important;
+        scale: 0.62 0.62 !important;
       }
     }
   `;
