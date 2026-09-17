@@ -57,6 +57,30 @@ const CATALOG_ADDITIONS = [
 
     collectionStatus: "own",
 
+    /*
+      Raygun image has a visually large foreground area.
+      Keep ONLY this pair smaller in both collection modes.
+      Grid and 3D are calibrated separately so the rest of
+      the collection keeps its existing automatic sizing.
+    */
+    display: {
+      grid: {
+        scale: 0.86,
+        x: 0,
+        y: 0
+      },
+      view3d: {
+        scale: 0.82,
+        x: 0,
+        y: 0
+      },
+      view3dMobile: {
+        scale: 0.82,
+        x: 0,
+        y: 0
+      }
+    },
+
     images: [
       "pictures/sb_raygun.png"
     ],
