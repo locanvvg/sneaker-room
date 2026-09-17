@@ -39,10 +39,9 @@
 
   <link
     rel="stylesheet"
-    href="style.css?v=20260917-rollback"
+    href="style.css?v=20260914-catalog-v1"
   >
 </head>
-
 
 <body>
 
@@ -51,6 +50,7 @@
     <header class="site-header">
 
       <div class="site-header-left">
+
         <a
           href="index.html"
           class="back-btn"
@@ -58,7 +58,9 @@
         >
           ← Quay lại Bộ sưu tập
         </a>
+
       </div>
+
 
       <a
         href="index.html"
@@ -66,6 +68,7 @@
       >
         Lộc An Sneaker Collection
       </a>
+
 
       <div class="site-header-actions">
 
@@ -75,6 +78,7 @@
         >
           ABOUT
         </a>
+
 
         <div class="lang-switcher">
 
@@ -252,531 +256,25 @@
   </div>
 
 
-  <!-- Original single-source data flow. No story/content override. -->
-  <script src="./data.js?v=20260913-15pairs-v1"></script>
-
-
-  <script>
-
-    const supportedLanguages = [
-      "vi",
-      "en"
-    ];
-
-
-    function normalizeLanguage(lang) {
-
-      return supportedLanguages.includes(lang)
-        ? lang
-        : "vi";
-
-    }
-
-
-    const params =
-      new URLSearchParams(
-        window.location.search
-      );
-
-
-    const shoeId =
-      params.get("id");
-
-
-    let currentLang =
-      normalizeLanguage(
-
-        params.get("lang") ||
-
-        localStorage.getItem(
-          "locan_lang"
-        ) ||
-
-        "vi"
-
-      );
-
-
-    localStorage.setItem(
-      "locan_lang",
-      currentLang
-    );
-
-
-    const labels = {
-
-      vi: {
-
-        back:
-          "← Quay lại Bộ sưu tập",
-
-        sku:
-          "MÃ SẢN PHẨM",
-
-        colorway:
-          "PHỐI MÀU",
-
-        retail:
-          "GIÁ PHÁT HÀNH",
-
-        date:
-          "NGÀY RA MẮT",
-
-        condition:
-          "TÌNH TRẠNG",
-
-        size:
-          "KÍCH CỠ",
-
-        story:
-          "Câu chuyện & Bối cảnh thiết kế",
-
-        notFound:
-          "Không tìm thấy thông tin tác phẩm này."
-
-      },
-
-
-      en: {
-
-        back:
-          "← Back to Collection",
-
-        sku:
-          "SKU",
-
-        colorway:
-          "COLORWAY",
-
-        retail:
-          "RETAIL PRICE",
-
-        date:
-          "RELEASE DATE",
-
-        condition:
-          "CONDITION",
-
-        size:
-          "SIZE",
-
-        story:
-          "Story & Design Background",
-
-        notFound:
-          "Piece information not found."
-
-      }
-
-    };
-
-
-    function localized(value) {
-
-      if (!value) {
-        return "";
-      }
-
-      if (
-        typeof value === "string"
-      ) {
-        return value;
-      }
-
-      return (
-        value[currentLang] ||
-        value.en ||
-        value.vi ||
-        ""
-      );
-
-    }
-
-
-    function formatDate(value) {
-
-      if (!value) {
-        return "N/A";
-      }
-
-
-      if (
-        /^\d{4}-\d{2}-\d{2}$/.test(value)
-      ) {
-
-        const [
-          year,
-          month,
-          day
-        ] =
-          value
-            .split("-")
-            .map(Number);
-
-
-        const date =
-          new Date(
-            Date.UTC(
-              year,
-              month - 1,
-              day
-            )
-          );
-
-
-        return date.toLocaleDateString(
-
-          currentLang === "vi"
-            ? "vi-VN"
-            : "en-US",
-
-          {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-            timeZone: "UTC"
-          }
-
-        );
-
-      }
-
-
-      if (
-        /^\d{4}-\d{2}$/.test(value)
-      ) {
-
-        const [
-          year,
-          month
-        ] =
-          value
-            .split("-")
-            .map(Number);
-
-
-        const date =
-          new Date(
-            Date.UTC(
-              year,
-              month - 1,
-              1
-            )
-          );
-
-
-        return date.toLocaleDateString(
-
-          currentLang === "vi"
-            ? "vi-VN"
-            : "en-US",
-
-          {
-            year: "numeric",
-            month: "long",
-            timeZone: "UTC"
-          }
-
-        );
-
-      }
-
-
-      return value;
-
-    }
-
-
-    function changeLang(lang) {
-
-      currentLang =
-        normalizeLanguage(lang);
-
-
-      localStorage.setItem(
-        "locan_lang",
-        currentLang
-      );
-
-
-      const newURL =
-        new URL(
-          window.location.href
-        );
-
-
-      newURL.searchParams.set(
-        "lang",
-        currentLang
-      );
-
-
-      window.history.replaceState(
-        {},
-        "",
-        newURL.pathname +
-        newURL.search +
-        newURL.hash
-      );
-
-
-      loadShoe();
-
-    }
-
-
-    function updateLanguageInterface() {
-
-      document.documentElement.lang =
-        currentLang;
-
-
-      const language =
-        labels[currentLang];
-
-
-      document
-        .getElementById("btn-vi")
-        .classList.toggle(
-          "active",
-          currentLang === "vi"
-        );
-
-
-      document
-        .getElementById("btn-en")
-        .classList.toggle(
-          "active",
-          currentLang === "en"
-        );
-
-
-      const backLink =
-        document.getElementById(
-          "back-link"
-        );
-
-
-      backLink.textContent =
-        language.back;
-
-
-      backLink.href =
-        "index.html?lang=" +
-        encodeURIComponent(
-          currentLang
-        );
-
-
-      document
-        .getElementById("label-sku")
-        .textContent =
-        language.sku;
-
-
-      document
-        .getElementById("label-colorway")
-        .textContent =
-        language.colorway;
-
-
-      document
-        .getElementById("label-retail")
-        .textContent =
-        language.retail;
-
-
-      document
-        .getElementById("label-date")
-        .textContent =
-        language.date;
-
-
-      document
-        .getElementById("label-condition")
-        .textContent =
-        language.condition;
-
-
-      document
-        .getElementById("label-size")
-        .textContent =
-        language.size;
-
-
-      document
-        .getElementById("story-title")
-        .textContent =
-        language.story;
-
-    }
-
-
-    function loadShoe() {
-
-      updateLanguageInterface();
-
-
-      if (
-        typeof sneakers === "undefined" ||
-        !Array.isArray(sneakers)
-      ) {
-
-        showNotFound();
-        return;
-
-      }
-
-
-      const sneaker =
-        sneakers.find(
-          item =>
-            item.id === shoeId
-        );
-
-
-      if (!sneaker) {
-
-        showNotFound();
-        return;
-
-      }
-
-
-      document
-        .getElementById("story-section")
-        .style.display =
-        "block";
-
-
-      const title =
-        localized(
-          sneaker.title
-        );
-
-
-      document.title =
-        title +
-        " | Lộc An Sneaker Collection";
-
-
-      document
-        .getElementById("shoe-title")
-        .textContent =
-        title;
-
-
-      document
-        .getElementById("shoe-subtitle")
-        .textContent =
-        localized(
-          sneaker.subtitle
-        );
-
-
-      document
-        .getElementById("shoe-sku")
-        .textContent =
-        sneaker.sku ||
-        "N/A";
-
-
-      document
-        .getElementById("shoe-colorway")
-        .textContent =
-        sneaker.colorway ||
-        "N/A";
-
-
-      document
-        .getElementById("shoe-retail")
-        .textContent =
-        sneaker.retailPrice ||
-        "N/A";
-
-
-      document
-        .getElementById("shoe-date")
-        .textContent =
-        formatDate(
-          sneaker.releaseDate
-        );
-
-
-      document
-        .getElementById("shoe-condition")
-        .textContent =
-        localized(
-          sneaker.condition
-        ) ||
-        "N/A";
-
-
-      document
-        .getElementById("shoe-size")
-        .textContent =
-        sneaker.size ||
-        "N/A";
-
-
-      const image =
-        document.getElementById(
-          "shoe-image"
-        );
-
-
-      image.src =
-        sneaker.image ||
-        "";
-
-
-      image.alt =
-        title;
-
-
-      document
-        .getElementById("shoe-story")
-        .innerHTML =
-        localized(
-          sneaker.story
-        );
-
-    }
-
-
-    function showNotFound() {
-
-      document.title =
-        labels[currentLang].notFound;
-
-
-      document
-        .getElementById("shoe-detail")
-        .innerHTML = `
-          <div class="not-found">
-            <p>
-              ${labels[currentLang].notFound}
-            </p>
-          </div>
-        `;
-
-
-      document
-        .getElementById("story-section")
-        .style.display =
-        "none";
-
-    }
-
-
-    document.addEventListener(
-      "DOMContentLoaded",
-      loadShoe
-    );
-
-  </script>
-
+  <!-- BASE CATALOG -->
+  <script
+    src="./data.js?v=20260913-15pairs-v1"
+  ></script>
+
+  <!-- ONLY FILE YOU EDIT FOR FUTURE SHOES -->
+  <script
+    src="./catalog-additions.js?v=20260914-catalog-v1"
+  ></script>
+
+  <!-- NORMALIZES BOTH OLD + NEW DATA -->
+  <script
+    src="./catalog-engine.js?v=20260914-custom2026-v21"
+  ></script>
+
+  <!-- DETAIL PAGE RENDERER -->
+  <script
+    src="./shoe-page.js?v=20260914-catalog-v1"
+  ></script>
 
 </body>
-
 </html>

@@ -9,45 +9,205 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <meta
-    name="description"
-    content="Lộc An Sneaker Collection - Digital Sneaker Archive & Museum"
-  >
-
-  <meta
-    name="theme-color"
-    content="#0d0d0d"
-  >
-
   <title>
     Lộc An Sneaker Collection
   </title>
 
+  <!-- =====================================================
+       BASIC SEO
+  ====================================================== -->
+
+  <meta
+    name="description"
+    content="Lộc An Sneaker Collection — Digital Sneaker Archive & Museum. Private collection — not for sale."
+  >
+
+  <meta name="theme-color" content="#000000">
+<!-- =====================================================
+       BRAND ICON
+  ====================================================== -->
+<!-- =====================================================
+       LINK PREVIEW / OPEN GRAPH
+       Used by Facebook, Messenger, Discord, LinkedIn,
+       iMessage and many other apps.
+  ====================================================== -->
+
+
+
+
+
+
+
+
+
+
+<!-- =====================================================
+       X / TWITTER CARD
+  ====================================================== -->
+
+
+
+<!-- =====================================================
+       STYLES
+  ====================================================== -->
+
+  <link
+    rel="stylesheet"
+    href="./style.css?v=20260912-final-search"
+  >
+
+  <link
+    rel="stylesheet"
+    href="./collection-menu.css?v=20260913-divider-v1"
+  >
+
+  <!-- Lộc An brand icons -->
+<meta
+    name="apple-mobile-web-app-capable"
+    content="yes"
+  >
+
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent"
+  >
+
+  <meta
+    name="apple-mobile-web-app-title"
+    content="Lộc An"
+  >
+
+
+  <!-- =====================================================
+       LỘC AN BRAND — BLACK / GOLD EVERYWHERE
+  ====================================================== -->
+
+  <link
+    rel="canonical"
+    href="https://locanvvg.github.io/sneaker-room/"
+  >
+
+  <!-- Browser / desktop favicon -->
   <link
     rel="icon"
-    type="image/svg+xml"
-    href="./favicon.svg"
+    type="image/x-icon"
+    href="./favicon.ico?v=20260914-brand-v8"
   >
 
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="32x32"
+    href="./favicon-32.png?v=20260914-brand-v8"
+  >
+
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="./favicon-16.png?v=20260914-brand-v8"
+  >
+
+  <!-- iPhone / iPad Home Screen -->
   <link
     rel="apple-touch-icon"
-    href="./apple-touch-icon.png"
+    sizes="180x180"
+    href="./apple-touch-icon.png?v=20260914-brand-v8"
   >
 
+  <!-- PWA / Android -->
   <link
     rel="manifest"
-    href="./site.webmanifest"
+    href="./site.webmanifest?v=20260914-brand-v8"
   >
 
-  <link
-    rel="stylesheet"
-    href="./style.css?v=20260917-rollback"
+  <meta
+    name="msapplication-TileColor"
+    content="#000000"
   >
 
+  <!-- Open Graph:
+       Facebook, Messenger, iMessage, Discord, LinkedIn, etc. -->
+  <meta
+    property="og:title"
+    content="Lộc An Sneaker Collection"
+  >
+
+  <meta
+    property="og:description"
+    content="Digital Sneaker Archive & Museum — Private Collection, Not for Sale."
+  >
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <meta
+    property="og:site_name"
+    content="Lộc An Sneaker Collection"
+  >
+
+  <meta
+    property="og:url"
+    content="https://locanvvg.github.io/sneaker-room/"
+  >
+
+  <meta
+    property="og:image"
+    content="https://locanvvg.github.io/sneaker-room/locan-social-preview.png?v=20260914-brand-v8"
+  >
+
+  <meta
+    property="og:image:secure_url"
+    content="https://locanvvg.github.io/sneaker-room/locan-social-preview.png?v=20260914-brand-v8"
+  >
+
+  <meta
+    property="og:image:type"
+    content="image/png"
+  >
+
+  <meta
+    property="og:image:width"
+    content="1200"
+  >
+
+  <meta
+    property="og:image:height"
+    content="630"
+  >
+
+  <meta
+    property="og:image:alt"
+    content="Lộc An Sneaker Collection black and gold logo"
+  >
+
+  <!-- X / Twitter -->
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  >
+
+  <meta
+    name="twitter:title"
+    content="Lộc An Sneaker Collection"
+  >
+
+  <meta
+    name="twitter:description"
+    content="Digital Sneaker Archive & Museum — Private Collection, Not for Sale."
+  >
+
+  <meta
+    name="twitter:image"
+    content="https://locanvvg.github.io/sneaker-room/locan-social-preview.png?v=20260914-brand-v8"
+  >  <!-- FINAL shared collection visual layer: must load last -->
   <link
     rel="stylesheet"
-    href="./collection-menu.css?v=20260917-rollback"
+    href="./unified-collection-ui.css?v=20260915-badge-v25"
   >
+
 </head>
 
 
@@ -279,6 +439,10 @@
       </div>
 
 
+      <!-- ===================================================
+           EDITION
+      ==================================================== -->
+
       <div class="filter-group">
 
         <div
@@ -334,18 +498,16 @@
             SIGNATURE SIGNED
           </button>
 
-
           <button
-            type="button"
-            class="filter-chip"
-            data-group="edition"
-            data-value="Custom 1/1"
-            onclick="toggleFilter('edition', 'Custom 1/1')"
+          type="button"
+          class="filter-chip"
+          data-group="edition"
+          data-value="Custom 1/1"
+          onclick="toggleFilter('edition', 'Custom 1/1')"
           >
             CUSTOM 1/1
           </button>
-
-
+          
           <button
             type="button"
             class="filter-chip"
@@ -360,6 +522,10 @@
 
       </div>
 
+
+      <!-- ===================================================
+           CONDITION
+      ==================================================== -->
 
       <div class="filter-group">
 
@@ -399,6 +565,10 @@
       </div>
 
 
+      <!-- ===================================================
+           SIZE
+      ==================================================== -->
+
       <div class="filter-group">
 
         <div
@@ -419,10 +589,20 @@
     </section>
 
 
-    <!-- collection-view.js owns the display toolbar:
-         DESKTOP: [ SLIDER ] [ 3D / GRID VIEW ] [ TOTAL ]
-         MOBILE:  [ TOTAL ] [ 3D / GRID VIEW ] [ SLIDER ]
-    -->
+    <!-- =====================================================
+         RESULT COUNT
+
+         collection-view.js sẽ tự động di chuyển phần này
+         vào layout:
+
+         DESKTOP:
+         [ SLIDER ] [ 3D / GRID VIEW ] [ TOTAL ]
+
+         MOBILE:
+         [ TOTAL ]
+         [ 3D / GRID VIEW ]
+         [ SLIDER ]
+    ====================================================== -->
 
     <div
       id="collection-count"
@@ -432,15 +612,23 @@
     </div>
 
 
+    <!-- =====================================================
+         SNEAKER GRID / 3D VIEW
+    ====================================================== -->
+
     <main>
 
       <div
         id="sneaker-grid"
-        class="grid"
+        class="grid unified-collection-grid"
       ></div>
 
     </main>
 
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
 
     <footer>
 
@@ -455,24 +643,70 @@
 
 
   <!-- =====================================================
-       ORIGINAL DATA + ORIGINAL RENDERER
-       IMPORTANT: no collection-content-final.js
-       IMPORTANT: no archive-search.js
+       DATA
   ====================================================== -->
 
   <script
     src="./data.js?v=20260913-15pairs-v1"
   ></script>
 
+  <!-- =====================================================
+       FUTURE SNEAKERS
+       This is the only catalog file you edit later.
+  ====================================================== -->
+
+  <script
+    src="./catalog-additions.js?v=20260914-catalog-v1"
+  ></script>
+
+  <!-- =====================================================
+       CATALOG ENGINE
+       Normalizes legacy + future schemaVersion:2 entries.
+  ====================================================== -->
+
+  <script
+    src="./catalog-engine.js?v=20260914-custom2026-v21"
+  ></script>
+
+
+  <!-- =====================================================
+       EXISTING COLLECTION LOGIC
+  ====================================================== -->
 
   <script
     src="./main.js?v=20260912-final-search"
   ></script>
 
+  <!-- =====================================================
+       AUTO CATALOG UI
+       Edition / condition / size filters derive from data.
+  ====================================================== -->
+
+  <script
+    src="./catalog-ui.js?v=20260914-catalog-v2"
+  ></script>
 
   <!-- =====================================================
-       ORIGINAL INLINE SEARCH EXTENSION
-       Keeps the existing data/main.js architecture untouched.
+       SHARED GRID + 3D DISPLAY ENGINE
+       Existing tuned pairs preserved.
+       Future schemaVersion:2 pairs use Auto Fit.
+  ====================================================== -->
+
+  <script
+    src="./catalog-display.js?v=20260914-catalog-v4d"
+  ></script>
+
+
+  <!-- =====================================================
+       SEARCH EXTENSION
+
+       Search được nối vào:
+       - Edition filter
+       - Condition filter
+       - Size filter
+       - Sort
+       - Grid
+       - 3D View
   ====================================================== -->
 
   <script>
@@ -480,16 +714,31 @@
     let archiveSearchQuery = "";
 
 
+    /* =====================================================
+       TEXT NORMALIZATION
+    ====================================================== */
+
     function normalizeArchiveSearchText(value) {
 
       return String(value ?? "")
+
         .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
+
+        .replace(
+          /[\u0300-\u036f]/g,
+          ""
+        )
+
         .toLowerCase()
+
         .trim();
 
     }
 
+
+    /* =====================================================
+       FLATTEN VALUES
+    ====================================================== */
 
     function flattenArchiveSearchValue(value) {
 
@@ -498,7 +747,9 @@
         ||
         value === undefined
       ) {
+
         return "";
+
       }
 
 
@@ -507,22 +758,41 @@
         ||
         typeof value === "number"
       ) {
+
         return String(value);
+
       }
 
 
-      if (Array.isArray(value)) {
+      if (
+        Array.isArray(value)
+      ) {
+
         return value
-          .map(flattenArchiveSearchValue)
+
+          .map(
+            flattenArchiveSearchValue
+          )
+
           .join(" ");
+
       }
 
 
-      if (typeof value === "object") {
+      if (
+        typeof value === "object"
+      ) {
+
         return Object
+
           .values(value)
-          .map(flattenArchiveSearchValue)
+
+          .map(
+            flattenArchiveSearchValue
+          )
+
           .join(" ");
+
       }
 
 
@@ -531,22 +801,38 @@
     }
 
 
+    /* =====================================================
+       BUILD SEARCHABLE TEXT FOR EACH SNEAKER
+    ====================================================== */
+
     function getSneakerArchiveSearchText(sneaker) {
 
       const searchableFields = [
 
         sneaker.title,
+
         sneaker.subtitle,
+
         sneaker.brand,
+
         sneaker.collaboration,
+
         sneaker.sku,
+
         sneaker.styleCode,
+
         sneaker.colorway,
+
         sneaker.editionType,
+
         sneaker.condition,
+
         sneaker.size,
+
         sneaker.releaseDate,
+
         sneaker.retail,
+
         sneaker.retailPrice
 
       ];
@@ -555,13 +841,21 @@
       return normalizeArchiveSearchText(
 
         searchableFields
-          .map(flattenArchiveSearchValue)
+
+          .map(
+            flattenArchiveSearchValue
+          )
+
           .join(" ")
 
       );
 
     }
 
+
+    /* =====================================================
+       EXTEND EXISTING FILTER FUNCTION
+    ====================================================== */
 
     const originalFilterSneakers =
       filterSneakers;
@@ -570,8 +864,19 @@
     filterSneakers =
       function (items) {
 
+
+        /*
+          First run all existing filters:
+
+          - Edition
+          - Condition
+          - Size
+        */
+
         const filteredByExistingFilters =
-          originalFilterSneakers(items);
+          originalFilterSneakers(
+            items
+          );
 
 
         const query =
@@ -580,20 +885,42 @@
           );
 
 
+        /*
+          Empty search:
+          return normal filter results.
+        */
+
         if (!query) {
+
           return filteredByExistingFilters;
+
         }
 
 
+        /*
+          Multiple words must all match.
+
+          Example:
+
+          jordan sample
+
+          requires both:
+          jordan
+          sample
+        */
+
         const searchTerms =
           query
+
             .split(/\s+/)
+
             .filter(Boolean);
 
 
         return filteredByExistingFilters.filter(
 
           sneaker => {
+
 
             const searchableText =
               getSneakerArchiveSearchText(
@@ -602,8 +929,13 @@
 
 
             return searchTerms.every(
+
               term =>
-                searchableText.includes(term)
+
+                searchableText.includes(
+                  term
+                )
+
             );
 
           }
@@ -613,9 +945,17 @@
       };
 
 
+    /* =====================================================
+       SEARCH TIMER
+    ====================================================== */
+
     let archiveSearchTimer =
       null;
 
+
+    /* =====================================================
+       SEARCH INPUT
+    ====================================================== */
 
     function handleArchiveSearch(value) {
 
@@ -626,6 +966,13 @@
       updateArchiveSearchUI();
 
 
+      /*
+        Small debounce.
+
+        Keeps search smooth when the collection
+        grows to hundreds of sneakers.
+      */
+
       clearTimeout(
         archiveSearchTimer
       );
@@ -633,14 +980,23 @@
 
       archiveSearchTimer =
         setTimeout(
+
           () => {
+
             renderGrid();
+
           },
+
           70
+
         );
 
     }
 
+
+    /* =====================================================
+       CLEAR SEARCH
+    ====================================================== */
 
     function clearArchiveSearch() {
 
@@ -671,10 +1027,15 @@
 
 
       updateArchiveSearchUI();
+
       renderGrid();
 
     }
 
+
+    /* =====================================================
+       ESC KEY
+    ====================================================== */
 
     function handleArchiveSearchKeydown(event) {
 
@@ -689,6 +1050,10 @@
     }
 
 
+    /* =====================================================
+       SEARCH UI
+    ====================================================== */
+
     function updateArchiveSearchUI() {
 
       const clearButton =
@@ -697,19 +1062,29 @@
         );
 
 
-      if (clearButton) {
+      if (!clearButton) {
 
-        clearButton.classList.toggle(
-          "visible",
-          archiveSearchQuery
-            .trim()
-            .length > 0
-        );
+        return;
 
       }
 
+
+      clearButton.classList.toggle(
+
+        "visible",
+
+        archiveSearchQuery
+          .trim()
+          .length > 0
+
+      );
+
     }
 
+
+    /* =====================================================
+       VI / EN SEARCH TRANSLATION
+    ====================================================== */
 
     const originalUpdateStaticText =
       updateStaticText;
@@ -717,6 +1092,11 @@
 
     updateStaticText =
       function () {
+
+
+        /*
+          Preserve existing website translations.
+        */
 
         originalUpdateStaticText();
 
@@ -739,13 +1119,20 @@
           );
 
 
+        /* =================================================
+           VIETNAMESE
+        ================================================= */
+
         if (
           currentLang === "vi"
         ) {
 
+
           if (label) {
+
             label.textContent =
               "TÌM KIẾM";
+
           }
 
 
@@ -772,11 +1159,20 @@
 
           }
 
+
         } else {
 
+
+          /* ===============================================
+             ENGLISH
+          =============================================== */
+
+
           if (label) {
+
             label.textContent =
               "SEARCH";
+
           }
 
 
@@ -808,12 +1204,17 @@
       };
 
 
+    /* =====================================================
+       RESULT COUNTER
+    ====================================================== */
+
     const originalUpdateCollectionCount =
       updateCollectionCount;
 
 
     updateCollectionCount =
       function (count) {
+
 
         const element =
           document.getElementById(
@@ -833,6 +1234,7 @@
             count
           );
 
+
           return;
 
         }
@@ -849,22 +1251,23 @@
 
 
         const filtersAreActive =
-          (
-            activeFilters?.edition?.size > 0
-          )
-          ||
-          (
-            activeFilters?.condition?.size > 0
-          )
-          ||
-          (
-            activeFilters?.size?.size > 0
-          )
-          ||
-          (
-            activeFilters?.collection?.size > 0
-          );
 
+          activeFilters.edition.size > 0
+
+          ||
+
+          activeFilters.condition.size > 0
+
+          ||
+
+          activeFilters.size.size > 0;
+
+
+        /*
+          Search / Filter active:
+          show current result count
+          against entire collection.
+        */
 
         if (
           searchIsActive
@@ -886,12 +1289,20 @@
         }
 
 
+        /*
+          Normal collection count.
+        */
+
         originalUpdateCollectionCount(
           count
         );
 
       };
 
+
+    /* =====================================================
+       SEARCH INIT
+    ====================================================== */
 
     document.addEventListener(
 
@@ -908,19 +1319,31 @@
   </script>
 
 
-  <!-- Existing controllers: unchanged files in your repo -->
+  <!-- =====================================================
+       COLLECTION VIEW CONTROLLER
+
+       Features:
+       - Grid slider 1–5
+       - Grid / 3D toggle
+       - Smooth 3D cover flow
+       - Desktop mouse drag
+       - Desktop arrow buttons
+       - Keyboard arrows
+       - Trackpad horizontal gesture
+       - Mobile swipe
+       - Search / Filter / Sort compatibility
+  ====================================================== -->
 
   <script
-    src="./collection-view.js?v=20260917-rollback"
+    src="./collection-view.js?v=20260915-mobile-v24"
   ></script>
 
   <script
-    src="./localization-patch.js?v=20260917-rollback"
+    src="./language-navigation-fix.js?v=20260914-lang-sync-v16"
   ></script>
 
   <script
-    src="./sneaker-display-tuning.js?v=20260917-rollback"
+    src="./localization-patch.js?v=20260914-clean-v3"
   ></script>
-
 </body>
 </html>
