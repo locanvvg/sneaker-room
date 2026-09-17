@@ -65,17 +65,17 @@ const CATALOG_ADDITIONS = [
     */
     display: {
       grid: {
-        scale: 0.86,
+        scale: 0.76,
         x: 0,
         y: 0
       },
       view3d: {
-        scale: 0.82,
+        scale: 0.70,
         x: 0,
         y: 0
       },
       view3dMobile: {
-        scale: 0.82,
+        scale: 0.70,
         x: 0,
         y: 0
       }
