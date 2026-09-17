@@ -61,20 +61,20 @@ const CATALOG_ADDITIONS = [
 
     display: {
       grid: {
-        scaleX: 0.62,
-        scaleY: 0.62,
+        scaleX: 0.72,
+        scaleY: 0.72,
         x: 0,
         y: 0
       },
       view3d: {
-        scaleX: 0.56,
-        scaleY: 0.56,
+        scaleX: 0.66,
+        scaleY: 0.66,
         x: 0,
         y: 0
       },
       view3dMobile: {
-        scaleX: 0.52,
-        scaleY: 0.52,
+        scaleX: 0.62,
+        scaleY: 0.62,
         x: 0,
         y: 0
       }
@@ -134,18 +134,18 @@ Only targets pictures/sb_raygun.png.
   style.id = styleId;
   style.textContent = `
     .grid .card-img-wrapper img[src*="sb_raygun.png"] {
-      transform: scale(0.62) !important;
+      transform: scale(0.72) !important;
       transform-origin: center center !important;
     }
 
     .sneaker-3d-image img[src*="sb_raygun.png"] {
-      transform: scale(0.56) !important;
+      transform: scale(0.66) !important;
       transform-origin: center center !important;
     }
 
     @media (max-width: 650px) {
       .sneaker-3d-image img[src*="sb_raygun.png"] {
-        transform: scale(0.52) !important;
+        transform: scale(0.62) !important;
       }
     }
   `;
