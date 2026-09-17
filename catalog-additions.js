@@ -1,32 +1,24 @@
 /* =========================================================
 LỘC AN — CATALOG ADDITIONS
 
-TỪ SAU, KHI THÊM GIÀY MỚI:
+RAYGUN OWN ENTRY + DISPLAY CALIBRATION
+2026-09-17
 
-1) Upload ảnh vào thư mục pictures/
-2) Mở catalog-builder.html
-3) Điền thông tin
-4) Copy entry được tạo
-5) Paste entry vào mảng CATALOG_ADDITIONS bên dưới
-6) Commit
+This file is loaded by index.html before the shared display
+engine. It adds the Raygun pair if it is not already present,
+and locks ONLY the Raygun image to a balanced visual size in
+Grid and 3D modes.
 
-KHÔNG cần sửa:
-
-- index.html
-- main.js
-- collection-view.js
-- style.css
-- shoe.html
-
+Existing sneakers, layouts and the 15 locked stories are not
+modified.
 ========================================================= */
 
 const CATALOG_ADDITIONS = [
 
-  /* =====================================================
-  OWN — NIKE DUNK LOW PRO SB "RAYGUN AWAY" (2005)
-  ===================================================== */
   {
     schemaVersion: 2,
+
+    id: "nike-sb-dunk-low-raygun-away-2005",
 
     title: {
       vi: "Nike Dunk Low Pro SB 'Raygun Away'",
@@ -34,8 +26,8 @@ const CATALOG_ADDITIONS = [
     },
 
     subtitle: {
-      vi: "Bản Raygun Away nguyên bản 2005",
-      en: "Original 2005 Raygun Away"
+      vi: "Pink Box Era — Roswell Rayguns (2005)",
+      en: "Pink Box Era — Roswell Rayguns (2005)"
     },
 
     sku: "304292-802",
@@ -47,105 +39,176 @@ const CATALOG_ADDITIONS = [
       currency: "USD"
     },
 
-    releaseDate: "2005-02-01",
+    retailPrice: "$65 USD",
+
+    releaseDate: "2005-02",
 
     edition: "GR",
 
-    condition: "Used",
+    editionType: {
+      vi: "GR",
+      en: "GR"
+    },
+
+    condition: {
+      vi: "Used",
+      en: "Used"
+    },
 
     size: "9 US",
 
     collectionStatus: "own",
 
-    autoFit: false,
-
-    display: {
-      grid: {
-        scaleX: 0.72,
-        scaleY: 0.72,
-        x: 0,
-        y: 0
-      },
-      view3d: {
-        scaleX: 0.66,
-        scaleY: 0.66,
-        x: 0,
-        y: 0
-      },
-      view3dMobile: {
-        scaleX: 0.62,
-        scaleY: 0.62,
-        x: 0,
-        y: 0
-      }
-    },
+    image: "pictures/sb_raygun.png",
 
     images: [
       "pictures/sb_raygun.png"
     ],
 
+    /*
+      Shared catalog-display.js reads these values directly.
+      These values are intentionally larger than the previous
+      "too small" calibration.
+    */
+    display: {
+      grid: {
+        scaleX: 0.76,
+        scaleY: 0.76,
+        x: 0,
+        y: 0
+      },
+
+      view3d: {
+        scaleX: 0.70,
+        scaleY: 0.70,
+        x: 0,
+        y: 0
+      },
+
+      view3dMobile: {
+        scaleX: 0.66,
+        scaleY: 0.66,
+        x: 0,
+        y: 0
+      }
+    },
+
     story: {
       vi: `
-        <p>Nike SB Dunk Low “Raygun” xuất hiện vào một thời điểm đặc biệt trong lịch sử Nike SB, khi Dunk SB đã vượt ra khỏi vai trò của một đôi skate shoe đơn thuần để trở thành nơi Nike thử nghiệm storytelling, đồ họa và những tham chiếu văn hóa có chiều sâu. Ý tưởng Raygun bắt nguồn từ Roswell Rayguns — một đội bóng rổ hư cấu do Nike tạo ra cho chiến dịch quảng cáo basketball trong giai đoạn NBA Playoffs 2002. Thay vì xây dựng chiến dịch quanh một đội NBA có thật, Nike tạo nên cả một thế giới riêng với tên đội, màu sắc, linh vật người ngoài hành tinh và những nhân vật được thể hiện bởi các ngôi sao NBA đương thời. Vince Carter xuất hiện với hình tượng Dr. Funk, bên cạnh những cầu thủ như Jermaine O’Neal, Paul Pierce, Baron Davis và Jerry Stackhouse, khiến Roswell Rayguns trở thành một ví dụ sớm về cách Nike kết hợp thể thao với fictional world-building.</p>
-
-        <p>Khi câu chuyện đó được chuyển sang Nike SB Dunk vào năm 2005, Raygun trở thành một trong những thiết kế dễ nhận biết nhất của giai đoạn đầu Nike SB. Bản “Away” sử dụng nền trắng ở toe box và nhiều vùng upper, kết hợp với Orange Flash, black và yellow để tái hiện bảng màu của đội bóng hư cấu. Điểm nhận diện quan trọng nhất nằm ở heel: hình linh vật Raygun màu xanh xuất hiện trên nền vàng, đưa một nhân vật từ chiến dịch quảng cáo basketball sang một silhouette gắn với skateboarding. Sự chuyển dịch giữa hai thế giới này là điều làm đôi giày đặc biệt — một câu chuyện sinh ra từ basketball marketing nhưng lại được bảo tồn lâu dài trong văn hóa skate và sneaker.</p>
-
-        <p>Raygun 2005 còn thú vị bởi Nike không phát hành hai phiên bản theo cách hoàn toàn giống nhau trên toàn cầu. Bản trắng “Away” được phân phối bên ngoài Hoa Kỳ và Canada, trong khi bản đen tương ứng được phát hành tại hai thị trường này. Cách phân phối theo khu vực khiến hai đôi hoạt động như một cặp hoàn chỉnh nhưng đồng thời tạo ra những trải nghiệm sưu tầm rất khác nhau tùy nơi người mua sinh sống. Trong bối cảnh Nike SB giữa thập niên 2000, đây là giai đoạn những câu chuyện, cửa hàng skate, khu vực phát hành và số lượng tương đối hạn chế cùng góp phần tạo nên bản sắc của từng Dunk SB — trước khi sneaker collaboration và global launch trở thành những cấu trúc phổ biến như hiện nay.</p>
-
-        <p>Đối với Lộc An Sneaker Collection, Raygun Away là một hiện vật đại diện cho thời kỳ đầu mà Nike SB xây dựng bản sắc thông qua nhiều hơn màu sắc đơn thuần. Nó liên kết basketball advertising, graphic character design, skateboarding và sneaker collecting trong cùng một sản phẩm. Tình trạng Used của chính đôi đang được lưu giữ cũng phù hợp với vai trò archive của nó: dấu vết sử dụng và quá trình lão hóa của vật liệu cho thấy đây là một đôi giày đã thực sự đi qua thời gian, chứ không phải một bản tái hiện mới của một thiết kế cũ. Khi đứng cạnh những đôi Jordan, collaboration, sample và personal custom trong bộ sưu tập, Raygun bổ sung một chương khác — chương của Nike SB đầu những năm 2000, nơi một nhân vật hư cấu từ quảng cáo thể thao có thể trở thành một trong những biểu tượng được ghi nhớ lâu dài của Dunk SB.</p>
+        <p>Nike Dunk Low Pro SB 'Raygun Away' là một trong những thiết kế tiêu biểu của giai đoạn đầu Nike SB và của thời kỳ Pink Box. Câu chuyện của nó bắt đầu trước khi đôi Dunk xuất hiện: Nike từng tạo ra Roswell Rayguns, một đội bóng rổ hư cấu được xây dựng như một thế giới quảng cáo retro-futuristic, trộn basketball với hình ảnh UFO, người ngoài hành tinh và văn hóa đại chúng Mỹ.</p>
+        <p>Khi concept Rayguns được chuyển sang Nike SB Dunk Low Pro, mascot alien cầm raygun trở thành dấu hiệu nhận diện quan trọng nhất. Hình thêu ở heel nhỏ nhưng đủ mạnh để biến toàn bộ đôi giày thành một phần của thế giới Roswell Rayguns. Đây là kiểu storytelling rất đặc trưng của Nike SB thời kỳ đầu: một Dunk có thể bắt nguồn từ một câu chuyện kỳ lạ, một graphic hoặc một reference văn hóa thay vì chỉ là phối màu mới.</p>
+        <p>Bản Away được nhận biết bởi toe màu trắng, kết hợp orange ở mid-panel, yellow ở heel và black Swoosh. White toe làm phần trước sáng hơn rõ rệt so với bản toe đen thường được gọi là Home. Bảng màu orange–yellow–black–white vừa gắn với uniform của đội bóng hư cấu vừa tạo ra một bố cục cực kỳ dễ nhận ra, ngay cả khi nhìn đôi giày từ xa.</p>
+        <p>Raygun cũng quan trọng vì nó thuộc giai đoạn Nike SB đang xây dựng bản sắc riêng trong sneaker culture. Dunk SB lúc đó chưa đơn giản là một silhouette retro được phát hành liên tục; mỗi release thường gắn với skate shop, artist, câu chuyện hoặc concept có personality mạnh. Chính cách làm đó góp phần tạo nên sức hút sưu tầm của SB Dunk trong những năm 2000.</p>
+        <p>Nhiều năm sau, Nike SB quay lại với Roswell Rayguns trong những dự án mới, cho thấy mascot này đã trở thành một phần bền vững của archive SB. Việc một campaign hư cấu đầu những năm 2000 có thể tiếp tục sống trong footwear nhiều năm sau là minh chứng cho sức mạnh của storytelling khi nó được gắn vào một hình ảnh đủ rõ và một silhouette đủ có ảnh hưởng.</p>
+        <p>Trong Lộc An Sneaker Collection, Raygun Away được lưu như một đại diện của Nike SB thời kỳ đầu: một đôi giày vừa có lịch sử skate, vừa mang dấu vết của advertising culture và graphic storytelling. Patina và dấu hiệu sử dụng trên hiện vật càng làm rõ tuổi đời của nó, khiến đôi giày được đọc như một vật thể đã đi qua gần hai thập niên sneaker culture thay vì một retro reproduction mới.</p>
       `,
 
       en: `
-        <p>The Nike SB Dunk Low “Raygun” arrived during a particularly important period in Nike SB history, when the Dunk SB was moving beyond the role of a functional skate shoe and becoming a platform for storytelling, graphics and deeper cultural references. The Raygun concept originated with the Roswell Rayguns, a fictional basketball team created by Nike for a basketball advertising campaign around the 2002 NBA Playoffs. Rather than building the campaign around an actual NBA franchise, Nike constructed an entire fictional world with its own team name, colors, alien mascot and characters portrayed by contemporary NBA stars. Vince Carter appeared as Dr. Funk, alongside players including Jermaine O’Neal, Paul Pierce, Baron Davis and Jerry Stackhouse, making the Roswell Rayguns an early example of Nike combining sport with fictional world-building.</p>
-
-        <p>When that concept was translated onto the Nike SB Dunk in 2005, the Raygun became one of the most recognizable designs from the early Nike SB era. The “Away” version uses white across the toe box and much of the upper, combining it with Orange Flash, black and yellow to echo the fictional team’s visual identity. Its most important identifying detail appears at the heel, where the green Raygun alien character sits against a yellow panel, transferring a figure created for basketball advertising onto a silhouette associated with skateboarding. That movement between two different cultural settings is central to the shoe’s importance: a story born from basketball marketing that ultimately became preserved within skate and sneaker culture.</p>
-
-        <p>The 2005 Raygun release is also notable because Nike did not distribute both versions in exactly the same way worldwide. The white “Away” version was released outside the United States and Canada, while the corresponding black version was distributed in those two markets. This regional structure allowed the two shoes to function as a conceptual pair while creating very different collecting experiences depending on where a buyer lived. Within the context of mid-2000s Nike SB, regional distribution, skate-shop culture, distinctive narratives and relatively limited availability all contributed to the identity of individual Dunk SB releases — well before global collaboration launches became as standardized as they are today.</p>
-
-        <p>Within the Lộc An Sneaker Collection, the Raygun Away is preserved as an artifact of an era when Nike SB built identity through far more than color alone. It connects basketball advertising, graphic character design, skateboarding and sneaker collecting within a single object. The Used condition of the pair preserved here also suits its archival role: signs of wear and the natural aging of its materials make clear that this is a sneaker that has actually moved through time rather than a newly reproduced interpretation of an older design. Placed beside Jordan releases, collaborations, samples and personal customs in the collection, Raygun adds another chapter — the chapter of early-2000s Nike SB, when a fictional character from a sports advertisement could become one of the enduring visual symbols associated with the Dunk SB.</p>
+        <p>The Nike Dunk Low Pro SB 'Raygun Away' is one of the defining designs of early Nike SB and the Pink Box era. Its story begins before the Dunk itself: Nike created the Roswell Rayguns as a fictional basketball team inside a retro-futurist advertising world that mixed basketball with UFO imagery, aliens and American popular culture.</p>
+        <p>When the Rayguns concept moved onto the Nike SB Dunk Low Pro, the raygun-wielding alien became the crucial identifying mark. The heel embroidery is physically small but strong enough to place the entire shoe inside the Roswell Rayguns universe. This kind of storytelling was characteristic of early Nike SB: a Dunk could originate from an odd narrative, graphic or cultural reference rather than functioning as just another colorway.</p>
+        <p>The Away edition is identified by its white toe, combined with orange at the mid-panel, yellow at the heel and a black Swoosh. The white toe gives the front of the shoe a noticeably brighter appearance than the black-toe version commonly called Home. Orange, yellow, black and white connect the sneaker to the fictional team's visual identity while creating one of the most recognizable early SB Dunk palettes.</p>
+        <p>Raygun is also important because it belongs to the period when Nike SB was still establishing a distinct identity within sneaker culture. The SB Dunk was not yet simply a retro silhouette released at constant volume; individual releases were often tied to skate shops, artists, stories or concepts with strong personality. That approach helped build the collecting culture around SB Dunk during the 2000s.</p>
+        <p>Nike SB returned to the Roswell Rayguns concept years later, showing that the mascot had become a durable part of the SB archive. The fact that a fictional advertising campaign from the early 2000s could continue living through footwear years later demonstrates the power of storytelling when it is attached to a clear graphic identity and an influential silhouette.</p>
+        <p>Within the Lộc An Sneaker Collection, Raygun Away is preserved as an artifact of early Nike SB: a shoe carrying skate history, advertising culture and graphic storytelling at the same time. The patina and signs of use on the object further emphasize its age, allowing it to read as a pair that has lived through nearly two decades of sneaker culture rather than as a newly reproduced retro.</p>
       `
     }
   }
 
 ];
 
+
 /* =========================================================
-DO NOT EDIT BELOW
+ADD ONLY IF THE SAME RAYGUN IS NOT ALREADY PRESENT
 ========================================================= */
 
 if (
   typeof sneakers !== "undefined" &&
   Array.isArray(sneakers)
 ) {
-  sneakers.push(...CATALOG_ADDITIONS);
+  const normalizeCatalogText = value =>
+    String(value ?? "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .replace(/[’‘]/g, "'")
+      .replace(/\s+/g, " ")
+      .trim();
+
+  const hasRaygun = sneakers.some(sneaker => {
+    const title =
+      typeof sneaker?.title === "string"
+        ? sneaker.title
+        : `${sneaker?.title?.vi || ""} ${sneaker?.title?.en || ""}`;
+
+    return (
+      normalizeCatalogText(sneaker?.id).includes("raygun") ||
+      normalizeCatalogText(title).includes("raygun")
+    );
+  });
+
+  if (!hasRaygun) {
+    sneakers.push(...CATALOG_ADDITIONS);
+  } else {
+    /*
+      If another file already created Raygun, attach the same
+      display calibration to that existing object so there is
+      still only one Raygun in the collection.
+    */
+    sneakers.forEach(sneaker => {
+      const title =
+        typeof sneaker?.title === "string"
+          ? sneaker.title
+          : `${sneaker?.title?.vi || ""} ${sneaker?.title?.en || ""}`;
+
+      if (
+        normalizeCatalogText(sneaker?.id).includes("raygun") ||
+        normalizeCatalogText(title).includes("raygun")
+      ) {
+        sneaker.display = CATALOG_ADDITIONS[0].display;
+      }
+    });
+  }
 }
 
 
 /* =========================================================
-RAYGUN VISUAL SIZE LOCK
-Direct fallback so Auto Fit / renderer cannot enlarge Raygun.
-Only targets pictures/sb_raygun.png.
+RAYGUN RENDER-SIZE SAFETY LOCK
+
+catalog-display.js applies the final image scale through the
+CSS `scale` property. The rules below target ONLY sb_raygun.png
+and use a higher-specificity selector so the requested visual
+size remains stable even if the shared engine recalculates an
+automatic fit.
+
+GRID:       0.76
+3D DESKTOP: 0.70
+3D MOBILE:  0.66
 ========================================================= */
+
 (() => {
-  const styleId = "locan-raygun-size-lock";
+  const styleId = "locan-raygun-display-lock-v3";
+
   document.getElementById(styleId)?.remove();
 
   const style = document.createElement("style");
   style.id = styleId;
+
   style.textContent = `
-    .grid .card-img-wrapper img[src*="sb_raygun.png"] {
-      transform: scale(0.72) !important;
+    html body .grid .card-img-wrapper img[src*="sb_raygun.png"] {
+      scale: 0.76 0.76 !important;
       transform-origin: center center !important;
+      object-fit: contain !important;
     }
 
-    .sneaker-3d-image img[src*="sb_raygun.png"] {
-      transform: scale(0.66) !important;
+    html body .sneaker-3d-image img[src*="sb_raygun.png"] {
+      scale: 0.70 0.70 !important;
       transform-origin: center center !important;
+      object-fit: contain !important;
     }
 
     @media (max-width: 650px) {
-      .sneaker-3d-image img[src*="sb_raygun.png"] {
-        transform: scale(0.62) !important;
+      html body .sneaker-3d-image img[src*="sb_raygun.png"] {
+        scale: 0.66 0.66 !important;
       }
     }
   `;
