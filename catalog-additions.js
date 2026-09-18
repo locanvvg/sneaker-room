@@ -810,3 +810,85 @@ if (
     }
   );
 })();
+
+/* =========================================================
+   LỘC AN — RESPONSIVE FINAL SIZE TUNE 2026-09-17
+
+   IMPORTANT
+   ---------
+   Keep the currently approved MOBILE GRID exactly unchanged.
+
+   DESKTOP GRID ONLY (min-width: 651px)
+   - Waffle Racer: bigger
+   - New Balance 2002R: much smaller
+   - Jordan 1 Low Reverse Bred: much smaller
+
+   MOBILE 3D ONLY (max-width: 650px)
+   - Raygun: slightly bigger
+
+   Everything else remains unchanged.
+========================================================= */
+
+(() => {
+  const styleId =
+    "locan-responsive-final-size-tune-20260917";
+
+  document
+    .getElementById(styleId)
+    ?.remove();
+
+  const style =
+    document.createElement("style");
+
+  style.id =
+    styleId;
+
+  style.textContent = `
+    /*
+      DESKTOP GRID ONLY.
+      High-specificity selectors intentionally override
+      catalog-display.js without changing phone Grid sizing.
+    */
+    @media (min-width: 651px) {
+
+      html body
+      #sneaker-grid.grid
+      .card-img-wrapper
+      img[data-catalog-image="true"][data-sneaker-id="nike-off-white-waffle-racer-white"] {
+        scale: 0.88 0.88 !important;
+      }
+
+      html body
+      #sneaker-grid.grid
+      .card-img-wrapper
+      img[data-catalog-image="true"][data-sneaker-id="new-balance-2002r-custom"] {
+        scale: 0.56 0.56 !important;
+      }
+
+      html body
+      #sneaker-grid.grid
+      .card-img-wrapper
+      img[data-catalog-image="true"][data-sneaker-id="jordan-1-low-reverse-bred-2020"] {
+        scale: 0.55 0.55 !important;
+      }
+    }
+
+    /*
+      PHONE 3D ONLY.
+      Raygun is increased only slightly.
+    */
+    @media (max-width: 650px) {
+
+      html body
+      .sneaker-3d-image
+      img[data-catalog-image="true"][data-sneaker-id="nike-sb-dunk-low-raygun-away-2005"] {
+        scale: 0.56 0.56 !important;
+      }
+    }
+  `;
+
+  document.head.appendChild(
+    style
+  );
+})();
+
