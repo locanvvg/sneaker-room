@@ -15,9 +15,7 @@
     content="#0d0d0d"
   >
 
-  <title>
-    About | Lộc An Sneaker Collection
-  </title>
+  <title>About | Lộc An Sneaker Collection</title>
 
   <link
     rel="icon"
@@ -35,219 +33,454 @@
 
   <link
     rel="stylesheet"
-    href="./style.css?v=20260912-about-navfix"
+    href="./style.css?v=20260917-about-v3"
   >
   <link
     rel="stylesheet"
-    href="./collection-menu.css?v=20260912-about-navfix"
+    href="./collection-menu.css?v=20260917-about-v3"
   >
 
   <style>
     /* =====================================================
-       ABOUT — HORIZONTAL ARCHIVE CARDS
-       Horizontal on desktop, tablet, AND mobile.
+       ABOUT PAGE V3
+       - Topic headline OUTSIDE the card
+       - One language only at a time
+       - Condition = horizontal row
+       - Classification = horizontal swipe/scroll row
+       - Designed for desktop + tablet + mobile
     ====================================================== */
+
+    [hidden] {
+      display: none !important;
+    }
 
     .about-page {
       width: 100%;
       max-width: 1180px;
       margin: 0 auto;
-      padding: 18px 0 44px;
+      padding: 24px 0 54px;
     }
 
-    .about-card-stack {
-      display: grid;
-      gap: 14px;
+    .about-language-panel {
       width: 100%;
     }
 
-    .about-row-card {
-      display: grid;
-      grid-template-columns:
-        minmax(170px, 24%)
-        minmax(0, 1fr);
-      gap: 24px;
-      align-items: start;
+    .about-topic {
       width: 100%;
-      padding: 22px;
-      border: 1px solid
-        rgba(255,255,255,.09);
-      border-radius: 14px;
-      background:
-        rgba(255,255,255,.035);
-      box-sizing: border-box;
+      margin: 0 0 34px;
     }
 
-    .about-row-label {
-      min-width: 0;
-      padding-right: 18px;
-      border-right: 1px solid
-        rgba(255,255,255,.09);
-    }
-
-    .about-row-label .about-kicker {
-      margin: 0 0 8px;
-    }
-
-    .about-row-label h2,
-    .about-row-label h3 {
-      margin: 0;
-      font-size: clamp(
-        .88rem,
-        1.4vw,
-        1.08rem
-      );
-      line-height: 1.25;
-    }
-
-    .about-row-content {
-      min-width: 0;
-    }
-
-    .about-row-content p {
-      margin:
-        0
-        0
-        12px;
-      line-height: 1.7;
-    }
-
-    .about-row-content p:last-child {
+    .about-topic:last-child {
       margin-bottom: 0;
     }
 
-    .about-definition-list {
+    .about-topic-heading {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 18px;
+      margin: 0 2px 11px;
+    }
+
+    .about-topic-heading-main {
+      min-width: 0;
+    }
+
+    .about-topic-kicker {
+      margin: 0 0 5px;
+      font-size: .69rem;
+      line-height: 1.2;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      opacity: .56;
+    }
+
+    .about-topic-title {
+      margin: 0;
+      font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+      line-height: 1.15;
+      font-weight: 850;
+      letter-spacing: -.018em;
+    }
+
+    .about-topic-note {
+      flex: 0 0 auto;
+      margin: 0 0 1px;
+      font-size: .68rem;
+      line-height: 1.2;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      opacity: .46;
+      white-space: nowrap;
+    }
+
+    .about-card {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 22px;
+      border: 1px solid rgba(255,255,255,.085);
+      border-radius: 16px;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255,255,255,.052),
+          rgba(255,255,255,.025)
+        );
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.025);
+    }
+
+    .about-card p {
+      margin: 0 0 13px;
+      font-size: .91rem;
+      line-height: 1.72;
+      opacity: .9;
+    }
+
+    .about-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* -----------------------------------------
+       Collection status
+    ----------------------------------------- */
+
+    .status-row {
       display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
     }
 
-    .about-definition {
+    .status-item {
+      min-width: 0;
+      padding: 15px;
+      border: 1px solid rgba(255,255,255,.075);
+      border-radius: 12px;
+      background: rgba(255,255,255,.025);
+    }
+
+    .status-item strong {
+      display: block;
+      margin-bottom: 7px;
+      font-size: .79rem;
+      line-height: 1.28;
+      letter-spacing: .035em;
+    }
+
+    .status-item span {
+      display: block;
+      font-size: .82rem;
+      line-height: 1.58;
+      opacity: .76;
+    }
+
+    /* -----------------------------------------
+       Condition — ALWAYS HORIZONTAL
+    ----------------------------------------- */
+
+    .condition-row {
       display: grid;
-      grid-template-columns:
-        minmax(140px, 190px)
-        minmax(0, 1fr);
-      gap: 14px;
-      align-items: start;
-      padding-bottom: 12px;
-      border-bottom: 1px solid
-        rgba(255,255,255,.065);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
     }
 
-    .about-definition:last-child {
-      padding-bottom: 0;
-      border-bottom: 0;
-    }
-
-    .about-definition strong {
-      line-height: 1.4;
-    }
-
-    .about-definition span {
-      line-height: 1.65;
+    .condition-item {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 13px;
+      align-items: center;
+      min-width: 0;
+      padding: 15px;
+      border: 1px solid rgba(255,255,255,.075);
+      border-radius: 12px;
+      background: rgba(255,255,255,.025);
     }
 
     .condition-pill {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: 86px;
-      padding: 5px 8px;
+      min-width: 88px;
+      padding: 6px 9px;
       border-radius: 999px;
-      font-size: .72rem;
-      font-weight: 800;
-      letter-spacing: .35px;
+      font-size: .69rem;
+      font-weight: 850;
+      line-height: 1;
+      letter-spacing: .035em;
+      box-sizing: border-box;
     }
 
     .condition-pill.deadstock {
       color: #61d58a;
-      background:
-        rgba(97,213,138,.08);
-      border: 1px solid
-        rgba(97,213,138,.25);
+      border: 1px solid rgba(97,213,138,.25);
+      background: rgba(97,213,138,.08);
     }
 
     .condition-pill.used {
       color: #66a8ff;
-      background:
-        rgba(102,168,255,.08);
-      border: 1px solid
-        rgba(102,168,255,.25);
+      border: 1px solid rgba(102,168,255,.25);
+      background: rgba(102,168,255,.08);
     }
+
+    .condition-description {
+      min-width: 0;
+      font-size: .82rem;
+      line-height: 1.55;
+      opacity: .76;
+    }
+
+    /* -----------------------------------------
+       Classification — horizontal swipe strip
+    ----------------------------------------- */
+
+    .classification-card {
+      padding: 16px 0 17px;
+      overflow: hidden;
+    }
+
+    .classification-scroll {
+      display: flex;
+      gap: 11px;
+      width: 100%;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x proximity;
+      scrollbar-width: thin;
+      padding: 2px 16px 10px;
+      box-sizing: border-box;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .classification-scroll::-webkit-scrollbar {
+      height: 5px;
+    }
+
+    .classification-scroll::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,.16);
+      border-radius: 999px;
+    }
+
+    .classification-item {
+      flex: 0 0 clamp(230px, 28vw, 290px);
+      scroll-snap-align: start;
+      box-sizing: border-box;
+      padding: 16px;
+      border: 1px solid rgba(255,255,255,.075);
+      border-radius: 12px;
+      background: rgba(255,255,255,.027);
+    }
+
+    .classification-code {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      margin-bottom: 10px;
+      padding: 5px 8px;
+      border: 1px solid rgba(255,210,0,.18);
+      border-radius: 7px;
+      background: rgba(255,210,0,.055);
+      color: #e5ca27;
+      font-size: .66rem;
+      font-weight: 850;
+      line-height: 1;
+      letter-spacing: .055em;
+      text-transform: uppercase;
+    }
+
+    .classification-item h3 {
+      margin: 0 0 8px;
+      font-size: .91rem;
+      line-height: 1.25;
+    }
+
+    .classification-item p {
+      margin: 0;
+      font-size: .79rem;
+      line-height: 1.58;
+      opacity: .73;
+    }
+
+    .classification-footer {
+      margin: 2px 17px 0;
+      font-size: .76rem;
+      line-height: 1.55;
+      opacity: .58;
+    }
+
+    /* -----------------------------------------
+       Object record
+    ----------------------------------------- */
 
     .object-record-list {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 7px;
       margin-bottom: 14px;
     }
 
     .object-record-list span {
       display: inline-flex;
+      align-items: center;
       padding: 7px 9px;
-      border: 1px solid
-        rgba(255,255,255,.09);
+      border: 1px solid rgba(255,255,255,.075);
       border-radius: 8px;
-      background:
-        rgba(255,255,255,.025);
-      font-size: .78rem;
-      line-height: 1.2;
+      background: rgba(255,255,255,.025);
+      font-size: .74rem;
+      line-height: 1.15;
+      opacity: .82;
     }
 
-    /* Keep cards horizontal on EVERY screen size. */
+    /* =====================================================
+       MOBILE
+       Headline remains outside.
+       Cards remain clean and horizontal where requested.
+    ====================================================== */
+
     @media (max-width: 700px) {
       .about-page {
-        padding-top: 12px;
+        padding: 18px 0 42px;
       }
 
-      .about-card-stack {
-        gap: 10px;
+      .about-topic {
+        margin-bottom: 28px;
       }
 
-      .about-row-card {
-        grid-template-columns:
-          minmax(100px, 31%)
-          minmax(0, 1fr);
-        gap: 12px;
-        padding: 14px 12px;
-        border-radius: 10px;
+      .about-topic-heading {
+        display: block;
+        margin: 0 3px 9px;
       }
 
-      .about-row-label {
-        padding-right: 10px;
+      .about-topic-kicker {
+        margin-bottom: 4px;
+        font-size: .61rem;
       }
 
-      .about-row-label h2,
-      .about-row-label h3 {
-        font-size: .78rem;
+      .about-topic-title {
+        font-size: 1rem;
       }
 
-      .about-row-label .about-kicker {
-        font-size: .62rem;
-        line-height: 1.25;
-        overflow-wrap: anywhere;
+      .about-topic-note {
+        margin-top: 6px;
+        font-size: .59rem;
       }
 
-      .about-row-content p,
-      .about-definition span {
+      .about-card {
+        padding: 15px;
+        border-radius: 13px;
+      }
+
+      .about-card p {
         font-size: .82rem;
-        line-height: 1.58;
+        line-height: 1.64;
       }
 
-      .about-definition {
-        grid-template-columns:
-          minmax(92px, 118px)
-          minmax(0, 1fr);
+      .status-row {
+        display: flex;
         gap: 9px;
+        overflow-x: auto;
+        scroll-snap-type: x proximity;
+        padding-bottom: 4px;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
       }
 
-      .about-definition strong {
+      .status-row::-webkit-scrollbar {
+        display: none;
+      }
+
+      .status-item {
+        flex: 0 0 min(78vw, 285px);
+        scroll-snap-align: start;
+        padding: 13px;
+      }
+
+      .status-item strong {
+        font-size: .72rem;
+      }
+
+      .status-item span {
         font-size: .76rem;
       }
 
+      /* Deadstock + Used stay side-by-side horizontally. */
+      .condition-card {
+        padding: 12px;
+        overflow: hidden;
+      }
+
+      .condition-row {
+        display: flex;
+        gap: 9px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 4px;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .condition-row::-webkit-scrollbar {
+        display: none;
+      }
+
+      .condition-item {
+        flex: 0 0 min(76vw, 275px);
+        scroll-snap-align: start;
+        grid-template-columns: 1fr;
+        gap: 9px;
+        padding: 13px;
+      }
+
       .condition-pill {
-        min-width: 72px;
-        padding: 4px 6px;
+        min-width: 0;
+        width: max-content;
         font-size: .64rem;
+      }
+
+      .condition-description {
+        font-size: .75rem;
+        line-height: 1.5;
+      }
+
+      .classification-card {
+        padding-top: 12px;
+        padding-bottom: 12px;
+      }
+
+      .classification-scroll {
+        gap: 9px;
+        padding: 2px 12px 8px;
+        scrollbar-width: none;
+        scroll-snap-type: x mandatory;
+      }
+
+      .classification-scroll::-webkit-scrollbar {
+        display: none;
+      }
+
+      .classification-item {
+        flex-basis: min(78vw, 270px);
+        padding: 14px;
+        scroll-snap-align: start;
+      }
+
+      .classification-code {
+        margin-bottom: 8px;
+        font-size: .61rem;
+      }
+
+      .classification-item h3 {
+        font-size: .84rem;
+      }
+
+      .classification-item p {
+        font-size: .75rem;
+        line-height: 1.52;
+      }
+
+      .classification-footer {
+        margin: 1px 13px 0;
+        font-size: .7rem;
       }
 
       .object-record-list {
@@ -255,24 +488,8 @@
       }
 
       .object-record-list span {
-        padding: 5px 6px;
-        font-size: .68rem;
-      }
-    }
-
-    @media (max-width: 390px) {
-      .about-row-card {
-        grid-template-columns:
-          94px
-          minmax(0, 1fr);
-        gap: 10px;
-        padding: 12px 10px;
-      }
-
-      .about-definition {
-        grid-template-columns:
-          86px
-          minmax(0, 1fr);
+        padding: 6px 7px;
+        font-size: .67rem;
       }
     }
   </style>
@@ -320,9 +537,7 @@
         KHO LƯU TRỮ KỸ THUẬT SỐ CÁ NHÂN
       </p>
 
-      <h1>
-        LỘC AN SNEAKER COLLECTION
-      </h1>
+      <h1>LỘC AN SNEAKER COLLECTION</h1>
 
       <nav
         class="museum-nav"
@@ -356,25 +571,25 @@
     <main class="about-page">
 
       <!-- =================================================
-           VIETNAMESE
+           VI ONLY — DEFAULT
       ================================================== -->
-      <section
-        class="about-card-stack lang-panel"
-        data-lang="vi"
+      <div
+        id="about-panel-vi"
+        class="about-language-panel"
+        data-language-panel="vi"
       >
 
-        <!-- AUTHENTICITY -->
-        <article class="about-row-card">
-          <div class="about-row-label">
-            <p class="about-kicker">
-              XÁC THỰC
-            </p>
-            <h2>
-              Authenticity Standard
-            </h2>
-          </div>
+        <section class="about-topic">
+          <header class="about-topic-heading">
+            <div class="about-topic-heading-main">
+              <p class="about-topic-kicker">XÁC THỰC</p>
+              <h2 class="about-topic-title">
+                Authenticity Standard
+              </h2>
+            </div>
+          </header>
 
-          <div class="about-row-content">
+          <div class="about-card">
             <p>
               Tất cả hiện vật được ghi nhận trong
               <strong>Lộc An Sneaker Collection</strong>
@@ -391,9 +606,10 @@
               Các thông tin về model, phiên bản,
               SKU hoặc style code, colorway và provenance
               được lưu với mục tiêu nhận diện chính xác
-              từng hiện vật và phân biệt rõ giữa sản phẩm retail,
-              Player Exclusive, Friends &amp; Family,
-              Sample, Custom, Signature Signed
+              từng hiện vật và phân biệt rõ giữa
+              sản phẩm retail, Player Exclusive,
+              Friends &amp; Family, Sample,
+              Custom, Signature Signed
               hoặc các dạng phát hành đặc biệt khác.
             </p>
 
@@ -404,20 +620,22 @@
               như một phần của sneaker archive.
             </p>
           </div>
-        </article>
+        </section>
 
-        <!-- IMAGES + COPYRIGHT -->
-        <article class="about-row-card">
-          <div class="about-row-label">
-            <p class="about-kicker">
-              TƯ LIỆU HÌNH ẢNH &amp; BẢN QUYỀN
-            </p>
-            <h2>
-              Image Documentation &amp; Copyright
-            </h2>
-          </div>
 
-          <div class="about-row-content">
+        <section class="about-topic">
+          <header class="about-topic-heading">
+            <div class="about-topic-heading-main">
+              <p class="about-topic-kicker">
+                TƯ LIỆU HÌNH ẢNH &amp; BẢN QUYỀN
+              </p>
+              <h2 class="about-topic-title">
+                Image Documentation &amp; Copyright
+              </h2>
+            </div>
+          </header>
+
+          <div class="about-card">
             <p>
               Đối với những hiện vật hiện thuộc trạng thái
               <strong>IN COLLECTION</strong>,
@@ -451,8 +669,7 @@
               Việc sử dụng hình ảnh tham khảo
               không đồng nghĩa với việc
               Lộc An Sneaker Collection
-              tuyên bố quyền sở hữu
-              đối với những hình ảnh đó.
+              tuyên bố quyền sở hữu đối với những hình ảnh đó.
               Bản quyền và quyền sở hữu trí tuệ
               đối với hình ảnh của bên thứ ba
               vẫn thuộc về tác giả, nhiếp ảnh gia,
@@ -479,149 +696,146 @@
               một cách đáng tin cậy.
             </p>
           </div>
-        </article>
+        </section>
 
-        <!-- COLLECTION STATUS -->
-        <article class="about-row-card">
-          <div class="about-row-label">
-            <p class="about-kicker">
-              TRẠNG THÁI BỘ SƯU TẬP
-            </p>
-            <h2>
-              Collection Status
-            </h2>
-          </div>
 
-          <div class="about-row-content about-definition-list">
-            <div class="about-definition">
-              <strong>
-                IN COLLECTION
-              </strong>
-              <span>
-                Hiện vật hiện đang được lưu giữ
-                trong Lộc An Sneaker Collection
-                và vẫn thuộc bộ sưu tập cá nhân.
-              </span>
+        <section class="about-topic">
+          <header class="about-topic-heading">
+            <div class="about-topic-heading-main">
+              <p class="about-topic-kicker">
+                TRẠNG THÁI BỘ SƯU TẬP
+              </p>
+              <h2 class="about-topic-title">
+                Collection Status
+              </h2>
             </div>
+          </header>
 
-            <div class="about-definition">
-              <strong>
-                FORMERLY IN COLLECTION
-              </strong>
-              <span>
-                Hiện vật từng thuộc
-                Lộc An Sneaker Collection
-                nhưng hiện không còn được lưu giữ
-                trong bộ sưu tập.
-                Hồ sơ của hiện vật vẫn được bảo tồn
-                trong digital archive
-                như một phần của lịch sử bộ sưu tập.
-              </span>
+          <div class="about-card">
+            <div class="status-row">
+              <div class="status-item">
+                <strong>IN COLLECTION</strong>
+                <span>
+                  Hiện vật hiện đang được lưu giữ
+                  trong Lộc An Sneaker Collection
+                  và vẫn thuộc bộ sưu tập cá nhân.
+                </span>
+              </div>
+
+              <div class="status-item">
+                <strong>FORMERLY IN COLLECTION</strong>
+                <span>
+                  Hiện vật từng thuộc
+                  Lộc An Sneaker Collection
+                  nhưng hiện không còn được lưu giữ
+                  trong bộ sưu tập.
+                  Hồ sơ của hiện vật vẫn được bảo tồn
+                  trong digital archive
+                  như một phần của lịch sử bộ sưu tập.
+                </span>
+              </div>
             </div>
           </div>
-        </article>
+        </section>
 
-        <!-- CONDITION -->
-        <article class="about-row-card">
-          <div class="about-row-label">
-            <p class="about-kicker">
-              TÌNH TRẠNG
-            </p>
-            <h2>
-              Condition
-            </h2>
-          </div>
 
-          <div class="about-row-content about-definition-list">
-            <div class="about-definition">
-              <strong>
+        <section class="about-topic">
+          <header class="about-topic-heading">
+            <div class="about-topic-heading-main">
+              <p class="about-topic-kicker">TÌNH TRẠNG</p>
+              <h2 class="about-topic-title">Condition</h2>
+            </div>
+          </header>
+
+          <div class="about-card condition-card">
+            <div class="condition-row">
+              <div class="condition-item">
                 <span class="condition-pill deadstock">
                   Deadstock
                 </span>
-              </strong>
-              <span>
-                Hiện vật chưa qua sử dụng
-                và được lưu giữ
-                trong tình trạng chưa mang.
-              </span>
-            </div>
+                <span class="condition-description">
+                  Hiện vật chưa qua sử dụng
+                  và được lưu giữ
+                  trong tình trạng chưa mang.
+                </span>
+              </div>
 
-            <div class="about-definition">
-              <strong>
+              <div class="condition-item">
                 <span class="condition-pill used">
                   Used
                 </span>
-              </strong>
-              <span>
-                Hiện vật đã qua sử dụng
-                và có thể thể hiện
-                những dấu vết tự nhiên
-                của quá trình mang, bảo quản
-                hoặc lão hóa theo thời gian.
-              </span>
+                <span class="condition-description">
+                  Hiện vật đã qua sử dụng
+                  và có thể thể hiện
+                  những dấu vết tự nhiên
+                  của quá trình mang,
+                  bảo quản hoặc lão hóa theo thời gian.
+                </span>
+              </div>
             </div>
           </div>
-        </article>
+        </section>
 
-        <!-- EDITION CLASSIFICATION -->
-        <article class="about-row-card">
-          <div class="about-row-label">
-            <p class="about-kicker">
-              PHÂN LOẠI PHIÊN BẢN
+
+        <section class="about-topic">
+          <header class="about-topic-heading">
+            <div class="about-topic-heading-main">
+              <p class="about-topic-kicker">
+                PHÂN LOẠI PHIÊN BẢN
+              </p>
+              <h2 class="about-topic-title">
+                Edition Classification
+              </h2>
+            </div>
+
+            <p class="about-topic-note">
+              KÉO NGANG ĐỂ XEM THÊM →
             </p>
-            <h2>
-              Edition Classification
-            </h2>
-          </div>
+          </header>
 
-          <div class="about-row-content">
-            <div class="about-definition-list">
-              <div class="about-definition">
-                <strong>
-                  General Release (GR)
-                </strong>
-                <span>
+          <div class="about-card classification-card">
+            <div class="classification-scroll">
+
+              <article class="classification-item">
+                <span class="classification-code">GR</span>
+                <h3>General Release</h3>
+                <p>
                   Phiên bản được sản xuất
                   và phân phối thương mại
                   thông qua các kênh bán lẻ
                   chính thức hoặc được ủy quyền.
-                </span>
-              </div>
+                </p>
+              </article>
 
-              <div class="about-definition">
-                <strong>
-                  Player Exclusive (PE)
-                </strong>
-                <span>
+              <article class="classification-item">
+                <span class="classification-code">PE</span>
+                <h3>Player Exclusive</h3>
+                <p>
                   Phiên bản được thương hiệu
                   sản xuất hoặc tùy chỉnh
                   dành riêng cho vận động viên,
                   đội thi đấu hoặc cá nhân được chỉ định
                   và thường không được phát hành
                   bán lẻ công khai.
-                </span>
-              </div>
+                </p>
+              </article>
 
-              <div class="about-definition">
-                <strong>
-                  Friends &amp; Family (F&amp;F)
-                </strong>
-                <span>
+              <article class="classification-item">
+                <span class="classification-code">F&amp;F</span>
+                <h3>Friends &amp; Family</h3>
+                <p>
                   Phiên bản không phát hành bán lẻ công khai,
                   được thương hiệu, nhà thiết kế
-                  hoặc đối tác sáng tạo
-                  phân phối trực tiếp cho gia đình,
-                  bạn bè, cộng sự
-                  hoặc những cá nhân
-                  thuộc mạng lưới của dự án.
-                </span>
-              </div>
+                  hoặc đối tác sáng tạo phân phối trực tiếp
+                  cho gia đình, bạn bè, cộng sự
+                  hoặc những cá nhân thuộc mạng lưới dự án.
+                </p>
+              </article>
 
-              <div class="about-definition">
-                <strong>
-                  Sample
-                </strong>
-                <span>
+              <article class="classification-item">
+                <span class="classification-code">SAMPLE</span>
+                <h3>Sample</h3>
+                <p>
                   Phiên bản được tạo ra
                   trong quá trình phát triển,
                   thử nghiệm hoặc tiền sản xuất
@@ -629,14 +843,13 @@
                   vật liệu, màu sắc hoặc cấu trúc
                   trước khi sản phẩm được hoàn thiện
                   hoặc phát hành chính thức.
-                </span>
-              </div>
+                </p>
+              </article>
 
-              <div class="about-definition">
-                <strong>
-                  Custom
-                </strong>
-                <span>
+              <article class="classification-item">
+                <span class="classification-code">CUSTOM</span>
+                <h3>Custom</h3>
+                <p>
                   Hiện vật được cá nhân hóa
                   hoặc chỉnh sửa từ một đôi giày nền
                   thông qua màu sắc, vật liệu,
@@ -644,51 +857,51 @@
                   Custom có thể được thực hiện
                   bởi nghệ sĩ, studio
                   hoặc chính chủ sở hữu
-                  và không đồng nghĩa
-                  với một collaboration
-                  hay phiên bản phát hành chính thức
-                  từ thương hiệu.
-                </span>
-              </div>
+                  và không đồng nghĩa với
+                  một collaboration hay phiên bản
+                  phát hành chính thức từ thương hiệu.
+                </p>
+              </article>
 
-              <div class="about-definition">
-                <strong>
-                  Signature Signed
-                </strong>
-                <span>
+              <article class="classification-item">
+                <span class="classification-code">SIGNED</span>
+                <h3>Signature Signed</h3>
+                <p>
                   Hiện vật có chữ ký trực tiếp
                   của vận động viên, nhà thiết kế,
                   nghệ sĩ hoặc nhân vật
                   có mối liên hệ trực tiếp
                   với sản phẩm,
                   qua đó bổ sung provenance
-                  và giá trị lưu trữ
-                  cho hiện vật.
-                </span>
-              </div>
+                  và giá trị lưu trữ cho hiện vật.
+                </p>
+              </article>
+
             </div>
 
-            <p style="margin-top:14px;">
+            <p class="classification-footer">
               Một hiện vật có thể đồng thời
-              thuộc nhiều nhóm
-              khi provenance hoặc đặc điểm của nó
+              thuộc nhiều nhóm khi provenance
+              hoặc đặc điểm của nó
               phù hợp với nhiều phân loại.
             </p>
           </div>
-        </article>
+        </section>
 
-        <!-- OBJECT RECORD -->
-        <article class="about-row-card">
-          <div class="about-row-label">
-            <p class="about-kicker">
-              HỒ SƠ HIỆN VẬT
-            </p>
-            <h2>
-              Object Record
-            </h2>
-          </div>
 
-          <div class="about-row-content">
+        <section class="about-topic">
+          <header class="about-topic-heading">
+            <div class="about-topic-heading-main">
+              <p class="about-topic-kicker">
+                HỒ SƠ HIỆN VẬT
+              </p>
+              <h2 class="about-topic-title">
+                Object Record
+              </h2>
+            </div>
+          </header>
+
+          <div class="about-card">
             <div class="object-record-list">
               <span>Title</span>
               <span>SKU / Style Code</span>
@@ -708,37 +921,37 @@
               bối cảnh văn hóa
               và provenance có ý nghĩa
               của hiện vật,
-              thay vì lặp lại các metadata
-              đã được trình bày
+              thay vì lặp lại
+              các metadata đã được trình bày
               trong hồ sơ kỹ thuật.
             </p>
           </div>
-        </article>
+        </section>
 
-      </section>
+      </div>
 
 
       <!-- =================================================
-           ENGLISH
+           EN ONLY — SHOWN ONLY AFTER PRESSING EN
       ================================================== -->
-      <section
-        class="about-card-stack lang-panel"
-        data-lang="en"
+      <div
+        id="about-panel-en"
+        class="about-language-panel"
+        data-language-panel="en"
         hidden
       >
 
-        <!-- AUTHENTICITY -->
-        <article class="about-row-card">
-          <div class="about-row-label">
-            <p class="about-kicker">
-              AUTHENTICITY
-            </p>
-            <h2>
-              Authenticity Standard
-            </h2>
-          </div>
+        <section class="about-topic">
+          <header class="about-topic-heading">
+            <div class="about-topic-heading-main">
+              <p class="about-topic-kicker">AUTHENTICITY</p>
+              <h2 class="about-topic-title">
+                Authenticity Standard
+              </h2>
+            </div>
+          </header>
 
-          <div class="about-row-content">
+          <div class="about-card">
             <p>
               Every artifact documented in the
               <strong>Lộc An Sneaker Collection</strong>
@@ -757,40 +970,36 @@
               Information including model,
               edition, SKU or style code,
               colorway, and provenance
-              is recorded to identify
-              each artifact accurately
-              and to distinguish between
-              retail releases,
-              Player Exclusives,
-              Friends &amp; Family editions,
-              Samples, Customs,
-              Signature Signed pieces,
-              and other special forms
-              of release.
+              is recorded to identify each artifact accurately
+              and to distinguish between retail releases,
+              Player Exclusives, Friends &amp; Family editions,
+              Samples, Customs, Signature Signed pieces,
+              and other special forms of release.
             </p>
 
             <p>
               Replica, counterfeit,
-              and unauthorized reproduction
-              sneakers are not documented
-              as part of the
+              and unauthorized reproduction sneakers
+              are not documented as part of the
               Lộc An Sneaker Collection archive.
             </p>
           </div>
-        </article>
+        </section>
 
-        <!-- IMAGES + COPYRIGHT -->
-        <article class="about-row-card">
-          <div class="about-row-label">
-            <p class="about-kicker">
-              IMAGE DOCUMENTATION &amp; COPYRIGHT
-            </p>
-            <h2>
-              Archival Image Standard
-            </h2>
-          </div>
 
-          <div class="about-row-content">
+        <section class="about-topic">
+          <header class="about-topic-heading">
+            <div class="about-topic-heading-main">
+              <p class="about-topic-kicker">
+                IMAGE DOCUMENTATION &amp; COPYRIGHT
+              </p>
+              <h2 class="about-topic-title">
+                Archival Image Standard
+              </h2>
+            </div>
+          </header>
+
+          <div class="about-card">
             <p>
               For artifacts currently classified as
               <strong>IN COLLECTION</strong>,
@@ -799,9 +1008,8 @@
               retained in the collection.
               This approach is intended
               to maintain a visual record
-              that accurately reflects
-              the condition, details,
-              and characteristics
+              that accurately reflects the condition,
+              details, and characteristics
               of the actual artifact.
             </p>
 
@@ -812,26 +1020,24 @@
               were sold or transferred
               before the Lộc An Sneaker Collection
               was established as a digital archive.
-              Consequently, where complete
-              original photographs
+              Consequently, where complete original photographs
               of the exact former collection artifact
               are no longer available,
-              third-party reference imagery
-              may be used to accurately illustrate
+              third-party reference imagery may be used
+              to accurately illustrate
               the corresponding model,
               colorway, or edition.
             </p>
 
             <p>
               The use of reference imagery
-              does not constitute
-              a claim of ownership
+              does not constitute a claim of ownership
               by the Lộc An Sneaker Collection.
               Copyright and intellectual-property rights
               associated with third-party images
               remain with their respective
-              authors, photographers,
-              brands, retailers, platforms,
+              authors, photographers, brands,
+              retailers, platforms,
               or other rights holders.
             </p>
 
@@ -855,199 +1061,184 @@
               can be identified reliably.
             </p>
           </div>
-        </article>
+        </section>
 
-        <!-- COLLECTION STATUS -->
-        <article class="about-row-card">
-          <div class="about-row-label">
-            <p class="about-kicker">
-              COLLECTION STATUS
-            </p>
-            <h2>
-              Collection Status
-            </h2>
-          </div>
 
-          <div class="about-row-content about-definition-list">
-            <div class="about-definition">
-              <strong>
-                IN COLLECTION
-              </strong>
-              <span>
-                An artifact currently held
-                in the Lộc An Sneaker Collection
-                and retained within
-                the private collection.
-              </span>
+        <section class="about-topic">
+          <header class="about-topic-heading">
+            <div class="about-topic-heading-main">
+              <p class="about-topic-kicker">
+                COLLECTION STATUS
+              </p>
+              <h2 class="about-topic-title">
+                Collection Status
+              </h2>
             </div>
+          </header>
 
-            <div class="about-definition">
-              <strong>
-                FORMERLY IN COLLECTION
-              </strong>
-              <span>
-                An artifact that previously formed part
-                of the Lộc An Sneaker Collection
-                but is no longer retained
-                in the current collection.
-                Its record remains preserved
-                in the digital archive
-                as part of the collection's history.
-              </span>
+          <div class="about-card">
+            <div class="status-row">
+              <div class="status-item">
+                <strong>IN COLLECTION</strong>
+                <span>
+                  An artifact currently held
+                  in the Lộc An Sneaker Collection
+                  and retained within
+                  the private collection.
+                </span>
+              </div>
+
+              <div class="status-item">
+                <strong>FORMERLY IN COLLECTION</strong>
+                <span>
+                  An artifact that previously formed part
+                  of the Lộc An Sneaker Collection
+                  but is no longer retained
+                  in the current collection.
+                  Its record remains preserved
+                  in the digital archive
+                  as part of the collection's history.
+                </span>
+              </div>
             </div>
           </div>
-        </article>
+        </section>
 
-        <!-- CONDITION -->
-        <article class="about-row-card">
-          <div class="about-row-label">
-            <p class="about-kicker">
-              CONDITION
-            </p>
-            <h2>
-              Condition
-            </h2>
-          </div>
 
-          <div class="about-row-content about-definition-list">
-            <div class="about-definition">
-              <strong>
+        <section class="about-topic">
+          <header class="about-topic-heading">
+            <div class="about-topic-heading-main">
+              <p class="about-topic-kicker">CONDITION</p>
+              <h2 class="about-topic-title">Condition</h2>
+            </div>
+          </header>
+
+          <div class="about-card condition-card">
+            <div class="condition-row">
+              <div class="condition-item">
                 <span class="condition-pill deadstock">
                   Deadstock
                 </span>
-              </strong>
-              <span>
-                An unworn artifact
-                preserved in an unworn state.
-              </span>
-            </div>
+                <span class="condition-description">
+                  An unworn artifact
+                  preserved in an unworn state.
+                </span>
+              </div>
 
-            <div class="about-definition">
-              <strong>
+              <div class="condition-item">
                 <span class="condition-pill used">
                   Used
                 </span>
-              </strong>
-              <span>
-                An artifact that has been worn
-                and may display natural signs
-                of wear, storage,
-                or material aging over time.
-              </span>
-            </div>
-          </div>
-        </article>
-
-        <!-- EDITION CLASSIFICATION -->
-        <article class="about-row-card">
-          <div class="about-row-label">
-            <p class="about-kicker">
-              EDITION CLASSIFICATION
-            </p>
-            <h2>
-              Collection Classification
-            </h2>
-          </div>
-
-          <div class="about-row-content">
-            <div class="about-definition-list">
-              <div class="about-definition">
-                <strong>
-                  General Release (GR)
-                </strong>
-                <span>
-                  An edition produced
-                  and distributed commercially
-                  through official
-                  or authorized retail channels.
+                <span class="condition-description">
+                  An artifact that has been worn
+                  and may display natural signs
+                  of wear, storage,
+                  or material aging over time.
                 </span>
               </div>
+            </div>
+          </div>
+        </section>
 
-              <div class="about-definition">
-                <strong>
-                  Player Exclusive (PE)
-                </strong>
-                <span>
-                  An edition produced
-                  or customized by a brand
-                  specifically for an athlete,
+
+        <section class="about-topic">
+          <header class="about-topic-heading">
+            <div class="about-topic-heading-main">
+              <p class="about-topic-kicker">
+                EDITION CLASSIFICATION
+              </p>
+              <h2 class="about-topic-title">
+                Collection Classification
+              </h2>
+            </div>
+
+            <p class="about-topic-note">
+              SWIPE TO VIEW MORE →
+            </p>
+          </header>
+
+          <div class="about-card classification-card">
+            <div class="classification-scroll">
+
+              <article class="classification-item">
+                <span class="classification-code">GR</span>
+                <h3>General Release</h3>
+                <p>
+                  An edition produced and distributed
+                  commercially through official
+                  or authorized retail channels.
+                </p>
+              </article>
+
+              <article class="classification-item">
+                <span class="classification-code">PE</span>
+                <h3>Player Exclusive</h3>
+                <p>
+                  An edition produced or customized
+                  by a brand specifically for an athlete,
                   team, or designated individual
                   and typically not offered
                   through public retail.
-                </span>
-              </div>
+                </p>
+              </article>
 
-              <div class="about-definition">
-                <strong>
-                  Friends &amp; Family (F&amp;F)
-                </strong>
-                <span>
+              <article class="classification-item">
+                <span class="classification-code">F&amp;F</span>
+                <h3>Friends &amp; Family</h3>
+                <p>
                   A non-public-retail edition
-                  distributed directly
-                  by a brand, designer,
-                  or creative partner
-                  to family, friends,
-                  collaborators,
+                  distributed directly by a brand,
+                  designer, or creative partner
+                  to family, friends, collaborators,
                   or individuals connected
                   to the project.
-                </span>
-              </div>
+                </p>
+              </article>
 
-              <div class="about-definition">
-                <strong>
-                  Sample
-                </strong>
-                <span>
-                  An edition created
-                  during development,
+              <article class="classification-item">
+                <span class="classification-code">SAMPLE</span>
+                <h3>Sample</h3>
+                <p>
+                  An edition created during development,
                   testing, or pre-production
-                  to evaluate design,
-                  materials, colors,
-                  or construction
-                  before a product
-                  is finalized
+                  to evaluate design, materials,
+                  colors, or construction
+                  before a product is finalized
                   or officially released.
-                </span>
-              </div>
+                </p>
+              </article>
 
-              <div class="about-definition">
-                <strong>
-                  Custom
-                </strong>
-                <span>
+              <article class="classification-item">
+                <span class="classification-code">CUSTOM</span>
+                <h3>Custom</h3>
+                <p>
                   An artifact individually modified
-                  or personalized
-                  from an existing base pair
-                  through changes to color,
-                  materials, details,
-                  or design construction.
-                  A Custom may be created
-                  by an artist, studio,
-                  or the owner
-                  and does not imply
-                  an official brand collaboration
-                  or factory-issued edition.
-                </span>
-              </div>
+                  or personalized from an existing base pair
+                  through changes to color, materials,
+                  details, or design construction.
+                  A Custom may be created by an artist,
+                  studio, or the owner
+                  and does not imply an official
+                  brand collaboration or factory-issued edition.
+                </p>
+              </article>
 
-              <div class="about-definition">
-                <strong>
-                  Signature Signed
-                </strong>
-                <span>
-                  An artifact carrying
-                  a direct signature
-                  from an athlete,
-                  designer, artist,
+              <article class="classification-item">
+                <span class="classification-code">SIGNED</span>
+                <h3>Signature Signed</h3>
+                <p>
+                  An artifact carrying a direct signature
+                  from an athlete, designer, artist,
                   or individual directly associated
                   with the product,
                   adding provenance
                   and archival significance.
-                </span>
-              </div>
+                </p>
+              </article>
+
             </div>
 
-            <p style="margin-top:14px;">
+            <p class="classification-footer">
               An artifact may belong
               to more than one category
               when its provenance
@@ -1055,20 +1246,22 @@
               to multiple classifications.
             </p>
           </div>
-        </article>
+        </section>
 
-        <!-- OBJECT RECORD -->
-        <article class="about-row-card">
-          <div class="about-row-label">
-            <p class="about-kicker">
-              OBJECT RECORD
-            </p>
-            <h2>
-              Information Recorded in the Archive
-            </h2>
-          </div>
 
-          <div class="about-row-content">
+        <section class="about-topic">
+          <header class="about-topic-heading">
+            <div class="about-topic-heading-main">
+              <p class="about-topic-kicker">
+                OBJECT RECORD
+              </p>
+              <h2 class="about-topic-title">
+                Information Recorded in the Archive
+              </h2>
+            </div>
+          </header>
+
+          <div class="about-card">
             <div class="object-record-list">
               <span>Title</span>
               <span>SKU / Style Code</span>
@@ -1088,16 +1281,16 @@
               design, cultural,
               and provenance context
               rather than repeating
-              technical metadata
-              already presented
+              technical metadata already presented
               in the object record.
             </p>
           </div>
-        </article>
+        </section>
 
-      </section>
+      </div>
 
     </main>
+
 
     <footer>
       <p id="about-footer-text">
@@ -1107,6 +1300,7 @@
     </footer>
 
   </div>
+
 
   <script>
     const ABOUT_LANGUAGES = [
@@ -1134,9 +1328,13 @@
         "vi";
     }
 
+
     function syncAboutNavigation() {
       const isVI =
         aboutLanguage === "vi";
+
+      document.documentElement.lang =
+        aboutLanguage;
 
       const aboutLink =
         document.getElementById(
@@ -1198,6 +1396,7 @@
             : "© 2026 Lộc An Sneaker Collection. All Rights Reserved.";
       }
     }
+
 
     function syncAboutLinks() {
       document
@@ -1262,9 +1461,8 @@
         });
     }
 
-    function setAboutLanguage(
-      lang
-    ) {
+
+    function setAboutLanguage(lang) {
       aboutLanguage =
         ABOUT_LANGUAGES.includes(
           lang
@@ -1277,8 +1475,39 @@
         aboutLanguage
       );
 
-      document.documentElement.lang =
-        aboutLanguage;
+      const viPanel =
+        document.getElementById(
+          "about-panel-vi"
+        );
+
+      const enPanel =
+        document.getElementById(
+          "about-panel-en"
+        );
+
+      /*
+        Hard hide/show:
+        There is never more than one language visible.
+      */
+      if (viPanel) {
+        viPanel.hidden =
+          aboutLanguage !== "vi";
+
+        viPanel.style.display =
+          aboutLanguage === "vi"
+            ? "block"
+            : "none";
+      }
+
+      if (enPanel) {
+        enPanel.hidden =
+          aboutLanguage !== "en";
+
+        enPanel.style.display =
+          aboutLanguage === "en"
+            ? "block"
+            : "none";
+      }
 
       document
         .getElementById(
@@ -1296,18 +1525,6 @@
         ?.classList.toggle(
           "active",
           aboutLanguage === "en"
-        );
-
-      document
-        .querySelectorAll(
-          ".lang-panel"
-        )
-        .forEach(
-          element => {
-            element.hidden =
-              element.dataset.lang !==
-              aboutLanguage;
-          }
         );
 
       syncAboutNavigation();
@@ -1332,6 +1549,7 @@
       );
     }
 
+
     document.addEventListener(
       "DOMContentLoaded",
       () => {
@@ -1341,5 +1559,6 @@
       }
     );
   </script>
+
 </body>
 </html>
