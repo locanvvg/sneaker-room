@@ -170,8 +170,8 @@ if (
     ) {
       mergeDisplay(sneaker, {
         grid: {
-          scaleX: 1.08,
-          scaleY: 1.08,
+          scaleX: 0.78,
+          scaleY: 0.78,
           x: 0,
           y: 0
         }
@@ -186,8 +186,8 @@ if (
     ) {
       mergeDisplay(sneaker, {
         grid: {
-          scaleX: 1.08,
-          scaleY: 1.08,
+          scaleX: 0.96,
+          scaleY: 0.96,
           x: 0,
           y: 0
         }
@@ -198,8 +198,8 @@ if (
     if (title.includes("new balance 2002r")) {
       mergeDisplay(sneaker, {
         grid: {
-          scaleX: 1.08,
-          scaleY: 1.08,
+          scaleX: 0.72,
+          scaleY: 0.72,
           x: 0,
           y: 0
         }
@@ -213,8 +213,29 @@ if (
     ) {
       mergeDisplay(sneaker, {
         grid: {
-          scaleX: 1.05,
-          scaleY: 1.05,
+          scaleX: 0.70,
+          scaleY: 0.70,
+          x: 0,
+          y: 0
+        }
+      });
+    }
+
+    /* Jordan 13 DMP: 3D only, slightly smaller */
+    if (
+      title.includes("jordan 13") &&
+      title.includes("dmp")
+    ) {
+      mergeDisplay(sneaker, {
+        view3d: {
+          scaleX: 0.92,
+          scaleY: 0.92,
+          x: 0,
+          y: 0
+        },
+        view3dMobile: {
+          scaleX: 0.92,
+          scaleY: 0.92,
           x: 0,
           y: 0
         }
