@@ -222,3 +222,570 @@ if (
     }
   });
 }
+
+
+/* =========================================================
+   LỘC AN — COLLECTION STATUS UI v1
+   Display terminology:
+   - own  -> IN COLLECTION
+   - sold -> FORMERLY IN COLLECTION
+
+   IMPORTANT:
+   Internal collectionStatus values remain unchanged so
+   existing data, filters, sorting and archived records do
+   not break. Only public-facing terminology is changed.
+========================================================= */
+
+(() => {
+  const STATUS_STYLE_ID = "locan-collection-status-ui-v1";
+  const STATUS_GROUP_ID = "collection-status-filter-group";
+  const STATUS_LABEL_ID = "collection-status-filter-label";
+
+  const selectedStatuses = new Set();
+  let filterPatched = false;
+  let clearPatched = false;
+  let countPatched = false;
+  let observerScheduled = false;
+
+  const normalizeStatus = sneaker => {
+    const raw = String(
+      sneaker?.collectionStatus || "own"
+    )
+      .trim()
+      .toLowerCase();
+
+    return raw === "sold"
+      ? "former"
+      : "in";
+  };
+
+  const currentLanguage = () => {
+    const htmlLang =
+      document.documentElement.lang;
+
+    if (htmlLang === "en") {
+      return "en";
+    }
+
+    const stored =
+      localStorage.getItem("locan_lang");
+
+    return stored === "en"
+      ? "en"
+      : "vi";
+  };
+
+  function installStatusStyles() {
+    if (
+      document.getElementById(
+        STATUS_STYLE_ID
+      )
+    ) {
+      return;
+    }
+
+    const style =
+      document.createElement("style");
+
+    style.id =
+      STATUS_STYLE_ID;
+
+    style.textContent = `
+      #${STATUS_GROUP_ID} .filter-chips {
+        align-items: center;
+      }
+
+      #${STATUS_GROUP_ID}
+      .collection-status-chip {
+        white-space: normal;
+        line-height: 1.15;
+        text-align: center;
+      }
+
+      .preowned-3d-badge {
+        font-size: .52rem !important;
+        letter-spacing: .18px !important;
+        padding: 4px 6px !important;
+        max-width: 150px;
+        text-align: center;
+        line-height: 1.15 !important;
+      }
+
+      @media (max-width: 650px) {
+        .preowned-3d-badge {
+          font-size: .46rem !important;
+          max-width: 126px;
+          padding: 3px 5px !important;
+        }
+      }
+    `;
+
+    document.head.appendChild(
+      style
+    );
+  }
+
+  function updateStatusGroupLanguage() {
+    const label =
+      document.getElementById(
+        STATUS_LABEL_ID
+      );
+
+    if (!label) {
+      return;
+    }
+
+    label.textContent =
+      currentLanguage() === "vi"
+        ? "TRẠNG THÁI BỘ SƯU TẬP"
+        : "COLLECTION STATUS";
+  }
+
+  function updateStatusChipState() {
+    document
+      .querySelectorAll(
+        `#${STATUS_GROUP_ID} .collection-status-chip`
+      )
+      .forEach(button => {
+        const value =
+          button.dataset.statusValue;
+
+        button.classList.toggle(
+          "active",
+          selectedStatuses.has(value)
+        );
+      });
+  }
+
+  function renderAfterStatusChange() {
+    if (
+      typeof renderGrid ===
+      "function"
+    ) {
+      renderGrid();
+    }
+  }
+
+  function toggleCollectionStatusFilter(
+    value
+  ) {
+    if (
+      value !== "in" &&
+      value !== "former"
+    ) {
+      return;
+    }
+
+    if (
+      selectedStatuses.has(value)
+    ) {
+      selectedStatuses.delete(value);
+    } else {
+      selectedStatuses.add(value);
+    }
+
+    updateStatusChipState();
+    renderAfterStatusChange();
+  }
+
+  window.toggleCollectionStatusFilter =
+    toggleCollectionStatusFilter;
+
+  function ensureStatusFilterGroup() {
+    if (
+      document.getElementById(
+        STATUS_GROUP_ID
+      )
+    ) {
+      updateStatusGroupLanguage();
+      updateStatusChipState();
+      return;
+    }
+
+    const conditionLabel =
+      document.getElementById(
+        "condition-filter-label"
+      );
+
+    const conditionGroup =
+      conditionLabel?.closest(
+        ".filter-group"
+      );
+
+    const filterPanel =
+      document.querySelector(
+        ".filter-panel"
+      );
+
+    if (!filterPanel) {
+      return;
+    }
+
+    const group =
+      document.createElement("div");
+
+    group.className =
+      "filter-group";
+
+    group.id =
+      STATUS_GROUP_ID;
+
+    group.innerHTML = `
+      <div
+        id="${STATUS_LABEL_ID}"
+        class="filter-group-label"
+      >
+        COLLECTION STATUS
+      </div>
+
+      <div class="filter-chips">
+        <button
+          type="button"
+          class="filter-chip collection-status-chip"
+          data-group="collection-status"
+          data-status-value="in"
+        >
+          IN COLLECTION
+        </button>
+
+        <button
+          type="button"
+          class="filter-chip collection-status-chip"
+          data-group="collection-status"
+          data-status-value="former"
+        >
+          FORMERLY IN COLLECTION
+        </button>
+      </div>
+    `;
+
+    group
+      .querySelectorAll(
+        ".collection-status-chip"
+      )
+      .forEach(button => {
+        button.addEventListener(
+          "click",
+          () => {
+            toggleCollectionStatusFilter(
+              button.dataset.statusValue
+            );
+          }
+        );
+      });
+
+    if (
+      conditionGroup &&
+      conditionGroup.parentElement ===
+        filterPanel
+    ) {
+      filterPanel.insertBefore(
+        group,
+        conditionGroup
+      );
+    } else {
+      filterPanel.appendChild(
+        group
+      );
+    }
+
+    updateStatusGroupLanguage();
+    updateStatusChipState();
+  }
+
+  function patchFiltering() {
+    if (
+      filterPatched ||
+      typeof filterSneakers !==
+        "function"
+    ) {
+      return;
+    }
+
+    const previousFilterSneakers =
+      filterSneakers;
+
+    filterSneakers =
+      function (items) {
+        const filtered =
+          previousFilterSneakers(
+            items
+          );
+
+        if (
+          selectedStatuses.size === 0 ||
+          selectedStatuses.size === 2
+        ) {
+          return filtered;
+        }
+
+        return filtered.filter(
+          sneaker =>
+            selectedStatuses.has(
+              normalizeStatus(
+                sneaker
+              )
+            )
+        );
+      };
+
+    filterPatched =
+      true;
+  }
+
+  function patchClearFilters() {
+    if (
+      clearPatched ||
+      typeof clearAllFilters !==
+        "function"
+    ) {
+      return;
+    }
+
+    const previousClearAllFilters =
+      clearAllFilters;
+
+    clearAllFilters =
+      function (...args) {
+        selectedStatuses.clear();
+        updateStatusChipState();
+
+        return previousClearAllFilters(
+          ...args
+        );
+      };
+
+    clearPatched =
+      true;
+  }
+
+  function patchCollectionCount() {
+    if (
+      countPatched ||
+      typeof updateCollectionCount !==
+        "function"
+    ) {
+      return;
+    }
+
+    const previousUpdateCollectionCount =
+      updateCollectionCount;
+
+    updateCollectionCount =
+      function (count) {
+        previousUpdateCollectionCount(
+          count
+        );
+
+        if (
+          selectedStatuses.size === 0 ||
+          typeof sneakers ===
+            "undefined" ||
+          !Array.isArray(sneakers)
+        ) {
+          return;
+        }
+
+        const element =
+          document.getElementById(
+            "collection-count"
+          );
+
+        if (!element) {
+          return;
+        }
+
+        const total =
+          sneakers.length;
+
+        element.textContent =
+          currentLanguage() === "vi"
+            ? `HIỂN THỊ: ${count} / ${total} ĐÔI`
+            : `SHOWING: ${count} / ${total} PAIRS`;
+      };
+
+    countPatched =
+      true;
+  }
+
+  function syncPublicOwnershipLabels() {
+    updateStatusGroupLanguage();
+
+    document
+      .querySelectorAll(
+        ".preowned-3d-badge"
+      )
+      .forEach(badge => {
+        badge.textContent =
+          "FORMERLY IN COLLECTION";
+
+        badge.setAttribute(
+          "aria-label",
+          "Formerly in collection"
+        );
+      });
+
+    document
+      .querySelectorAll(
+        ".filter-chip"
+      )
+      .forEach(button => {
+        const text =
+          button.textContent
+            .trim()
+            .toUpperCase();
+
+        if (
+          text === "PRE-OWNED" ||
+          text === "PRE OWNED"
+        ) {
+          button.textContent =
+            "FORMERLY IN COLLECTION";
+        }
+
+        if (
+          text === "OWN"
+        ) {
+          button.textContent =
+            "IN COLLECTION";
+        }
+      });
+
+    document
+      .querySelectorAll(
+        '[aria-label="Pre-owned"], [aria-label="PRE-OWNED"]'
+      )
+      .forEach(element => {
+        element.setAttribute(
+          "aria-label",
+          "Formerly in collection"
+        );
+      });
+  }
+
+  function schedulePublicLabelSync() {
+    if (
+      observerScheduled
+    ) {
+      return;
+    }
+
+    observerScheduled =
+      true;
+
+    requestAnimationFrame(
+      () => {
+        observerScheduled =
+          false;
+
+        syncPublicOwnershipLabels();
+      }
+    );
+  }
+
+  function installObserver() {
+    if (!document.body) {
+      return;
+    }
+
+    const observer =
+      new MutationObserver(
+        schedulePublicLabelSync
+      );
+
+    observer.observe(
+      document.body,
+      {
+        childList: true,
+        subtree: true,
+        characterData: true
+      }
+    );
+  }
+
+  function installLanguageHooks() {
+    document.addEventListener(
+      "click",
+      event => {
+        const button =
+          event.target.closest(
+            "#btn-vi, #btn-en, .lang-btn"
+          );
+
+        if (!button) {
+          return;
+        }
+
+        setTimeout(
+          () => {
+            updateStatusGroupLanguage();
+            syncPublicOwnershipLabels();
+          },
+          0
+        );
+
+        setTimeout(
+          () => {
+            updateStatusGroupLanguage();
+            syncPublicOwnershipLabels();
+          },
+          100
+        );
+      }
+    );
+  }
+
+  function install() {
+    installStatusStyles();
+    ensureStatusFilterGroup();
+    patchFiltering();
+    patchClearFilters();
+    patchCollectionCount();
+    syncPublicOwnershipLabels();
+    installObserver();
+    installLanguageHooks();
+
+    /*
+      Retry briefly because catalog-additions.js loads
+      before main.js / collection-view.js.
+    */
+    [50, 150, 350, 700, 1200]
+      .forEach(delay => {
+        setTimeout(
+          () => {
+            ensureStatusFilterGroup();
+            patchFiltering();
+            patchClearFilters();
+            patchCollectionCount();
+            syncPublicOwnershipLabels();
+          },
+          delay
+        );
+      });
+  }
+
+  if (
+    document.readyState ===
+    "loading"
+  ) {
+    document.addEventListener(
+      "DOMContentLoaded",
+      install,
+      {
+        once: true
+      }
+    );
+  } else {
+    install();
+  }
+
+  window.addEventListener(
+    "load",
+    () => {
+      install();
+    },
+    {
+      once: true
+    }
+  );
+})();
