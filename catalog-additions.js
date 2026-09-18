@@ -869,7 +869,7 @@ if (
       #sneaker-grid.grid
       .card-img-wrapper
       img[data-catalog-image="true"][data-sneaker-id="jordan-1-low-reverse-bred-2020"] {
-        scale: 0.55 0.55 !important;
+        scale: 0.50 0.55 !important;
       }
     }
 
