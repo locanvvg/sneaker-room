@@ -194,26 +194,26 @@ if (
       });
     }
 
-    /* New Balance 2002R custom: grid only, slightly bigger */
+    /* New Balance 2002R custom: mobile grid slightly smaller */
     if (title.includes("new balance 2002r")) {
       mergeDisplay(sneaker, {
         grid: {
-          scaleX: 0.72,
-          scaleY: 0.72,
+          scaleX: 0.62,
+          scaleY: 0.62,
           x: 0,
           y: 0
         }
       });
     }
 
-    /* Reverse Bred: grid only, only a little bigger */
+    /* Reverse Bred: mobile grid width reduced */
     if (
       title.includes("jordan 1 low") &&
       title.includes("reverse bred")
     ) {
       mergeDisplay(sneaker, {
         grid: {
-          scaleX: 0.70,
+          scaleX: 0.58,
           scaleY: 0.70,
           x: 0,
           y: 0
