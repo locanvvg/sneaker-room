@@ -1,6 +1,9 @@
 /* =========================================================
    LỘC AN — CATALOG ADDITIONS
    CURRENT ADDITION: NIKE SB RAYGUN AWAY
+   Display tweaks:
+   - Grid only: Waffle, Jordan 4, NB 2002R, Reverse Bred
+   - 3D only: Raygun slightly bigger
    ========================================================= */
 
 const CATALOG_ADDITIONS = [
@@ -42,8 +45,9 @@ const CATALOG_ADDITIONS = [
     ],
 
     /*
-      Manual visual calibration for Raygun only.
-      This keeps it slightly smaller than the default auto-fit.
+      Raygun baseline:
+      - Grid stays at the approved smaller size
+      - 3D is increased slightly per latest request
     */
     display: {
       grid: {
@@ -53,14 +57,14 @@ const CATALOG_ADDITIONS = [
         y: 0
       },
       view3d: {
-        scaleX: 0.52,
-        scaleY: 0.52,
+        scaleX: 0.56,
+        scaleY: 0.56,
         x: 0,
         y: 0
       },
       view3dMobile: {
-        scaleX: 0.48,
-        scaleY: 0.48,
+        scaleX: 0.52,
+        scaleY: 0.52,
         x: 0,
         y: 0
       }
@@ -93,20 +97,128 @@ if (
   typeof sneakers !== "undefined" &&
   Array.isArray(sneakers)
 ) {
-  const raygunExists = sneakers.some(item => {
-    const id = String(item?.id || "").toLowerCase();
-    const title =
-      typeof item?.title === "string"
-        ? item.title
-        : `${item?.title?.vi || ""} ${item?.title?.en || ""}`;
+  const normalizeText = value =>
+    String(value ?? "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .replace(/[’‘]/g, "'")
+      .replace(/\s+/g, " ")
+      .trim();
 
-    return (
-      id.includes("raygun") ||
-      String(title).toLowerCase().includes("raygun")
+  const getTitleText = sneaker =>
+    normalizeText(
+      typeof sneaker?.title === "string"
+        ? sneaker.title
+        : `${sneaker?.title?.vi || ""} ${sneaker?.title?.en || ""}`
     );
+
+  const mergeDisplay = (sneaker, partialDisplay) => {
+    sneaker.display = sneaker.display || {};
+
+    Object.entries(partialDisplay).forEach(([mode, values]) => {
+      sneaker.display[mode] = {
+        ...(sneaker.display[mode] || {}),
+        ...values
+      };
+    });
+  };
+
+  const raygunExists = sneakers.some(item => {
+    const id = normalizeText(item?.id);
+    const title = getTitleText(item);
+
+    return id.includes("raygun") || title.includes("raygun");
   });
 
   if (!raygunExists) {
     sneakers.push(...CATALOG_ADDITIONS);
   }
+
+  sneakers.forEach(sneaker => {
+    const title = getTitleText(sneaker);
+    const id = normalizeText(sneaker?.id);
+
+    /* Raygun: keep grid small, make ONLY 3D slightly bigger */
+    if (id.includes("raygun") || title.includes("raygun")) {
+      mergeDisplay(sneaker, {
+        grid: {
+          scaleX: 0.58,
+          scaleY: 0.58,
+          x: 0,
+          y: 0
+        },
+        view3d: {
+          scaleX: 0.56,
+          scaleY: 0.56,
+          x: 0,
+          y: 0
+        },
+        view3dMobile: {
+          scaleX: 0.52,
+          scaleY: 0.52,
+          x: 0,
+          y: 0
+        }
+      });
+    }
+
+    /* Waffle: grid only, slightly bigger */
+    if (
+      title.includes("waffle racer") &&
+      (title.includes("off-white") || title.includes("off white"))
+    ) {
+      mergeDisplay(sneaker, {
+        grid: {
+          scaleX: 1.08,
+          scaleY: 1.08,
+          x: 0,
+          y: 0
+        }
+      });
+    }
+
+    /* Jordan 4 Black Cement 1999: grid only, slightly bigger */
+    if (
+      title.includes("jordan 4") &&
+      title.includes("black cement") &&
+      title.includes("1999")
+    ) {
+      mergeDisplay(sneaker, {
+        grid: {
+          scaleX: 1.08,
+          scaleY: 1.08,
+          x: 0,
+          y: 0
+        }
+      });
+    }
+
+    /* New Balance 2002R custom: grid only, slightly bigger */
+    if (title.includes("new balance 2002r")) {
+      mergeDisplay(sneaker, {
+        grid: {
+          scaleX: 1.08,
+          scaleY: 1.08,
+          x: 0,
+          y: 0
+        }
+      });
+    }
+
+    /* Reverse Bred: grid only, only a little bigger */
+    if (
+      title.includes("jordan 1 low") &&
+      title.includes("reverse bred")
+    ) {
+      mergeDisplay(sneaker, {
+        grid: {
+          scaleX: 1.05,
+          scaleY: 1.05,
+          x: 0,
+          y: 0
+        }
+      });
+    }
+  });
 }
