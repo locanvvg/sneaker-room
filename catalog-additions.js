@@ -132,20 +132,20 @@ const CATALOG_ADDITIONS = [
     */
     display: {
       grid: {
-        scaleX: 0.70,
-        scaleY: 0.70,
+        scaleX: 0.76,
+        scaleY: 0.76,
         x: 0,
         y: 0
       },
       view3d: {
-        scaleX: 0.68,
-        scaleY: 0.68,
+        scaleX: 0.74,
+        scaleY: 0.74,
         x: 0,
         y: 0
       },
       view3dMobile: {
-        scaleX: 0.62,
-        scaleY: 0.62,
+        scaleX: 0.69,
+        scaleY: 0.69,
         x: 0,
         y: 0
       }
@@ -933,13 +933,13 @@ if (
 })();
 
 /* =========================================================
-   ADIFOM SIZE FIX v2 — THIS PAIR ONLY
+   ADIFOM SIZE FIX v3 — THIS PAIR ONLY
    Strong targeted override because the shared Auto Fit layer
    can re-apply its own scale after rendering.
    No other sneaker / UI / About content is touched.
 ========================================================= */
 (() => {
-  const styleId = "locan-adifom-size-only-v2";
+  const styleId = "locan-adifom-size-only-v3";
 
   document
     .getElementById(styleId)
@@ -956,14 +956,14 @@ if (
     #sneaker-grid.grid
     .card-img-wrapper
     img[data-catalog-image="true"][data-sneaker-id="adidas-adifom-superstar-white-black-2022"] {
-      scale: 0.70 0.70 !important;
+      scale: 0.76 0.76 !important;
     }
 
     /* 3D — desktop */
     html body
     .sneaker-3d-image
     img[data-catalog-image="true"][data-sneaker-id="adidas-adifom-superstar-white-black-2022"] {
-      scale: 0.68 0.68 !important;
+      scale: 0.74 0.74 !important;
     }
 
     /* 3D — phone */
@@ -971,7 +971,7 @@ if (
       html body
       .sneaker-3d-image
       img[data-catalog-image="true"][data-sneaker-id="adidas-adifom-superstar-white-black-2022"] {
-        scale: 0.62 0.62 !important;
+        scale: 0.69 0.69 !important;
       }
     }
   `;
