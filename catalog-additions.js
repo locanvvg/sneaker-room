@@ -123,15 +123,32 @@ const CATALOG_ADDITIONS = [
     ],
 
     /*
-      Keep this pair completely independent from all legacy
-      hand-tuned shoes. The shared schemaVersion:2 visual
-      bounding-box engine sizes and centers this transparent PNG
-      separately for Grid, desktop 3D and mobile 3D.
+      Per latest request, this pair is reduced in both main
+      viewing modes while remaining isolated from every other
+      shoe already calibrated in the collection:
+      - Grid: smaller
+      - 3D desktop: smaller
+      - 3D mobile: smaller to match the same 3D intent
     */
     display: {
-      grid: "auto",
-      view3d: "auto",
-      view3dMobile: "auto"
+      grid: {
+        scaleX: 0.82,
+        scaleY: 0.82,
+        x: 0,
+        y: 0
+      },
+      view3d: {
+        scaleX: 0.84,
+        scaleY: 0.84,
+        x: 0,
+        y: 0
+      },
+      view3dMobile: {
+        scaleX: 0.84,
+        scaleY: 0.84,
+        x: 0,
+        y: 0
+      }
     },
 
     story: {
