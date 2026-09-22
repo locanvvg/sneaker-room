@@ -336,37 +336,22 @@ if (
 
 
 /* =========================================================
-   LỘC AN — COLLECTION STATUS UI v1
-   Display terminology:
-   - own  -> IN COLLECTION
-   - sold -> FORMERLY IN COLLECTION
+   LỘC AN — COLLECTION STATUS LABEL BRIDGE v2
 
    IMPORTANT:
-   Internal collectionStatus values remain unchanged so
-   existing data, filters, sorting and archived records do
-   not break. Only public-facing terminology is changed.
+   data.js already owns the real OWN / SOLD filtering logic.
+   This bridge ONLY changes public-facing wording and keeps
+   the approved yellow active-state appearance.
+
+   It does NOT create another status filter and does NOT wrap
+   filterSneakers. This prevents the native SOLD archive from
+   being filtered a second time.
 ========================================================= */
 (() => {
-  const STATUS_STYLE_ID = "locan-collection-status-ui-v1";
-  const STATUS_GROUP_ID = "collection-status-filter-group";
-  const STATUS_LABEL_ID = "collection-status-filter-label";
+  const STYLE_ID =
+    "locan-collection-status-label-bridge-v2";
 
-  const selectedStatuses = new Set(["in"]);
-  let filterPatched = false;
-  let clearPatched = false;
-  let countPatched = false;
   let observerScheduled = false;
-
-  const normalizeStatus = sneaker => {
-    const raw = String(
-      sneaker?.collectionStatus || "own"
-    )
-      .trim()
-      .toLowerCase();
-    return raw === "sold"
-      ? "former"
-      : "in";
-  };
 
   const currentLanguage = () => {
     const htmlLang =
@@ -376,39 +361,47 @@ if (
       return "en";
     }
 
-    const stored =
-      localStorage.getItem("locan_lang");
-
-    return stored === "en"
-      ? "en"
-      : "vi";
+    try {
+      return localStorage.getItem(
+        "locan_lang"
+      ) === "en"
+        ? "en"
+        : "vi";
+    } catch (_) {
+      return "vi";
+    }
   };
 
   function installStatusStyles() {
-    if (
-      document.getElementById(
-        STATUS_STYLE_ID
-      )
-    ) {
-      return;
-    }
+    document
+      .getElementById(STYLE_ID)
+      ?.remove();
+
     const style =
       document.createElement("style");
 
-    style.id =
-      STATUS_STYLE_ID;
+    style.id = STYLE_ID;
 
     style.textContent = `
-      #${STATUS_GROUP_ID} .filter-chips {
+      #collection-status-filter-group .filter-chips {
         align-items: center;
       }
 
-      #${STATUS_GROUP_ID}
+      #collection-status-filter-group
       .collection-status-chip {
         white-space: normal;
         line-height: 1.15;
         text-align: center;
       }
+
+      /* Preserve the approved website yellow active state. */
+      #collection-status-filter-group
+      .collection-status-chip.active {
+        background: #ffcc00 !important;
+        border-color: #ffcc00 !important;
+        color: #000 !important;
+      }
+
       .preowned-3d-badge {
         font-size: .52rem !important;
         letter-spacing: .18px !important;
@@ -427,283 +420,74 @@ if (
       }
     `;
 
-    document.head.appendChild(
-      style
-    );
-  }
-  function updateStatusGroupLanguage() {
-    const label =
-      document.getElementById(
-        STATUS_LABEL_ID
-      );
-
-    if (!label) {
-      return;
-    }
-
-    label.textContent =
-      currentLanguage() === "vi"
-        ? "TRẠNG THÁI BỘ SƯU TẬP"
-        : "COLLECTION STATUS";
-  }
-  function updateStatusChipState() {
-    document
-      .querySelectorAll(
-        `#${STATUS_GROUP_ID} .collection-status-chip`
-      )
-      .forEach(button => {
-        const value =
-          button.dataset.statusValue;
-
-        button.classList.toggle(
-          "active",
-          selectedStatuses.has(value)
-        );
-      });
-  }
-
-  function renderAfterStatusChange() {
-    if (
-      typeof renderGrid ===
-      "function"
-    ) {
-      renderGrid();
-    }
-  }
-  function toggleCollectionStatusFilter(
-    value
-  ) {
-    if (
-      value !== "in" &&
-      value !== "former"
-    ) {
-      return;
-    }
-
-    /*
-      Collection status behaves like two exclusive tabs:
-      exactly one status is always selected.
-    */
-    selectedStatuses.clear();
-    selectedStatuses.add(value);
-
-    updateStatusChipState();
-    renderAfterStatusChange();
-  }
-
-  window.toggleCollectionStatusFilter =
-    toggleCollectionStatusFilter;
-  function ensureStatusFilterGroup() {
-    if (
-      document.getElementById(
-        STATUS_GROUP_ID
-      )
-    ) {
-      updateStatusGroupLanguage();
-      updateStatusChipState();
-      return;
-    }
-
-    const conditionLabel =
-      document.getElementById(
-        "condition-filter-label"
-      );
-
-    const conditionGroup =
-      conditionLabel?.closest(
-        ".filter-group"
-      );
-
-    const filterPanel =
-      document.querySelector(
-        ".filter-panel"
-      );
-    if (!filterPanel) {
-      return;
-    }
-
-    const group =
-      document.createElement("div");
-
-    group.className =
-      "filter-group";
-
-    group.id =
-      STATUS_GROUP_ID;
-
-    group.innerHTML = `
-      <div
-        id="${STATUS_LABEL_ID}"
-        class="filter-group-label"
-      >
-        COLLECTION STATUS
-      </div>
-      <div class="filter-chips">
-        <button
-          type="button"
-          class="filter-chip collection-status-chip"
-          data-group="collection-status"
-          data-status-value="in"
-        >
-          IN COLLECTION
-        </button>
-
-        <button
-          type="button"
-          class="filter-chip collection-status-chip"
-          data-group="collection-status"
-          data-status-value="former"
-        >
-          FORMERLY IN COLLECTION
-        </button>
-      </div>
-    `;
-    group
-      .querySelectorAll(
-        ".collection-status-chip"
-      )
-      .forEach(button => {
-        button.addEventListener(
-          "click",
-          () => {
-            toggleCollectionStatusFilter(
-              button.dataset.statusValue
-            );
-          }
-        );
-      });
-    if (
-      conditionGroup &&
-      conditionGroup.parentElement ===
-        filterPanel
-    ) {
-      filterPanel.insertBefore(
-        group,
-        conditionGroup
-      );
-    } else {
-      filterPanel.appendChild(
-        group
-      );
-    }
-
-    updateStatusGroupLanguage();
-    updateStatusChipState();
-  }
-
-  function patchFiltering() {
-    if (
-      filterPatched ||
-      typeof filterSneakers !==
-        "function"
-    ) {
-      return;
-    }
-    const previousFilterSneakers =
-      filterSneakers;
-
-    filterSneakers =
-      function (items) {
-        const filtered =
-          previousFilterSneakers(
-            items
-          );
-
-        if (
-          selectedStatuses.size === 0 ||
-          selectedStatuses.size === 2
-        ) {
-          return filtered;
-        }
-        return filtered.filter(
-          sneaker =>
-            selectedStatuses.has(
-              normalizeStatus(
-                sneaker
-              )
-            )
-        );
-      };
-
-    filterPatched =
-      true;
-  }
-
-  function patchClearFilters() {
-    if (
-      clearPatched ||
-      typeof clearAllFilters !==
-        "function"
-    ) {
-      return;
-    }
-
-    const previousClearAllFilters =
-      clearAllFilters;
-    clearAllFilters =
-      function (...args) {
-        selectedStatuses.clear();
-        selectedStatuses.add("in");
-        updateStatusChipState();
-
-        return previousClearAllFilters(
-          ...args
-        );
-      };
-
-    clearPatched =
-      true;
-  }
-
-  function patchCollectionCount() {
-    if (
-      countPatched ||
-      typeof updateCollectionCount !==
-        "function"
-    ) {
-      return;
-    }
-
-    const previousUpdateCollectionCount =
-      updateCollectionCount;
-    updateCollectionCount =
-      function (count) {
-        previousUpdateCollectionCount(
-          count
-        );
-
-        if (
-          selectedStatuses.size === 0 ||
-          typeof sneakers ===
-            "undefined" ||
-          !Array.isArray(sneakers)
-        ) {
-          return;
-        }
-
-        const element =
-          document.getElementById(
-            "collection-count"
-          );
-
-        if (!element) {
-          return;
-        }
-        const total =
-          sneakers.length;
-
-        element.textContent =
-          currentLanguage() === "vi"
-            ? `HIỂN THỊ: ${count} / ${total} ĐÔI`
-            : `SHOWING: ${count} / ${total} PAIRS`;
-      };
-
-    countPatched =
-      true;
+    document.head.appendChild(style);
   }
 
   function syncPublicOwnershipLabels() {
-    updateStatusGroupLanguage();
+    const label =
+      document.getElementById(
+        "collection-status-filter-label"
+      );
+
+    if (label) {
+      label.textContent =
+        currentLanguage() === "vi"
+          ? "TRẠNG THÁI BỘ SƯU TẬP"
+          : "COLLECTION STATUS";
+    }
+
+    const ownButton =
+      document.getElementById(
+        "collection-status-own"
+      );
+
+    if (ownButton) {
+      ownButton.textContent =
+        "IN COLLECTION";
+      ownButton.setAttribute(
+        "aria-label",
+        "In collection"
+      );
+    }
+
+    const soldButton =
+      document.getElementById(
+        "collection-status-sold"
+      );
+
+    if (soldButton) {
+      soldButton.textContent =
+        "FORMERLY IN COLLECTION";
+      soldButton.setAttribute(
+        "aria-label",
+        "Formerly in collection"
+      );
+    }
+
+    /* Fallback for any already-rendered legacy labels. */
+    document
+      .querySelectorAll(
+        ".filter-chip"
+      )
+      .forEach(button => {
+        const value =
+          button.textContent
+            .trim()
+            .toUpperCase();
+
+        if (
+          value === "PRE-OWNED" ||
+          value === "PRE OWNED"
+        ) {
+          button.textContent =
+            "FORMERLY IN COLLECTION";
+        }
+
+        if (value === "OWN") {
+          button.textContent =
+            "IN COLLECTION";
+        }
+      });
 
     document
       .querySelectorAll(
@@ -720,31 +504,6 @@ if (
 
     document
       .querySelectorAll(
-        ".filter-chip"
-      )
-      .forEach(button => {
-        const text =
-          button.textContent
-            .trim()
-            .toUpperCase();
-
-        if (
-          text === "PRE-OWNED" ||
-          text === "PRE OWNED"
-        ) {
-          button.textContent =
-            "FORMERLY IN COLLECTION";
-        }
-        if (
-          text === "OWN"
-        ) {
-          button.textContent =
-            "IN COLLECTION";
-        }
-      });
-
-    document
-      .querySelectorAll(
         '[aria-label="Pre-owned"], [aria-label="PRE-OWNED"]'
       )
       .forEach(element => {
@@ -756,22 +515,16 @@ if (
   }
 
   function schedulePublicLabelSync() {
-    if (
-      observerScheduled
-    ) {
+    if (observerScheduled) {
       return;
     }
-    observerScheduled =
-      true;
 
-    requestAnimationFrame(
-      () => {
-        observerScheduled =
-          false;
+    observerScheduled = true;
 
-        syncPublicOwnershipLabels();
-      }
-    );
+    requestAnimationFrame(() => {
+      observerScheduled = false;
+      syncPublicOwnershipLabels();
+    });
   }
 
   function installObserver() {
@@ -793,6 +546,7 @@ if (
       }
     );
   }
+
   function installLanguageHooks() {
     document.addEventListener(
       "click",
@@ -807,17 +561,12 @@ if (
         }
 
         setTimeout(
-          () => {
-            updateStatusGroupLanguage();
-            syncPublicOwnershipLabels();
-          },
+          syncPublicOwnershipLabels,
           0
         );
+
         setTimeout(
-          () => {
-            updateStatusGroupLanguage();
-            syncPublicOwnershipLabels();
-          },
+          syncPublicOwnershipLabels,
           100
         );
       }
@@ -826,43 +575,24 @@ if (
 
   function install() {
     installStatusStyles();
-    ensureStatusFilterGroup();
-    const wasFilterPatched =
-      filterPatched;
-
-    patchFiltering();
-    patchClearFilters();
-    patchCollectionCount();
     syncPublicOwnershipLabels();
-
-    if (
-      !wasFilterPatched &&
-      filterPatched
-    ) {
-      updateStatusChipState();
-      renderAfterStatusChange();
-    }
-
     installObserver();
     installLanguageHooks();
+
     /*
-      Retry briefly because catalog-additions.js loads
-      before main.js / collection-view.js.
+      data.js creates the real collection-status controls on
+      window.load, so retry only for wording synchronization.
+      No filtering function is touched here.
     */
     [50, 150, 350, 700, 1200]
       .forEach(delay => {
         setTimeout(
-          () => {
-            ensureStatusFilterGroup();
-            patchFiltering();
-            patchClearFilters();
-            patchCollectionCount();
-            syncPublicOwnershipLabels();
-          },
+          syncPublicOwnershipLabels,
           delay
         );
       });
   }
+
   if (
     document.readyState ===
     "loading"
@@ -881,7 +611,10 @@ if (
   window.addEventListener(
     "load",
     () => {
-      install();
+      setTimeout(
+        syncPublicOwnershipLabels,
+        0
+      );
     },
     {
       once: true
