@@ -315,6 +315,27 @@ if (
 }
 
 /* =========================================================
+   HOMEPAGE DEFAULT VIEW — GRID ONLY
+   The homepage always starts in Grid view.
+   User can still switch to 3D during the current visit.
+========================================================= */
+(() => {
+  if (!document.getElementById("sneaker-grid")) {
+    return;
+  }
+
+  try {
+    localStorage.setItem(
+      "locan_collection_view",
+      "grid"
+    );
+  } catch (_) {
+    /* Storage is optional. */
+  }
+})();
+
+
+/* =========================================================
    LỘC AN — COLLECTION STATUS UI v1
    Display terminology:
    - own  -> IN COLLECTION
@@ -330,7 +351,7 @@ if (
   const STATUS_GROUP_ID = "collection-status-filter-group";
   const STATUS_LABEL_ID = "collection-status-filter-label";
 
-  const selectedStatuses = new Set();
+  const selectedStatuses = new Set(["in"]);
   let filterPatched = false;
   let clearPatched = false;
   let countPatched = false;
@@ -459,13 +480,12 @@ if (
       return;
     }
 
-    if (
-      selectedStatuses.has(value)
-    ) {
-      selectedStatuses.delete(value);
-    } else {
-      selectedStatuses.add(value);
-    }
+    /*
+      Collection status behaves like two exclusive tabs:
+      exactly one status is always selected.
+    */
+    selectedStatuses.clear();
+    selectedStatuses.add(value);
 
     updateStatusChipState();
     renderAfterStatusChange();
@@ -623,6 +643,7 @@ if (
     clearAllFilters =
       function (...args) {
         selectedStatuses.clear();
+        selectedStatuses.add("in");
         updateStatusChipState();
 
         return previousClearAllFilters(
@@ -806,10 +827,22 @@ if (
   function install() {
     installStatusStyles();
     ensureStatusFilterGroup();
+    const wasFilterPatched =
+      filterPatched;
+
     patchFiltering();
     patchClearFilters();
     patchCollectionCount();
     syncPublicOwnershipLabels();
+
+    if (
+      !wasFilterPatched &&
+      filterPatched
+    ) {
+      updateStatusChipState();
+      renderAfterStatusChange();
+    }
+
     installObserver();
     installLanguageHooks();
     /*
