@@ -979,3 +979,65 @@ if (
   document.head.appendChild(style);
 })();
 
+
+/* =========================================================
+   QUAI 54 F&F + YUTO MATCHA — DETAIL GALLERY FIX ONLY
+   Scope is intentionally limited to these two sneaker IDs.
+
+   collection-content-final.js currently assigns several legacy
+   candidate filenames to sneaker.images. shoe-page.js renders
+   every entry in sneaker.images as a thumbnail, including paths
+   that do not exist. Normalize only these two galleries to the
+   two actual images already used by the project.
+========================================================= */
+(() => {
+  "use strict";
+
+  const applyTwoImageGalleryFix = () => {
+    if (
+      typeof sneakers === "undefined" ||
+      !Array.isArray(sneakers)
+    ) {
+      return;
+    }
+
+    const galleryFixes = {
+      "jordan-1-quai54-ff": [
+        "pictures/jordan1_quai54_ff_v2.png",
+        "pictures/jordan1_quai54_ff_v2_1.png"
+      ],
+      "nike-sb-dunk-yuto-matcha": [
+        "pictures/sbdunk_yutohorigome_matcha.png",
+        "pictures/sbdunk_yutohorigome_matcha1.png"
+      ]
+    };
+
+    Object.entries(galleryFixes).forEach(
+      ([sneakerId, images]) => {
+        const sneaker = sneakers.find(
+          item => item?.id === sneakerId
+        );
+
+        if (!sneaker) return;
+
+        sneaker.images = [...images];
+      }
+    );
+  };
+
+  /*
+    This file loads before collection-content-final.js.
+    Waiting for DOMContentLoaded lets the canonical story file
+    finish first, then fixes only these image arrays before
+    shoe-page.js renders the detail gallery.
+  */
+  if (document.readyState === "loading") {
+    document.addEventListener(
+      "DOMContentLoaded",
+      applyTwoImageGalleryFix,
+      { once: true }
+    );
+  } else {
+    applyTwoImageGalleryFix();
+  }
+})();
