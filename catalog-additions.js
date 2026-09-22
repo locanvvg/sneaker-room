@@ -132,20 +132,20 @@ const CATALOG_ADDITIONS = [
     */
     display: {
       grid: {
-        scaleX: 0.88,
-        scaleY: 0.88,
+        scaleX: 0.91,
+        scaleY: 0.91,
         x: 0,
         y: 0
       },
       view3d: {
-        scaleX: 0.86,
-        scaleY: 0.86,
+        scaleX: 0.89,
+        scaleY: 0.89,
         x: 0,
         y: 0
       },
       view3dMobile: {
-        scaleX: 0.83,
-        scaleY: 0.83,
+        scaleX: 0.86,
+        scaleY: 0.86,
         x: 0,
         y: 0
       }
@@ -897,7 +897,7 @@ if (
       #sneaker-grid.grid
       .card-img-wrapper
       img[data-catalog-image="true"][data-sneaker-id="nike-off-white-waffle-racer-white"] {
-        scale: 0.88 0.88 !important;
+        scale: 0.91 0.91 !important;
       }
 
       html body
@@ -933,13 +933,13 @@ if (
 })();
 
 /* =========================================================
-   ADIFOM SIZE FIX v5 — THIS PAIR ONLY
+   ADIFOM SIZE FIX v6 — THIS PAIR ONLY
    Strong targeted override because the shared Auto Fit layer
    can re-apply its own scale after rendering.
    No other sneaker / UI / About content is touched.
 ========================================================= */
 (() => {
-  const styleId = "locan-adifom-size-only-v5";
+  const styleId = "locan-adifom-size-only-v6";
 
   document
     .getElementById(styleId)
@@ -963,7 +963,7 @@ if (
     html body
     .sneaker-3d-image
     img[data-catalog-image="true"][data-sneaker-id="adidas-adifom-superstar-white-black-2022"] {
-      scale: 0.86 0.86 !important;
+      scale: 0.89 0.89 !important;
     }
 
     /* 3D — phone */
@@ -971,7 +971,7 @@ if (
       html body
       .sneaker-3d-image
       img[data-catalog-image="true"][data-sneaker-id="adidas-adifom-superstar-white-black-2022"] {
-        scale: 0.83 0.83 !important;
+        scale: 0.86 0.86 !important;
       }
     }
   `;
