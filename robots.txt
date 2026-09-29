@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://locanvvg.github.io/sneaker-room/sitemap.xml

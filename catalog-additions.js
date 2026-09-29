@@ -807,3 +807,20 @@ if (
     applyTwoImageGalleryFix();
   }
 })();
+
+/* =========================================================
+   LỘC AN — NON-DESTRUCTIVE SITE ENHANCEMENT LOADER
+   Loads performance, accessibility, SEO, PWA and statistics
+   helpers without altering sneaker data, stories or sizing.
+========================================================= */
+(() => {
+  if (document.getElementById("locan-site-enhancements-loader")) {
+    return;
+  }
+
+  const script = document.createElement("script");
+  script.id = "locan-site-enhancements-loader";
+  script.src = "./site-enhancements.js?v=20260929-v1";
+  script.async = true;
+  document.head.appendChild(script);
+})();

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Collection statistics for the Lộc An Sneaker Collection private digital archive.">
+  <meta name="theme-color" content="#000000">
+  <title>Collection Statistics | Lộc An Sneaker Collection</title>
+  <link rel="icon" type="image/x-icon" href="./favicon.ico">
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+  <link rel="manifest" href="./site.webmanifest">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./collection-stats.css?v=20260929-v1">
+</head>
+<body>
+  <main class="stats-page">
+    <header class="stats-header">
+      <a id="stats-back" class="stats-back" href="./index.html?lang=vi">← Quay lại Bộ sưu tập</a>
+      <nav class="stats-lang" aria-label="Language">
+        <a data-lang="vi" href="./stats.html?lang=vi">VI</a>
+        <a data-lang="en" href="./stats.html?lang=en">EN</a>
+      </nav>
+    </header>
+
+    <section class="stats-intro">
+      <p id="stats-kicker" class="stats-kicker">DIGITAL ARCHIVE</p>
+      <h1 id="stats-title">Thống kê Bộ sưu tập</h1>
+      <p id="stats-intro-text"></p>
+    </section>
+
+    <section id="stats-summary" class="stats-summary" aria-label="Collection summary"></section>
+
+    <div class="stats-grid">
+      <section class="stats-panel">
+        <h2 id="stats-brands-title"></h2>
+        <div id="stats-brands" class="stats-bars"></div>
+      </section>
+
+      <section class="stats-panel">
+        <h2 id="stats-status-title"></h2>
+        <div id="stats-status" class="stats-bars"></div>
+      </section>
+
+      <section class="stats-panel">
+        <h2 id="stats-condition-title"></h2>
+        <div id="stats-condition" class="stats-bars"></div>
+      </section>
+
+      <section class="stats-panel">
+        <h2 id="stats-editions-title"></h2>
+        <div id="stats-editions" class="stats-bars"></div>
+      </section>
+
+      <section class="stats-panel">
+        <h2 id="stats-sizes-title"></h2>
+        <div id="stats-sizes" class="stats-bars"></div>
+      </section>
+
+      <section class="stats-panel">
+        <h2 id="stats-decades-title"></h2>
+        <div id="stats-decades" class="stats-bars"></div>
+      </section>
+    </div>
+
+    <p id="stats-note" class="stats-note"></p>
+    <footer class="stats-footer"><span id="stats-footer-text"></span></footer>
+  </main>
+
+  <script src="./data.js"></script>
+  <script src="./catalog-additions.js"></script>
+  <script src="./collection-content-final.js"></script>
+  <script src="./catalog-engine.js"></script>
+  <script src="./collection-stats.js?v=20260929-v1"></script>
+</body>
+</html>
