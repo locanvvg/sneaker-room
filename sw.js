@@ -1,5 +1,5 @@
 /* Lộc An Sneaker Collection — conservative offline cache */
-const CACHE_VERSION = "locan-sneaker-room-20260929-v1";
+const CACHE_VERSION = "locan-sneaker-room-20260929-v2";
 const SHELL_CACHE = `${CACHE_VERSION}-shell`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 
