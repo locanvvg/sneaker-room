@@ -820,7 +820,7 @@ if (
 
   const script = document.createElement("script");
   script.id = "locan-site-enhancements-loader";
-  script.src = "./site-enhancements.js?v=20260929-v1";
+  script.src = "./site-enhancements.js?v=20260929-v2";
   script.async = true;
   document.head.appendChild(script);
 })();

@@ -11,13 +11,25 @@
 (() => {
   "use strict";
 
-  const BUILD = "20260929-v1";
+  const BUILD = "20260929-v2";
 
   const getLanguage = () => {
+    /*
+      The visible language switch is the source of truth.
+      This keeps enhancement labels synchronized even when the
+      page language changes after the enhancement script loads.
+    */
+    const viButton = document.getElementById("btn-vi");
+    const enButton = document.getElementById("btn-en");
+
+    if (viButton?.classList.contains("active")) return "vi";
+    if (enButton?.classList.contains("active")) return "en";
+
     const query = new URLSearchParams(window.location.search).get("lang");
     if (query === "en" || query === "vi") return query;
 
     const htmlLang = String(document.documentElement.lang || "").toLowerCase();
+    if (htmlLang.startsWith("vi")) return "vi";
     if (htmlLang.startsWith("en")) return "en";
 
     try {
@@ -143,32 +155,91 @@
   /* =======================================================
      STATS PAGE LINK — subtle footer addition only
   ======================================================= */
-  function installStatsLink() {
-    if (document.getElementById("locan-stats-footer-link")) return;
+  function syncStatsLink() {
     if (window.location.pathname.endsWith("/stats.html")) return;
 
     const footer = document.querySelector("footer");
     if (!footer) return;
 
+    let link = document.getElementById("locan-stats-footer-link");
+
+    if (!link) {
+      link = document.createElement("a");
+      link.id = "locan-stats-footer-link";
+      link.style.display = "inline-block";
+      link.style.marginTop = "10px";
+      link.style.fontSize = ".72rem";
+      link.style.letterSpacing = ".09em";
+      link.style.fontWeight = "700";
+      link.style.color = "#8d8d93";
+      link.style.textDecoration = "none";
+      link.style.textTransform = "uppercase";
+      footer.appendChild(link);
+    }
+
     const lang = getLanguage();
-    const link = document.createElement("a");
-    link.id = "locan-stats-footer-link";
     link.href = `./stats.html?lang=${encodeURIComponent(lang)}`;
-    link.textContent = lang === "vi" ? "THỐNG KÊ BỘ SƯU TẬP" : "COLLECTION STATISTICS";
-    link.style.display = "inline-block";
-    link.style.marginTop = "10px";
-    link.style.fontSize = ".72rem";
-    link.style.letterSpacing = ".09em";
-    link.style.fontWeight = "700";
-    link.style.color = "#8d8d93";
-    link.style.textDecoration = "none";
-    link.style.textTransform = "uppercase";
+    link.textContent =
+      lang === "vi"
+        ? "THỐNG KÊ BỘ SƯU TẬP"
+        : "COLLECTION STATISTICS";
     link.setAttribute(
       "aria-label",
-      lang === "vi" ? "Mở thống kê bộ sưu tập" : "Open collection statistics"
+      lang === "vi"
+        ? "Mở thống kê bộ sưu tập"
+        : "Open collection statistics"
     );
+  }
 
-    footer.appendChild(link);
+  /* =======================================================
+     OWN-COLLECTION SIZE FILTER CLEANUP
+     Show only sizes that actually exist in IN COLLECTION.
+     This does not change any sneaker size or catalog data.
+  ======================================================= */
+  function syncOwnCollectionSizeFilters() {
+    const container = document.getElementById("size-filter-chips");
+
+    if (
+      !container ||
+      typeof sneakers === "undefined" ||
+      !Array.isArray(sneakers) ||
+      !window.CatalogEngine
+    ) {
+      return;
+    }
+
+    const ownTokens = new Set();
+
+    sneakers
+      .filter(item =>
+        String(item?.collectionStatus || "own")
+          .trim()
+          .toLowerCase() === "own"
+      )
+      .forEach(item => {
+        CatalogEngine
+          .getSizeTokens(item)
+          .forEach(token => ownTokens.add(String(token)));
+      });
+
+    container
+      .querySelectorAll('.filter-chip[data-group="size"]')
+      .forEach(button => {
+        const value = String(button.dataset.value || "").trim();
+
+        if (!ownTokens.has(value)) {
+          /*
+            If an invalid legacy size happened to be active,
+            clear it from the site's filter state before removing
+            only that obsolete filter button.
+          */
+          try {
+            activeFilters?.size?.delete(value);
+          } catch (_) {}
+
+          button.remove();
+        }
+      });
   }
 
   /* =======================================================
@@ -306,6 +377,8 @@
         queued = false;
         syncAccessibilityState();
         optimizeRenderedImages();
+        syncStatsLink();
+        syncOwnCollectionSizeFilters();
       });
     };
 
@@ -326,8 +399,22 @@
   whenDOMReady(() => {
     syncAccessibilityState();
     optimizeRenderedImages();
-    installStatsLink();
+    syncStatsLink();
+    syncOwnCollectionSizeFilters();
     updateDetailMetadata();
     installObserver();
+
+    /*
+      catalog status/filter controls are finalized on window.load.
+      Re-sync once more after all legacy scripts finish.
+    */
+    window.addEventListener(
+      "load",
+      () => {
+        syncStatsLink();
+        syncOwnCollectionSizeFilters();
+      },
+      { once: true }
+    );
   });
 })();
