@@ -1,0 +1,32 @@
+name: Build optimized image archive
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install image optimizer
+        run: npm install --no-save sharp
+
+      - name: Create optimized WebP copies
+        run: node tools/optimize-images.mjs --write
+
+      - name: Upload optimized image artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: locan-optimized-images
+          path: pictures/optimized
+          if-no-files-found: error
