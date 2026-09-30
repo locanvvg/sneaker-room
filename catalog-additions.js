@@ -824,3 +824,70 @@ if (
   script.async = true;
   document.head.appendChild(script);
 })();
+
+/* =========================================================
+   FINAL SIZE TUNE — NB 2002R + ADIFOM ONLY
+   2026-09-29
+   - New Balance 2002R: smaller on all devices, Grid + 3D.
+   - adidas adiFOM Superstar: slightly bigger, Grid + 3D.
+   No other sneaker, metadata, story, gallery, filter or UI is changed.
+========================================================= */
+(() => {
+  const styleId = "locan-nb-adifom-final-size-tune-20260929";
+
+  document.getElementById(styleId)?.remove();
+
+  const style = document.createElement("style");
+  style.id = styleId;
+
+  style.textContent = `
+    /* NEW BALANCE 2002R — GRID, ALL DEVICES */
+    html body
+    #sneaker-grid.grid
+    .card-img-wrapper
+    img[data-catalog-image="true"][data-sneaker-id="new-balance-2002r-custom"] {
+      scale: 0.50 0.50 !important;
+    }
+
+    /* NEW BALANCE 2002R — 3D DESKTOP / TABLET */
+    html body
+    .sneaker-3d-image
+    img[data-catalog-image="true"][data-sneaker-id="new-balance-2002r-custom"] {
+      scale: 0.46 0.46 !important;
+    }
+
+    /* ADIFOM — GRID, ALL DEVICES */
+    html body
+    #sneaker-grid.grid
+    .card-img-wrapper
+    img[data-catalog-image="true"][data-sneaker-id="adidas-adifom-superstar-white-black-2022"] {
+      scale: 0.91 0.91 !important;
+    }
+
+    /* ADIFOM — 3D DESKTOP / TABLET */
+    html body
+    .sneaker-3d-image
+    img[data-catalog-image="true"][data-sneaker-id="adidas-adifom-superstar-white-black-2022"] {
+      scale: 0.92 0.92 !important;
+    }
+
+    @media (max-width: 650px) {
+      /* NEW BALANCE 2002R — PHONE 3D */
+      html body
+      .sneaker-3d-image
+      img[data-catalog-image="true"][data-sneaker-id="new-balance-2002r-custom"] {
+        scale: 0.40 0.40 !important;
+      }
+
+      /* ADIFOM — PHONE 3D */
+      html body
+      .sneaker-3d-image
+      img[data-catalog-image="true"][data-sneaker-id="adidas-adifom-superstar-white-black-2022"] {
+        scale: 0.89 0.89 !important;
+      }
+    }
+  `;
+
+  document.head.appendChild(style);
+})();
+
