@@ -3,10 +3,10 @@
    Non-destructive enhancement layer.
 
    IMPORTANT:
-   - Does not edit sneaker metadata, stories, images arrays,
-     display scales, Grid tuning or 3D tuning.
-   - Adds only: performance hints, accessibility, PWA,
-     collection statistics navigation, and page metadata.
+   - Does not edit sneaker metadata, stories, image arrays or catalog facts.
+   - Adds performance, accessibility, PWA, statistics, metadata,
+     plus a responsive display-proportion sync that uses the approved
+     phone presentation as the master for larger screens.
 ========================================================= */
 (() => {
   "use strict";
@@ -112,6 +112,163 @@
     const search = document.getElementById("archive-search-input");
     if (search && !search.getAttribute("aria-describedby")) {
       search.setAttribute("aria-autocomplete", "list");
+    }
+  }
+
+  /* =======================================================
+     PHONE-MASTER SNEAKER PROPORTIONS
+
+     The approved phone presentation is the visual master.
+     On tablet / desktop only, copy the PHONE width/height and
+     per-pair 3D proportions instead of maintaining a separate
+     larger-screen calibration.
+
+     This layer changes presentation only. It does NOT edit:
+     - sneaker metadata
+     - stories
+     - gallery image lists
+     - collection status
+     - filters
+     - catalog facts
+  ======================================================= */
+  function installPhoneMasterProportionStyles() {
+    document.getElementById("locan-phone-master-proportions-v1")?.remove();
+
+    const style = document.createElement("style");
+    style.id = "locan-phone-master-proportions-v1";
+    style.textContent = `
+      /*
+        PHONE MASTER applies only above the phone breakpoint.
+        The phone itself is left exactly as it is now.
+      */
+      @media screen and (min-width: 651px) {
+
+        /* ===================================================
+           GRID VIEW
+           Use the same image-scale proportion as small phone.
+           CatalogDisplay's per-pair CSS scale remains active,
+           so relative calibration between sneakers is preserved.
+        =================================================== */
+        html body #sneaker-grid.grid .card-img-wrapper img {
+          transform: scale(1.10) !important;
+          transform-origin: center center !important;
+        }
+
+        html body #sneaker-grid.grid .card:hover .card-img-wrapper img {
+          transform: scale(1.10) !important;
+        }
+
+        /* Phone-approved Grid exceptions. */
+        html body #sneaker-grid.grid .card-img-wrapper img[src*="bapesta_stussy.png"],
+        html body #sneaker-grid.grid .card:hover .card-img-wrapper img[src*="bapesta_stussy.png"] {
+          transform: scale(0.76) !important;
+        }
+
+        html body #sneaker-grid.grid .card-img-wrapper img[src*="nike_waffle_racer_ow.png"],
+        html body #sneaker-grid.grid .card:hover .card-img-wrapper img[src*="nike_waffle_racer_ow.png"] {
+          transform: scale(0.74) !important;
+        }
+
+        html body #sneaker-grid.grid .card-img-wrapper img[src*="jordan1_shadow_2009.png"],
+        html body #sneaker-grid.grid .card:hover .card-img-wrapper img[src*="jordan1_shadow_2009.png"] {
+          transform: scale(1.18) !important;
+        }
+
+        /* ===================================================
+           3D VIEW — DIRECT LEGACY CALIBRATIONS
+           Copy the exact PHONE transforms to tablet / desktop.
+        =================================================== */
+        html body .sneaker-3d-image img[data-3d-calibration="reverse-bred"] {
+          scale: 1 1 !important;
+          transform: scale(.61, .61) !important;
+        }
+
+        html body .sneaker-3d-image img[data-3d-calibration="balenciaga-defender"] {
+          scale: 1 1 !important;
+          transform: scale(.86, .69) !important;
+        }
+
+        html body .sneaker-3d-image img[data-3d-calibration="jordan-4-black-cement"] {
+          scale: 1 1 !important;
+          transform: scale(.78, .78) !important;
+        }
+
+        html body .sneaker-3d-image img[data-3d-calibration="bape-stussy"] {
+          scale: 1 1 !important;
+          transform: scale(.52, .52) !important;
+        }
+
+        html body .sneaker-3d-image img[data-3d-calibration="waffle-offwhite"] {
+          scale: 1 1 !important;
+          transform: scale(.54, .54) !important;
+        }
+
+        html body .sneaker-3d-image img[data-3d-calibration="jordan-1-city-of-flight"] {
+          scale: 1 1 !important;
+          transform: scale(.84, .84) !important;
+        }
+
+        html body .sneaker-3d-image img[data-3d-calibration="vans-knu-skool"] {
+          scale: 1 1 !important;
+          transform: scale(.84, .84) !important;
+        }
+
+        html body .sneaker-3d-image img[data-3d-calibration="puma-speedcat"] {
+          scale: 1 1 !important;
+          transform: scale(.84, .84) !important;
+        }
+
+        /* ===================================================
+           NB 2002R + adiFOM
+           These two currently have higher-specificity sizing
+           rules in catalog-additions.js. Copy their PHONE values
+           explicitly so the larger screens match the phone.
+        =================================================== */
+        html body .sneaker-3d-image
+        img[data-catalog-image="true"][data-sneaker-id="new-balance-2002r-custom"] {
+          scale: .44 .44 !important;
+          transform: scale(.61, .61) !important;
+        }
+
+        html body .sneaker-3d-image
+        img[data-catalog-image="true"][data-sneaker-id="adidas-adifom-superstar-white-black-2022"] {
+          scale: .89 .89 !important;
+        }
+
+        /* Raygun uses an explicit phone 3D scale in its entry. */
+        html body .sneaker-3d-image
+        img[data-catalog-image="true"][data-sneaker-id="nike-sb-dunk-low-raygun-away-2005"] {
+          scale: .52 .52 !important;
+        }
+
+        /* PRE-OWNED uses the same phone multiplier everywhere. */
+        html body .sneaker-3d-card.is-preowned-3d
+        .sneaker-3d-image img {
+          scale: .80 .80 !important;
+        }
+
+        html body .sneaker-3d-card.is-preowned-3d
+        .sneaker-3d-image
+        img[data-3d-calibration="jordan-1-city-of-flight"] {
+          scale: .95 .95 !important;
+        }
+      }
+    `;
+
+    document.head.appendChild(style);
+  }
+
+  function ensurePhoneMasterProportionsLoadLast() {
+    const apply = () => installPhoneMasterProportionStyles();
+
+    /* Install once now, then re-append after all legacy display
+       scripts have initialized so this remains the final visual layer. */
+    apply();
+
+    if (document.readyState === "complete") {
+      window.setTimeout(apply, 0);
+    } else {
+      window.addEventListener("load", apply, { once: true });
     }
   }
 
@@ -395,6 +552,7 @@
 
   registerServiceWorker();
   installAccessibilityStyles();
+  ensurePhoneMasterProportionsLoadLast();
 
   whenDOMReady(() => {
     syncAccessibilityState();
