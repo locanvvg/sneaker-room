@@ -891,3 +891,37 @@ if (
   document.head.appendChild(style);
 })();
 
+/* =========================================================
+   NB 2002R — ACTUAL 3D RENDERER OVERRIDE v3
+   Applied after window.load so it comes after collection-view.js.
+   This is the active 3D layer for NB on every viewport.
+   Relative increase: ~25% from the renderer's ~0.62 baseline.
+   Grid and every other sneaker remain unchanged.
+========================================================= */
+(() => {
+  const installNB3DSize = () => {
+    const styleId = "locan-nb-2002r-3d-final-v3";
+    document.getElementById(styleId)?.remove();
+
+    const style = document.createElement("style");
+    style.id = styleId;
+    style.textContent = `
+      html body .sneaker-3d-image
+      img[data-3d-calibration="nb-2002r"],
+      html body .sneaker-3d-image
+      img[data-catalog-image="true"][data-sneaker-id="new-balance-2002r-custom"] {
+        scale: 1 1 !important;
+        transform: scale(.78, .78) !important;
+        transform-origin: center center !important;
+      }
+    `;
+    document.head.appendChild(style);
+  };
+
+  if (document.readyState === "complete") {
+    installNB3DSize();
+  } else {
+    window.addEventListener("load", installNB3DSize, { once: true });
+  }
+})();
+
