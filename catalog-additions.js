@@ -853,7 +853,7 @@ if (
     html body
     .sneaker-3d-image
     img[data-catalog-image="true"][data-sneaker-id="new-balance-2002r-custom"] {
-      scale: 0.64 0.64 !important;
+      scale: 0.72 0.72 !important;
     }
 
     /* ADIFOM — GRID, ALL DEVICES */
@@ -876,7 +876,7 @@ if (
       html body
       .sneaker-3d-image
       img[data-catalog-image="true"][data-sneaker-id="new-balance-2002r-custom"] {
-        scale: 0.58 0.58 !important;
+        scale: 0.65 0.65 !important;
       }
 
       /* ADIFOM — PHONE 3D */
