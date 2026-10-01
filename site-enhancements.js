@@ -191,7 +191,7 @@
       html body #sneaker-grid.grid .card-img-wrapper
       img[src*="jordan1_low_reversebred.png"] {
         scale: 1 1 !important;
-        transform: scale(.58) !important;
+        transform: scale(.48) !important;
         transform-origin: center center !important;
       }
 
