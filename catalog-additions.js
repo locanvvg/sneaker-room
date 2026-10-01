@@ -846,14 +846,14 @@ if (
     #sneaker-grid.grid
     .card-img-wrapper
     img[data-catalog-image="true"][data-sneaker-id="new-balance-2002r-custom"] {
-      scale: 0.54 0.54 !important;
+      scale: 0.68 0.68 !important;
     }
 
     /* NEW BALANCE 2002R — 3D DESKTOP / TABLET */
     html body
     .sneaker-3d-image
     img[data-catalog-image="true"][data-sneaker-id="new-balance-2002r-custom"] {
-      scale: 0.72 0.72 !important;
+      scale: 0.88 0.88 !important;
     }
 
     /* ADIFOM — GRID, ALL DEVICES */
@@ -876,7 +876,7 @@ if (
       html body
       .sneaker-3d-image
       img[data-catalog-image="true"][data-sneaker-id="new-balance-2002r-custom"] {
-        scale: 0.65 0.65 !important;
+        scale: 0.80 0.80 !important;
       }
 
       /* ADIFOM — PHONE 3D */
@@ -911,7 +911,7 @@ if (
       html body .sneaker-3d-image
       img[data-catalog-image="true"][data-sneaker-id="new-balance-2002r-custom"] {
         scale: 1 1 !important;
-        transform: scale(.78, .78) !important;
+        transform: scale(.96, .96) !important;
         transform-origin: center center !important;
       }
     `;
