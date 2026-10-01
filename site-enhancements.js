@@ -8,7 +8,7 @@
 (() => {
   "use strict";
 
-  const BUILD = "20261001-v3";
+  const BUILD = "20261001-v4";
 
   const getLanguage = () => {
     const viButton = document.getElementById("btn-vi");
@@ -39,9 +39,6 @@
     }
   };
 
-  /* =======================================================
-     PWA / OFFLINE
-  ======================================================= */
   function registerServiceWorker() {
     if (!("serviceWorker" in navigator) || !window.isSecureContext) return;
 
@@ -52,9 +49,6 @@
     }, { once: true });
   }
 
-  /* =======================================================
-     ACCESSIBILITY
-  ======================================================= */
   function installAccessibilityStyles() {
     document.getElementById("locan-accessibility-v1")?.remove();
 
@@ -101,14 +95,6 @@
     }
   }
 
-  /* =======================================================
-     PHONE-MASTER + CANONICAL SNEAKER SIZING
-
-     Larger screens retain the approved phone proportions for the
-     existing calibrated pairs. The three currently requested pairs
-     are explicitly normalized at the end so no older script can
-     multiply their sizes again.
-  ======================================================= */
   function installCanonicalSizing() {
     document.getElementById("locan-phone-master-proportions-v2")?.remove();
 
@@ -142,7 +128,7 @@
 
         html body .sneaker-3d-image img[data-3d-calibration="reverse-bred"] {
           scale: 1 1 !important;
-          transform: scale(.61) !important;
+          transform: scale(.64) !important;
         }
 
         html body .sneaker-3d-image img[data-3d-calibration="balenciaga-defender"] {
@@ -200,17 +186,20 @@
         }
       }
 
-      /* Reverse Bred — Grid: slightly larger than the current card. */
       html body #sneaker-grid.grid .card-img-wrapper
       img[data-catalog-image="true"][data-sneaker-id="jordan-1-low-reverse-bred-2020"],
       html body #sneaker-grid.grid .card-img-wrapper
       img[src*="jordan1_low_reversebred.png"] {
         scale: 1 1 !important;
-        transform: scale(.68) !important;
+        transform: scale(.58) !important;
         transform-origin: center center !important;
       }
 
-      /* City of Flight — Grid: legacy archive rule was .43. */
+      html body .sneaker-3d-image img[data-3d-calibration="reverse-bred"] {
+        transform: scale(.64) !important;
+        transform-origin: center center !important;
+      }
+
       html body #sneaker-grid.grid .card-img-wrapper
       img[src*="jordan1_cityofflight.png"] {
         scale: 1 1 !important;
@@ -218,24 +207,20 @@
         transform-origin: center center !important;
       }
 
-      /* NB 2002R — Grid: smaller. One ratio, no stacked multipliers. */
       html body #sneaker-grid.grid .card-img-wrapper
       img[data-catalog-image="true"][data-sneaker-id="new-balance-2002r-custom"],
       html body #sneaker-grid.grid .card-img-wrapper
       img[src*="nb_2002r.png"] {
         scale: 1 1 !important;
-        transform: scale(.65) !important;
+        transform: scale(.58) !important;
         transform-origin: center center !important;
       }
 
-      /* NB 2002R — 3D: fixed on every viewport.
-         Old code effectively multiplied .44 × .61 on desktop;
-         this is now one canonical 1.08 ratio. */
       html body .sneaker-3d-image img[data-3d-calibration="nb-2002r"],
       html body .sneaker-3d-image
       img[data-catalog-image="true"][data-sneaker-id="new-balance-2002r-custom"] {
         scale: 1 1 !important;
-        transform: scale(1.08) !important;
+        transform: scale(.59) !important;
         transform-origin: center center !important;
       }
     `;
@@ -254,9 +239,6 @@
     }
   }
 
-  /* =======================================================
-     IMAGE DELIVERY / RENDERING PERFORMANCE
-  ======================================================= */
   function optimizeRenderedImages() {
     const gridImages = Array.from(document.querySelectorAll("#sneaker-grid img"));
 
@@ -284,9 +266,6 @@
     }
   }
 
-  /* =======================================================
-     STATS PAGE LINK
-  ======================================================= */
   function syncStatsLink() {
     if (window.location.pathname.endsWith("/stats.html")) return;
 
@@ -317,9 +296,6 @@
     );
   }
 
-  /* =======================================================
-     OWN-COLLECTION SIZE FILTER CLEANUP
-  ======================================================= */
   function syncOwnCollectionSizeFilters() {
     const container = document.getElementById("size-filter-chips");
 
@@ -347,9 +323,6 @@
     });
   }
 
-  /* =======================================================
-     DETAIL-PAGE SEO / SHARE METADATA
-  ======================================================= */
   const localized = (value, lang) => {
     if (value === null || value === undefined) return "";
     if (typeof value === "string" || typeof value === "number") return String(value);
@@ -455,9 +428,6 @@
     }, 100);
   }
 
-  /* =======================================================
-     RUNTIME OBSERVER
-  ======================================================= */
   function installObserver() {
     if (!document.body) return;
 
