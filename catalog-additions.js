@@ -954,3 +954,84 @@ if (
     `
   };
 })();
+
+/* =========================================================
+   FINAL LIVE FIX — 2026-09-30
+   Scope: New Balance 2002R + Jordan 1 Low Reverse Bred only.
+   Uses proportional scaling from the currently deployed values.
+========================================================= */
+(() => {
+  "use strict";
+
+  const applyDataFixes = () => {
+    if (typeof sneakers === "undefined" || !Array.isArray(sneakers)) return;
+
+    const bred = sneakers.find(
+      item => item?.id === "jordan-1-low-reverse-bred-2020"
+    );
+
+    if (bred) {
+      bred.collectionStatus = "sold";
+      bred.archiveFit = true;
+      bred.image = "pictures/jordan1_low_reversebred_20260930.png";
+      bred.story = {
+        vi: `
+          <p><b>Jordan 1 Low 'Reverse Bred'</b> đảo ngược ngôn ngữ màu Bred quen thuộc bằng cách đặt Gym Red lên overlays và Swoosh, còn black nằm ở toe box và mid-panel. Cách sắp xếp này giữ liên hệ rõ ràng với di sản Bred nhưng đem lại một diện mạo sáng và gọn hơn trên phom low-top.</p><p>Đây là một ví dụ tiêu biểu cho hướng lifestyle của Jordan 1 Low trong giai đoạn hiện đại: dễ mang hằng ngày, dễ nhận ra và vẫn gắn với một trong những mã màu quan trọng nhất của Air Jordan.</p>
+        `,
+        en: `
+          <p><b>Jordan 1 Low 'Reverse Bred'</b> flips the familiar Bred color language by placing Gym Red across the overlays and Swoosh while black sits on the toe box and mid-panel. The arrangement keeps a clear connection to Bred heritage while giving the low-top a brighter, more compact everyday look.</p><p>It represents the modern lifestyle direction of the Jordan 1 Low: easy to wear, instantly recognizable, and still closely tied to one of the most important color codes in Air Jordan history.</p>
+        `
+      };
+    }
+  };
+
+  const installFinalSizing = () => {
+    const styleId = "locan-final-live-sizing-20260930-v1";
+    document.getElementById(styleId)?.remove();
+
+    const style = document.createElement("style");
+    style.id = styleId;
+    style.textContent = `
+      /* NB 2002R — Grid: +35% from the last deployed 0.68 scale */
+      html body #sneaker-grid.grid .card-img-wrapper
+      img[data-catalog-image="true"][data-sneaker-id="new-balance-2002r-custom"] {
+        scale: 0.92 0.92 !important;
+      }
+
+      /* NB 2002R — 3D: +35% from the last deployed 0.96 actual-renderer scale */
+      html body .sneaker-3d-image img[data-3d-calibration="nb-2002r"],
+      html body .sneaker-3d-image
+      img[data-catalog-image="true"][data-sneaker-id="new-balance-2002r-custom"] {
+        scale: 1 1 !important;
+        transform: scale(1.30, 1.30) !important;
+        transform-origin: center center !important;
+      }
+
+      /* Reverse Bred — remove the old stretched 0.50 x 0.55 treatment */
+      html body #sneaker-grid.grid .card-img-wrapper
+      img[data-catalog-image="true"][data-sneaker-id="jordan-1-low-reverse-bred-2020"] {
+        scale: 0.82 0.82 !important;
+      }
+
+      /* Reverse Bred — sold 3D card: keep the shoe visually full-size */
+      html body .sneaker-3d-card.is-preowned-3d .sneaker-3d-image
+      img[data-3d-calibration="reverse-bred"],
+      html body .sneaker-3d-image
+      img[data-catalog-image="true"][data-sneaker-id="jordan-1-low-reverse-bred-2020"] {
+        scale: 1 1 !important;
+        transform: scale(0.92, 0.92) !important;
+        transform-origin: center center !important;
+      }
+    `;
+
+    document.head.appendChild(style);
+  };
+
+  applyDataFixes();
+
+  if (document.readyState === "complete") {
+    installFinalSizing();
+  } else {
+    window.addEventListener("load", installFinalSizing, { once: true });
+  }
+})();

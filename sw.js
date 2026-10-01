@@ -1,5 +1,5 @@
 /* Lộc An Sneaker Collection — conservative offline cache */
-const CACHE_VERSION = "locan-sneaker-room-20260929-v2";
+const CACHE_VERSION = "locan-sneaker-room-20260930-v3";
 const SHELL_CACHE = `${CACHE_VERSION}-shell`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 
@@ -75,16 +75,20 @@ async function networkFirst(request) {
   }
 }
 
-async function cacheFirstImage(request) {
-  const cached = await caches.match(request);
-  if (cached) return cached;
-
-  const response = await fetch(request);
-  if (!response || !response.ok) return response;
-
+async function networkFirstImage(request) {
   const cache = await caches.open(RUNTIME_CACHE);
-  cache.put(request, response.clone()).catch(() => {});
-  return response;
+
+  try {
+    const response = await fetch(request, { cache: "no-store" });
+    if (response && response.ok) {
+      cache.put(request, response.clone()).catch(() => {});
+    }
+    return response;
+  } catch (_) {
+    const cached = await caches.match(request);
+    if (cached) return cached;
+    throw _;
+  }
 }
 
 self.addEventListener("fetch", event => {
@@ -95,7 +99,7 @@ self.addEventListener("fetch", event => {
   if (url.origin !== self.location.origin) return;
 
   if (request.destination === "image") {
-    event.respondWith(cacheFirstImage(request));
+    event.respondWith(networkFirstImage(request));
     return;
   }
 
