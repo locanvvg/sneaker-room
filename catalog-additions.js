@@ -266,31 +266,6 @@ if (
         }
       });
     }
-    /* New Balance 2002R custom: mobile grid slightly smaller */
-    if (title.includes("new balance 2002r")) {
-      mergeDisplay(sneaker, {
-        grid: {
-          scaleX: 0.62,
-          scaleY: 0.62,
-          x: 0,
-          y: 0
-        }
-      });
-    }
-    /* Reverse Bred: mobile grid width reduced */
-    if (
-      title.includes("jordan 1 low") &&
-      title.includes("reverse bred")
-    ) {
-      mergeDisplay(sneaker, {
-        grid: {
-          scaleX: 0.58,
-          scaleY: 0.70,
-          x: 0,
-          y: 0
-        }
-      });
-    }
     /* Jordan 13 DMP: 3D only, slightly smaller */
     if (
       title.includes("jordan 13") &&
@@ -623,79 +598,30 @@ if (
 })();
 
 /* =========================================================
-   LỘC AN — RESPONSIVE FINAL SIZE TUNE 2026-09-17
-   IMPORTANT
-   ---------
-   Keep the currently approved MOBILE GRID exactly unchanged.
-
-   DESKTOP GRID ONLY (min-width: 651px)
-   - Waffle Racer: bigger
-   - New Balance 2002R: much smaller
-   - Jordan 1 Low Reverse Bred: much smaller
-
-   MOBILE 3D ONLY (max-width: 650px)
-   - Raygun: slightly bigger
-
-   Everything else remains unchanged.
+   APPROVED LEGACY SIZE TUNE — Waffle + Raygun only
+   NB 2002R / Reverse Bred are intentionally NOT sized here.
 ========================================================= */
-
 (() => {
-  const styleId =
-    "locan-responsive-final-size-tune-20260917";
-  document
-    .getElementById(styleId)
-    ?.remove();
-
-  const style =
-    document.createElement("style");
-
-  style.id =
-    styleId;
-
+  const styleId = "locan-approved-legacy-size-tune";
+  document.getElementById(styleId)?.remove();
+  const style = document.createElement("style");
+  style.id = styleId;
   style.textContent = `
-    /*
-      DESKTOP GRID ONLY.
-      High-specificity selectors intentionally override
-      catalog-display.js without changing phone Grid sizing.
-    */
     @media (min-width: 651px) {
-      html body
-      #sneaker-grid.grid
-      .card-img-wrapper
+      html body #sneaker-grid.grid .card-img-wrapper
       img[data-catalog-image="true"][data-sneaker-id="nike-off-white-waffle-racer-white"] {
         scale: 0.91 0.91 !important;
       }
-
-      html body
-      #sneaker-grid.grid
-      .card-img-wrapper
-      img[data-catalog-image="true"][data-sneaker-id="new-balance-2002r-custom"] {
-        scale: 0.56 0.56 !important;
-      }
-      html body
-      #sneaker-grid.grid
-      .card-img-wrapper
-      img[data-catalog-image="true"][data-sneaker-id="jordan-1-low-reverse-bred-2020"] {
-        scale: 0.50 0.55 !important;
-      }
     }
 
-    /*
-      PHONE 3D ONLY.
-      Raygun is increased only slightly.
-    */
     @media (max-width: 650px) {
-
-      html body
-      .sneaker-3d-image
+      html body .sneaker-3d-image
       img[data-catalog-image="true"][data-sneaker-id="nike-sb-dunk-low-raygun-away-2005"] {
         scale: 0.56 0.56 !important;
       }
     }
   `;
-  document.head.appendChild(
-    style
-  );
+  document.head.appendChild(style);
 })();
 
 /* =========================================================
@@ -826,108 +752,6 @@ if (
 })();
 
 /* =========================================================
-   FINAL SIZE TUNE — NB 2002R + ADIFOM ONLY
-   2026-09-29
-   - New Balance 2002R: smaller on all devices, Grid + 3D.
-   - adidas adiFOM Superstar: slightly bigger, Grid + 3D.
-   No other sneaker, metadata, story, gallery, filter or UI is changed.
-========================================================= */
-(() => {
-  const styleId = "locan-nb-adifom-final-size-tune-20260929";
-
-  document.getElementById(styleId)?.remove();
-
-  const style = document.createElement("style");
-  style.id = styleId;
-
-  style.textContent = `
-    /* NEW BALANCE 2002R — GRID, ALL DEVICES */
-    html body
-    #sneaker-grid.grid
-    .card-img-wrapper
-    img[data-catalog-image="true"][data-sneaker-id="new-balance-2002r-custom"] {
-      scale: 0.68 0.68 !important;
-    }
-
-    /* NEW BALANCE 2002R — 3D DESKTOP / TABLET */
-    html body
-    .sneaker-3d-image
-    img[data-catalog-image="true"][data-sneaker-id="new-balance-2002r-custom"] {
-      scale: 0.88 0.88 !important;
-    }
-
-    /* ADIFOM — GRID, ALL DEVICES */
-    html body
-    #sneaker-grid.grid
-    .card-img-wrapper
-    img[data-catalog-image="true"][data-sneaker-id="adidas-adifom-superstar-white-black-2022"] {
-      scale: 0.91 0.91 !important;
-    }
-
-    /* ADIFOM — 3D DESKTOP / TABLET */
-    html body
-    .sneaker-3d-image
-    img[data-catalog-image="true"][data-sneaker-id="adidas-adifom-superstar-white-black-2022"] {
-      scale: 0.92 0.92 !important;
-    }
-
-    @media (max-width: 650px) {
-      /* NEW BALANCE 2002R — PHONE 3D */
-      html body
-      .sneaker-3d-image
-      img[data-catalog-image="true"][data-sneaker-id="new-balance-2002r-custom"] {
-        scale: 0.80 0.80 !important;
-      }
-
-      /* ADIFOM — PHONE 3D */
-      html body
-      .sneaker-3d-image
-      img[data-catalog-image="true"][data-sneaker-id="adidas-adifom-superstar-white-black-2022"] {
-        scale: 0.89 0.89 !important;
-      }
-    }
-  `;
-
-  document.head.appendChild(style);
-})();
-
-/* =========================================================
-   NB 2002R — ACTUAL 3D RENDERER OVERRIDE v3
-   Applied after window.load so it comes after collection-view.js.
-   This is the active 3D layer for NB on every viewport.
-   Relative increase: ~25% from the renderer's ~0.62 baseline.
-   Grid and every other sneaker remain unchanged.
-========================================================= */
-(() => {
-  const installNB3DSize = () => {
-    const styleId = "locan-nb-2002r-3d-final-v3";
-    document.getElementById(styleId)?.remove();
-
-    const style = document.createElement("style");
-    style.id = styleId;
-    style.textContent = `
-      html body .sneaker-3d-image
-      img[data-3d-calibration="nb-2002r"],
-      html body .sneaker-3d-image
-      img[data-catalog-image="true"][data-sneaker-id="new-balance-2002r-custom"] {
-        scale: 1 1 !important;
-        transform: scale(.96, .96) !important;
-        transform-origin: center center !important;
-      }
-    `;
-    document.head.appendChild(style);
-  };
-
-  if (document.readyState === "complete") {
-    installNB3DSize();
-  } else {
-    window.addEventListener("load", installNB3DSize, { once: true });
-  }
-})();
-
-
-
-/* =========================================================
    REVERSE BRED — MOVE TO SOLD ARCHIVE + SHORTEN STORY
    Requested changes only for this pair:
    - keep the existing repo name/title
@@ -945,6 +769,7 @@ if (
   entry.collectionStatus = "sold";
   entry.archiveFit = true;
   entry.image = "pictures/jordan1_low_reversebred.png";
+  entry.images = ["pictures/jordan1_low_reversebred.png"];
   entry.story = {
     vi: `
       <p><b>Jordan 1 Low 'Reverse Bred'</b> đảo ngược ngôn ngữ màu Bred quen thuộc bằng cách đặt Gym Red lên overlays và Swoosh, còn black nằm ở toe box và mid-panel. Cách sắp xếp này giữ liên hệ rõ ràng với di sản Bred nhưng đem lại một diện mạo sáng và gọn hơn trên phom low-top.</p><p>Đây là một ví dụ tiêu biểu cho hướng lifestyle của Jordan 1 Low trong giai đoạn hiện đại: dễ mang hằng ngày, dễ nhận ra, và vẫn đủ gắn với một trong những mã màu quan trọng nhất của Air Jordan.</p>
@@ -953,276 +778,4 @@ if (
       <p><b>Jordan 1 Low 'Reverse Bred'</b> flips the familiar Bred color language by placing Gym Red across the overlays and Swoosh while black sits on the toe box and mid-panel. The arrangement keeps a clear connection to Bred heritage while giving the low-top a brighter and more compact everyday look.</p><p>It is a representative example of the modern lifestyle direction of the Jordan 1 Low: easy to wear, instantly recognizable, and still closely tied to one of the most important color codes in Air Jordan history.</p>
     `
   };
-})();
-
-/* =========================================================
-   FINAL LIVE FIX — 2026-09-30
-   Scope: New Balance 2002R + Jordan 1 Low Reverse Bred only.
-   Uses proportional scaling from the currently deployed values.
-========================================================= */
-(() => {
-  "use strict";
-
-  const applyDataFixes = () => {
-    if (typeof sneakers === "undefined" || !Array.isArray(sneakers)) return;
-
-    const bred = sneakers.find(
-      item => item?.id === "jordan-1-low-reverse-bred-2020"
-    );
-
-    if (bred) {
-      bred.collectionStatus = "sold";
-      bred.archiveFit = true;
-      bred.image = "pictures/jordan1_low_reversebred_20260930.png";
-      bred.story = {
-        vi: `
-          <p><b>Jordan 1 Low 'Reverse Bred'</b> đảo ngược ngôn ngữ màu Bred quen thuộc bằng cách đặt Gym Red lên overlays và Swoosh, còn black nằm ở toe box và mid-panel. Cách sắp xếp này giữ liên hệ rõ ràng với di sản Bred nhưng đem lại một diện mạo sáng và gọn hơn trên phom low-top.</p><p>Đây là một ví dụ tiêu biểu cho hướng lifestyle của Jordan 1 Low trong giai đoạn hiện đại: dễ mang hằng ngày, dễ nhận ra và vẫn gắn với một trong những mã màu quan trọng nhất của Air Jordan.</p>
-        `,
-        en: `
-          <p><b>Jordan 1 Low 'Reverse Bred'</b> flips the familiar Bred color language by placing Gym Red across the overlays and Swoosh while black sits on the toe box and mid-panel. The arrangement keeps a clear connection to Bred heritage while giving the low-top a brighter, more compact everyday look.</p><p>It represents the modern lifestyle direction of the Jordan 1 Low: easy to wear, instantly recognizable, and still closely tied to one of the most important color codes in Air Jordan history.</p>
-        `
-      };
-    }
-  };
-
-  const installFinalSizing = () => {
-    const styleId = "locan-final-live-sizing-20260930-v1";
-    document.getElementById(styleId)?.remove();
-
-    const style = document.createElement("style");
-    style.id = styleId;
-    style.textContent = `
-      /* NB 2002R — Grid: +35% from the last deployed 0.68 scale */
-      html body #sneaker-grid.grid .card-img-wrapper
-      img[data-catalog-image="true"][data-sneaker-id="new-balance-2002r-custom"] {
-        scale: 0.92 0.92 !important;
-      }
-
-      /* NB 2002R — 3D: +35% from the last deployed 0.96 actual-renderer scale */
-      html body .sneaker-3d-image img[data-3d-calibration="nb-2002r"],
-      html body .sneaker-3d-image
-      img[data-catalog-image="true"][data-sneaker-id="new-balance-2002r-custom"] {
-        scale: 1 1 !important;
-        transform: scale(1.30, 1.30) !important;
-        transform-origin: center center !important;
-      }
-
-      /* Reverse Bred — remove the old stretched 0.50 x 0.55 treatment */
-      html body #sneaker-grid.grid .card-img-wrapper
-      img[data-catalog-image="true"][data-sneaker-id="jordan-1-low-reverse-bred-2020"] {
-        scale: 0.82 0.82 !important;
-      }
-
-      /* Reverse Bred — sold 3D card: keep the shoe visually full-size */
-      html body .sneaker-3d-card.is-preowned-3d .sneaker-3d-image
-      img[data-3d-calibration="reverse-bred"],
-      html body .sneaker-3d-image
-      img[data-catalog-image="true"][data-sneaker-id="jordan-1-low-reverse-bred-2020"] {
-        scale: 1 1 !important;
-        transform: scale(0.92, 0.92) !important;
-        transform-origin: center center !important;
-      }
-    `;
-
-    document.head.appendChild(style);
-  };
-
-  applyDataFixes();
-
-  if (document.readyState === "complete") {
-    installFinalSizing();
-  } else {
-    window.addEventListener("load", installFinalSizing, { once: true });
-  }
-})();
-
-
-/* =========================================================
-   FINAL PATCH — 2026-10-01
-   Scope only:
-   - Jordan 1 Low Reverse Bred: transparent asset + slightly bigger image.
-   - New Balance 2002R: smaller in Grid, much bigger in 3D.
-   Nothing else is changed.
-========================================================= */
-(() => {
-  const NB_ID = "new-balance-2002r-custom";
-  const BRED_ID = "jordan-1-low-reverse-bred-2020";
-  const BRED_ASSET = "pictures/jordan1_low_reversebred_20260930.png";
-
-  const applyDataFixes = () => {
-    if (typeof sneakers === "undefined" || !Array.isArray(sneakers)) return;
-
-    const bred = sneakers.find(item => item?.id === BRED_ID);
-    if (bred) {
-      bred.collectionStatus = "sold";
-      bred.archiveFit = true;
-      bred.image = BRED_ASSET;
-      bred.images = [BRED_ASSET];
-    }
-  };
-
-  const setImportant = (element, property, value) => {
-    element.style.setProperty(property, value, "important");
-  };
-
-  const tuneGrid = () => {
-    document
-      .querySelectorAll(`#sneaker-grid.grid img[data-catalog-image="true"][data-sneaker-id="${NB_ID}"]`)
-      .forEach(img => {
-        setImportant(img, "scale", "0.80 0.80");
-        setImportant(img, "transform", "none");
-      });
-
-    document
-      .querySelectorAll(`#sneaker-grid.grid img[data-catalog-image="true"][data-sneaker-id="${BRED_ID}"]`)
-      .forEach(img => {
-        setImportant(img, "scale", "0.90 0.90");
-        setImportant(img, "transform", "none");
-      });
-  };
-
-  const tune3D = () => {
-    document
-      .querySelectorAll(`.sneaker-3d-image img[data-3d-calibration="nb-2002r"], .sneaker-3d-image img[data-catalog-image="true"][data-sneaker-id="${NB_ID}"]`)
-      .forEach(img => {
-        setImportant(img, "scale", "1 1");
-        setImportant(img, "transform", "scale(1.62, 1.62)");
-        setImportant(img, "transform-origin", "center center");
-      });
-
-    document
-      .querySelectorAll(`.sneaker-3d-image img[data-3d-calibration="reverse-bred"], .sneaker-3d-image img[data-catalog-image="true"][data-sneaker-id="${BRED_ID}"]`)
-      .forEach(img => {
-        setImportant(img, "scale", "1 1");
-        setImportant(img, "transform", "scale(1.02, 1.02)");
-        setImportant(img, "transform-origin", "center center");
-      });
-  };
-
-  const applyAll = () => {
-    applyDataFixes();
-    tuneGrid();
-    tune3D();
-  };
-
-  let raf = 0;
-  const schedule = () => {
-    cancelAnimationFrame(raf);
-    raf = requestAnimationFrame(applyAll);
-  };
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", applyAll, { once: true });
-  } else {
-    applyAll();
-  }
-
-  window.addEventListener("load", applyAll, { once: true });
-  window.addEventListener("resize", schedule);
-
-  const observer = new MutationObserver(schedule);
-  observer.observe(document.documentElement, {
-    childList: true,
-    subtree: true,
-    attributes: true,
-    attributeFilter: ["class", "style", "src", "data-sneaker-id", "data-3d-calibration"]
-  });
-})();
-
-/* =========================================================
-   APPROVED CLEAN BRED + FINAL SIZE CORRECTION
-   2026-10-01
-   Scope only:
-   - Jordan 1 Low Reverse Bred: use approved clean transparent image,
-     make Grid image slightly bigger.
-   - Jordan 1 High OG City of Flight: make Grid image slightly bigger.
-   - New Balance 2002R: smaller in Grid, noticeably bigger in 3D.
-   Nothing else is changed.
-========================================================= */
-(() => {
-  "use strict";
-
-  const NB_ID = "new-balance-2002r-custom";
-  const BRED_ID = "jordan-1-low-reverse-bred-2020";
-  const CLEAN_BRED_ASSET = "pictures/jordan1_low_reversebred.png?v=20261001-clean";
-
-  const applyDataFixes = () => {
-    if (typeof sneakers === "undefined" || !Array.isArray(sneakers)) return;
-
-    const bred = sneakers.find(item => item?.id === BRED_ID);
-    if (bred) {
-      bred.collectionStatus = "sold";
-      bred.archiveFit = true;
-      bred.image = CLEAN_BRED_ASSET;
-      bred.images = [CLEAN_BRED_ASSET];
-    }
-  };
-
-  const setImportant = (element, property, value) => {
-    element.style.setProperty(property, value, "important");
-  };
-
-  const tuneGrid = () => {
-    document
-      .querySelectorAll(`#sneaker-grid.grid .card-img-wrapper img[data-catalog-image="true"][data-sneaker-id="${BRED_ID}"]`)
-      .forEach(img => {
-        setImportant(img, "scale", "0.96 0.96");
-        setImportant(img, "transform", "none");
-      });
-
-    document
-      .querySelectorAll(`#sneaker-grid.grid .card-img-wrapper img[data-catalog-image="true"][alt*="City of Flight"]`)
-      .forEach(img => {
-        setImportant(img, "scale", "0.94 0.94");
-        setImportant(img, "transform", "none");
-      });
-
-    document
-      .querySelectorAll(`#sneaker-grid.grid .card-img-wrapper img[data-catalog-image="true"][data-sneaker-id="${NB_ID}"]`)
-      .forEach(img => {
-        setImportant(img, "scale", "0.74 0.74");
-        setImportant(img, "transform", "none");
-      });
-  };
-
-  const tune3D = () => {
-    document
-      .querySelectorAll(`.sneaker-3d-image img[data-3d-calibration="nb-2002r"], .sneaker-3d-image img[data-catalog-image="true"][data-sneaker-id="${NB_ID}"]`)
-      .forEach(img => {
-        setImportant(img, "scale", "1 1");
-        setImportant(img, "transform", "scale(1.22, 1.22)");
-        setImportant(img, "transform-origin", "center center");
-        setImportant(img, "--shoe-scale-x", "1.22");
-        setImportant(img, "--shoe-scale-y", "1.22");
-      });
-  };
-
-  const applyAll = () => {
-    applyDataFixes();
-    tuneGrid();
-    tune3D();
-  };
-
-  let raf = 0;
-  const schedule = () => {
-    cancelAnimationFrame(raf);
-    raf = requestAnimationFrame(applyAll);
-  };
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", applyAll, { once: true });
-  } else {
-    applyAll();
-  }
-
-  window.addEventListener("load", applyAll, { once: true });
-  window.addEventListener("resize", schedule);
-
-  const observer = new MutationObserver(schedule);
-  observer.observe(document.documentElement, {
-    childList: true,
-    subtree: true,
-    attributes: true,
-    attributeFilter: ["class", "style", "src", "data-sneaker-id", "data-3d-calibration", "alt"]
-  });
 })();
