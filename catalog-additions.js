@@ -1128,3 +1128,101 @@ if (
     attributeFilter: ["class", "style", "src", "data-sneaker-id", "data-3d-calibration"]
   });
 })();
+
+/* =========================================================
+   APPROVED CLEAN BRED + FINAL SIZE CORRECTION
+   2026-10-01
+   Scope only:
+   - Jordan 1 Low Reverse Bred: use approved clean transparent image,
+     make Grid image slightly bigger.
+   - Jordan 1 High OG City of Flight: make Grid image slightly bigger.
+   - New Balance 2002R: smaller in Grid, noticeably bigger in 3D.
+   Nothing else is changed.
+========================================================= */
+(() => {
+  "use strict";
+
+  const NB_ID = "new-balance-2002r-custom";
+  const BRED_ID = "jordan-1-low-reverse-bred-2020";
+  const CLEAN_BRED_ASSET = "pictures/jordan1_low_reversebred.png?v=20261001-clean";
+
+  const applyDataFixes = () => {
+    if (typeof sneakers === "undefined" || !Array.isArray(sneakers)) return;
+
+    const bred = sneakers.find(item => item?.id === BRED_ID);
+    if (bred) {
+      bred.collectionStatus = "sold";
+      bred.archiveFit = true;
+      bred.image = CLEAN_BRED_ASSET;
+      bred.images = [CLEAN_BRED_ASSET];
+    }
+  };
+
+  const setImportant = (element, property, value) => {
+    element.style.setProperty(property, value, "important");
+  };
+
+  const tuneGrid = () => {
+    document
+      .querySelectorAll(`#sneaker-grid.grid .card-img-wrapper img[data-catalog-image="true"][data-sneaker-id="${BRED_ID}"]`)
+      .forEach(img => {
+        setImportant(img, "scale", "0.96 0.96");
+        setImportant(img, "transform", "none");
+      });
+
+    document
+      .querySelectorAll(`#sneaker-grid.grid .card-img-wrapper img[data-catalog-image="true"][alt*="City of Flight"]`)
+      .forEach(img => {
+        setImportant(img, "scale", "0.94 0.94");
+        setImportant(img, "transform", "none");
+      });
+
+    document
+      .querySelectorAll(`#sneaker-grid.grid .card-img-wrapper img[data-catalog-image="true"][data-sneaker-id="${NB_ID}"]`)
+      .forEach(img => {
+        setImportant(img, "scale", "0.74 0.74");
+        setImportant(img, "transform", "none");
+      });
+  };
+
+  const tune3D = () => {
+    document
+      .querySelectorAll(`.sneaker-3d-image img[data-3d-calibration="nb-2002r"], .sneaker-3d-image img[data-catalog-image="true"][data-sneaker-id="${NB_ID}"]`)
+      .forEach(img => {
+        setImportant(img, "scale", "1 1");
+        setImportant(img, "transform", "scale(1.22, 1.22)");
+        setImportant(img, "transform-origin", "center center");
+        setImportant(img, "--shoe-scale-x", "1.22");
+        setImportant(img, "--shoe-scale-y", "1.22");
+      });
+  };
+
+  const applyAll = () => {
+    applyDataFixes();
+    tuneGrid();
+    tune3D();
+  };
+
+  let raf = 0;
+  const schedule = () => {
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(applyAll);
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAll, { once: true });
+  } else {
+    applyAll();
+  }
+
+  window.addEventListener("load", applyAll, { once: true });
+  window.addEventListener("resize", schedule);
+
+  const observer = new MutationObserver(schedule);
+  observer.observe(document.documentElement, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    attributeFilter: ["class", "style", "src", "data-sneaker-id", "data-3d-calibration", "alt"]
+  });
+})();
