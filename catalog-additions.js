@@ -925,3 +925,32 @@ if (
   }
 })();
 
+
+
+/* =========================================================
+   REVERSE BRED — MOVE TO SOLD ARCHIVE + SHORTEN STORY
+   Requested changes only for this pair:
+   - keep the existing repo name/title
+   - move from In Collection to Formerly in Collection
+   - preserve size 11 US and Used condition
+   - keep same image filename, to be overwritten by new upload
+   - use a shorter story consistent with sold/archive entries
+========================================================= */
+(() => {
+  if (typeof sneakers === "undefined" || !Array.isArray(sneakers)) return;
+
+  const entry = sneakers.find(item => item && item.id === "jordan-1-low-reverse-bred-2020");
+  if (!entry) return;
+
+  entry.collectionStatus = "sold";
+  entry.archiveFit = true;
+  entry.image = "pictures/jordan1_low_reversebred.png";
+  entry.story = {
+    vi: `
+      <p><b>Jordan 1 Low 'Reverse Bred'</b> đảo ngược ngôn ngữ màu Bred quen thuộc bằng cách đặt Gym Red lên overlays và Swoosh, còn black nằm ở toe box và mid-panel. Cách sắp xếp này giữ liên hệ rõ ràng với di sản Bred nhưng đem lại một diện mạo sáng và gọn hơn trên phom low-top.</p><p>Đây là một ví dụ tiêu biểu cho hướng lifestyle của Jordan 1 Low trong giai đoạn hiện đại: dễ mang hằng ngày, dễ nhận ra, và vẫn đủ gắn với một trong những mã màu quan trọng nhất của Air Jordan.</p>
+    `,
+    en: `
+      <p><b>Jordan 1 Low 'Reverse Bred'</b> flips the familiar Bred color language by placing Gym Red across the overlays and Swoosh while black sits on the toe box and mid-panel. The arrangement keeps a clear connection to Bred heritage while giving the low-top a brighter and more compact everyday look.</p><p>It is a representative example of the modern lifestyle direction of the Jordan 1 Low: easy to wear, instantly recognizable, and still closely tied to one of the most important color codes in Air Jordan history.</p>
+    `
+  };
+})();
