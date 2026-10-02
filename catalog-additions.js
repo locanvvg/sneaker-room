@@ -779,3 +779,40 @@ if (
     `
   };
 })();
+
+/* =========================================================
+   BALENCIAGA DEFENDER 'BEIGE' — MOVE TO SOLD ARCHIVE
+   Keep all existing catalog facts unchanged. Only:
+   - move the pair to Formerly in Collection
+   - keep the original image filename
+   - replace the story with a shorter archive-style version
+========================================================= */
+(() => {
+  const applyBalenciagaSoldPatch = () => {
+    if (typeof sneakers === "undefined" || !Array.isArray(sneakers)) return;
+
+    const entry = sneakers.find(item => item && item.id === "balenciaga-defender-beige");
+    if (!entry) return;
+
+    entry.collectionStatus = "sold";
+    entry.archiveFit = true;
+    entry.image = "pictures/balenciaga_defender.png";
+    entry.images = ["pictures/balenciaga_defender.png"];
+    entry.story = {
+      vi: `
+        <p><b>Balenciaga Defender 'Beige'</b> là một trong những thiết kế sneaker đặc trưng của thời kỳ Demna, nổi bật với tỷ lệ phóng đại và phần đế lấy cảm hứng từ <b>tire tread</b>. Các khối cao su lớn bao quanh upper khiến đôi giày có hình dáng gần như một vật thể điêu khắc hơn là một runner thông thường.</p>
+        <p>Colorway Beige sử dụng các sắc cream và off-white để nhấn mạnh kiến trúc phần đế, trong khi branding được giữ tương đối tiết chế. Thiết kế này đại diện rõ cho hướng tiếp cận của Balenciaga đầu thập niên 2020: cực đoan về tỷ lệ, dễ nhận diện và đặt hình khối lên trước các chi tiết trang trí.</p>
+      `,
+      en: `
+        <p><b>Balenciaga Defender 'Beige'</b> is one of the defining sneaker designs of the Demna era, distinguished by exaggerated proportions and a <b>tire-tread</b>-inspired sole. Oversized rubber blocks wrap around the upper, giving the shoe an almost sculptural presence rather than the profile of a conventional runner.</p>
+        <p>The Beige colorway uses cream and off-white tones to emphasize the sole architecture while keeping branding relatively restrained. The design captures Balenciaga's early-2020s approach to footwear: extreme proportion, immediate recognition, and form taking priority over decoration.</p>
+      `
+    };
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyBalenciagaSoldPatch, { once: true });
+  } else {
+    applyBalenciagaSoldPatch();
+  }
+})();
