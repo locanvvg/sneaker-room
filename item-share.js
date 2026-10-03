@@ -41,11 +41,11 @@
           facebookOptions: "FACEBOOK OPTIONS",
           instagramOptions: "INSTAGRAM OPTIONS",
           post: "POST",
-          story: "STORY",
           privateMessage: "PRIVATE MESSAGE",
-          groupMessage: "GROUP CHAT",
-          openInstagram: "OPEN INSTAGRAM",
-          copiedHint: "Link copied — choose where to share it.",
+          copiedTitle: "LINK COPIED",
+          copiedMessage: "The item link has been copied to your clipboard. Open the conversation you want, then paste the link into the message field to send it.",
+          openMessenger: "OPEN MESSENGER",
+          openInstagramDirect: "OPEN INSTAGRAM DIRECT",
           close: "Close share dialog",
           sentence: title => `View ${title} in the Lộc An Collection.`
         }
@@ -62,11 +62,11 @@
           facebookOptions: "TÙY CHỌN FACEBOOK",
           instagramOptions: "TÙY CHỌN INSTAGRAM",
           post: "ĐĂNG BÀI",
-          story: "ĐĂNG STORY",
           privateMessage: "TIN NHẮN RIÊNG",
-          groupMessage: "TIN NHẮN NHÓM",
-          openInstagram: "MỞ INSTAGRAM",
-          copiedHint: "Đã sao chép liên kết — chọn nơi bạn muốn chia sẻ.",
+          copiedTitle: "ĐÃ SAO CHÉP LIÊN KẾT",
+          copiedMessage: "Liên kết của hiện vật đã được sao chép vào clipboard. Hãy mở cuộc trò chuyện bạn muốn, sau đó dán liên kết vào khung tin nhắn để gửi.",
+          openMessenger: "MỞ MESSENGER",
+          openInstagramDirect: "MỞ INSTAGRAM DIRECT",
           close: "Đóng cửa sổ chia sẻ",
           sentence: title => `Xem ${title} trong Bộ sưu tập Lộc An.`
         };
@@ -467,6 +467,60 @@
         line-height: 1.45;
       }
 
+      .locan-share-copy-notice {
+        display: none;
+        padding: 14px;
+        background: rgba(255,204,0,.045);
+        border: 1px solid rgba(255,204,0,.20);
+        border-radius: 9px;
+      }
+
+      .locan-share-copy-notice.is-open {
+        display: block;
+      }
+
+      .locan-share-copy-notice-title {
+        margin: 0 0 7px;
+        color: #ffcc00;
+        font-size: .72rem;
+        font-weight: 900;
+        letter-spacing: .07em;
+      }
+
+      .locan-share-copy-notice-text {
+        margin: 0 0 12px;
+        color: #bdbdc2;
+        font-size: .76rem;
+        line-height: 1.55;
+      }
+
+      .locan-share-copy-notice-actions {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .locan-share-copy-notice-actions button {
+        min-height: 38px;
+        padding: 9px 12px;
+        color: #d8d8dc;
+        background: rgba(255,255,255,.035);
+        border: 1px solid rgba(255,255,255,.11);
+        border-radius: 8px;
+        cursor: pointer;
+        font: inherit;
+        font-size: .68rem;
+        font-weight: 850;
+        letter-spacing: .04em;
+      }
+
+      .locan-share-copy-notice-actions button:hover,
+      .locan-share-copy-notice-actions button:focus-visible {
+        color: #ffcc00;
+        border-color: rgba(255,204,0,.45);
+        outline: none;
+      }
+
       @media (max-width: 650px) {
         .locan-share-actions {
           grid-template-columns: 1fr;
@@ -805,6 +859,32 @@
               class="locan-share-platform-note"
             ></p>
           </div>
+
+          <div
+            class="locan-share-copy-notice"
+          >
+            <div
+              class="locan-share-copy-notice-title"
+            ></div>
+
+            <p
+              class="locan-share-copy-notice-text"
+            ></p>
+
+            <div
+              class="locan-share-copy-notice-actions"
+            >
+              <button
+                type="button"
+                class="locan-share-copy-open"
+              ></button>
+
+              <button
+                type="button"
+                class="locan-share-copy-back"
+              ></button>
+            </div>
+          </div>
         </div>
       `;
 
@@ -924,26 +1004,40 @@
         ".locan-share-back"
       );
 
+    const copyNotice =
+      dialog.querySelector(
+        ".locan-share-copy-notice"
+      );
+
+    const copyNoticeTitle =
+      dialog.querySelector(
+        ".locan-share-copy-notice-title"
+      );
+
+    const copyNoticeText =
+      dialog.querySelector(
+        ".locan-share-copy-notice-text"
+      );
+
+    const copyNoticeOpen =
+      dialog.querySelector(
+        ".locan-share-copy-open"
+      );
+
+    const copyNoticeBack =
+      dialog.querySelector(
+        ".locan-share-copy-back"
+      );
+
     function restoreMainActions() {
       actions.style.display = "";
       platformPanel.classList.remove(
         "is-open"
       );
-      platformOptions.innerHTML = "";
-    }
-
-    function copyThenOpen(destination) {
-      copyURL(url)
-        .catch(() => {
-          urlInput.focus();
-          urlInput.select();
-        });
-
-      window.open(
-        destination,
-        "_blank",
-        "noopener,noreferrer"
+      copyNotice.classList.remove(
+        "is-open"
       );
+      platformOptions.innerHTML = "";
     }
 
     function optionButton(
@@ -966,8 +1060,55 @@
       return option;
     }
 
+    async function showPrivateMessageNotice(
+      destination,
+      openLabel
+    ) {
+      try {
+        await copyURL(url);
+      } catch (_) {
+        urlInput.focus();
+        urlInput.select();
+      }
+
+      platformPanel.classList.remove(
+        "is-open"
+      );
+
+      copyNoticeTitle.textContent =
+        t.copiedTitle;
+
+      copyNoticeText.textContent =
+        t.copiedMessage;
+
+      copyNoticeOpen.textContent =
+        openLabel;
+
+      copyNoticeBack.textContent =
+        t.back;
+
+      copyNoticeOpen.onclick =
+        () => {
+          window.open(
+            destination,
+            "_blank",
+            "noopener,noreferrer"
+          );
+        };
+
+      copyNoticeBack.onclick =
+        restoreMainActions;
+
+      copyNotice.classList.add(
+        "is-open"
+      );
+    }
+
     function openFacebookOptions() {
       actions.style.display = "none";
+      copyNotice.classList.remove(
+        "is-open"
+      );
       platformPanel.classList.add(
         "is-open"
       );
@@ -978,8 +1119,7 @@
       back.textContent =
         t.back;
 
-      platformNote.textContent =
-        t.copiedHint;
+      platformNote.textContent = "";
 
       platformOptions.innerHTML = "";
 
@@ -996,24 +1136,11 @@
           }
         ),
         optionButton(
-          t.story,
-          () =>
-            copyThenOpen(
-              "https://www.facebook.com/stories/create/"
-            )
-        ),
-        optionButton(
           t.privateMessage,
           () =>
-            copyThenOpen(
-              "https://www.messenger.com/"
-            )
-        ),
-        optionButton(
-          t.groupMessage,
-          () =>
-            copyThenOpen(
-              "https://www.messenger.com/"
+            showPrivateMessageNotice(
+              "https://www.messenger.com/",
+              t.openMessenger
             )
         )
       );
@@ -1021,6 +1148,9 @@
 
     function openInstagramOptions() {
       actions.style.display = "none";
+      copyNotice.classList.remove(
+        "is-open"
+      );
       platformPanel.classList.add(
         "is-open"
       );
@@ -1031,38 +1161,34 @@
       back.textContent =
         t.back;
 
-      platformNote.textContent =
-        t.copiedHint;
+      platformNote.textContent = "";
 
       platformOptions.innerHTML = "";
 
       platformOptions.append(
         optionButton(
-          t.openInstagram,
-          () =>
-            copyThenOpen(
-              "https://www.instagram.com/"
-            )
-        ),
-        optionButton(
-          t.story,
-          () =>
-            copyThenOpen(
-              "https://www.instagram.com/"
-            )
+          t.post,
+          async () => {
+            try {
+              await copyURL(url);
+            } catch (_) {
+              urlInput.focus();
+              urlInput.select();
+            }
+
+            window.open(
+              "https://www.instagram.com/create/select/",
+              "_blank",
+              "noopener,noreferrer"
+            );
+          }
         ),
         optionButton(
           t.privateMessage,
           () =>
-            copyThenOpen(
-              "https://www.instagram.com/direct/inbox/"
-            )
-        ),
-        optionButton(
-          t.groupMessage,
-          () =>
-            copyThenOpen(
-              "https://www.instagram.com/direct/inbox/"
+            showPrivateMessageNotice(
+              "https://www.instagram.com/direct/inbox/",
+              t.openInstagramDirect
             )
         )
       );
