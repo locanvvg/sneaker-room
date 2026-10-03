@@ -327,16 +327,34 @@ function wrapLines(
   return lines;
 }
 
-function itemImage(item) {
+function itemImages(item) {
   if (
     Array.isArray(item?.images) &&
     item.images.length
   ) {
-    return item.images[0];
+    return item.images
+      .filter(Boolean);
   }
 
+  if (item?.image) {
+    return [item.image];
+  }
+
+  return [
+    "locan-social-preview.png"
+  ];
+}
+
+function itemImage(
+  item,
+  imageIndex = 0
+) {
+  const images =
+    itemImages(item);
+
   return (
-    item?.image ||
+    images[imageIndex] ||
+    images[0] ||
     "locan-social-preview.png"
   );
 }
@@ -346,7 +364,9 @@ async function makePreview({
   lang,
   type,
   title,
-  subtitle
+  subtitle,
+  imageIndex = 0,
+  pageVariant = ""
 }) {
   const id =
     safeId(item.id);
@@ -358,7 +378,7 @@ async function makePreview({
       "previews",
       lang,
       type,
-      `${id}.jpg`
+      `${id}${pageVariant}.jpg`
     );
 
   fs.mkdirSync(
@@ -369,7 +389,10 @@ async function makePreview({
   const imagePath =
     path.join(
       ROOT,
-      itemImage(item)
+      itemImage(
+        item,
+        imageIndex
+      )
     );
 
   let artwork = null;
@@ -521,7 +544,7 @@ async function makePreview({
     .toFile(output);
 
   return (
-    `share/previews/${lang}/${type}/${id}.jpg`
+    `share/previews/${lang}/${type}/${id}${pageVariant}.jpg`
   );
 }
 
@@ -547,7 +570,9 @@ function detailURL(
 async function writeSharePage({
   item,
   lang,
-  type
+  type,
+  imageIndex = 0,
+  pageVariant = ""
 }) {
   const id =
     safeId(item.id);
@@ -587,11 +612,13 @@ async function writeSharePage({
       lang,
       type,
       title,
-      subtitle
+      subtitle,
+      imageIndex,
+      pageVariant
     });
 
   const shareURL =
-    `${SITE}share/${lang}/${type}/${id}.html`;
+    `${SITE}share/${lang}/${type}/${id}${pageVariant}.html`;
 
   const destination =
     detailURL(
@@ -609,7 +636,7 @@ async function writeSharePage({
       "share",
       lang,
       type,
-      `${id}.html`
+      `${id}${pageVariant}.html`
     );
 
   fs.mkdirSync(
@@ -794,14 +821,51 @@ let count = 0;
 
 for (const group of groups) {
   for (const item of group.items) {
+    const images =
+      itemImages(item);
+
     for (const lang of ["vi", "en"]) {
+      /*
+        Base URL remains available for old links and all
+        single-image artifacts. For multi-image sneakers,
+        it represents image 1 as a backward-compatible alias.
+      */
       await writeSharePage({
         item,
         lang,
-        type: group.type
+        type: group.type,
+        imageIndex: 0,
+        pageVariant: ""
       });
 
       count += 1;
+
+      /*
+        Multi-image sneaker galleries receive one static share
+        page per image. The Share button chooses the page that
+        corresponds to the thumbnail currently active on screen.
+      */
+      if (
+        group.type === "sneakers" &&
+        images.length > 1
+      ) {
+        for (
+          let imageIndex = 0;
+          imageIndex < images.length;
+          imageIndex += 1
+        ) {
+          await writeSharePage({
+            item,
+            lang,
+            type: group.type,
+            imageIndex,
+            pageVariant:
+              `--img-${imageIndex + 1}`
+          });
+
+          count += 1;
+        }
+      }
     }
   }
 }
