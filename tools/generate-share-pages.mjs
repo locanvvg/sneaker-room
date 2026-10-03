@@ -166,6 +166,148 @@ function extractArray(
   );
 }
 
+function extractObject(
+  filename,
+  variableName
+) {
+  const file =
+    path.join(
+      ROOT,
+      filename
+    );
+
+  if (!fs.existsSync(file)) {
+    return {};
+  }
+
+  const source =
+    fs.readFileSync(
+      file,
+      "utf8"
+    );
+
+  const marker =
+    new RegExp(
+      `(?:const|let|var)\\s+${variableName}\\s*=\\s*\\{`
+    );
+
+  const match =
+    marker.exec(source);
+
+  if (!match) {
+    return {};
+  }
+
+  const start =
+    source.indexOf(
+      "{",
+      match.index
+    );
+
+  let depth = 0;
+  let quote = "";
+  let escaped = false;
+  let lineComment = false;
+  let blockComment = false;
+
+  for (
+    let i = start;
+    i < source.length;
+    i += 1
+  ) {
+    const ch = source[i];
+    const next = source[i + 1];
+
+    if (lineComment) {
+      if (ch === "\\n") {
+        lineComment = false;
+      }
+      continue;
+    }
+
+    if (blockComment) {
+      if (
+        ch === "*" &&
+        next === "/"
+      ) {
+        blockComment = false;
+        i += 1;
+      }
+      continue;
+    }
+
+    if (quote) {
+      if (escaped) {
+        escaped = false;
+        continue;
+      }
+
+      if (ch === "\\\\") {
+        escaped = true;
+        continue;
+      }
+
+      if (ch === quote) {
+        quote = "";
+      }
+
+      continue;
+    }
+
+    if (
+      ch === "/" &&
+      next === "/"
+    ) {
+      lineComment = true;
+      i += 1;
+      continue;
+    }
+
+    if (
+      ch === "/" &&
+      next === "*"
+    ) {
+      blockComment = true;
+      i += 1;
+      continue;
+    }
+
+    if (
+      ch === "'" ||
+      ch === '"' ||
+      ch === "`"
+    ) {
+      quote = ch;
+      continue;
+    }
+
+    if (ch === "{") {
+      depth += 1;
+      continue;
+    }
+
+    if (ch === "}") {
+      depth -= 1;
+
+      if (depth === 0) {
+        const expression =
+          source.slice(
+            start,
+            i + 1
+          );
+
+        return vm.runInNewContext(
+          `(${expression})`,
+          Object.create(null),
+          { timeout: 1000 }
+        );
+      }
+    }
+  }
+
+  return {};
+}
+
 function mergeById(...groups) {
   const map =
     new Map();
@@ -551,7 +693,8 @@ async function makePreview({
 function detailURL(
   type,
   id,
-  lang
+  lang,
+  imageIndex = 0
 ) {
   const detailPage =
     type === "sneakers"
@@ -560,11 +703,20 @@ function detailURL(
         ? "lego-detail.html"
         : "sneaker-mask-detail.html";
 
-  return (
+  let url =
     `${SITE}${detailPage}` +
     `?id=${encodeURIComponent(id)}` +
-    `&lang=${encodeURIComponent(lang)}`
-  );
+    `&lang=${encodeURIComponent(lang)}`;
+
+  if (
+    type === "sneakers" &&
+    imageIndex > 0
+  ) {
+    url +=
+      `&image=${imageIndex + 1}`;
+  }
+
+  return url;
 }
 
 async function writeSharePage({
@@ -624,7 +776,8 @@ async function writeSharePage({
     detailURL(
       type,
       item.id,
-      lang
+      lang,
+      imageIndex
     );
 
   const previewURL =
@@ -727,10 +880,6 @@ async function writeSharePage({
     content="${escapeHTML(previewURL)}"
   >
 
-  <meta
-    http-equiv="refresh"
-    content="0; url=${escapeHTML(destination)}"
-  >
 
   <style>
     body {
@@ -749,8 +898,13 @@ async function writeSharePage({
   </style>
 
   <script>
-    window.location.replace(
-      ${JSON.stringify(destination)}
+    window.setTimeout(
+      () => {
+        window.location.replace(
+          ${JSON.stringify(destination)}
+        );
+      },
+      350
     );
   </script>
 </head>
@@ -793,6 +947,25 @@ const masks =
     "sneaker-mask-data.js",
     "sneakerMasks"
   );
+
+const galleryFixes =
+  extractObject(
+    "catalog-additions.js",
+    "galleryFixes"
+  );
+
+sneakers.forEach(item => {
+  const images =
+    galleryFixes?.[item.id];
+
+  if (
+    Array.isArray(images) &&
+    images.length
+  ) {
+    item.image = images[0];
+    item.images = [...images];
+  }
+});
 
 const groups = [
   {
