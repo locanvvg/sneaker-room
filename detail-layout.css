@@ -91,3 +91,14 @@
     margin-top: 24px;
   }
 }
+
+/* =========================================================
+   JORDAN 1 QUAI 54 F&F — SECOND GALLERY IMAGE SIZE MATCH
+   The replacement second image has a tighter source crop than image 1.
+   Reduce only that hero image so both gallery views have the same
+   perceived sneaker size. Thumbnails/fullscreen are unaffected.
+========================================================= */
+#shoe-image[src*="jordan1_quai54_ff_v2_1"] {
+  transform: scale(0.765);
+  transform-origin: center center;
+}
