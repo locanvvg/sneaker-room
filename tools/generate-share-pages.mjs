@@ -546,8 +546,8 @@ async function makePreview({
       await sharp(imagePath)
         .rotate()
         .resize({
-          width: 660,
-          height: 470,
+          width: 520,
+          height: 420,
           fit: "contain",
           withoutEnlargement: true,
           background: {
@@ -561,42 +561,66 @@ async function makePreview({
         .toBuffer();
   }
 
+  const titleLength =
+    String(title || "").length;
+
+  const titleFontSize =
+    titleLength > 72
+      ? 30
+      : titleLength > 52
+        ? 32
+        : 35;
+
+  const titleMaxCharacters =
+    titleLength > 72
+      ? 29
+      : titleLength > 52
+        ? 27
+        : 24;
+
+  const titleLineHeight =
+    titleFontSize + 10;
+
   const titleLines =
     wrapLines(
       title,
-      28,
+      titleMaxCharacters,
       4
     );
 
   const subtitleLines =
     wrapLines(
       subtitle,
-      42,
-      3
+      35,
+      2
     );
+
+  const titleStartY = 205;
 
   const titleSVG =
     titleLines
       .map(
         (line, index) =>
-          `<text x="730" y="${210 + index * 54}" ` +
+          `<text x="655" y="${titleStartY + index * titleLineHeight}" ` +
           `font-family="Arial,Helvetica,sans-serif" ` +
-          `font-size="42" font-weight="800" fill="#f5f5f7">` +
+          `font-size="${titleFontSize}" font-weight="800" fill="#f5f5f7">` +
           `${escapeXML(line)}</text>`
       )
       .join("");
 
   const subtitleStart =
-    230 +
-    titleLines.length * 54;
+    titleStartY +
+    titleLines.length *
+      titleLineHeight +
+    28;
 
   const subtitleSVG =
     subtitleLines
       .map(
         (line, index) =>
-          `<text x="730" y="${subtitleStart + index * 34}" ` +
+          `<text x="655" y="${subtitleStart + index * 30}" ` +
           `font-family="Arial,Helvetica,sans-serif" ` +
-          `font-size="23" font-weight="500" fill="#aaaab0">` +
+          `font-size="20" font-weight="500" fill="#aaaab0">` +
           `${escapeXML(line)}</text>`
       )
       .join("");
@@ -624,7 +648,7 @@ async function makePreview({
           stroke-width="2"
         />
         <text
-          x="730"
+          x="655"
           y="112"
           font-family="Arial,Helvetica,sans-serif"
           font-size="21"
@@ -633,9 +657,9 @@ async function makePreview({
           fill="#ffcc00"
         >LỘC AN COLLECTION</text>
         <line
-          x1="730"
+          x1="655"
           y1="137"
-          x2="1110"
+          x2="1115"
           y2="137"
           stroke="#3b3b40"
           stroke-width="1"
@@ -643,7 +667,7 @@ async function makePreview({
         ${titleSVG}
         ${subtitleSVG}
         <text
-          x="730"
+          x="655"
           y="548"
           font-family="Arial,Helvetica,sans-serif"
           font-size="18"
@@ -665,8 +689,8 @@ async function makePreview({
   if (artwork) {
     composites.push({
       input: artwork,
-      left: 55,
-      top: 80
+      left: 80,
+      top: 105
     });
   }
 
@@ -781,7 +805,7 @@ async function writeSharePage({
     );
 
   const previewURL =
-    `${SITE}${preview}`;
+    `${SITE}${preview}?v=4`;
 
   const file =
     path.join(
