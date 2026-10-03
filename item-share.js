@@ -46,7 +46,7 @@
   const catalogueNotes = {
     peSample: {
       vi: `
-        <strong>Ghi chú catalogue:</strong>
+        <strong>Ghi chú lưu trữ:</strong>
         Các hiện vật thuộc nhóm <b>Player Exclusive (PE)</b> hoặc <b>PE Sample</b>
         thường được phát triển ngoài hệ thống bán lẻ công khai, vì vậy có thể
         không có giá retail chính thức hoặc không sử dụng SKU theo cấu trúc
@@ -57,7 +57,7 @@
         khan hiếm cao hơn đáng kể so với các bản General Release.
       `,
       en: `
-        <strong>Catalogue Note:</strong>
+        <strong>Exhibition Note:</strong>
         Artifacts classified as <b>Player Exclusive (PE)</b> or <b>PE Sample</b>
         are commonly developed outside public retail distribution. As a result,
         they may not have an official retail price and may use product codes,
@@ -71,7 +71,7 @@
 
     ff: {
       vi: `
-        <strong>Ghi chú catalogue:</strong>
+        <strong>Ghi chú lưu trữ:</strong>
         Các phiên bản <b>Friends &amp; Family (F&amp;F)</b> không được phát hành
         qua hệ thống bán lẻ thông thường và thường chỉ được phân phối cho một
         nhóm nhỏ gồm người thân, bạn bè, cộng tác viên hoặc cá nhân liên quan
@@ -82,7 +82,7 @@
         trong sneaker archive.
       `,
       en: `
-        <strong>Catalogue Note:</strong>
+        <strong>Exhibition Note:</strong>
         <b>Friends &amp; Family (F&amp;F)</b> editions are not released through
         conventional retail channels and are typically distributed only to a
         small group of family members, friends, collaborators, or individuals
@@ -96,7 +96,7 @@
 
     sample: {
       vi: `
-        <strong>Ghi chú catalogue:</strong>
+        <strong>Ghi chú lưu trữ:</strong>
         Các hiện vật <b>Sample</b> được tạo ra trong quá trình phát triển,
         thử nghiệm hoặc tiền sản xuất nên không tuân theo hệ thống thông tin
         của một sản phẩm bán lẻ hoàn chỉnh. <b>Những hiện vật này không có giá
@@ -107,7 +107,7 @@
         lượng rất thấp và hiếm khi xuất hiện công khai.
       `,
       en: `
-        <strong>Catalogue Note:</strong>
+        <strong>Exhibition Note:</strong>
         <b>Sample</b> artifacts are produced during development, testing, or
         pre-production and therefore do not follow the information structure
         of finalized retail products. <b>These artifacts do not have an official
@@ -121,7 +121,7 @@
 
     custom: {
       vi: `
-        <strong>Ghi chú catalogue:</strong>
+        <strong>Ghi chú lưu trữ:</strong>
         Các hiện vật <b>Custom 1/1</b> là tác phẩm độc bản được xây dựng từ một
         đôi giày nền thông qua quá trình chỉnh sửa, tái cấu trúc hoặc chế tác riêng.
         Vì không phải sản phẩm factory-issued, hiện vật thường không có retail price
@@ -130,7 +130,7 @@
         một bản phát hành thương mại tương đương.
       `,
       en: `
-        <strong>Catalogue Note:</strong>
+        <strong>Exhibition Note:</strong>
         <b>Custom 1/1</b> artifacts are unique works created from an existing
         base shoe through individual modification, reconstruction, or custom
         fabrication. Because they are not factory-issued products, they generally
@@ -143,7 +143,7 @@
 
     signed: {
       vi: `
-        <strong>Ghi chú catalogue:</strong>
+        <strong>Ghi chú lưu trữ:</strong>
         Các hiện vật <b>Signature Signed</b> giữ nguyên thông tin sản phẩm của
         bản phát hành gốc nhưng có thêm yếu tố chữ ký trực tiếp từ vận động viên,
         nhà thiết kế, nghệ sĩ hoặc cá nhân liên quan đến sản phẩm. Chữ ký không
@@ -153,7 +153,7 @@
         tính khan hiếm và giá trị lưu trữ.
       `,
       en: `
-        <strong>Catalogue Note:</strong>
+        <strong>Exhibition Note:</strong>
         <b>Signature Signed</b> artifacts retain the original product information
         of the underlying release while carrying a direct signature from an athlete,
         designer, artist, or individual associated with the product. The signature
@@ -221,25 +221,28 @@
       }
 
       #${NOTE_ID} {
-        box-sizing: border-box;
         width: 100%;
-        margin: 20px 0 0;
-        padding: 16px 18px;
-        color: #a7a7ad;
-        background: rgba(255,255,255,.024);
-        border: 1px solid rgba(255,255,255,.085);
-        border-radius: 10px;
-        font-size: .82rem;
-        line-height: 1.68;
+        box-sizing: border-box;
+        margin: 25px 0 0;
+        padding: 16px 20px;
+        background: #222226;
+        border: 0;
+        border-left: 4px solid #ffcc00;
+        border-radius: 0 8px 8px 0;
+        color: #ccc;
+        font-size: .9rem;
+        line-height: 1.65;
       }
 
       #${NOTE_ID} strong {
-        color: #d8d8dc;
+        display: block;
+        margin-bottom: 6px;
+        color: #ffcc00;
         font-weight: 850;
       }
 
       #${NOTE_ID} b {
-        color: #c8c8cd;
+        color: #f5f5f7;
         font-weight: 800;
       }
 
@@ -272,14 +275,42 @@
   }
 
   function exactShareURL() {
-    const url = new URL(window.location.href);
-    url.hash = "";
+    const current = new URL(window.location.href);
+    current.hash = "";
 
-    if (url.searchParams.has("id")) {
-      url.searchParams.set("lang", currentLang());
+    const id = current.searchParams.get("id");
+    if (!id) return current.href;
+
+    const path = current.pathname;
+    let type = "";
+
+    if (
+      path.endsWith("/shoe.html") ||
+      path.endsWith("shoe.html")
+    ) {
+      type = "sneakers";
+    } else if (
+      path.endsWith("/lego-detail.html") ||
+      path.endsWith("lego-detail.html")
+    ) {
+      type = "lego";
+    } else if (
+      path.endsWith("/sneaker-mask-detail.html") ||
+      path.endsWith("sneaker-mask-detail.html")
+    ) {
+      type = "masks";
     }
 
-    return url.href;
+    if (!type) return current.href;
+
+    const safeId = String(id)
+      .trim()
+      .replace(/[^a-zA-Z0-9_-]+/g, "-");
+
+    return new URL(
+      `./share/${currentLang()}/${type}/${safeId}.html`,
+      new URL("./", current)
+    ).href;
   }
 
   async function copyURL(url) {
@@ -560,7 +591,7 @@
     if (!note) {
       note = document.createElement("div");
       note.id = NOTE_ID;
-      note.className = "catalogue-note-section";
+      note.className = "exhibition-note";
     }
 
     note.innerHTML =
@@ -572,12 +603,763 @@
     );
   }
 
+
+  /* =======================================================
+     FULLSCREEN IMAGE VIEWER
+     Sneaker / LEGO / Sneaker Mask detail pages.
+     - click main image
+     - keyboard arrows / ESC
+     - swipe between multi-image sneaker galleries
+     - zoom buttons / wheel / image tap
+  ======================================================= */
+  const VIEWER_ID = "locan-fullscreen-image-viewer";
+  let viewerImages = [];
+  let viewerIndex = 0;
+  let viewerScale = 1;
+  let viewerTouchStartX = null;
+
+  function absoluteImageURL(src) {
+    try {
+      return new URL(
+        String(src || ""),
+        window.location.href
+      ).href;
+    } catch (_) {
+      return String(src || "");
+    }
+  }
+
+  function detailMainImage() {
+    return (
+      document.getElementById("shoe-image") ||
+      document.querySelector(
+        ".shoe-detail-container .shoe-image-section > img"
+      )
+    );
+  }
+
+  function collectViewerImages() {
+    const main = detailMainImage();
+
+    const mainSrc = main
+      ? absoluteImageURL(
+          main.currentSrc ||
+          main.getAttribute("src") ||
+          main.src
+        )
+      : "";
+
+    const thumbnails = Array
+      .from(
+        document.querySelectorAll(
+          ".shoe-detail-thumbnail img"
+        )
+      )
+      .map(image =>
+        absoluteImageURL(
+          image.currentSrc ||
+          image.getAttribute("src") ||
+          image.src
+        )
+      )
+      .filter(Boolean);
+
+    const images =
+      thumbnails.length
+        ? thumbnails
+        : mainSrc
+          ? [mainSrc]
+          : [];
+
+    if (
+      mainSrc &&
+      images.length > 1 &&
+      !images.includes(mainSrc)
+    ) {
+      images.unshift(mainSrc);
+    }
+
+    return [...new Set(images)];
+  }
+
+  function installViewerStyles() {
+    const STYLE =
+      "locan-fullscreen-image-viewer-style";
+
+    if (document.getElementById(STYLE)) {
+      return;
+    }
+
+    const style =
+      document.createElement("style");
+
+    style.id = STYLE;
+
+    style.textContent = `
+      .shoe-image-section > img {
+        cursor: zoom-in;
+      }
+
+      #${VIEWER_ID} {
+        position: fixed;
+        inset: 0;
+        z-index: 100000;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0,0,0,.95);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        touch-action: none;
+      }
+
+      #${VIEWER_ID}.is-open {
+        display: flex;
+      }
+
+      #${VIEWER_ID} .locan-viewer-stage {
+        position: relative;
+        width: min(94vw, 1500px);
+        height: min(88vh, 1000px);
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #${VIEWER_ID} .locan-viewer-image {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transform: scale(var(--locan-viewer-scale, 1));
+        transform-origin: center center;
+        transition: transform .16s ease;
+        user-select: none;
+        -webkit-user-drag: none;
+        cursor: zoom-in;
+      }
+
+      #${VIEWER_ID}.is-zoomed .locan-viewer-image {
+        cursor: zoom-out;
+      }
+
+      #${VIEWER_ID} button {
+        position: absolute;
+        z-index: 6;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        padding: 0;
+        color: #dedee2;
+        background: rgba(20,20,22,.80);
+        border: 1px solid rgba(255,255,255,.14);
+        border-radius: 50%;
+        font: inherit;
+        cursor: pointer;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+
+      #${VIEWER_ID} button:hover,
+      #${VIEWER_ID} button:focus-visible {
+        color: #ffcc00;
+        border-color: rgba(255,204,0,.52);
+        outline: none;
+      }
+
+      #${VIEWER_ID} .locan-viewer-close {
+        top: 18px;
+        right: 18px;
+        font-size: 24px;
+      }
+
+      #${VIEWER_ID} .locan-viewer-prev,
+      #${VIEWER_ID} .locan-viewer-next {
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 28px;
+      }
+
+      #${VIEWER_ID} .locan-viewer-prev {
+        left: 18px;
+      }
+
+      #${VIEWER_ID} .locan-viewer-next {
+        right: 18px;
+      }
+
+      #${VIEWER_ID} .locan-viewer-tools {
+        position: absolute;
+        left: 50%;
+        bottom: 18px;
+        z-index: 7;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 7px;
+        background: rgba(15,15,17,.78);
+        border: 1px solid rgba(255,255,255,.10);
+        border-radius: 999px;
+      }
+
+      #${VIEWER_ID} .locan-viewer-tools button {
+        position: static;
+        width: 34px;
+        height: 34px;
+        font-size: 18px;
+      }
+
+      #${VIEWER_ID} .locan-viewer-counter {
+        min-width: 58px;
+        color: #aaaab0;
+        text-align: center;
+        font-size: .72rem;
+        font-weight: 800;
+        letter-spacing: .08em;
+      }
+
+      @media (max-width: 650px) {
+        #${VIEWER_ID} .locan-viewer-stage {
+          width: 100vw;
+          height: 82vh;
+        }
+
+        #${VIEWER_ID} .locan-viewer-close {
+          top: 12px;
+          right: 12px;
+        }
+
+        #${VIEWER_ID} .locan-viewer-prev {
+          left: 8px;
+        }
+
+        #${VIEWER_ID} .locan-viewer-next {
+          right: 8px;
+        }
+
+        #${VIEWER_ID} .locan-viewer-tools {
+          bottom: 12px;
+        }
+      }
+    `;
+
+    document.head.appendChild(style);
+  }
+
+  function setViewerScale(value) {
+    viewerScale =
+      Math.max(
+        1,
+        Math.min(
+          3,
+          Number(value) || 1
+        )
+      );
+
+    const viewer =
+      document.getElementById(VIEWER_ID);
+
+    const image =
+      viewer?.querySelector(
+        ".locan-viewer-image"
+      );
+
+    image?.style.setProperty(
+      "--locan-viewer-scale",
+      String(viewerScale)
+    );
+
+    viewer?.classList.toggle(
+      "is-zoomed",
+      viewerScale > 1.01
+    );
+  }
+
+  function renderViewerImage() {
+    const viewer =
+      document.getElementById(VIEWER_ID);
+
+    if (
+      !viewer ||
+      !viewerImages.length
+    ) {
+      return;
+    }
+
+    viewerIndex =
+      (
+        viewerIndex %
+        viewerImages.length +
+        viewerImages.length
+      ) %
+      viewerImages.length;
+
+    const image =
+      viewer.querySelector(
+        ".locan-viewer-image"
+      );
+
+    const counter =
+      viewer.querySelector(
+        ".locan-viewer-counter"
+      );
+
+    const previous =
+      viewer.querySelector(
+        ".locan-viewer-prev"
+      );
+
+    const next =
+      viewer.querySelector(
+        ".locan-viewer-next"
+      );
+
+    if (image) {
+      image.src =
+        viewerImages[viewerIndex];
+    }
+
+    if (counter) {
+      counter.textContent =
+        `${viewerIndex + 1} / ${viewerImages.length}`;
+    }
+
+    const multiple =
+      viewerImages.length > 1;
+
+    if (previous) {
+      previous.hidden = !multiple;
+    }
+
+    if (next) {
+      next.hidden = !multiple;
+    }
+
+    setViewerScale(1);
+  }
+
+  function moveViewer(direction) {
+    if (
+      viewerImages.length <= 1
+    ) {
+      return;
+    }
+
+    viewerIndex += direction;
+    renderViewerImage();
+  }
+
+  function closeViewer() {
+    const viewer =
+      document.getElementById(VIEWER_ID);
+
+    if (!viewer) return;
+
+    viewer.classList.remove(
+      "is-open"
+    );
+
+    document.body.style.removeProperty(
+      "overflow"
+    );
+
+    setViewerScale(1);
+  }
+
+  function openViewer() {
+    viewerImages =
+      collectViewerImages();
+
+    if (!viewerImages.length) {
+      return;
+    }
+
+    const main = detailMainImage();
+
+    const current = main
+      ? absoluteImageURL(
+          main.currentSrc ||
+          main.getAttribute("src") ||
+          main.src
+        )
+      : "";
+
+    const currentIndex =
+      viewerImages.indexOf(current);
+
+    viewerIndex =
+      currentIndex >= 0
+        ? currentIndex
+        : 0;
+
+    renderViewerImage();
+
+    const viewer =
+      document.getElementById(VIEWER_ID);
+
+    if (!viewer) return;
+
+    viewer.classList.add(
+      "is-open"
+    );
+
+    document.body.style.overflow =
+      "hidden";
+
+    viewer
+      .querySelector(
+        ".locan-viewer-close"
+      )
+      ?.focus();
+  }
+
+  function installViewer() {
+    installViewerStyles();
+
+    if (
+      !document.getElementById(
+        VIEWER_ID
+      )
+    ) {
+      const viewer =
+        document.createElement("div");
+
+      viewer.id = VIEWER_ID;
+      viewer.setAttribute(
+        "role",
+        "dialog"
+      );
+      viewer.setAttribute(
+        "aria-modal",
+        "true"
+      );
+
+      viewer.innerHTML = `
+        <button
+          type="button"
+          class="locan-viewer-close"
+          aria-label="Close"
+        >×</button>
+
+        <button
+          type="button"
+          class="locan-viewer-prev"
+          aria-label="Previous image"
+        >‹</button>
+
+        <div class="locan-viewer-stage">
+          <img
+            class="locan-viewer-image"
+            alt=""
+            decoding="async"
+          >
+        </div>
+
+        <button
+          type="button"
+          class="locan-viewer-next"
+          aria-label="Next image"
+        >›</button>
+
+        <div class="locan-viewer-tools">
+          <button
+            type="button"
+            class="locan-viewer-zoom-out"
+            aria-label="Zoom out"
+          >−</button>
+
+          <span
+            class="locan-viewer-counter"
+          >1 / 1</span>
+
+          <button
+            type="button"
+            class="locan-viewer-zoom-in"
+            aria-label="Zoom in"
+          >+</button>
+        </div>
+      `;
+
+      document.body.appendChild(viewer);
+
+      viewer
+        .querySelector(
+          ".locan-viewer-close"
+        )
+        ?.addEventListener(
+          "click",
+          closeViewer
+        );
+
+      viewer
+        .querySelector(
+          ".locan-viewer-prev"
+        )
+        ?.addEventListener(
+          "click",
+          () => moveViewer(-1)
+        );
+
+      viewer
+        .querySelector(
+          ".locan-viewer-next"
+        )
+        ?.addEventListener(
+          "click",
+          () => moveViewer(1)
+        );
+
+      viewer
+        .querySelector(
+          ".locan-viewer-zoom-in"
+        )
+        ?.addEventListener(
+          "click",
+          () =>
+            setViewerScale(
+              viewerScale + .25
+            )
+        );
+
+      viewer
+        .querySelector(
+          ".locan-viewer-zoom-out"
+        )
+        ?.addEventListener(
+          "click",
+          () =>
+            setViewerScale(
+              viewerScale - .25
+            )
+        );
+
+      viewer
+        .querySelector(
+          ".locan-viewer-image"
+        )
+        ?.addEventListener(
+          "click",
+          () => {
+            setViewerScale(
+              viewerScale > 1
+                ? 1
+                : 2
+            );
+          }
+        );
+
+      viewer.addEventListener(
+        "wheel",
+        event => {
+          event.preventDefault();
+
+          setViewerScale(
+            viewerScale +
+            (
+              event.deltaY < 0
+                ? .2
+                : -.2
+            )
+          );
+        },
+        { passive: false }
+      );
+
+      viewer.addEventListener(
+        "pointerdown",
+        event => {
+          if (
+            event.pointerType ===
+            "touch"
+          ) {
+            viewerTouchStartX =
+              event.clientX;
+          }
+        }
+      );
+
+      viewer.addEventListener(
+        "pointerup",
+        event => {
+          if (
+            event.pointerType !==
+              "touch" ||
+            viewerTouchStartX ===
+              null ||
+            viewerScale > 1.01
+          ) {
+            viewerTouchStartX =
+              null;
+            return;
+          }
+
+          const distance =
+            event.clientX -
+            viewerTouchStartX;
+
+          viewerTouchStartX =
+            null;
+
+          if (
+            Math.abs(distance) <
+            45
+          ) {
+            return;
+          }
+
+          moveViewer(
+            distance < 0
+              ? 1
+              : -1
+          );
+        }
+      );
+
+      viewer.addEventListener(
+        "click",
+        event => {
+          if (
+            event.target === viewer
+          ) {
+            closeViewer();
+          }
+        }
+      );
+    }
+
+    const main = detailMainImage();
+
+    if (
+      main &&
+      main.dataset.locanViewerBound !==
+        "true"
+    ) {
+      main.dataset.locanViewerBound =
+        "true";
+
+      main.setAttribute(
+        "role",
+        "button"
+      );
+
+      main.tabIndex = 0;
+
+      main.setAttribute(
+        "aria-label",
+        currentLang() === "vi"
+          ? "Mở ảnh toàn màn hình"
+          : "Open fullscreen image"
+      );
+
+      main.addEventListener(
+        "click",
+        openViewer
+      );
+
+      main.addEventListener(
+        "keydown",
+        event => {
+          if (
+            event.key === "Enter" ||
+            event.key === " "
+          ) {
+            event.preventDefault();
+            openViewer();
+          }
+        }
+      );
+    }
+  }
+
+  function syncImagePerformanceHints() {
+    const main = detailMainImage();
+
+    if (main) {
+      main.loading = "eager";
+      main.decoding = "async";
+      main.setAttribute(
+        "fetchpriority",
+        "high"
+      );
+    }
+
+    document
+      .querySelectorAll(
+        ".shoe-detail-thumbnail img"
+      )
+      .forEach(image => {
+        image.loading = "lazy";
+        image.decoding = "async";
+        image.setAttribute(
+          "fetchpriority",
+          "low"
+        );
+      });
+  }
+
+  function registerDetailServiceWorker() {
+    if (
+      !("serviceWorker" in navigator) ||
+      !window.isSecureContext
+    ) {
+      return;
+    }
+
+    window.addEventListener(
+      "load",
+      () => {
+        navigator.serviceWorker
+          .register(
+            "./sw.js?v=20261003-performance-v1"
+          )
+          .catch(() => {});
+      },
+      { once: true }
+    );
+  }
+
+  document.addEventListener(
+    "keydown",
+    event => {
+      const viewer =
+        document.getElementById(
+          VIEWER_ID
+        );
+
+      if (
+        !viewer?.classList.contains(
+          "is-open"
+        )
+      ) {
+        return;
+      }
+
+      if (event.key === "Escape") {
+        closeViewer();
+      } else if (
+        event.key === "ArrowLeft"
+      ) {
+        moveViewer(-1);
+      } else if (
+        event.key === "ArrowRight"
+      ) {
+        moveViewer(1);
+      }
+    }
+  );
+
   function syncAll() {
     installStyles();
     syncShareButton();
     syncFooter();
     removeLegoCatalogueNotes();
     syncSneakerCatalogueNote();
+    installViewer();
+    syncImagePerformanceHints();
   }
 
   function scheduleSync() {
@@ -591,6 +1373,7 @@
   }
 
   function install() {
+    registerDetailServiceWorker();
     syncAll();
 
     const observer =
