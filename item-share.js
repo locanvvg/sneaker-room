@@ -33,12 +33,22 @@
           share: "SHARE",
           copied: "LINK COPIED",
           aria: "Share this item",
+          dialogTitle: "SHARE ITEM",
+          copy: "COPY LINK",
+          facebook: "FACEBOOK",
+          email: "EMAIL",
+          close: "Close share dialog",
           sentence: title => `View ${title} in the Lộc An Collection.`
         }
       : {
           share: "CHIA SẺ",
           copied: "ĐÃ SAO CHÉP LINK",
           aria: "Chia sẻ hiện vật này",
+          dialogTitle: "CHIA SẺ HIỆN VẬT",
+          copy: "SAO CHÉP LIÊN KẾT",
+          facebook: "FACEBOOK",
+          email: "EMAIL",
+          close: "Đóng cửa sổ chia sẻ",
           sentence: title => `Xem ${title} trong Bộ sưu tập Lộc An.`
         };
   };
@@ -246,6 +256,122 @@
         font-weight: 800;
       }
 
+      .locan-share-dialog {
+        position: fixed;
+        inset: 0;
+        z-index: 100020;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 22px;
+        background: rgba(0,0,0,.72);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+      }
+
+      .locan-share-dialog.is-open {
+        display: flex;
+      }
+
+      .locan-share-card {
+        position: relative;
+        width: min(440px, 100%);
+        box-sizing: border-box;
+        padding: 22px;
+        background: #171719;
+        border: 1px solid rgba(255,255,255,.12);
+        border-radius: 14px;
+        box-shadow: 0 24px 80px rgba(0,0,0,.42);
+      }
+
+      .locan-share-dialog-title {
+        margin: 0 42px 8px 0;
+        color: #ffcc00;
+        font-size: .74rem;
+        font-weight: 900;
+        letter-spacing: .12em;
+      }
+
+      .locan-share-dialog-item {
+        margin: 0 0 18px;
+        color: #f3f3f5;
+        font-size: 1rem;
+        font-weight: 750;
+        line-height: 1.4;
+      }
+
+      .locan-share-dialog-close {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        width: 34px;
+        height: 34px;
+        padding: 0;
+        color: #aaaab0;
+        background: transparent;
+        border: 1px solid rgba(255,255,255,.10);
+        border-radius: 50%;
+        cursor: pointer;
+        font: inherit;
+        font-size: 20px;
+        line-height: 1;
+      }
+
+      .locan-share-url {
+        width: 100%;
+        box-sizing: border-box;
+        margin: 0 0 10px;
+        padding: 11px 12px;
+        color: #bdbdc2;
+        background: #0f0f10;
+        border: 1px solid rgba(255,255,255,.10);
+        border-radius: 8px;
+        font: inherit;
+        font-size: .76rem;
+        line-height: 1.35;
+      }
+
+      .locan-share-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 9px;
+      }
+
+      .locan-share-actions button {
+        min-height: 42px;
+        padding: 10px 12px;
+        color: #d6d6da;
+        background: rgba(255,255,255,.035);
+        border: 1px solid rgba(255,255,255,.11);
+        border-radius: 8px;
+        cursor: pointer;
+        font: inherit;
+        font-size: .7rem;
+        font-weight: 850;
+        letter-spacing: .05em;
+      }
+
+      .locan-share-actions button:hover,
+      .locan-share-actions button:focus-visible {
+        color: #ffcc00;
+        border-color: rgba(255,204,0,.45);
+        outline: none;
+      }
+
+      .locan-share-actions .locan-share-copy {
+        grid-column: 1 / -1;
+        color: #111;
+        background: #ffcc00;
+        border-color: #ffcc00;
+      }
+
+      .locan-share-actions .locan-share-copy:hover,
+      .locan-share-actions .locan-share-copy:focus-visible {
+        color: #111;
+        background: #ffd633;
+        border-color: #ffd633;
+      }
+
       @media (max-width: 650px) {
         .${BUTTON_CLASS} {
           min-height: 40px;
@@ -404,7 +530,7 @@
     */
     shareURL.searchParams.set(
       "preview",
-      "2"
+      "3"
     );
 
     return shareURL.href;
@@ -433,41 +559,321 @@
     if (label) label.textContent = value;
   }
 
-  async function shareItem(button, title) {
+  function isMobileShareEnvironment() {
+    const mobileUA =
+      /Android|iPhone|iPad|iPod|Mobile/i
+        .test(
+          navigator.userAgent || ""
+        );
+
+    const coarsePointer =
+      typeof window.matchMedia ===
+        "function" &&
+      window
+        .matchMedia(
+          "(pointer: coarse)"
+        )
+        .matches;
+
+    return (
+      mobileUA ||
+      (
+        coarsePointer &&
+        window.innerWidth <= 900
+      )
+    );
+  }
+
+  function closeDesktopShare() {
+    const dialog =
+      document.getElementById(
+        "locan-share-dialog"
+      );
+
+    if (!dialog) return;
+
+    dialog.classList.remove(
+      "is-open"
+    );
+
+    document.body.style
+      .removeProperty(
+        "overflow"
+      );
+  }
+
+  function openDesktopShare(
+    title,
+    url
+  ) {
+    const t = shareText();
+
+    let dialog =
+      document.getElementById(
+        "locan-share-dialog"
+      );
+
+    if (!dialog) {
+      dialog =
+        document.createElement(
+          "div"
+        );
+
+      dialog.id =
+        "locan-share-dialog";
+
+      dialog.className =
+        "locan-share-dialog";
+
+      dialog.setAttribute(
+        "role",
+        "dialog"
+      );
+
+      dialog.setAttribute(
+        "aria-modal",
+        "true"
+      );
+
+      dialog.innerHTML = `
+        <div class="locan-share-card">
+          <button
+            type="button"
+            class="locan-share-dialog-close"
+          >×</button>
+
+          <div
+            class="locan-share-dialog-title"
+          ></div>
+
+          <div
+            class="locan-share-dialog-item"
+          ></div>
+
+          <input
+            class="locan-share-url"
+            type="text"
+            readonly
+          >
+
+          <div class="locan-share-actions">
+            <button
+              type="button"
+              class="locan-share-copy"
+            ></button>
+
+            <button
+              type="button"
+              class="locan-share-facebook"
+            ></button>
+
+            <button
+              type="button"
+              class="locan-share-email"
+            ></button>
+          </div>
+        </div>
+      `;
+
+      document.body
+        .appendChild(
+          dialog
+        );
+
+      dialog
+        .querySelector(
+          ".locan-share-dialog-close"
+        )
+        ?.addEventListener(
+          "click",
+          closeDesktopShare
+        );
+
+      dialog.addEventListener(
+        "click",
+        event => {
+          if (
+            event.target ===
+            dialog
+          ) {
+            closeDesktopShare();
+          }
+        }
+      );
+    }
+
+    dialog
+      .querySelector(
+        ".locan-share-dialog-title"
+      )
+      .textContent =
+        t.dialogTitle;
+
+    dialog
+      .querySelector(
+        ".locan-share-dialog-item"
+      )
+      .textContent =
+        title;
+
+    const urlInput =
+      dialog.querySelector(
+        ".locan-share-url"
+      );
+
+    urlInput.value = url;
+
+    const close =
+      dialog.querySelector(
+        ".locan-share-dialog-close"
+      );
+
+    close.setAttribute(
+      "aria-label",
+      t.close
+    );
+
+    const copy =
+      dialog.querySelector(
+        ".locan-share-copy"
+      );
+
+    copy.textContent =
+      t.copy;
+
+    copy.onclick =
+      async () => {
+        try {
+          await copyURL(url);
+          copy.textContent =
+            t.copied;
+
+          window.setTimeout(
+            () => {
+              copy.textContent =
+                shareText().copy;
+            },
+            1600
+          );
+        } catch (_) {
+          urlInput.focus();
+          urlInput.select();
+        }
+      };
+
+    const facebook =
+      dialog.querySelector(
+        ".locan-share-facebook"
+      );
+
+    facebook.textContent =
+      t.facebook;
+
+    facebook.onclick =
+      () => {
+        window.open(
+          "https://www.facebook.com/sharer/sharer.php?u=" +
+          encodeURIComponent(url),
+          "_blank",
+          "noopener,noreferrer,width=720,height=620"
+        );
+      };
+
+    const email =
+      dialog.querySelector(
+        ".locan-share-email"
+      );
+
+    email.textContent =
+      t.email;
+
+    email.onclick =
+      () => {
+        const subject =
+          encodeURIComponent(title);
+
+        const body =
+          encodeURIComponent(
+            `${t.sentence(title)}\n\n${url}`
+          );
+
+        window.location.href =
+          `mailto:?subject=${subject}&body=${body}`;
+      };
+
+    dialog.classList.add(
+      "is-open"
+    );
+
+    document.body.style
+      .setProperty(
+        "overflow",
+        "hidden"
+      );
+
+    window.setTimeout(
+      () => copy.focus(),
+      0
+    );
+  }
+
+  async function shareItem(
+    button,
+    title
+  ) {
     const t = shareText();
     const url = exactShareURL();
 
-    if (typeof navigator.share === "function") {
+    /*
+      Desktop browsers (especially Chromium/Brave variants)
+      can expose navigator.share but fail to show a usable share
+      sheet. Use a deterministic in-page dialog on desktop.
+    */
+    if (
+      isMobileShareEnvironment() &&
+      typeof navigator.share ===
+        "function"
+    ) {
       try {
         await navigator.share({
-          title,
-          text: t.sentence(title),
           url
         });
+
         return;
       } catch (error) {
-        if (error?.name === "AbortError") return;
+        if (
+          error?.name ===
+          "AbortError"
+        ) {
+          return;
+        }
       }
     }
 
-    try {
-      await copyURL(url);
-      button.classList.add("is-copied");
-      setButtonText(button, t.copied);
-
-      window.setTimeout(() => {
-        button.classList.remove("is-copied");
-        setButtonText(button, shareText().share);
-      }, 1800);
-    } catch (_) {
-      window.prompt(
-        currentLang() === "en"
-          ? "Copy this link:"
-          : "Sao chép liên kết này:",
-        url
-      );
-    }
+    openDesktopShare(
+      title,
+      url
+    );
   }
+
+  document.addEventListener(
+    "keydown",
+    event => {
+      if (
+        event.key === "Escape" &&
+        document
+          .getElementById(
+            "locan-share-dialog"
+          )
+          ?.classList
+          .contains(
+            "is-open"
+          )
+      ) {
+        closeDesktopShare();
+      }
+    }
+  );
 
   function createButton(section) {
     const t = shareText();
