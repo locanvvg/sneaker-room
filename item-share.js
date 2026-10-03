@@ -16,7 +16,6 @@
   const STYLE_ID = "locan-item-detail-utilities-v2";
   const BUTTON_CLASS = "locan-item-share-button";
   const NOTE_ID = "locan-special-catalogue-note";
-  let observerQueued = false;
 
   const currentLang = () =>
     String(document.documentElement.lang || "")
@@ -1865,38 +1864,16 @@
     syncImagePerformanceHints();
   }
 
-  function scheduleSync() {
-    if (observerQueued) return;
-    observerQueued = true;
-
-    requestAnimationFrame(() => {
-      observerQueued = false;
-      syncAll();
-    });
-  }
-
   function install() {
     registerDetailServiceWorker();
     syncAll();
 
-    const observer =
-      new MutationObserver(scheduleSync);
-
-    observer.observe(
-      document.body,
-      {
-        childList: true,
-        subtree: true,
-        characterData: true,
-        attributes: true,
-        attributeFilter: [
-          "class",
-          "lang",
-          "hidden"
-        ]
-      }
-    );
-
+    /*
+      Detail renderers are loaded before this file, so the first sync runs
+      after their DOM is available. Language changes re-render the page;
+      run a small deterministic resync afterwards instead of observing every
+      DOM mutation. This keeps the desktop share dialog stable.
+    */
     document.addEventListener(
       "click",
       event => {
