@@ -1,14 +1,26 @@
-name: Build optimized image archive
+name: Build optimized site assets
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - "data.js"
+      - "catalog-additions.js"
+      - "lego-data.js"
+      - "sneaker-mask-data.js"
+      - "pictures/**"
+      - "!pictures/optimized/**"
+      - "tools/optimize-images.mjs"
+      - "tools/generate-share-pages.mjs"
+      - ".github/workflows/image-optimization.yml"
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  optimize:
+  build-assets:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -18,15 +30,26 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Install image optimizer
+      - name: Install image tools
         run: npm install --no-save sharp
 
       - name: Create optimized WebP copies
         run: node tools/optimize-images.mjs --write
 
-      - name: Upload optimized image artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: locan-optimized-images
-          path: pictures/optimized
-          if-no-files-found: error
+      - name: Build item share previews
+        run: node tools/generate-share-pages.mjs
+
+      - name: Commit generated assets
+        shell: bash
+        run: |
+          if git diff --quiet -- pictures/optimized share; then
+            echo "No generated asset changes."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add pictures/optimized share
+          git commit -m "Build optimized collection assets [skip ci]"
+          git push
