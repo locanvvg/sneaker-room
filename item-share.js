@@ -44,6 +44,9 @@
           privateMessage: "PRIVATE MESSAGE",
           copiedTitle: "LINK COPIED",
           copiedMessage: "The item link has been copied to your clipboard. Open the conversation you want, then paste the link into the message field to send it.",
+          instagramPostTitle: "READY TO POST",
+          instagramPostMessage: "The item link has been copied to your clipboard. Instagram does not provide a direct web share endpoint for external websites. Open Instagram, choose Create (+), add your post, then paste the link into the caption if you want to include it.",
+          openInstagram: "OPEN INSTAGRAM",
           openMessenger: "OPEN MESSENGER",
           openInstagramDirect: "OPEN INSTAGRAM DIRECT",
           close: "Close share dialog",
@@ -63,8 +66,11 @@
           instagramOptions: "TÙY CHỌN INSTAGRAM",
           post: "ĐĂNG BÀI",
           privateMessage: "TIN NHẮN RIÊNG",
-          copiedTitle: "ĐÃ SAO CHÉP LIÊN KẾT",
+          copiedTitle: "ĐÃ SẴN SÀNG ĐỂ ĐĂNG",
           copiedMessage: "Liên kết của hiện vật đã được sao chép vào clipboard. Hãy mở cuộc trò chuyện bạn muốn, sau đó dán liên kết vào khung tin nhắn để gửi.",
+          instagramPostTitle: "ĐÃ SẴN SÀNG ĐỂ ĐĂNG",
+          instagramPostMessage: "Liên kết của hiện vật đã được sao chép vào clipboard. Instagram không cung cấp đường dẫn web cho phép website bên ngoài mở trực tiếp trình soạn bài. Hãy mở Instagram, chọn Tạo (+), thêm nội dung bài đăng rồi dán liên kết vào phần chú thích nếu bạn muốn đính kèm.",
+          openInstagram: "MỞ INSTAGRAM",
           openMessenger: "MỞ MESSENGER",
           openInstagramDirect: "MỞ INSTAGRAM DIRECT",
           close: "Đóng cửa sổ chia sẻ",
@@ -1060,9 +1066,11 @@
       return option;
     }
 
-    async function showPrivateMessageNotice(
+    async function showCopiedLinkNotice(
       destination,
-      openLabel
+      openLabel,
+      titleText = t.copiedTitle,
+      messageText = t.copiedMessage
     ) {
       try {
         await copyURL(url);
@@ -1076,10 +1084,10 @@
       );
 
       copyNoticeTitle.textContent =
-        t.copiedTitle;
+        titleText;
 
       copyNoticeText.textContent =
-        t.copiedMessage;
+        messageText;
 
       copyNoticeOpen.textContent =
         openLabel;
@@ -1138,7 +1146,7 @@
         optionButton(
           t.privateMessage,
           () =>
-            showPrivateMessageNotice(
+            showCopiedLinkNotice(
               "https://www.messenger.com/",
               t.openMessenger
             )
@@ -1168,25 +1176,18 @@
       platformOptions.append(
         optionButton(
           t.post,
-          async () => {
-            try {
-              await copyURL(url);
-            } catch (_) {
-              urlInput.focus();
-              urlInput.select();
-            }
-
-            window.open(
-              "https://www.instagram.com/create/select/",
-              "_blank",
-              "noopener,noreferrer"
-            );
-          }
+          () =>
+            showCopiedLinkNotice(
+              "https://www.instagram.com/",
+              t.openInstagram,
+              t.instagramPostTitle,
+              t.instagramPostMessage
+            )
         ),
         optionButton(
           t.privateMessage,
           () =>
-            showPrivateMessageNotice(
+            showCopiedLinkNotice(
               "https://www.instagram.com/direct/inbox/",
               t.openInstagramDirect
             )
