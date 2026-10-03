@@ -8,6 +8,7 @@ on:
       - "catalog-additions.js"
       - "lego-data.js"
       - "sneaker-mask-data.js"
+      - "item-share.js"
       - "pictures/**"
       - "!pictures/optimized/**"
       - "tools/optimize-images.mjs"
