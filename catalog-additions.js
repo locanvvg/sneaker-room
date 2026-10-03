@@ -816,3 +816,329 @@ if (
     applyBalenciagaSoldPatch();
   }
 })();
+
+/* =========================================================
+   EMERGENCY OWN / FORMERLY SEPARATION FALLBACK — 2026-10-02
+   ---------------------------------------------------------
+   data.js normally owns the real collection-status controller.
+   This fallback activates ONLY when that native controller did
+   not appear after page load (for example, when an older cached
+   data.js was served). It never runs when the native controller
+   is present, so there is no double filtering.
+
+   Public behavior:
+   - Default: IN COLLECTION only
+   - Alternate: FORMERLY IN COLLECTION only
+   - Statuses are mutually exclusive
+   - Switching status clears stale search/normal filters
+   - SOLD/FORMLY mode disables normal condition/edition/size
+========================================================= */
+(() => {
+  "use strict";
+
+  const GROUP_ID = "collection-status-filter-group";
+  const OWN_ID = "collection-status-own";
+  const SOLD_ID = "collection-status-sold";
+  const STYLE_ID = "locan-status-separation-fallback-20261002";
+
+  let installed = false;
+  let selectedStatus = "own";
+
+  const statusOf = item =>
+    String(item?.collectionStatus || "own")
+      .trim()
+      .toLowerCase() === "sold"
+        ? "sold"
+        : "own";
+
+  function clearTransientState() {
+    try {
+      activeFilters?.edition?.clear();
+      activeFilters?.condition?.clear();
+      activeFilters?.size?.clear();
+    } catch (_) {}
+
+    try {
+      archiveSearchQuery = "";
+    } catch (_) {}
+
+    const input =
+      document.getElementById("archive-search-input");
+
+    if (input) {
+      input.value = "";
+    }
+
+    try {
+      if (typeof updateArchiveSearchUI === "function") {
+        updateArchiveSearchUI();
+      }
+    } catch (_) {}
+
+    try {
+      if (typeof updateFilterInterface === "function") {
+        updateFilterInterface();
+      }
+    } catch (_) {}
+  }
+
+  function installFallbackStyles() {
+    document.getElementById(STYLE_ID)?.remove();
+
+    const style = document.createElement("style");
+    style.id = STYLE_ID;
+    style.textContent = `
+      #${GROUP_ID} .filter-chips {
+        align-items: center;
+      }
+
+      #${GROUP_ID} .collection-status-chip {
+        white-space: normal;
+        line-height: 1.15;
+        text-align: center;
+      }
+
+      #${GROUP_ID} .collection-status-chip.active {
+        background: #ffcc00 !important;
+        border-color: #ffcc00 !important;
+        color: #000 !important;
+      }
+
+      body.collection-status-sold
+      .filter-group.collection-filter-ignored {
+        opacity: .32;
+        pointer-events: none;
+        user-select: none;
+      }
+
+      body.collection-status-sold #clear-filters {
+        opacity: 0 !important;
+        pointer-events: none !important;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  function reorderGroups() {
+    const panel = document.querySelector(".filter-panel");
+    if (!panel) return;
+
+    const statusGroup = document.getElementById(GROUP_ID);
+    const conditionGroup =
+      document.getElementById("condition-filter-label")
+        ?.closest(".filter-group");
+    const editionGroup =
+      document.getElementById("edition-filter-label")
+        ?.closest(".filter-group");
+    const sizeGroup =
+      document.getElementById("size-filter-label")
+        ?.closest(".filter-group");
+
+    [statusGroup, conditionGroup, editionGroup, sizeGroup]
+      .filter(Boolean)
+      .forEach(group => panel.appendChild(group));
+  }
+
+  function updateUI() {
+    const isSold = selectedStatus === "sold";
+
+    const own = document.getElementById(OWN_ID);
+    const sold = document.getElementById(SOLD_ID);
+
+    own?.classList.toggle("active", !isSold);
+    sold?.classList.toggle("active", isSold);
+
+    own?.setAttribute("aria-pressed", String(!isSold));
+    sold?.setAttribute("aria-pressed", String(isSold));
+
+    document.body?.classList.toggle(
+      "collection-status-own",
+      !isSold
+    );
+    document.body?.classList.toggle(
+      "collection-status-sold",
+      isSold
+    );
+
+    const normalGroups = [
+      document.getElementById("condition-filter-label")
+        ?.closest(".filter-group"),
+      document.getElementById("edition-filter-label")
+        ?.closest(".filter-group"),
+      document.getElementById("size-filter-label")
+        ?.closest(".filter-group")
+    ].filter(Boolean);
+
+    normalGroups.forEach(group => {
+      group.classList.toggle(
+        "collection-filter-ignored",
+        isSold
+      );
+      group.setAttribute(
+        "aria-disabled",
+        isSold ? "true" : "false"
+      );
+    });
+
+    reorderGroups();
+  }
+
+  function switchStatus(nextStatus) {
+    selectedStatus =
+      nextStatus === "sold"
+        ? "sold"
+        : "own";
+
+    clearTransientState();
+    updateUI();
+
+    try {
+      if (typeof reset3DPosition === "function") {
+        reset3DPosition();
+      }
+    } catch (_) {}
+
+    if (typeof renderGrid === "function") {
+      renderGrid();
+    }
+  }
+
+  function createFallbackUI() {
+    const panel = document.querySelector(".filter-panel");
+    if (!panel || document.getElementById(GROUP_ID)) {
+      return false;
+    }
+
+    const group = document.createElement("div");
+    group.id = GROUP_ID;
+    group.className =
+      "filter-group collection-status-filter-group";
+
+    group.innerHTML = `
+      <div
+        id="collection-status-filter-label"
+        class="filter-group-label"
+      >
+        TRẠNG THÁI BỘ SƯU TẬP
+      </div>
+
+      <div class="filter-chips collection-status-chips">
+        <button
+          type="button"
+          id="${OWN_ID}"
+          class="filter-chip collection-status-chip collection-status-chip-own active"
+          data-collection-status="own"
+          aria-pressed="true"
+        >
+          IN COLLECTION
+        </button>
+
+        <button
+          type="button"
+          id="${SOLD_ID}"
+          class="filter-chip collection-status-chip collection-status-chip-sold"
+          data-collection-status="sold"
+          aria-pressed="false"
+        >
+          FORMERLY IN COLLECTION
+        </button>
+      </div>
+    `;
+
+    group
+      .querySelectorAll("[data-collection-status]")
+      .forEach(button => {
+        button.addEventListener("click", () => {
+          switchStatus(button.dataset.collectionStatus);
+        });
+      });
+
+    panel.appendChild(group);
+    reorderGroups();
+    return true;
+  }
+
+  function installFallback() {
+    if (installed) return;
+
+    /*
+      The current data.js controller gets first priority.
+      If it exists, leave it completely untouched.
+    */
+    if (document.getElementById(GROUP_ID)) {
+      return;
+    }
+
+    if (
+      typeof filterSneakers !== "function" ||
+      typeof renderGrid !== "function"
+    ) {
+      return;
+    }
+
+    if (!createFallbackUI()) {
+      return;
+    }
+
+    installFallbackStyles();
+
+    const previousFilterSneakers = filterSneakers;
+
+    filterSneakers = function statusSeparatedFilter(items) {
+      const source =
+        Array.isArray(items)
+          ? items
+          : [];
+
+      /*
+        Filter status FIRST, then let the existing search /
+        normal filter stack operate only inside that status.
+        Statuses can therefore never be merged in one result.
+      */
+      const statusItems =
+        source.filter(
+          item =>
+            statusOf(item) === selectedStatus
+        );
+
+      return previousFilterSneakers(statusItems);
+    };
+
+    installed = true;
+    selectedStatus = "own";
+    clearTransientState();
+    updateUI();
+
+    try {
+      if (typeof reset3DPosition === "function") {
+        reset3DPosition();
+      }
+    } catch (_) {}
+
+    renderGrid();
+  }
+
+  /*
+    Wait until every normal homepage script and data.js load
+    handler has had a chance to install the native controller.
+  */
+  const schedule = () => {
+    [250, 600, 1200].forEach(delay => {
+      setTimeout(() => {
+        if (!installed) {
+          installFallback();
+        }
+      }, delay);
+    });
+  };
+
+  if (document.readyState === "complete") {
+    schedule();
+  } else {
+    window.addEventListener(
+      "load",
+      schedule,
+      { once: true }
+    );
+  }
+})();
