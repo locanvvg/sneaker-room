@@ -274,43 +274,140 @@
     );
   }
 
+  function activeShareImageVariant() {
+    const thumbnails =
+      Array.from(
+        document.querySelectorAll(
+          ".shoe-detail-thumbnail"
+        )
+      );
+
+    if (thumbnails.length <= 1) {
+      return {
+        index: 0,
+        total: Math.max(
+          thumbnails.length,
+          1
+        )
+      };
+    }
+
+    const activeIndex =
+      thumbnails.findIndex(
+        button =>
+          button.classList.contains(
+            "active"
+          )
+      );
+
+    return {
+      index:
+        activeIndex >= 0
+          ? activeIndex
+          : 0,
+      total: thumbnails.length
+    };
+  }
+
   function exactShareURL() {
-    const current = new URL(window.location.href);
+    const current =
+      new URL(
+        window.location.href
+      );
+
     current.hash = "";
 
-    const id = current.searchParams.get("id");
-    if (!id) return current.href;
+    const id =
+      current.searchParams.get(
+        "id"
+      );
 
-    const path = current.pathname;
+    if (!id) {
+      return current.href;
+    }
+
+    const path =
+      current.pathname;
+
     let type = "";
 
     if (
-      path.endsWith("/shoe.html") ||
-      path.endsWith("shoe.html")
+      path.endsWith(
+        "/shoe.html"
+      ) ||
+      path.endsWith(
+        "shoe.html"
+      )
     ) {
       type = "sneakers";
     } else if (
-      path.endsWith("/lego-detail.html") ||
-      path.endsWith("lego-detail.html")
+      path.endsWith(
+        "/lego-detail.html"
+      ) ||
+      path.endsWith(
+        "lego-detail.html"
+      )
     ) {
       type = "lego";
     } else if (
-      path.endsWith("/sneaker-mask-detail.html") ||
-      path.endsWith("sneaker-mask-detail.html")
+      path.endsWith(
+        "/sneaker-mask-detail.html"
+      ) ||
+      path.endsWith(
+        "sneaker-mask-detail.html"
+      )
     ) {
       type = "masks";
     }
 
-    if (!type) return current.href;
+    if (!type) {
+      return current.href;
+    }
 
-    const safeId = String(id)
-      .trim()
-      .replace(/[^a-zA-Z0-9_-]+/g, "-");
+    const safeId =
+      String(id)
+        .trim()
+        .replace(
+          /[^a-zA-Z0-9_-]+/g,
+          "-"
+        );
 
-    return new URL(
-      `./share/${currentLang()}/${type}/${safeId}.html`,
-      new URL("./", current)
-    ).href;
+    let variant = "";
+
+    /*
+      Sneakers with multiple gallery images share a unique
+      static URL for the image currently selected on screen.
+      Single-image items keep the normal base share URL.
+    */
+    if (type === "sneakers") {
+      const image =
+        activeShareImageVariant();
+
+      if (image.total > 1) {
+        variant =
+          `--img-${image.index + 1}`;
+      }
+    }
+
+    const shareURL =
+      new URL(
+        `./share/${currentLang()}/${type}/${safeId}${variant}.html`,
+        new URL(
+          "./",
+          current
+        )
+      );
+
+    /*
+      Versioned query prevents messaging apps from reusing
+      a previously cached 404 / empty preview from the old URL.
+    */
+    shareURL.searchParams.set(
+      "preview",
+      "2"
+    );
+
+    return shareURL.href;
   }
 
   async function copyURL(url) {
