@@ -138,7 +138,7 @@
 
         html body .sneaker-3d-image img[data-3d-calibration="jordan-4-black-cement"] {
           scale: 1 1 !important;
-          transform: scale(.78) !important;
+          transform: scale(.83) !important;
         }
 
         html body .sneaker-3d-image img[data-3d-calibration="bape-stussy"] {
@@ -220,7 +220,7 @@
       html body .sneaker-3d-image
       img[data-catalog-image="true"][data-sneaker-id="new-balance-2002r-custom"] {
         scale: 1 1 !important;
-        transform: scale(.59) !important;
+        transform: scale(.54) !important;
         transform-origin: center center !important;
       }
     `;
