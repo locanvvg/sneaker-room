@@ -35,6 +35,7 @@
           dialogTitle: "SHARE ITEM",
           copy: "COPY LINK",
           facebook: "FACEBOOK",
+          instagram: "INSTAGRAM",
           email: "EMAIL",
           close: "Close share dialog",
           sentence: title => `View ${title} in the Lộc An Collection.`
@@ -46,6 +47,7 @@
           dialogTitle: "CHIA SẺ HIỆN VẬT",
           copy: "SAO CHÉP LIÊN KẾT",
           facebook: "FACEBOOK",
+          instagram: "INSTAGRAM",
           email: "EMAIL",
           close: "Đóng cửa sổ chia sẻ",
           sentence: title => `Xem ${title} trong Bộ sưu tập Lộc An.`
@@ -332,7 +334,7 @@
 
       .locan-share-actions {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 9px;
       }
 
@@ -372,6 +374,14 @@
       }
 
       @media (max-width: 650px) {
+        .locan-share-actions {
+          grid-template-columns: 1fr;
+        }
+
+        .locan-share-actions .locan-share-copy {
+          grid-column: auto;
+        }
+
         .${BUTTON_CLASS} {
           min-height: 40px;
           margin-top: 12px;
@@ -668,6 +678,11 @@
 
             <button
               type="button"
+              class="locan-share-instagram"
+            ></button>
+
+            <button
+              type="button"
               class="locan-share-email"
             ></button>
           </div>
@@ -770,12 +785,50 @@
 
     facebook.onclick =
       () => {
+        /*
+          Facebook's public web sharer only creates feed posts.
+          For private sharing, copy the exact item link and open
+          Messenger so the user can choose a conversation.
+        */
         window.open(
-          "https://www.facebook.com/sharer/sharer.php?u=" +
-          encodeURIComponent(url),
+          "https://www.messenger.com/",
           "_blank",
-          "noopener,noreferrer,width=720,height=620"
+          "noopener,noreferrer"
         );
+
+        copyURL(url)
+          .catch(() => {
+            urlInput.focus();
+            urlInput.select();
+          });
+      };
+
+    const instagram =
+      dialog.querySelector(
+        ".locan-share-instagram"
+      );
+
+    instagram.textContent =
+      t.instagram;
+
+    instagram.onclick =
+      () => {
+        /*
+          Instagram does not expose a general desktop web API
+          for pre-filling arbitrary link shares. Copy the exact
+          item link, then open Instagram Direct.
+        */
+        window.open(
+          "https://www.instagram.com/direct/inbox/",
+          "_blank",
+          "noopener,noreferrer"
+        );
+
+        copyURL(url)
+          .catch(() => {
+            urlInput.focus();
+            urlInput.select();
+          });
       };
 
     const email =
