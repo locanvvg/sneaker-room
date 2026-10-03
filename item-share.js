@@ -37,6 +37,15 @@
           facebook: "FACEBOOK",
           instagram: "INSTAGRAM",
           email: "EMAIL",
+          back: "BACK",
+          facebookOptions: "FACEBOOK OPTIONS",
+          instagramOptions: "INSTAGRAM OPTIONS",
+          post: "POST",
+          story: "STORY",
+          privateMessage: "PRIVATE MESSAGE",
+          groupMessage: "GROUP CHAT",
+          openInstagram: "OPEN INSTAGRAM",
+          copiedHint: "Link copied — choose where to share it.",
           close: "Close share dialog",
           sentence: title => `View ${title} in the Lộc An Collection.`
         }
@@ -49,6 +58,15 @@
           facebook: "FACEBOOK",
           instagram: "INSTAGRAM",
           email: "EMAIL",
+          back: "QUAY LẠI",
+          facebookOptions: "TÙY CHỌN FACEBOOK",
+          instagramOptions: "TÙY CHỌN INSTAGRAM",
+          post: "ĐĂNG BÀI",
+          story: "ĐĂNG STORY",
+          privateMessage: "TIN NHẮN RIÊNG",
+          groupMessage: "TIN NHẮN NHÓM",
+          openInstagram: "MỞ INSTAGRAM",
+          copiedHint: "Đã sao chép liên kết — chọn nơi bạn muốn chia sẻ.",
           close: "Đóng cửa sổ chia sẻ",
           sentence: title => `Xem ${title} trong Bộ sưu tập Lộc An.`
         };
@@ -373,6 +391,82 @@
         border-color: #ffd633;
       }
 
+      .locan-share-platform-panel {
+        display: none;
+        margin-top: 10px;
+      }
+
+      .locan-share-platform-panel.is-open {
+        display: block;
+      }
+
+      .locan-share-platform-heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .locan-share-platform-title {
+        color: #ffcc00;
+        font-size: .72rem;
+        font-weight: 900;
+        letter-spacing: .08em;
+      }
+
+      .locan-share-back {
+        padding: 0;
+        color: #9d9da3;
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+        font: inherit;
+        font-size: .67rem;
+        font-weight: 850;
+        letter-spacing: .06em;
+      }
+
+      .locan-share-back:hover,
+      .locan-share-back:focus-visible {
+        color: #ffcc00;
+        outline: none;
+      }
+
+      .locan-share-platform-options {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 9px;
+      }
+
+      .locan-share-platform-options button {
+        min-height: 44px;
+        padding: 10px 12px;
+        color: #d6d6da;
+        background: rgba(255,255,255,.035);
+        border: 1px solid rgba(255,255,255,.11);
+        border-radius: 8px;
+        cursor: pointer;
+        font: inherit;
+        font-size: .68rem;
+        font-weight: 850;
+        letter-spacing: .04em;
+      }
+
+      .locan-share-platform-options button:hover,
+      .locan-share-platform-options button:focus-visible {
+        color: #ffcc00;
+        border-color: rgba(255,204,0,.45);
+        outline: none;
+      }
+
+      .locan-share-platform-note {
+        margin: 10px 0 0;
+        color: #77777d;
+        font-size: .68rem;
+        line-height: 1.45;
+      }
+
       @media (max-width: 650px) {
         .locan-share-actions {
           grid-template-columns: 1fr;
@@ -539,7 +633,7 @@
     */
     shareURL.searchParams.set(
       "preview",
-      "3"
+      "4"
     );
 
     return shareURL.href;
@@ -686,6 +780,31 @@
               class="locan-share-email"
             ></button>
           </div>
+
+          <div
+            class="locan-share-platform-panel"
+          >
+            <div
+              class="locan-share-platform-heading"
+            >
+              <div
+                class="locan-share-platform-title"
+              ></div>
+
+              <button
+                type="button"
+                class="locan-share-back"
+              ></button>
+            </div>
+
+            <div
+              class="locan-share-platform-options"
+            ></div>
+
+            <p
+              class="locan-share-platform-note"
+            ></p>
+          </div>
         </div>
       `;
 
@@ -775,6 +894,185 @@
         }
       };
 
+    const actions =
+      dialog.querySelector(
+        ".locan-share-actions"
+      );
+
+    const platformPanel =
+      dialog.querySelector(
+        ".locan-share-platform-panel"
+      );
+
+    const platformTitle =
+      dialog.querySelector(
+        ".locan-share-platform-title"
+      );
+
+    const platformOptions =
+      dialog.querySelector(
+        ".locan-share-platform-options"
+      );
+
+    const platformNote =
+      dialog.querySelector(
+        ".locan-share-platform-note"
+      );
+
+    const back =
+      dialog.querySelector(
+        ".locan-share-back"
+      );
+
+    function restoreMainActions() {
+      actions.style.display = "";
+      platformPanel.classList.remove(
+        "is-open"
+      );
+      platformOptions.innerHTML = "";
+    }
+
+    function copyThenOpen(destination) {
+      copyURL(url)
+        .catch(() => {
+          urlInput.focus();
+          urlInput.select();
+        });
+
+      window.open(
+        destination,
+        "_blank",
+        "noopener,noreferrer"
+      );
+    }
+
+    function optionButton(
+      label,
+      handler
+    ) {
+      const option =
+        document.createElement(
+          "button"
+        );
+
+      option.type = "button";
+      option.textContent = label;
+
+      option.addEventListener(
+        "click",
+        handler
+      );
+
+      return option;
+    }
+
+    function openFacebookOptions() {
+      actions.style.display = "none";
+      platformPanel.classList.add(
+        "is-open"
+      );
+
+      platformTitle.textContent =
+        t.facebookOptions;
+
+      back.textContent =
+        t.back;
+
+      platformNote.textContent =
+        t.copiedHint;
+
+      platformOptions.innerHTML = "";
+
+      platformOptions.append(
+        optionButton(
+          t.post,
+          () => {
+            window.open(
+              "https://www.facebook.com/sharer/sharer.php?u=" +
+              encodeURIComponent(url),
+              "_blank",
+              "noopener,noreferrer,width=720,height=620"
+            );
+          }
+        ),
+        optionButton(
+          t.story,
+          () =>
+            copyThenOpen(
+              "https://www.facebook.com/stories/create/"
+            )
+        ),
+        optionButton(
+          t.privateMessage,
+          () =>
+            copyThenOpen(
+              "https://www.messenger.com/"
+            )
+        ),
+        optionButton(
+          t.groupMessage,
+          () =>
+            copyThenOpen(
+              "https://www.messenger.com/"
+            )
+        )
+      );
+    }
+
+    function openInstagramOptions() {
+      actions.style.display = "none";
+      platformPanel.classList.add(
+        "is-open"
+      );
+
+      platformTitle.textContent =
+        t.instagramOptions;
+
+      back.textContent =
+        t.back;
+
+      platformNote.textContent =
+        t.copiedHint;
+
+      platformOptions.innerHTML = "";
+
+      platformOptions.append(
+        optionButton(
+          t.openInstagram,
+          () =>
+            copyThenOpen(
+              "https://www.instagram.com/"
+            )
+        ),
+        optionButton(
+          t.story,
+          () =>
+            copyThenOpen(
+              "https://www.instagram.com/"
+            )
+        ),
+        optionButton(
+          t.privateMessage,
+          () =>
+            copyThenOpen(
+              "https://www.instagram.com/direct/inbox/"
+            )
+        ),
+        optionButton(
+          t.groupMessage,
+          () =>
+            copyThenOpen(
+              "https://www.instagram.com/direct/inbox/"
+            )
+        )
+      );
+    }
+
+    back.onclick =
+      restoreMainActions;
+
+    restoreMainActions();
+
     const facebook =
       dialog.querySelector(
         ".locan-share-facebook"
@@ -784,24 +1082,7 @@
       t.facebook;
 
     facebook.onclick =
-      () => {
-        /*
-          Facebook's public web sharer only creates feed posts.
-          For private sharing, copy the exact item link and open
-          Messenger so the user can choose a conversation.
-        */
-        window.open(
-          "https://www.messenger.com/",
-          "_blank",
-          "noopener,noreferrer"
-        );
-
-        copyURL(url)
-          .catch(() => {
-            urlInput.focus();
-            urlInput.select();
-          });
-      };
+      openFacebookOptions;
 
     const instagram =
       dialog.querySelector(
@@ -812,24 +1093,7 @@
       t.instagram;
 
     instagram.onclick =
-      () => {
-        /*
-          Instagram does not expose a general desktop web API
-          for pre-filling arbitrary link shares. Copy the exact
-          item link, then open Instagram Direct.
-        */
-        window.open(
-          "https://www.instagram.com/direct/inbox/",
-          "_blank",
-          "noopener,noreferrer"
-        );
-
-        copyURL(url)
-          .catch(() => {
-            urlInput.focus();
-            urlInput.select();
-          });
-      };
+      openInstagramOptions;
 
     const email =
       dialog.querySelector(
