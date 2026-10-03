@@ -1,0 +1,93 @@
+/* =========================================================
+   LỘC AN — UNIFIED ITEM DETAIL LAYOUT
+   Applies only to Sneaker / LEGO / Sneaker Mask detail pages.
+
+   Goal:
+   - consistent compact top section regardless of source-image aspect ratio
+   - thumbnails stay directly beneath the hero image
+   - story card begins shortly after the hero/specification row
+   - no changes to catalog data, image scaling in Grid/3D, or stories
+========================================================= */
+
+/* Keep the two-column hero balanced and compact on desktop. */
+.shoe-detail-container {
+  align-items: start;
+  row-gap: 0;
+}
+
+/*
+  Normalize the DISPLAY AREA rather than using each file's natural height.
+  This prevents tall/portrait PNG canvases from creating a large blank gap
+  before the story section.
+*/
+.shoe-image-section > img {
+  width: 100%;
+  height: clamp(360px, 39vw, 460px);
+  max-width: 100%;
+  max-height: 460px;
+
+  display: block;
+
+  margin: 0;
+  padding: 0;
+
+  object-fit: contain;
+  object-position: center center;
+}
+
+/* Gallery thumbnails remain directly below the normalized hero area. */
+.shoe-detail-thumbnails {
+  margin-top: 12px;
+  margin-bottom: 0;
+}
+
+/* Match the tighter visual rhythm shown in the approved compact layout. */
+.story-section {
+  margin-top: 32px;
+}
+
+/* Keep the information column visually anchored to the same top edge. */
+.shoe-info-section {
+  align-self: start;
+}
+
+@media screen and (max-width: 950px) and (min-width: 651px) {
+  .shoe-image-section > img {
+    height: clamp(340px, 43vw, 430px);
+    max-height: 430px;
+  }
+
+  .story-section {
+    margin-top: 30px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .shoe-detail-container {
+    gap: 22px;
+  }
+
+  .shoe-image-section > img {
+    height: clamp(280px, 74vw, 390px);
+    max-height: 390px;
+  }
+
+  .shoe-detail-thumbnails {
+    margin-top: 10px;
+  }
+
+  .story-section {
+    margin-top: 28px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .shoe-image-section > img {
+    height: clamp(250px, 76vw, 340px);
+    max-height: 340px;
+  }
+
+  .story-section {
+    margin-top: 24px;
+  }
+}
