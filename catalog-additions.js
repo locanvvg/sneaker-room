@@ -1142,3 +1142,164 @@ if (
     );
   }
 })();
+
+/* =========================================================
+   FINAL COLLECTION STATUS UI STABILIZER — 2026-10-03
+   ---------------------------------------------------------
+   Approved permanent layout:
+   TRẠNG THÁI BỘ SƯU TẬP
+   -> TÌNH TRẠNG
+   -> PHÂN KHÚC
+   -> KÍCH CỠ
+
+   No sneaker data, stories, images or sizing are changed here.
+   The SAME existing status-control node is retained if a later
+   UI render temporarily detaches it from the filter panel.
+========================================================= */
+(() => {
+  "use strict";
+
+  const GROUP_ID =
+    "collection-status-filter-group";
+
+  let retainedStatusGroup = null;
+  let scheduled = false;
+
+  function captureStatusGroup() {
+    const live =
+      document.getElementById(GROUP_ID);
+
+    if (live) {
+      retainedStatusGroup = live;
+    }
+
+    return (
+      live ||
+      retainedStatusGroup
+    );
+  }
+
+  function reorderApprovedFilterGroups() {
+    const panel =
+      document.querySelector(
+        ".filter-panel"
+      );
+
+    if (!panel) return;
+
+    const status =
+      captureStatusGroup();
+
+    const condition =
+      document
+        .getElementById(
+          "condition-filter-label"
+        )
+        ?.closest(
+          ".filter-group"
+        );
+
+    const edition =
+      document
+        .getElementById(
+          "edition-filter-label"
+        )
+        ?.closest(
+          ".filter-group"
+        );
+
+    const size =
+      document
+        .getElementById(
+          "size-filter-label"
+        )
+        ?.closest(
+          ".filter-group"
+        );
+
+    /*
+      If another runtime layer detached the status control,
+      restore the exact same node so all native/fallback click
+      listeners and filtering state remain intact.
+    */
+    if (
+      status &&
+      status.parentElement !== panel
+    ) {
+      panel.appendChild(status);
+    }
+
+    [
+      status,
+      condition,
+      edition,
+      size
+    ]
+      .filter(Boolean)
+      .forEach(group => {
+        panel.appendChild(group);
+      });
+  }
+
+  function scheduleReorder() {
+    if (scheduled) return;
+    scheduled = true;
+
+    requestAnimationFrame(() => {
+      scheduled = false;
+      reorderApprovedFilterGroups();
+    });
+  }
+
+  function install() {
+    reorderApprovedFilterGroups();
+
+    const observer =
+      new MutationObserver(
+        scheduleReorder
+      );
+
+    observer.observe(
+      document.body,
+      {
+        childList: true,
+        subtree: true
+      }
+    );
+
+    /*
+      Existing data.js controller and the already-approved
+      emergency fallback remain responsible for filtering.
+      These delayed passes only keep their UI anchored in the
+      approved location after all homepage scripts finish.
+    */
+    [
+      50,
+      150,
+      300,
+      600,
+      900,
+      1200,
+      1800,
+      2600
+    ].forEach(delay => {
+      setTimeout(
+        reorderApprovedFilterGroups,
+        delay
+      );
+    });
+  }
+
+  if (
+    document.readyState ===
+    "loading"
+  ) {
+    document.addEventListener(
+      "DOMContentLoaded",
+      install,
+      { once: true }
+    );
+  } else {
+    install();
+  }
+})();
