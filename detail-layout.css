@@ -58,8 +58,8 @@
    JORDAN 1 QUAI 54 F&F — IMAGE 2 DESKTOP MATCH
 
    From the two desktop screenshots:
-   - image 1 visible shoe bounds are about 73% of image 2
-   - image 2 therefore needs a 0.73 visual scale
+   - image 2 is intentionally reduced further to 68% per the approved visual adjustment
+   - image 2 uses a 0.68 visual scale
 
    This uses gallery index + item id written by shoe-page.js,
    so it does not depend on PNG/WebP filenames or browser caching.
@@ -76,9 +76,26 @@
   ][
     data-image-index="1"
   ] {
-    transform: scale(0.73) !important;
+    transform: scale(0.68) !important;
   }
 }
+
+/* =========================================================
+   JORDAN 1 QUAI 54 F&F — MATCH THUMBNAIL VISUAL SIZE
+   The second source image has a tighter crop, so its shoe content
+   looks larger inside the same 4:3 thumbnail box.
+   Reduce only image 2 inside its thumbnail; the boxes themselves
+   remain identical.
+========================================================= */
+.shoe-detail-thumbnail[
+  data-item-id="jordan-1-quai54-ff"
+][
+  data-image-index="1"
+] img {
+  transform: scale(0.68);
+  transform-origin: center center;
+}
+
 
 @media screen and (max-width: 950px) and (min-width: 651px) {
   .shoe-image-section > img {

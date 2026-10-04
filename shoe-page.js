@@ -359,6 +359,19 @@
           `${title} — image ${index + 1}`
         );
 
+        /*
+          Keep thumbnail state explicit as well.
+          This lets per-image thumbnail calibration stay independent
+          from optimized filenames or browser caching.
+        */
+        button.dataset.itemId =
+          String(
+            sneaker.id || ""
+          );
+
+        button.dataset.imageIndex =
+          String(index);
+
         const thumb =
           document.createElement(
             "img"
