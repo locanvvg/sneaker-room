@@ -1144,7 +1144,7 @@ if (
 })();
 
 /* =========================================================
-   FINAL COLLECTION STATUS UI STABILIZER — 2026-10-03
+   FINAL COLLECTION STATUS UI STABILIZER — 2026-10-04
    ---------------------------------------------------------
    Approved permanent layout:
    TRẠNG THÁI BỘ SƯU TẬP
@@ -1152,9 +1152,11 @@ if (
    -> PHÂN KHÚC
    -> KÍCH CỠ
 
-   No sneaker data, stories, images or sizing are changed here.
-   The SAME existing status-control node is retained if a later
-   UI render temporarily detaches it from the filter panel.
+   Desktop click fix:
+   - never re-append filter groups when order is already correct
+   - observe only the filter panel, not the entire document body
+   - disconnect the observer while an intentional reorder occurs
+   - preserve the exact existing status-control node/listeners
 ========================================================= */
 (() => {
   "use strict";
@@ -1162,12 +1164,20 @@ if (
   const GROUP_ID =
     "collection-status-filter-group";
 
+  const OBSERVER_OPTIONS = {
+    childList: true,
+    subtree: true
+  };
+
   let retainedStatusGroup = null;
   let scheduled = false;
+  let observer = null;
 
   function captureStatusGroup() {
     const live =
-      document.getElementById(GROUP_ID);
+      document.getElementById(
+        GROUP_ID
+      );
 
     if (live) {
       retainedStatusGroup = live;
@@ -1179,14 +1189,7 @@ if (
     );
   }
 
-  function reorderApprovedFilterGroups() {
-    const panel =
-      document.querySelector(
-        ".filter-panel"
-      );
-
-    if (!panel) return;
-
+  function getApprovedGroups() {
     const status =
       captureStatusGroup();
 
@@ -1217,61 +1220,146 @@ if (
           ".filter-group"
         );
 
-    /*
-      If another runtime layer detached the status control,
-      restore the exact same node so all native/fallback click
-      listeners and filtering state remain intact.
-    */
-    if (
-      status &&
-      status.parentElement !== panel
-    ) {
-      panel.appendChild(status);
-    }
-
-    [
+    return [
       status,
       condition,
       edition,
       size
-    ]
-      .filter(Boolean)
-      .forEach(group => {
-        panel.appendChild(group);
-      });
+    ].filter(Boolean);
+  }
+
+  function isAlreadyCorrect(
+    panel,
+    groups
+  ) {
+    if (!groups.length) {
+      return true;
+    }
+
+    if (
+      groups.some(
+        group =>
+          group.parentElement !==
+          panel
+      )
+    ) {
+      return false;
+    }
+
+    const current =
+      Array
+        .from(
+          panel.children
+        )
+        .filter(
+          child =>
+            groups.includes(child)
+        );
+
+    return (
+      current.length ===
+        groups.length &&
+      current.every(
+        (group, index) =>
+          group === groups[index]
+      )
+    );
+  }
+
+  function observePanel() {
+    const panel =
+      document.querySelector(
+        ".filter-panel"
+      );
+
+    if (
+      !observer ||
+      !panel
+    ) {
+      return;
+    }
+
+    observer.observe(
+      panel,
+      OBSERVER_OPTIONS
+    );
+  }
+
+  function reorderApprovedFilterGroups() {
+    const panel =
+      document.querySelector(
+        ".filter-panel"
+      );
+
+    if (!panel) {
+      return;
+    }
+
+    const groups =
+      getApprovedGroups();
+
+    /*
+      Critical desktop fix:
+      do absolutely nothing when the groups are already in the
+      approved order. The previous version always appendChild()'d
+      the same live buttons, which could move a button between
+      mousedown and mouseup on desktop and swallow the click.
+    */
+    if (
+      isAlreadyCorrect(
+        panel,
+        groups
+      )
+    ) {
+      return;
+    }
+
+    observer?.disconnect();
+
+    /*
+      Move the existing nodes only when necessary.
+      No clone/replace is used, so all native/fallback listeners
+      and current filter state are preserved.
+    */
+    groups.forEach(
+      group => {
+        panel.appendChild(
+          group
+        );
+      }
+    );
+
+    observePanel();
   }
 
   function scheduleReorder() {
-    if (scheduled) return;
+    if (scheduled) {
+      return;
+    }
+
     scheduled = true;
 
-    requestAnimationFrame(() => {
-      scheduled = false;
-      reorderApprovedFilterGroups();
-    });
+    requestAnimationFrame(
+      () => {
+        scheduled = false;
+        reorderApprovedFilterGroups();
+      }
+    );
   }
 
   function install() {
     reorderApprovedFilterGroups();
 
-    const observer =
+    observer =
       new MutationObserver(
         scheduleReorder
       );
 
-    observer.observe(
-      document.body,
-      {
-        childList: true,
-        subtree: true
-      }
-    );
+    observePanel();
 
     /*
-      Existing data.js controller and the already-approved
-      emergency fallback remain responsible for filtering.
-      These delayed passes only keep their UI anchored in the
-      approved location after all homepage scripts finish.
+      Keep the existing delayed stabilization passes, but they
+      are now non-destructive because order is checked first.
     */
     [
       50,
@@ -1282,12 +1370,14 @@ if (
       1200,
       1800,
       2600
-    ].forEach(delay => {
-      setTimeout(
-        reorderApprovedFilterGroups,
-        delay
-      );
-    });
+    ].forEach(
+      delay => {
+        setTimeout(
+          reorderApprovedFilterGroups,
+          delay
+        );
+      }
+    );
   }
 
   if (
@@ -1297,7 +1387,9 @@ if (
     document.addEventListener(
       "DOMContentLoaded",
       install,
-      { once: true }
+      {
+        once: true
+      }
     );
   } else {
     install();
