@@ -59,7 +59,7 @@
 
    From the two desktop screenshots:
    - image 2 is intentionally reduced further to 68% per the approved visual adjustment
-   - image 2 uses a 0.68 visual scale
+   - image 2 uses a 0.65 visual scale
 
    This uses gallery index + item id written by shoe-page.js,
    so it does not depend on PNG/WebP filenames or browser caching.
@@ -76,7 +76,16 @@
   ][
     data-image-index="1"
   ] {
-    transform: scale(0.68) !important;
+    transform: scale(0.65) !important;
+  }
+
+  /* Nike SB Dunk Low Yuto Horigome 'Matcha' — image 2 */
+  #shoe-image[
+    data-item-id="nike-sb-dunk-yuto-matcha"
+  ][
+    data-image-index="1"
+  ] {
+    transform: scale(0.82) !important;
   }
 }
 
@@ -92,7 +101,22 @@
 ][
   data-image-index="1"
 ] img {
-  transform: scale(0.68);
+  transform: scale(0.65);
+  transform-origin: center center;
+}
+
+
+/* =========================================================
+   NIKE SB DUNK LOW YUTO HORIGOME 'MATCHA'
+   Reduce only gallery image 2 inside its thumbnail so it does
+   not appear oversized relative to image 1.
+========================================================= */
+.shoe-detail-thumbnail[
+  data-item-id="nike-sb-dunk-yuto-matcha"
+][
+  data-image-index="1"
+] img {
+  transform: scale(0.82);
   transform-origin: center center;
 }
 
