@@ -329,21 +329,25 @@
     ----------------------------------------- */
 
     .object-record-list {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 7px;
-      margin-bottom: 14px;
+      margin-bottom: 0;
     }
 
     .object-record-list span {
-      display: inline-flex;
+      display: flex;
       align-items: center;
+      justify-content: center;
+      min-width: 0;
+      min-height: 42px;
       padding: 7px 9px;
       border: 1px solid rgba(255,255,255,.075);
       border-radius: 8px;
       background: rgba(255,255,255,.025);
       font-size: .74rem;
-      line-height: 1.15;
+      line-height: 1.25;
+      text-align: center;
       opacity: .82;
     }
 
@@ -501,10 +505,12 @@
       }
 
       .object-record-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 5px;
       }
 
       .object-record-list span {
+        min-height: 38px;
         padding: 6px 7px;
         font-size: .67rem;
       }
@@ -896,12 +902,6 @@
 
             </div>
 
-            <p class="classification-footer">
-              Một hiện vật có thể đồng thời
-              thuộc nhiều nhóm khi provenance
-              hoặc đặc điểm của nó
-              phù hợp với nhiều phân loại.
-            </p>
           </div>
         </section>
 
@@ -932,16 +932,6 @@
               <span>Story</span>
             </div>
 
-            <p>
-              Phần Story được dành cho
-              lịch sử, thiết kế,
-              bối cảnh văn hóa
-              và provenance có ý nghĩa
-              của hiện vật,
-              thay vì lặp lại
-              các metadata đã được trình bày
-              trong hồ sơ kỹ thuật.
-            </p>
           </div>
         </section>
 
@@ -1255,13 +1245,6 @@
 
             </div>
 
-            <p class="classification-footer">
-              An artifact may belong
-              to more than one category
-              when its provenance
-              or characteristics correspond
-              to multiple classifications.
-            </p>
           </div>
         </section>
 
@@ -1292,15 +1275,6 @@
               <span>Story</span>
             </div>
 
-            <p>
-              The Story section is reserved
-              for meaningful historical,
-              design, cultural,
-              and provenance context
-              rather than repeating
-              technical metadata already presented
-              in the object record.
-            </p>
           </div>
         </section>
 
