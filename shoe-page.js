@@ -1,10 +1,11 @@
 /* =========================================================
-   LỘC AN — SHOE DETAIL PAGE v2
+   LỘC AN — SHOE DETAIL PAGE v3
    Supports:
    - legacy data.js entries
    - schemaVersion:2 additions
    - multiple images
    - bilingual detail content
+   - deterministic gallery image indexing for detail sizing
    ========================================================= */
 
 (() => {
@@ -281,11 +282,41 @@
         "src"
       );
 
+      main.removeAttribute(
+        "data-image-index"
+      );
+
+      main.removeAttribute(
+        "data-item-id"
+      );
+
       return;
     }
 
-    main.src =
-      images[0];
+    /*
+      Keep an explicit gallery state on the hero image.
+      This is more reliable than styling based on a filename,
+      optimized WebP request, cache behavior, or source aspect ratio.
+    */
+    function showImage(
+      src,
+      index
+    ) {
+      main.src = src;
+
+      main.dataset.imageIndex =
+        String(index);
+
+      main.dataset.itemId =
+        String(
+          sneaker.id || ""
+        );
+    }
+
+    showImage(
+      images[0],
+      0
+    );
 
     main.alt =
       title;
@@ -349,8 +380,10 @@
         button.addEventListener(
           "click",
           () => {
-            main.src =
-              src;
+            showImage(
+              src,
+              index
+            );
 
             tray
               .querySelectorAll(
