@@ -76,7 +76,7 @@
   ][
     data-image-index="1"
   ] {
-    transform: scale(0.65) !important;
+    transform: scale(0.62) !important;
   }
 
   /* Nike SB Dunk Low Yuto Horigome 'Matcha' — image 2 */
@@ -85,7 +85,7 @@
   ][
     data-image-index="1"
   ] {
-    transform: scale(0.82) !important;
+    transform: scale(0.88) !important;
   }
 }
 
@@ -101,7 +101,7 @@
 ][
   data-image-index="1"
 ] img {
-  transform: scale(0.65);
+  transform: scale(0.62);
   transform-origin: center center;
 }
 
@@ -116,7 +116,7 @@
 ][
   data-image-index="1"
 ] img {
-  transform: scale(0.82);
+  transform: scale(0.88);
   transform-origin: center center;
 }
 
