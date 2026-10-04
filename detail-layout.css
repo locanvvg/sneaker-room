@@ -93,12 +93,45 @@
 }
 
 /* =========================================================
-   JORDAN 1 QUAI 54 F&F — SECOND GALLERY IMAGE SIZE MATCH
-   The replacement second image has a tighter source crop than image 1.
-   Reduce only that hero image so both gallery views have the same
-   perceived sneaker size. Thumbnails/fullscreen are unaffected.
+   JORDAN 1 QUAI 54 F&F — SECOND GALLERY IMAGE SIZE MATCH v2
+   The second source file has a much tighter internal crop than image 1.
+   Instead of transforming the whole image element, reduce its actual
+   display height only when thumbnail 2 is active. This makes the visible
+   sneaker bounds match image 1 much more closely.
 ========================================================= */
-#shoe-image[src*="jordan1_quai54_ff_v2_1"] {
-  transform: scale(0.765);
-  transform-origin: center center;
+.shoe-image-section:
+  has(.shoe-detail-thumbnail:nth-child(2).active)
+  > #shoe-image[alt*="Quai 54"] {
+  height: 322px !important;
+  max-height: 322px !important;
+  transform: none !important;
+}
+
+/* Tablet */
+@media screen and (max-width: 950px) and (min-width: 651px) {
+  .shoe-image-section:
+    has(.shoe-detail-thumbnail:nth-child(2).active)
+    > #shoe-image[alt*="Quai 54"] {
+    height: 301px !important;
+    max-height: 301px !important;
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 650px) {
+  .shoe-image-section:
+    has(.shoe-detail-thumbnail:nth-child(2).active)
+    > #shoe-image[alt*="Quai 54"] {
+    height: 273px !important;
+    max-height: 273px !important;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .shoe-image-section:
+    has(.shoe-detail-thumbnail:nth-child(2).active)
+    > #shoe-image[alt*="Quai 54"] {
+    height: 238px !important;
+    max-height: 238px !important;
+  }
 }
