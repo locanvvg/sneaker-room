@@ -2,8 +2,8 @@ import fs from "node:fs";
 import path from "node:path";
 
 const ROOT = process.cwd();
-const SOURCE_ROOT = path.join(ROOT, "pictures", "source");
-const OUTPUT_ROOT = path.join(ROOT, "pictures", "normalized");
+const PICTURES = path.join(ROOT, "pictures");
+const OUTPUT_ROOT = path.join(PICTURES, "normalized");
 const WRITE = process.argv.includes("--write");
 
 const STANDARD = {
@@ -11,8 +11,11 @@ const STANDARD = {
   canvasHeight: 1200,
   maxSubjectWidth: 1248,   // 78% of canvas width
   maxSubjectHeight: 816,   // 68% of canvas height
-  alphaThreshold: 18,
-  minimumTransparentFraction: 0.01
+  alphaThreshold: 96,     // ignores faint glow / soft shadow
+  transparentPixelThreshold: 12,
+  minimumTransparentFraction: 0.005,
+  cropPaddingFraction: 0.018,
+  opaqueBackgroundDistance: 34
 };
 
 let sharp;
@@ -24,9 +27,12 @@ try {
   process.exit(1);
 }
 
-function listImages(dir, prefix = "") {
-  if (!fs.existsSync(dir)) return [];
+if (!fs.existsSync(PICTURES)) {
+  console.error("pictures/ directory not found");
+  process.exit(1);
+}
 
+function walkImages(dir, prefix = "") {
   return fs
     .readdirSync(dir, { withFileTypes: true })
     .flatMap(entry => {
@@ -37,7 +43,16 @@ function listImages(dir, prefix = "") {
       const absolute = path.join(dir, entry.name);
 
       if (entry.isDirectory()) {
-        return listImages(absolute, relative);
+        if (
+          relative === "normalized" ||
+          relative.startsWith("normalized/") ||
+          relative === "optimized" ||
+          relative.startsWith("optimized/")
+        ) {
+          return [];
+        }
+
+        return walkImages(absolute, relative);
       }
 
       if (
@@ -48,39 +63,65 @@ function listImages(dir, prefix = "") {
       }
 
       return [];
-    })
-    .sort();
+    });
 }
 
-function normalizedRelative(sourceRelative) {
-  return sourceRelative.replace(/\.(png|jpe?g|webp)$/i, ".png");
+function outputRelative(inputRelative) {
+  const withoutSource = inputRelative.startsWith("source/")
+    ? inputRelative.slice("source/".length)
+    : inputRelative;
+
+  return withoutSource.replace(/\.(png|jpe?g|webp)$/i, ".png");
 }
 
-async function inspectAlphaBounds(input) {
-  const { data, info } = await sharp(input)
-    .rotate()
-    .ensureAlpha()
-    .raw()
-    .toBuffer({ resolveWithObject: true });
+function median(values) {
+  if (!values.length) return 0;
+  const sorted = [...values].sort((a, b) => a - b);
+  const middle = Math.floor(sorted.length / 2);
+  return sorted.length % 2
+    ? sorted[middle]
+    : (sorted[middle - 1] + sorted[middle]) / 2;
+}
 
-  const { width, height, channels } = info;
+function colorDistance(r, g, b, bg) {
+  const dr = r - bg.r;
+  const dg = g - bg.g;
+  const db = b - bg.b;
+  return Math.sqrt(dr * dr + dg * dg + db * db);
+}
 
+function paddedBounds(bounds, width, height) {
+  const pad = Math.max(
+    2,
+    Math.round(
+      Math.max(bounds.width, bounds.height) *
+      STANDARD.cropPaddingFraction
+    )
+  );
+
+  const left = Math.max(0, bounds.left - pad);
+  const top = Math.max(0, bounds.top - pad);
+  const right = Math.min(width - 1, bounds.left + bounds.width - 1 + pad);
+  const bottom = Math.min(height - 1, bounds.top + bounds.height - 1 + pad);
+
+  return {
+    left,
+    top,
+    width: right - left + 1,
+    height: bottom - top + 1
+  };
+}
+
+function boundsFromMask(width, height, visibleAt) {
   let minX = width;
   let minY = height;
   let maxX = -1;
   let maxY = -1;
   let visible = 0;
-  let transparent = 0;
-  const threshold = STANDARD.alphaThreshold;
 
   for (let y = 0; y < height; y += 1) {
     for (let x = 0; x < width; x += 1) {
-      const alpha = data[(y * width + x) * channels + 3];
-
-      if (alpha <= threshold) {
-        transparent += 1;
-        continue;
-      }
+      if (!visibleAt(x, y)) continue;
 
       visible += 1;
       if (x < minX) minX = x;
@@ -91,17 +132,7 @@ async function inspectAlphaBounds(input) {
   }
 
   if (!visible || maxX < minX || maxY < minY) {
-    throw new Error("No visible subject pixels were detected.");
-  }
-
-  const pixels = width * height;
-  const transparentFraction = transparent / pixels;
-
-  if (transparentFraction < STANDARD.minimumTransparentFraction) {
-    throw new Error(
-      "Image does not appear to have a transparent background. " +
-      "Use a clean sneaker cutout PNG with no opaque background."
-    );
+    return null;
   }
 
   return {
@@ -109,16 +140,126 @@ async function inspectAlphaBounds(input) {
     top: minY,
     width: maxX - minX + 1,
     height: maxY - minY + 1,
+    visible
+  };
+}
+
+async function inspectBounds(input) {
+  const { data, info } = await sharp(input)
+    .rotate()
+    .ensureAlpha()
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+
+  const { width, height, channels } = info;
+  const pixels = width * height;
+
+  let transparent = 0;
+
+  for (let i = 0; i < pixels; i += 1) {
+    const alpha = data[i * channels + 3];
+    if (alpha <= STANDARD.transparentPixelThreshold) {
+      transparent += 1;
+    }
+  }
+
+  const transparentFraction = transparent / pixels;
+
+  if (transparentFraction >= STANDARD.minimumTransparentFraction) {
+    const alphaBounds = boundsFromMask(
+      width,
+      height,
+      (x, y) =>
+        data[(y * width + x) * channels + 3] >= STANDARD.alphaThreshold
+    );
+
+    if (alphaBounds) {
+      return {
+        ...paddedBounds(alphaBounds, width, height),
+        method: "alpha",
+        transparentFraction
+      };
+    }
+  }
+
+  /*
+    Opaque-image fallback:
+    estimate the background from border pixels and use color distance.
+    This keeps the pipeline from failing if an old cutout was exported
+    with a flat background instead of transparency.
+  */
+  const borderR = [];
+  const borderG = [];
+  const borderB = [];
+  const border = Math.max(1, Math.round(Math.min(width, height) * 0.025));
+
+  for (let y = 0; y < height; y += 1) {
+    for (let x = 0; x < width; x += 1) {
+      if (
+        x >= border &&
+        x < width - border &&
+        y >= border &&
+        y < height - border
+      ) {
+        continue;
+      }
+
+      const i = (y * width + x) * channels;
+      borderR.push(data[i]);
+      borderG.push(data[i + 1]);
+      borderB.push(data[i + 2]);
+    }
+  }
+
+  const bg = {
+    r: median(borderR),
+    g: median(borderG),
+    b: median(borderB)
+  };
+
+  const colorBounds = boundsFromMask(
+    width,
+    height,
+    (x, y) => {
+      const i = (y * width + x) * channels;
+      return colorDistance(
+        data[i],
+        data[i + 1],
+        data[i + 2],
+        bg
+      ) >= STANDARD.opaqueBackgroundDistance;
+    }
+  );
+
+  if (colorBounds) {
+    const visibleFraction = colorBounds.visible / pixels;
+
+    if (visibleFraction > 0.003 && visibleFraction < 0.96) {
+      return {
+        ...paddedBounds(colorBounds, width, height),
+        method: "border-color",
+        transparentFraction
+      };
+    }
+  }
+
+  /* Last-resort full-frame fallback: never break the build. */
+  return {
+    left: 0,
+    top: 0,
+    width,
+    height,
+    method: "full-frame-fallback",
     transparentFraction
   };
 }
 
-async function normalizeOne(sourceRelative) {
-  const input = path.join(SOURCE_ROOT, sourceRelative);
-  const outputRelative = normalizedRelative(sourceRelative);
-  const output = path.join(OUTPUT_ROOT, outputRelative);
+async function normalizeOne(inputRelative) {
+  const input = path.join(PICTURES, inputRelative);
+  const relative = outputRelative(inputRelative);
+  const output = path.join(OUTPUT_ROOT, relative);
 
-  const bounds = await inspectAlphaBounds(input);
+  const bounds = await inspectBounds(input);
 
   const subject = await sharp(input)
     .rotate()
@@ -128,6 +269,7 @@ async function normalizeOne(sourceRelative) {
       width: bounds.width,
       height: bounds.height
     })
+    .ensureAlpha()
     .resize({
       width: STANDARD.maxSubjectWidth,
       height: STANDARD.maxSubjectHeight,
@@ -156,28 +298,24 @@ async function normalizeOne(sourceRelative) {
         background: { r: 0, g: 0, b: 0, alpha: 0 }
       }
     })
-      .composite([
-        {
-          input: subject.data,
-          left,
-          top
-        }
-      ])
+      .composite([{ input: subject.data, left, top }])
       .png({ compressionLevel: 9 })
       .toFile(output);
   }
 
   console.log(
-    `${sourceRelative}: ` +
-    `bbox ${bounds.width}x${bounds.height} -> ` +
-    `${subject.info.width}x${subject.info.height} ` +
-    `on ${STANDARD.canvasWidth}x${STANDARD.canvasHeight}`
+    `${inputRelative} -> ${relative}: ` +
+    `${bounds.method}, crop ${bounds.width}x${bounds.height}, ` +
+    `subject ${subject.info.width}x${subject.info.height}`
   );
 
   return {
-    source: `pictures/source/${sourceRelative}`,
-    normalized: `pictures/normalized/${outputRelative}`,
-    sourceBounds: {
+    input: `pictures/${inputRelative}`,
+    normalized: `pictures/normalized/${relative}`,
+    method: bounds.method,
+    crop: {
+      left: bounds.left,
+      top: bounds.top,
       width: bounds.width,
       height: bounds.height
     },
@@ -190,29 +328,46 @@ async function normalizeOne(sourceRelative) {
   };
 }
 
-const files = listImages(SOURCE_ROOT);
+/*
+  If both pictures/foo.png and pictures/source/foo.png exist,
+  pictures/source/foo.png wins. This makes migration from the v1 test
+  safe without requiring the user to restore/delete files first.
+*/
+const candidates = walkImages(PICTURES);
+const selected = new Map();
+
+for (const relative of candidates) {
+  const output = outputRelative(relative);
+  const isSource = relative.startsWith("source/");
+  const existing = selected.get(output);
+
+  if (!existing || isSource) {
+    selected.set(output, relative);
+  }
+}
+
+const files = [...selected.values()].sort();
 
 if (!files.length) {
-  console.log("No sneaker source images found in pictures/source/.");
+  console.log("No sneaker images found in pictures/.");
   process.exit(0);
 }
 
 if (WRITE) {
-  // This directory is fully generated. Clearing it prevents stale
-  // normalized files from surviving after a source image is removed.
+  /* Fully generated directory: stale files cannot survive. */
   fs.rmSync(OUTPUT_ROOT, { recursive: true, force: true });
   fs.mkdirSync(OUTPUT_ROOT, { recursive: true });
 }
 
 const manifest = {};
 
-for (const sourceRelative of files) {
+for (const inputRelative of files) {
   try {
-    const record = await normalizeOne(sourceRelative);
-    manifest[record.source] = record;
+    const record = await normalizeOne(inputRelative);
+    manifest[record.normalized] = record;
   } catch (error) {
-    console.error(`Normalization failed for ${sourceRelative}:`);
-    console.error(error?.message || error);
+    console.error(`Normalization failed for ${inputRelative}:`);
+    console.error(error?.stack || error?.message || error);
     process.exitCode = 1;
   }
 }
@@ -226,6 +381,7 @@ if (WRITE) {
     path.join(OUTPUT_ROOT, "manifest.json"),
     JSON.stringify(
       {
+        build: "20261010-unified-v2",
         standard: STANDARD,
         images: manifest
       },
@@ -238,6 +394,6 @@ if (WRITE) {
 
 console.log(
   WRITE
-    ? `Generated ${Object.keys(manifest).length} normalized sneaker image(s).`
-    : `Dry run: ${Object.keys(manifest).length} source image(s) validated.`
+    ? `Generated ${Object.keys(manifest).length} normalized image(s).`
+    : `Dry run: ${files.length} image(s) validated.`
 );
