@@ -1,6 +1,6 @@
 /* =========================================================
    LỘC AN — CATALOG ADDITIONS
-   CURRENT ADDITION: ADIDAS ADIFOM SUPERSTAR 'WHITE BLACK'
+   CURRENT ADDITION: JORDAN 1 RETRO HIGH OG 'SEAFOAM'
    Existing display tweaks preserved exactly in behavior:
    - Grid only: Waffle, Jordan 4, NB 2002R, Reverse Bred
    - 3D only: Raygun slightly bigger
@@ -162,6 +162,64 @@ const CATALOG_ADDITIONS = [
 <p>The futuristic direction also appears in the material story. adidas describes this adiFOM Superstar as a shell-toe expression built with foam made in part from sugarcane, with at least 25% natural and renewable materials. That places the shoe within a period of footwear design in which brands were experimenting with molded constructions and alternative material sources, allowing form, manufacturing method and resource considerations to evolve together.</p>
 <p>The white-and-black palette makes the relationship to the traditional Superstar especially clear. On a silhouette that is otherwise far removed from the original basketball shoe, a white body and black three stripes create a familiar visual anchor. The tension between an archival color language and a futuristic molded form is one of the design's strongest ideas: materials, proportions and the way the shoe is worn can change dramatically while the core identity remains recognizable.</p>
 <p>Within the Lộc An Sneaker Collection, the adiFOM Superstar is preserved as a snapshot of adidas experimenting with how Originals heritage can be translated into contemporary footwear language. Its significance comes from the dialogue between two periods: on one side, the Superstar's more than half-century connection to basketball and street culture; on the other, molded slip-on construction, exaggerated volume and a move toward renewable material inputs. The distance between those two worlds is precisely what makes the adiFOM an interesting interpretation of the shell-toe legacy.</p>`
+    }
+  },
+
+  /* =====================================================
+     JORDAN 1 RETRO HIGH OG 'SEAFOAM'
+     Women's exclusive — added to IN COLLECTION.
+     Uses the canonical schemaVersion:2 catalog structure.
+     Display sizing is intentionally left to the existing
+     Auto Fit engine rather than guessing a manual scale.
+  ====================================================== */
+  {
+    schemaVersion: 2,
+
+    id: "jordan-1-retro-high-og-seafoam-2021",
+
+    title: {
+      vi: "Jordan 1 Retro High OG 'Seafoam'",
+      en: "Jordan 1 Retro High OG 'Seafoam'"
+    },
+
+    subtitle: {
+      vi: "Women's Exclusive — Seafoam / Healing Orange (2021)",
+      en: "Women's Exclusive — Seafoam / Healing Orange (2021)"
+    },
+
+    sku: "CD0461-002",
+    colorway: "Seafoam/Healing Orange-White",
+
+    retail: {
+      amount: 170,
+      currency: "USD"
+    },
+
+    releaseDate: "2021-08-12",
+
+    edition: "GR",
+    condition: "Deadstock",
+    size: "11.5W / 10M",
+
+    collectionStatus: "own",
+
+    image: "pictures/jordan1_seafoam.png",
+    images: [
+      "pictures/jordan1_seafoam.png"
+    ],
+
+    story: {
+      vi: `<p><b>Jordan 1 Retro High OG 'Seafoam'</b> là một phần của giai đoạn Jordan Brand mở rộng mạnh các bản Retro High OG dành riêng cho nữ, đưa những bảng màu nhẹ và vật liệu mềm hơn vào cấu trúc Air Jordan 1 cổ điển mà vẫn giữ nguyên ngôn ngữ thiết kế OG. Trên nền da trắng, các lớp phủ Seafoam tạo nên một sắc xanh xám nhạt, giúp đôi giày có cảm giác dịu và tối giản hơn nhiều phối màu Jordan 1 tương phản mạnh.</p>
+<p>Điểm nhận diện đáng chú ý nằm ở cách xử lý vật liệu và màu sắc. Phần nền sử dụng da trắng trơn, trong khi các overlays và Swoosh mang sắc Seafoam với bề mặt mềm kiểu Durabuck. Cách phối này làm nổi rõ từng panel đặc trưng của Air Jordan 1 mà không cần dùng những mảng màu quá gắt, khiến cấu trúc toe box, eyestay, heel và ankle flap vẫn được đọc rất rõ.</p>
+<p>Healing Orange chỉ xuất hiện như một điểm nhấn nhỏ trên viền dây giày hai tông. Chính chi tiết này tạo độ tương phản ấm với bảng màu Seafoam–White và trở thành một trong những yếu tố dễ nhận ra nhất của phiên bản. Wings logo, Nike Air tongue branding, midsole trắng và outsole Seafoam tiếp tục giữ kết nối trực tiếp với ngôn ngữ Retro High OG truyền thống.</p>
+<p>Seafoam cũng phản ánh một giai đoạn Air Jordan 1 được mở rộng vượt khỏi những phối màu gắn chặt với lịch sử thi đấu của Michael Jordan. Thay vì dựa trên Chicago, Bred hay Royal, thiết kế này sử dụng bảng màu lifestyle đương đại và định vị rõ trong chương trình women's-exclusive, cho thấy silhouette 1985 có thể tiếp tục thích nghi với một nhóm người mang và một ngôn ngữ màu sắc rộng hơn.</p>
+<p>Trong Lộc An Sneaker Collection, Seafoam đại diện cho nhánh Air Jordan 1 Retro High OG dành cho nữ trong đầu thập niên 2020: một phiên bản vẫn bảo toàn tỷ lệ, paneling và branding OG nhưng thể hiện bản sắc thông qua vật liệu dịu, màu pastel và các chi tiết màu nhỏ có chủ đích.</p>`,
+
+      en: `<p><b>Jordan 1 Retro High OG 'Seafoam'</b> belongs to the period when Jordan Brand significantly expanded women-focused Retro High OG releases, introducing softer palettes and materials into the classic Air Jordan 1 structure while retaining its OG design language. A smooth white base is framed by muted Seafoam overlays, giving the shoe a calmer and more restrained character than many high-contrast Jordan 1 colorways.</p>
+<p>Material and color placement define the design. Smooth white leather forms the foundation, while the overlays and Swooshes use a soft Seafoam finish with a Durabuck-like texture. This treatment keeps the familiar Air Jordan 1 panel architecture highly legible without relying on aggressive contrast, allowing the toe box, eyestays, heel and ankle flaps to remain visually distinct.</p>
+<p>Healing Orange appears only as a small accent along the edges of the two-tone laces. That warm detail creates a deliberate contrast against the Seafoam-and-white palette and became one of the most recognizable visual features of the release. The Wings logo, Nike Air tongue branding, white midsole and Seafoam outsole maintain a direct connection to the traditional Retro High OG vocabulary.</p>
+<p>Seafoam also represents a period in which the Air Jordan 1 increasingly moved beyond color stories tied directly to Michael Jordan's playing history. Rather than referencing Chicago, Bred or Royal, this design adopts a contemporary lifestyle palette and a clear women's-exclusive position, demonstrating how the 1985 silhouette could address a broader audience without altering its essential construction.</p>
+<p>Within the Lộc An Sneaker Collection, Seafoam represents the women's Air Jordan 1 Retro High OG program of the early 2020s: an edition that preserves the OG proportions, paneling and branding while expressing its identity through softened materials, pastel color and carefully controlled accent details.</p>`
     }
   }
 ];
