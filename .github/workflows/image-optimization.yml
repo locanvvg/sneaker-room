@@ -10,7 +10,9 @@ on:
       - "sneaker-mask-data.js"
       - "item-share.js"
       - "pictures/**"
+      - "!pictures/normalized/**"
       - "!pictures/optimized/**"
+      - "tools/normalize-sneaker-images.mjs"
       - "tools/optimize-images.mjs"
       - "tools/generate-share-pages.mjs"
       - ".github/workflows/image-optimization.yml"
@@ -34,6 +36,9 @@ jobs:
       - name: Install image tools
         run: npm install --no-save sharp
 
+      - name: Normalize sneaker source images
+        run: node tools/normalize-sneaker-images.mjs --write
+
       - name: Create optimized WebP copies
         run: node tools/optimize-images.mjs --write
 
@@ -43,7 +48,7 @@ jobs:
       - name: Commit generated assets
         shell: bash
         run: |
-          git add -A pictures/optimized share
+          git add -A pictures/normalized pictures/optimized share
 
           # git diff alone ignores brand-new untracked folders.
           # Check the staged index instead so generated assets
