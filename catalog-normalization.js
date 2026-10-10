@@ -1,28 +1,20 @@
 /* =========================================================
-   LỘC AN — HOMEPAGE CATALOG IMAGE STANDARDIZATION v3
+   LỘC AN — HOMEPAGE CATALOG IMAGE STANDARDIZATION v4
 
    PURPOSE
    -------
    - Runs ONLY on the sneaker homepage (index.html).
-   - Replaces the homepage card/3D source with a build-time normalized
-     asset BEFORE the first render.
-   - Preserves the original gallery/detail images unchanged.
+   - Uses build-time derivatives BEFORE first render.
+   - Grid and 3D may use different normalized derivatives because their
+     visual envelopes are different.
+   - Preserves original detail/gallery images unchanged.
    - Applies automatically to every item whose collectionStatus is "own".
-   - Does not hard-code sneaker IDs or per-pair scale numbers.
-
-   INPUT CATALOG IMAGE:
-     pictures/<file>.png
-
-   HOMEPAGE DISPLAY IMAGE:
-     pictures/normalized/<file>.png
-
-   The generated map is written by:
-     tools/normalize-sneaker-images.mjs
+   - Contains NO sneaker IDs and NO per-pair sizing constants.
 ========================================================= */
 (() => {
   "use strict";
 
-  const BUILD = "20261010-standard-v3";
+  const BUILD = "20261010-standard-v4";
   const NORMALIZED_PREFIX = "pictures/normalized/";
   const SOURCE_PREFIX = "pictures/source/";
   const PICTURES_PREFIX = "pictures/";
@@ -89,37 +81,74 @@
     return "";
   }
 
-  function mappedNormalizedPath(value) {
+  function normalizedAssets(value) {
     const source = cleanPath(value);
 
     if (!source) {
-      return "";
+      return null;
     }
 
     const direct =
       generatedMap[source] ||
       generatedMap[`./${source}`];
 
-    if (direct) {
-      return cleanPath(direct);
+    /*
+      v4 manifest:
+        { grid: ".../grid/foo.png", view3d: ".../foo.png" }
+    */
+    if (
+      direct &&
+      typeof direct === "object" &&
+      !Array.isArray(direct)
+    ) {
+      const grid = cleanPath(
+        direct.grid ||
+        direct.view3d ||
+        direct.default ||
+        ""
+      );
+
+      const view3d = cleanPath(
+        direct.view3d ||
+        direct.grid ||
+        direct.default ||
+        ""
+      );
+
+      if (grid || view3d) {
+        return {
+          grid: grid || view3d,
+          view3d: view3d || grid
+        };
+      }
     }
 
     /*
-      First migration safety:
-      current generated normalized files already exist in the repository,
-      but manifest.js may be created by the first workflow run slightly
-      after index.html is deployed. During that one migration window only,
-      derive the deterministic normalized path.
-
-      Once manifest.js exists, a future brand-new image that has not yet
-      been processed is intentionally left on its original source rather
-      than showing a broken normalized URL.
+      v3 compatibility during the short deployment window before the GitHub
+      Action regenerates manifest.js.  A string means both modes temporarily
+      use the existing v3 derivative; nothing breaks or disappears.
     */
-    if (!mapHasEntries) {
-      return derivedNormalizedPath(source);
+    if (typeof direct === "string" && direct) {
+      const normalized = cleanPath(direct);
+
+      return {
+        grid: normalized,
+        view3d: normalized
+      };
     }
 
-    return "";
+    if (!mapHasEntries) {
+      const derived = derivedNormalizedPath(source);
+
+      if (derived) {
+        return {
+          grid: derived,
+          view3d: derived
+        };
+      }
+    }
+
+    return null;
   }
 
   function standardizeItem(item) {
@@ -142,28 +171,26 @@
       return false;
     }
 
-    const normalized =
-      mappedNormalizedPath(original);
+    const assets = normalizedAssets(original);
 
-    if (!normalized) {
-      /*
-        No generated asset yet. Keep the original image. This makes adding
-        a new pair deployment-safe while GitHub Actions is still building.
-      */
+    if (!assets?.grid || !assets?.view3d) {
+      /* New asset not built yet: preserve the original safely. */
       return false;
     }
 
     item.catalogOriginalImage = original;
+    item.catalogGridImage = assets.grid;
+    item.catalog3DImage = assets.view3d;
     item.catalogNormalizedImage = true;
     item.catalogNormalizedBuild = BUILD;
 
-    /* Homepage-only source. Gallery/detail arrays stay untouched. */
-    item.image = normalized;
+    /* Grid renderer reads sneaker.image. */
+    item.image = assets.grid;
 
     /*
-      The normalized bitmap already owns visual sizing. Remove legacy
-      per-pair homepage calibration so no manual number can participate.
-      This script is not loaded on shoe.html, so detail galleries are safe.
+      Normalized derivatives own visual sizing.  Remove legacy per-pair
+      homepage calibration.  shoe.html does not load this script, so its
+      gallery/detail behavior remains untouched.
     */
     item.autoFit = false;
     delete item.display;
@@ -203,11 +230,12 @@
     standardizeCollection,
     standardizeItem,
     derivedNormalizedPath,
+    normalizedAssets,
     generatedMap
   };
 
   console.info(
     `[Catalog Images] ${result.standardized} owned item(s) ` +
-    `standardized before first render.`
+    `standardized before first render (dual-mode v4).`
   );
 })();
