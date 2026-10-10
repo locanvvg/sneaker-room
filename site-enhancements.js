@@ -8,7 +8,7 @@
 (() => {
   "use strict";
 
-  const BUILD = "20261001-v4";
+  const BUILD = "20261010-normalized-v1";
 
   const getLanguage = () => {
     const viButton = document.getElementById("btn-vi");
@@ -221,6 +221,29 @@
       img[data-catalog-image="true"][data-sneaker-id="new-balance-2002r-custom"] {
         scale: 1 1 !important;
         transform: scale(.54) !important;
+        transform-origin: center center !important;
+      }
+
+
+      /*
+        NORMALIZED SOURCE PIPELINE
+        A normalized file already has the canonical object envelope.
+        Neutralize the legacy 1.10 Grid enlargement and any generic
+        transform so the prepared canvas is displayed 1:1.
+      */
+      html body #sneaker-grid.grid .card-img-wrapper
+      img[src*="pictures/normalized/"],
+      html body #sneaker-grid.grid .card:hover .card-img-wrapper
+      img[src*="pictures/normalized/"] {
+        scale: 1 1 !important;
+        transform: scale(1) !important;
+        transform-origin: center center !important;
+      }
+
+      html body .sneaker-3d-image
+      img[src*="pictures/normalized/"] {
+        scale: 1 1 !important;
+        transform: scale(1) !important;
         transform-origin: center center !important;
       }
     `;

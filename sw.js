@@ -1,6 +1,6 @@
 /* Lộc An Sneaker Collection — optimized offline/runtime cache */
 const CACHE_VERSION =
-  "locan-sneaker-room-20261003-performance-v1";
+  "locan-sneaker-room-20261010-normalized-v1";
 
 const SHELL_CACHE =
   `${CACHE_VERSION}-shell`;
@@ -285,13 +285,14 @@ async function optimizedImage(
             self.registration.scope
           );
 
-        return await cacheFirst(
+        return await networkFirst(
           new Request(
             optimizedURL.href,
             {
               mode: "same-origin",
               credentials:
-                "same-origin"
+                "same-origin",
+              cache: "no-cache"
             }
           )
         );
@@ -301,7 +302,12 @@ async function optimizedImage(
     }
   }
 
-  return cacheFirst(request);
+  return networkFirst(
+    new Request(
+      request,
+      { cache: "no-cache" }
+    )
+  );
 }
 
 self.addEventListener(
