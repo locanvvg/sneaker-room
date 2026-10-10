@@ -3,10 +3,11 @@ import path from "node:path";
 
 const ROOT = process.cwd();
 const PICTURES = path.join(ROOT, "pictures");
-const OUTPUT_ROOT = path.join(PICTURES, "normalized");
+const NORMALIZED_ROOT = path.join(PICTURES, "normalized");
+const OUTPUT_ROOT = path.join(NORMALIZED_ROOT, "v4b");
 const GRID_OUTPUT_ROOT = path.join(OUTPUT_ROOT, "grid");
 const WRITE = process.argv.includes("--write");
-const BUILD = "20261010-standard-v4";
+const BUILD = "20261010-standard-v4b";
 
 /*
   PRODUCT IMAGE STANDARD v4
@@ -382,7 +383,43 @@ async function renderVariant({
     );
 
     const envelopeScale = maxFitScale(bounds, STANDARD.grid);
-    const scale = Math.min(perceptualScale, envelopeScale);
+
+    /*
+      Wide + sparse composition guard.
+
+      A wide subject box with relatively low foreground density usually means
+      that two separated shoes (or similarly sparse objects) occupy the same
+      outer box. In that case the box-area term can over-compensate and make
+      the pair visibly larger than the rest of the collection.
+
+      This is a GLOBAL composition rule: no sneaker IDs and no per-pair scale.
+      For those wide/sparse layouts, Grid is capped at the same v3 baseline
+      envelope already used by 3D. Dense wide layouts (for example NB 2002R)
+      remain on the v4 perceptual fit.
+    */
+    const aspectRatio =
+      bounds.width / Math.max(bounds.height, 1);
+
+    const foregroundDensity =
+      visible / Math.max(boxPixels, 1);
+
+    const isWideSparseComposition =
+      aspectRatio >= 1.90 &&
+      foregroundDensity < 0.48;
+
+    const baselineScale =
+      maxFitScale(bounds, STANDARD.view3d);
+
+    const scale = isWideSparseComposition
+      ? Math.min(
+          perceptualScale,
+          envelopeScale,
+          baselineScale
+        )
+      : Math.min(
+          perceptualScale,
+          envelopeScale
+        );
 
     resizeWidth = Math.max(1, Math.round(bounds.width * scale));
     resizeHeight = Math.max(1, Math.round(bounds.height * scale));
@@ -529,7 +566,7 @@ const gridTargetBoxPixels = median(
 
 if (WRITE) {
   /* Fully generated directory: stale files cannot survive. */
-  fs.rmSync(OUTPUT_ROOT, {
+  fs.rmSync(NORMALIZED_ROOT, {
     recursive: true,
     force: true
   });
@@ -544,8 +581,8 @@ const catalogMap = {};
 
 for (const record of inspected) {
   try {
-    const view3dPath = `pictures/normalized/${record.relative}`;
-    const gridPath = `pictures/normalized/grid/${record.relative}`;
+    const view3dPath = `pictures/normalized/v4b/${record.relative}`;
+    const gridPath = `pictures/normalized/v4b/grid/${record.relative}`;
 
     const view3dOutput = path.join(OUTPUT_ROOT, record.relative);
     const gridOutput = path.join(GRID_OUTPUT_ROOT, record.relative);
@@ -621,7 +658,7 @@ if (WRITE) {
   };
 
   fs.writeFileSync(
-    path.join(OUTPUT_ROOT, "manifest.json"),
+    path.join(NORMALIZED_ROOT, "manifest.json"),
     JSON.stringify(manifestPayload, null, 2) + "\n",
     "utf8"
   );
@@ -633,7 +670,7 @@ if (WRITE) {
     to the preserved v3 derivative before lazy loading begins.
   */
   fs.writeFileSync(
-    path.join(OUTPUT_ROOT, "manifest.js"),
+    path.join(NORMALIZED_ROOT, "manifest.js"),
     `/* Generated file — do not edit by hand. Build: ${BUILD} */\n` +
     `window.CATALOG_NORMALIZED_IMAGE_MAP = Object.freeze(${JSON.stringify(
       catalogMap,
