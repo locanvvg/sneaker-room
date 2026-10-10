@@ -4,6 +4,7 @@
    Existing display tweaks preserved exactly in behavior:
    - Grid only: Waffle, Jordan 4, NB 2002R, Reverse Bred
    - 3D only: Raygun slightly bigger
+   - Seafoam: reduced in Grid + 3D for better visual balance
    ========================================================= */
 
 const CATALOG_ADDITIONS = [
@@ -168,9 +169,8 @@ const CATALOG_ADDITIONS = [
   /* =====================================================
      JORDAN 1 RETRO HIGH OG 'SEAFOAM'
      Women's exclusive — added to IN COLLECTION.
-     Uses the canonical schemaVersion:2 catalog structure.
-     Display sizing is intentionally left to the existing
-     Auto Fit engine rather than guessing a manual scale.
+     Size tuned after live review so the pair sits more
+     proportionally in both Grid and 3D view.
   ====================================================== */
   {
     schemaVersion: 2,
@@ -207,6 +207,28 @@ const CATALOG_ADDITIONS = [
     images: [
       "pictures/jordan1_seafoam.png"
     ],
+
+
+    display: {
+      grid: {
+        scaleX: 0.88,
+        scaleY: 0.88,
+        x: 0,
+        y: 0
+      },
+      view3d: {
+        scaleX: 0.89,
+        scaleY: 0.89,
+        x: 0,
+        y: 0
+      },
+      view3dMobile: {
+        scaleX: 0.86,
+        scaleY: 0.86,
+        x: 0,
+        y: 0
+      }
+    },
 
     story: {
       vi: `<p><b>Jordan 1 Retro High OG 'Seafoam'</b> là một phần của giai đoạn Jordan Brand mở rộng mạnh các bản Retro High OG dành riêng cho nữ, đưa những bảng màu nhẹ và vật liệu mềm hơn vào cấu trúc Air Jordan 1 cổ điển mà vẫn giữ nguyên ngôn ngữ thiết kế OG. Trên nền da trắng, các lớp phủ Seafoam tạo nên một sắc xanh xám nhạt, giúp đôi giày có cảm giác dịu và tối giản hơn nhiều phối màu Jordan 1 tương phản mạnh.</p>
@@ -339,6 +361,33 @@ if (
         view3dMobile: {
           scaleX: 0.92,
           scaleY: 0.92,
+          x: 0,
+          y: 0
+        }
+      });
+    }
+
+    /* Seafoam: match the approved adiFOM sizing */
+    if (
+      title.includes("jordan 1") &&
+      title.includes("seafoam")
+    ) {
+      mergeDisplay(sneaker, {
+        grid: {
+          scaleX: 0.88,
+          scaleY: 0.88,
+          x: 0,
+          y: 0
+        },
+        view3d: {
+          scaleX: 0.89,
+          scaleY: 0.89,
+          x: 0,
+          y: 0
+        },
+        view3dMobile: {
+          scaleX: 0.86,
+          scaleY: 0.86,
           x: 0,
           y: 0
         }
@@ -721,6 +770,50 @@ if (
       html body
       .sneaker-3d-image
       img[data-catalog-image="true"][data-sneaker-id="adidas-adifom-superstar-white-black-2022"] {
+        scale: 0.86 0.86 !important;
+      }
+    }
+  `;
+
+
+  document.head.appendChild(style);
+})();
+
+/* =========================================================
+   SEAFOAM SIZE FIX — THIS PAIR ONLY
+   Matches the approved adiFOM sizing in Grid + 3D.
+========================================================= */
+(() => {
+  const styleId = "locan-seafoam-size-only-v1";
+
+  document
+    .getElementById(styleId)
+    ?.remove();
+
+  const style = document.createElement("style");
+  style.id = styleId;
+
+  style.textContent = `
+    /* GRID — desktop + mobile */
+    html body
+    #sneaker-grid.grid
+    .card-img-wrapper
+    img[data-catalog-image="true"][data-sneaker-id="jordan-1-retro-high-og-seafoam-2021"] {
+      scale: 0.88 0.88 !important;
+    }
+
+    /* 3D — desktop */
+    html body
+    .sneaker-3d-image
+    img[data-catalog-image="true"][data-sneaker-id="jordan-1-retro-high-og-seafoam-2021"] {
+      scale: 0.89 0.89 !important;
+    }
+
+    /* 3D — phone */
+    @media (max-width: 650px) {
+      html body
+      .sneaker-3d-image
+      img[data-catalog-image="true"][data-sneaker-id="jordan-1-retro-high-og-seafoam-2021"] {
         scale: 0.86 0.86 !important;
       }
     }
