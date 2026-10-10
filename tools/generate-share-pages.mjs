@@ -469,6 +469,18 @@ function wrapLines(
   return lines;
 }
 
+function normalizedPathForSource(value) {
+  const source = String(value || "").trim();
+
+  if (!source.startsWith("pictures/source/")) {
+    return source;
+  }
+
+  return source
+    .replace(/^pictures\/source\//, "pictures/normalized/")
+    .replace(/\.(png|jpe?g|webp)$/i, ".png");
+}
+
 function itemImages(item) {
   if (
     Array.isArray(item?.images) &&
@@ -480,6 +492,19 @@ function itemImages(item) {
 
   if (item?.image) {
     return [item.image];
+  }
+
+  const sourceImages =
+    Array.isArray(item?.sourceImages)
+      ? item.sourceImages.filter(Boolean)
+      : item?.sourceImage
+        ? [item.sourceImage]
+        : [];
+
+  if (sourceImages.length) {
+    return sourceImages
+      .map(normalizedPathForSource)
+      .filter(Boolean);
   }
 
   return [
