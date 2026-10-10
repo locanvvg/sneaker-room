@@ -15,6 +15,7 @@
   "use strict";
 
   const BUILD = "20261010-standard-v4";
+  const ASSET_REVISION = "v4-rollback-20261010a";
   const NORMALIZED_PREFIX = "pictures/normalized/";
   const SOURCE_PREFIX = "pictures/source/";
   const PICTURES_PREFIX = "pictures/";
@@ -34,6 +35,16 @@
       .split("#")[0]
       .replace(/^\.\//, "")
       .trim();
+  }
+
+  function revisionedAsset(value) {
+    const path = cleanPath(value);
+
+    if (!path) {
+      return "";
+    }
+
+    return `${path}?asset=${encodeURIComponent(ASSET_REVISION)}`;
   }
 
   function isOwned(item) {
@@ -179,13 +190,13 @@
     }
 
     item.catalogOriginalImage = original;
-    item.catalogGridImage = assets.grid;
-    item.catalog3DImage = assets.view3d;
+    item.catalogGridImage = revisionedAsset(assets.grid);
+    item.catalog3DImage = revisionedAsset(assets.view3d);
     item.catalogNormalizedImage = true;
     item.catalogNormalizedBuild = BUILD;
 
     /* Grid renderer reads sneaker.image. */
-    item.image = assets.grid;
+    item.image = item.catalogGridImage;
 
     /*
       Normalized derivatives own visual sizing.  Remove legacy per-pair
@@ -227,6 +238,7 @@
 
   window.CatalogImageNormalization = {
     build: BUILD,
+    assetRevision: ASSET_REVISION,
     standardizeCollection,
     standardizeItem,
     derivedNormalizedPath,

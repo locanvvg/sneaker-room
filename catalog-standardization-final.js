@@ -14,6 +14,7 @@
   "use strict";
 
   const BUILD = "20261010-standard-v4";
+  const CACHE_REVISION = "v4-rollback-20261010a";
   const STYLE_ID = "locan-normalized-image-authority-v4";
 
   function installStyles() {
@@ -99,7 +100,6 @@
 
   function cleanPath(value) {
     return String(value || "")
-      .split("?")[0]
       .split("#")[0]
       .replace(/^\.\//, "")
       .trim();
@@ -225,6 +225,34 @@
     });
   }
 
+  async function purgeStaleImageCaches() {
+    if (!("caches" in window)) {
+      return;
+    }
+
+    const marker = `locan-cache-reset-${CACHE_REVISION}`;
+
+    try {
+      if (localStorage.getItem(marker) === "done") {
+        return;
+      }
+
+      const keys = await caches.keys();
+
+      await Promise.all(
+        keys
+          .filter(key =>
+            key.startsWith("locan-sneaker-room-")
+          )
+          .map(key => caches.delete(key))
+      );
+
+      localStorage.setItem(marker, "done");
+    } catch (_) {
+      /* Cache reset is best-effort only. */
+    }
+  }
+
   function registerStableServiceWorker() {
     if (
       !("serviceWorker" in navigator) ||
@@ -238,7 +266,7 @@
       () => {
         navigator.serviceWorker
           .register(
-            `./sw.js?v=${BUILD}`,
+            `./sw.js?v=${CACHE_REVISION}`,
             {
               updateViaCache: "none"
             }
@@ -258,6 +286,13 @@
     markNormalizedImages();
     observeCollection();
   }
+
+  /*
+    Force one clean client-side rollback to the already-generated v4 assets.
+    This does NOT change their geometry; it only prevents a v5 bitmap that
+    used the same filename from surviving in Cache Storage/CDN/browser state.
+  */
+  purgeStaleImageCaches();
 
   /* Last-loaded authority: beat legacy per-pair rules without touching data. */
   installStyles();
