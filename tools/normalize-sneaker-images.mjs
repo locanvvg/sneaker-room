@@ -4,23 +4,47 @@ import path from "node:path";
 const ROOT = process.cwd();
 const PICTURES = path.join(ROOT, "pictures");
 const OUTPUT_ROOT = path.join(PICTURES, "normalized");
+const GRID_OUTPUT_ROOT = path.join(OUTPUT_ROOT, "grid");
 const WRITE = process.argv.includes("--write");
-const BUILD = "20261010-standard-v3";
+const BUILD = "20261010-standard-v4";
 
 /*
-  PRODUCT IMAGE STANDARD
-  ----------------------
-  Every generated homepage image uses exactly the same 4:3 canvas and
-  exactly the same maximum subject box. This is the same basic principle
-  used by commerce catalog pipelines: normalize the asset once, then render
-  every card at neutral scale.
+  PRODUCT IMAGE STANDARD v4
+  -------------------------
+  One source image now produces TWO deterministic homepage derivatives:
+
+  1) VIEW3D
+     Keeps the already-approved v3 geometry exactly as-is.
+
+  2) GRID
+     Uses foreground/subject AREA, not only the outer bounding box.
+     This prevents wide/sparse pairs (for example two low shoes placed
+     side-by-side) from looking visually smaller than taller compositions.
+
+  There are NO sneaker IDs and NO per-pair scale numbers in this pipeline.
+  Every image is measured with the same rules.
 */
 const STANDARD = {
   canvasWidth: 1600,
   canvasHeight: 1200,
-  maxSubjectWidth: 1248,   // 78% of canvas width
-  maxSubjectHeight: 816,   // 68% of canvas height
-  alphaThreshold: 96,     // ignores faint glow / soft shadow
+
+  view3d: {
+    maxSubjectWidth: 1248,   // preserve v3 exactly
+    maxSubjectHeight: 816
+  },
+
+  grid: {
+    /*
+      Grid is allowed a little more horizontal room because listing cards
+      are where wide/sparse silhouettes otherwise look too small.  The
+      actual final size is still chosen automatically from visible-pixel
+      area; these are only global safety envelopes.
+    */
+    maxSubjectWidth: 1440,   // 90% of canvas
+    maxSubjectHeight: 864    // 72% of canvas
+  },
+
+  alphaThreshold: 96,
   transparentPixelThreshold: 12,
   minimumTransparentFraction: 0.005,
   cropPaddingFraction: 0.018,
@@ -200,7 +224,10 @@ async function inspectBounds(input) {
       return {
         ...paddedBounds(alphaBounds, width, height),
         method: "alpha",
-        transparentFraction
+        transparentFraction,
+        visiblePixels: alphaBounds.visible,
+        sourceWidth: width,
+        sourceHeight: height
       };
     }
   }
@@ -265,7 +292,10 @@ async function inspectBounds(input) {
       return {
         ...paddedBounds(colorBounds, width, height),
         method: "border-color",
-        transparentFraction
+        transparentFraction,
+        visiblePixels: colorBounds.visible,
+        sourceWidth: width,
+        sourceHeight: height
       };
     }
   }
@@ -277,18 +307,86 @@ async function inspectBounds(input) {
     width,
     height,
     method: "full-frame-fallback",
-    transparentFraction
+    transparentFraction,
+    visiblePixels: pixels,
+    sourceWidth: width,
+    sourceHeight: height
   };
 }
 
-async function normalizeOne(inputRelative) {
-  const input = path.join(PICTURES, inputRelative);
-  const relative = outputRelative(inputRelative);
-  const output = path.join(OUTPUT_ROOT, relative);
-  const catalogInput = catalogInputPath(inputRelative);
-  const normalized = `pictures/normalized/${relative}`;
+function maxFitScale(bounds, envelope) {
+  return Math.min(
+    envelope.maxSubjectWidth / Math.max(bounds.width, 1),
+    envelope.maxSubjectHeight / Math.max(bounds.height, 1)
+  );
+}
 
-  const bounds = await inspectBounds(input);
+function predictedVisiblePixels(bounds, envelope) {
+  const scale = maxFitScale(bounds, envelope);
+  return Math.max(bounds.visiblePixels || 1, 1) * scale * scale;
+}
+
+function predictedBoxPixels(bounds, envelope) {
+  const scale = maxFitScale(bounds, envelope);
+  return Math.max(bounds.width * bounds.height, 1) * scale * scale;
+}
+
+async function renderVariant({
+  input,
+  bounds,
+  output,
+  mode,
+  targetVisiblePixels,
+  targetBoxPixels
+}) {
+  let resizeWidth;
+  let resizeHeight;
+
+  if (mode === "view3d") {
+    /* Preserve the v3 derivative geometry exactly. */
+    const scale = maxFitScale(bounds, STANDARD.view3d);
+
+    resizeWidth = Math.max(1, Math.round(bounds.width * scale));
+    resizeHeight = Math.max(1, Math.round(bounds.height * scale));
+  } else {
+    /*
+      Perceptual Grid fit:
+      choose one uniform linear scale so the detected foreground area tends
+      toward the collection median.  The same global envelope is then used
+      as a clipping/padding guard for every pair.
+    */
+    const visible = Math.max(bounds.visiblePixels || 1, 1);
+    const boxPixels = Math.max(bounds.width * bounds.height, 1);
+
+    const visibleAreaScale = Math.sqrt(
+      Math.max(targetVisiblePixels, 1) / visible
+    );
+
+    const boxAreaScale = Math.sqrt(
+      Math.max(targetBoxPixels, 1) / boxPixels
+    );
+
+    /*
+      Use the stronger of the two collection-wide signals:
+      - actual foreground/ink area
+      - detected subject bounding-box area
+
+      This is what fixes wide, low-profile compositions without ever naming
+      a specific sneaker. A wide pair can grow until its visual footprint is
+      comparable with the collection median, subject only to the same global
+      padding envelope used by every item.
+    */
+    const perceptualScale = Math.max(
+      visibleAreaScale,
+      boxAreaScale
+    );
+
+    const envelopeScale = maxFitScale(bounds, STANDARD.grid);
+    const scale = Math.min(perceptualScale, envelopeScale);
+
+    resizeWidth = Math.max(1, Math.round(bounds.width * scale));
+    resizeHeight = Math.max(1, Math.round(bounds.height * scale));
+  }
 
   const subject = await sharp(input)
     .rotate()
@@ -300,9 +398,9 @@ async function normalizeOne(inputRelative) {
     })
     .ensureAlpha()
     .resize({
-      width: STANDARD.maxSubjectWidth,
-      height: STANDARD.maxSubjectHeight,
-      fit: "inside",
+      width: resizeWidth,
+      height: resizeHeight,
+      fit: "fill",
       withoutEnlargement: false
     })
     .png()
@@ -343,36 +441,18 @@ async function normalizeOne(inputRelative) {
       .toFile(output);
   }
 
-  console.log(
-    `${inputRelative} -> ${relative}: ` +
-    `${bounds.method}, crop ${bounds.width}x${bounds.height}, ` +
-    `subject ${subject.info.width}x${subject.info.height}`
-  );
-
   return {
-    input: `pictures/${inputRelative}`,
-    catalogInput,
-    normalized,
-    method: bounds.method,
-    crop: {
-      left: bounds.left,
-      top: bounds.top,
-      width: bounds.width,
-      height: bounds.height
-    },
-    normalizedSubject: {
-      width: subject.info.width,
-      height: subject.info.height,
-      left,
-      top
-    }
+    width: subject.info.width,
+    height: subject.info.height,
+    left,
+    top
   };
 }
 
 /*
   If both pictures/foo.png and pictures/source/foo.png exist,
   pictures/source/foo.png wins. This lets the archive keep an untouched
-  master while the homepage always receives one deterministic derivative.
+  master while the homepage always receives deterministic derivatives.
 */
 const candidates = walkImages(PICTURES);
 const selected = new Map();
@@ -394,6 +474,59 @@ if (!files.length) {
   process.exit(0);
 }
 
+/* First pass: inspect every source before choosing the shared Grid target. */
+const inspected = [];
+
+for (const inputRelative of files) {
+  const input = path.join(PICTURES, inputRelative);
+
+  try {
+    const bounds = await inspectBounds(input);
+
+    inspected.push({
+      inputRelative,
+      input,
+      relative: outputRelative(inputRelative),
+      catalogInput: catalogInputPath(inputRelative),
+      bounds
+    });
+  } catch (error) {
+    console.error(`Inspection failed for ${inputRelative}:`);
+    console.error(error?.stack || error?.message || error);
+    process.exitCode = 1;
+  }
+}
+
+if (process.exitCode) {
+  process.exit(process.exitCode);
+}
+
+/*
+  The target is data-driven, not hand-tuned per shoe: use the median visual
+  foreground area that the already-approved v3 geometry would produce.
+  Full-frame fallbacks are excluded when possible so a bad opaque export
+  cannot bias the collection target.
+*/
+const referenceRecords = inspected.filter(
+  record => record.bounds.method !== "full-frame-fallback"
+);
+
+const targetPool = referenceRecords.length
+  ? referenceRecords
+  : inspected;
+
+const gridTargetVisiblePixels = median(
+  targetPool.map(record =>
+    predictedVisiblePixels(record.bounds, STANDARD.view3d)
+  )
+);
+
+const gridTargetBoxPixels = median(
+  targetPool.map(record =>
+    predictedBoxPixels(record.bounds, STANDARD.view3d)
+  )
+);
+
 if (WRITE) {
   /* Fully generated directory: stale files cannot survive. */
   fs.rmSync(OUTPUT_ROOT, {
@@ -401,7 +534,7 @@ if (WRITE) {
     force: true
   });
 
-  fs.mkdirSync(OUTPUT_ROOT, {
+  fs.mkdirSync(GRID_OUTPUT_ROOT, {
     recursive: true
   });
 }
@@ -409,14 +542,63 @@ if (WRITE) {
 const manifest = {};
 const catalogMap = {};
 
-for (const inputRelative of files) {
+for (const record of inspected) {
   try {
-    const record = await normalizeOne(inputRelative);
+    const view3dPath = `pictures/normalized/${record.relative}`;
+    const gridPath = `pictures/normalized/grid/${record.relative}`;
 
-    manifest[record.normalized] = record;
-    catalogMap[record.catalogInput] = record.normalized;
+    const view3dOutput = path.join(OUTPUT_ROOT, record.relative);
+    const gridOutput = path.join(GRID_OUTPUT_ROOT, record.relative);
+
+    const view3dSubject = await renderVariant({
+      input: record.input,
+      bounds: record.bounds,
+      output: view3dOutput,
+      mode: "view3d",
+      targetVisiblePixels: gridTargetVisiblePixels,
+      targetBoxPixels: gridTargetBoxPixels
+    });
+
+    const gridSubject = await renderVariant({
+      input: record.input,
+      bounds: record.bounds,
+      output: gridOutput,
+      mode: "grid",
+      targetVisiblePixels: gridTargetVisiblePixels,
+      targetBoxPixels: gridTargetBoxPixels
+    });
+
+    const payload = {
+      input: `pictures/${record.inputRelative}`,
+      catalogInput: record.catalogInput,
+      grid: gridPath,
+      view3d: view3dPath,
+      method: record.bounds.method,
+      crop: {
+        left: record.bounds.left,
+        top: record.bounds.top,
+        width: record.bounds.width,
+        height: record.bounds.height
+      },
+      visiblePixels: record.bounds.visiblePixels,
+      gridSubject,
+      view3dSubject
+    };
+
+    manifest[view3dPath] = payload;
+    catalogMap[record.catalogInput] = {
+      grid: gridPath,
+      view3d: view3dPath
+    };
+
+    console.log(
+      `${record.inputRelative}: ` +
+      `${record.bounds.method}; ` +
+      `Grid ${gridSubject.width}x${gridSubject.height}; ` +
+      `3D ${view3dSubject.width}x${view3dSubject.height}`
+    );
   } catch (error) {
-    console.error(`Normalization failed for ${inputRelative}:`);
+    console.error(`Normalization failed for ${record.inputRelative}:`);
     console.error(error?.stack || error?.message || error);
     process.exitCode = 1;
   }
@@ -429,7 +611,11 @@ if (process.exitCode) {
 if (WRITE) {
   const manifestPayload = {
     build: BUILD,
-    standard: STANDARD,
+    standard: {
+      ...STANDARD,
+      gridTargetVisiblePixels,
+      gridTargetBoxPixels
+    },
     images: manifest,
     catalogMap
   };
@@ -442,9 +628,9 @@ if (WRITE) {
 
   /*
     Browser-safe synchronous manifest.
-    index.html loads this before catalog-normalization.js so the first card
-    render already points at the final standardized image; there is no
-    post-render source swap and therefore no visual size flash.
+    index.html loads this before catalog-normalization.js, so Grid cards use
+    the final Grid derivative on their FIRST render.  3D cards are switched
+    to the preserved v3 derivative before lazy loading begins.
   */
   fs.writeFileSync(
     path.join(OUTPUT_ROOT, "manifest.js"),
@@ -460,6 +646,6 @@ if (WRITE) {
 
 console.log(
   WRITE
-    ? `Generated ${Object.keys(manifest).length} standardized image(s).`
-    : `Dry run: ${files.length} image(s) validated.`
+    ? `Generated ${Object.keys(manifest).length} dual-mode standardized image set(s).`
+    : `Dry run: ${files.length} image(s) validated. Grid targets: visible ${Math.round(gridTargetVisiblePixels)} px, box ${Math.round(gridTargetBoxPixels)} px.`
 );
