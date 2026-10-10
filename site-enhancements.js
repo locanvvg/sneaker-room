@@ -8,7 +8,7 @@
 (() => {
   "use strict";
 
-  const BUILD = "20261010-normalized-v1";
+  const BUILD = "20261010-unified-v2";
 
   const getLanguage = () => {
     const viButton = document.getElementById("btn-vi");

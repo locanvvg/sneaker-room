@@ -4,7 +4,7 @@
    Existing display tweaks preserved exactly in behavior:
    - Grid only: Waffle, Jordan 4, NB 2002R, Reverse Bred
    - 3D only: Raygun slightly bigger
-   - New normalized-source sneakers use one canonical image size
+   - Seafoam: reduced in Grid + 3D for better visual balance
    ========================================================= */
 
 const CATALOG_ADDITIONS = [
@@ -169,8 +169,8 @@ const CATALOG_ADDITIONS = [
   /* =====================================================
      JORDAN 1 RETRO HIGH OG 'SEAFOAM'
      Women's exclusive — added to IN COLLECTION.
-     First sneaker using the normalized-source image pipeline.
-     No pair-specific Grid / 3D scale is stored here.
+     Size tuned after live review so the pair sits more
+     proportionally in both Grid and 3D view.
   ====================================================== */
   {
     schemaVersion: 2,
@@ -203,13 +203,32 @@ const CATALOG_ADDITIONS = [
 
     collectionStatus: "own",
 
-    /*
-      NEW IMAGE STANDARD:
-      Upload only the clean cutout to pictures/source/.
-      The GitHub Action generates pictures/normalized/ automatically.
-      Runtime display always uses the normalized copy at scale 1.
-    */
-    sourceImage: "pictures/source/jordan1_seafoam.png",
+    image: "pictures/jordan1_seafoam.png",
+    images: [
+      "pictures/jordan1_seafoam.png"
+    ],
+
+
+    display: {
+      grid: {
+        scaleX: 0.88,
+        scaleY: 0.88,
+        x: 0,
+        y: 0
+      },
+      view3d: {
+        scaleX: 0.89,
+        scaleY: 0.89,
+        x: 0,
+        y: 0
+      },
+      view3dMobile: {
+        scaleX: 0.86,
+        scaleY: 0.86,
+        x: 0,
+        y: 0
+      }
+    },
 
     story: {
       vi: `<p><b>Jordan 1 Retro High OG 'Seafoam'</b> là một phần của giai đoạn Jordan Brand mở rộng mạnh các bản Retro High OG dành riêng cho nữ, đưa những bảng màu nhẹ và vật liệu mềm hơn vào cấu trúc Air Jordan 1 cổ điển mà vẫn giữ nguyên ngôn ngữ thiết kế OG. Trên nền da trắng, các lớp phủ Seafoam tạo nên một sắc xanh xám nhạt, giúp đôi giày có cảm giác dịu và tối giản hơn nhiều phối màu Jordan 1 tương phản mạnh.</p>
@@ -271,67 +290,6 @@ if (
   if (!raygunExists) {
     sneakers.push(...CATALOG_ADDITIONS);
   }
-
-  /* =======================================================
-     NORMALIZED SOURCE IMAGE BRIDGE
-
-     New sneakers only need sourceImage/sourceImages pointing
-     into pictures/source/. The build pipeline creates the
-     canonical 1600x1200 display copy in pictures/normalized/.
-
-     IMPORTANT:
-     - no pair-specific scale values
-     - Grid / 3D / mobile all use scale 1
-     - existing legacy sneakers are untouched
-  ======================================================== */
-  const normalizedPath = sourcePath => {
-    const source = String(sourcePath || "").trim();
-
-    if (!source.startsWith("pictures/source/")) {
-      return source;
-    }
-
-    return source
-      .replace(/^pictures\/source\//, "pictures/normalized/")
-      .replace(/\.(png|jpe?g|webp)$/i, ".png");
-  };
-
-  sneakers.forEach(sneaker => {
-    const sourceImages =
-      Array.isArray(sneaker?.sourceImages)
-        ? sneaker.sourceImages.filter(Boolean)
-        : sneaker?.sourceImage
-          ? [sneaker.sourceImage]
-          : [];
-
-    if (!sourceImages.length) {
-      return;
-    }
-
-    const normalizedImages =
-      sourceImages
-        .map(normalizedPath)
-        .filter(Boolean);
-
-    if (!normalizedImages.length) {
-      return;
-    }
-
-    sneaker.image = normalizedImages[0];
-    sneaker.images = normalizedImages;
-    sneaker.normalizedImage = true;
-    sneaker.autoFit = false;
-
-    /*
-      Canonical normalized canvas already owns the visual size.
-      These are STANDARD values, not per-shoe calibration.
-    */
-    sneaker.display = {
-      grid: { scaleX: 1, scaleY: 1, x: 0, y: 0 },
-      view3d: { scaleX: 1, scaleY: 1, x: 0, y: 0 },
-      view3dMobile: { scaleX: 1, scaleY: 1, x: 0, y: 0 }
-    };
-  });
 
   sneakers.forEach(sneaker => {
     const title = getTitleText(sneaker);
@@ -403,6 +361,33 @@ if (
         view3dMobile: {
           scaleX: 0.92,
           scaleY: 0.92,
+          x: 0,
+          y: 0
+        }
+      });
+    }
+
+    /* Seafoam: match the approved adiFOM sizing */
+    if (
+      title.includes("jordan 1") &&
+      title.includes("seafoam")
+    ) {
+      mergeDisplay(sneaker, {
+        grid: {
+          scaleX: 0.88,
+          scaleY: 0.88,
+          x: 0,
+          y: 0
+        },
+        view3d: {
+          scaleX: 0.89,
+          scaleY: 0.89,
+          x: 0,
+          y: 0
+        },
+        view3dMobile: {
+          scaleX: 0.86,
+          scaleY: 0.86,
           x: 0,
           y: 0
         }
@@ -795,6 +780,50 @@ if (
 })();
 
 /* =========================================================
+   SEAFOAM SIZE FIX — THIS PAIR ONLY
+   Matches the approved adiFOM sizing in Grid + 3D.
+========================================================= */
+(() => {
+  const styleId = "locan-seafoam-size-only-v1";
+
+  document
+    .getElementById(styleId)
+    ?.remove();
+
+  const style = document.createElement("style");
+  style.id = styleId;
+
+  style.textContent = `
+    /* GRID — desktop + mobile */
+    html body
+    #sneaker-grid.grid
+    .card-img-wrapper
+    img[data-catalog-image="true"][data-sneaker-id="jordan-1-retro-high-og-seafoam-2021"] {
+      scale: 0.88 0.88 !important;
+    }
+
+    /* 3D — desktop */
+    html body
+    .sneaker-3d-image
+    img[data-catalog-image="true"][data-sneaker-id="jordan-1-retro-high-og-seafoam-2021"] {
+      scale: 0.89 0.89 !important;
+    }
+
+    /* 3D — phone */
+    @media (max-width: 650px) {
+      html body
+      .sneaker-3d-image
+      img[data-catalog-image="true"][data-sneaker-id="jordan-1-retro-high-og-seafoam-2021"] {
+        scale: 0.86 0.86 !important;
+      }
+    }
+  `;
+
+  document.head.appendChild(style);
+})();
+
+
+/* =========================================================
    QUAI 54 F&F + YUTO MATCHA — DETAIL GALLERY FIX ONLY
    Scope is intentionally limited to these two sneaker IDs.
 
@@ -868,7 +897,7 @@ if (
 
   const script = document.createElement("script");
   script.id = "locan-site-enhancements-loader";
-  script.src = "./site-enhancements.js?v=20261010-normalized-v1";
+  script.src = "./site-enhancements.js?v=20260929-v2";
   script.async = true;
   document.head.appendChild(script);
 })();
@@ -1517,3 +1546,41 @@ if (
     install();
   }
 })();
+
+/* =========================================================
+   UNIFIED CATALOG IMAGE NORMALIZATION LOADER — 2026-10-10
+   ---------------------------------------------------------
+   Loaded LAST on the homepage so the normalized image layer wins
+   over historical per-pair sizing rules without deleting them.
+========================================================= */
+(() => {
+  "use strict";
+
+  const SCRIPT_ID = "locan-catalog-normalization-loader-v2";
+
+  function load() {
+    if (
+      document.getElementById(SCRIPT_ID) ||
+      !document.getElementById("sneaker-grid")
+    ) {
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.id = SCRIPT_ID;
+    script.src = "./catalog-normalization.js?v=20261010-unified-v2";
+    script.async = false;
+    document.body.appendChild(script);
+  }
+
+  if (document.readyState === "complete") {
+    setTimeout(load, 60);
+  } else {
+    window.addEventListener(
+      "load",
+      () => setTimeout(load, 60),
+      { once: true }
+    );
+  }
+})();
+

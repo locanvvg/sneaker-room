@@ -1,6 +1,6 @@
 /* Lộc An Sneaker Collection — optimized offline/runtime cache */
 const CACHE_VERSION =
-  "locan-sneaker-room-20261010-normalized-v1";
+  "locan-sneaker-room-20261010-unified-v2";
 
 const SHELL_CACHE =
   `${CACHE_VERSION}-shell`;
@@ -28,6 +28,7 @@ const SHELL = [
   "./main.js",
   "./catalog-ui.js",
   "./catalog-display.js",
+  "./catalog-normalization.js",
   "./collection-content-final.js",
   "./shoe-page.js",
   "./item-share.js",
