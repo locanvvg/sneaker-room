@@ -1,0 +1,26 @@
+{
+  "standard": {
+    "canvasWidth": 1600,
+    "canvasHeight": 1200,
+    "maxSubjectWidth": 1248,
+    "maxSubjectHeight": 816,
+    "alphaThreshold": 18,
+    "minimumTransparentFraction": 0.01
+  },
+  "images": {
+    "pictures/source/jordan1_seafoam.png": {
+      "source": "pictures/source/jordan1_seafoam.png",
+      "normalized": "pictures/normalized/jordan1_seafoam.png",
+      "sourceBounds": {
+        "width": 1509,
+        "height": 858
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 710,
+        "left": 176,
+        "top": 245
+      }
+    }
+  }
+}
