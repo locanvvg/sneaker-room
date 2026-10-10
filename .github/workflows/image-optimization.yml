@@ -36,7 +36,7 @@ jobs:
       - name: Install image tools
         run: npm install --no-save sharp
 
-      - name: Normalize sneaker source images
+      - name: Normalize all sneaker images to one visual standard
         run: node tools/normalize-sneaker-images.mjs --write
 
       - name: Create optimized WebP copies
@@ -50,9 +50,6 @@ jobs:
         run: |
           git add -A pictures/normalized pictures/optimized share
 
-          # git diff alone ignores brand-new untracked folders.
-          # Check the staged index instead so generated assets
-          # are actually committed on their first build.
           if git diff --cached --quiet; then
             echo "No generated asset changes."
             exit 0
@@ -61,5 +58,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git commit -m "Build optimized collection assets [skip ci]"
+          git commit -m "Normalize and optimize collection images [skip ci]"
           git push
