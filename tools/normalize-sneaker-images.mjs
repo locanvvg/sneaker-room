@@ -6,77 +6,49 @@ const PICTURES = path.join(ROOT, "pictures");
 const OUTPUT_ROOT = path.join(PICTURES, "normalized");
 const GRID_OUTPUT_ROOT = path.join(OUTPUT_ROOT, "grid");
 const WRITE = process.argv.includes("--write");
-const BUILD = "20261010-standard-v5";
+const BUILD = "20261010-standard-v4";
 
 /*
-  PRODUCT IMAGE STANDARD v5
+  PRODUCT IMAGE STANDARD v4
   -------------------------
-  Goal:
-  - Make the actual sneaker/product read at a consistent visual size.
-  - Do NOT use sneaker IDs or per-pair scale numbers.
-  - Preserve accessory content (bags, spare laces, tags, boxes) whenever it
-    exists, but do not allow small secondary objects to make the shoe itself
-    look tiny.
+  One source image now produces TWO deterministic homepage derivatives:
 
-  One source image produces two deterministic homepage derivatives:
+  1) VIEW3D
+     Keeps the already-approved v3 geometry exactly as-is.
 
-  1) GRID
-     Uses collection-wide perceptual normalization measured from the
-     automatically detected PRIMARY PRODUCT MASS.
+  2) GRID
+     Uses foreground/subject AREA, not only the outer bounding box.
+     This prevents wide/sparse pairs (for example two low shoes placed
+     side-by-side) from looking visually smaller than taller compositions.
 
-  2) VIEW3D
-     Keeps the v3/v4 visual target for ordinary images, but uses the same
-     primary-product detector when an image contains secondary objects.
-
-  Important:
-  - The full foreground is still rendered. Accessories are NOT deleted.
-  - Only the measurement/centering target can be based on the primary mass.
-  - Ordinary sneaker-only images remain effectively unchanged.
+  There are NO sneaker IDs and NO per-pair scale numbers in this pipeline.
+  Every image is measured with the same rules.
 */
 const STANDARD = {
   canvasWidth: 1600,
   canvasHeight: 1200,
 
   view3d: {
-    primaryMaxWidth: 1248,
-    primaryMaxHeight: 816,
-    baseOuterMaxWidth: 1248,
-    baseOuterMaxHeight: 816
+    maxSubjectWidth: 1248,   // preserve v3 exactly
+    maxSubjectHeight: 816
   },
 
   grid: {
-    primaryMaxWidth: 1440,
-    primaryMaxHeight: 864,
-    baseOuterMaxWidth: 1440,
-    baseOuterMaxHeight: 864
+    /*
+      Grid is allowed a little more horizontal room because listing cards
+      are where wide/sparse silhouettes otherwise look too small.  The
+      actual final size is still chosen automatically from visible-pixel
+      area; these are only global safety envelopes.
+    */
+    maxSubjectWidth: 1440,   // 90% of canvas
+    maxSubjectHeight: 864    // 72% of canvas
   },
-
-  /*
-    The outer envelope is relaxed only when the detector finds meaningful
-    secondary foreground mass. This lets accessories sit closer to the
-    canvas edge without forcing the main shoe to shrink.
-  */
-  maxOuterWidth: 1520,   // 95% of 1600
-  maxOuterHeight: 1080,  // 90% of 1200
-  accessoryRelaxStrength: 1.35,
 
   alphaThreshold: 96,
   transparentPixelThreshold: 12,
   minimumTransparentFraction: 0.005,
   cropPaddingFraction: 0.018,
-  opaqueBackgroundDistance: 34,
-
-  /*
-    Primary-product detection is intentionally generic.
-    It operates on a small foreground mask for speed.
-  */
-  analysisMaxSide: 480,
-  componentRelativeMin: 0.055,
-  componentCoverageTarget: 0.72,
-  componentMaxCount: 4,
-  robustTailFraction: 0.07,
-  minimumPrimaryCoverage: 0.58,
-  significantBoxReduction: 0.88
+  opaqueBackgroundDistance: 34
 };
 
 let sharp;
@@ -91,10 +63,6 @@ try {
 if (!fs.existsSync(PICTURES)) {
   console.error("pictures/ directory not found");
   process.exit(1);
-}
-
-function clamp(value, min, max) {
-  return Math.max(min, Math.min(max, value));
 }
 
 function walkImages(dir, prefix = "") {
@@ -161,12 +129,12 @@ function colorDistance(r, g, b, bg) {
   return Math.sqrt(dr * dr + dg * dg + db * db);
 }
 
-function paddedBounds(bounds, width, height, paddingFraction = STANDARD.cropPaddingFraction) {
+function paddedBounds(bounds, width, height) {
   const pad = Math.max(
     2,
     Math.round(
       Math.max(bounds.width, bounds.height) *
-      paddingFraction
+      STANDARD.cropPaddingFraction
     )
   );
 
@@ -221,261 +189,6 @@ function boundsFromMask(width, height, visibleAt) {
   };
 }
 
-function maskBounds(mask, width, height) {
-  return boundsFromMask(
-    width,
-    height,
-    (x, y) => mask[y * width + x] === 1
-  );
-}
-
-function connectedComponents(mask, width, height) {
-  const visited = new Uint8Array(mask.length);
-  const queue = new Int32Array(mask.length);
-  const components = [];
-
-  const neighbors = [
-    [-1, -1], [0, -1], [1, -1],
-    [-1,  0],          [1,  0],
-    [-1,  1], [0,  1], [1,  1]
-  ];
-
-  for (let start = 0; start < mask.length; start += 1) {
-    if (!mask[start] || visited[start]) continue;
-
-    let head = 0;
-    let tail = 0;
-
-    queue[tail++] = start;
-    visited[start] = 1;
-
-    let area = 0;
-    let minX = width;
-    let minY = height;
-    let maxX = -1;
-    let maxY = -1;
-
-    while (head < tail) {
-      const index = queue[head++];
-      const x = index % width;
-      const y = Math.floor(index / width);
-
-      area += 1;
-      if (x < minX) minX = x;
-      if (x > maxX) maxX = x;
-      if (y < minY) minY = y;
-      if (y > maxY) maxY = y;
-
-      for (const [dx, dy] of neighbors) {
-        const nx = x + dx;
-        const ny = y + dy;
-
-        if (
-          nx < 0 || nx >= width ||
-          ny < 0 || ny >= height
-        ) {
-          continue;
-        }
-
-        const ni = ny * width + nx;
-
-        if (!mask[ni] || visited[ni]) continue;
-
-        visited[ni] = 1;
-        queue[tail++] = ni;
-      }
-    }
-
-    components.push({
-      area,
-      left: minX,
-      top: minY,
-      width: maxX - minX + 1,
-      height: maxY - minY + 1
-    });
-  }
-
-  return components;
-}
-
-function unionBounds(items) {
-  if (!items.length) return null;
-
-  const left = Math.min(...items.map(item => item.left));
-  const top = Math.min(...items.map(item => item.top));
-  const right = Math.max(
-    ...items.map(item => item.left + item.width - 1)
-  );
-  const bottom = Math.max(
-    ...items.map(item => item.top + item.height - 1)
-  );
-
-  return {
-    left,
-    top,
-    width: right - left + 1,
-    height: bottom - top + 1
-  };
-}
-
-function projectionQuantile(counts, fraction) {
-  const total = counts.reduce((sum, value) => sum + value, 0);
-
-  if (!total) return 0;
-
-  const target = total * fraction;
-  let cumulative = 0;
-
-  for (let i = 0; i < counts.length; i += 1) {
-    cumulative += counts[i];
-
-    if (cumulative >= target) {
-      return i;
-    }
-  }
-
-  return counts.length - 1;
-}
-
-function robustCoreBounds(mask, width, height) {
-  const xCounts = new Array(width).fill(0);
-  const yCounts = new Array(height).fill(0);
-  let total = 0;
-
-  for (let y = 0; y < height; y += 1) {
-    for (let x = 0; x < width; x += 1) {
-      if (!mask[y * width + x]) continue;
-
-      xCounts[x] += 1;
-      yCounts[y] += 1;
-      total += 1;
-    }
-  }
-
-  if (!total) return null;
-
-  const tail = STANDARD.robustTailFraction;
-
-  const left = projectionQuantile(xCounts, tail);
-  const right = projectionQuantile(xCounts, 1 - tail);
-  const top = projectionQuantile(yCounts, tail);
-  const bottom = projectionQuantile(yCounts, 1 - tail);
-
-  let visible = 0;
-
-  for (let y = top; y <= bottom; y += 1) {
-    for (let x = left; x <= right; x += 1) {
-      if (mask[y * width + x]) {
-        visible += 1;
-      }
-    }
-  }
-
-  return {
-    left,
-    top,
-    width: Math.max(1, right - left + 1),
-    height: Math.max(1, bottom - top + 1),
-    visible,
-    totalVisible: total
-  };
-}
-
-function buildForegroundMask(data, info, method) {
-  const { width, height, channels } = info;
-  const mask = new Uint8Array(width * height);
-
-  if (method === "alpha") {
-    for (let i = 0; i < width * height; i += 1) {
-      mask[i] =
-        data[i * channels + 3] >= STANDARD.alphaThreshold
-          ? 1
-          : 0;
-    }
-
-    return mask;
-  }
-
-  const borderR = [];
-  const borderG = [];
-  const borderB = [];
-  const border = Math.max(
-    1,
-    Math.round(Math.min(width, height) * 0.025)
-  );
-
-  for (let y = 0; y < height; y += 1) {
-    for (let x = 0; x < width; x += 1) {
-      if (
-        x >= border &&
-        x < width - border &&
-        y >= border &&
-        y < height - border
-      ) {
-        continue;
-      }
-
-      const i = (y * width + x) * channels;
-      borderR.push(data[i]);
-      borderG.push(data[i + 1]);
-      borderB.push(data[i + 2]);
-    }
-  }
-
-  const bg = {
-    r: median(borderR),
-    g: median(borderG),
-    b: median(borderB)
-  };
-
-  for (let y = 0; y < height; y += 1) {
-    for (let x = 0; x < width; x += 1) {
-      const i = (y * width + x) * channels;
-
-      mask[y * width + x] =
-        colorDistance(
-          data[i],
-          data[i + 1],
-          data[i + 2],
-          bg
-        ) >= STANDARD.opaqueBackgroundDistance
-          ? 1
-          : 0;
-    }
-  }
-
-  return mask;
-}
-
-function mapAnalysisBoundsToSource(bounds, analysisInfo, sourceWidth, sourceHeight) {
-  const scaleX = sourceWidth / analysisInfo.width;
-  const scaleY = sourceHeight / analysisInfo.height;
-
-  const left = Math.max(
-    0,
-    Math.floor(bounds.left * scaleX)
-  );
-  const top = Math.max(
-    0,
-    Math.floor(bounds.top * scaleY)
-  );
-  const right = Math.min(
-    sourceWidth - 1,
-    Math.ceil((bounds.left + bounds.width) * scaleX) - 1
-  );
-  const bottom = Math.min(
-    sourceHeight - 1,
-    Math.ceil((bounds.top + bounds.height) * scaleY) - 1
-  );
-
-  return {
-    left,
-    top,
-    width: right - left + 1,
-    height: bottom - top + 1
-  };
-}
-
 async function inspectBounds(input) {
   const { data, info } = await sharp(input)
     .rotate()
@@ -519,6 +232,12 @@ async function inspectBounds(input) {
     }
   }
 
+  /*
+    Opaque-image fallback:
+    estimate the background from border pixels and detect the subject by
+    color distance. This keeps the build deterministic even if an old image
+    was exported with a flat background instead of transparency.
+  */
   const borderR = [];
   const borderG = [];
   const borderB = [];
@@ -581,6 +300,7 @@ async function inspectBounds(input) {
     }
   }
 
+  /* Last-resort full-frame fallback: never break the asset build. */
   return {
     left: 0,
     top: 0,
@@ -594,435 +314,87 @@ async function inspectBounds(input) {
   };
 }
 
-async function inspectPrimaryMass(input, fullBounds) {
-  if (fullBounds.method === "full-frame-fallback") {
-    return {
-      bounds: { ...fullBounds },
-      visiblePixels: fullBounds.visiblePixels,
-      coverage: 1,
-      method: "full-frame"
-    };
-  }
-
-  const sourceWidth = fullBounds.sourceWidth;
-  const sourceHeight = fullBounds.sourceHeight;
-
-  const analysisScale = Math.min(
-    1,
-    STANDARD.analysisMaxSide /
-      Math.max(sourceWidth, sourceHeight)
-  );
-
-  const analysisWidth = Math.max(
-    1,
-    Math.round(sourceWidth * analysisScale)
-  );
-
-  const analysisHeight = Math.max(
-    1,
-    Math.round(sourceHeight * analysisScale)
-  );
-
-  const { data, info } = await sharp(input)
-    .rotate()
-    .resize({
-      width: analysisWidth,
-      height: analysisHeight,
-      fit: "fill"
-    })
-    .ensureAlpha()
-    .raw()
-    .toBuffer({ resolveWithObject: true });
-
-  const mask = buildForegroundMask(
-    data,
-    info,
-    fullBounds.method
-  );
-
-  const overall = maskBounds(
-    mask,
-    info.width,
-    info.height
-  );
-
-  if (!overall || !overall.visible) {
-    return {
-      bounds: { ...fullBounds },
-      visiblePixels: fullBounds.visiblePixels,
-      coverage: 1,
-      method: "full"
-    };
-  }
-
-  const components = connectedComponents(
-    mask,
-    info.width,
-    info.height
-  )
-    .filter(component => component.area >= 4)
-    .sort((a, b) => b.area - a.area);
-
-  let selectedBounds = null;
-  let selectedVisible = 0;
-  let selectedMethod = "";
-
-  if (components.length) {
-    const largest = components[0].area;
-    const meaningful = components.filter(
-      component =>
-        component.area >=
-        Math.max(
-          4,
-          largest * STANDARD.componentRelativeMin
-        )
-    );
-
-    const selected = [];
-    let covered = 0;
-
-    for (const component of meaningful) {
-      selected.push(component);
-      covered += component.area;
-
-      if (
-        selected.length >= 2 &&
-        covered / overall.visible >=
-          STANDARD.componentCoverageTarget
-      ) {
-        break;
-      }
-
-      if (
-        selected.length >=
-        STANDARD.componentMaxCount
-      ) {
-        break;
-      }
-    }
-
-    const candidate = unionBounds(selected);
-    const candidateCoverage =
-      covered / overall.visible;
-
-    if (candidate) {
-      const candidateBox =
-        candidate.width * candidate.height;
-      const overallBox =
-        overall.width * overall.height;
-
-      if (
-        candidateCoverage >=
-          STANDARD.minimumPrimaryCoverage &&
-        candidateBox <=
-          overallBox *
-          STANDARD.significantBoxReduction
-      ) {
-        selectedBounds = candidate;
-        selectedVisible = covered;
-        selectedMethod = "components";
-      }
-    }
-  }
-
-  /*
-    If connected components do not clearly separate the main product from
-    secondary foreground, use a robust central-mass box. It trims only the
-    extreme foreground tails and is used only when that reduction is
-    substantial enough to indicate a real secondary-object layout.
-  */
-  if (!selectedBounds) {
-    const core = robustCoreBounds(
-      mask,
-      info.width,
-      info.height
-    );
-
-    if (core) {
-      const coreCoverage =
-        core.visible /
-        Math.max(core.totalVisible, 1);
-
-      const coreBox =
-        core.width * core.height;
-      const overallBox =
-        overall.width * overall.height;
-
-      if (
-        coreCoverage >=
-          STANDARD.minimumPrimaryCoverage &&
-        coreBox <= overallBox * 0.78
-      ) {
-        selectedBounds = core;
-        selectedVisible = core.visible;
-        selectedMethod = "robust-core";
-      }
-    }
-  }
-
-  if (!selectedBounds) {
-    return {
-      bounds: { ...fullBounds },
-      visiblePixels: fullBounds.visiblePixels,
-      coverage: 1,
-      method: "full"
-    };
-  }
-
-  let mapped = mapAnalysisBoundsToSource(
-    selectedBounds,
-    info,
-    sourceWidth,
-    sourceHeight
-  );
-
-  mapped = paddedBounds(
-    mapped,
-    sourceWidth,
-    sourceHeight,
-    STANDARD.cropPaddingFraction * 0.65
-  );
-
-  const analysisCoverage =
-    selectedVisible /
-    Math.max(overall.visible, 1);
-
-  const coverage =
-    clamp(analysisCoverage, 0, 1);
-
-  return {
-    bounds: mapped,
-    visiblePixels:
-      Math.max(
-        1,
-        Math.round(
-          fullBounds.visiblePixels * coverage
-        )
-      ),
-    coverage,
-    method: selectedMethod
-  };
-}
-
-function primaryFitScale(primary, envelope) {
+function maxFitScale(bounds, envelope) {
   return Math.min(
-    envelope.primaryMaxWidth /
-      Math.max(primary.bounds.width, 1),
-    envelope.primaryMaxHeight /
-      Math.max(primary.bounds.height, 1)
+    envelope.maxSubjectWidth / Math.max(bounds.width, 1),
+    envelope.maxSubjectHeight / Math.max(bounds.height, 1)
   );
 }
 
-function predictedPrimaryVisiblePixels(profile, envelope) {
-  const scale =
-    primaryFitScale(profile.primary, envelope);
-
-  return (
-    Math.max(profile.primary.visiblePixels, 1) *
-    scale *
-    scale
-  );
+function predictedVisiblePixels(bounds, envelope) {
+  const scale = maxFitScale(bounds, envelope);
+  return Math.max(bounds.visiblePixels || 1, 1) * scale * scale;
 }
 
-function predictedPrimaryBoxPixels(profile, envelope) {
-  const scale =
-    primaryFitScale(profile.primary, envelope);
-
-  return (
-    Math.max(
-      profile.primary.bounds.width *
-      profile.primary.bounds.height,
-      1
-    ) *
-    scale *
-    scale
-  );
-}
-
-function relaxedOuterEnvelope(profile, envelope) {
-  const secondaryFraction =
-    clamp(
-      1 - profile.primary.coverage,
-      0,
-      0.42
-    );
-
-  const relax =
-    1 +
-    secondaryFraction *
-      STANDARD.accessoryRelaxStrength;
-
-  return {
-    maxWidth: Math.min(
-      STANDARD.maxOuterWidth,
-      envelope.baseOuterMaxWidth * relax
-    ),
-    maxHeight: Math.min(
-      STANDARD.maxOuterHeight,
-      envelope.baseOuterMaxHeight * relax
-    )
-  };
-}
-
-function fullGuardScale(profile, envelope) {
-  const outer =
-    relaxedOuterEnvelope(profile, envelope);
-
-  return Math.min(
-    outer.maxWidth /
-      Math.max(profile.full.width, 1),
-    outer.maxHeight /
-      Math.max(profile.full.height, 1)
-  );
-}
-
-function centeredPlacement({
-  profile,
-  scale,
-  renderedWidth,
-  renderedHeight
-}) {
-  const primary = profile.primary.bounds;
-  const full = profile.full;
-
-  const primaryCenterX =
-    (
-      primary.left -
-      full.left +
-      primary.width / 2
-    ) * scale;
-
-  const primaryCenterY =
-    (
-      primary.top -
-      full.top +
-      primary.height / 2
-    ) * scale;
-
-  let left = Math.round(
-    STANDARD.canvasWidth / 2 -
-    primaryCenterX
-  );
-
-  let top = Math.round(
-    STANDARD.canvasHeight / 2 -
-    primaryCenterY
-  );
-
-  /*
-    Keep every accessory visible. Center the main product as much as
-    possible, then clamp the full composition inside the canvas.
-  */
-  left = clamp(
-    left,
-    0,
-    Math.max(
-      0,
-      STANDARD.canvasWidth -
-        renderedWidth
-    )
-  );
-
-  top = clamp(
-    top,
-    0,
-    Math.max(
-      0,
-      STANDARD.canvasHeight -
-        renderedHeight
-    )
-  );
-
-  return { left, top };
+function predictedBoxPixels(bounds, envelope) {
+  const scale = maxFitScale(bounds, envelope);
+  return Math.max(bounds.width * bounds.height, 1) * scale * scale;
 }
 
 async function renderVariant({
   input,
-  profile,
+  bounds,
   output,
   mode,
   targetVisiblePixels,
   targetBoxPixels
 }) {
-  const envelope =
-    mode === "view3d"
-      ? STANDARD.view3d
-      : STANDARD.grid;
-
-  let desiredScale;
+  let resizeWidth;
+  let resizeHeight;
 
   if (mode === "view3d") {
-    /*
-      For normal sneaker-only images primary == full, so this is identical
-      to v3/v4. Only secondary-object compositions receive different sizing.
-    */
-    desiredScale =
-      primaryFitScale(
-        profile.primary,
-        envelope
-      );
+    /* Preserve the v3 derivative geometry exactly. */
+    const scale = maxFitScale(bounds, STANDARD.view3d);
+
+    resizeWidth = Math.max(1, Math.round(bounds.width * scale));
+    resizeHeight = Math.max(1, Math.round(bounds.height * scale));
   } else {
-    const visible =
-      Math.max(
-        profile.primary.visiblePixels,
-        1
-      );
+    /*
+      Perceptual Grid fit:
+      choose one uniform linear scale so the detected foreground area tends
+      toward the collection median.  The same global envelope is then used
+      as a clipping/padding guard for every pair.
+    */
+    const visible = Math.max(bounds.visiblePixels || 1, 1);
+    const boxPixels = Math.max(bounds.width * bounds.height, 1);
 
-    const boxPixels =
-      Math.max(
-        profile.primary.bounds.width *
-        profile.primary.bounds.height,
-        1
-      );
+    const visibleAreaScale = Math.sqrt(
+      Math.max(targetVisiblePixels, 1) / visible
+    );
 
-    const visibleAreaScale =
-      Math.sqrt(
-        Math.max(
-          targetVisiblePixels,
-          1
-        ) / visible
-      );
+    const boxAreaScale = Math.sqrt(
+      Math.max(targetBoxPixels, 1) / boxPixels
+    );
 
-    const boxAreaScale =
-      Math.sqrt(
-        Math.max(
-          targetBoxPixels,
-          1
-        ) / boxPixels
-      );
+    /*
+      Use the stronger of the two collection-wide signals:
+      - actual foreground/ink area
+      - detected subject bounding-box area
 
-    desiredScale = Math.max(
+      This is what fixes wide, low-profile compositions without ever naming
+      a specific sneaker. A wide pair can grow until its visual footprint is
+      comparable with the collection median, subject only to the same global
+      padding envelope used by every item.
+    */
+    const perceptualScale = Math.max(
       visibleAreaScale,
       boxAreaScale
     );
+
+    const envelopeScale = maxFitScale(bounds, STANDARD.grid);
+    const scale = Math.min(perceptualScale, envelopeScale);
+
+    resizeWidth = Math.max(1, Math.round(bounds.width * scale));
+    resizeHeight = Math.max(1, Math.round(bounds.height * scale));
   }
-
-  const scale = Math.min(
-    desiredScale,
-    fullGuardScale(profile, envelope)
-  );
-
-  const resizeWidth = Math.max(
-    1,
-    Math.round(
-      profile.full.width * scale
-    )
-  );
-
-  const resizeHeight = Math.max(
-    1,
-    Math.round(
-      profile.full.height * scale
-    )
-  );
 
   const subject = await sharp(input)
     .rotate()
     .extract({
-      left: profile.full.left,
-      top: profile.full.top,
-      width: profile.full.width,
-      height: profile.full.height
+      left: bounds.left,
+      top: bounds.top,
+      width: bounds.width,
+      height: bounds.height
     })
     .ensureAlpha()
     .resize({
@@ -1034,18 +406,16 @@ async function renderVariant({
     .png()
     .toBuffer({ resolveWithObject: true });
 
-  const placement = centeredPlacement({
-    profile,
-    scale,
-    renderedWidth: subject.info.width,
-    renderedHeight: subject.info.height
-  });
+  const left = Math.round(
+    (STANDARD.canvasWidth - subject.info.width) / 2
+  );
+
+  const top = Math.round(
+    (STANDARD.canvasHeight - subject.info.height) / 2
+  );
 
   if (WRITE) {
-    fs.mkdirSync(
-      path.dirname(output),
-      { recursive: true }
-    );
+    fs.mkdirSync(path.dirname(output), { recursive: true });
 
     await sharp({
       create: {
@@ -1063,8 +433,8 @@ async function renderVariant({
       .composite([
         {
           input: subject.data,
-          left: placement.left,
-          top: placement.top
+          left,
+          top
         }
       ])
       .png({ compressionLevel: 9 })
@@ -1074,15 +444,15 @@ async function renderVariant({
   return {
     width: subject.info.width,
     height: subject.info.height,
-    left: placement.left,
-    top: placement.top,
-    scale: Number(scale.toFixed(6))
+    left,
+    top
   };
 }
 
 /*
   If both pictures/foo.png and pictures/source/foo.png exist,
-  pictures/source/foo.png wins.
+  pictures/source/foo.png wins. This lets the archive keep an untouched
+  master while the homepage always receives deterministic derivatives.
 */
 const candidates = walkImages(PICTURES);
 const selected = new Map();
@@ -1104,49 +474,25 @@ if (!files.length) {
   process.exit(0);
 }
 
-/*
-  First pass:
-  - detect full foreground
-  - detect primary product mass
-  - do this before choosing the collection-wide Grid target
-*/
+/* First pass: inspect every source before choosing the shared Grid target. */
 const inspected = [];
 
 for (const inputRelative of files) {
-  const input = path.join(
-    PICTURES,
-    inputRelative
-  );
+  const input = path.join(PICTURES, inputRelative);
 
   try {
-    const full =
-      await inspectBounds(input);
-
-    const primary =
-      await inspectPrimaryMass(
-        input,
-        full
-      );
+    const bounds = await inspectBounds(input);
 
     inspected.push({
       inputRelative,
       input,
-      relative:
-        outputRelative(inputRelative),
-      catalogInput:
-        catalogInputPath(inputRelative),
-      full,
-      primary
+      relative: outputRelative(inputRelative),
+      catalogInput: catalogInputPath(inputRelative),
+      bounds
     });
   } catch (error) {
-    console.error(
-      `Inspection failed for ${inputRelative}:`
-    );
-    console.error(
-      error?.stack ||
-      error?.message ||
-      error
-    );
+    console.error(`Inspection failed for ${inputRelative}:`);
+    console.error(error?.stack || error?.message || error);
     process.exitCode = 1;
   }
 }
@@ -1155,158 +501,105 @@ if (process.exitCode) {
   process.exit(process.exitCode);
 }
 
+/*
+  The target is data-driven, not hand-tuned per shoe: use the median visual
+  foreground area that the already-approved v3 geometry would produce.
+  Full-frame fallbacks are excluded when possible so a bad opaque export
+  cannot bias the collection target.
+*/
 const referenceRecords = inspected.filter(
-  record =>
-    record.full.method !==
-      "full-frame-fallback"
+  record => record.bounds.method !== "full-frame-fallback"
 );
 
-const targetPool =
-  referenceRecords.length
-    ? referenceRecords
-    : inspected;
+const targetPool = referenceRecords.length
+  ? referenceRecords
+  : inspected;
 
-/*
-  Use the median primary-product footprint from the collection.
-  No sneaker receives a private target.
-*/
 const gridTargetVisiblePixels = median(
-  targetPool.map(profile =>
-    predictedPrimaryVisiblePixels(
-      profile,
-      STANDARD.view3d
-    )
+  targetPool.map(record =>
+    predictedVisiblePixels(record.bounds, STANDARD.view3d)
   )
 );
 
 const gridTargetBoxPixels = median(
-  targetPool.map(profile =>
-    predictedPrimaryBoxPixels(
-      profile,
-      STANDARD.view3d
-    )
+  targetPool.map(record =>
+    predictedBoxPixels(record.bounds, STANDARD.view3d)
   )
 );
 
 if (WRITE) {
-  fs.rmSync(
-    OUTPUT_ROOT,
-    {
-      recursive: true,
-      force: true
-    }
-  );
+  /* Fully generated directory: stale files cannot survive. */
+  fs.rmSync(OUTPUT_ROOT, {
+    recursive: true,
+    force: true
+  });
 
-  fs.mkdirSync(
-    GRID_OUTPUT_ROOT,
-    { recursive: true }
-  );
+  fs.mkdirSync(GRID_OUTPUT_ROOT, {
+    recursive: true
+  });
 }
 
 const manifest = {};
 const catalogMap = {};
 
-for (const profile of inspected) {
+for (const record of inspected) {
   try {
-    const view3dPath =
-      `pictures/normalized/${profile.relative}`;
+    const view3dPath = `pictures/normalized/${record.relative}`;
+    const gridPath = `pictures/normalized/grid/${record.relative}`;
 
-    const gridPath =
-      `pictures/normalized/grid/${profile.relative}`;
+    const view3dOutput = path.join(OUTPUT_ROOT, record.relative);
+    const gridOutput = path.join(GRID_OUTPUT_ROOT, record.relative);
 
-    const view3dOutput =
-      path.join(
-        OUTPUT_ROOT,
-        profile.relative
-      );
+    const view3dSubject = await renderVariant({
+      input: record.input,
+      bounds: record.bounds,
+      output: view3dOutput,
+      mode: "view3d",
+      targetVisiblePixels: gridTargetVisiblePixels,
+      targetBoxPixels: gridTargetBoxPixels
+    });
 
-    const gridOutput =
-      path.join(
-        GRID_OUTPUT_ROOT,
-        profile.relative
-      );
-
-    const view3dSubject =
-      await renderVariant({
-        input: profile.input,
-        profile,
-        output: view3dOutput,
-        mode: "view3d",
-        targetVisiblePixels:
-          gridTargetVisiblePixels,
-        targetBoxPixels:
-          gridTargetBoxPixels
-      });
-
-    const gridSubject =
-      await renderVariant({
-        input: profile.input,
-        profile,
-        output: gridOutput,
-        mode: "grid",
-        targetVisiblePixels:
-          gridTargetVisiblePixels,
-        targetBoxPixels:
-          gridTargetBoxPixels
-      });
+    const gridSubject = await renderVariant({
+      input: record.input,
+      bounds: record.bounds,
+      output: gridOutput,
+      mode: "grid",
+      targetVisiblePixels: gridTargetVisiblePixels,
+      targetBoxPixels: gridTargetBoxPixels
+    });
 
     const payload = {
-      input:
-        `pictures/${profile.inputRelative}`,
-      catalogInput:
-        profile.catalogInput,
+      input: `pictures/${record.inputRelative}`,
+      catalogInput: record.catalogInput,
       grid: gridPath,
       view3d: view3dPath,
-      foregroundMethod:
-        profile.full.method,
-      primaryMethod:
-        profile.primary.method,
-      primaryCoverage:
-        Number(
-          profile.primary.coverage.toFixed(4)
-        ),
-      fullBounds: {
-        left: profile.full.left,
-        top: profile.full.top,
-        width: profile.full.width,
-        height: profile.full.height
+      method: record.bounds.method,
+      crop: {
+        left: record.bounds.left,
+        top: record.bounds.top,
+        width: record.bounds.width,
+        height: record.bounds.height
       },
-      primaryBounds: {
-        left: profile.primary.bounds.left,
-        top: profile.primary.bounds.top,
-        width: profile.primary.bounds.width,
-        height: profile.primary.bounds.height
-      },
+      visiblePixels: record.bounds.visiblePixels,
       gridSubject,
       view3dSubject
     };
 
     manifest[view3dPath] = payload;
-
-    catalogMap[
-      profile.catalogInput
-    ] = {
+    catalogMap[record.catalogInput] = {
       grid: gridPath,
       view3d: view3dPath
     };
 
     console.log(
-      `${profile.inputRelative}: ` +
-      `${profile.full.method}; ` +
-      `primary=${profile.primary.method} ` +
-      `coverage=${payload.primaryCoverage}; ` +
+      `${record.inputRelative}: ` +
+      `${record.bounds.method}; ` +
       `Grid ${gridSubject.width}x${gridSubject.height}; ` +
       `3D ${view3dSubject.width}x${view3dSubject.height}`
     );
   } catch (error) {
-    console.error(
-      `Normalization failed for ${profile.inputRelative}:`
-    );
-    console.error(
-      error?.stack ||
-      error?.message ||
-      error
-    );
+    console.error(`Normalization failed for ${record.inputRelative}:`);
+    console.error(error?.stack || error?.message || error);
     process.exitCode = 1;
   }
 }
@@ -1328,23 +621,19 @@ if (WRITE) {
   };
 
   fs.writeFileSync(
-    path.join(
-      OUTPUT_ROOT,
-      "manifest.json"
-    ),
-    JSON.stringify(
-      manifestPayload,
-      null,
-      2
-    ) + "\n",
+    path.join(OUTPUT_ROOT, "manifest.json"),
+    JSON.stringify(manifestPayload, null, 2) + "\n",
     "utf8"
   );
 
+  /*
+    Browser-safe synchronous manifest.
+    index.html loads this before catalog-normalization.js, so Grid cards use
+    the final Grid derivative on their FIRST render.  3D cards are switched
+    to the preserved v3 derivative before lazy loading begins.
+  */
   fs.writeFileSync(
-    path.join(
-      OUTPUT_ROOT,
-      "manifest.js"
-    ),
+    path.join(OUTPUT_ROOT, "manifest.js"),
     `/* Generated file — do not edit by hand. Build: ${BUILD} */\n` +
     `window.CATALOG_NORMALIZED_IMAGE_MAP = Object.freeze(${JSON.stringify(
       catalogMap,
@@ -1357,10 +646,6 @@ if (WRITE) {
 
 console.log(
   WRITE
-    ? `Generated ${Object.keys(manifest).length} primary-product standardized image set(s).`
-    : `Dry run: ${files.length} image(s) validated. Grid targets: visible ${Math.round(
-        gridTargetVisiblePixels
-      )} px, box ${Math.round(
-        gridTargetBoxPixels
-      )} px.`
+    ? `Generated ${Object.keys(manifest).length} dual-mode standardized image set(s).`
+    : `Dry run: ${files.length} image(s) validated. Grid targets: visible ${Math.round(gridTargetVisiblePixels)} px, box ${Math.round(gridTargetBoxPixels)} px.`
 );
