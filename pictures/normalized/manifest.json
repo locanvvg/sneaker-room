@@ -1,20 +1,30 @@
 {
-  "build": "20261010-unified-v2",
+  "build": "20261010-standard-v4",
   "standard": {
     "canvasWidth": 1600,
     "canvasHeight": 1200,
-    "maxSubjectWidth": 1248,
-    "maxSubjectHeight": 816,
+    "view3d": {
+      "maxSubjectWidth": 1248,
+      "maxSubjectHeight": 816
+    },
+    "grid": {
+      "maxSubjectWidth": 1440,
+      "maxSubjectHeight": 864
+    },
     "alphaThreshold": 96,
     "transparentPixelThreshold": 12,
     "minimumTransparentFraction": 0.005,
     "cropPaddingFraction": 0.018,
-    "opaqueBackgroundDistance": 34
+    "opaqueBackgroundDistance": 34,
+    "gridTargetVisiblePixels": 472189.4562437044,
+    "gridTargetBoxPixels": 874787.8839779005
   },
   "images": {
     "pictures/normalized/adifom.png": {
       "input": "pictures/adifom.png",
-      "normalized": "pictures/normalized/adifom.png",
+      "catalogInput": "pictures/adifom.png",
+      "grid": "pictures/normalized/grid/adifom.png",
+      "view3d": "pictures/normalized/adifom.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -22,7 +32,14 @@
         "width": 1086,
         "height": 637
       },
-      "normalizedSubject": {
+      "visiblePixels": 323924,
+      "gridSubject": {
+        "width": 1311,
+        "height": 769,
+        "left": 145,
+        "top": 216
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 732,
         "left": 176,
@@ -31,7 +48,9 @@
     },
     "pictures/normalized/airmax720.png": {
       "input": "pictures/airmax720.png",
-      "normalized": "pictures/normalized/airmax720.png",
+      "catalogInput": "pictures/airmax720.png",
+      "grid": "pictures/normalized/grid/airmax720.png",
+      "view3d": "pictures/normalized/airmax720.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -39,7 +58,14 @@
         "width": 1448,
         "height": 722
       },
-      "normalizedSubject": {
+      "visiblePixels": 630623,
+      "gridSubject": {
+        "width": 1325,
+        "height": 660,
+        "left": 138,
+        "top": 270
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 622,
         "left": 176,
@@ -48,7 +74,9 @@
     },
     "pictures/normalized/airtrainer_ts.png": {
       "input": "pictures/airtrainer_ts.png",
-      "normalized": "pictures/normalized/airtrainer_ts.png",
+      "catalogInput": "pictures/airtrainer_ts.png",
+      "grid": "pictures/normalized/grid/airtrainer_ts.png",
+      "view3d": "pictures/normalized/airtrainer_ts.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -56,7 +84,14 @@
         "width": 1448,
         "height": 858
       },
-      "normalizedSubject": {
+      "visiblePixels": 739701,
+      "gridSubject": {
+        "width": 1215,
+        "height": 720,
+        "left": 193,
+        "top": 240
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 739,
         "left": 176,
@@ -65,7 +100,9 @@
     },
     "pictures/normalized/balenciaga_defender.png": {
       "input": "pictures/balenciaga_defender.png",
-      "normalized": "pictures/normalized/balenciaga_defender.png",
+      "catalogInput": "pictures/balenciaga_defender.png",
+      "grid": "pictures/normalized/grid/balenciaga_defender.png",
+      "view3d": "pictures/normalized/balenciaga_defender.png",
       "method": "alpha",
       "crop": {
         "left": 12,
@@ -73,7 +110,14 @@
         "width": 1515,
         "height": 873
       },
-      "normalizedSubject": {
+      "visiblePixels": 770053,
+      "gridSubject": {
+        "width": 1232,
+        "height": 710,
+        "left": 184,
+        "top": 245
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 719,
         "left": 176,
@@ -82,7 +126,9 @@
     },
     "pictures/normalized/bapesta_stussy.png": {
       "input": "pictures/bapesta_stussy.png",
-      "normalized": "pictures/normalized/bapesta_stussy.png",
+      "catalogInput": "pictures/bapesta_stussy.png",
+      "grid": "pictures/normalized/grid/bapesta_stussy.png",
+      "view3d": "pictures/normalized/bapesta_stussy.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -90,7 +136,14 @@
         "width": 1536,
         "height": 778
       },
-      "normalizedSubject": {
+      "visiblePixels": 518567,
+      "gridSubject": {
+        "width": 1440,
+        "height": 729,
+        "left": 80,
+        "top": 236
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 632,
         "left": 176,
@@ -99,7 +152,9 @@
     },
     "pictures/normalized/blazer_acro.png": {
       "input": "pictures/blazer_acro.png",
-      "normalized": "pictures/normalized/blazer_acro.png",
+      "catalogInput": "pictures/blazer_acro.png",
+      "grid": "pictures/normalized/grid/blazer_acro.png",
+      "view3d": "pictures/normalized/blazer_acro.png",
       "method": "alpha",
       "crop": {
         "left": 7,
@@ -107,7 +162,14 @@
         "width": 1441,
         "height": 676
       },
-      "normalizedSubject": {
+      "visiblePixels": 518207,
+      "gridSubject": {
+        "width": 1376,
+        "height": 645,
+        "left": 112,
+        "top": 278
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 585,
         "left": 176,
@@ -116,7 +178,9 @@
     },
     "pictures/normalized/blazer_ow.png": {
       "input": "pictures/blazer_ow.png",
-      "normalized": "pictures/normalized/blazer_ow.png",
+      "catalogInput": "pictures/blazer_ow.png",
+      "grid": "pictures/normalized/grid/blazer_ow.png",
+      "view3d": "pictures/normalized/blazer_ow.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -124,7 +188,14 @@
         "width": 1448,
         "height": 616
       },
-      "normalizedSubject": {
+      "visiblePixels": 495824,
+      "gridSubject": {
+        "width": 1434,
+        "height": 610,
+        "left": 83,
+        "top": 295
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 531,
         "left": 176,
@@ -133,7 +204,9 @@
     },
     "pictures/normalized/blazer_sacai.png": {
       "input": "pictures/blazer_sacai.png",
-      "normalized": "pictures/normalized/blazer_sacai.png",
+      "catalogInput": "pictures/blazer_sacai.png",
+      "grid": "pictures/normalized/grid/blazer_sacai.png",
+      "view3d": "pictures/normalized/blazer_sacai.png",
       "method": "alpha",
       "crop": {
         "left": 36,
@@ -141,7 +214,14 @@
         "width": 1399,
         "height": 662
       },
-      "normalizedSubject": {
+      "visiblePixels": 508380,
+      "gridSubject": {
+        "width": 1360,
+        "height": 643,
+        "left": 120,
+        "top": 279
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 591,
         "left": 176,
@@ -150,7 +230,9 @@
     },
     "pictures/normalized/cv_cdg_b.png": {
       "input": "pictures/cv_cdg_b.png",
-      "normalized": "pictures/normalized/cv_cdg_b.png",
+      "catalogInput": "pictures/cv_cdg_b.png",
+      "grid": "pictures/normalized/grid/cv_cdg_b.png",
+      "view3d": "pictures/normalized/cv_cdg_b.png",
       "method": "alpha",
       "crop": {
         "left": 5,
@@ -158,7 +240,14 @@
         "width": 1441,
         "height": 623
       },
-      "normalizedSubject": {
+      "visiblePixels": 489908,
+      "gridSubject": {
+        "width": 1422,
+        "height": 615,
+        "left": 89,
+        "top": 293
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 540,
         "left": 176,
@@ -167,7 +256,9 @@
     },
     "pictures/normalized/cv_cdg_w.png": {
       "input": "pictures/cv_cdg_w.png",
-      "normalized": "pictures/normalized/cv_cdg_w.png",
+      "catalogInput": "pictures/cv_cdg_w.png",
+      "grid": "pictures/normalized/grid/cv_cdg_w.png",
+      "view3d": "pictures/normalized/cv_cdg_w.png",
       "method": "alpha",
       "crop": {
         "left": 21,
@@ -175,7 +266,14 @@
         "width": 1422,
         "height": 594
       },
-      "normalizedSubject": {
+      "visiblePixels": 490728,
+      "gridSubject": {
+        "width": 1440,
+        "height": 602,
+        "left": 80,
+        "top": 299
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 521,
         "left": 176,
@@ -184,7 +282,9 @@
     },
     "pictures/normalized/dunk_frag.png": {
       "input": "pictures/dunk_frag.png",
-      "normalized": "pictures/normalized/dunk_frag.png",
+      "catalogInput": "pictures/dunk_frag.png",
+      "grid": "pictures/normalized/grid/dunk_frag.png",
+      "view3d": "pictures/normalized/dunk_frag.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -192,7 +292,14 @@
         "width": 1448,
         "height": 839
       },
-      "normalizedSubject": {
+      "visiblePixels": 709954,
+      "gridSubject": {
+        "width": 1229,
+        "height": 712,
+        "left": 186,
+        "top": 244
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 723,
         "left": 176,
@@ -201,7 +308,9 @@
     },
     "pictures/normalized/dunk_safari.png": {
       "input": "pictures/dunk_safari.png",
-      "normalized": "pictures/normalized/dunk_safari.png",
+      "catalogInput": "pictures/dunk_safari.png",
+      "grid": "pictures/normalized/grid/dunk_safari.png",
+      "view3d": "pictures/normalized/dunk_safari.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -209,7 +318,14 @@
         "width": 1448,
         "height": 658
       },
-      "normalizedSubject": {
+      "visiblePixels": 587399,
+      "gridSubject": {
+        "width": 1387,
+        "height": 630,
+        "left": 107,
+        "top": 285
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 567,
         "left": 176,
@@ -218,7 +334,9 @@
     },
     "pictures/normalized/dunkhigh_lightbone.png": {
       "input": "pictures/dunkhigh_lightbone.png",
-      "normalized": "pictures/normalized/dunkhigh_lightbone.png",
+      "catalogInput": "pictures/dunkhigh_lightbone.png",
+      "grid": "pictures/normalized/grid/dunkhigh_lightbone.png",
+      "view3d": "pictures/normalized/dunkhigh_lightbone.png",
       "method": "alpha",
       "crop": {
         "left": 45,
@@ -226,7 +344,14 @@
         "width": 1386,
         "height": 863
       },
-      "normalizedSubject": {
+      "visiblePixels": 649542,
+      "gridSubject": {
+        "width": 1185,
+        "height": 738,
+        "left": 208,
+        "top": 231
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 777,
         "left": 176,
@@ -235,7 +360,9 @@
     },
     "pictures/normalized/dunkiowa.png": {
       "input": "pictures/dunkiowa.png",
-      "normalized": "pictures/normalized/dunkiowa.png",
+      "catalogInput": "pictures/dunkiowa.png",
+      "grid": "pictures/normalized/grid/dunkiowa.png",
+      "view3d": "pictures/normalized/dunkiowa.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -243,7 +370,14 @@
         "width": 1448,
         "height": 937
       },
-      "normalizedSubject": {
+      "visiblePixels": 769347,
+      "gridSubject": {
+        "width": 1163,
+        "height": 752,
+        "left": 219,
+        "top": 224
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 808,
         "left": 176,
@@ -252,7 +386,9 @@
     },
     "pictures/normalized/dunkpanda.png": {
       "input": "pictures/dunkpanda.png",
-      "normalized": "pictures/normalized/dunkpanda.png",
+      "catalogInput": "pictures/dunkpanda.png",
+      "grid": "pictures/normalized/grid/dunkpanda.png",
+      "view3d": "pictures/normalized/dunkpanda.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -260,7 +396,14 @@
         "width": 1448,
         "height": 696
       },
-      "normalizedSubject": {
+      "visiblePixels": 582859,
+      "gridSubject": {
+        "width": 1349,
+        "height": 648,
+        "left": 126,
+        "top": 276
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 600,
         "left": 176,
@@ -269,7 +412,9 @@
     },
     "pictures/normalized/foamposite.png": {
       "input": "pictures/foamposite.png",
-      "normalized": "pictures/normalized/foamposite.png",
+      "catalogInput": "pictures/foamposite.png",
+      "grid": "pictures/normalized/grid/foamposite.png",
+      "view3d": "pictures/normalized/foamposite.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -277,7 +422,14 @@
         "width": 1448,
         "height": 876
       },
-      "normalizedSubject": {
+      "visiblePixels": 691013,
+      "gridSubject": {
+        "width": 1202,
+        "height": 727,
+        "left": 199,
+        "top": 237
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 755,
         "left": 176,
@@ -286,7 +438,9 @@
     },
     "pictures/normalized/jordan13_dmp.png": {
       "input": "pictures/jordan13_dmp.png",
-      "normalized": "pictures/normalized/jordan13_dmp.png",
+      "catalogInput": "pictures/jordan13_dmp.png",
+      "grid": "pictures/normalized/grid/jordan13_dmp.png",
+      "view3d": "pictures/normalized/jordan13_dmp.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -294,7 +448,14 @@
         "width": 1086,
         "height": 661
       },
-      "normalizedSubject": {
+      "visiblePixels": 364033,
+      "gridSubject": {
+        "width": 1237,
+        "height": 753,
+        "left": 182,
+        "top": 224
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 760,
         "left": 176,
@@ -303,7 +464,9 @@
     },
     "pictures/normalized/jordan1_brotherhood.png": {
       "input": "pictures/jordan1_brotherhood.png",
-      "normalized": "pictures/normalized/jordan1_brotherhood.png",
+      "catalogInput": "pictures/jordan1_brotherhood.png",
+      "grid": "pictures/normalized/grid/jordan1_brotherhood.png",
+      "view3d": "pictures/normalized/jordan1_brotherhood.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -311,7 +474,14 @@
         "width": 1448,
         "height": 910
       },
-      "normalizedSubject": {
+      "visiblePixels": 739617,
+      "gridSubject": {
+        "width": 1180,
+        "height": 741,
+        "left": 210,
+        "top": 230
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 784,
         "left": 176,
@@ -320,7 +490,9 @@
     },
     "pictures/normalized/jordan1_cityofflight.png": {
       "input": "pictures/jordan1_cityofflight.png",
-      "normalized": "pictures/normalized/jordan1_cityofflight.png",
+      "catalogInput": "pictures/jordan1_cityofflight.png",
+      "grid": "pictures/normalized/grid/jordan1_cityofflight.png",
+      "view3d": "pictures/normalized/jordan1_cityofflight.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -328,7 +500,14 @@
         "width": 1466,
         "height": 919
       },
-      "normalizedSubject": {
+      "visiblePixels": 784648,
+      "gridSubject": {
+        "width": 1181,
+        "height": 741,
+        "left": 210,
+        "top": 230
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 782,
         "left": 176,
@@ -337,7 +516,9 @@
     },
     "pictures/normalized/jordan1_crimson.png": {
       "input": "pictures/jordan1_crimson.png",
-      "normalized": "pictures/normalized/jordan1_crimson.png",
+      "catalogInput": "pictures/jordan1_crimson.png",
+      "grid": "pictures/normalized/grid/jordan1_crimson.png",
+      "view3d": "pictures/normalized/jordan1_crimson.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -345,7 +526,14 @@
         "width": 1448,
         "height": 945
       },
-      "normalizedSubject": {
+      "visiblePixels": 781239,
+      "gridSubject": {
+        "width": 1158,
+        "height": 756,
+        "left": 221,
+        "top": 222
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 814,
         "left": 176,
@@ -354,7 +542,9 @@
     },
     "pictures/normalized/jordan1_diamond.png": {
       "input": "pictures/jordan1_diamond.png",
-      "normalized": "pictures/normalized/jordan1_diamond.png",
+      "catalogInput": "pictures/jordan1_diamond.png",
+      "grid": "pictures/normalized/grid/jordan1_diamond.png",
+      "view3d": "pictures/normalized/jordan1_diamond.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -362,7 +552,14 @@
         "width": 1448,
         "height": 887
       },
-      "normalizedSubject": {
+      "visiblePixels": 703037,
+      "gridSubject": {
+        "width": 1195,
+        "height": 732,
+        "left": 203,
+        "top": 234
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 764,
         "left": 176,
@@ -371,7 +568,9 @@
     },
     "pictures/normalized/jordan1_fragmentunion_sample.png": {
       "input": "pictures/jordan1_fragmentunion_sample.png",
-      "normalized": "pictures/normalized/jordan1_fragmentunion_sample.png",
+      "catalogInput": "pictures/jordan1_fragmentunion_sample.png",
+      "grid": "pictures/normalized/grid/jordan1_fragmentunion_sample.png",
+      "view3d": "pictures/normalized/jordan1_fragmentunion_sample.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -379,7 +578,14 @@
         "width": 1086,
         "height": 684
       },
-      "normalizedSubject": {
+      "visiblePixels": 367112,
+      "gridSubject": {
+        "width": 1232,
+        "height": 776,
+        "left": 184,
+        "top": 212
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 786,
         "left": 176,
@@ -388,7 +594,9 @@
     },
     "pictures/normalized/jordan1_gymred.png": {
       "input": "pictures/jordan1_gymred.png",
-      "normalized": "pictures/normalized/jordan1_gymred.png",
+      "catalogInput": "pictures/jordan1_gymred.png",
+      "grid": "pictures/normalized/grid/jordan1_gymred.png",
+      "view3d": "pictures/normalized/jordan1_gymred.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -396,7 +604,14 @@
         "width": 1448,
         "height": 896
       },
-      "normalizedSubject": {
+      "visiblePixels": 745785,
+      "gridSubject": {
+        "width": 1189,
+        "height": 736,
+        "left": 206,
+        "top": 232
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 772,
         "left": 176,
@@ -405,7 +620,9 @@
     },
     "pictures/normalized/jordan1_h2h.png": {
       "input": "pictures/jordan1_h2h.png",
-      "normalized": "pictures/normalized/jordan1_h2h.png",
+      "catalogInput": "pictures/jordan1_h2h.png",
+      "grid": "pictures/normalized/grid/jordan1_h2h.png",
+      "view3d": "pictures/normalized/jordan1_h2h.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -413,7 +630,14 @@
         "width": 1448,
         "height": 972
       },
-      "normalizedSubject": {
+      "visiblePixels": 983907,
+      "gridSubject": {
+        "width": 1142,
+        "height": 766,
+        "left": 229,
+        "top": 217
+      },
+      "view3dSubject": {
         "width": 1216,
         "height": 816,
         "left": 192,
@@ -422,7 +646,9 @@
     },
     "pictures/normalized/jordan1_low_reversebred.png": {
       "input": "pictures/jordan1_low_reversebred.png",
-      "normalized": "pictures/normalized/jordan1_low_reversebred.png",
+      "catalogInput": "pictures/jordan1_low_reversebred.png",
+      "grid": "pictures/normalized/grid/jordan1_low_reversebred.png",
+      "view3d": "pictures/normalized/jordan1_low_reversebred.png",
       "method": "alpha",
       "crop": {
         "left": 8,
@@ -430,7 +656,14 @@
         "width": 1766,
         "height": 854
       },
-      "normalizedSubject": {
+      "visiblePixels": 826640,
+      "gridSubject": {
+        "width": 1345,
+        "height": 650,
+        "left": 128,
+        "top": 275
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 604,
         "left": 176,
@@ -439,7 +672,9 @@
     },
     "pictures/normalized/jordan1_pe_bloodline_friendsandfamily_sample.png": {
       "input": "pictures/jordan1_pe_bloodline_friendsandfamily_sample.png",
-      "normalized": "pictures/normalized/jordan1_pe_bloodline_friendsandfamily_sample.png",
+      "catalogInput": "pictures/jordan1_pe_bloodline_friendsandfamily_sample.png",
+      "grid": "pictures/normalized/grid/jordan1_pe_bloodline_friendsandfamily_sample.png",
+      "view3d": "pictures/normalized/jordan1_pe_bloodline_friendsandfamily_sample.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -447,7 +682,14 @@
         "width": 1086,
         "height": 615
       },
-      "normalizedSubject": {
+      "visiblePixels": 341742,
+      "gridSubject": {
+        "width": 1277,
+        "height": 723,
+        "left": 162,
+        "top": 239
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 707,
         "left": 176,
@@ -456,7 +698,9 @@
     },
     "pictures/normalized/jordan1_quai54_ff_v2.png": {
       "input": "pictures/jordan1_quai54_ff_v2.png",
-      "normalized": "pictures/normalized/jordan1_quai54_ff_v2.png",
+      "catalogInput": "pictures/jordan1_quai54_ff_v2.png",
+      "grid": "pictures/normalized/grid/jordan1_quai54_ff_v2.png",
+      "view3d": "pictures/normalized/jordan1_quai54_ff_v2.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -464,7 +708,14 @@
         "width": 1086,
         "height": 614
       },
-      "normalizedSubject": {
+      "visiblePixels": 321272,
+      "gridSubject": {
+        "width": 1317,
+        "height": 744,
+        "left": 142,
+        "top": 228
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 706,
         "left": 176,
@@ -473,7 +724,9 @@
     },
     "pictures/normalized/jordan1_quai54_ff_v2_1.png": {
       "input": "pictures/jordan1_quai54_ff_v2_1.png",
-      "normalized": "pictures/normalized/jordan1_quai54_ff_v2_1.png",
+      "catalogInput": "pictures/jordan1_quai54_ff_v2_1.png",
+      "grid": "pictures/normalized/grid/jordan1_quai54_ff_v2_1.png",
+      "view3d": "pictures/normalized/jordan1_quai54_ff_v2_1.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -481,7 +734,14 @@
         "width": 1536,
         "height": 857
       },
-      "normalizedSubject": {
+      "visiblePixels": 647245,
+      "gridSubject": {
+        "width": 1312,
+        "height": 732,
+        "left": 144,
+        "top": 234
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 696,
         "left": 176,
@@ -490,7 +750,9 @@
     },
     "pictures/normalized/jordan1_royaltoe.png": {
       "input": "pictures/jordan1_royaltoe.png",
-      "normalized": "pictures/normalized/jordan1_royaltoe.png",
+      "catalogInput": "pictures/jordan1_royaltoe.png",
+      "grid": "pictures/normalized/grid/jordan1_royaltoe.png",
+      "view3d": "pictures/normalized/jordan1_royaltoe.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -498,7 +760,14 @@
         "width": 1448,
         "height": 965
       },
-      "normalizedSubject": {
+      "visiblePixels": 787763,
+      "gridSubject": {
+        "width": 1146,
+        "height": 764,
+        "left": 227,
+        "top": 218
+      },
+      "view3dSubject": {
         "width": 1224,
         "height": 816,
         "left": 188,
@@ -507,7 +776,9 @@
     },
     "pictures/normalized/jordan1_seafoam.png": {
       "input": "pictures/jordan1_seafoam.png",
-      "normalized": "pictures/normalized/jordan1_seafoam.png",
+      "catalogInput": "pictures/jordan1_seafoam.png",
+      "grid": "pictures/normalized/grid/jordan1_seafoam.png",
+      "view3d": "pictures/normalized/jordan1_seafoam.png",
       "method": "alpha",
       "crop": {
         "left": 155,
@@ -515,7 +786,14 @@
         "width": 1290,
         "height": 753
       },
-      "normalizedSubject": {
+      "visiblePixels": 470517,
+      "gridSubject": {
+        "width": 1292,
+        "height": 754,
+        "left": 154,
+        "top": 223
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 728,
         "left": 176,
@@ -524,7 +802,9 @@
     },
     "pictures/normalized/jordan1_shadow_2009.png": {
       "input": "pictures/jordan1_shadow_2009.png",
-      "normalized": "pictures/normalized/jordan1_shadow_2009.png",
+      "catalogInput": "pictures/jordan1_shadow_2009.png",
+      "grid": "pictures/normalized/grid/jordan1_shadow_2009.png",
+      "view3d": "pictures/normalized/jordan1_shadow_2009.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -532,7 +812,14 @@
         "width": 1086,
         "height": 627
       },
-      "normalizedSubject": {
+      "visiblePixels": 334078,
+      "gridSubject": {
+        "width": 1291,
+        "height": 745,
+        "left": 155,
+        "top": 228
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 721,
         "left": 176,
@@ -541,7 +828,9 @@
     },
     "pictures/normalized/jordan1_turbogreen.png": {
       "input": "pictures/jordan1_turbogreen.png",
-      "normalized": "pictures/normalized/jordan1_turbogreen.png",
+      "catalogInput": "pictures/jordan1_turbogreen.png",
+      "grid": "pictures/normalized/grid/jordan1_turbogreen.png",
+      "view3d": "pictures/normalized/jordan1_turbogreen.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -549,7 +838,14 @@
         "width": 1448,
         "height": 963
       },
-      "normalizedSubject": {
+      "visiblePixels": 799649,
+      "gridSubject": {
+        "width": 1147,
+        "height": 763,
+        "left": 227,
+        "top": 219
+      },
+      "view3dSubject": {
         "width": 1227,
         "height": 816,
         "left": 187,
@@ -558,7 +854,9 @@
     },
     "pictures/normalized/jordan1_vaa_alaska_v2.png": {
       "input": "pictures/jordan1_vaa_alaska_v2.png",
-      "normalized": "pictures/normalized/jordan1_vaa_alaska_v2.png",
+      "catalogInput": "pictures/jordan1_vaa_alaska_v2.png",
+      "grid": "pictures/normalized/grid/jordan1_vaa_alaska_v2.png",
+      "view3d": "pictures/normalized/jordan1_vaa_alaska_v2.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -566,7 +864,14 @@
         "width": 1086,
         "height": 697
       },
-      "normalizedSubject": {
+      "visiblePixels": 372903,
+      "gridSubject": {
+        "width": 1222,
+        "height": 784,
+        "left": 189,
+        "top": 208
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 801,
         "left": 176,
@@ -575,7 +880,9 @@
     },
     "pictures/normalized/jordan1_yelloworche.png": {
       "input": "pictures/jordan1_yelloworche.png",
-      "normalized": "pictures/normalized/jordan1_yelloworche.png",
+      "catalogInput": "pictures/jordan1_yelloworche.png",
+      "grid": "pictures/normalized/grid/jordan1_yelloworche.png",
+      "view3d": "pictures/normalized/jordan1_yelloworche.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -583,7 +890,14 @@
         "width": 1448,
         "height": 914
       },
-      "normalizedSubject": {
+      "visiblePixels": 727901,
+      "gridSubject": {
+        "width": 1177,
+        "height": 743,
+        "left": 212,
+        "top": 229
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 788,
         "left": 176,
@@ -592,7 +906,9 @@
     },
     "pictures/normalized/jordan1low_fuchsia.png": {
       "input": "pictures/jordan1low_fuchsia.png",
-      "normalized": "pictures/normalized/jordan1low_fuchsia.png",
+      "catalogInput": "pictures/jordan1low_fuchsia.png",
+      "grid": "pictures/normalized/grid/jordan1low_fuchsia.png",
+      "view3d": "pictures/normalized/jordan1low_fuchsia.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -600,7 +916,14 @@
         "width": 1448,
         "height": 747
       },
-      "normalizedSubject": {
+      "visiblePixels": 581093,
+      "gridSubject": {
+        "width": 1305,
+        "height": 673,
+        "left": 148,
+        "top": 264
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 644,
         "left": 176,
@@ -609,7 +932,9 @@
     },
     "pictures/normalized/jordan1low_gymred.png": {
       "input": "pictures/jordan1low_gymred.png",
-      "normalized": "pictures/normalized/jordan1low_gymred.png",
+      "catalogInput": "pictures/jordan1low_gymred.png",
+      "grid": "pictures/normalized/grid/jordan1low_gymred.png",
+      "view3d": "pictures/normalized/jordan1low_gymred.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -617,7 +942,14 @@
         "width": 1448,
         "height": 752
       },
-      "normalizedSubject": {
+      "visiblePixels": 610419,
+      "gridSubject": {
+        "width": 1298,
+        "height": 674,
+        "left": 151,
+        "top": 263
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 648,
         "left": 176,
@@ -626,7 +958,9 @@
     },
     "pictures/normalized/jordan1low_noblered.png": {
       "input": "pictures/jordan1low_noblered.png",
-      "normalized": "pictures/normalized/jordan1low_noblered.png",
+      "catalogInput": "pictures/jordan1low_noblered.png",
+      "grid": "pictures/normalized/grid/jordan1low_noblered.png",
+      "view3d": "pictures/normalized/jordan1low_noblered.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -634,7 +968,14 @@
         "width": 1448,
         "height": 774
       },
-      "normalizedSubject": {
+      "visiblePixels": 615463,
+      "gridSubject": {
+        "width": 1279,
+        "height": 684,
+        "left": 161,
+        "top": 258
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 667,
         "left": 176,
@@ -643,7 +984,9 @@
     },
     "pictures/normalized/jordan4_bred_1999.png": {
       "input": "pictures/jordan4_bred_1999.png",
-      "normalized": "pictures/normalized/jordan4_bred_1999.png",
+      "catalogInput": "pictures/jordan4_bred_1999.png",
+      "grid": "pictures/normalized/grid/jordan4_bred_1999.png",
+      "view3d": "pictures/normalized/jordan4_bred_1999.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -651,7 +994,14 @@
         "width": 1086,
         "height": 674
       },
-      "normalizedSubject": {
+      "visiblePixels": 378314,
+      "gridSubject": {
+        "width": 1213,
+        "height": 753,
+        "left": 194,
+        "top": 224
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 775,
         "left": 176,
@@ -660,7 +1010,9 @@
     },
     "pictures/normalized/jordan4_firered.png": {
       "input": "pictures/jordan4_firered.png",
-      "normalized": "pictures/normalized/jordan4_firered.png",
+      "catalogInput": "pictures/jordan4_firered.png",
+      "grid": "pictures/normalized/grid/jordan4_firered.png",
+      "view3d": "pictures/normalized/jordan4_firered.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -668,7 +1020,14 @@
         "width": 1448,
         "height": 872
       },
-      "normalizedSubject": {
+      "visiblePixels": 725291,
+      "gridSubject": {
+        "width": 1205,
+        "height": 726,
+        "left": 198,
+        "top": 237
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 752,
         "left": 176,
@@ -677,7 +1036,9 @@
     },
     "pictures/normalized/jordan4_ow.png": {
       "input": "pictures/jordan4_ow.png",
-      "normalized": "pictures/normalized/jordan4_ow.png",
+      "catalogInput": "pictures/jordan4_ow.png",
+      "grid": "pictures/normalized/grid/jordan4_ow.png",
+      "view3d": "pictures/normalized/jordan4_ow.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -685,7 +1046,14 @@
         "width": 1448,
         "height": 930
       },
-      "normalizedSubject": {
+      "visiblePixels": 727343,
+      "gridSubject": {
+        "width": 1167,
+        "height": 750,
+        "left": 217,
+        "top": 225
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 802,
         "left": 176,
@@ -694,7 +1062,9 @@
     },
     "pictures/normalized/jordan4_royalty.png": {
       "input": "pictures/jordan4_royalty.png",
-      "normalized": "pictures/normalized/jordan4_royalty.png",
+      "catalogInput": "pictures/jordan4_royalty.png",
+      "grid": "pictures/normalized/grid/jordan4_royalty.png",
+      "view3d": "pictures/normalized/jordan4_royalty.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -702,7 +1072,14 @@
         "width": 1448,
         "height": 860
       },
-      "normalizedSubject": {
+      "visiblePixels": 690512,
+      "gridSubject": {
+        "width": 1214,
+        "height": 721,
+        "left": 193,
+        "top": 240
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 741,
         "left": 176,
@@ -711,7 +1088,9 @@
     },
     "pictures/normalized/jordan5_bronze.png": {
       "input": "pictures/jordan5_bronze.png",
-      "normalized": "pictures/normalized/jordan5_bronze.png",
+      "catalogInput": "pictures/jordan5_bronze.png",
+      "grid": "pictures/normalized/grid/jordan5_bronze.png",
+      "view3d": "pictures/normalized/jordan5_bronze.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -719,7 +1098,14 @@
         "width": 1448,
         "height": 979
       },
-      "normalizedSubject": {
+      "visiblePixels": 754392,
+      "gridSubject": {
+        "width": 1146,
+        "height": 775,
+        "left": 227,
+        "top": 213
+      },
+      "view3dSubject": {
         "width": 1207,
         "height": 816,
         "left": 197,
@@ -728,7 +1114,9 @@
     },
     "pictures/normalized/kiger_ow.png": {
       "input": "pictures/kiger_ow.png",
-      "normalized": "pictures/normalized/kiger_ow.png",
+      "catalogInput": "pictures/kiger_ow.png",
+      "grid": "pictures/normalized/grid/kiger_ow.png",
+      "view3d": "pictures/normalized/kiger_ow.png",
       "method": "alpha",
       "crop": {
         "left": 4,
@@ -736,7 +1124,14 @@
         "width": 1444,
         "height": 759
       },
-      "normalizedSubject": {
+      "visiblePixels": 555121,
+      "gridSubject": {
+        "width": 1332,
+        "height": 700,
+        "left": 134,
+        "top": 250
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 656,
         "left": 176,
@@ -745,7 +1140,9 @@
     },
     "pictures/normalized/nb_2002r.png": {
       "input": "pictures/nb_2002r.png",
-      "normalized": "pictures/normalized/nb_2002r.png",
+      "catalogInput": "pictures/nb_2002r.png",
+      "grid": "pictures/normalized/grid/nb_2002r.png",
+      "view3d": "pictures/normalized/nb_2002r.png",
       "method": "alpha",
       "crop": {
         "left": 8,
@@ -753,7 +1150,14 @@
         "width": 1520,
         "height": 744
       },
-      "normalizedSubject": {
+      "visiblePixels": 582628,
+      "gridSubject": {
+        "width": 1368,
+        "height": 670,
+        "left": 116,
+        "top": 265
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 611,
         "left": 176,
@@ -762,7 +1166,9 @@
     },
     "pictures/normalized/nb_levis.png": {
       "input": "pictures/nb_levis.png",
-      "normalized": "pictures/normalized/nb_levis.png",
+      "catalogInput": "pictures/nb_levis.png",
+      "grid": "pictures/normalized/grid/nb_levis.png",
+      "view3d": "pictures/normalized/nb_levis.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -770,7 +1176,14 @@
         "width": 1448,
         "height": 713
       },
-      "normalizedSubject": {
+      "visiblePixels": 611500,
+      "gridSubject": {
+        "width": 1333,
+        "height": 656,
+        "left": 134,
+        "top": 272
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 615,
         "left": 176,
@@ -779,7 +1192,9 @@
     },
     "pictures/normalized/nike_fog_1.png": {
       "input": "pictures/nike_fog_1.png",
-      "normalized": "pictures/normalized/nike_fog_1.png",
+      "catalogInput": "pictures/nike_fog_1.png",
+      "grid": "pictures/normalized/grid/nike_fog_1.png",
+      "view3d": "pictures/normalized/nike_fog_1.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -787,7 +1202,14 @@
         "width": 1448,
         "height": 1030
       },
-      "normalizedSubject": {
+      "visiblePixels": 842341,
+      "gridSubject": {
+        "width": 1109,
+        "height": 789,
+        "left": 246,
+        "top": 206
+      },
+      "view3dSubject": {
         "width": 1147,
         "height": 816,
         "left": 227,
@@ -796,7 +1218,9 @@
     },
     "pictures/normalized/nike_fog_skylon.png": {
       "input": "pictures/nike_fog_skylon.png",
-      "normalized": "pictures/normalized/nike_fog_skylon.png",
+      "catalogInput": "pictures/nike_fog_skylon.png",
+      "grid": "pictures/normalized/grid/nike_fog_skylon.png",
+      "view3d": "pictures/normalized/nike_fog_skylon.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -804,7 +1228,14 @@
         "width": 1448,
         "height": 767
       },
-      "normalizedSubject": {
+      "visiblePixels": 666714,
+      "gridSubject": {
+        "width": 1285,
+        "height": 681,
+        "left": 158,
+        "top": 260
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 661,
         "left": 176,
@@ -813,7 +1244,9 @@
     },
     "pictures/normalized/nike_lego1.png": {
       "input": "pictures/nike_lego1.png",
-      "normalized": "pictures/normalized/nike_lego1.png",
+      "catalogInput": "pictures/nike_lego1.png",
+      "grid": "pictures/normalized/grid/nike_lego1.png",
+      "view3d": "pictures/normalized/nike_lego1.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -821,7 +1254,14 @@
         "width": 1448,
         "height": 1073
       },
-      "normalizedSubject": {
+      "visiblePixels": 881889,
+      "gridSubject": {
+        "width": 1087,
+        "height": 805,
+        "left": 257,
+        "top": 198
+      },
+      "view3dSubject": {
         "width": 1101,
         "height": 816,
         "left": 250,
@@ -830,7 +1270,9 @@
     },
     "pictures/normalized/nike_lego2.png": {
       "input": "pictures/nike_lego2.png",
-      "normalized": "pictures/normalized/nike_lego2.png",
+      "catalogInput": "pictures/nike_lego2.png",
+      "grid": "pictures/normalized/grid/nike_lego2.png",
+      "view3d": "pictures/normalized/nike_lego2.png",
       "method": "alpha",
       "crop": {
         "left": 124,
@@ -838,7 +1280,14 @@
         "width": 1201,
         "height": 1067
       },
-      "normalizedSubject": {
+      "visiblePixels": 830687,
+      "gridSubject": {
+        "width": 973,
+        "height": 864,
+        "left": 314,
+        "top": 168
+      },
+      "view3dSubject": {
         "width": 918,
         "height": 816,
         "left": 341,
@@ -847,7 +1296,9 @@
     },
     "pictures/normalized/nike_waffle_racer_ow.png": {
       "input": "pictures/nike_waffle_racer_ow.png",
-      "normalized": "pictures/normalized/nike_waffle_racer_ow.png",
+      "catalogInput": "pictures/nike_waffle_racer_ow.png",
+      "grid": "pictures/normalized/grid/nike_waffle_racer_ow.png",
+      "view3d": "pictures/normalized/nike_waffle_racer_ow.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -855,7 +1306,14 @@
         "width": 1536,
         "height": 773
       },
-      "normalizedSubject": {
+      "visiblePixels": 544894,
+      "gridSubject": {
+        "width": 1430,
+        "height": 720,
+        "left": 85,
+        "top": 240
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 628,
         "left": 176,
@@ -864,7 +1322,9 @@
     },
     "pictures/normalized/puma_rose.png": {
       "input": "pictures/puma_rose.png",
-      "normalized": "pictures/normalized/puma_rose.png",
+      "catalogInput": "pictures/puma_rose.png",
+      "grid": "pictures/normalized/grid/puma_rose.png",
+      "view3d": "pictures/normalized/puma_rose.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -872,7 +1332,14 @@
         "width": 1086,
         "height": 884
       },
-      "normalizedSubject": {
+      "visiblePixels": 580565,
+      "gridSubject": {
+        "width": 1037,
+        "height": 844,
+        "left": 282,
+        "top": 178
+      },
+      "view3dSubject": {
         "width": 1002,
         "height": 816,
         "left": 299,
@@ -881,7 +1348,9 @@
     },
     "pictures/normalized/sb_raygun.png": {
       "input": "pictures/sb_raygun.png",
-      "normalized": "pictures/normalized/sb_raygun.png",
+      "catalogInput": "pictures/sb_raygun.png",
+      "grid": "pictures/normalized/grid/sb_raygun.png",
+      "view3d": "pictures/normalized/sb_raygun.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -889,7 +1358,14 @@
         "width": 1536,
         "height": 714
       },
-      "normalizedSubject": {
+      "visiblePixels": 572773,
+      "gridSubject": {
+        "width": 1395,
+        "height": 648,
+        "left": 103,
+        "top": 276
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 580,
         "left": 176,
@@ -898,7 +1374,9 @@
     },
     "pictures/normalized/sbdunk_yutohorigome_matcha.png": {
       "input": "pictures/sbdunk_yutohorigome_matcha.png",
-      "normalized": "pictures/normalized/sbdunk_yutohorigome_matcha.png",
+      "catalogInput": "pictures/sbdunk_yutohorigome_matcha.png",
+      "grid": "pictures/normalized/grid/sbdunk_yutohorigome_matcha.png",
+      "view3d": "pictures/normalized/sbdunk_yutohorigome_matcha.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -906,7 +1384,14 @@
         "width": 1086,
         "height": 518
       },
-      "normalizedSubject": {
+      "visiblePixels": 288849,
+      "gridSubject": {
+        "width": 1389,
+        "height": 662,
+        "left": 106,
+        "top": 269
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 595,
         "left": 176,
@@ -915,7 +1400,9 @@
     },
     "pictures/normalized/sbdunk_yutohorigome_matcha1.png": {
       "input": "pictures/sbdunk_yutohorigome_matcha1.png",
-      "normalized": "pictures/normalized/sbdunk_yutohorigome_matcha1.png",
+      "catalogInput": "pictures/sbdunk_yutohorigome_matcha1.png",
+      "grid": "pictures/normalized/grid/sbdunk_yutohorigome_matcha1.png",
+      "view3d": "pictures/normalized/sbdunk_yutohorigome_matcha1.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -923,7 +1410,14 @@
         "width": 1086,
         "height": 536
       },
-      "normalizedSubject": {
+      "visiblePixels": 360391,
+      "gridSubject": {
+        "width": 1331,
+        "height": 657,
+        "left": 135,
+        "top": 272
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 616,
         "left": 176,
@@ -932,7 +1426,9 @@
     },
     "pictures/normalized/sneaker_mask1.png": {
       "input": "pictures/sneaker_mask1.png",
-      "normalized": "pictures/normalized/sneaker_mask1.png",
+      "catalogInput": "pictures/sneaker_mask1.png",
+      "grid": "pictures/normalized/grid/sneaker_mask1.png",
+      "view3d": "pictures/normalized/sneaker_mask1.png",
       "method": "alpha",
       "crop": {
         "left": 38,
@@ -940,7 +1436,14 @@
         "width": 924,
         "height": 1532
       },
-      "normalizedSubject": {
+      "visiblePixels": 574517,
+      "gridSubject": {
+        "width": 521,
+        "height": 864,
+        "left": 540,
+        "top": 168
+      },
+      "view3dSubject": {
         "width": 492,
         "height": 816,
         "left": 554,
@@ -949,7 +1452,9 @@
     },
     "pictures/normalized/sneaker_mask2.png": {
       "input": "pictures/sneaker_mask2.png",
-      "normalized": "pictures/normalized/sneaker_mask2.png",
+      "catalogInput": "pictures/sneaker_mask2.png",
+      "grid": "pictures/normalized/grid/sneaker_mask2.png",
+      "view3d": "pictures/normalized/sneaker_mask2.png",
       "method": "alpha",
       "crop": {
         "left": 162,
@@ -957,7 +1462,14 @@
         "width": 806,
         "height": 1366
       },
-      "normalizedSubject": {
+      "visiblePixels": 651228,
+      "gridSubject": {
+        "width": 510,
+        "height": 864,
+        "left": 545,
+        "top": 168
+      },
+      "view3dSubject": {
         "width": 481,
         "height": 816,
         "left": 560,
@@ -966,7 +1478,9 @@
     },
     "pictures/normalized/vans_knuskool.png": {
       "input": "pictures/vans_knuskool.png",
-      "normalized": "pictures/normalized/vans_knuskool.png",
+      "catalogInput": "pictures/vans_knuskool.png",
+      "grid": "pictures/normalized/grid/vans_knuskool.png",
+      "view3d": "pictures/normalized/vans_knuskool.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -974,7 +1488,14 @@
         "width": 1122,
         "height": 571
       },
-      "normalizedSubject": {
+      "visiblePixels": 341615,
+      "gridSubject": {
+        "width": 1319,
+        "height": 671,
+        "left": 141,
+        "top": 265
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 635,
         "left": 176,
@@ -983,7 +1504,9 @@
     },
     "pictures/normalized/yz500.png": {
       "input": "pictures/yz500.png",
-      "normalized": "pictures/normalized/yz500.png",
+      "catalogInput": "pictures/yz500.png",
+      "grid": "pictures/normalized/grid/yz500.png",
+      "view3d": "pictures/normalized/yz500.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -991,7 +1514,14 @@
         "width": 1448,
         "height": 775
       },
-      "normalizedSubject": {
+      "visiblePixels": 612983,
+      "gridSubject": {
+        "width": 1278,
+        "height": 684,
+        "left": 161,
+        "top": 258
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 668,
         "left": 176,
@@ -1000,7 +1530,9 @@
     },
     "pictures/normalized/yz700.png": {
       "input": "pictures/yz700.png",
-      "normalized": "pictures/normalized/yz700.png",
+      "catalogInput": "pictures/yz700.png",
+      "grid": "pictures/normalized/grid/yz700.png",
+      "view3d": "pictures/normalized/yz700.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -1008,7 +1540,14 @@
         "width": 1448,
         "height": 777
       },
-      "normalizedSubject": {
+      "visiblePixels": 657391,
+      "gridSubject": {
+        "width": 1277,
+        "height": 685,
+        "left": 162,
+        "top": 258
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 670,
         "left": 176,
@@ -1017,7 +1556,9 @@
     },
     "pictures/normalized/yz_fm_rnr.png": {
       "input": "pictures/yz_fm_rnr.png",
-      "normalized": "pictures/normalized/yz_fm_rnr.png",
+      "catalogInput": "pictures/yz_fm_rnr.png",
+      "grid": "pictures/normalized/grid/yz_fm_rnr.png",
+      "view3d": "pictures/normalized/yz_fm_rnr.png",
       "method": "alpha",
       "crop": {
         "left": 0,
@@ -1025,12 +1566,261 @@
         "width": 1448,
         "height": 664
       },
-      "normalizedSubject": {
+      "visiblePixels": 573966,
+      "gridSubject": {
+        "width": 1381,
+        "height": 633,
+        "left": 110,
+        "top": 284
+      },
+      "view3dSubject": {
         "width": 1248,
         "height": 572,
         "left": 176,
         "top": 314
       }
+    }
+  },
+  "catalogMap": {
+    "pictures/adifom.png": {
+      "grid": "pictures/normalized/grid/adifom.png",
+      "view3d": "pictures/normalized/adifom.png"
+    },
+    "pictures/airmax720.png": {
+      "grid": "pictures/normalized/grid/airmax720.png",
+      "view3d": "pictures/normalized/airmax720.png"
+    },
+    "pictures/airtrainer_ts.png": {
+      "grid": "pictures/normalized/grid/airtrainer_ts.png",
+      "view3d": "pictures/normalized/airtrainer_ts.png"
+    },
+    "pictures/balenciaga_defender.png": {
+      "grid": "pictures/normalized/grid/balenciaga_defender.png",
+      "view3d": "pictures/normalized/balenciaga_defender.png"
+    },
+    "pictures/bapesta_stussy.png": {
+      "grid": "pictures/normalized/grid/bapesta_stussy.png",
+      "view3d": "pictures/normalized/bapesta_stussy.png"
+    },
+    "pictures/blazer_acro.png": {
+      "grid": "pictures/normalized/grid/blazer_acro.png",
+      "view3d": "pictures/normalized/blazer_acro.png"
+    },
+    "pictures/blazer_ow.png": {
+      "grid": "pictures/normalized/grid/blazer_ow.png",
+      "view3d": "pictures/normalized/blazer_ow.png"
+    },
+    "pictures/blazer_sacai.png": {
+      "grid": "pictures/normalized/grid/blazer_sacai.png",
+      "view3d": "pictures/normalized/blazer_sacai.png"
+    },
+    "pictures/cv_cdg_b.png": {
+      "grid": "pictures/normalized/grid/cv_cdg_b.png",
+      "view3d": "pictures/normalized/cv_cdg_b.png"
+    },
+    "pictures/cv_cdg_w.png": {
+      "grid": "pictures/normalized/grid/cv_cdg_w.png",
+      "view3d": "pictures/normalized/cv_cdg_w.png"
+    },
+    "pictures/dunk_frag.png": {
+      "grid": "pictures/normalized/grid/dunk_frag.png",
+      "view3d": "pictures/normalized/dunk_frag.png"
+    },
+    "pictures/dunk_safari.png": {
+      "grid": "pictures/normalized/grid/dunk_safari.png",
+      "view3d": "pictures/normalized/dunk_safari.png"
+    },
+    "pictures/dunkhigh_lightbone.png": {
+      "grid": "pictures/normalized/grid/dunkhigh_lightbone.png",
+      "view3d": "pictures/normalized/dunkhigh_lightbone.png"
+    },
+    "pictures/dunkiowa.png": {
+      "grid": "pictures/normalized/grid/dunkiowa.png",
+      "view3d": "pictures/normalized/dunkiowa.png"
+    },
+    "pictures/dunkpanda.png": {
+      "grid": "pictures/normalized/grid/dunkpanda.png",
+      "view3d": "pictures/normalized/dunkpanda.png"
+    },
+    "pictures/foamposite.png": {
+      "grid": "pictures/normalized/grid/foamposite.png",
+      "view3d": "pictures/normalized/foamposite.png"
+    },
+    "pictures/jordan13_dmp.png": {
+      "grid": "pictures/normalized/grid/jordan13_dmp.png",
+      "view3d": "pictures/normalized/jordan13_dmp.png"
+    },
+    "pictures/jordan1_brotherhood.png": {
+      "grid": "pictures/normalized/grid/jordan1_brotherhood.png",
+      "view3d": "pictures/normalized/jordan1_brotherhood.png"
+    },
+    "pictures/jordan1_cityofflight.png": {
+      "grid": "pictures/normalized/grid/jordan1_cityofflight.png",
+      "view3d": "pictures/normalized/jordan1_cityofflight.png"
+    },
+    "pictures/jordan1_crimson.png": {
+      "grid": "pictures/normalized/grid/jordan1_crimson.png",
+      "view3d": "pictures/normalized/jordan1_crimson.png"
+    },
+    "pictures/jordan1_diamond.png": {
+      "grid": "pictures/normalized/grid/jordan1_diamond.png",
+      "view3d": "pictures/normalized/jordan1_diamond.png"
+    },
+    "pictures/jordan1_fragmentunion_sample.png": {
+      "grid": "pictures/normalized/grid/jordan1_fragmentunion_sample.png",
+      "view3d": "pictures/normalized/jordan1_fragmentunion_sample.png"
+    },
+    "pictures/jordan1_gymred.png": {
+      "grid": "pictures/normalized/grid/jordan1_gymred.png",
+      "view3d": "pictures/normalized/jordan1_gymred.png"
+    },
+    "pictures/jordan1_h2h.png": {
+      "grid": "pictures/normalized/grid/jordan1_h2h.png",
+      "view3d": "pictures/normalized/jordan1_h2h.png"
+    },
+    "pictures/jordan1_low_reversebred.png": {
+      "grid": "pictures/normalized/grid/jordan1_low_reversebred.png",
+      "view3d": "pictures/normalized/jordan1_low_reversebred.png"
+    },
+    "pictures/jordan1_pe_bloodline_friendsandfamily_sample.png": {
+      "grid": "pictures/normalized/grid/jordan1_pe_bloodline_friendsandfamily_sample.png",
+      "view3d": "pictures/normalized/jordan1_pe_bloodline_friendsandfamily_sample.png"
+    },
+    "pictures/jordan1_quai54_ff_v2.png": {
+      "grid": "pictures/normalized/grid/jordan1_quai54_ff_v2.png",
+      "view3d": "pictures/normalized/jordan1_quai54_ff_v2.png"
+    },
+    "pictures/jordan1_quai54_ff_v2_1.png": {
+      "grid": "pictures/normalized/grid/jordan1_quai54_ff_v2_1.png",
+      "view3d": "pictures/normalized/jordan1_quai54_ff_v2_1.png"
+    },
+    "pictures/jordan1_royaltoe.png": {
+      "grid": "pictures/normalized/grid/jordan1_royaltoe.png",
+      "view3d": "pictures/normalized/jordan1_royaltoe.png"
+    },
+    "pictures/jordan1_seafoam.png": {
+      "grid": "pictures/normalized/grid/jordan1_seafoam.png",
+      "view3d": "pictures/normalized/jordan1_seafoam.png"
+    },
+    "pictures/jordan1_shadow_2009.png": {
+      "grid": "pictures/normalized/grid/jordan1_shadow_2009.png",
+      "view3d": "pictures/normalized/jordan1_shadow_2009.png"
+    },
+    "pictures/jordan1_turbogreen.png": {
+      "grid": "pictures/normalized/grid/jordan1_turbogreen.png",
+      "view3d": "pictures/normalized/jordan1_turbogreen.png"
+    },
+    "pictures/jordan1_vaa_alaska_v2.png": {
+      "grid": "pictures/normalized/grid/jordan1_vaa_alaska_v2.png",
+      "view3d": "pictures/normalized/jordan1_vaa_alaska_v2.png"
+    },
+    "pictures/jordan1_yelloworche.png": {
+      "grid": "pictures/normalized/grid/jordan1_yelloworche.png",
+      "view3d": "pictures/normalized/jordan1_yelloworche.png"
+    },
+    "pictures/jordan1low_fuchsia.png": {
+      "grid": "pictures/normalized/grid/jordan1low_fuchsia.png",
+      "view3d": "pictures/normalized/jordan1low_fuchsia.png"
+    },
+    "pictures/jordan1low_gymred.png": {
+      "grid": "pictures/normalized/grid/jordan1low_gymred.png",
+      "view3d": "pictures/normalized/jordan1low_gymred.png"
+    },
+    "pictures/jordan1low_noblered.png": {
+      "grid": "pictures/normalized/grid/jordan1low_noblered.png",
+      "view3d": "pictures/normalized/jordan1low_noblered.png"
+    },
+    "pictures/jordan4_bred_1999.png": {
+      "grid": "pictures/normalized/grid/jordan4_bred_1999.png",
+      "view3d": "pictures/normalized/jordan4_bred_1999.png"
+    },
+    "pictures/jordan4_firered.png": {
+      "grid": "pictures/normalized/grid/jordan4_firered.png",
+      "view3d": "pictures/normalized/jordan4_firered.png"
+    },
+    "pictures/jordan4_ow.png": {
+      "grid": "pictures/normalized/grid/jordan4_ow.png",
+      "view3d": "pictures/normalized/jordan4_ow.png"
+    },
+    "pictures/jordan4_royalty.png": {
+      "grid": "pictures/normalized/grid/jordan4_royalty.png",
+      "view3d": "pictures/normalized/jordan4_royalty.png"
+    },
+    "pictures/jordan5_bronze.png": {
+      "grid": "pictures/normalized/grid/jordan5_bronze.png",
+      "view3d": "pictures/normalized/jordan5_bronze.png"
+    },
+    "pictures/kiger_ow.png": {
+      "grid": "pictures/normalized/grid/kiger_ow.png",
+      "view3d": "pictures/normalized/kiger_ow.png"
+    },
+    "pictures/nb_2002r.png": {
+      "grid": "pictures/normalized/grid/nb_2002r.png",
+      "view3d": "pictures/normalized/nb_2002r.png"
+    },
+    "pictures/nb_levis.png": {
+      "grid": "pictures/normalized/grid/nb_levis.png",
+      "view3d": "pictures/normalized/nb_levis.png"
+    },
+    "pictures/nike_fog_1.png": {
+      "grid": "pictures/normalized/grid/nike_fog_1.png",
+      "view3d": "pictures/normalized/nike_fog_1.png"
+    },
+    "pictures/nike_fog_skylon.png": {
+      "grid": "pictures/normalized/grid/nike_fog_skylon.png",
+      "view3d": "pictures/normalized/nike_fog_skylon.png"
+    },
+    "pictures/nike_lego1.png": {
+      "grid": "pictures/normalized/grid/nike_lego1.png",
+      "view3d": "pictures/normalized/nike_lego1.png"
+    },
+    "pictures/nike_lego2.png": {
+      "grid": "pictures/normalized/grid/nike_lego2.png",
+      "view3d": "pictures/normalized/nike_lego2.png"
+    },
+    "pictures/nike_waffle_racer_ow.png": {
+      "grid": "pictures/normalized/grid/nike_waffle_racer_ow.png",
+      "view3d": "pictures/normalized/nike_waffle_racer_ow.png"
+    },
+    "pictures/puma_rose.png": {
+      "grid": "pictures/normalized/grid/puma_rose.png",
+      "view3d": "pictures/normalized/puma_rose.png"
+    },
+    "pictures/sb_raygun.png": {
+      "grid": "pictures/normalized/grid/sb_raygun.png",
+      "view3d": "pictures/normalized/sb_raygun.png"
+    },
+    "pictures/sbdunk_yutohorigome_matcha.png": {
+      "grid": "pictures/normalized/grid/sbdunk_yutohorigome_matcha.png",
+      "view3d": "pictures/normalized/sbdunk_yutohorigome_matcha.png"
+    },
+    "pictures/sbdunk_yutohorigome_matcha1.png": {
+      "grid": "pictures/normalized/grid/sbdunk_yutohorigome_matcha1.png",
+      "view3d": "pictures/normalized/sbdunk_yutohorigome_matcha1.png"
+    },
+    "pictures/sneaker_mask1.png": {
+      "grid": "pictures/normalized/grid/sneaker_mask1.png",
+      "view3d": "pictures/normalized/sneaker_mask1.png"
+    },
+    "pictures/sneaker_mask2.png": {
+      "grid": "pictures/normalized/grid/sneaker_mask2.png",
+      "view3d": "pictures/normalized/sneaker_mask2.png"
+    },
+    "pictures/vans_knuskool.png": {
+      "grid": "pictures/normalized/grid/vans_knuskool.png",
+      "view3d": "pictures/normalized/vans_knuskool.png"
+    },
+    "pictures/yz500.png": {
+      "grid": "pictures/normalized/grid/yz500.png",
+      "view3d": "pictures/normalized/yz500.png"
+    },
+    "pictures/yz700.png": {
+      "grid": "pictures/normalized/grid/yz700.png",
+      "view3d": "pictures/normalized/yz700.png"
+    },
+    "pictures/yz_fm_rnr.png": {
+      "grid": "pictures/normalized/grid/yz_fm_rnr.png",
+      "view3d": "pictures/normalized/yz_fm_rnr.png"
     }
   }
 }
