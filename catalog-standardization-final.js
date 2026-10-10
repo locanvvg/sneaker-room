@@ -14,7 +14,7 @@
   "use strict";
 
   const BUILD = "20261010-standard-v4";
-  const CACHE_REVISION = "v4-rollback-20261010a";
+  const CACHE_REVISION = "v4-sb-grid-20261010b";
   const STYLE_ID = "locan-normalized-image-authority-v4";
 
   function installStyles() {
@@ -176,6 +176,40 @@
     img.style.setProperty("transform", "none", "important");
     img.style.setProperty("transform-origin", "center center", "important");
 
+    /*
+      FINAL GRID-ONLY MICRO ADJUSTMENT
+      --------------------------------
+      SB Raygun reads slightly larger than the neighboring cards and its
+      right shoe sits close to the card edge.  This correction applies only
+      to the Grid card image.  3D remains completely untouched.
+    */
+    const src = cleanPath(
+      img.getAttribute("src") ||
+      img.dataset.src ||
+      ""
+    );
+
+    const isGridImage =
+      Boolean(img.closest(".card-img-wrapper")) &&
+      !img.closest(".sneaker-3d-image");
+
+    if (
+      isGridImage &&
+      src.includes("sb_raygun")
+    ) {
+      img.style.setProperty(
+        "transform",
+        "translateX(-2.5%) scale(0.96)",
+        "important"
+      );
+      img.style.setProperty(
+        "transform-origin",
+        "center center",
+        "important"
+      );
+      img.dataset.gridFineTune = "sb-raygun";
+    }
+
     img.dataset.normalizedStandard = "true";
     img.dataset.normalizedBuild = BUILD;
   }
@@ -289,8 +323,8 @@
 
   /*
     Force one clean client-side rollback to the already-generated v4 assets.
-    This does NOT change their geometry; it only prevents a v5 bitmap that
-    used the same filename from surviving in Cache Storage/CDN/browser state.
+    This does NOT change their geometry; it only prevents a stale bitmap
+    that used the same filename from surviving in Cache Storage.
   */
   purgeStaleImageCaches();
 
