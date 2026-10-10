@@ -1,6 +1,19 @@
-/* Lộc An Sneaker Collection — optimized offline/runtime cache */
+/* =========================================================
+   LỘC AN SNEAKER COLLECTION — STABLE RUNTIME CACHE
+   2026-10-10
+
+   Image policy:
+   - Never rewrite pictures/*.png/jpg to generated WebP paths.
+   - Never rewrite original catalog images to pictures/normalized/*.
+   - Use the exact URL requested by the page.
+   - Prefer the network, then fall back to the same cached request.
+
+   This keeps approved per-pair sizing deterministic and prevents a missing
+   optimized derivative from making an otherwise valid original disappear.
+========================================================= */
+
 const CACHE_VERSION =
-  "locan-sneaker-room-20261010-unified-v2";
+  "locan-sneaker-room-20261010-image-stability-v1";
 
 const SHELL_CACHE =
   `${CACHE_VERSION}-shell`;
@@ -22,6 +35,7 @@ const SHELL = [
   "./style.css",
   "./collection-menu.css",
   "./unified-collection-ui.css",
+  "./detail-layout.css",
   "./data.js",
   "./catalog-additions.js",
   "./catalog-engine.js",
@@ -42,19 +56,47 @@ const SHELL = [
   "./apple-touch-icon.png"
 ];
 
-let optimizedManifest = null;
-let optimizedManifestCheckedAt = 0;
+async function precacheShell() {
+  const cache =
+    await caches.open(
+      SHELL_CACHE
+    );
+
+  await Promise.all(
+    SHELL.map(
+      async url => {
+        const request =
+          new Request(
+            url,
+            {
+              cache: "reload",
+              credentials: "same-origin"
+            }
+          );
+
+        const response =
+          await fetch(request);
+
+        if (!response.ok) {
+          throw new Error(
+            `Precache failed: ${url} (${response.status})`
+          );
+        }
+
+        await cache.put(
+          url,
+          response
+        );
+      }
+    )
+  );
+}
 
 self.addEventListener(
   "install",
   event => {
     event.waitUntil(
-      caches
-        .open(SHELL_CACHE)
-        .then(
-          cache =>
-            cache.addAll(SHELL)
-        )
+      precacheShell()
         .then(
           () =>
             self.skipWaiting()
@@ -96,6 +138,17 @@ self.addEventListener(
   }
 );
 
+async function cachedResponse(
+  request
+) {
+  return caches.match(
+    request,
+    {
+      ignoreSearch: true
+    }
+  );
+}
+
 async function networkFirst(
   request
 ) {
@@ -105,8 +158,18 @@ async function networkFirst(
     );
 
   try {
+    const networkRequest =
+      new Request(
+        request,
+        {
+          cache: "no-cache"
+        }
+      );
+
     const response =
-      await fetch(request);
+      await fetch(
+        networkRequest
+      );
 
     if (
       response &&
@@ -118,16 +181,44 @@ async function networkFirst(
           response.clone()
         )
         .catch(() => {});
+
+      return response;
+    }
+
+    /*
+      A 404/5xx fetch does not throw. Check the cache before returning the
+      failed network response so a transient deployment window does not
+      blank an image or script that was already available.
+    */
+    const cached =
+      await cachedResponse(
+        request
+      );
+
+    if (cached) {
+      return cached;
+    }
+
+    if (
+      request.mode ===
+      "navigate"
+    ) {
+      return (
+        await caches.match(
+          "./offline.html"
+        ) ||
+        await caches.match(
+          "./index.html"
+        ) ||
+        response
+      );
     }
 
     return response;
   } catch (error) {
     const cached =
-      await caches.match(
-        request,
-        {
-          ignoreSearch: true
-        }
+      await cachedResponse(
+        request
       );
 
     if (cached) {
@@ -150,165 +241,6 @@ async function networkFirst(
 
     throw error;
   }
-}
-
-async function getOptimizedManifest() {
-  const now = Date.now();
-
-  if (
-    optimizedManifest &&
-    now -
-      optimizedManifestCheckedAt <
-      5 * 60 * 1000
-  ) {
-    return optimizedManifest;
-  }
-
-  optimizedManifestCheckedAt =
-    now;
-
-  try {
-    const manifestURL =
-      new URL(
-        "./pictures/optimized/manifest.json",
-        self.registration.scope
-      );
-
-    const response =
-      await fetch(
-        manifestURL.href,
-        { cache: "no-store" }
-      );
-
-    if (!response.ok) {
-      optimizedManifest = {};
-      return optimizedManifest;
-    }
-
-    optimizedManifest =
-      await response.json();
-
-    return optimizedManifest;
-  } catch (_) {
-    optimizedManifest = {};
-    return optimizedManifest;
-  }
-}
-
-function relativeToScope(url) {
-  const scopePath =
-    new URL(
-      self.registration.scope
-    ).pathname;
-
-  const pathname =
-    new URL(url).pathname;
-
-  if (
-    pathname.startsWith(
-      scopePath
-    )
-  ) {
-    return decodeURIComponent(
-      pathname.slice(
-        scopePath.length
-      )
-    );
-  }
-
-  return "";
-}
-
-async function cacheFirst(
-  request
-) {
-  const cache =
-    await caches.open(
-      RUNTIME_CACHE
-    );
-
-  const cached =
-    await cache.match(request);
-
-  if (cached) {
-    return cached;
-  }
-
-  const response =
-    await fetch(request);
-
-  if (
-    response &&
-    response.ok
-  ) {
-    cache
-      .put(
-        request,
-        response.clone()
-      )
-      .catch(() => {});
-  }
-
-  return response;
-}
-
-async function optimizedImage(
-  request
-) {
-  const acceptsWebP =
-    String(
-      request.headers.get(
-        "accept"
-      ) || ""
-    )
-      .toLowerCase()
-      .includes("image/webp");
-
-  if (acceptsWebP) {
-    const relative =
-      relativeToScope(
-        request.url
-      );
-
-    const manifest =
-      await getOptimizedManifest();
-
-    const optimized =
-      manifest[
-        relative
-      ];
-
-    if (optimized) {
-      try {
-        const optimizedURL =
-          new URL(
-            `./${optimized}`,
-            self.registration.scope
-          );
-
-        return await networkFirst(
-          new Request(
-            optimizedURL.href,
-            {
-              mode: "same-origin",
-              credentials:
-                "same-origin",
-              cache: "no-cache"
-            }
-          )
-        );
-      } catch (_) {
-        // Fall through to original image.
-      }
-    }
-  }
-
-  return networkFirst(
-    new Request(
-      request,
-      { cache: "no-cache" }
-    )
-  );
 }
 
 self.addEventListener(
@@ -336,12 +268,16 @@ self.addEventListener(
       return;
     }
 
+    /*
+      IMPORTANT: image requests are handled exactly as requested.
+      No manifest lookup and no transparent URL substitution.
+    */
     if (
       request.destination ===
       "image"
     ) {
       event.respondWith(
-        optimizedImage(request)
+        networkFirst(request)
       );
       return;
     }

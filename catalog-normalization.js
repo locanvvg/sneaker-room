@@ -1,40 +1,28 @@
 /* =========================================================
-   LỘC AN — UNIFIED CATALOG IMAGE NORMALIZATION v2
+   LỘC AN — CATALOG IMAGE STABILITY GUARD
+   2026-10-10
 
    PURPOSE
    -------
-   - Applies to IN COLLECTION sneakers only.
-   - Grid and 3D use the same generated normalized image.
-   - Existing detail-page/gallery images remain untouched.
-   - Existing per-pair sizing code can stay in the repo; this layer
-     deliberately wins for normalized homepage images.
-   - Future IN COLLECTION sneakers are covered automatically.
+   This file intentionally DOES NOT replace catalog images with
+   pictures/normalized/* and DOES NOT override approved per-pair sizing.
 
-   INPUT:
-     pictures/<image>.png
-     (pictures/source/<image>.png is also supported for migration)
+   It exists as a compatibility guard because older homepage builds may
+   still load catalog-normalization.js dynamically. If legacy normalized
+   state is found, it is removed and the original pictures/* source is
+   restored.
 
-   DISPLAY:
-     pictures/normalized/<image>.png
-
-   If the generated normalized image is not available yet, the image
-   falls back to its original source without breaking the page.
+   It also registers the current service worker so browsers that already
+   have an older worker/cache are upgraded without requiring a hard reload.
 ========================================================= */
 (() => {
   "use strict";
 
-  const BUILD = "20261010-unified-v2";
+  const BUILD = "20261010-image-stability-v1";
   const NORMALIZED_PREFIX = "pictures/normalized/";
-  const SOURCE_PREFIX = "pictures/source/";
   const PICTURES_PREFIX = "pictures/";
 
   let scheduled = false;
-
-  function ownItem(item) {
-    return String(item?.collectionStatus || "own")
-      .trim()
-      .toLowerCase() === "own";
-  }
 
   function cleanPath(value) {
     return String(value || "")
@@ -44,116 +32,27 @@
       .trim();
   }
 
-  function originalPath(item) {
-    const sourceImages =
-      Array.isArray(item?.sourceImages)
-        ? item.sourceImages.filter(Boolean)
-        : [];
+  function originalFromNormalized(value) {
+    const path = cleanPath(value);
 
-    const candidate =
-      item?.sourceImage ||
-      sourceImages[0] ||
-      item?.originalImage ||
-      item?.image ||
-      "";
-
-    return cleanPath(candidate);
-  }
-
-  function normalizedPath(value) {
-    const source = cleanPath(value);
-
-    if (!source) return "";
-
-    if (source.startsWith(NORMALIZED_PREFIX)) {
-      return source.replace(/\.(png|jpe?g|webp)$/i, ".png");
+    if (!path.startsWith(NORMALIZED_PREFIX)) {
+      return "";
     }
 
-    if (source.startsWith(SOURCE_PREFIX)) {
-      return (
-        NORMALIZED_PREFIX +
-        source.slice(SOURCE_PREFIX.length)
-      ).replace(/\.(png|jpe?g|webp)$/i, ".png");
-    }
-
-    if (source.startsWith(PICTURES_PREFIX)) {
-      return (
-        NORMALIZED_PREFIX +
-        source.slice(PICTURES_PREFIX.length)
-      ).replace(/\.(png|jpe?g|webp)$/i, ".png");
-    }
-
-    return "";
-  }
-
-  function fileKey(value) {
-    return cleanPath(value)
-      .split("/")
-      .pop()
-      .replace(/\.(png|jpe?g|webp)$/i, "")
-      .toLowerCase();
-  }
-
-  function sneakerById(id) {
-    if (
-      typeof sneakers === "undefined" ||
-      !Array.isArray(sneakers) ||
-      !id
-    ) {
-      return null;
-    }
-
-    return sneakers.find(
-      item => String(item?.id || "") === String(id)
-    ) || null;
-  }
-
-  function sneakerByRenderedImage(img) {
-    if (
-      typeof sneakers === "undefined" ||
-      !Array.isArray(sneakers)
-    ) {
-      return null;
-    }
-
-    const id =
-      img?.dataset?.sneakerId ||
-      img?.closest("[data-sneaker-id]")?.dataset?.sneakerId ||
-      "";
-
-    const byId = sneakerById(id);
-    if (byId) return byId;
-
-    const link = img?.closest("a[href*='shoe.html?id=']");
-
-    if (link) {
-      try {
-        const url = new URL(link.href, window.location.href);
-        const linked = sneakerById(url.searchParams.get("id"));
-        if (linked) return linked;
-      } catch (_) {}
-    }
-
-    const renderedKey = fileKey(
-      img?.getAttribute("src") ||
-      img?.currentSrc ||
-      ""
+    return (
+      PICTURES_PREFIX +
+      path.slice(NORMALIZED_PREFIX.length)
     );
-
-    if (!renderedKey) return null;
-
-    return sneakers.find(item => {
-      const original = originalPath(item);
-      const normalized = normalizedPath(original);
-
-      return (
-        fileKey(original) === renderedKey ||
-        fileKey(normalized) === renderedKey
-      );
-    }) || null;
   }
 
-  function clearNeutralSizing(img) {
+  function clearLegacyNormalizationStyles(img) {
+    if (
+      img.dataset.normalizedCatalogImage !== "true" &&
+      !img.dataset.normalizedCatalogBuild
+    ) {
+      return;
+    }
+
     [
       "scale",
       "transform",
@@ -168,42 +67,29 @@
     ].forEach(property => {
       img.style.removeProperty(property);
     });
-
-    delete img.dataset.normalizedCatalogImage;
-    delete img.dataset.normalizedCatalogBuild;
   }
 
-  function applyNeutralSizing(img) {
-    /*
-      Inline !important is intentional. It is the final authority for
-      generated normalized homepage images and prevents all historical
-      per-pair Grid/3D overrides from changing their visual envelope.
-    */
-    img.style.setProperty("scale", "1 1", "important");
-    img.style.setProperty("transform", "none", "important");
-    img.style.setProperty("translate", "0 0", "important");
-    img.style.setProperty("transform-origin", "center center", "important");
-    img.style.setProperty("object-fit", "contain", "important");
-    img.style.setProperty("object-position", "center center", "important");
+  function clearLegacyDataset(img) {
+    [
+      "normalizedCatalogImage",
+      "normalizedCatalogBuild",
+      "normalizedCatalogLoading",
+      "normalizedCatalogFailed",
+      "normalizedOriginalSrc",
+      "normalizedTargetSrc"
+    ].forEach(key => {
+      delete img.dataset[key];
+    });
+  }
 
-    if (img.closest(".sneaker-3d-image")) {
-      img.style.setProperty("width", "100%", "important");
-      img.style.setProperty("height", "100%", "important");
-      img.style.setProperty("max-width", "100%", "important");
-      img.style.setProperty("max-height", "100%", "important");
+  function restoreImage(img) {
+    if (!(img instanceof HTMLImageElement)) {
+      return;
     }
 
-    img.dataset.normalizedCatalogImage = "true";
-    img.dataset.normalizedCatalogBuild = BUILD;
-  }
-
-  function switchToNormalized(img, item) {
-    if (!img || !item || !ownItem(item)) return;
-
-    const original = originalPath(item);
-    const normalized = normalizedPath(original);
-
-    if (!original || !normalized) return;
+    if (!img.closest("#sneaker-grid")) {
+      return;
+    }
 
     const current = cleanPath(
       img.getAttribute("src") ||
@@ -211,109 +97,178 @@
       ""
     );
 
-    img.dataset.normalizedOriginalSrc = original;
-    img.dataset.normalizedTargetSrc = normalized;
-    img.dataset.sneakerId = String(item.id || img.dataset.sneakerId || "");
+    const savedOriginal = cleanPath(
+      img.dataset.normalizedOriginalSrc ||
+      ""
+    );
 
-    /* Already on the generated image: only reassert neutral sizing. */
+    const derivedOriginal =
+      originalFromNormalized(current);
+
+    const original =
+      savedOriginal ||
+      derivedOriginal;
+
+    clearLegacyNormalizationStyles(img);
+    clearLegacyDataset(img);
+
     if (
-      current.includes(normalized) ||
-      current.endsWith(normalized)
+      original &&
+      current.startsWith(NORMALIZED_PREFIX) &&
+      current !== original
     ) {
-      applyNeutralSizing(img);
-      return;
+      img.src = original;
     }
-
-    if (img.dataset.normalizedCatalogLoading === "true") {
-      return;
-    }
-
-    img.dataset.normalizedCatalogLoading = "true";
-
-    const onLoad = () => {
-      delete img.dataset.normalizedCatalogLoading;
-      delete img.dataset.normalizedCatalogFailed;
-      applyNeutralSizing(img);
-    };
-
-    const onError = () => {
-      delete img.dataset.normalizedCatalogLoading;
-      img.dataset.normalizedCatalogFailed = "true";
-      clearNeutralSizing(img);
-
-      /*
-        Safe deployment fallback: during the short window before the
-        GitHub Action has generated normalized files, use the original
-        image rather than showing a broken card.
-      */
-      if (cleanPath(img.getAttribute("src")) !== original) {
-        img.src = original;
-      }
-    };
-
-    img.addEventListener("load", onLoad, { once: true });
-    img.addEventListener("error", onError, { once: true });
-
-    applyNeutralSizing(img);
-    img.src = normalized;
   }
 
-  function processImage(img) {
-    if (!(img instanceof HTMLImageElement)) return;
-
-    if (!img.closest("#sneaker-grid")) return;
-
-    const item = sneakerByRenderedImage(img);
-
-    if (!item || !ownItem(item)) {
-      return;
-    }
-
-    switchToNormalized(img, item);
-  }
-
-  function processAll() {
+  function restoreAll() {
     scheduled = false;
 
     document
       .querySelectorAll("#sneaker-grid img")
-      .forEach(processImage);
+      .forEach(restoreImage);
   }
 
-  function schedule() {
-    if (scheduled) return;
+  function scheduleRestore() {
+    if (scheduled) {
+      return;
+    }
 
     scheduled = true;
-    requestAnimationFrame(processAll);
+    requestAnimationFrame(restoreAll);
+  }
+
+  function retryBrokenOriginalImages() {
+    document
+      .querySelectorAll("#sneaker-grid img")
+      .forEach(img => {
+        if (!(img instanceof HTMLImageElement)) {
+          return;
+        }
+
+        if (
+          !img.complete ||
+          img.naturalWidth !== 0 ||
+          img.dataset.imageStabilityRetried === BUILD
+        ) {
+          return;
+        }
+
+        const src = cleanPath(
+          img.getAttribute("src") ||
+          ""
+        );
+
+        if (
+          !src.startsWith(PICTURES_PREFIX) ||
+          src.startsWith(NORMALIZED_PREFIX)
+        ) {
+          return;
+        }
+
+        img.dataset.imageStabilityRetried = BUILD;
+        img.src =
+          `./${src}?v=${encodeURIComponent(BUILD)}`;
+      });
+  }
+
+  async function registerStableServiceWorker() {
+    if (
+      !("serviceWorker" in navigator) ||
+      !window.isSecureContext
+    ) {
+      return;
+    }
+
+    try {
+      const registration =
+        await navigator.serviceWorker.register(
+          `./sw.js?v=${BUILD}`,
+          { scope: "./" }
+        );
+
+      /* Force an update check even when an older worker controls the page. */
+      registration.update().catch(() => {});
+    } catch (_) {
+      /* The website must remain fully usable even if SW registration fails. */
+    }
   }
 
   function install() {
-    processAll();
+    restoreAll();
 
-    const grid = document.getElementById("sneaker-grid");
-    if (!grid) return;
+    const grid =
+      document.getElementById(
+        "sneaker-grid"
+      );
 
-    const observer = new MutationObserver(schedule);
+    if (grid) {
+      const observer =
+        new MutationObserver(
+          scheduleRestore
+        );
 
-    observer.observe(grid, {
-      childList: true,
-      subtree: true,
-      attributes: true,
-      attributeFilter: ["src", "data-sneaker-id"]
-    });
+      observer.observe(
+        grid,
+        {
+          childList: true,
+          subtree: true,
+          attributes: true,
+          attributeFilter: [
+            "src",
+            "data-normalized-catalog-image",
+            "data-normalized-catalog-build"
+          ]
+        }
+      );
+    }
 
     /*
-      Reassert after late site-enhancement/style installation.
+      When the new worker takes control, retry only images that are actually
+      broken. No page reload is forced, so there is no reload loop or visual
+      jump for images that already loaded correctly.
     */
-    [0, 100, 300, 700, 1200, 2200].forEach(delay => {
-      window.setTimeout(processAll, delay);
-    });
+    if (
+      "serviceWorker" in navigator
+    ) {
+      navigator.serviceWorker.addEventListener(
+        "controllerchange",
+        () => {
+          restoreAll();
+          window.setTimeout(
+            retryBrokenOriginalImages,
+            50
+          );
+        }
+      );
+    }
 
-    window.addEventListener("resize", schedule, { passive: true });
+    registerStableServiceWorker();
+
+    [
+      100,
+      400,
+      1000
+    ].forEach(delay => {
+      window.setTimeout(
+        () => {
+          restoreAll();
+          retryBrokenOriginalImages();
+        },
+        delay
+      );
+    });
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", install, { once: true });
+  if (
+    document.readyState ===
+    "loading"
+  ) {
+    document.addEventListener(
+      "DOMContentLoaded",
+      install,
+      { once: true }
+    );
   } else {
     install();
   }
