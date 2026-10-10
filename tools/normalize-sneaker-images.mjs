@@ -5,7 +5,16 @@ const ROOT = process.cwd();
 const PICTURES = path.join(ROOT, "pictures");
 const OUTPUT_ROOT = path.join(PICTURES, "normalized");
 const WRITE = process.argv.includes("--write");
+const BUILD = "20261010-standard-v3";
 
+/*
+  PRODUCT IMAGE STANDARD
+  ----------------------
+  Every generated homepage image uses exactly the same 4:3 canvas and
+  exactly the same maximum subject box. This is the same basic principle
+  used by commerce catalog pipelines: normalize the asset once, then render
+  every card at neutral scale.
+*/
 const STANDARD = {
   canvasWidth: 1600,
   canvasHeight: 1200,
@@ -74,10 +83,16 @@ function outputRelative(inputRelative) {
   return withoutSource.replace(/\.(png|jpe?g|webp)$/i, ".png");
 }
 
+function catalogInputPath(inputRelative) {
+  return `pictures/${outputRelative(inputRelative)}`;
+}
+
 function median(values) {
   if (!values.length) return 0;
+
   const sorted = [...values].sort((a, b) => a - b);
   const middle = Math.floor(sorted.length / 2);
+
   return sorted.length % 2
     ? sorted[middle]
     : (sorted[middle - 1] + sorted[middle]) / 2;
@@ -101,8 +116,14 @@ function paddedBounds(bounds, width, height) {
 
   const left = Math.max(0, bounds.left - pad);
   const top = Math.max(0, bounds.top - pad);
-  const right = Math.min(width - 1, bounds.left + bounds.width - 1 + pad);
-  const bottom = Math.min(height - 1, bounds.top + bounds.height - 1 + pad);
+  const right = Math.min(
+    width - 1,
+    bounds.left + bounds.width - 1 + pad
+  );
+  const bottom = Math.min(
+    height - 1,
+    bounds.top + bounds.height - 1 + pad
+  );
 
   return {
     left,
@@ -158,6 +179,7 @@ async function inspectBounds(input) {
 
   for (let i = 0; i < pixels; i += 1) {
     const alpha = data[i * channels + 3];
+
     if (alpha <= STANDARD.transparentPixelThreshold) {
       transparent += 1;
     }
@@ -170,7 +192,8 @@ async function inspectBounds(input) {
       width,
       height,
       (x, y) =>
-        data[(y * width + x) * channels + 3] >= STANDARD.alphaThreshold
+        data[(y * width + x) * channels + 3] >=
+        STANDARD.alphaThreshold
     );
 
     if (alphaBounds) {
@@ -184,14 +207,17 @@ async function inspectBounds(input) {
 
   /*
     Opaque-image fallback:
-    estimate the background from border pixels and use color distance.
-    This keeps the pipeline from failing if an old cutout was exported
-    with a flat background instead of transparency.
+    estimate the background from border pixels and detect the subject by
+    color distance. This keeps the build deterministic even if an old image
+    was exported with a flat background instead of transparency.
   */
   const borderR = [];
   const borderG = [];
   const borderB = [];
-  const border = Math.max(1, Math.round(Math.min(width, height) * 0.025));
+  const border = Math.max(
+    1,
+    Math.round(Math.min(width, height) * 0.025)
+  );
 
   for (let y = 0; y < height; y += 1) {
     for (let x = 0; x < width; x += 1) {
@@ -222,6 +248,7 @@ async function inspectBounds(input) {
     height,
     (x, y) => {
       const i = (y * width + x) * channels;
+
       return colorDistance(
         data[i],
         data[i + 1],
@@ -243,7 +270,7 @@ async function inspectBounds(input) {
     }
   }
 
-  /* Last-resort full-frame fallback: never break the build. */
+  /* Last-resort full-frame fallback: never break the asset build. */
   return {
     left: 0,
     top: 0,
@@ -258,6 +285,8 @@ async function normalizeOne(inputRelative) {
   const input = path.join(PICTURES, inputRelative);
   const relative = outputRelative(inputRelative);
   const output = path.join(OUTPUT_ROOT, relative);
+  const catalogInput = catalogInputPath(inputRelative);
+  const normalized = `pictures/normalized/${relative}`;
 
   const bounds = await inspectBounds(input);
 
@@ -295,10 +324,21 @@ async function normalizeOne(inputRelative) {
         width: STANDARD.canvasWidth,
         height: STANDARD.canvasHeight,
         channels: 4,
-        background: { r: 0, g: 0, b: 0, alpha: 0 }
+        background: {
+          r: 0,
+          g: 0,
+          b: 0,
+          alpha: 0
+        }
       }
     })
-      .composite([{ input: subject.data, left, top }])
+      .composite([
+        {
+          input: subject.data,
+          left,
+          top
+        }
+      ])
       .png({ compressionLevel: 9 })
       .toFile(output);
   }
@@ -311,7 +351,8 @@ async function normalizeOne(inputRelative) {
 
   return {
     input: `pictures/${inputRelative}`,
-    normalized: `pictures/normalized/${relative}`,
+    catalogInput,
+    normalized,
     method: bounds.method,
     crop: {
       left: bounds.left,
@@ -330,8 +371,8 @@ async function normalizeOne(inputRelative) {
 
 /*
   If both pictures/foo.png and pictures/source/foo.png exist,
-  pictures/source/foo.png wins. This makes migration from the v1 test
-  safe without requiring the user to restore/delete files first.
+  pictures/source/foo.png wins. This lets the archive keep an untouched
+  master while the homepage always receives one deterministic derivative.
 */
 const candidates = walkImages(PICTURES);
 const selected = new Map();
@@ -355,16 +396,25 @@ if (!files.length) {
 
 if (WRITE) {
   /* Fully generated directory: stale files cannot survive. */
-  fs.rmSync(OUTPUT_ROOT, { recursive: true, force: true });
-  fs.mkdirSync(OUTPUT_ROOT, { recursive: true });
+  fs.rmSync(OUTPUT_ROOT, {
+    recursive: true,
+    force: true
+  });
+
+  fs.mkdirSync(OUTPUT_ROOT, {
+    recursive: true
+  });
 }
 
 const manifest = {};
+const catalogMap = {};
 
 for (const inputRelative of files) {
   try {
     const record = await normalizeOne(inputRelative);
+
     manifest[record.normalized] = record;
+    catalogMap[record.catalogInput] = record.normalized;
   } catch (error) {
     console.error(`Normalization failed for ${inputRelative}:`);
     console.error(error?.stack || error?.message || error);
@@ -377,23 +427,39 @@ if (process.exitCode) {
 }
 
 if (WRITE) {
+  const manifestPayload = {
+    build: BUILD,
+    standard: STANDARD,
+    images: manifest,
+    catalogMap
+  };
+
   fs.writeFileSync(
     path.join(OUTPUT_ROOT, "manifest.json"),
-    JSON.stringify(
-      {
-        build: "20261010-unified-v2",
-        standard: STANDARD,
-        images: manifest
-      },
+    JSON.stringify(manifestPayload, null, 2) + "\n",
+    "utf8"
+  );
+
+  /*
+    Browser-safe synchronous manifest.
+    index.html loads this before catalog-normalization.js so the first card
+    render already points at the final standardized image; there is no
+    post-render source swap and therefore no visual size flash.
+  */
+  fs.writeFileSync(
+    path.join(OUTPUT_ROOT, "manifest.js"),
+    `/* Generated file — do not edit by hand. Build: ${BUILD} */\n` +
+    `window.CATALOG_NORMALIZED_IMAGE_MAP = Object.freeze(${JSON.stringify(
+      catalogMap,
       null,
       2
-    ) + "\n",
+    )});\n`,
     "utf8"
   );
 }
 
 console.log(
   WRITE
-    ? `Generated ${Object.keys(manifest).length} normalized image(s).`
+    ? `Generated ${Object.keys(manifest).length} standardized image(s).`
     : `Dry run: ${files.length} image(s) validated.`
 );
