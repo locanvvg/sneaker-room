@@ -1,19 +1,13 @@
 /* =========================================================
-   LỘC AN SNEAKER COLLECTION — STABLE RUNTIME CACHE
-   2026-10-10
+   LỘC AN SNEAKER COLLECTION — STABLE RUNTIME CACHE v3
 
-   Image policy:
-   - Never rewrite pictures/*.png/jpg to generated WebP paths.
-   - Never rewrite original catalog images to pictures/normalized/*.
-   - Use the exact URL requested by the page.
-   - Prefer the network, then fall back to the same cached request.
-
-   This keeps approved per-pair sizing deterministic and prevents a missing
-   optimized derivative from making an otherwise valid original disappear.
+   Design rule:
+   - Never rewrite a requested image URL to another format/path.
+   - The page chooses its image source explicitly.
+   - Service worker only provides network-first caching/fallback.
 ========================================================= */
-
 const CACHE_VERSION =
-  "locan-sneaker-room-20261010-image-stability-v1";
+  "locan-sneaker-room-20261010-standard-v3";
 
 const SHELL_CACHE =
   `${CACHE_VERSION}-shell`;
@@ -39,10 +33,12 @@ const SHELL = [
   "./data.js",
   "./catalog-additions.js",
   "./catalog-engine.js",
+  "./catalog-normalization.js",
+  "./catalog-standardization-final.js",
   "./main.js",
   "./catalog-ui.js",
   "./catalog-display.js",
-  "./catalog-normalization.js",
+  "./collection-view.js",
   "./collection-content-final.js",
   "./shoe-page.js",
   "./item-share.js",
@@ -56,50 +52,25 @@ const SHELL = [
   "./apple-touch-icon.png"
 ];
 
-async function precacheShell() {
-  const cache =
-    await caches.open(
-      SHELL_CACHE
-    );
-
-  await Promise.all(
-    SHELL.map(
-      async url => {
-        const request =
-          new Request(
-            url,
-            {
-              cache: "reload",
-              credentials: "same-origin"
-            }
-          );
-
-        const response =
-          await fetch(request);
-
-        if (!response.ok) {
-          throw new Error(
-            `Precache failed: ${url} (${response.status})`
-          );
-        }
-
-        await cache.put(
-          url,
-          response
-        );
-      }
-    )
-  );
-}
-
 self.addEventListener(
   "install",
   event => {
     event.waitUntil(
-      precacheShell()
-        .then(
-          () =>
-            self.skipWaiting()
+      caches
+        .open(SHELL_CACHE)
+        .then(cache =>
+          Promise.allSettled(
+            SHELL.map(url =>
+              cache.add(
+                new Request(url, {
+                  cache: "reload"
+                })
+              )
+            )
+          )
+        )
+        .then(() =>
+          self.skipWaiting()
         )
     );
   }
@@ -111,36 +82,30 @@ self.addEventListener(
     event.waitUntil(
       caches
         .keys()
-        .then(
-          keys =>
-            Promise.all(
-              keys
-                .filter(
-                  key =>
-                    key.startsWith(
-                      "locan-sneaker-room-"
-                    ) &&
-                    !key.startsWith(
-                      CACHE_VERSION
-                    )
+        .then(keys =>
+          Promise.all(
+            keys
+              .filter(key =>
+                key.startsWith(
+                  "locan-sneaker-room-"
+                ) &&
+                !key.startsWith(
+                  CACHE_VERSION
                 )
-                .map(
-                  key =>
-                    caches.delete(key)
-                )
-            )
+              )
+              .map(key =>
+                caches.delete(key)
+              )
+          )
         )
-        .then(
-          () =>
-            self.clients.claim()
+        .then(() =>
+          self.clients.claim()
         )
     );
   }
 );
 
-async function cachedResponse(
-  request
-) {
+async function cachedFallback(request) {
   return caches.match(
     request,
     {
@@ -149,33 +114,26 @@ async function cachedResponse(
   );
 }
 
-async function networkFirst(
-  request
-) {
-  const cache =
-    await caches.open(
-      RUNTIME_CACHE
-    );
+async function networkFirst(request) {
+  const runtime =
+    await caches.open(RUNTIME_CACHE);
 
   try {
-    const networkRequest =
-      new Request(
-        request,
-        {
-          cache: "no-cache"
-        }
-      );
-
     const response =
       await fetch(
-        networkRequest
+        new Request(
+          request,
+          {
+            cache: "no-cache"
+          }
+        )
       );
 
     if (
       response &&
       response.ok
     ) {
-      cache
+      runtime
         .put(
           request,
           response.clone()
@@ -185,57 +143,22 @@ async function networkFirst(
       return response;
     }
 
-    /*
-      A 404/5xx fetch does not throw. Check the cache before returning the
-      failed network response so a transient deployment window does not
-      blank an image or script that was already available.
-    */
     const cached =
-      await cachedResponse(
-        request
-      );
+      await cachedFallback(request);
 
-    if (cached) {
-      return cached;
-    }
-
-    if (
-      request.mode ===
-      "navigate"
-    ) {
-      return (
-        await caches.match(
-          "./offline.html"
-        ) ||
-        await caches.match(
-          "./index.html"
-        ) ||
-        response
-      );
-    }
-
-    return response;
+    return cached || response;
   } catch (error) {
     const cached =
-      await cachedResponse(
-        request
-      );
+      await cachedFallback(request);
 
     if (cached) {
       return cached;
     }
 
-    if (
-      request.mode ===
-      "navigate"
-    ) {
+    if (request.mode === "navigate") {
       return (
-        await caches.match(
-          "./offline.html"
-        ) ||
-        await caches.match(
-          "./index.html"
-        )
+        await caches.match("./offline.html") ||
+        await caches.match("./index.html")
       );
     }
 
@@ -249,49 +172,30 @@ self.addEventListener(
     const request =
       event.request;
 
-    if (
-      request.method !==
-      "GET"
-    ) {
+    if (request.method !== "GET") {
       return;
     }
 
     const url =
-      new URL(
-        request.url
-      );
+      new URL(request.url);
 
-    if (
-      url.origin !==
-      self.location.origin
-    ) {
+    if (url.origin !== self.location.origin) {
       return;
     }
 
     /*
-      IMPORTANT: image requests are handled exactly as requested.
-      No manifest lookup and no transparent URL substitution.
+      IMPORTANT:
+      Images are fetched exactly at the URL requested by the page.
+      No PNG -> WebP replacement and no original -> normalized rewrite.
     */
     if (
-      request.destination ===
-      "image"
-    ) {
-      event.respondWith(
-        networkFirst(request)
-      );
-      return;
-    }
-
-    if (
-      request.mode ===
-        "navigate" ||
+      request.destination === "image" ||
+      request.mode === "navigate" ||
       [
         "script",
         "style",
         "manifest"
-      ].includes(
-        request.destination
-      )
+      ].includes(request.destination)
     ) {
       event.respondWith(
         networkFirst(request)
