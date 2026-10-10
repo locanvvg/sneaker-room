@@ -1,0 +1,1036 @@
+{
+  "build": "20261010-unified-v2",
+  "standard": {
+    "canvasWidth": 1600,
+    "canvasHeight": 1200,
+    "maxSubjectWidth": 1248,
+    "maxSubjectHeight": 816,
+    "alphaThreshold": 96,
+    "transparentPixelThreshold": 12,
+    "minimumTransparentFraction": 0.005,
+    "cropPaddingFraction": 0.018,
+    "opaqueBackgroundDistance": 34
+  },
+  "images": {
+    "pictures/normalized/adifom.png": {
+      "input": "pictures/adifom.png",
+      "normalized": "pictures/normalized/adifom.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 520,
+        "width": 1086,
+        "height": 637
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 732,
+        "left": 176,
+        "top": 234
+      }
+    },
+    "pictures/normalized/airmax720.png": {
+      "input": "pictures/airmax720.png",
+      "normalized": "pictures/normalized/airmax720.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 213,
+        "width": 1448,
+        "height": 722
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 622,
+        "left": 176,
+        "top": 289
+      }
+    },
+    "pictures/normalized/airtrainer_ts.png": {
+      "input": "pictures/airtrainer_ts.png",
+      "normalized": "pictures/normalized/airtrainer_ts.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 112,
+        "width": 1448,
+        "height": 858
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 739,
+        "left": 176,
+        "top": 231
+      }
+    },
+    "pictures/normalized/balenciaga_defender.png": {
+      "input": "pictures/balenciaga_defender.png",
+      "normalized": "pictures/normalized/balenciaga_defender.png",
+      "method": "alpha",
+      "crop": {
+        "left": 12,
+        "top": 118,
+        "width": 1515,
+        "height": 873
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 719,
+        "left": 176,
+        "top": 241
+      }
+    },
+    "pictures/normalized/bapesta_stussy.png": {
+      "input": "pictures/bapesta_stussy.png",
+      "normalized": "pictures/normalized/bapesta_stussy.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 156,
+        "width": 1536,
+        "height": 778
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 632,
+        "left": 176,
+        "top": 284
+      }
+    },
+    "pictures/normalized/blazer_acro.png": {
+      "input": "pictures/blazer_acro.png",
+      "normalized": "pictures/normalized/blazer_acro.png",
+      "method": "alpha",
+      "crop": {
+        "left": 7,
+        "top": 229,
+        "width": 1441,
+        "height": 676
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 585,
+        "left": 176,
+        "top": 308
+      }
+    },
+    "pictures/normalized/blazer_ow.png": {
+      "input": "pictures/blazer_ow.png",
+      "normalized": "pictures/normalized/blazer_ow.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 273,
+        "width": 1448,
+        "height": 616
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 531,
+        "left": 176,
+        "top": 335
+      }
+    },
+    "pictures/normalized/blazer_sacai.png": {
+      "input": "pictures/blazer_sacai.png",
+      "normalized": "pictures/normalized/blazer_sacai.png",
+      "method": "alpha",
+      "crop": {
+        "left": 36,
+        "top": 253,
+        "width": 1399,
+        "height": 662
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 591,
+        "left": 176,
+        "top": 305
+      }
+    },
+    "pictures/normalized/cv_cdg_b.png": {
+      "input": "pictures/cv_cdg_b.png",
+      "normalized": "pictures/normalized/cv_cdg_b.png",
+      "method": "alpha",
+      "crop": {
+        "left": 5,
+        "top": 259,
+        "width": 1441,
+        "height": 623
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 540,
+        "left": 176,
+        "top": 330
+      }
+    },
+    "pictures/normalized/cv_cdg_w.png": {
+      "input": "pictures/cv_cdg_w.png",
+      "normalized": "pictures/normalized/cv_cdg_w.png",
+      "method": "alpha",
+      "crop": {
+        "left": 21,
+        "top": 259,
+        "width": 1422,
+        "height": 594
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 521,
+        "left": 176,
+        "top": 340
+      }
+    },
+    "pictures/normalized/dunk_frag.png": {
+      "input": "pictures/dunk_frag.png",
+      "normalized": "pictures/normalized/dunk_frag.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 121,
+        "width": 1448,
+        "height": 839
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 723,
+        "left": 176,
+        "top": 239
+      }
+    },
+    "pictures/normalized/dunk_safari.png": {
+      "input": "pictures/dunk_safari.png",
+      "normalized": "pictures/normalized/dunk_safari.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 216,
+        "width": 1448,
+        "height": 658
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 567,
+        "left": 176,
+        "top": 317
+      }
+    },
+    "pictures/normalized/dunkhigh_lightbone.png": {
+      "input": "pictures/dunkhigh_lightbone.png",
+      "normalized": "pictures/normalized/dunkhigh_lightbone.png",
+      "method": "alpha",
+      "crop": {
+        "left": 45,
+        "top": 125,
+        "width": 1386,
+        "height": 863
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 777,
+        "left": 176,
+        "top": 212
+      }
+    },
+    "pictures/normalized/dunkiowa.png": {
+      "input": "pictures/dunkiowa.png",
+      "normalized": "pictures/normalized/dunkiowa.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 61,
+        "width": 1448,
+        "height": 937
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 808,
+        "left": 176,
+        "top": 196
+      }
+    },
+    "pictures/normalized/dunkpanda.png": {
+      "input": "pictures/dunkpanda.png",
+      "normalized": "pictures/normalized/dunkpanda.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 215,
+        "width": 1448,
+        "height": 696
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 600,
+        "left": 176,
+        "top": 300
+      }
+    },
+    "pictures/normalized/foamposite.png": {
+      "input": "pictures/foamposite.png",
+      "normalized": "pictures/normalized/foamposite.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 90,
+        "width": 1448,
+        "height": 876
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 755,
+        "left": 176,
+        "top": 223
+      }
+    },
+    "pictures/normalized/jordan13_dmp.png": {
+      "input": "pictures/jordan13_dmp.png",
+      "normalized": "pictures/normalized/jordan13_dmp.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 508,
+        "width": 1086,
+        "height": 661
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 760,
+        "left": 176,
+        "top": 220
+      }
+    },
+    "pictures/normalized/jordan1_brotherhood.png": {
+      "input": "pictures/jordan1_brotherhood.png",
+      "normalized": "pictures/normalized/jordan1_brotherhood.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 78,
+        "width": 1448,
+        "height": 910
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 784,
+        "left": 176,
+        "top": 208
+      }
+    },
+    "pictures/normalized/jordan1_cityofflight.png": {
+      "input": "pictures/jordan1_cityofflight.png",
+      "normalized": "pictures/normalized/jordan1_cityofflight.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 57,
+        "width": 1466,
+        "height": 919
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 782,
+        "left": 176,
+        "top": 209
+      }
+    },
+    "pictures/normalized/jordan1_crimson.png": {
+      "input": "pictures/jordan1_crimson.png",
+      "normalized": "pictures/normalized/jordan1_crimson.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 58,
+        "width": 1448,
+        "height": 945
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 814,
+        "left": 176,
+        "top": 193
+      }
+    },
+    "pictures/normalized/jordan1_diamond.png": {
+      "input": "pictures/jordan1_diamond.png",
+      "normalized": "pictures/normalized/jordan1_diamond.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 96,
+        "width": 1448,
+        "height": 887
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 764,
+        "left": 176,
+        "top": 218
+      }
+    },
+    "pictures/normalized/jordan1_fragmentunion_sample.png": {
+      "input": "pictures/jordan1_fragmentunion_sample.png",
+      "normalized": "pictures/normalized/jordan1_fragmentunion_sample.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 471,
+        "width": 1086,
+        "height": 684
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 786,
+        "left": 176,
+        "top": 207
+      }
+    },
+    "pictures/normalized/jordan1_gymred.png": {
+      "input": "pictures/jordan1_gymred.png",
+      "normalized": "pictures/normalized/jordan1_gymred.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 77,
+        "width": 1448,
+        "height": 896
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 772,
+        "left": 176,
+        "top": 214
+      }
+    },
+    "pictures/normalized/jordan1_h2h.png": {
+      "input": "pictures/jordan1_h2h.png",
+      "normalized": "pictures/normalized/jordan1_h2h.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 35,
+        "width": 1448,
+        "height": 972
+      },
+      "normalizedSubject": {
+        "width": 1216,
+        "height": 816,
+        "left": 192,
+        "top": 192
+      }
+    },
+    "pictures/normalized/jordan1_low_reversebred.png": {
+      "input": "pictures/jordan1_low_reversebred.png",
+      "normalized": "pictures/normalized/jordan1_low_reversebred.png",
+      "method": "alpha",
+      "crop": {
+        "left": 8,
+        "top": 24,
+        "width": 1766,
+        "height": 854
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 604,
+        "left": 176,
+        "top": 298
+      }
+    },
+    "pictures/normalized/jordan1_pe_bloodline_friendsandfamily_sample.png": {
+      "input": "pictures/jordan1_pe_bloodline_friendsandfamily_sample.png",
+      "normalized": "pictures/normalized/jordan1_pe_bloodline_friendsandfamily_sample.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 571,
+        "width": 1086,
+        "height": 615
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 707,
+        "left": 176,
+        "top": 247
+      }
+    },
+    "pictures/normalized/jordan1_quai54_ff_v2.png": {
+      "input": "pictures/jordan1_quai54_ff_v2.png",
+      "normalized": "pictures/normalized/jordan1_quai54_ff_v2.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 519,
+        "width": 1086,
+        "height": 614
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 706,
+        "left": 176,
+        "top": 247
+      }
+    },
+    "pictures/normalized/jordan1_quai54_ff_v2_1.png": {
+      "input": "pictures/jordan1_quai54_ff_v2_1.png",
+      "normalized": "pictures/normalized/jordan1_quai54_ff_v2_1.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 160,
+        "width": 1536,
+        "height": 857
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 696,
+        "left": 176,
+        "top": 252
+      }
+    },
+    "pictures/normalized/jordan1_royaltoe.png": {
+      "input": "pictures/jordan1_royaltoe.png",
+      "normalized": "pictures/normalized/jordan1_royaltoe.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 54,
+        "width": 1448,
+        "height": 965
+      },
+      "normalizedSubject": {
+        "width": 1224,
+        "height": 816,
+        "left": 188,
+        "top": 192
+      }
+    },
+    "pictures/normalized/jordan1_seafoam.png": {
+      "input": "pictures/jordan1_seafoam.png",
+      "normalized": "pictures/normalized/jordan1_seafoam.png",
+      "method": "alpha",
+      "crop": {
+        "left": 155,
+        "top": 224,
+        "width": 1290,
+        "height": 753
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 728,
+        "left": 176,
+        "top": 236
+      }
+    },
+    "pictures/normalized/jordan1_shadow_2009.png": {
+      "input": "pictures/jordan1_shadow_2009.png",
+      "normalized": "pictures/normalized/jordan1_shadow_2009.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 490,
+        "width": 1086,
+        "height": 627
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 721,
+        "left": 176,
+        "top": 240
+      }
+    },
+    "pictures/normalized/jordan1_turbogreen.png": {
+      "input": "pictures/jordan1_turbogreen.png",
+      "normalized": "pictures/normalized/jordan1_turbogreen.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 68,
+        "width": 1448,
+        "height": 963
+      },
+      "normalizedSubject": {
+        "width": 1227,
+        "height": 816,
+        "left": 187,
+        "top": 192
+      }
+    },
+    "pictures/normalized/jordan1_vaa_alaska_v2.png": {
+      "input": "pictures/jordan1_vaa_alaska_v2.png",
+      "normalized": "pictures/normalized/jordan1_vaa_alaska_v2.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 488,
+        "width": 1086,
+        "height": 697
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 801,
+        "left": 176,
+        "top": 200
+      }
+    },
+    "pictures/normalized/jordan1_yelloworche.png": {
+      "input": "pictures/jordan1_yelloworche.png",
+      "normalized": "pictures/normalized/jordan1_yelloworche.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 64,
+        "width": 1448,
+        "height": 914
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 788,
+        "left": 176,
+        "top": 206
+      }
+    },
+    "pictures/normalized/jordan1low_fuchsia.png": {
+      "input": "pictures/jordan1low_fuchsia.png",
+      "normalized": "pictures/normalized/jordan1low_fuchsia.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 171,
+        "width": 1448,
+        "height": 747
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 644,
+        "left": 176,
+        "top": 278
+      }
+    },
+    "pictures/normalized/jordan1low_gymred.png": {
+      "input": "pictures/jordan1low_gymred.png",
+      "normalized": "pictures/normalized/jordan1low_gymred.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 164,
+        "width": 1448,
+        "height": 752
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 648,
+        "left": 176,
+        "top": 276
+      }
+    },
+    "pictures/normalized/jordan1low_noblered.png": {
+      "input": "pictures/jordan1low_noblered.png",
+      "normalized": "pictures/normalized/jordan1low_noblered.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 148,
+        "width": 1448,
+        "height": 774
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 667,
+        "left": 176,
+        "top": 267
+      }
+    },
+    "pictures/normalized/jordan4_bred_1999.png": {
+      "input": "pictures/jordan4_bred_1999.png",
+      "normalized": "pictures/normalized/jordan4_bred_1999.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 498,
+        "width": 1086,
+        "height": 674
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 775,
+        "left": 176,
+        "top": 213
+      }
+    },
+    "pictures/normalized/jordan4_firered.png": {
+      "input": "pictures/jordan4_firered.png",
+      "normalized": "pictures/normalized/jordan4_firered.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 92,
+        "width": 1448,
+        "height": 872
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 752,
+        "left": 176,
+        "top": 224
+      }
+    },
+    "pictures/normalized/jordan4_ow.png": {
+      "input": "pictures/jordan4_ow.png",
+      "normalized": "pictures/normalized/jordan4_ow.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 70,
+        "width": 1448,
+        "height": 930
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 802,
+        "left": 176,
+        "top": 199
+      }
+    },
+    "pictures/normalized/jordan4_royalty.png": {
+      "input": "pictures/jordan4_royalty.png",
+      "normalized": "pictures/normalized/jordan4_royalty.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 105,
+        "width": 1448,
+        "height": 860
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 741,
+        "left": 176,
+        "top": 230
+      }
+    },
+    "pictures/normalized/jordan5_bronze.png": {
+      "input": "pictures/jordan5_bronze.png",
+      "normalized": "pictures/normalized/jordan5_bronze.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 52,
+        "width": 1448,
+        "height": 979
+      },
+      "normalizedSubject": {
+        "width": 1207,
+        "height": 816,
+        "left": 197,
+        "top": 192
+      }
+    },
+    "pictures/normalized/kiger_ow.png": {
+      "input": "pictures/kiger_ow.png",
+      "normalized": "pictures/normalized/kiger_ow.png",
+      "method": "alpha",
+      "crop": {
+        "left": 4,
+        "top": 175,
+        "width": 1444,
+        "height": 759
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 656,
+        "left": 176,
+        "top": 272
+      }
+    },
+    "pictures/normalized/nb_2002r.png": {
+      "input": "pictures/nb_2002r.png",
+      "normalized": "pictures/normalized/nb_2002r.png",
+      "method": "alpha",
+      "crop": {
+        "left": 8,
+        "top": 193,
+        "width": 1520,
+        "height": 744
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 611,
+        "left": 176,
+        "top": 295
+      }
+    },
+    "pictures/normalized/nb_levis.png": {
+      "input": "pictures/nb_levis.png",
+      "normalized": "pictures/normalized/nb_levis.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 177,
+        "width": 1448,
+        "height": 713
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 615,
+        "left": 176,
+        "top": 293
+      }
+    },
+    "pictures/normalized/nike_fog_1.png": {
+      "input": "pictures/nike_fog_1.png",
+      "normalized": "pictures/normalized/nike_fog_1.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 11,
+        "width": 1448,
+        "height": 1030
+      },
+      "normalizedSubject": {
+        "width": 1147,
+        "height": 816,
+        "left": 227,
+        "top": 192
+      }
+    },
+    "pictures/normalized/nike_fog_skylon.png": {
+      "input": "pictures/nike_fog_skylon.png",
+      "normalized": "pictures/normalized/nike_fog_skylon.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 159,
+        "width": 1448,
+        "height": 767
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 661,
+        "left": 176,
+        "top": 270
+      }
+    },
+    "pictures/normalized/nike_lego1.png": {
+      "input": "pictures/nike_lego1.png",
+      "normalized": "pictures/normalized/nike_lego1.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1448,
+        "height": 1073
+      },
+      "normalizedSubject": {
+        "width": 1101,
+        "height": 816,
+        "left": 250,
+        "top": 192
+      }
+    },
+    "pictures/normalized/nike_lego2.png": {
+      "input": "pictures/nike_lego2.png",
+      "normalized": "pictures/normalized/nike_lego2.png",
+      "method": "alpha",
+      "crop": {
+        "left": 124,
+        "top": 16,
+        "width": 1201,
+        "height": 1067
+      },
+      "normalizedSubject": {
+        "width": 918,
+        "height": 816,
+        "left": 341,
+        "top": 192
+      }
+    },
+    "pictures/normalized/nike_waffle_racer_ow.png": {
+      "input": "pictures/nike_waffle_racer_ow.png",
+      "normalized": "pictures/normalized/nike_waffle_racer_ow.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 173,
+        "width": 1536,
+        "height": 773
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 628,
+        "left": 176,
+        "top": 286
+      }
+    },
+    "pictures/normalized/puma_rose.png": {
+      "input": "pictures/puma_rose.png",
+      "normalized": "pictures/normalized/puma_rose.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 407,
+        "width": 1086,
+        "height": 884
+      },
+      "normalizedSubject": {
+        "width": 1002,
+        "height": 816,
+        "left": 299,
+        "top": 192
+      }
+    },
+    "pictures/normalized/sb_raygun.png": {
+      "input": "pictures/sb_raygun.png",
+      "normalized": "pictures/normalized/sb_raygun.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 206,
+        "width": 1536,
+        "height": 714
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 580,
+        "left": 176,
+        "top": 310
+      }
+    },
+    "pictures/normalized/sbdunk_yutohorigome_matcha.png": {
+      "input": "pictures/sbdunk_yutohorigome_matcha.png",
+      "normalized": "pictures/normalized/sbdunk_yutohorigome_matcha.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 599,
+        "width": 1086,
+        "height": 518
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 595,
+        "left": 176,
+        "top": 303
+      }
+    },
+    "pictures/normalized/sbdunk_yutohorigome_matcha1.png": {
+      "input": "pictures/sbdunk_yutohorigome_matcha1.png",
+      "normalized": "pictures/normalized/sbdunk_yutohorigome_matcha1.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 581,
+        "width": 1086,
+        "height": 536
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 616,
+        "left": 176,
+        "top": 292
+      }
+    },
+    "pictures/normalized/sneaker_mask1.png": {
+      "input": "pictures/sneaker_mask1.png",
+      "normalized": "pictures/normalized/sneaker_mask1.png",
+      "method": "alpha",
+      "crop": {
+        "left": 38,
+        "top": 4,
+        "width": 924,
+        "height": 1532
+      },
+      "normalizedSubject": {
+        "width": 492,
+        "height": 816,
+        "left": 554,
+        "top": 192
+      }
+    },
+    "pictures/normalized/sneaker_mask2.png": {
+      "input": "pictures/sneaker_mask2.png",
+      "normalized": "pictures/normalized/sneaker_mask2.png",
+      "method": "alpha",
+      "crop": {
+        "left": 162,
+        "top": 0,
+        "width": 806,
+        "height": 1366
+      },
+      "normalizedSubject": {
+        "width": 481,
+        "height": 816,
+        "left": 560,
+        "top": 192
+      }
+    },
+    "pictures/normalized/vans_knuskool.png": {
+      "input": "pictures/vans_knuskool.png",
+      "normalized": "pictures/normalized/vans_knuskool.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 437,
+        "width": 1122,
+        "height": 571
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 635,
+        "left": 176,
+        "top": 283
+      }
+    },
+    "pictures/normalized/yz500.png": {
+      "input": "pictures/yz500.png",
+      "normalized": "pictures/normalized/yz500.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 150,
+        "width": 1448,
+        "height": 775
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 668,
+        "left": 176,
+        "top": 266
+      }
+    },
+    "pictures/normalized/yz700.png": {
+      "input": "pictures/yz700.png",
+      "normalized": "pictures/normalized/yz700.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 153,
+        "width": 1448,
+        "height": 777
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 670,
+        "left": 176,
+        "top": 265
+      }
+    },
+    "pictures/normalized/yz_fm_rnr.png": {
+      "input": "pictures/yz_fm_rnr.png",
+      "normalized": "pictures/normalized/yz_fm_rnr.png",
+      "method": "alpha",
+      "crop": {
+        "left": 0,
+        "top": 229,
+        "width": 1448,
+        "height": 664
+      },
+      "normalizedSubject": {
+        "width": 1248,
+        "height": 572,
+        "left": 176,
+        "top": 314
+      }
+    }
+  }
+}
