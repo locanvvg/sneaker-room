@@ -372,40 +372,134 @@
 
   </style>
 
-
-  <!-- FILTER ALIGNMENT + BUTTON WEIGHT — FINAL v11 -->
-  <style id="locan-filter-alignment-v11">
+  <!-- COLLECTION FILTER GEOMETRY — FINAL v12 -->
+  <style id="locan-filter-geometry-v12">
 
     /*
-      Desktop: every filter-row heading uses the exact same vertical
-      box, so BỘ SƯU TẬP / TÌNH TRẠNG / PHÂN KHÚC / KÍCH CỠ
-      line up uniformly.
+      DESKTOP ONLY:
+      Make the collection-status row use the exact native geometry
+      of every other .filter-group row.
     */
     @media (min-width: 651px) {
-      .filter-group > .filter-group-label {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
 
-        min-height: 34px !important;
-        padding-top: 0 !important;
+      #collection-status-filter-group {
+        display: grid !important;
+
+        grid-template-columns:
+          120px
+          minmax(0, 1fr) !important;
+
+        column-gap: 18px !important;
+        row-gap: 0 !important;
+
+        align-items: start !important;
+
+        padding: 12px 0 !important;
+      }
+
+
+      /*
+        Same position/box as TÌNH TRẠNG / PHÂN KHÚC / KÍCH CỠ.
+      */
+      #collection-status-filter-label {
+        display: block !important;
+
+        grid-column: 1 !important;
+
+        width: 120px !important;
+        min-width: 120px !important;
+        max-width: 120px !important;
 
         margin: 0 !important;
+        padding: 8px 0 0 0 !important;
+
+        justify-self: start !important;
+        align-self: start !important;
+
+        text-align: left !important;
+        transform: none !important;
       }
 
       #collection-status-filter-label::after {
-        display: block;
+        display: block !important;
+
+        width: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+
+        text-align: left !important;
+        transform: none !important;
       }
-    }
 
 
-    /*
-      Match the visual weight of DEADSTOCK / USED / PE / SAMPLE...
-      while preserving the existing collection-button sizing/layout.
-    */
-    #collection-status-own::after,
-    #collection-status-sold::after {
-      font-weight: 700 !important;
+      /*
+        Same chip-column origin and same 8px gap as all lower rows.
+      */
+      #collection-status-filter-group
+      .collection-status-chips {
+        display: flex !important;
+
+        grid-column: 2 !important;
+
+        flex-wrap: wrap !important;
+        justify-content: flex-start !important;
+        align-items: flex-start !important;
+
+        gap: 8px !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+
+      /*
+        EXACT native .filter-chip geometry:
+          min-height 34px
+          padding 7px 13px
+
+        This gives the same left/right empty space as
+        DEADSTOCK / USED / PE / SAMPLE / etc.
+      */
+      #collection-status-own,
+      #collection-status-sold {
+        box-sizing: border-box !important;
+
+        flex: 0 0 auto !important;
+
+        width: auto !important;
+        min-width: 0 !important;
+        max-width: none !important;
+
+        min-height: 34px !important;
+        height: auto !important;
+
+        margin: 0 !important;
+        padding: 7px 13px !important;
+      }
+
+
+      /*
+        EXACT native .filter-chip typography.
+        Underlying button text remains hidden by v10;
+        the visible localized pseudo-text matches the chips below.
+      */
+      #collection-status-own::after,
+      #collection-status-sold::after {
+        display: inline !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        font-family: inherit !important;
+        font-size: 0.73rem !important;
+        font-weight: 700 !important;
+        font-style: normal !important;
+        line-height: normal !important;
+        letter-spacing: 0.5px !important;
+
+        white-space: nowrap !important;
+      }
+
     }
 
   </style>
