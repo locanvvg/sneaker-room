@@ -504,6 +504,104 @@
 
   </style>
 
+
+  <!-- COLLECTION STATUS ROW POLISH — FINAL v13 -->
+  <style id="locan-collection-row-polish-v13">
+
+    /* Same box model as the regular filter chips. */
+    #collection-status-own,
+    #collection-status-sold {
+      box-sizing: border-box !important;
+
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+
+      flex: 0 0 auto !important;
+
+      width: auto !important;
+      min-width: 0 !important;
+      max-width: none !important;
+
+      min-height: 34px !important;
+      height: auto !important;
+
+      margin: 0 !important;
+      padding: 7px 13px !important;
+
+      text-align: center !important;
+    }
+
+    #collection-status-own::after,
+    #collection-status-sold::after {
+      display: inline-block !important;
+
+      margin: 0 !important;
+      padding: 0 !important;
+
+      font-family: inherit !important;
+      font-size: 0.73rem !important;
+      font-weight: 700 !important;
+      font-style: normal !important;
+      line-height: 1.2 !important;
+      letter-spacing: 0.5px !important;
+
+      text-align: center !important;
+      white-space: nowrap !important;
+    }
+
+    /* Same chip-column origin and same gap as the lower rows. */
+    #collection-status-filter-group
+    .collection-status-chips {
+      display: flex !important;
+
+      flex-wrap: wrap !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+
+      gap: 8px !important;
+
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    /* Desktop: exact same label column and gap as the lower filter rows. */
+    @media (min-width: 651px) {
+      #collection-status-filter-group {
+        grid-template-columns:
+          120px
+          minmax(0, 1fr) !important;
+
+        column-gap: 18px !important;
+      }
+
+      #collection-status-filter-label {
+        width: 120px !important;
+        min-width: 120px !important;
+        max-width: 120px !important;
+
+        padding-top: 8px !important;
+
+        text-align: left !important;
+      }
+    }
+
+    /* Mobile: keep the current layout; only match the lower-chip weight. */
+    @media (max-width: 650px) {
+      #collection-status-filter-label {
+        padding-top: 0 !important;
+      }
+
+      #collection-status-own::after,
+      #collection-status-sold::after {
+        font-size: 0.73rem !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.5px !important;
+      }
+    }
+
+  </style>
+
 </head>
 
 
