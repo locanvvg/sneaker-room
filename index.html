@@ -273,54 +273,6 @@
     }
 
 
-    /*
-      Homepage collection-status wording in VI.
-      The existing data controller keeps its behavior untouched;
-      only the visible label is translated.
-    */
-    html[lang="vi"] #collection-status-own,
-    html[lang="vi"] #collection-status-sold {
-      font-size: 0 !important;
-    }
-
-    html[lang="vi"] #collection-status-own::after,
-    html[lang="vi"] #collection-status-sold::after {
-      font-size: 0.72rem;
-      font-weight: 800;
-      line-height: 1.15;
-      letter-spacing: 0.03em;
-    }
-
-    html[lang="vi"] #collection-status-own::after {
-      content: "TRONG BỘ SƯU TẬP";
-    }
-
-    html[lang="vi"] #collection-status-sold::after {
-      content: "ĐÃ TỪNG TRONG BỘ SƯU TẬP";
-    }
-
-
-    /*
-      Requested font repair for the collection-status heading only.
-      Match the normal filter-label system stack and preserve all layout.
-    */
-    #collection-status-filter-label {
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        Helvetica,
-        Arial,
-        sans-serif !important;
-
-      font-size: 0.68rem !important;
-      font-weight: 800 !important;
-      line-height: 1.35 !important;
-      letter-spacing: 1.25px !important;
-      font-variant-ligatures: none;
-    }
-
     @media (max-width: 650px) {
       .archive-feature-nav {
         gap: 20px;
@@ -338,6 +290,88 @@
     }
 
   </style>
+
+  <!-- COLLECTION FILTER TEXT — STABLE FINAL v10 -->
+  <style id="locan-collection-filter-text-v10">
+
+    /*
+      Stable visible heading:
+      hide whatever data.js / catalog-additions.js writes underneath,
+      then render one fixed localized label.
+      This completely removes visible name flicker.
+    */
+    #collection-status-filter-label {
+      font-size: 0 !important;
+    }
+
+    #collection-status-filter-label::after {
+      display: inline-block;
+
+      color: inherit;
+
+      font-family: inherit;
+      font-size: 0.68rem;
+      font-weight: 800;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: 1.25px;
+    }
+
+    html[lang="vi"]
+    #collection-status-filter-label::after {
+      content: "BỘ SƯU TẬP";
+    }
+
+    html[lang="en"]
+    #collection-status-filter-label::after {
+      content: "COLLECTION";
+    }
+
+
+    /*
+      These two buttons use the same typography family,
+      size and spacing as the filter labels, but regular weight.
+    */
+    #collection-status-own,
+    #collection-status-sold {
+      font-family: inherit !important;
+      font-size: 0 !important;
+    }
+
+    #collection-status-own::after,
+    #collection-status-sold::after {
+      display: inline-block;
+
+      font-family: inherit;
+      font-size: 0.68rem;
+      font-weight: 400;
+      font-style: normal;
+      line-height: 1.2;
+      letter-spacing: 1.25px;
+    }
+
+    html[lang="vi"]
+    #collection-status-own::after {
+      content: "TRONG BỘ SƯU TẬP";
+    }
+
+    html[lang="vi"]
+    #collection-status-sold::after {
+      content: "ĐÃ TỪNG TRONG BỘ SƯU TẬP";
+    }
+
+    html[lang="en"]
+    #collection-status-own::after {
+      content: "IN COLLECTION";
+    }
+
+    html[lang="en"]
+    #collection-status-sold::after {
+      content: "FORMERLY IN COLLECTION";
+    }
+
+  </style>
+
 </head>
 
 
@@ -1531,11 +1565,6 @@
   <!-- FORMERLY IN COLLECTION: remove PRE-OWNED presentation + Balenciaga 3D fine-tune -->
   <script
     src="./formerly-cleanup.js?v=20261011-v2"
-  ></script>
-
-  <!-- HOMEPAGE STATUS LABEL — CLEAN FINAL v9 -->
-  <script
-    src="./homepage-status-clean-v9.js"
   ></script>
 
 </body>
