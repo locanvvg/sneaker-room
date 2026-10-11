@@ -1,5 +1,5 @@
 /* =========================================================
-   LỘC AN — CURRENT SITE ADJUSTMENTS v2
+   LỘC AN — CURRENT SITE ADJUSTMENTS v3
    2026-10-11
 
    EXACT REQUESTED SCOPE
@@ -35,7 +35,7 @@
   "use strict";
 
   const BUILD =
-    "20261011-current-site-adjustments-v2";
+    "20261011-current-site-adjustments-v3";
 
   const YUTO_SECOND_IMAGE =
     "sbdunk_yutohorigome_matcha1.png";
@@ -192,7 +192,119 @@
   }
 
   /* =====================================================
-     3. YUTO DETAIL IMAGE #2 — HERO + THUMBNAIL ONLY
+     3. ARCHIVAL NOTE — F&F PE SAMPLE DESIGNATION
+     Keep the existing note text/layout; only add F&F PE Sample
+     beside the existing PE Sample classification.
+  ===================================================== */
+
+  function patchArchivalNote() {
+    if (!document.body) {
+      return;
+    }
+
+    const candidates =
+      Array.from(
+        document.querySelectorAll(
+          "p, div, section, article"
+        )
+      )
+      .filter(element => {
+        const text =
+          String(
+            element.textContent || ""
+          );
+
+        return (
+          text.includes(
+            "Player Exclusive (PE)"
+          ) &&
+          text.includes(
+            "PE Sample"
+          ) &&
+          !text.includes(
+            "F&F PE Sample"
+          )
+        );
+      })
+      /*
+        Prefer the deepest matching container so only the note
+        paragraph is edited, not a larger parent section.
+      */
+      .sort(
+        (a, b) =>
+          b.querySelectorAll("*").length -
+          a.querySelectorAll("*").length
+      );
+
+    for (const container of candidates) {
+      const sampleLabel =
+        Array.from(
+          container.querySelectorAll(
+            "b, strong"
+          )
+        )
+        .find(
+          node =>
+            String(
+              node.textContent || ""
+            ).trim() ===
+            "PE Sample"
+        );
+
+      if (!sampleLabel) {
+        continue;
+      }
+
+      const isVietnamese =
+        String(
+          container.textContent || ""
+        ).includes(
+          "Các hiện vật"
+        );
+
+      const connector =
+        document.createTextNode(
+          isVietnamese
+            ? " hoặc "
+            : " or "
+        );
+
+      const ffLabel =
+        sampleLabel.cloneNode(false);
+
+      ffLabel.textContent =
+        "F&F PE Sample";
+
+      sampleLabel.after(
+        connector,
+        ffLabel
+      );
+
+      container.dataset
+        .ffPeSampleArchiveNote =
+          "true";
+
+      break;
+    }
+  }
+
+  function scheduleArchivalNotePatch() {
+    [
+      0,
+      80,
+      250,
+      600
+    ].forEach(
+      delay =>
+        setTimeout(
+          patchArchivalNote,
+          delay
+        )
+    );
+  }
+
+  /* =====================================================
+     4. YUTO DETAIL IMAGE #2 — HERO + THUMBNAIL ONLY
   ===================================================== */
 
   function cleanPath(value) {
@@ -376,6 +488,8 @@
   function initDetailFineTune() {
     patchRequestedMetadata();
     patchBloodlineStoryDesignation();
+    patchArchivalNote();
+    scheduleArchivalNotePatch();
 
     installYutoObserver();
 
@@ -391,6 +505,50 @@
       );
     });
   }
+
+  /*
+    The archival note may be inserted by the existing collection scripts
+    after this file has loaded. Observe only additions and re-run the
+    tiny designation patch when needed.
+  */
+  function observeArchivalNote() {
+    if (
+      !document.body ||
+      document.body.dataset
+        .ffPeArchiveNoteObserved ===
+        "true"
+    ) {
+      return;
+    }
+
+    document.body.dataset
+      .ffPeArchiveNoteObserved =
+        "true";
+
+    const observer =
+      new MutationObserver(
+        mutations => {
+          if (
+            mutations.some(
+              mutation =>
+                mutation.addedNodes.length > 0
+            )
+          ) {
+            patchArchivalNote();
+          }
+        }
+      );
+
+    observer.observe(
+      document.body,
+      {
+        childList: true,
+        subtree: true
+      }
+    );
+  }
+
+  observeArchivalNote();
 
   if (
     document.readyState ===
