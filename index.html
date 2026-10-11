@@ -602,6 +602,39 @@
 
   </style>
 
+
+  <!-- DESKTOP COLLECTION STATUS CENTER — FINAL v14 -->
+  <style id="locan-desktop-status-center-v14">
+
+    /*
+      Desktop only:
+      center the ENTIRE two-button group inside the chip column.
+      Keep each button's native chip padding from v13.
+    */
+    @media (min-width: 651px) {
+      #collection-status-filter-group
+      .collection-status-chips {
+        width: 100% !important;
+
+        justify-content: center !important;
+        align-items: center !important;
+
+        gap: 8px !important;
+      }
+
+      #collection-status-own,
+      #collection-status-sold {
+        flex: 0 0 auto !important;
+
+        width: auto !important;
+        min-width: 0 !important;
+
+        padding: 7px 13px !important;
+      }
+    }
+
+  </style>
+
 </head>
 
 
