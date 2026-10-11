@@ -1,5 +1,5 @@
 /* =========================================================
-   LỘC AN — CURRENT SITE ADJUSTMENTS v3
+   LỘC AN — CURRENT SITE ADJUSTMENTS v4
    2026-10-11
 
    EXACT REQUESTED SCOPE
@@ -35,7 +35,7 @@
   "use strict";
 
   const BUILD =
-    "20261011-current-site-adjustments-v3";
+    "20261011-current-site-adjustments-v4";
 
   const YUTO_SECOND_IMAGE =
     "sbdunk_yutohorigome_matcha1.png";
@@ -132,6 +132,44 @@
     if (newBalance) {
       newBalance.retailPrice =
         "N/A";
+    }
+
+    const converseWhite =
+      sneakers.find(
+        item =>
+          item?.id ===
+          "converse-cdg-play-chuck-70-low-white"
+      );
+
+    if (converseWhite) {
+      converseWhite.subtitle = {
+        vi:
+          "CDG PLAY Heart Logo Low (2019)",
+        en:
+          "CDG PLAY Heart Logo Low (2019)"
+      };
+
+      converseWhite.releaseDate =
+        "2019-07-09";
+    }
+
+    const converseBlack =
+      sneakers.find(
+        item =>
+          item?.id ===
+          "converse-cdg-play-chuck-70-low-black"
+      );
+
+    if (converseBlack) {
+      converseBlack.subtitle = {
+        vi:
+          "CDG PLAY Heart Logo Low (2019)",
+        en:
+          "CDG PLAY Heart Logo Low (2019)"
+      };
+
+      converseBlack.releaseDate =
+        "2019-07-03";
     }
   }
 

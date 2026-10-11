@@ -71,6 +71,117 @@
     rel="canonical"
     href="https://locanvvg.github.io/sneaker-room/timeline.html"
   >
+  <!-- Requested language + archive-feature placement only -->
+  <style id="locan-requested-timeline-v2-ui">
+
+    /* Private Collection notice: same design, translated copy only. */
+    html[lang="vi"] .home-header::after {
+      content: "BỘ SƯU TẬP CÁ NHÂN — KHÔNG BÁN";
+    }
+
+    html[lang="en"] .home-header::after {
+      content: "PRIVATE COLLECTION — NOT FOR SALE";
+    }
+
+
+    /* New archive-feature row: below notice, above next page section. */
+    .archive-feature-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+
+      gap: 28px;
+
+      margin: 18px 0 0;
+    }
+
+    .archive-feature-link {
+      display: inline-block;
+
+      padding: 6px 2px 9px;
+
+      color: #85858a;
+
+      border-bottom: 2px solid transparent;
+
+      text-decoration: none;
+
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 1.4px;
+
+      opacity: 0.75;
+
+      transition:
+        color 0.2s ease,
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .archive-feature-link:hover {
+      color: #d4d4d8;
+      opacity: 0.6;
+      transform: translateY(-2px);
+    }
+
+    .archive-feature-link.active {
+      color: #ffcc00;
+      border-color: #ffcc00;
+      opacity: 1;
+    }
+
+    html[lang="vi"] .archive-copy-en,
+    html[lang="en"] .archive-copy-vi {
+      display: none;
+    }
+
+
+    /*
+      Homepage collection-status wording in VI.
+      The existing data controller keeps its behavior untouched;
+      only the visible label is translated.
+    */
+    html[lang="vi"] #collection-status-own,
+    html[lang="vi"] #collection-status-sold {
+      font-size: 0 !important;
+    }
+
+    html[lang="vi"] #collection-status-own::after,
+    html[lang="vi"] #collection-status-sold::after {
+      font-size: 0.72rem;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: 0.03em;
+    }
+
+    html[lang="vi"] #collection-status-own::after {
+      content: "TRONG BỘ SƯU TẬP";
+    }
+
+    html[lang="vi"] #collection-status-sold::after {
+      content: "ĐÃ TỪNG TRONG BỘ SƯU TẬP";
+    }
+
+    @media (max-width: 650px) {
+      .archive-feature-nav {
+        gap: 20px;
+        margin-top: 16px;
+      }
+
+      .archive-feature-link {
+        font-size: 0.68rem;
+      }
+
+      html[lang="vi"] #collection-status-own::after,
+      html[lang="vi"] #collection-status-sold::after {
+        font-size: 0.66rem;
+      }
+    }
+
+  </style>
+
 </head>
 
 
@@ -142,16 +253,6 @@
 
 
         <a
-          href="./timeline.html"
-          class="museum-nav-link active"
-          aria-current="page"
-          id="timeline-nav-timeline"
-        >
-          TIMELINE
-        </a>
-
-
-        <a
           href="./lego.html"
           class="museum-nav-link"
           id="timeline-nav-lego"
@@ -171,6 +272,29 @@
       </nav>
 
     </header>
+
+
+    <!-- =====================================================
+         ARCHIVE FEATURES
+         ROOM can be added beside this link later.
+    ====================================================== -->
+
+    <nav
+      class="archive-feature-nav"
+      aria-label="Archive features"
+    >
+
+      <a
+        href="./timeline.html"
+        class="archive-feature-link active"
+        aria-current="page"
+        id="timeline-feature-link"
+      >
+        <span class="archive-copy-vi">DÒNG THỜI GIAN</span>
+        <span class="archive-copy-en">TIMELINE</span>
+      </a>
+
+    </nav>
 
 
     <main class="timeline-main">
@@ -229,19 +353,10 @@
           <button
             type="button"
             class="timeline-filter active"
-            data-timeline-filter="all"
+            data-timeline-filter="own"
             aria-pressed="true"
           >
-            TẤT CẢ
-          </button>
-
-          <button
-            type="button"
-            class="timeline-filter"
-            data-timeline-filter="own"
-            aria-pressed="false"
-          >
-            IN COLLECTION
+            TRONG BỘ SƯU TẬP
           </button>
 
           <button
@@ -250,7 +365,7 @@
             data-timeline-filter="sold"
             aria-pressed="false"
           >
-            FORMERLY IN COLLECTION
+            ĐÃ TỪNG TRONG BỘ SƯU TẬP
           </button>
 
         </div>
@@ -334,12 +449,12 @@
 
         <div class="timeline-legend-item">
           <span class="timeline-legend-dot own"></span>
-          <span>IN COLLECTION</span>
+          <span id="timeline-legend-own">TRONG BỘ SƯU TẬP</span>
         </div>
 
         <div class="timeline-legend-item">
           <span class="timeline-legend-dot sold"></span>
-          <span>FORMERLY IN COLLECTION</span>
+          <span id="timeline-legend-sold">ĐÃ TỪNG TRONG BỘ SƯU TẬP</span>
         </div>
 
       </section>
@@ -370,7 +485,7 @@
 
   <!-- Keep the current approved metadata/language adjustments. -->
   <script
-    src="./current-site-adjustments.js?v=20261011-v3"
+    src="./current-site-adjustments.js?v=20261011-v4"
   ></script>
 
   <script
@@ -379,7 +494,7 @@
 
   <!-- Timeline is a read-only view of the current catalog. -->
   <script
-    src="./timeline.js?v=20261011-v1"
+    src="./timeline.js?v=20261011-v2"
   ></script>
 
 </body>

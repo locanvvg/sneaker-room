@@ -1,18 +1,13 @@
 /* =========================================================
-   LỘC AN — COLLECTION TIMELINE v1
+   LỘC AN — COLLECTION TIMELINE v2
    Read-only view of the current sneaker catalog.
 ========================================================= */
 (() => {
   "use strict";
 
   const BUILD =
-    "20261011-timeline-v1";
+    "20261011-timeline-v2";
 
-  const BASE_START_YEAR =
-    1999;
-
-  const BASE_END_YEAR =
-    2026;
 
   const NORMALIZED_ROOT =
     "pictures/normalized/v4b/";
@@ -30,12 +25,10 @@
         "Khám phá các hiện vật theo năm phát hành và theo dõi cách bộ sưu tập phát triển qua từng thời kỳ.",
       countLabel:
         "HIỆN VẬT",
-      all:
-        "TẤT CẢ",
       inCollection:
-        "IN COLLECTION",
+        "TRONG BỘ SƯU TẬP",
       formerly:
-        "FORMERLY IN COLLECTION",
+        "ĐÃ TỪNG TRONG BỘ SƯU TẬP",
       guide:
         "KÉO NGANG HOẶC VUỐT ĐỂ KHÁM PHÁ",
       prev:
@@ -52,9 +45,9 @@
       undated:
         "KHÔNG XÁC ĐỊNH",
       statusOwn:
-        "IN COLLECTION",
+        "TRONG BỘ SƯU TẬP",
       statusSold:
-        "FORMERLY IN COLLECTION"
+        "ĐÃ TỪNG TRONG BỘ SƯU TẬP"
     },
 
     en: {
@@ -66,8 +59,6 @@
         "Explore the collection by release year and follow its development across different periods of sneaker history.",
       countLabel:
         "ARTIFACTS",
-      all:
-        "ALL",
       inCollection:
         "IN COLLECTION",
       formerly:
@@ -96,7 +87,7 @@
 
   const state = {
     lang: "vi",
-    filter: "all",
+    filter: "own",
     suppressNextArtifactClick: false
   };
 
@@ -244,7 +235,7 @@
         `./about.html${suffix}`,
       "timeline-nav-sneakers":
         `./index.html${suffix}`,
-      "timeline-nav-timeline":
+      "timeline-feature-link":
         `./timeline.html${suffix}`,
       "timeline-nav-lego":
         `./lego.html${suffix}`,
@@ -356,10 +347,6 @@
       );
     }
 
-    const allButton =
-      document.querySelector(
-        '[data-timeline-filter="all"]'
-      );
 
     const ownButton =
       document.querySelector(
@@ -371,10 +358,6 @@
         '[data-timeline-filter="sold"]'
       );
 
-    if (allButton) {
-      allButton.textContent =
-        t.all;
-    }
 
     if (ownButton) {
       ownButton.textContent =
@@ -383,6 +366,26 @@
 
     if (soldButton) {
       soldButton.textContent =
+        t.formerly;
+    }
+
+    const legendOwn =
+      document.getElementById(
+        "timeline-legend-own"
+      );
+
+    const legendSold =
+      document.getElementById(
+        "timeline-legend-sold"
+      );
+
+    if (legendOwn) {
+      legendOwn.textContent =
+        t.inCollection;
+    }
+
+    if (legendSold) {
+      legendSold.textContent =
         t.formerly;
     }
 
@@ -470,16 +473,11 @@
 
     return sneakers
       .filter(Boolean)
-      .filter(item => {
-        if (state.filter === "all") {
-          return true;
-        }
-
-        return (
+      .filter(
+        item =>
           statusOf(item) ===
           state.filter
-        );
-      })
+      )
       .sort((a, b) => {
         const yearA =
           yearOf(a) ?? 9999;
@@ -519,21 +517,22 @@
             Number.isInteger(year)
         );
 
+    const currentYear =
+      new Date()
+        .getFullYear();
+
     const start =
       years.length
-        ? Math.min(
-            BASE_START_YEAR,
-            ...years
-          )
-        : BASE_START_YEAR;
+        ? Math.min(...years)
+        : currentYear;
 
     const end =
-      years.length
-        ? Math.max(
-            BASE_END_YEAR,
-            ...years
-          )
-        : BASE_END_YEAR;
+      Math.max(
+        currentYear,
+        years.length
+          ? Math.max(...years)
+          : currentYear
+      );
 
     return { start, end };
   }
@@ -995,7 +994,6 @@
 
             if (
               ![
-                "all",
                 "own",
                 "sold"
               ].includes(value)
