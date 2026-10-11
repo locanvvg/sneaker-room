@@ -168,13 +168,7 @@
 }
 
 .timeline-filter.active,
-.timeline-filter[aria-pressed="true"] {
-  border-color: #ffcc00 !important;
-
-  background: #ffcc00 !important;
-  color: #050505 !important;
-}
-
+.timeline-filter[aria-pressed="true"],
 .timeline-filter[aria-pressed="false"] {
   border-color: #343438 !important;
 
