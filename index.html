@@ -372,6 +372,44 @@
 
   </style>
 
+
+  <!-- FILTER ALIGNMENT + BUTTON WEIGHT — FINAL v11 -->
+  <style id="locan-filter-alignment-v11">
+
+    /*
+      Desktop: every filter-row heading uses the exact same vertical
+      box, so BỘ SƯU TẬP / TÌNH TRẠNG / PHÂN KHÚC / KÍCH CỠ
+      line up uniformly.
+    */
+    @media (min-width: 651px) {
+      .filter-group > .filter-group-label {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+
+        min-height: 34px !important;
+        padding-top: 0 !important;
+
+        margin: 0 !important;
+      }
+
+      #collection-status-filter-label::after {
+        display: block;
+      }
+    }
+
+
+    /*
+      Match the visual weight of DEADSTOCK / USED / PE / SAMPLE...
+      while preserving the existing collection-button sizing/layout.
+    */
+    #collection-status-own::after,
+    #collection-status-sold::after {
+      font-weight: 700 !important;
+    }
+
+  </style>
+
 </head>
 
 
