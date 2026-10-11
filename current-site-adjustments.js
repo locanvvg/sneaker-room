@@ -1,5 +1,5 @@
 /* =========================================================
-   LỘC AN — CURRENT SITE ADJUSTMENTS v1
+   LỘC AN — CURRENT SITE ADJUSTMENTS v2
    2026-10-11
 
    EXACT REQUESTED SCOPE
@@ -12,7 +12,7 @@
 
    2) Black Bloodline:
       - metadata becomes F&F PE Sample
-      - story/content is NOT rewritten
+      - story designation is synchronized to F&F PE Sample
 
    3) New Balance 2002R:
       - retail price becomes N/A
@@ -35,7 +35,7 @@
   "use strict";
 
   const BUILD =
-    "20261011-current-site-adjustments-v1";
+    "20261011-current-site-adjustments-v2";
 
   const YUTO_SECOND_IMAGE =
     "sbdunk_yutohorigome_matcha1.png";
@@ -136,6 +136,60 @@
   }
 
   patchRequestedMetadata();
+
+  /*
+    collection-content-final.js loads after this file and restores the
+    approved canonical Bloodline story. We therefore update ONLY the
+    designation at DOMContentLoaded, after that canonical story has been
+    installed but before shoe-page.js renders the detail content.
+  */
+  function patchBloodlineStoryDesignation() {
+    if (
+      typeof sneakers === "undefined" ||
+      !Array.isArray(sneakers)
+    ) {
+      return;
+    }
+
+    const bloodline =
+      sneakers.find(
+        item =>
+          item?.id ===
+          "air-jordan-1-black-bloodline-pe"
+      );
+
+    if (
+      !bloodline ||
+      !bloodline.story ||
+      typeof bloodline.story !== "object"
+    ) {
+      return;
+    }
+
+    ["vi", "en"].forEach(lang => {
+      const story =
+        bloodline.story[lang];
+
+      if (typeof story !== "string") {
+        return;
+      }
+
+      bloodline.story[lang] =
+        story
+          .replaceAll(
+            "Black Bloodline PE Sample",
+            "Black Bloodline F&F PE Sample"
+          )
+          .replaceAll(
+            "Black Bloodline PE,",
+            "Black Bloodline F&F PE Sample,"
+          )
+          .replaceAll(
+            "<b>PE Sample</b>",
+            "<b>F&F PE Sample</b>"
+          );
+    });
+  }
 
   /* =====================================================
      3. YUTO DETAIL IMAGE #2 — HERO + THUMBNAIL ONLY
@@ -320,6 +374,9 @@
   }
 
   function initDetailFineTune() {
+    patchRequestedMetadata();
+    patchBloodlineStoryDesignation();
+
     installYutoObserver();
 
     [
