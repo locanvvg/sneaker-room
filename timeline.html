@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Lộc An Sneaker Collection — Collection Timeline from 1999 to 2026."
+  >
+
+  <meta
+    name="theme-color"
+    content="#000000"
+  >
+
+  <title>
+    Collection Timeline | Lộc An Sneaker Collection
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="./style.css?v=20260912-final-search"
+  >
+
+  <link
+    rel="stylesheet"
+    href="./collection-menu.css?v=20260913-divider-v1"
+  >
+
+  <link
+    rel="stylesheet"
+    href="./unified-collection-ui.css?v=20260915-badge-v25"
+  >
+
+  <link
+    rel="stylesheet"
+    href="./timeline.css?v=20261011-v1"
+  >
+
+  <link
+    rel="icon"
+    type="image/x-icon"
+    href="./favicon.ico?v=20260914-brand-v8"
+  >
+
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="32x32"
+    href="./favicon-32.png?v=20260914-brand-v8"
+  >
+
+  <link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="./apple-touch-icon.png?v=20260914-brand-v8"
+  >
+
+  <link
+    rel="manifest"
+    href="./site.webmanifest?v=20260914-brand-v8"
+  >
+
+  <link
+    rel="canonical"
+    href="https://locanvvg.github.io/sneaker-room/timeline.html"
+  >
+</head>
+
+
+<body class="timeline-page">
+
+  <div class="container timeline-container">
+
+    <header class="home-header timeline-site-header">
+
+      <div class="header-corner-tools">
+
+        <a
+          href="./about.html"
+          class="about-corner-link"
+          id="timeline-about-link"
+        >
+          ABOUT
+        </a>
+
+
+        <div class="lang-switcher">
+
+          <button
+            type="button"
+            id="btn-vi"
+            class="lang-btn active"
+            onclick="setTimelineLanguage('vi')"
+          >
+            VI
+          </button>
+
+
+          <button
+            type="button"
+            id="btn-en"
+            class="lang-btn"
+            onclick="setTimelineLanguage('en')"
+          >
+            EN
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <h1>
+        LỘC AN SNEAKER COLLECTION
+      </h1>
+
+
+      <p id="timeline-brand-subtitle">
+        Không gian lưu trữ &amp; Bảo tàng Sneaker Kỹ thuật số
+      </p>
+
+
+      <nav
+        class="museum-nav"
+        aria-label="Collection navigation"
+      >
+
+        <a
+          href="./index.html"
+          class="museum-nav-link"
+          id="timeline-nav-sneakers"
+        >
+          SNEAKERS
+        </a>
+
+
+        <a
+          href="./timeline.html"
+          class="museum-nav-link active"
+          aria-current="page"
+          id="timeline-nav-timeline"
+        >
+          TIMELINE
+        </a>
+
+
+        <a
+          href="./lego.html"
+          class="museum-nav-link"
+          id="timeline-nav-lego"
+        >
+          LEGO
+        </a>
+
+
+        <a
+          href="./sneaker-mask.html"
+          class="museum-nav-link"
+          id="timeline-nav-mask"
+        >
+          SNEAKER MASK
+        </a>
+
+      </nav>
+
+    </header>
+
+
+    <main class="timeline-main">
+
+      <section class="timeline-intro">
+
+        <div class="timeline-intro-copy">
+
+          <div
+            class="timeline-eyebrow"
+            id="timeline-range-label"
+          >
+            1999 — 2026
+          </div>
+
+          <h2 id="timeline-title">
+            DÒNG THỜI GIAN BỘ SƯU TẬP
+          </h2>
+
+          <p id="timeline-description">
+            Khám phá các hiện vật theo năm phát hành và theo dõi cách bộ sưu tập phát triển qua từng thời kỳ.
+          </p>
+
+        </div>
+
+
+        <div
+          class="timeline-summary"
+          aria-live="polite"
+        >
+
+          <strong id="timeline-visible-count">
+            —
+          </strong>
+
+          <span id="timeline-count-label">
+            HIỆN VẬT
+          </span>
+
+        </div>
+
+      </section>
+
+
+      <section
+        class="timeline-toolbar"
+        aria-label="Timeline controls"
+      >
+
+        <div
+          class="timeline-status-filters"
+          role="group"
+          aria-label="Collection status"
+        >
+
+          <button
+            type="button"
+            class="timeline-filter active"
+            data-timeline-filter="all"
+            aria-pressed="true"
+          >
+            TẤT CẢ
+          </button>
+
+          <button
+            type="button"
+            class="timeline-filter"
+            data-timeline-filter="own"
+            aria-pressed="false"
+          >
+            IN COLLECTION
+          </button>
+
+          <button
+            type="button"
+            class="timeline-filter"
+            data-timeline-filter="sold"
+            aria-pressed="false"
+          >
+            FORMERLY IN COLLECTION
+          </button>
+
+        </div>
+
+
+        <div class="timeline-navigation">
+
+          <button
+            type="button"
+            class="timeline-arrow"
+            id="timeline-prev"
+            aria-label="Mốc thời gian trước"
+          >
+            ←
+          </button>
+
+          <button
+            type="button"
+            class="timeline-arrow"
+            id="timeline-next"
+            aria-label="Mốc thời gian tiếp theo"
+          >
+            →
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <section
+        class="timeline-explorer"
+        aria-labelledby="timeline-title"
+      >
+
+        <div class="timeline-guide">
+
+          <span id="timeline-guide-text">
+            KÉO NGANG HOẶC VUỐT ĐỂ KHÁM PHÁ
+          </span>
+
+          <span
+            class="timeline-guide-arrow"
+            aria-hidden="true"
+          >
+            ⟷
+          </span>
+
+        </div>
+
+
+        <div
+          class="timeline-scroll"
+          id="timeline-scroll"
+          tabindex="0"
+          aria-label="Dòng thời gian bộ sưu tập sneaker"
+        >
+
+          <div
+            class="timeline-track"
+            id="timeline-track"
+          ></div>
+
+        </div>
+
+
+        <div
+          class="timeline-progress"
+          aria-hidden="true"
+        >
+          <span id="timeline-progress-bar"></span>
+        </div>
+
+      </section>
+
+
+      <section
+        class="timeline-legend"
+        aria-label="Timeline legend"
+      >
+
+        <div class="timeline-legend-item">
+          <span class="timeline-legend-dot own"></span>
+          <span>IN COLLECTION</span>
+        </div>
+
+        <div class="timeline-legend-item">
+          <span class="timeline-legend-dot sold"></span>
+          <span>FORMERLY IN COLLECTION</span>
+        </div>
+
+      </section>
+
+    </main>
+
+
+    <footer class="timeline-footer">
+
+      <p>
+        &copy; 2026 Lộc An Sneaker Collection.
+        All Rights Reserved.
+      </p>
+
+    </footer>
+
+  </div>
+
+
+  <!-- CURRENT CATALOG: unchanged -->
+  <script
+    src="./data.js?v=20260913-15pairs-v1"
+  ></script>
+
+  <script
+    src="./catalog-additions.js?v=20260914-catalog-v1"
+  ></script>
+
+  <!-- Keep the current approved metadata/language adjustments. -->
+  <script
+    src="./current-site-adjustments.js?v=20261011-v3"
+  ></script>
+
+  <script
+    src="./catalog-engine.js?v=20260914-custom2026-v21"
+  ></script>
+
+  <!-- Timeline is a read-only view of the current catalog. -->
+  <script
+    src="./timeline.js?v=20261011-v1"
+  ></script>
+
+</body>
+</html>
