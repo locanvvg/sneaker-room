@@ -1,12 +1,12 @@
 /* =========================================================
-   LỘC AN — COLLECTION TIMELINE v2
+   LỘC AN — COLLECTION TIMELINE v3
    Read-only view of the current sneaker catalog.
 ========================================================= */
 (() => {
   "use strict";
 
   const BUILD =
-    "20261011-timeline-v2";
+    "20261011-timeline-v3";
 
 
   const NORMALIZED_ROOT =
@@ -956,6 +956,11 @@
 
     updateProgress();
 
+    syncFilterButtons();
+  }
+
+
+  function syncFilterButtons() {
     document
       .querySelectorAll(
         ".timeline-filter"
@@ -973,7 +978,9 @@
 
         button.setAttribute(
           "aria-pressed",
-          String(active)
+          active
+            ? "true"
+            : "false"
         );
       });
   }
@@ -1004,7 +1011,16 @@
             state.filter =
               value;
 
+            /*
+              Update the two buttons immediately, before the
+              timeline content is rebuilt. This prevents the
+              previous yellow state from remaining visible.
+            */
+            syncFilterButtons();
+
             renderTimeline();
+
+            button.blur();
 
             const scroll =
               document.getElementById(
