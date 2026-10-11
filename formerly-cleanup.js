@@ -1,5 +1,5 @@
 /* =========================================================
-   LỘC AN — FORMERLY IN COLLECTION CLEANUP v1
+   LỘC AN — FORMERLY IN COLLECTION CLEANUP v2
 
    EXACT SCOPE
    -----------
@@ -7,8 +7,11 @@
       cards in both Grid and 3D.
    2) Remove the injected PRE-OWNED collection-status row from
       sold/formerly detail pages.
-   3) Reduce ONLY Balenciaga Defender 'Beige' in 3D.
-      Grid remains untouched.
+   3) Balenciaga Defender 'Beige' 3D:
+      - keep the approved 56% visual size
+      - apply that size BEFORE the 3D card's first paint
+      - no post-render resize, so mobile swipe does not jump
+        from large -> small.
 
    DOES NOT CHANGE
    ---------------
@@ -17,30 +20,30 @@
    - sneaker data, stories, metadata, condition, size
    - Grid image sizing
    - IN COLLECTION
-   - current v4b normalization assets
+   - current standard-v4b normalization assets
+   - any other sneaker's 3D sizing
 ========================================================= */
 (() => {
   "use strict";
 
   const STYLE_ID =
-    "locan-formerly-cleanup-v1";
+    "locan-formerly-cleanup-v2";
 
   const BALENCIAGA_ID =
     "balenciaga-defender-beige";
 
-  /*
-    The current active PRE-OWNED 3D renderer sets former-pair
-    image boxes to 62%. Balenciaga reads larger than the other
-    archive pairs because its source composition fills more of
-    that box. 56% is a small ~9.7% reduction of that existing
-    62% box and applies ONLY in 3D.
-  */
   const BALENCIAGA_3D_SIZE =
     "56%";
 
   let scheduled = false;
 
   function installStyles() {
+    document
+      .getElementById(
+        "locan-formerly-cleanup-v1"
+      )
+      ?.remove();
+
     document
       .getElementById(STYLE_ID)
       ?.remove();
@@ -52,13 +55,35 @@
 
     style.textContent = `
       /*
-        Hide immediately so a legacy renderer cannot flash the badge
-        before the DOM cleanup pass runs.
+        Presentation cleanup.
       */
       .collection-sold-badge,
       .preowned-3d-badge,
       .collection-status-detail-item {
         display: none !important;
+      }
+
+      /*
+        BALENCIAGA 3D — FRAME-ZERO SIZE AUTHORITY
+        -----------------------------------------
+        This rule exists BEFORE a 3D Balenciaga card is inserted.
+        The browser therefore lays the image out at the approved
+        size immediately instead of rendering the former 62% box
+        and shrinking it afterward.
+
+        Grid is untouched because the selector requires
+        .sneaker-3d-image.
+      */
+      html body #sneaker-grid
+      .sneaker-3d-image
+      img[data-sneaker-id="${BALENCIAGA_ID}"] {
+        width: ${BALENCIAGA_3D_SIZE} !important;
+        height: ${BALENCIAGA_3D_SIZE} !important;
+        max-width: ${BALENCIAGA_3D_SIZE} !important;
+        max-height: ${BALENCIAGA_3D_SIZE} !important;
+
+        object-fit: contain !important;
+        object-position: center center !important;
       }
     `;
 
@@ -126,10 +151,6 @@
         item => item.remove()
       );
 
-    /*
-      Defensive cleanup in case an older patch created the two
-      status nodes without the expected wrapper class.
-    */
     const value =
       document.getElementById(
         "shoe-collection-status"
@@ -154,84 +175,12 @@
     }
   }
 
-  function fineTuneBalenciaga3D() {
-    document
-      .querySelectorAll(
-        '#sneaker-grid .sneaker-3d-image ' +
-        `img[data-sneaker-id="${BALENCIAGA_ID}"]`
-      )
-      .forEach(img => {
-        /*
-          Width/height are used deliberately because the existing
-          former-collection renderer already controls sold-pair
-          sizing through the same properties. This changes only
-          Balenciaga's 3D box and does not touch Grid transforms.
-        */
-        const currentWidth =
-          img.style.getPropertyValue(
-            "width"
-          );
-
-        const currentPriority =
-          img.style.getPropertyPriority(
-            "width"
-          );
-
-        if (
-          currentWidth !==
-            BALENCIAGA_3D_SIZE ||
-          currentPriority !==
-            "important"
-        ) {
-          img.style.setProperty(
-            "width",
-            BALENCIAGA_3D_SIZE,
-            "important"
-          );
-
-          img.style.setProperty(
-            "height",
-            BALENCIAGA_3D_SIZE,
-            "important"
-          );
-
-          img.style.setProperty(
-            "max-width",
-            BALENCIAGA_3D_SIZE,
-            "important"
-          );
-
-          img.style.setProperty(
-            "max-height",
-            BALENCIAGA_3D_SIZE,
-            "important"
-          );
-
-          img.style.setProperty(
-            "object-fit",
-            "contain",
-            "important"
-          );
-
-          img.style.setProperty(
-            "object-position",
-            "center center",
-            "important"
-          );
-        }
-
-        img.dataset.formerly3dFineTune =
-          "balenciaga-defender";
-      });
-  }
-
   function clean() {
     scheduled = false;
 
     removeGridSoldBadge();
     remove3DBadges();
     removeDetailStatus();
-    fineTuneBalenciaga3D();
   }
 
   function scheduleClean() {
@@ -241,79 +190,40 @@
 
     scheduled = true;
 
-    requestAnimationFrame(() => {
-      clean();
-
-      /*
-        Legacy renderers also perform requestAnimationFrame callbacks.
-        One short follow-up catches a badge or inline 62% size written
-        immediately after the first cleanup pass.
-      */
-      setTimeout(
-        clean,
-        40
-      );
-    });
+    requestAnimationFrame(clean);
   }
 
   function observe() {
     if (
       !document.body ||
       document.body.dataset
-        .formerlyCleanupObserved ===
+        .formerlyCleanupV2Observed ===
         "true"
     ) {
       return;
     }
 
     document.body.dataset
-      .formerlyCleanupObserved =
+      .formerlyCleanupV2Observed =
         "true";
 
+    /*
+      Important performance change from v1:
+      observe DOM additions only.
+      We no longer watch style/src mutations while the 3D carousel
+      is moving, so swipe transforms do not cause cleanup work.
+    */
     const observer =
       new MutationObserver(
         mutations => {
-          let relevant = false;
-
-          for (
-            const mutation
-            of mutations
+          if (
+            mutations.some(
+              mutation =>
+                mutation.type ===
+                  "childList" &&
+                mutation.addedNodes.length > 0
+            )
           ) {
-            if (
-              mutation.type ===
-              "childList"
-            ) {
-              relevant = true;
-              break;
-            }
-
-            if (
-              mutation.type ===
-                "attributes" &&
-              (
-                mutation.attributeName ===
-                  "style" ||
-                mutation.attributeName ===
-                  "src"
-              )
-            ) {
-              const target =
-                mutation.target;
-
-              if (
-                target instanceof
-                  HTMLImageElement &&
-                target.dataset
-                  .sneakerId ===
-                  BALENCIAGA_ID
-              ) {
-                relevant = true;
-                break;
-              }
-            }
-          }
-
-          if (relevant) {
             scheduleClean();
           }
         }
@@ -323,27 +233,20 @@
       document.body,
       {
         childList: true,
-        subtree: true,
-        attributes: true,
-        attributeFilter: [
-          "style",
-          "src"
-        ]
+        subtree: true
       }
     );
   }
 
   function init() {
-    installStyles();
     clean();
     observe();
 
     /*
-      data.js / collection-view.js finish some renderer wrappers
-      on window.load. These final passes keep this file as the
-      last presentation authority without replacing any renderer.
+      Small stabilization passes only for badges/detail status.
+      No image resizing occurs here.
     */
-    [0, 60, 180, 400]
+    [0, 80, 250]
       .forEach(delay => {
         setTimeout(
           clean,
@@ -351,6 +254,14 @@
         );
       });
   }
+
+  /*
+    Install the Balenciaga sizing rule immediately when this file
+    is evaluated. Because the script is at the end of the page,
+    <head> already exists, and the rule is ready before later
+    carousel interactions create/recreate 3D cards.
+  */
+  installStyles();
 
   if (
     document.readyState ===
@@ -368,13 +279,7 @@
   window.addEventListener(
     "load",
     () => {
-      [0, 80, 250]
-        .forEach(delay =>
-          setTimeout(
-            clean,
-            delay
-          )
-        );
+      clean();
     },
     { once: true }
   );
