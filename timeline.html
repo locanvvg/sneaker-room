@@ -40,7 +40,7 @@
 
   <link
     rel="stylesheet"
-    href="./timeline.css?v=20261011-v3-ui"
+    href="./timeline.css?v=20261011-v4-hotfix"
   >
 
   <link
@@ -178,6 +178,32 @@
       html[lang="vi"] #collection-status-sold::after {
         font-size: 0.66rem;
       }
+    }
+
+  </style>
+
+
+  <!-- CRITICAL UI HOTFIX v4: timeline active tab only -->
+  <style id="locan-timeline-tab-hotfix-v4">
+
+    body[data-timeline-active-filter="own"]
+    [data-timeline-filter="own"],
+
+    body[data-timeline-active-filter="sold"]
+    [data-timeline-filter="sold"] {
+      background: #ffcc00 !important;
+      border-color: #ffcc00 !important;
+      color: #050505 !important;
+    }
+
+    body[data-timeline-active-filter="own"]
+    [data-timeline-filter="sold"],
+
+    body[data-timeline-active-filter="sold"]
+    [data-timeline-filter="own"] {
+      background: #171719 !important;
+      border-color: #343438 !important;
+      color: #a7a7af !important;
     }
 
   </style>
@@ -494,8 +520,156 @@
 
   <!-- Timeline is a read-only view of the current catalog. -->
   <script
-    src="./timeline.js?v=20261011-v3"
+    src="./timeline.js?v=20261011-v4-hotfix"
   ></script>
+
+
+  <!-- CRITICAL UI HOTFIX v4: timeline active tab sync -->
+  <script id="locan-timeline-tab-sync-v4">
+    (() => {
+      "use strict";
+
+      function applyTimelineTabVisual(value) {
+        const next =
+          value === "sold"
+            ? "sold"
+            : "own";
+
+        document.body.dataset.timelineActiveFilter =
+          next;
+
+        document
+          .querySelectorAll(
+            "[data-timeline-filter]"
+          )
+          .forEach(button => {
+            const active =
+              button.dataset.timelineFilter ===
+              next;
+
+            button.classList.toggle(
+              "active",
+              active
+            );
+
+            button.setAttribute(
+              "aria-pressed",
+              active
+                ? "true"
+                : "false"
+            );
+
+            button.style.setProperty(
+              "background",
+              active
+                ? "#ffcc00"
+                : "#171719",
+              "important"
+            );
+
+            button.style.setProperty(
+              "border-color",
+              active
+                ? "#ffcc00"
+                : "#343438",
+              "important"
+            );
+
+            button.style.setProperty(
+              "color",
+              active
+                ? "#050505"
+                : "#a7a7af",
+              "important"
+            );
+          });
+      }
+
+      function currentVisualFilter() {
+        const pressed =
+          document.querySelector(
+            '[data-timeline-filter][aria-pressed="true"]'
+          );
+
+        return (
+          pressed?.dataset
+            .timelineFilter === "sold"
+        )
+          ? "sold"
+          : "own";
+      }
+
+      function install() {
+        applyTimelineTabVisual(
+          currentVisualFilter()
+        );
+
+        /*
+          Capture the click and repeat once after the existing
+          timeline handler finishes. This guarantees the yellow
+          state follows the tab that the user actually selected,
+          even if an older cached presentation layer runs too.
+        */
+        document.addEventListener(
+          "click",
+          event => {
+            const button =
+              event.target.closest(
+                "[data-timeline-filter]"
+              );
+
+            if (!button) {
+              return;
+            }
+
+            const value =
+              button.dataset
+                .timelineFilter;
+
+            if (
+              value !== "own" &&
+              value !== "sold"
+            ) {
+              return;
+            }
+
+            applyTimelineTabVisual(
+              value
+            );
+
+            setTimeout(
+              () =>
+                applyTimelineTabVisual(
+                  value
+                ),
+              0
+            );
+
+            requestAnimationFrame(
+              () =>
+                applyTimelineTabVisual(
+                  value
+                )
+            );
+          },
+          true
+        );
+      }
+
+      if (
+        document.readyState ===
+        "loading"
+      ) {
+        document.addEventListener(
+          "DOMContentLoaded",
+          install,
+          { once: true }
+        );
+      } else {
+        install();
+      }
+    })();
+  </script>
 
 </body>
 </html>
