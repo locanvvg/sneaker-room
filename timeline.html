@@ -40,7 +40,7 @@
 
   <link
     rel="stylesheet"
-    href="./timeline.css?v=20261011-v8-no-status-filters"
+    href="./timeline.css?v=20261011-v7-neutral-tabs"
   >
 
   <link
@@ -342,6 +342,33 @@
         aria-label="Timeline controls"
       >
 
+        <div
+          class="timeline-status-filters"
+          role="group"
+          aria-label="Collection status"
+        >
+
+          <button
+            type="button"
+            class="timeline-filter active"
+            data-timeline-filter="own"
+            aria-pressed="true"
+          >
+            TRONG BỘ SƯU TẬP
+          </button>
+
+          <button
+            type="button"
+            class="timeline-filter"
+            data-timeline-filter="sold"
+            aria-pressed="false"
+          >
+            ĐÃ TỪNG TRONG BỘ SƯU TẬP
+          </button>
+
+        </div>
+
+
         <div class="timeline-navigation">
 
           <button
@@ -468,7 +495,7 @@
 
   <!-- Timeline is a read-only view of the current catalog. -->
   <script
-    src="./timeline.js?v=20261011-v8-no-status-filters"
+    src="./timeline.js?v=20261011-v4-hotfix"
   ></script>
 
   <!-- FINAL UI v7: localization/header only; no active-tab styling -->
