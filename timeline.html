@@ -217,16 +217,15 @@
 
     <header class="home-header timeline-site-header">
 
+      <a
+        href="./about.html"
+        class="about-corner-link"
+        id="timeline-about-link"
+      >
+        GIỚI THIỆU
+      </a>
+
       <div class="header-corner-tools">
-
-        <a
-          href="./about.html"
-          class="about-corner-link"
-          id="timeline-about-link"
-        >
-          ABOUT
-        </a>
-
 
         <div class="lang-switcher">
 
@@ -254,13 +253,13 @@
       </div>
 
 
-      <h1>
-        LỘC AN SNEAKER COLLECTION
+      <h1 id="timeline-main-title">
+        BỘ SƯU TẬP GIÀY LỘC AN
       </h1>
 
 
       <p id="timeline-brand-subtitle">
-        Không gian lưu trữ &amp; Bảo tàng Sneaker Kỹ thuật số
+        Không gian lưu trữ &amp; Bảo tàng Giày Kỹ thuật số
       </p>
 
 
@@ -274,7 +273,7 @@
           class="museum-nav-link"
           id="timeline-nav-sneakers"
         >
-          SNEAKERS
+          GIÀY
         </a>
 
 
@@ -292,7 +291,7 @@
           class="museum-nav-link"
           id="timeline-nav-mask"
         >
-          SNEAKER MASK
+          MẶT NẠ GIÀY
         </a>
 
       </nav>
@@ -381,6 +380,7 @@
             class="timeline-filter active"
             data-timeline-filter="own"
             aria-pressed="true"
+            onclick="window.setTimelineVisualState?.('own')"
           >
             TRONG BỘ SƯU TẬP
           </button>
@@ -390,6 +390,7 @@
             class="timeline-filter"
             data-timeline-filter="sold"
             aria-pressed="false"
+            onclick="window.setTimelineVisualState?.('sold')"
           >
             ĐÃ TỪNG TRONG BỘ SƯU TẬP
           </button>
@@ -490,9 +491,8 @@
 
     <footer class="timeline-footer">
 
-      <p>
-        &copy; 2026 Lộc An Sneaker Collection.
-        All Rights Reserved.
+      <p id="timeline-footer-copy">
+        &copy; 2026 Bộ sưu tập giày Lộc An. Bảo lưu mọi quyền.
       </p>
 
     </footer>
@@ -670,6 +670,12 @@
       }
     })();
   </script>
+
+
+  <!-- FINAL UI v5: timeline localization + tab authority -->
+  <script
+    src="./timeline-ui-final-v5.js"
+  ></script>
 
 </body>
 </html>
