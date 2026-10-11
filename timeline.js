@@ -1,12 +1,12 @@
 /* =========================================================
-   LỘC AN — COLLECTION TIMELINE v3
+   LỘC AN — COLLECTION TIMELINE v8
    Read-only view of the current sneaker catalog.
 ========================================================= */
 (() => {
   "use strict";
 
   const BUILD =
-    "20261011-timeline-v3";
+    "20261011-timeline-v8";
 
 
   const NORMALIZED_ROOT =
@@ -87,7 +87,6 @@
 
   const state = {
     lang: "vi",
-    filter: "own",
     suppressNextArtifactClick: false
   };
 
@@ -473,11 +472,6 @@
 
     return sneakers
       .filter(Boolean)
-      .filter(
-        item =>
-          statusOf(item) ===
-          state.filter
-      )
       .sort((a, b) => {
         const yearA =
           yearOf(a) ?? 9999;
@@ -956,91 +950,6 @@
 
     updateProgress();
 
-    syncFilterButtons();
-  }
-
-
-  function syncFilterButtons() {
-    document
-      .querySelectorAll(
-        ".timeline-filter"
-      )
-      .forEach(button => {
-        const active =
-          button.dataset
-            .timelineFilter ===
-          state.filter;
-
-        button.classList.toggle(
-          "active",
-          active
-        );
-
-        button.setAttribute(
-          "aria-pressed",
-          active
-            ? "true"
-            : "false"
-        );
-      });
-  }
-
-
-  function installFilters() {
-    document
-      .querySelectorAll(
-        "[data-timeline-filter]"
-      )
-      .forEach(button => {
-        button.addEventListener(
-          "click",
-          () => {
-            const value =
-              button.dataset
-                .timelineFilter;
-
-            if (
-              ![
-                "own",
-                "sold"
-              ].includes(value)
-            ) {
-              return;
-            }
-
-            state.filter =
-              value;
-
-            /*
-              Update the two buttons immediately, before the
-              timeline content is rebuilt. This prevents the
-              previous yellow state from remaining visible.
-            */
-            syncFilterButtons();
-
-            renderTimeline();
-
-            button.blur();
-
-            const scroll =
-              document.getElementById(
-                "timeline-scroll"
-              );
-
-            if (scroll) {
-              scroll.scrollTo({
-                left: 0,
-                behavior:
-                  window.matchMedia(
-                    "(prefers-reduced-motion: reduce)"
-                  ).matches
-                    ? "auto"
-                    : "smooth"
-              });
-            }
-          }
-        );
-      });
   }
 
 
@@ -1352,7 +1261,6 @@
     updateStaticCopy();
     updateNavigationLinks();
 
-    installFilters();
     installNavigation();
     installDesktopDrag();
 

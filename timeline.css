@@ -116,7 +116,7 @@
 .timeline-toolbar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 18px;
 
   margin: 0 0 18px;
@@ -124,56 +124,6 @@
 
   border-top: 1px solid #202024;
   border-bottom: 1px solid #202024;
-}
-
-.timeline-status-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 9px;
-}
-
-.timeline-filter,
-.timeline-arrow {
-  appearance: none;
-
-  border: 1px solid #343438;
-  border-radius: 9px;
-
-  background: #171719;
-  color: #a7a7af;
-
-  font: inherit;
-  font-size: .72rem;
-  font-weight: 800;
-  letter-spacing: .055em;
-
-  cursor: pointer;
-
-  transition:
-    border-color .18s ease,
-    background .18s ease,
-    color .18s ease,
-    transform .18s ease;
-}
-
-.timeline-filter {
-  min-height: 40px;
-  padding: 0 14px;
-}
-
-.timeline-filter:hover,
-.timeline-arrow:hover {
-  border-color: #66666e;
-  color: #fff;
-}
-
-.timeline-filter.active,
-.timeline-filter[aria-pressed="true"],
-.timeline-filter[aria-pressed="false"] {
-  border-color: #343438 !important;
-
-  background: #171719 !important;
-  color: #a7a7af !important;
 }
 
 .timeline-navigation {
@@ -683,16 +633,7 @@
     align-items: flex-end;
   }
 
-  .timeline-status-filters {
-    flex: 1 1 auto;
-  }
 
-  .timeline-filter {
-    min-height: 36px;
-    padding: 0 10px;
-
-    font-size: .62rem;
-  }
 
   .timeline-navigation {
     flex: 0 0 auto;
@@ -803,7 +744,6 @@
 
   .timeline-scroll,
   .timeline-artifact,
-  .timeline-filter,
   .timeline-arrow,
   .timeline-progress span {
     scroll-behavior: auto !important;
