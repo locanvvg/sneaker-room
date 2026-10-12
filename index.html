@@ -743,7 +743,25 @@
         <span class="archive-copy-en">TIMELINE</span>
       </a>
 
+      <a
+        href="#room-coming-soon"
+        class="archive-feature-link room-teaser-link"
+        id="room-feature-link"
+      >
+        <span class="archive-copy-vi">CĂN PHÒNG</span>
+        <span class="archive-copy-en">ROOM</span>
+      </a>
+
     </nav>
+
+    <div class="room-coming-soon-overlay" id="room-coming-soon-overlay" aria-hidden="true">
+      <div class="room-coming-soon-card" role="dialog" aria-modal="true" aria-labelledby="room-coming-soon-title">
+        <h3 class="room-coming-soon-title" id="room-coming-soon-title">CĂN PHÒNG</h3>
+        <p class="room-coming-soon-text" id="room-coming-soon-text">Coming soon... Một bất ngờ sẽ tới sớm thôi.</p>
+        <button type="button" class="room-coming-soon-close" id="room-coming-soon-close">ĐÓNG</button>
+      </div>
+    </div>
+
 
 
     <!-- =====================================================
@@ -1824,6 +1842,91 @@
   <script
     src="./formerly-cleanup.js?v=20261011-v2"
   ></script>
+
+
+  <script id="locan-room-coming-soon-script-v16">
+    (function () {
+      const copy = {
+        vi: {
+          room: 'CĂN PHÒNG',
+          countLabel: 'ĐÔI GIÀY',
+          soonTitle: 'CĂN PHÒNG',
+          soonText: 'Coming soon... Một bất ngờ sẽ tới sớm thôi.',
+          close: 'ĐÓNG'
+        },
+        en: {
+          room: 'ROOM',
+          countLabel: 'PAIRS',
+          soonTitle: 'ROOM',
+          soonText: 'Coming soon... A surprise is coming very soon.',
+          close: 'CLOSE'
+        }
+      };
+
+      function getLang() {
+        const lang = (document.documentElement.getAttribute('lang') || '').toLowerCase();
+        if (lang === 'en') return 'en';
+        return 'vi';
+      }
+
+      function applyCopy() {
+        const lang = getLang();
+        const current = copy[lang];
+        const countLabel = document.getElementById('timeline-count-label');
+        if (countLabel) countLabel.textContent = current.countLabel;
+        const soonTitle = document.getElementById('room-coming-soon-title');
+        if (soonTitle) soonTitle.textContent = current.soonTitle;
+        const soonText = document.getElementById('room-coming-soon-text');
+        if (soonText) soonText.textContent = current.soonText;
+        const closeBtn = document.getElementById('room-coming-soon-close');
+        if (closeBtn) closeBtn.textContent = current.close;
+      }
+
+      function openRoomSoon(event) {
+        if (event) event.preventDefault();
+        applyCopy();
+        const overlay = document.getElementById('room-coming-soon-overlay');
+        if (overlay) {
+          overlay.classList.add('is-open');
+          overlay.setAttribute('aria-hidden', 'false');
+        }
+      }
+
+      function closeRoomSoon() {
+        const overlay = document.getElementById('room-coming-soon-overlay');
+        if (overlay) {
+          overlay.classList.remove('is-open');
+          overlay.setAttribute('aria-hidden', 'true');
+        }
+      }
+
+      window.openRoomComingSoon = openRoomSoon;
+
+      document.addEventListener('click', function (event) {
+        const roomLink = event.target.closest('#room-feature-link');
+        if (roomLink) {
+          openRoomSoon(event);
+          return;
+        }
+        if (event.target.closest('#room-coming-soon-close')) {
+          closeRoomSoon();
+          return;
+        }
+        if (event.target.id === 'room-coming-soon-overlay') {
+          closeRoomSoon();
+        }
+      });
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') closeRoomSoon();
+      });
+
+      const observer = new MutationObserver(applyCopy);
+      observer.observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+      document.addEventListener('DOMContentLoaded', applyCopy);
+      applyCopy();
+    })();
+  </script>
 
 </body>
 </html>
