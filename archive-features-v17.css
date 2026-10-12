@@ -1,0 +1,103 @@
+/* =========================================================
+   LỘC AN — ARCHIVE FEATURES v17
+   Shared Timeline / World Map / Room behavior.
+========================================================= */
+
+.room-coming-soon-overlay[hidden] {
+  display: none !important;
+}
+
+.room-coming-soon-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 22px;
+
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.room-coming-soon-card {
+  width: min(100%, 480px);
+  padding: 30px 28px 24px;
+
+  background:
+    linear-gradient(180deg, rgba(24,24,27,0.99), rgba(11,11,13,0.99));
+
+  border: 1px solid #2b2b30;
+  border-top-color: rgba(255, 204, 0, 0.48);
+  border-radius: 16px;
+
+  box-shadow: 0 28px 80px rgba(0,0,0,0.56);
+  text-align: center;
+}
+
+.room-coming-soon-kicker {
+  margin: 0 0 8px;
+
+  color: #ffcc00;
+
+  font-size: 0.67rem;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.room-coming-soon-title {
+  margin: 0;
+
+  color: #f5f5f7;
+
+  font-size: clamp(1.45rem, 4.7vw, 2rem);
+  font-weight: 900;
+  letter-spacing: 0.7px;
+}
+
+.room-coming-soon-text {
+  margin: 14px auto 0;
+  max-width: 370px;
+
+  color: #a9a9b0;
+
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+.room-coming-soon-close {
+  margin-top: 22px;
+  min-height: 40px;
+  padding: 9px 18px;
+
+  background: #1d1d20;
+  color: #d7d7dc;
+
+  border: 1px solid #35353a;
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+}
+
+.room-coming-soon-close:hover,
+.room-coming-soon-close:focus-visible {
+  color: #000;
+  background: #ffcc00;
+  border-color: #ffcc00;
+}
+
+@media (max-width: 650px) {
+  .room-coming-soon-card {
+    padding: 26px 20px 21px;
+    border-radius: 14px;
+  }
+}

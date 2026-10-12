@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lộc An Sneaker Collection — interactive world map of selected collection stories.">
+  <meta name="theme-color" content="#000000">
+  <title>Bản đồ bộ sưu tập | Lộc An Sneaker Collection</title>
+
+  <link rel="stylesheet" href="./style.css?v=20260912-final-search">
+  <link rel="stylesheet" href="./collection-menu.css?v=20260913-divider-v1">
+  <link rel="stylesheet" href="./unified-collection-ui.css?v=20260915-badge-v25">
+  <link rel="stylesheet" href="./archive-features-v17.css?v=20261012-v17">
+  <link rel="stylesheet" href="./globe.css?v=20261012-v17">
+
+  <link rel="icon" type="image/x-icon" href="./favicon.ico?v=20260914-brand-v8">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png?v=20260914-brand-v8">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=20260914-brand-v8">
+  <link rel="manifest" href="./site.webmanifest?v=20260914-brand-v8">
+  <link rel="canonical" href="https://locanvvg.github.io/sneaker-room/globe.html">
+
+  <style>
+    html[lang="vi"] .home-header::after { content: "BỘ SƯU TẬP CÁ NHÂN — KHÔNG BÁN"; }
+    html[lang="en"] .home-header::after { content: "PRIVATE COLLECTION — NOT FOR SALE"; }
+
+    .archive-feature-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 28px;
+      margin: 18px 0 0;
+    }
+
+    .archive-feature-link {
+      display: inline-block;
+      padding: 6px 2px 9px;
+      color: #85858a;
+      border-bottom: 2px solid transparent;
+      text-decoration: none;
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 1.4px;
+      opacity: 0.75;
+      transition: color .2s ease, opacity .2s ease, transform .2s ease, border-color .2s ease;
+    }
+
+    .archive-feature-link:hover { color:#d4d4d8; opacity:.6; transform:translateY(-2px); }
+    .archive-feature-link.active { color:#ffcc00; border-color:#ffcc00; opacity:1; }
+
+    html[lang="vi"] .archive-copy-en,
+    html[lang="en"] .archive-copy-vi { display:none; }
+
+    .globe-site-header { position: relative; }
+    .globe-site-header > .about-corner-link {
+      position:absolute; top:0; left:0; right:auto; margin:0; z-index:40;
+    }
+    .globe-site-header > .header-corner-tools {
+      right:0; left:auto; justify-content:flex-end;
+    }
+
+    @media (max-width:650px) {
+      .archive-feature-nav { gap:20px; margin-top:16px; }
+      .archive-feature-link { font-size:.68rem; }
+    }
+  </style>
+</head>
+<body class="globe-page">
+  <div class="container globe-container">
+
+    <header class="home-header globe-site-header">
+      <a href="./about.html" class="about-corner-link" id="globe-about-link">GIỚI THIỆU</a>
+
+      <div class="header-corner-tools">
+        <div class="lang-switcher">
+          <button type="button" id="btn-vi" class="lang-btn active" onclick="setGlobeLanguage('vi')">VI</button>
+          <button type="button" id="btn-en" class="lang-btn" onclick="setGlobeLanguage('en')">EN</button>
+        </div>
+      </div>
+
+      <h1 id="globe-main-title">BỘ SƯU TẬP GIÀY LỘC AN</h1>
+      <p id="globe-brand-subtitle">Không gian lưu trữ &amp; Bảo tàng Giày Kỹ thuật số</p>
+
+      <nav class="museum-nav" aria-label="Collection navigation">
+        <a href="./index.html" class="museum-nav-link" id="globe-nav-sneakers">GIÀY</a>
+        <a href="./lego.html" class="museum-nav-link" id="globe-nav-lego">LEGO</a>
+        <a href="./sneaker-mask.html" class="museum-nav-link" id="globe-nav-mask">MẶT NẠ GIÀY</a>
+      </nav>
+    </header>
+
+    <nav class="archive-feature-nav" aria-label="Archive features">
+      <a href="./timeline.html" class="archive-feature-link" id="timeline-feature-link">
+        <span class="archive-copy-vi">DÒNG THỜI GIAN</span>
+        <span class="archive-copy-en">TIMELINE</span>
+      </a>
+
+      <a href="./globe.html" class="archive-feature-link active" aria-current="page" id="map-feature-link">
+        <span class="archive-copy-vi">BẢN ĐỒ</span>
+        <span class="archive-copy-en">WORLD MAP</span>
+      </a>
+
+      <a href="#room-coming-soon" class="archive-feature-link" id="room-feature-link">
+        <span class="archive-copy-vi">CĂN PHÒNG</span>
+        <span class="archive-copy-en">ROOM</span>
+      </a>
+    </nav>
+
+    <main class="globe-main">
+      <section class="globe-intro">
+        <div>
+          <div class="globe-eyebrow" id="globe-eyebrow">IN COLLECTION — GEOGRAPHIC STORIES</div>
+          <h2 class="globe-title" id="globe-title">BẢN ĐỒ BỘ SƯU TẬP</h2>
+          <p class="globe-description" id="globe-description">
+            Xoay địa cầu để khám phá những thành phố, câu chuyện và mối liên hệ đứng sau các đôi giày đang có trong bộ sưu tập.
+          </p>
+        </div>
+
+        <div class="globe-summary" aria-live="polite">
+          <strong id="globe-visible-count">10</strong>
+          <span id="globe-count-label">CÂU CHUYỆN</span>
+        </div>
+      </section>
+
+      <section class="globe-toolbar" aria-label="World map filters">
+        <div class="globe-filter-set">
+          <div class="globe-field">
+            <label for="globe-brand-filter" id="globe-brand-label">THƯƠNG HIỆU</label>
+            <select id="globe-brand-filter"></select>
+          </div>
+
+          <div class="globe-field">
+            <label for="globe-country-filter" id="globe-country-label">QUỐC GIA</label>
+            <select id="globe-country-filter"></select>
+          </div>
+
+          <button type="button" class="globe-reset" id="globe-reset">ĐẶT LẠI</button>
+        </div>
+
+        <div class="globe-guide" id="globe-guide">KÉO / VUỐT ĐỂ XOAY · CUỘN / CHỤM ĐỂ PHÓNG TO · BẤM ĐIỂM VÀNG ĐỂ KHÁM PHÁ</div>
+      </section>
+
+      <section class="globe-layout">
+        <div class="globe-stage" id="globe-stage" aria-label="Interactive collection globe">
+          <canvas id="globe-canvas"></canvas>
+          <canvas id="globe-arc-canvas"></canvas>
+          <div class="globe-pins" id="globe-pins"></div>
+          <div class="globe-orbit-hint" id="globe-orbit-hint">DRAG TO ROTATE</div>
+        </div>
+
+        <aside class="globe-panel" id="globe-panel" aria-live="polite"></aside>
+      </section>
+
+      <div class="globe-legend">
+        <span><i class="globe-legend-dot"></i><b id="globe-legend-pin">ĐỊA ĐIỂM CÂU CHUYỆN</b></span>
+        <span><i class="globe-legend-line"></i><b id="globe-legend-line">LIÊN KẾT COLLAB</b></span>
+      </div>
+    </main>
+
+    <footer class="globe-footer">
+      <p id="globe-footer-copy">© 2026 Bộ sưu tập giày Lộc An. Bảo lưu mọi quyền.</p>
+    </footer>
+  </div>
+
+  <div class="room-coming-soon-overlay" id="room-coming-soon-overlay" aria-hidden="true" hidden>
+    <div class="room-coming-soon-card" role="dialog" aria-modal="true" aria-labelledby="room-coming-soon-title">
+      <div class="room-coming-soon-kicker" id="room-coming-soon-kicker">ARCHIVE ROOM</div>
+      <h3 class="room-coming-soon-title" id="room-coming-soon-title">CĂN PHÒNG</h3>
+      <p class="room-coming-soon-text" id="room-coming-soon-text">Coming soon... Một bất ngờ sẽ tới sớm thôi.</p>
+      <button type="button" class="room-coming-soon-close" id="room-coming-soon-close">ĐÓNG</button>
+    </div>
+  </div>
+
+  <script src="./data.js?v=20260913-15pairs-v1"></script>
+  <script src="./runtime-performance-guard-v1.js"></script>
+  <script src="./catalog-additions.js?v=20260914-catalog-v1"></script>
+  <script src="./current-site-adjustments.js?v=20261011-v4"></script>
+  <script src="./catalog-engine.js?v=20260914-custom2026-v21"></script>
+  <script src="./archive-features-v17.js?v=20261012-v17"></script>
+  <script src="./globe.js?v=20261012-v17"></script>
+</body>
+</html>
