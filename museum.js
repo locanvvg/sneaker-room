@@ -1,5 +1,5 @@
 /* =========================================================
-   LỘC AN — FULLSCREEN MUSEUM MODE v25
+   LỘC AN — FULLSCREEN MUSEUM MODE v26
 
    EXACT-FRAME RENDERER
    --------------------
@@ -95,6 +95,7 @@
     raf: 0,
     hideTimer: 0,
     transitionToken: 0,
+    isTransitioning: false,
     renderToken: 0,
     imageCache: new Map(),
     bboxCache: new Map(),
@@ -551,6 +552,19 @@
       return;
     }
 
+    /*
+      Critical v26 lock:
+      when the timer reaches 100%, requestAnimationFrame fires many times
+      per second. v25 called nextPair() on every frame before resetCycle()
+      could run, continually invalidating the pending transition and leaving
+      the stage stuck. Only one transition may run at a time.
+    */
+    if (state.isTransitioning && !immediate) {
+      return;
+    }
+
+    state.isTransitioning = true;
+
     const normalized =
       (nextIndex + state.pairs.length) % state.pairs.length;
 
@@ -558,61 +572,53 @@
     const item = state.pairs[normalized];
 
     /*
-      Load + alpha-measure BEFORE fading the current slide.
-      This removes the visible loading hitch.
+      Keep the current slide fully visible while the next image is loaded,
+      decoded, and alpha-measured. There is never a blank/black interval.
     */
     const prepared = await preparePair(item);
 
-    if (token !== state.transitionToken) return;
-
-    const apply = () => {
-      if (token !== state.transitionToken) return;
-
-      state.index = normalized;
-      state.currentItem = item;
-      state.currentImage = prepared;
-
-      drawFittedImage(prepared.img, prepared.src);
-
-      if (canvas) {
-        canvas.setAttribute(
-          "aria-label",
-          localized(item?.title) || COPY[state.lang].untitled
-        );
-      }
-
-      title.textContent =
-        localized(item?.title) ||
-        COPY[state.lang].untitled;
-
-      subtitle.textContent = localized(item?.subtitle);
-      year.textContent = releaseYear(item);
-      edition.textContent = editionOf(item);
-      story.textContent = firstSubstantialStoryParagraph(item);
-
-      counter.textContent =
-        `${String(normalized + 1).padStart(2, "0")} / ${String(state.pairs.length).padStart(2, "0")}`;
-
-      stage.classList.remove("is-changing");
-      stage.classList.add("is-entering");
-
-      preloadAround(normalized);
-
-      if (resetTimer) resetCycle();
-    };
-
-    if (immediate) {
-      apply();
+    if (token !== state.transitionToken) {
       return;
     }
 
-    stage.classList.remove("is-entering");
-    stage.classList.add("is-changing");
+    state.index = normalized;
+    state.currentItem = item;
+    state.currentImage = prepared;
 
-    window.setTimeout(() => {
-      if (token !== state.transitionToken) return;
-      apply();
-    }, 160);
+    drawFittedImage(prepared.img, prepared.src);
+
+    if (canvas) {
+      canvas.setAttribute(
+        "aria-label",
+        localized(item?.title) || COPY[state.lang].untitled
+      );
+    }
+
+    title.textContent =
+      localized(item?.title) ||
+      COPY[state.lang].untitled;
+
+    subtitle.textContent = localized(item?.subtitle);
+    year.textContent = releaseYear(item);
+    edition.textContent = editionOf(item);
+    story.textContent = firstSubstantialStoryParagraph(item);
+
+    counter.textContent =
+      `${String(normalized + 1).padStart(2, "0")} / ${String(state.pairs.length).padStart(2, "0")}`;
+
+    /*
+      Do not fade the old slide to black. The prepared frame is swapped
+      directly, then the next neighbors are warmed in the background.
+    */
+    stage.classList.remove("is-changing", "is-entering");
+
+    preloadAround(normalized);
+
+    if (resetTimer) {
+      resetCycle();
+    }
+
+    state.isTransitioning = false;
   }
 
   function redrawCurrent() {
@@ -623,10 +629,12 @@
   }
 
   function nextPair() {
+    if (state.isTransitioning) return;
     renderPair(state.index + 1);
   }
 
   function previousPair() {
+    if (state.isTransitioning) return;
     renderPair(state.index - 1);
   }
 
@@ -648,7 +656,11 @@
 
       progress.style.transform = `scaleX(${ratio})`;
 
-      if (state.playing && ratio >= 1) {
+      if (
+        state.playing &&
+        ratio >= 1 &&
+        !state.isTransitioning
+      ) {
         nextPair();
       }
     }

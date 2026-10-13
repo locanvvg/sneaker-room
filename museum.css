@@ -1,5 +1,5 @@
 /* =========================================================
-   LỘC AN — FULLSCREEN MUSEUM MODE v25
+   LỘC AN — FULLSCREEN MUSEUM MODE v26
    TV / monitor exhibition loop.
 ========================================================= */
 
@@ -161,13 +161,13 @@ select {
   height: 100%;
   opacity: 1;
   transform: none;
-  transition: opacity 0.16s ease;
+  transition: opacity 0.10s ease;
   will-change: opacity;
   backface-visibility: hidden;
 }
 
 .museum-stage.is-changing .museum-canvas {
-  opacity: 0;
+  opacity: 1;
 }
 
 .museum-stage.is-entering .museum-canvas {
@@ -180,11 +180,11 @@ select {
   margin-right: clamp(34px, 5vw, 88px);
   padding: clamp(36px, 5vw, 70px) 0 clamp(80px, 9vh, 120px) clamp(34px, 4vw, 72px);
   border-left: 1px solid rgba(255,255,255,0.08);
-  transition: opacity 0.16s ease;
+  transition: opacity 0.10s ease;
 }
 
 .museum-stage.is-changing .museum-copy {
-  opacity: 0;
+  opacity: 1;
 }
 
 .museum-meta-row {
