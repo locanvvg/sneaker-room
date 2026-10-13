@@ -11,7 +11,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png?v=20260914-brand-v8">
   <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=20260914-brand-v8">
 
-  <link rel="stylesheet" href="./museum.css?v=20261013-v24">
+  <link rel="stylesheet" href="./museum.css?v=20261013-v24a">
 </head>
 
 <body class="museum-body">
@@ -30,15 +30,12 @@
 
       <div class="museum-image-zone">
         <div class="museum-image-frame" id="museum-image-frame">
-          <img
-            id="museum-image"
-            class="museum-image"
-            src=""
-            alt=""
-            draggable="false"
-            decoding="async"
-            fetchpriority="high"
-          >
+          <canvas
+            id="museum-canvas"
+            class="museum-canvas"
+            role="img"
+            aria-label=""
+          ></canvas>
         </div>
       </div>
 
@@ -146,6 +143,6 @@
   <script src="./current-site-adjustments.js?v=20261011-v4"></script>
   <script src="./pictures/normalized/manifest.js?v=20261010-standard-v4b-wide-sparse"></script>
 
-  <script src="./museum.js?v=20261013-v24"></script>
+  <script src="./museum.js?v=20261013-v24a"></script>
 </body>
 </html>
