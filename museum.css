@@ -1,5 +1,5 @@
 /* =========================================================
-   LỘC AN — FULLSCREEN MUSEUM MODE v19
+   LỘC AN — FULLSCREEN MUSEUM MODE v23
    TV / monitor exhibition loop.
 ========================================================= */
 
@@ -158,19 +158,30 @@ select {
   z-index: 2;
   display: block;
 
-  width: var(--museum-image-width, 84%);
-  height: var(--museum-image-height, 76%);
-  max-width: var(--museum-image-width, 84%);
-  max-height: var(--museum-image-height, 76%);
+  /*
+    EXACT HOMEPAGE PRINCIPLE:
+    The PNG in pictures/normalized/v4b/grid/ already contains
+    the correct transparent padding / perceptual shoe size.
+    Fill the frame and do not resize individual pairs here.
+  */
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
 
-  object-fit: contain;
-  object-position: center;
+  margin: 0 !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+
+  scale: 1 1 !important;
+  translate: 0 0 !important;
+  transform: none;
+  transform-origin: center center !important;
 
   user-select: none;
   -webkit-user-drag: none;
 
   opacity: 1;
-  transform: none !important;
   filter: none;
 
   transition: opacity 0.18s ease;
@@ -184,6 +195,11 @@ select {
 
 .museum-stage.is-entering .museum-image {
   opacity: 1;
+}
+
+/* Same final Grid micro-adjustment used on the homepage Raygun card. */
+.museum-image[data-home-grid-fine-tune="raygun"] {
+  transform: translateX(-2.5%) scale(0.96) !important;
 }
 
 .museum-copy {
@@ -716,16 +732,18 @@ select {
 
 
 
-/* MUSEUM IMAGE NORMALIZATION v22 */
+
+
+/* =========================================================
+   HOMEPAGE-MATCH FRAME LOCK v23
+   The frame never changes size between slides.
+========================================================= */
 .museum-image-frame {
+  flex: 0 0 auto;
   contain: layout paint;
+  overflow: hidden;
 }
 
-@media (max-width: 1050px) {
-  .museum-image {
-    width: var(--museum-image-width-mobile, var(--museum-image-width, 84%));
-    height: var(--museum-image-height-mobile, var(--museum-image-height, 76%));
-    max-width: var(--museum-image-width-mobile, var(--museum-image-width, 84%));
-    max-height: var(--museum-image-height-mobile, var(--museum-image-height, 76%));
-  }
+.museum-image-zone {
+  contain: layout;
 }
