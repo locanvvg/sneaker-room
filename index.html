@@ -23,6 +23,73 @@
   >
 
   <meta name="theme-color" content="#000000">
+  <!-- LIVE RESTORE v20: clear stale GitHub Pages/PWA cache once per tab,
+       then reload the current deployment with a fresh URL. -->
+  <script id="locan-live-restore-v20">
+    (() => {
+      const KEY = "locan-live-restore-v20";
+      if (sessionStorage.getItem(KEY)) return;
+
+      sessionStorage.setItem(KEY, "1");
+
+      const jobs = [];
+
+      if ("serviceWorker" in navigator) {
+        jobs.push(
+          navigator.serviceWorker
+            .getRegistrations()
+            .then(registrations =>
+              Promise.all(
+                registrations.map(registration =>
+                  registration.unregister()
+                )
+              )
+            )
+            .catch(() => {})
+        );
+      }
+
+      if ("caches" in window) {
+        jobs.push(
+          caches
+            .keys()
+            .then(keys =>
+              Promise.all(
+                keys
+                  .filter(key =>
+                    key.startsWith("locan-sneaker-room-")
+                  )
+                  .map(key =>
+                    caches.delete(key)
+                  )
+              )
+            )
+            .catch(() => {})
+        );
+      }
+
+      Promise
+        .allSettled(jobs)
+        .then(() => {
+          const url = new URL(window.location.href);
+
+          if (
+            url.searchParams.get("fresh") !==
+            "20261013-v20"
+          ) {
+            url.searchParams.set(
+              "fresh",
+              "20261013-v20"
+            );
+
+            window.location.replace(
+              url.toString()
+            );
+          }
+        });
+    })();
+  </script>
+
 <!-- =====================================================
        BRAND ICON
   ====================================================== -->
@@ -51,12 +118,12 @@
 
   <link
     rel="stylesheet"
-    href="./style.css?v=20260912-final-search"
+    href="./style.css?v=20261013-restore-v20"
   >
 
   <link
     rel="stylesheet"
-    href="./collection-menu.css?v=20260913-divider-v1"
+    href="./collection-menu.css?v=20261013-restore-v20"
   >
 
   <!-- Lộc An brand icons -->
@@ -203,7 +270,7 @@
   >  <!-- FINAL shared collection visual layer: must load last -->
   <link
     rel="stylesheet"
-    href="./unified-collection-ui.css?v=20260915-badge-v25"
+    href="./unified-collection-ui.css?v=20261013-restore-v20"
   >
 
   <!-- Requested language + archive-feature placement only -->
@@ -633,13 +700,14 @@
 
   <link
     rel="stylesheet"
-    href="./archive-features-v17.css?v=20261012-v17"
+    href="./archive-features-v17.css?v=20261013-restore-v20"
   >
 
 </head>
 
 
 <body>
+  <!-- LIVE RESTORE v20 -->
 
   <div class="container">
 
@@ -1124,7 +1192,7 @@
   ====================================================== -->
 
   <script
-    src="./data.js?v=20260913-15pairs-v1"
+    src="./data.js?v=20261013-restore-v20"
   ></script>
 
   <!-- =====================================================
@@ -1137,12 +1205,12 @@
   ></script>
 
   <script
-    src="./catalog-additions.js?v=20260914-catalog-v1"
+    src="./catalog-additions.js?v=20261013-restore-v20"
   ></script>
 
   <!-- CURRENT SITE ADJUSTMENTS: metadata, VI default, Yuto image 2 fine-tune -->
   <script
-    src="./current-site-adjustments.js?v=20261011-v4"
+    src="./current-site-adjustments.js?v=20261013-restore-v20"
   ></script>
 
   <!-- =====================================================
@@ -1153,12 +1221,12 @@
   ====================================================== -->
 
   <script
-    src="./pictures/normalized/manifest.js?v=20261010-standard-v4b-wide-sparse"
+    src="./pictures/normalized/manifest.js?v=20261013-restore-v20"
   ></script>
 
   <script
     id="locan-catalog-normalization-loader-v4"
-    src="./catalog-normalization.js?v=20261010-standard-v4-rollback1"
+    src="./catalog-normalization.js?v=20261013-restore-v20"
   ></script>
 
   <!-- =====================================================
@@ -1167,7 +1235,7 @@
   ====================================================== -->
 
   <script
-    src="./catalog-engine.js?v=20260914-custom2026-v21"
+    src="./catalog-engine.js?v=20261013-restore-v20"
   ></script>
 
 
@@ -1176,7 +1244,7 @@
   ====================================================== -->
 
   <script
-    src="./main.js?v=20260912-final-search"
+    src="./main.js?v=20261013-restore-v20"
   ></script>
 
   <!-- =====================================================
@@ -1185,7 +1253,7 @@
   ====================================================== -->
 
   <script
-    src="./catalog-ui.js?v=20260914-catalog-v2"
+    src="./catalog-ui.js?v=20261013-restore-v20"
   ></script>
 
   <!-- =====================================================
@@ -1195,7 +1263,7 @@
   ====================================================== -->
 
   <script
-    src="./catalog-display.js?v=20260914-catalog-v4d"
+    src="./catalog-display.js?v=20261013-restore-v20"
   ></script>
 
 
@@ -1837,30 +1905,30 @@
   ====================================================== -->
 
   <script
-    src="./collection-view.js?v=20260915-mobile-v24"
+    src="./collection-view.js?v=20261013-restore-v20"
   ></script>
 
   <script
-    src="./language-navigation-fix.js?v=20260914-lang-sync-v16"
+    src="./language-navigation-fix.js?v=20261013-restore-v20"
   ></script>
 
   <script
-    src="./localization-patch.js?v=20260914-clean-v3"
+    src="./localization-patch.js?v=20261013-restore-v20"
   ></script>
 
   <!-- FINAL homepage image authority. Loaded after collection-view.js
        so legacy per-pair calibration cannot override normalized assets. -->
   <script
-    src="./catalog-standardization-final.js?v=20261010-standard-v4-rollback1"
+    src="./catalog-standardization-final.js?v=20261013-restore-v20"
   ></script>
   <!-- FORMERLY IN COLLECTION: remove PRE-OWNED presentation + Balenciaga 3D fine-tune -->
   <script
-    src="./formerly-cleanup.js?v=20261011-v2"
+    src="./formerly-cleanup.js?v=20261013-restore-v20"
   ></script>
 
 
   <script
-    src="./archive-features-v17.js?v=20261012-v17"
+    src="./archive-features-v17.js?v=20261013-restore-v20"
   ></script>
 
 </body>
