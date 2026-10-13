@@ -1,5 +1,5 @@
 /* =========================================================
-   LỘC AN — FULLSCREEN MUSEUM MODE v24
+   LỘC AN — FULLSCREEN MUSEUM MODE v25
 
    EXACT-FRAME RENDERER
    --------------------
@@ -42,7 +42,7 @@
       launchText: "Trình chiếu tự động dành cho TV và màn hình trong phòng trưng bày.",
       launchFullscreen: "BẮT ĐẦU TOÀN MÀN HÌNH",
       launchWindow: "BẮT ĐẦU",
-      launchNote: "← / → chuyển đôi · Space tạm dừng · F toàn màn hình",
+      launchHome: "TRỞ VỀ TRANG CHÍNH",
       untitled: "HIỆN VẬT KHÔNG TÊN",
       noStory: "Thông tin lưu trữ của đôi giày này đang được cập nhật.",
       noPairs: "Không có đôi giày nào trong bộ sưu tập hiện tại."
@@ -61,7 +61,7 @@
       launchText: "An automatic exhibition loop designed for a TV or display in the sneaker room.",
       launchFullscreen: "START FULLSCREEN",
       launchWindow: "START",
-      launchNote: "← / → change pair · Space pause · F fullscreen",
+      launchHome: "BACK TO HOME",
       untitled: "UNTITLED ARTIFACT",
       noStory: "Archive information for this pair is being updated.",
       noPairs: "There are no current collection pairs to display."
@@ -263,13 +263,16 @@
     setText("museum-launch-text", t.launchText);
     setText("museum-launch-fullscreen-copy", t.launchFullscreen);
     setText("museum-launch-window-copy", t.launchWindow);
-    setText("museum-launch-note", t.launchNote);
+    setText("museum-launch-home-copy", t.launchHome);
 
     syncPlayButton();
     syncFullscreenButton();
 
     const exit = document.getElementById("museum-exit-link");
     if (exit) exit.href = `./index.html?lang=${encodeURIComponent(state.lang)}`;
+
+    const home = document.getElementById("museum-launch-home");
+    if (home) home.href = `./index.html?lang=${encodeURIComponent(state.lang)}`;
 
     document.title =
       state.lang === "vi"

@@ -1,5 +1,5 @@
 /* =========================================================
-   LỘC AN — FULLSCREEN MUSEUM MODE v24
+   LỘC AN — FULLSCREEN MUSEUM MODE v25
    TV / monitor exhibition loop.
 ========================================================= */
 
@@ -331,6 +331,7 @@ select {
 .museum-control-link,
 .museum-launch-primary,
 .museum-launch-secondary,
+.museum-launch-home,
 .museum-select {
   border: 1px solid #303035;
   background: #171719;
@@ -496,7 +497,8 @@ select {
 }
 
 .museum-launch-primary,
-.museum-launch-secondary {
+.museum-launch-secondary,
+.museum-launch-home {
   padding: 12px 18px;
   font-size: 0.72rem;
   font-weight: 900;
@@ -738,4 +740,29 @@ select {
 
 .museum-canvas {
   contain: strict;
+}
+
+
+/* MUSEUM LAUNCH CLEANUP v25 */
+.museum-launch-home {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  color: #d6d6dc;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.museum-launch-home:hover,
+.museum-launch-home:focus-visible {
+  border-color: #5a5a60;
+  color: #fff;
+  outline: none;
+}
+
+@media (max-width: 650px) {
+  .museum-launch-home {
+    width: 100%;
+  }
 }
