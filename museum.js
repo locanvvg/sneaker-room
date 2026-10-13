@@ -1,5 +1,5 @@
 /* =========================================================
-   LỘC AN — FULLSCREEN MUSEUM MODE v21
+   LỘC AN — FULLSCREEN MUSEUM MODE v22
 
    Fixes:
    - excludes Balenciaga / sold museum pairs
@@ -58,12 +58,19 @@
   ];
 
   const FIT_OVERRIDES = [
-    { match: /New Balance\s*2002R/i, scale: 0.84 },
-    { match: /Raygun Away/i, scale: 0.84 },
-    { match: /BAPE\s*x\s*St[üu]ssy/i, scale: 0.82 },
-    { match: /Waffle Racer/i, scale: 0.82 },
-    { match: /Seafoam/i, scale: 0.84 }
+    { match: /New Balance\s*2002R/i, width: "69%", height: "64%", mobileWidth: "70%", mobileHeight: "62%" },
+    { match: /Raygun Away/i, width: "70%", height: "65%", mobileWidth: "71%", mobileHeight: "63%" },
+    { match: /BAPE\s*x\s*St[üu]ssy/i, width: "66%", height: "62%", mobileWidth: "68%", mobileHeight: "61%" },
+    { match: /Waffle Racer/i, width: "67%", height: "62%", mobileWidth: "69%", mobileHeight: "61%" },
+    { match: /Seafoam/i, width: "70%", height: "65%", mobileWidth: "71%", mobileHeight: "63%" }
   ];
+
+  const DEFAULT_FIT = {
+    width: "84%",
+    height: "76%",
+    mobileWidth: "84%",
+    mobileHeight: "72%"
+  };
 
   const app = document.getElementById("museum-app");
   const stage = document.getElementById("museum-stage");
@@ -165,14 +172,18 @@
     return substantial || paragraphs[0];
   }
 
-  function fitScaleFor(item) {
+  function fitFor(item) {
     const haystack = normalizedTitle(item);
-    const hit = FIT_OVERRIDES.find(entry => entry.match.test(haystack));
-    return hit?.scale || 0.92;
+    return FIT_OVERRIDES.find(entry => entry.match.test(haystack)) || DEFAULT_FIT;
   }
 
   function applyFit(item) {
-    image.style.setProperty("--museum-image-scale", String(fitScaleFor(item)));
+    const fit = fitFor(item);
+
+    image.style.setProperty("--museum-image-width", fit.width);
+    image.style.setProperty("--museum-image-height", fit.height);
+    image.style.setProperty("--museum-image-width-mobile", fit.mobileWidth || fit.width);
+    image.style.setProperty("--museum-image-height-mobile", fit.mobileHeight || fit.height);
   }
 
   function buildCollection() {
@@ -233,10 +244,23 @@
       const preload = new Image();
       preload.decoding = "async";
       preload.loading = "eager";
-      preload.onload = () => resolve(src);
+
+      const finish = async () => {
+        try {
+          if (typeof preload.decode === "function") {
+            await preload.decode();
+          }
+        } catch (_) {}
+        resolve(src);
+      };
+
+      preload.onload = finish;
       preload.onerror = () => resolve(src);
       preload.src = src;
-      if (preload.complete) resolve(src);
+
+      if (preload.complete && preload.naturalWidth > 0) {
+        finish();
+      }
     });
 
     state.imageCache.set(src, promise);
@@ -245,7 +269,7 @@
 
   function preloadAround(index) {
     if (!state.pairs.length) return;
-    [index, index + 1, index - 1].forEach(rawIndex => {
+    [index, index + 1, index + 2, index - 1].forEach(rawIndex => {
       const i = (rawIndex + state.pairs.length) % state.pairs.length;
       cacheImage(imageOf(state.pairs[i]));
     });
@@ -281,8 +305,11 @@
       counter.textContent = `${String(normalized + 1).padStart(2, "0")} / ${String(state.pairs.length).padStart(2, "0")}`;
 
       stage.classList.remove("is-changing", "is-entering");
-      void stage.offsetWidth;
-      stage.classList.add("is-entering");
+      requestAnimationFrame(() => {
+        if (token === state.transitionToken) {
+          stage.classList.add("is-entering");
+        }
+      });
 
       preloadAround(normalized);
       if (resetTimer) resetCycle();
@@ -306,7 +333,7 @@
   function resetCycle() {
     state.elapsedBeforePause = 0;
     state.cycleStartedAt = performance.now();
-    progress.style.width = "0%";
+    progress.style.transform = "scaleX(0)";
   }
 
   function elapsedMs(now) {
@@ -318,7 +345,7 @@
     if (state.started && state.pairs.length) {
       const elapsed = elapsedMs(now);
       const ratio = Math.min(1, elapsed / state.durationMs);
-      progress.style.width = `${ratio * 100}%`;
+      progress.style.transform = `scaleX(${ratio})`;
       if (state.playing && ratio >= 1) nextPair();
     }
     state.raf = requestAnimationFrame(animationLoop);

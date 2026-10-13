@@ -148,7 +148,7 @@ select {
   height: 10%;
   border-radius: 50%;
   background: rgba(0,0,0,0.42);
-  filter: blur(34px);
+  filter: blur(18px);
   opacity: 0.72;
   pointer-events: none;
 }
@@ -157,42 +157,33 @@ select {
   position: relative;
   z-index: 2;
   display: block;
-  width: 100%;
-  height: 100%;
+
+  width: var(--museum-image-width, 84%);
+  height: var(--museum-image-height, 76%);
+  max-width: var(--museum-image-width, 84%);
+  max-height: var(--museum-image-height, 76%);
+
   object-fit: contain;
   object-position: center;
+
   user-select: none;
   -webkit-user-drag: none;
-  filter:
-    drop-shadow(0 20px 24px rgba(0,0,0,0.34))
-    drop-shadow(0 4px 5px rgba(0,0,0,0.16));
+
   opacity: 1;
-  --museum-image-scale: 0.92;
-  transform: scale(var(--museum-image-scale));
-  transition:
-    opacity 0.22s ease,
-    transform 0.28s ease;
-  will-change: opacity, transform;
+  transform: none !important;
+  filter: none;
+
+  transition: opacity 0.18s ease;
+  will-change: opacity;
   backface-visibility: hidden;
 }
 
 .museum-stage.is-changing .museum-image {
-  opacity: 0.08;
+  opacity: 0;
 }
 
 .museum-stage.is-entering .museum-image {
-  animation: museum-image-enter 0.28s ease-out both;
-}
-
-@keyframes museum-image-enter {
-  from {
-    opacity: 0.82;
-    transform: scale(calc(var(--museum-image-scale) * 0.985));
-  }
-  to {
-    opacity: 1;
-    transform: scale(var(--museum-image-scale));
-  }
+  opacity: 1;
 }
 
 .museum-copy {
@@ -287,10 +278,12 @@ select {
 
 .museum-progress-bar {
   display: block;
-  width: 0%;
+  width: 100%;
   height: 100%;
   background: var(--museum-yellow);
+  transform: scaleX(0);
   transform-origin: left center;
+  will-change: transform;
 }
 
 .museum-controls {
@@ -308,9 +301,7 @@ select {
   padding: 12px 14px;
   border: 1px solid var(--museum-border);
   border-radius: 14px;
-  background: rgba(10,10,12,0.74);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background: rgba(10,10,12,0.94);
 
   opacity: 1;
   transform: translateY(0);
@@ -473,8 +464,7 @@ select {
   background:
     radial-gradient(circle at 50% 42%, rgba(255,204,0,0.08), transparent 32%),
     rgba(3,3,4,0.94);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+
 }
 
 .museum-launch[hidden] {
@@ -725,4 +715,17 @@ select {
 }
 
 
-.museum-stage, .museum-image-frame, .museum-copy { will-change: opacity, transform; }
+
+/* MUSEUM IMAGE NORMALIZATION v22 */
+.museum-image-frame {
+  contain: layout paint;
+}
+
+@media (max-width: 1050px) {
+  .museum-image {
+    width: var(--museum-image-width-mobile, var(--museum-image-width, 84%));
+    height: var(--museum-image-height-mobile, var(--museum-image-height, 76%));
+    max-width: var(--museum-image-width-mobile, var(--museum-image-width, 84%));
+    max-height: var(--museum-image-height-mobile, var(--museum-image-height, 76%));
+  }
+}
