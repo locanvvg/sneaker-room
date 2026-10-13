@@ -1,0 +1,104 @@
+name: Deploy protected public build
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sneaker-room-public-deploy
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout private source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install build tools
+        run: npm ci
+
+      - name: Build protected public version
+        run: npm run build
+
+      - name: Verify required pages exist
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          required=(
+            "dist/index.html"
+            "dist/shoe.html"
+            "dist/timeline.html"
+            "dist/globe.html"
+            "dist/museum.html"
+          )
+
+          for file in "${required[@]}"; do
+            if [[ ! -f "$file" ]]; then
+              echo "Missing required deploy file: $file"
+              exit 1
+            fi
+          done
+
+      - name: Deploy to public sneaker-room repo
+        env:
+          PUBLIC_DEPLOY_TOKEN: ${{ secrets.PUBLIC_DEPLOY_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [[ -z "${PUBLIC_DEPLOY_TOKEN:-}" ]]; then
+            echo "Missing repository secret PUBLIC_DEPLOY_TOKEN"
+            exit 1
+          fi
+
+          PUBLIC_DIR="$(mktemp -d)"
+
+          git clone \
+            "https://x-access-token:${PUBLIC_DEPLOY_TOKEN}@github.com/locanvvg/sneaker-room.git" \
+            "$PUBLIC_DIR"
+
+          cd "$PUBLIC_DIR"
+
+          # Public repository intentionally keeps only the latest deploy commit.
+          # The readable development history belongs in the PRIVATE source repo.
+          git checkout --orphan protected-deploy
+
+          git rm -rf . >/dev/null 2>&1 || true
+
+          rsync -a \
+            --delete \
+            --exclude=".git" \
+            "${GITHUB_WORKSPACE}/dist/" \
+            "$PUBLIC_DIR/"
+
+          git add -A
+
+          git config user.name "Lộc An Deploy Bot"
+          git config user.email "actions@users.noreply.github.com"
+
+          if git diff --cached --quiet; then
+            echo "No deploy changes."
+            exit 0
+          fi
+
+          git commit -m "Deploy protected production build"
+
+          # Force-push is deliberate:
+          # public history contains only production builds, never readable source history.
+          git push --force origin HEAD:main
