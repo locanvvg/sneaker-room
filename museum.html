@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#050505">
+  <meta name="description" content="Lộc An Sneaker Collection — Fullscreen Museum Mode.">
+  <title>Museum Mode | Lộc An Sneaker Collection</title>
+
+  <link rel="icon" type="image/x-icon" href="./favicon.ico?v=20260914-brand-v8">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png?v=20260914-brand-v8">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=20260914-brand-v8">
+
+  <link rel="stylesheet" href="./museum.css?v=20261013-v19">
+</head>
+
+<body class="museum-body">
+  <main class="museum-app" id="museum-app">
+
+    <section class="museum-stage" id="museum-stage" aria-live="polite">
+      <div class="museum-ambient" aria-hidden="true"></div>
+
+      <div class="museum-brand">
+        <span class="museum-brand-mark">LỘC AN</span>
+        <span class="museum-brand-divider"></span>
+        <span id="museum-mode-label">MUSEUM MODE</span>
+      </div>
+
+      <div class="museum-counter" id="museum-counter">01 / 16</div>
+
+      <div class="museum-image-zone">
+        <div class="museum-image-frame" id="museum-image-frame">
+          <img
+            id="museum-image"
+            class="museum-image"
+            src=""
+            alt=""
+            draggable="false"
+          >
+        </div>
+      </div>
+
+      <section class="museum-copy" id="museum-copy">
+        <div class="museum-meta-row">
+          <span class="museum-year" id="museum-year">—</span>
+          <span class="museum-separator">•</span>
+          <span class="museum-edition" id="museum-edition">—</span>
+        </div>
+
+        <h1 class="museum-title" id="museum-title">LỘC AN SNEAKER COLLECTION</h1>
+
+        <p class="museum-subtitle" id="museum-subtitle"></p>
+
+        <div class="museum-story-wrap">
+          <span class="museum-story-label" id="museum-story-label">CÂU CHUYỆN</span>
+          <p class="museum-story" id="museum-story"></p>
+        </div>
+      </section>
+
+      <div class="museum-progress" aria-hidden="true">
+        <span class="museum-progress-bar" id="museum-progress-bar"></span>
+      </div>
+
+      <div class="museum-idle-hint" id="museum-idle-hint">
+        <span id="museum-idle-hint-copy">Di chuyển chuột để hiện điều khiển</span>
+      </div>
+    </section>
+
+    <section class="museum-controls" id="museum-controls" aria-label="Museum slideshow controls">
+      <div class="museum-controls-left">
+        <a class="museum-control-link" id="museum-exit-link" href="./index.html">
+          <span aria-hidden="true">←</span>
+          <span id="museum-exit-copy">BỘ SƯU TẬP</span>
+        </a>
+
+        <div class="museum-language" aria-label="Language">
+          <button type="button" class="museum-lang-btn active" id="museum-lang-vi">VI</button>
+          <button type="button" class="museum-lang-btn" id="museum-lang-en">EN</button>
+        </div>
+      </div>
+
+      <div class="museum-playback">
+        <button type="button" class="museum-control-btn" id="museum-prev" aria-label="Previous pair">←</button>
+
+        <button type="button" class="museum-control-btn museum-control-btn-primary" id="museum-play">
+          <span id="museum-play-icon" aria-hidden="true">Ⅱ</span>
+          <span id="museum-play-copy">TẠM DỪNG</span>
+        </button>
+
+        <button type="button" class="museum-control-btn" id="museum-next" aria-label="Next pair">→</button>
+      </div>
+
+      <div class="museum-controls-right">
+        <label class="museum-speed-control" for="museum-speed">
+          <span id="museum-speed-label">THỜI GIAN</span>
+          <select id="museum-speed" class="museum-select">
+            <option value="8">8s</option>
+            <option value="12" selected>12s</option>
+            <option value="20">20s</option>
+            <option value="30">30s</option>
+          </select>
+        </label>
+
+        <button type="button" class="museum-control-btn" id="museum-fullscreen">
+          <span aria-hidden="true">⛶</span>
+          <span id="museum-fullscreen-copy">TOÀN MÀN HÌNH</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="museum-launch" id="museum-launch" aria-labelledby="museum-launch-title">
+      <div class="museum-launch-card">
+        <div class="museum-launch-kicker">LỘC AN SNEAKER COLLECTION</div>
+        <h2 id="museum-launch-title">MUSEUM MODE</h2>
+        <p id="museum-launch-text">
+          Trình chiếu tự động dành cho TV và màn hình trong phòng trưng bày.
+        </p>
+
+        <div class="museum-launch-actions">
+          <button type="button" class="museum-launch-primary" id="museum-launch-fullscreen">
+            <span aria-hidden="true">⛶</span>
+            <span id="museum-launch-fullscreen-copy">BẮT ĐẦU TOÀN MÀN HÌNH</span>
+          </button>
+
+          <button type="button" class="museum-launch-secondary" id="museum-launch-window">
+            <span id="museum-launch-window-copy">BẮT ĐẦU</span>
+          </button>
+        </div>
+
+        <p class="museum-launch-note" id="museum-launch-note">
+          ← / → chuyển đôi · Space tạm dừng · F toàn màn hình
+        </p>
+      </div>
+    </section>
+
+    <noscript>
+      <div class="museum-noscript">Museum Mode requires JavaScript.</div>
+    </noscript>
+  </main>
+
+  <script src="./data.js?v=20261013-current"></script>
+  <script src="./runtime-performance-guard-v1.js"></script>
+  <script src="./catalog-additions.js?v=20261013-current"></script>
+  <script src="./current-site-adjustments.js?v=20261011-v4"></script>
+  <script src="./museum.js?v=20261013-v19"></script>
+</body>
+</html>

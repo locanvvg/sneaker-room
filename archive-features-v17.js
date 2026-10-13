@@ -1,6 +1,9 @@
 /* =========================================================
-   LỘC AN — ARCHIVE FEATURES v17
-   - ROOM teaser opens only after click.
+   LỘC AN — ARCHIVE FEATURES v19
+   Shared Timeline / World Map / Museum Mode / Room behavior.
+
+   - ROOM opens only after click.
+   - Adds MUSEUM MODE to existing archive feature rows.
    - No mutation observers / no polling.
    - Keeps Timeline total-count wording as PAIRS / ĐÔI GIÀY.
 ========================================================= */
@@ -13,14 +16,16 @@
       title: "CĂN PHÒNG",
       text: "Coming soon... Một bất ngờ sẽ tới sớm thôi.",
       close: "ĐÓNG",
-      pairs: "ĐÔI GIÀY"
+      pairs: "ĐÔI GIÀY",
+      museum: "TRÌNH CHIẾU"
     },
     en: {
       kicker: "ARCHIVE ROOM",
       title: "ROOM",
       text: "Coming soon... A surprise is coming very soon.",
       close: "CLOSE",
-      pairs: "PAIRS"
+      pairs: "PAIRS",
+      museum: "MUSEUM MODE"
     }
   };
 
@@ -29,6 +34,54 @@
 
   const overlay = () =>
     document.getElementById("room-coming-soon-overlay");
+
+  function ensureMuseumLink() {
+    const nav = document.querySelector(".archive-feature-nav");
+    if (!nav) return null;
+
+    let link = document.getElementById("museum-mode-feature-link");
+    if (link) return link;
+
+    link = document.createElement("a");
+    link.id = "museum-mode-feature-link";
+    link.className = "archive-feature-link";
+    link.href = "./museum.html";
+
+    const vi = document.createElement("span");
+    vi.className = "archive-copy-vi";
+    vi.textContent = "TRÌNH CHIẾU";
+
+    const en = document.createElement("span");
+    en.className = "archive-copy-en";
+    en.textContent = "MUSEUM MODE";
+
+    link.append(vi, en);
+
+    const roomLink = document.getElementById("room-feature-link");
+    nav.insertBefore(link, roomLink || null);
+
+    return link;
+  }
+
+  function syncMuseumLink() {
+    const link = ensureMuseumLink();
+    if (!link) return;
+
+    const t = COPY[lang()];
+    const vi = link.querySelector(".archive-copy-vi");
+    const en = link.querySelector(".archive-copy-en");
+
+    if (vi) vi.textContent = "TRÌNH CHIẾU";
+    if (en) en.textContent = "MUSEUM MODE";
+
+    link.href = `./museum.html?lang=${encodeURIComponent(lang())}`;
+    link.setAttribute(
+      "aria-label",
+      lang() === "vi" ? "Mở chế độ trình chiếu bảo tàng" : "Open Museum Mode"
+    );
+
+    void t;
+  }
 
   function syncCopy() {
     const t = COPY[lang()];
@@ -44,6 +97,8 @@
     if (text) text.textContent = t.text;
     if (close) close.textContent = t.close;
     if (countLabel) countLabel.textContent = t.pairs;
+
+    syncMuseumLink();
   }
 
   function openRoom(event) {
