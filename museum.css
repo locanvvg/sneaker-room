@@ -164,27 +164,35 @@ select {
   user-select: none;
   -webkit-user-drag: none;
   filter:
-    drop-shadow(0 22px 24px rgba(0,0,0,0.34))
-    drop-shadow(0 4px 5px rgba(0,0,0,0.18));
+    drop-shadow(0 20px 24px rgba(0,0,0,0.34))
+    drop-shadow(0 4px 5px rgba(0,0,0,0.16));
   opacity: 1;
-  transform: scale(1);
+  --museum-image-scale: 0.92;
+  transform: scale(var(--museum-image-scale));
   transition:
-    opacity 0.52s ease,
-    transform 0.9s cubic-bezier(.2,.7,.2,1);
+    opacity 0.22s ease,
+    transform 0.28s ease;
+  will-change: opacity, transform;
+  backface-visibility: hidden;
 }
 
 .museum-stage.is-changing .museum-image {
-  opacity: 0;
-  transform: scale(0.985);
+  opacity: 0.08;
 }
 
 .museum-stage.is-entering .museum-image {
-  animation: museum-image-enter 11s ease-out both;
+  animation: museum-image-enter 0.28s ease-out both;
 }
 
 @keyframes museum-image-enter {
-  from { transform: scale(0.985); }
-  to { transform: scale(1.025); }
+  from {
+    opacity: 0.82;
+    transform: scale(calc(var(--museum-image-scale) * 0.985));
+  }
+  to {
+    opacity: 1;
+    transform: scale(var(--museum-image-scale));
+  }
 }
 
 .museum-copy {
@@ -193,7 +201,7 @@ select {
   margin-right: clamp(34px, 5vw, 88px);
   padding: clamp(36px, 5vw, 70px) 0 clamp(80px, 9vh, 120px) clamp(34px, 4vw, 72px);
   border-left: 1px solid rgba(255,255,255,0.08);
-  transition: opacity 0.35s ease, transform 0.45s ease;
+  transition: opacity 0.2s ease, transform 0.24s ease;
 }
 
 .museum-stage.is-changing .museum-copy {
@@ -300,7 +308,7 @@ select {
   padding: 12px 14px;
   border: 1px solid var(--museum-border);
   border-radius: 14px;
-  background: rgba(10,10,12,0.78);
+  background: rgba(10,10,12,0.74);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 
@@ -715,3 +723,6 @@ select {
     animation: none !important;
   }
 }
+
+
+.museum-stage, .museum-image-frame, .museum-copy { will-change: opacity, transform; }

@@ -1,11 +1,11 @@
 /* =========================================================
-   LỘC AN — FULLSCREEN MUSEUM MODE v19
+   LỘC AN — FULLSCREEN MUSEUM MODE v21
 
-   Data-driven exhibition loop:
-   - only current In Collection pairs
-   - reads the existing sneaker catalog
-   - keeps existing sneaker stories untouched
-   - shows one existing story paragraph as the museum excerpt
+   Fixes:
+   - excludes Balenciaga / sold museum pairs
+   - smoother, lighter transitions
+   - image preload before swap
+   - per-pair size normalization for oversize pairs
 ========================================================= */
 (() => {
   "use strict";
@@ -53,6 +53,18 @@
     }
   };
 
+  const MUSEUM_EXCLUDE_PATTERNS = [
+    /balenciaga/i
+  ];
+
+  const FIT_OVERRIDES = [
+    { match: /New Balance\s*2002R/i, scale: 0.84 },
+    { match: /Raygun Away/i, scale: 0.84 },
+    { match: /BAPE\s*x\s*St[üu]ssy/i, scale: 0.82 },
+    { match: /Waffle Racer/i, scale: 0.82 },
+    { match: /Seafoam/i, scale: 0.84 }
+  ];
+
   const app = document.getElementById("museum-app");
   const stage = document.getElementById("museum-stage");
   const image = document.getElementById("museum-image");
@@ -76,7 +88,8 @@
     cycleStartedAt: 0,
     raf: 0,
     hideTimer: 0,
-    transitionToken: 0
+    transitionToken: 0,
+    imageCache: new Map()
   };
 
   function initialLanguage() {
@@ -101,8 +114,20 @@
     return String(value[state.lang] ?? value.vi ?? value.en ?? "");
   }
 
+  function normalizedTitle(item) {
+    return [localized(item?.title), localized(item?.subtitle), localized(item?.brand)]
+      .filter(Boolean)
+      .join(" ")
+      .trim();
+  }
+
   function statusOf(item) {
     return String(item?.collectionStatus || "own").trim().toLowerCase();
+  }
+
+  function shouldExcludeFromMuseum(item) {
+    const haystack = normalizedTitle(item);
+    return MUSEUM_EXCLUDE_PATTERNS.some(pattern => pattern.test(haystack));
   }
 
   function releaseYear(item) {
@@ -112,17 +137,11 @@
   }
 
   function editionOf(item) {
-    return (
-      localized(item?.editionType) ||
-      localized(item?.edition) ||
-      ""
-    );
+    return localized(item?.editionType) || localized(item?.edition) || "";
   }
 
   function imageOf(item) {
-    if (Array.isArray(item?.images) && item.images.length) {
-      return String(item.images[0]);
-    }
+    if (Array.isArray(item?.images) && item.images.length) return String(item.images[0]);
     return String(item?.image || "");
   }
 
@@ -146,13 +165,19 @@
     return substantial || paragraphs[0];
   }
 
-  function buildCollection() {
-    const catalog =
-      (typeof sneakers !== "undefined" && Array.isArray(sneakers))
-        ? sneakers
-        : [];
+  function fitScaleFor(item) {
+    const haystack = normalizedTitle(item);
+    const hit = FIT_OVERRIDES.find(entry => entry.match.test(haystack));
+    return hit?.scale || 0.92;
+  }
 
-    state.pairs = catalog.filter(item => statusOf(item) === "own");
+  function applyFit(item) {
+    image.style.setProperty("--museum-image-scale", String(fitScaleFor(item)));
+  }
+
+  function buildCollection() {
+    const catalog = (typeof sneakers !== "undefined" && Array.isArray(sneakers)) ? sneakers : [];
+    state.pairs = catalog.filter(item => statusOf(item) === "own" && !shouldExcludeFromMuseum(item));
   }
 
   function setLanguage(lang) {
@@ -176,7 +201,6 @@
 
   function syncStaticCopy() {
     const t = COPY[state.lang];
-
     setText("museum-mode-label", t.mode);
     setText("museum-story-label", t.story);
     setText("museum-exit-copy", t.exit);
@@ -187,17 +211,13 @@
     setText("museum-launch-fullscreen-copy", t.launchFullscreen);
     setText("museum-launch-window-copy", t.launchWindow);
     setText("museum-launch-note", t.launchNote);
-
     syncPlayButton();
     syncFullscreenButton();
 
     const exit = document.getElementById("museum-exit-link");
     if (exit) exit.href = `./index.html?lang=${encodeURIComponent(state.lang)}`;
 
-    document.title =
-      state.lang === "vi"
-        ? "Museum Mode | Bộ sưu tập giày Lộc An"
-        : "Museum Mode | Lộc An Sneaker Collection";
+    document.title = state.lang === "vi" ? "Museum Mode | Bộ sưu tập giày Lộc An" : "Museum Mode | Lộc An Sneaker Collection";
   }
 
   function setText(id, value) {
@@ -205,15 +225,29 @@
     if (node) node.textContent = value;
   }
 
+  function cacheImage(src) {
+    if (!src) return Promise.resolve(src);
+    if (state.imageCache.has(src)) return state.imageCache.get(src);
+
+    const promise = new Promise(resolve => {
+      const preload = new Image();
+      preload.decoding = "async";
+      preload.loading = "eager";
+      preload.onload = () => resolve(src);
+      preload.onerror = () => resolve(src);
+      preload.src = src;
+      if (preload.complete) resolve(src);
+    });
+
+    state.imageCache.set(src, promise);
+    return promise;
+  }
+
   function preloadAround(index) {
     if (!state.pairs.length) return;
-
     [index, index + 1, index - 1].forEach(rawIndex => {
       const i = (rawIndex + state.pairs.length) % state.pairs.length;
-      const src = imageOf(state.pairs[i]);
-      if (!src) return;
-      const preload = new Image();
-      preload.src = src;
+      cacheImage(imageOf(state.pairs[i]));
     });
   }
 
@@ -227,41 +261,30 @@
       return;
     }
 
-    const normalized =
-      (nextIndex + state.pairs.length) % state.pairs.length;
-
+    const normalized = (nextIndex + state.pairs.length) % state.pairs.length;
     const token = ++state.transitionToken;
     const item = state.pairs[normalized];
+    const src = imageOf(item);
 
     const apply = () => {
       if (token !== state.transitionToken) return;
 
       state.index = normalized;
-
-      const src = imageOf(item);
+      applyFit(item);
       image.src = src;
       image.alt = localized(item?.title) || COPY[state.lang].untitled;
-
-      title.textContent =
-        localized(item?.title) ||
-        COPY[state.lang].untitled;
-
-      subtitle.textContent =
-        localized(item?.subtitle);
-
+      title.textContent = localized(item?.title) || COPY[state.lang].untitled;
+      subtitle.textContent = localized(item?.subtitle);
       year.textContent = releaseYear(item);
       edition.textContent = editionOf(item);
       story.textContent = firstSubstantialStoryParagraph(item);
-
-      counter.textContent =
-        `${String(normalized + 1).padStart(2, "0")} / ${String(state.pairs.length).padStart(2, "0")}`;
+      counter.textContent = `${String(normalized + 1).padStart(2, "0")} / ${String(state.pairs.length).padStart(2, "0")}`;
 
       stage.classList.remove("is-changing", "is-entering");
       void stage.offsetWidth;
       stage.classList.add("is-entering");
 
       preloadAround(normalized);
-
       if (resetTimer) resetCycle();
     };
 
@@ -271,16 +294,14 @@
     }
 
     stage.classList.add("is-changing");
-    window.setTimeout(apply, 360);
+    cacheImage(src).then(() => {
+      if (token !== state.transitionToken) return;
+      apply();
+    });
   }
 
-  function nextPair() {
-    renderPair(state.index + 1);
-  }
-
-  function previousPair() {
-    renderPair(state.index - 1);
-  }
+  function nextPair() { renderPair(state.index + 1); }
+  function previousPair() { renderPair(state.index - 1); }
 
   function resetCycle() {
     state.elapsedBeforePause = 0;
@@ -298,20 +319,14 @@
       const elapsed = elapsedMs(now);
       const ratio = Math.min(1, elapsed / state.durationMs);
       progress.style.width = `${ratio * 100}%`;
-
-      if (state.playing && ratio >= 1) {
-        nextPair();
-      }
+      if (state.playing && ratio >= 1) nextPair();
     }
-
     state.raf = requestAnimationFrame(animationLoop);
   }
 
   function setPlaying(nextPlaying) {
     const now = performance.now();
-
     if (nextPlaying === state.playing) return;
-
     if (nextPlaying) {
       state.cycleStartedAt = now;
       state.playing = true;
@@ -319,7 +334,6 @@
       state.elapsedBeforePause = elapsedMs(now);
       state.playing = false;
     }
-
     syncPlayButton();
   }
 
@@ -332,65 +346,46 @@
     const t = COPY[state.lang];
     const icon = document.getElementById("museum-play-icon");
     const copy = document.getElementById("museum-play-copy");
-
     if (icon) icon.textContent = state.playing ? "Ⅱ" : "▶";
     if (copy) copy.textContent = state.playing ? t.pause : t.play;
   }
 
   async function enterFullscreen() {
     const target = document.documentElement;
-
     try {
-      if (!document.fullscreenElement && target.requestFullscreen) {
-        await target.requestFullscreen();
-      }
+      if (!document.fullscreenElement && target.requestFullscreen) await target.requestFullscreen();
     } catch (_) {}
-
     syncFullscreenButton();
   }
 
   async function toggleFullscreen() {
     try {
-      if (document.fullscreenElement) {
-        await document.exitFullscreen();
-      } else {
-        await enterFullscreen();
-      }
+      if (document.fullscreenElement) await document.exitFullscreen();
+      else await enterFullscreen();
     } catch (_) {}
-
     syncFullscreenButton();
     revealControls();
   }
 
   function syncFullscreenButton() {
     const t = COPY[state.lang];
-    setText(
-      "museum-fullscreen-copy",
-      document.fullscreenElement ? t.leaveFullscreen : t.fullscreen
-    );
+    setText("museum-fullscreen-copy", document.fullscreenElement ? t.leaveFullscreen : t.fullscreen);
   }
 
   function startMuseum({ fullscreen = false } = {}) {
     state.started = true;
     launch.hidden = true;
-
     resetCycle();
     state.playing = true;
     syncPlayButton();
     revealControls();
-
-    if (fullscreen) {
-      enterFullscreen();
-    }
+    if (fullscreen) enterFullscreen();
   }
 
   function revealControls() {
     app.classList.remove("controls-hidden");
-
     clearTimeout(state.hideTimer);
-
     if (!state.started) return;
-
     state.hideTimer = window.setTimeout(() => {
       app.classList.add("controls-hidden");
     }, 3600);
@@ -399,7 +394,6 @@
   function changeDuration(seconds) {
     const parsed = Number(seconds);
     if (![8, 12, 20, 30].includes(parsed)) return;
-
     state.durationMs = parsed * 1000;
     resetCycle();
     revealControls();
@@ -408,23 +402,15 @@
   function handleKeyboard(event) {
     const target = event.target;
     const tag = target?.tagName?.toLowerCase();
-
     if (tag === "select" || tag === "input" || tag === "textarea") return;
-
     if (event.key === "ArrowRight") {
-      event.preventDefault();
-      nextPair();
-      revealControls();
+      event.preventDefault(); nextPair(); revealControls();
     } else if (event.key === "ArrowLeft") {
-      event.preventDefault();
-      previousPair();
-      revealControls();
+      event.preventDefault(); previousPair(); revealControls();
     } else if (event.code === "Space") {
-      event.preventDefault();
-      togglePlay();
+      event.preventDefault(); togglePlay();
     } else if (event.key.toLowerCase() === "f") {
-      event.preventDefault();
-      toggleFullscreen();
+      event.preventDefault(); toggleFullscreen();
     }
   }
 
@@ -433,33 +419,18 @@
     document.getElementById("museum-next")?.addEventListener("click", nextPair);
     document.getElementById("museum-play")?.addEventListener("click", togglePlay);
     document.getElementById("museum-fullscreen")?.addEventListener("click", toggleFullscreen);
-
     document.getElementById("museum-lang-vi")?.addEventListener("click", () => setLanguage("vi"));
     document.getElementById("museum-lang-en")?.addEventListener("click", () => setLanguage("en"));
-
-    document.getElementById("museum-speed")?.addEventListener("change", event => {
-      changeDuration(event.target.value);
-    });
-
-    document.getElementById("museum-launch-window")?.addEventListener("click", () => {
-      startMuseum({ fullscreen: false });
-    });
-
-    document.getElementById("museum-launch-fullscreen")?.addEventListener("click", () => {
-      startMuseum({ fullscreen: true });
-    });
-
+    document.getElementById("museum-speed")?.addEventListener("change", event => changeDuration(event.target.value));
+    document.getElementById("museum-launch-window")?.addEventListener("click", () => startMuseum({ fullscreen: false }));
+    document.getElementById("museum-launch-fullscreen")?.addEventListener("click", () => startMuseum({ fullscreen: true }));
     document.addEventListener("fullscreenchange", syncFullscreenButton);
     document.addEventListener("keydown", handleKeyboard);
-
     ["mousemove", "pointerdown", "touchstart"].forEach(type => {
       document.addEventListener(type, revealControls, { passive: true });
     });
-
     document.addEventListener("visibilitychange", () => {
-      if (document.hidden && state.playing) {
-        setPlaying(false);
-      }
+      if (document.hidden && state.playing) setPlaying(false);
     });
   }
 
@@ -469,7 +440,6 @@
     setLanguage(state.lang);
     renderPair(0, { immediate: true, resetTimer: false });
     installEvents();
-
     state.raf = requestAnimationFrame(animationLoop);
   }
 
