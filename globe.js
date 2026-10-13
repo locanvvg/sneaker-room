@@ -1,6 +1,15 @@
 /* =========================================================
-   LỘC AN — COLLECTION WORLD MAP v17
+   LỘC AN — COLLECTION WORLD MAP v18
    Pure WebGL globe: no external libraries, no map API.
+
+   v18:
+   - free 360° rotation on both axes
+   - deeper zoom + auto focus on selected countries/locations
+   - collision-safe desktop location labels
+   - brand/country filters render matching sneaker cards
+   - NIKE replaces NIKE SB in brand filter
+   - click sneaker card to reveal why it belongs at that location
+   - normalized Raygun + BAPE x Stüssy thumbnails
 ========================================================= */
 (() => {
   "use strict";
@@ -18,13 +27,30 @@
     roswell: { lat: 33.3943, lon: -104.5230, country: "us", vi: "Roswell, New Mexico", en: "Roswell, New Mexico" }
   };
 
+  const COUNTRY_FOCUS = {
+    us: { lat: 38.2, lon: -98.0, scale: 1.42 },
+    fr: { lat: 46.4, lon: 2.2, scale: 1.88 },
+    jp: { lat: 36.1, lon: 138.2, scale: 1.88 },
+    uk: { lat: 54.0, lon: -2.5, scale: 1.90 },
+    kr: { lat: 36.3, lon: 127.9, scale: 1.95 }
+  };
+
   const STORIES = [
     {
       id: "air-jordan-1-black-bloodline-pe",
       brand: "jordan",
       locations: ["beaverton"],
       roles: {
-        beaverton: { vi: "Nike World Headquarters · Sample provenance", en: "Nike World Headquarters · Sample provenance" }
+        beaverton: {
+          vi: "Nike World Headquarters · Bối cảnh phát triển Sample",
+          en: "Nike World Headquarters · Sample development context"
+        }
+      },
+      reasons: {
+        beaverton: {
+          vi: "Beaverton được dùng làm điểm đại diện cho bối cảnh phát triển của bản PE Sample này. Nike World Headquarters đặt tại Beaverton; vì đôi trong collection là một sample nằm ngoài hệ thống retail thông thường, bản đồ gắn nó với trung tâm phát triển của Nike/Jordan. Đây không phải là tuyên bố rằng đôi giày được phát hành bán lẻ tại Beaverton.",
+          en: "Beaverton represents the development context of this PE Sample. Nike World Headquarters is based in Beaverton, and because the pair in the collection is a sample outside normal retail distribution, the map connects it to Nike/Jordan's development center. This does not mean the sneaker was a Beaverton retail release."
+        }
       }
     },
     {
@@ -33,14 +59,26 @@
       locations: ["paris"],
       roles: {
         paris: { vi: "Quai 54 · Paris streetball", en: "Quai 54 · Paris streetball" }
+      },
+      reasons: {
+        paris: {
+          vi: "Paris là trung tâm câu chuyện của Quai 54. Phiên bản Friends & Family này gắn trực tiếp với giải streetball Quai 54 và mối liên hệ lâu dài giữa Jordan Brand với văn hóa bóng rổ đường phố tại Paris.",
+          en: "Paris is central to the Quai 54 story. This Friends & Family edition is directly tied to the Quai 54 streetball tournament and Jordan Brand's long-running connection with Paris street basketball culture."
+        }
       }
     },
     {
       id: "nike-sb-dunk-yuto-matcha",
-      brand: "nikesb",
+      brand: "nike",
       locations: ["tokyo"],
       roles: {
-        tokyo: { vi: "Yuto Horigome · Japanese identity", en: "Yuto Horigome · Japanese identity" }
+        tokyo: { vi: "Yuto Horigome · Bản sắc Nhật Bản", en: "Yuto Horigome · Japanese identity" }
+      },
+      reasons: {
+        tokyo: {
+          vi: "Tokyo đại diện cho câu chuyện cá nhân của Yuto Horigome. Thiết kế Matcha nhấn mạnh nguồn gốc Nhật Bản của Yuto qua cảm hứng matcha và biểu tượng gia đình xuất hiện trên đôi giày, nên Tokyo là điểm địa lý tự nhiên nhất cho signature này.",
+          en: "Tokyo represents Yuto Horigome's personal story. The Matcha design emphasizes his Japanese identity through matcha-inspired colors and his family crest, making Tokyo the natural geographic anchor for this signature pair."
+        }
       }
     },
     {
@@ -49,6 +87,12 @@
       locations: ["london"],
       roles: {
         london: { vi: "Alaska Alaska · Creative studio", en: "Alaska Alaska · Creative studio" }
+      },
+      reasons: {
+        london: {
+          vi: "London được chọn vì Alaska Alaska là studio sáng tạo gắn trực tiếp với Virgil Abloh tại London. Tên 'Alaska' của đôi giày kết nối với studio này, nên London đại diện cho phần creative context của thiết kế.",
+          en: "London is used because Alaska Alaska was a London-based creative studio closely associated with Virgil Abloh. The sneaker's 'Alaska' name connects to that studio, so London represents the design's creative context."
+        }
       }
     },
     {
@@ -56,9 +100,23 @@
       brand: "jordan",
       locations: ["beaverton", "tokyo", "losangeles"],
       roles: {
-        beaverton: { vi: "Nike World Headquarters · Sample provenance", en: "Nike World Headquarters · Sample provenance" },
+        beaverton: { vi: "Nike World Headquarters · Bối cảnh phát triển Sample", en: "Nike World Headquarters · Sample development context" },
         tokyo: { vi: "Fragment · Tokyo", en: "Fragment · Tokyo" },
         losangeles: { vi: "Union LA · Los Angeles", en: "Union LA · Los Angeles" }
+      },
+      reasons: {
+        beaverton: {
+          vi: "Beaverton đại diện cho lớp phát triển của pre-release Sample trong dự án Jordan/Nike. Vì đây không phải một đôi retail thông thường, Nike World Headquarters được dùng như điểm tham chiếu cho bối cảnh phát triển sản phẩm, không phải địa điểm phát hành.",
+          en: "Beaverton represents the development layer of this Jordan/Nike pre-release sample. Because it is not a conventional retail pair, Nike World Headquarters is used as a reference point for product development rather than as a release location."
+        },
+        tokyo: {
+          vi: "Tokyo đại diện cho Fragment và Hiroshi Fujiwara. Fragment gắn chặt với ảnh hưởng của Fujiwara trong văn hóa thời trang và streetwear Nhật Bản, nên Tokyo thể hiện phần Fragment của collaboration này.",
+          en: "Tokyo represents Fragment and Hiroshi Fujiwara. Fragment is closely tied to Fujiwara's influence on Japanese fashion and streetwear, so Tokyo represents the Fragment side of this collaboration."
+        },
+        losangeles: {
+          vi: "Los Angeles đại diện trực tiếp cho Union LA. Ngôn ngữ tái cấu trúc vintage và nhãn UN/LA trên đôi giày gắn với Union Los Angeles, vì vậy LA là một trong ba điểm chính của collaboration.",
+          en: "Los Angeles directly represents Union LA. The reconstructed vintage language and UN/LA branding connect the sneaker to Union Los Angeles, making LA one of the collaboration's three key geographic points."
+        }
       },
       arcs: [["beaverton", "tokyo"], ["tokyo", "losangeles"]]
     },
@@ -70,6 +128,16 @@
         tokyo: { vi: "BAPE · Harajuku / Tokyo", en: "BAPE · Harajuku / Tokyo" },
         lagunabeach: { vi: "Stüssy · California surf/street culture", en: "Stüssy · California surf/street culture" }
       },
+      reasons: {
+        tokyo: {
+          vi: "Tokyo đại diện cho phía BAPE của collaboration. A Bathing Ape hình thành từ Harajuku và bản sắc Harajuku/Tokyo là một phần cốt lõi trong lịch sử của thương hiệu.",
+          en: "Tokyo represents the BAPE side of the collaboration. A Bathing Ape emerged from Harajuku, and Harajuku/Tokyo remains central to the brand's identity and history."
+        },
+        lagunabeach: {
+          vi: "Laguna Beach đại diện cho phía Stüssy. Thương hiệu bắt nguồn từ văn hóa surf Southern California của Shawn Stüssy, nên đường nối Tokyo–Laguna Beach thể hiện sự gặp nhau giữa Harajuku streetwear và California surf/street culture.",
+          en: "Laguna Beach represents the Stüssy side. The brand grew from Shawn Stüssy's Southern California surf culture, so the Tokyo–Laguna Beach connection shows the meeting of Harajuku streetwear and California surf/street culture."
+        }
+      },
       arcs: [["tokyo", "lagunabeach"]]
     },
     {
@@ -78,6 +146,12 @@
       locations: ["seoul"],
       roles: {
         seoul: { vi: "ROSÉ · Seoul", en: "ROSÉ · Seoul" }
+      },
+      reasons: {
+        seoul: {
+          vi: "Seoul được dùng làm điểm đại diện cho lớp văn hóa và nghệ sĩ của dự án PUMA x ROSÉ. Đôi Speedcat được xây dựng quanh phong cách cá nhân của ROSÉ, nên Seoul là điểm kể chuyện phù hợp cho mối liên hệ K-pop và creative identity của collaboration. Đây không phải là tuyên bố rằng đôi giày chỉ được phát hành tại Seoul.",
+          en: "Seoul represents the cultural and artist side of the PUMA x ROSÉ project. The Speedcat collaboration is built around ROSÉ's personal style, making Seoul a fitting storytelling point for its K-pop and creative identity. This does not mean the sneaker was released only in Seoul."
+        }
       }
     },
     {
@@ -86,6 +160,12 @@
       locations: ["richfield"],
       roles: {
         richfield: { vi: "The Shot · Richfield Coliseum (1989)", en: "The Shot · Richfield Coliseum (1989)" }
+      },
+      reasons: {
+        richfield: {
+          vi: "Richfield được chọn vì lịch sử Air Jordan 4 gắn với 'The Shot' năm 1989. Michael Jordan ghi cú buzzer-beater nổi tiếng trước Cleveland Cavaliers tại Richfield Coliseum khi mang Air Jordan 4. Bản Black Cement 1999 là retro của silhouette gắn với khoảnh khắc đó; pin này kể lịch sử của thiết kế, không phải nơi bản 1999 được phát hành.",
+          en: "Richfield is used because Air Jordan 4 history is tied to 'The Shot' in 1989. Michael Jordan hit the famous buzzer-beater against the Cleveland Cavaliers at Richfield Coliseum while wearing the Air Jordan 4. The 1999 Black Cement is a retro of that historically linked silhouette; this pin tells the design story rather than identifying the 1999 release location."
+        }
       }
     },
     {
@@ -93,15 +173,27 @@
       brand: "jordan",
       locations: ["chicago"],
       roles: {
-        chicago: { vi: "Chicago Bulls · Sixth championship legacy", en: "Chicago Bulls · Sixth championship legacy" }
+        chicago: { vi: "Chicago Bulls · Chức vô địch thứ sáu", en: "Chicago Bulls · Sixth championship" }
+      },
+      reasons: {
+        chicago: {
+          vi: "Chicago đại diện cho chương cuối của triều đại Michael Jordan cùng Bulls. DMP Finals Pack kỷ niệm chức vô địch NBA thứ sáu và cuối cùng của Jordan với Chicago Bulls năm 1998, nên Chicago là điểm địa lý phù hợp cho câu chuyện mà đôi Jordan 13 này tưởng niệm.",
+          en: "Chicago represents the final chapter of Michael Jordan's Bulls dynasty. The DMP Finals Pack commemorates Jordan's sixth and final NBA championship with the Chicago Bulls in 1998, making Chicago the natural geographic anchor for the history celebrated by this Jordan 13."
+        }
       }
     },
     {
       id: "nike-sb-dunk-low-raygun-away-2005",
-      brand: "nikesb",
+      brand: "nike",
       locations: ["roswell"],
       roles: {
         roswell: { vi: "Roswell Rayguns · UFO / alien storytelling", en: "Roswell Rayguns · UFO / alien storytelling" }
+      },
+      reasons: {
+        roswell: {
+          vi: "Roswell là địa điểm của thế giới hư cấu Roswell Rayguns. Nike xây dựng Rayguns như một đội basketball giả tưởng với alien mascot, UFO imagery và retro-futuristic storytelling. Bản 'Away' mang chính mascot đó trên heel, nên Roswell trở thành pin kể chuyện của đôi giày. Đây là narrative location, không phải nơi phát hành độc quyền của sneaker.",
+          en: "Roswell is the setting of the fictional Roswell Rayguns universe. Nike created the Rayguns as an imaginary basketball team using an alien mascot, UFO imagery and retro-futurist storytelling. The 'Away' Dunk carries that mascot on the heel, making Roswell the narrative location for the pair rather than an exclusive release city."
+        }
       }
     }
   ];
@@ -121,18 +213,21 @@
       brand: "THƯƠNG HIỆU",
       country: "QUỐC GIA",
       reset: "ĐẶT LẠI",
-      guide: "KÉO / VUỐT ĐỂ XOAY · CUỘN / CHỤM ĐỂ PHÓNG TO · BẤM ĐIỂM VÀNG ĐỂ KHÁM PHÁ",
-      orbit: "KÉO ĐỂ XOAY",
+      guide: "KÉO / VUỐT 360° ĐỂ XOAY · CUỘN / CHỤM ĐỂ PHÓNG TO · BẤM ĐIỂM VÀNG ĐỂ KHÁM PHÁ",
+      orbit: "KÉO 360° ĐỂ XOAY",
       allBrands: "TẤT CẢ THƯƠNG HIỆU",
       allCountries: "TẤT CẢ QUỐC GIA",
       countries: { us: "HOA KỲ", fr: "PHÁP", jp: "NHẬT BẢN", uk: "VƯƠNG QUỐC ANH", kr: "HÀN QUỐC" },
-      brands: { jordan: "JORDAN", nikesb: "NIKE SB", bapestussy: "BAPE x STÜSSY", puma: "PUMA" },
+      brands: { jordan: "JORDAN", nike: "NIKE", bapestussy: "BAPE x STÜSSY", puma: "PUMA" },
       emptyTitle: "CHỌN MỘT ĐỊA ĐIỂM",
       emptyText: "Bấm vào một điểm vàng trên địa cầu để xem những đôi giày và câu chuyện gắn với địa điểm đó.",
+      results: "KẾT QUẢ",
       location: "ĐỊA ĐIỂM",
       pair: "ĐÔI GIÀY",
       pairs: "ĐÔI GIÀY",
       view: "XEM ĐÔI GIÀY →",
+      why: "TẠI SAO Ở ĐÂY?",
+      hideWhy: "THU GỌN",
       legendPin: "ĐỊA ĐIỂM CÂU CHUYỆN",
       legendLine: "LIÊN KẾT COLLAB",
       footer: "© 2026 Bộ sưu tập giày Lộc An. Bảo lưu mọi quyền."
@@ -151,34 +246,40 @@
       brand: "BRAND",
       country: "COUNTRY",
       reset: "RESET",
-      guide: "DRAG / SWIPE TO ROTATE · SCROLL / PINCH TO ZOOM · SELECT A GOLD POINT TO EXPLORE",
-      orbit: "DRAG TO ROTATE",
+      guide: "DRAG / SWIPE 360° TO ROTATE · SCROLL / PINCH TO ZOOM · SELECT A GOLD POINT TO EXPLORE",
+      orbit: "DRAG 360° TO ROTATE",
       allBrands: "ALL BRANDS",
       allCountries: "ALL COUNTRIES",
       countries: { us: "UNITED STATES", fr: "FRANCE", jp: "JAPAN", uk: "UNITED KINGDOM", kr: "SOUTH KOREA" },
-      brands: { jordan: "JORDAN", nikesb: "NIKE SB", bapestussy: "BAPE x STÜSSY", puma: "PUMA" },
+      brands: { jordan: "JORDAN", nike: "NIKE", bapestussy: "BAPE x STÜSSY", puma: "PUMA" },
       emptyTitle: "SELECT A LOCATION",
       emptyText: "Select a gold point on the globe to view the pairs and stories connected to that place.",
+      results: "RESULTS",
       location: "LOCATION",
       pair: "PAIR",
       pairs: "PAIRS",
       view: "VIEW PAIR →",
+      why: "WHY HERE?",
+      hideWhy: "COLLAPSE",
       legendPin: "STORY LOCATION",
       legendLine: "COLLAB CONNECTION",
       footer: "© 2026 Lộc An Sneaker Collection. All Rights Reserved."
     }
   };
 
+  const DEFAULT_VIEW = { rotationX: 0.30, rotationY: 1.73, scale: 0.88 };
+
   const state = {
     lang: "vi",
     brand: "all",
     country: "all",
     selectedLocation: null,
-    rotationX: -0.18,
-    rotationY: -0.36,
+    rotationX: DEFAULT_VIEW.rotationX,
+    rotationY: DEFAULT_VIEW.rotationY,
     targetRotationX: null,
     targetRotationY: null,
-    scale: 0.82,
+    scale: DEFAULT_VIEW.scale,
+    targetScale: null,
     dragging: false,
     pointerId: null,
     lastX: 0,
@@ -210,9 +311,7 @@
   }
 
   function sneakerById(id) {
-    const catalog = (typeof sneakers !== "undefined" && Array.isArray(sneakers))
-      ? sneakers
-      : [];
+    const catalog = (typeof sneakers !== "undefined" && Array.isArray(sneakers)) ? sneakers : [];
     return catalog.find(item => item?.id === id) || null;
   }
 
@@ -227,9 +326,6 @@
     const country = $("globe-country-filter");
     if (!brand || !country) return;
 
-    const currentBrand = state.brand;
-    const currentCountry = state.country;
-
     brand.innerHTML = [
       `<option value="all">${t.allBrands}</option>`,
       ...Object.entries(t.brands).map(([value, label]) => `<option value="${value}">${label}</option>`)
@@ -240,8 +336,8 @@
       ...Object.entries(t.countries).map(([value, label]) => `<option value="${value}">${label}</option>`)
     ].join("");
 
-    brand.value = currentBrand;
-    country.value = currentCountry;
+    brand.value = state.brand;
+    country.value = state.country;
   }
 
   function updateNavigationLinks() {
@@ -287,9 +383,9 @@
     setText("globe-footer-copy", t.footer);
 
     buildFilterOptions();
+    updateNavigationLinks();
     renderPins();
     renderPanel();
-    updateNavigationLinks();
 
     document.title = state.lang === "vi"
       ? "Bản đồ bộ sưu tập | Lộc An Sneaker Collection"
@@ -299,11 +395,9 @@
   window.setGlobeLanguage = lang => {
     state.lang = lang === "en" ? "en" : "vi";
     setStoredLanguage(state.lang);
-
     const url = new URL(location.href);
     url.searchParams.set("lang", state.lang);
     history.replaceState({}, "", url.pathname + url.search + url.hash);
-
     applyCopy();
   };
 
@@ -399,58 +493,109 @@
       ?? "";
   }
 
+  function reasonFor(story, locationKey) {
+    return story.reasons?.[locationKey]?.[state.lang]
+      ?? story.reasons?.[locationKey]?.vi
+      ?? "";
+  }
+
+  function locationNamesForStory(story) {
+    return story.locations
+      .filter(key => !state.country || state.country === "all" || LOCATIONS[key]?.country === state.country)
+      .map(key => LOCATIONS[key]?.[state.lang])
+      .filter(Boolean);
+  }
+
+  function storyCardHTML(story, locationKey = null) {
+    const item = sneakerById(story.id);
+    if (!item) return "";
+
+    const t = COPY[state.lang];
+    const title = localized(item.title);
+    const image = item.image || item.images?.[0] || "";
+    const href = `./shoe.html?id=${encodeURIComponent(story.id)}&lang=${encodeURIComponent(state.lang)}`;
+    const locationKeys = locationKey ? [locationKey] : story.locations.filter(key => state.country === "all" || LOCATIONS[key]?.country === state.country);
+    const locations = locationKeys.map(key => LOCATIONS[key]?.[state.lang]).filter(Boolean);
+    const role = locationKey
+      ? roleFor(story, locationKey)
+      : locations.join(" · ");
+
+    const whyBlocks = locationKeys.map(key => {
+      const reason = reasonFor(story, key);
+      if (!reason) return "";
+      return `
+        <div class="globe-shoe-why-block">
+          ${locationKeys.length > 1 ? `<div class="globe-shoe-why-location">${LOCATIONS[key][state.lang]}</div>` : ""}
+          <p>${reason}</p>
+        </div>
+      `;
+    }).join("");
+
+    return `
+      <article class="globe-shoe-card" data-story-id="${story.id}" data-location="${locationKey || "all"}">
+        <div class="globe-shoe-image">
+          <img src="${image}" alt="${title.replaceAll('"', '&quot;')}" loading="lazy">
+        </div>
+        <div class="globe-shoe-content">
+          <div class="globe-shoe-role">${role}</div>
+          <h4 class="globe-shoe-title">${title}</h4>
+          <div class="globe-shoe-actions">
+            <button type="button" class="globe-shoe-why-toggle" aria-expanded="false">${t.why}</button>
+            <a class="globe-shoe-link" href="${href}">${t.view}</a>
+          </div>
+          <div class="globe-shoe-why" hidden>${whyBlocks}</div>
+        </div>
+      </article>
+    `;
+  }
+
   function renderPanel() {
     const panel = $("globe-panel");
     if (!panel) return;
     const t = COPY[state.lang];
 
-    if (!state.selectedLocation) {
+    if (state.selectedLocation) {
+      const locationData = LOCATIONS[state.selectedLocation];
+      const stories = storiesAtLocation(state.selectedLocation);
+
+      if (!locationData || stories.length === 0) {
+        state.selectedLocation = null;
+        renderPanel();
+        return;
+      }
+
       panel.innerHTML = `
-        <div class="globe-panel-empty">
-          <strong>${t.emptyTitle}</strong>
-          <p>${t.emptyText}</p>
-        </div>
+        <div class="globe-place-kicker">${t.location}</div>
+        <h3 class="globe-place-title">${locationData[state.lang]}</h3>
+        <div class="globe-place-meta">${stories.length} ${stories.length === 1 ? t.pair : t.pairs}</div>
+        <div class="globe-shoe-list">${stories.map(story => storyCardHTML(story, state.selectedLocation)).join("")}</div>
       `;
       return;
     }
 
-    const locationData = LOCATIONS[state.selectedLocation];
-    const stories = storiesAtLocation(state.selectedLocation);
+    if (state.brand !== "all" || state.country !== "all") {
+      const stories = state.activeStories;
+      let title = t.results;
+      if (state.brand !== "all" && state.country === "all") title = t.brands[state.brand] || t.results;
+      if (state.brand === "all" && state.country !== "all") title = t.countries[state.country] || t.results;
+      if (state.brand !== "all" && state.country !== "all") {
+        title = `${t.brands[state.brand] || state.brand} · ${t.countries[state.country] || state.country}`;
+      }
 
-    if (!locationData || stories.length === 0) {
-      state.selectedLocation = null;
-      renderPanel();
+      panel.innerHTML = `
+        <div class="globe-place-kicker">${t.results}</div>
+        <h3 class="globe-place-title">${title}</h3>
+        <div class="globe-place-meta">${stories.length} ${stories.length === 1 ? t.pair : t.pairs}</div>
+        <div class="globe-shoe-list">${stories.map(story => storyCardHTML(story)).join("")}</div>
+      `;
       return;
     }
-
-    const cards = stories.map(story => {
-      const item = sneakerById(story.id);
-      if (!item) return "";
-
-      const title = localized(item.title);
-      const image = item.image || item.images?.[0] || "";
-      const role = roleFor(story, state.selectedLocation);
-      const href = `./shoe.html?id=${encodeURIComponent(story.id)}&lang=${encodeURIComponent(state.lang)}`;
-
-      return `
-        <article class="globe-shoe-card">
-          <div class="globe-shoe-image">
-            <img src="${image}" alt="${title.replaceAll('"', '&quot;')}" loading="lazy">
-          </div>
-          <div class="globe-shoe-content">
-            <div class="globe-shoe-role">${role}</div>
-            <h4 class="globe-shoe-title">${title}</h4>
-            <a class="globe-shoe-link" href="${href}">${t.view}</a>
-          </div>
-        </article>
-      `;
-    }).join("");
 
     panel.innerHTML = `
-      <div class="globe-place-kicker">${t.location}</div>
-      <h3 class="globe-place-title">${locationData[state.lang]}</h3>
-      <div class="globe-place-meta">${stories.length} ${stories.length === 1 ? t.pair : t.pairs}</div>
-      <div class="globe-shoe-list">${cards}</div>
+      <div class="globe-panel-empty">
+        <strong>${t.emptyTitle}</strong>
+        <p>${t.emptyText}</p>
+      </div>
     `;
   }
 
@@ -471,14 +616,16 @@
     const cy = Math.cos(state.rotationY);
     const sy = Math.sin(state.rotationY);
 
-    const y1 = v.y * cx - v.z * sx;
-    const z1 = v.y * sx + v.z * cx;
-    const x1 = v.x;
+    // Y first, then X. This makes geographic focus exact:
+    // rotationY = -longitude, rotationX = latitude.
+    const x1 = v.x * cy + v.z * sy;
+    const z1 = -v.x * sy + v.z * cy;
+    const y1 = v.y;
 
     return {
-      x: x1 * cy + z1 * sy,
-      y: y1,
-      z: -x1 * sy + z1 * cy
+      x: x1,
+      y: y1 * cx - z1 * sx,
+      z: y1 * sx + z1 * cx
     };
   }
 
@@ -500,7 +647,18 @@
     };
   }
 
+  function boxesOverlap(a, b, pad = 7) {
+    return !(
+      a.right + pad < b.left ||
+      a.left - pad > b.right ||
+      a.bottom + pad < b.top ||
+      a.top - pad > b.bottom
+    );
+  }
+
   function updatePinPositions() {
+    const candidates = [];
+
     pinElements.forEach((nodes, key) => {
       const p = projectLocation(key);
       if (!p) return;
@@ -511,7 +669,51 @@
       nodes.wrapper.style.pointerEvents = visible ? "auto" : "none";
       nodes.button.style.pointerEvents = visible ? "auto" : "none";
       nodes.button.style.scale = `${0.84 + Math.max(0, p.z) * 0.28}`;
+      nodes.label.style.opacity = "0";
+      nodes.label.style.visibility = "hidden";
+
+      if (visible) candidates.push({ key, nodes, p, selected: state.selectedLocation === key });
     });
+
+    if (window.innerWidth <= 650) return;
+
+    candidates.sort((a, b) => {
+      if (a.selected !== b.selected) return a.selected ? -1 : 1;
+      return b.p.z - a.p.z;
+    });
+
+    const placed = [];
+    for (const item of candidates) {
+      const text = LOCATIONS[item.key][state.lang];
+      const width = Math.max(88, Math.min(220, 31 + text.length * 6.0));
+      const box = {
+        left: item.p.x + 14,
+        top: item.p.y - 12,
+        right: item.p.x + 14 + width,
+        bottom: item.p.y + 12
+      };
+
+      const collides = !item.selected && placed.some(other => boxesOverlap(box, other));
+      if (!collides) {
+        item.nodes.label.style.visibility = "visible";
+        item.nodes.label.style.opacity = item.selected ? "1" : "0.94";
+        placed.push(box);
+      }
+    }
+  }
+
+  function normalizeAngle(value) {
+    const tau = Math.PI * 2;
+    value = (value + Math.PI) % tau;
+    if (value < 0) value += tau;
+    return value - Math.PI;
+  }
+
+  function setFocus(lat, lon, scale) {
+    state.targetRotationY = normalizeAngle(-(lon * Math.PI / 180));
+    state.targetRotationX = normalizeAngle(lat * Math.PI / 180);
+    state.targetScale = Math.max(0.58, Math.min(2.20, scale));
+    state.lastInteraction = performance.now();
   }
 
   function focusLocation(key) {
@@ -519,18 +721,19 @@
     if (!loc) return;
 
     state.selectedLocation = key;
-    state.lastInteraction = performance.now();
-
-    const lon = loc.lon * Math.PI / 180;
-    const lat = loc.lat * Math.PI / 180;
-    state.targetRotationY = -lon;
-    state.targetRotationX = lat * 0.58;
+    setFocus(loc.lat, loc.lon, Math.max(state.scale, 1.72));
 
     pinElements.forEach((nodes, locationKey) => {
       nodes.button.classList.toggle("active", locationKey === key);
     });
 
     renderPanel();
+  }
+
+  function focusCountry(country) {
+    const focus = COUNTRY_FOCUS[country];
+    if (!focus) return;
+    setFocus(focus.lat, focus.lon, focus.scale);
   }
 
   function slerpLatLon(a, b, t) {
@@ -582,8 +785,8 @@
         ctx.beginPath();
         let drawing = false;
 
-        for (let i=0;i<=48;i++) {
-          const t = i/48;
+        for (let i=0;i<=56;i++) {
+          const t = i/56;
           const base = slerpLatLon(from,to,t);
           const lift = 1 + Math.sin(Math.PI*t)*0.095;
           const rotated = rotateVector({x:base.x*lift,y:base.y*lift,z:base.z*lift});
@@ -618,34 +821,38 @@
   // ------------------------- WebGL globe -------------------------
   let gl = null;
   let program = null;
+  let uniforms = null;
   let buffers = null;
   let texture = null;
-  let uniforms = null;
 
-  function createShader(gl, type, source) {
-    const shader = gl.createShader(type);
-    gl.shaderSource(shader, source);
-    gl.compileShader(shader);
-    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-      throw new Error(gl.getShaderInfoLog(shader) || "Shader compile error");
+  function compileShader(glContext, type, source) {
+    const shader = glContext.createShader(type);
+    glContext.shaderSource(shader, source);
+    glContext.compileShader(shader);
+    if (!glContext.getShaderParameter(shader, glContext.COMPILE_STATUS)) {
+      const message = glContext.getShaderInfoLog(shader);
+      glContext.deleteShader(shader);
+      throw new Error(message || "Shader compilation failed");
     }
     return shader;
   }
 
-  function createProgram(gl, vertexSource, fragmentSource) {
-    const vertex = createShader(gl, gl.VERTEX_SHADER, vertexSource);
-    const fragment = createShader(gl, gl.FRAGMENT_SHADER, fragmentSource);
-    const p = gl.createProgram();
-    gl.attachShader(p, vertex);
-    gl.attachShader(p, fragment);
-    gl.linkProgram(p);
-    if (!gl.getProgramParameter(p, gl.LINK_STATUS)) {
-      throw new Error(gl.getProgramInfoLog(p) || "Program link error");
+  function createProgram(glContext, vertexSource, fragmentSource) {
+    const vertex = compileShader(glContext, glContext.VERTEX_SHADER, vertexSource);
+    const fragment = compileShader(glContext, glContext.FRAGMENT_SHADER, fragmentSource);
+    const p = glContext.createProgram();
+    glContext.attachShader(p, vertex);
+    glContext.attachShader(p, fragment);
+    glContext.linkProgram(p);
+    if (!glContext.getProgramParameter(p, glContext.LINK_STATUS)) {
+      const message = glContext.getProgramInfoLog(p);
+      glContext.deleteProgram(p);
+      throw new Error(message || "Program link failed");
     }
     return p;
   }
 
-  function buildSphere(latSegments=52, lonSegments=104) {
+  function buildSphere(latSegments=58, lonSegments=92) {
     const positions=[];
     const uvs=[];
     const indices=[];
@@ -701,8 +908,8 @@
         float cx=cos(uRX), sx=sin(uRX);
         float cy=cos(uRY), sy=sin(uRY);
         vec3 p=aPosition;
-        p = vec3(p.x, p.y*cx-p.z*sx, p.y*sx+p.z*cx);
         p = vec3(p.x*cy+p.z*sy, p.y, -p.x*sy+p.z*cy);
+        p = vec3(p.x, p.y*cx-p.z*sx, p.y*sx+p.z*cx);
         vec3 lightDir=normalize(vec3(-0.35,0.55,1.0));
         vShade=0.58+0.42*max(0.0,dot(normalize(p),lightDir));
         vFront=p.z;
@@ -780,7 +987,7 @@
       gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,false);
       gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,image);
     };
-    image.src="./globe-world.png?v=20261012-v17";
+    image.src="./globe-world.png?v=20261013-v18";
 
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);
@@ -833,20 +1040,29 @@
 
   function tick(now) {
     if (!state.dragging) {
-      if (state.targetRotationY != null) {
-        const dy=shortestAngle(state.rotationY,state.targetRotationY);
-        const dx=state.targetRotationX-state.rotationX;
-        state.rotationY += dy*0.075;
-        state.rotationX += dx*0.075;
+      if (state.targetRotationY != null || state.targetRotationX != null) {
+        const dy=state.targetRotationY == null ? 0 : shortestAngle(state.rotationY,state.targetRotationY);
+        const dx=state.targetRotationX == null ? 0 : shortestAngle(state.rotationX,state.targetRotationX);
+        state.rotationY = normalizeAngle(state.rotationY + dy*0.09);
+        state.rotationX = normalizeAngle(state.rotationX + dx*0.09);
         if (Math.abs(dy)<0.0015 && Math.abs(dx)<0.0015) {
           state.targetRotationY=null;
           state.targetRotationX=null;
         }
       } else if (
         !window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
-        now-state.lastInteraction>2600
+        now-state.lastInteraction>3200
       ) {
-        state.rotationY += 0.00048;
+        state.rotationY = normalizeAngle(state.rotationY + 0.00042);
+      }
+
+      if (state.targetScale != null) {
+        const ds = state.targetScale - state.scale;
+        state.scale += ds * 0.09;
+        if (Math.abs(ds) < 0.002) {
+          state.scale = state.targetScale;
+          state.targetScale = null;
+        }
       }
     }
 
@@ -868,6 +1084,7 @@
       state.lastY=event.clientY;
       state.targetRotationX=null;
       state.targetRotationY=null;
+      state.targetScale=null;
       state.lastInteraction=performance.now();
       stage.setPointerCapture?.(event.pointerId);
     });
@@ -878,9 +1095,8 @@
       const dy=event.clientY-state.lastY;
       state.lastX=event.clientX;
       state.lastY=event.clientY;
-      state.rotationY += dx*0.006;
-      state.rotationX += dy*0.0046;
-      state.rotationX=Math.max(-1.15,Math.min(1.15,state.rotationX));
+      state.rotationY = normalizeAngle(state.rotationY + dx*0.0062);
+      state.rotationX = normalizeAngle(state.rotationX + dy*0.0062);
       state.lastInteraction=performance.now();
     });
 
@@ -896,7 +1112,8 @@
 
     stage.addEventListener("wheel",event=>{
       event.preventDefault();
-      state.scale=Math.max(0.64,Math.min(1.04,state.scale-event.deltaY*0.00055));
+      state.targetScale=null;
+      state.scale=Math.max(0.58,Math.min(2.20,state.scale-event.deltaY*0.0009));
       state.lastInteraction=performance.now();
     },{passive:false});
 
@@ -906,7 +1123,8 @@
       const [a,b]=event.touches;
       const dist=Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);
       if (touchDistance!=null) {
-        state.scale=Math.max(0.64,Math.min(1.04,state.scale+(dist-touchDistance)*0.002));
+        state.targetScale=null;
+        state.scale=Math.max(0.58,Math.min(2.20,state.scale+(dist-touchDistance)*0.0032));
       }
       touchDistance=dist;
       state.lastInteraction=performance.now();
@@ -917,23 +1135,48 @@
   function installFilters() {
     $("globe-brand-filter")?.addEventListener("change",event=>{
       state.brand=event.target.value;
+      state.selectedLocation=null;
       applyFilters();
     });
+
     $("globe-country-filter")?.addEventListener("change",event=>{
       state.country=event.target.value;
+      state.selectedLocation=null;
       applyFilters();
+      if (state.country !== "all") focusCountry(state.country);
     });
+
     $("globe-reset")?.addEventListener("click",()=>{
       state.brand="all";
       state.country="all";
       state.selectedLocation=null;
-      state.rotationX=-0.18;
-      state.rotationY=-0.36;
+      state.rotationX=DEFAULT_VIEW.rotationX;
+      state.rotationY=DEFAULT_VIEW.rotationY;
       state.targetRotationX=null;
       state.targetRotationY=null;
-      state.scale=0.82;
+      state.scale=DEFAULT_VIEW.scale;
+      state.targetScale=null;
       buildFilterOptions();
       applyFilters();
+    });
+  }
+
+  function installPanelActions() {
+    const panel = $("globe-panel");
+    if (!panel) return;
+
+    panel.addEventListener("click", event => {
+      const toggle = event.target.closest(".globe-shoe-why-toggle");
+      if (!toggle) return;
+
+      const card = toggle.closest(".globe-shoe-card");
+      const why = card?.querySelector(".globe-shoe-why");
+      if (!why) return;
+
+      const opening = why.hidden;
+      why.hidden = !opening;
+      toggle.setAttribute("aria-expanded", String(opening));
+      toggle.textContent = opening ? COPY[state.lang].hideWhy : COPY[state.lang].why;
     });
   }
 
@@ -943,6 +1186,7 @@
     applyCopy();
     applyFilters();
     installFilters();
+    installPanelActions();
     installInteraction();
 
     if (!initWebGL()) {

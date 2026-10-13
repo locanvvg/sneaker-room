@@ -528,3 +528,101 @@
     transition: none;
   }
 }
+
+
+/* =========================================================
+   v18 — deeper zoom, normalized thumbnails, explanation UI
+========================================================= */
+.globe-location-label {
+  transition: opacity .14s ease, visibility .14s ease;
+}
+
+.globe-shoe-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  margin-top: 8px;
+}
+
+.globe-shoe-why-toggle {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: #ffcc00;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.56rem;
+  font-weight: 900;
+  letter-spacing: .7px;
+}
+
+.globe-shoe-why-toggle:hover,
+.globe-shoe-why-toggle:focus-visible {
+  color: #fff;
+  outline: none;
+}
+
+.globe-shoe-actions .globe-shoe-link {
+  margin-top: 0;
+}
+
+.globe-shoe-why {
+  margin-top: 11px;
+  padding-top: 10px;
+  border-top: 1px solid #2b2b30;
+}
+
+.globe-shoe-why[hidden] {
+  display: none !important;
+}
+
+.globe-shoe-why-block + .globe-shoe-why-block {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #252529;
+}
+
+.globe-shoe-why-location {
+  margin-bottom: 5px;
+  color: #a2a2a9;
+  font-size: .56rem;
+  font-weight: 900;
+  letter-spacing: .55px;
+  text-transform: uppercase;
+}
+
+.globe-shoe-why p {
+  margin: 0;
+  color: #a0a0a8;
+  font-size: .69rem;
+  line-height: 1.58;
+}
+
+/* These two source images have tighter crops than the other archive images. */
+.globe-shoe-card[data-story-id="nike-sb-dunk-low-raygun-away-2005"] .globe-shoe-image img {
+  width: 70%;
+  height: 66px;
+}
+
+.globe-shoe-card[data-story-id="bape-stussy-camo-canvas-hi-top-green"] .globe-shoe-image img {
+  width: 72%;
+  height: 68px;
+}
+
+@media (max-width: 650px) {
+  .globe-shoe-card[data-story-id="nike-sb-dunk-low-raygun-away-2005"] .globe-shoe-image img,
+  .globe-shoe-card[data-story-id="bape-stussy-camo-canvas-hi-top-green"] .globe-shoe-image img {
+    width: 70%;
+    height: 58px;
+  }
+
+  .globe-shoe-actions {
+    gap: 8px 12px;
+  }
+
+  .globe-shoe-why p {
+    font-size: .66rem;
+  }
+}
