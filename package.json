@@ -1,0 +1,16 @@
+{
+  "name": "locan-sneaker-room-source",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-production.mjs",
+    "preview": "npx http-server dist -p 8080 -c-1"
+  },
+  "devDependencies": {
+    "clean-css": "5.3.3",
+    "html-minifier-terser": "7.2.0",
+    "http-server": "14.1.1",
+    "terser": "5.44.0"
+  }
+}
