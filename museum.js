@@ -1,5 +1,5 @@
 /* =========================================================
-   LỘC AN — FULLSCREEN MUSEUM MODE v26
+   LỘC AN — FULLSCREEN MUSEUM MODE v27
 
    EXACT-FRAME RENDERER
    --------------------
@@ -192,7 +192,7 @@
     if (!resolved) return "";
 
     const separator = resolved.includes("?") ? "&" : "?";
-    return `${resolved}${separator}museum=20261013-v24`;
+    return `${resolved}${separator}museum=20261014-v27`;
   }
 
   function firstSubstantialStoryParagraph(item) {
@@ -243,8 +243,13 @@
 
     syncStaticCopy();
 
-    if (state.pairs.length) {
-      renderPair(state.index, { immediate: true, resetTimer: false });
+    /*
+      v27: changing VI/EN updates ONLY the text for the current pair.
+      It must never start a second image render while another slide is loading.
+    */
+    const current = state.currentItem || state.pairs[state.index];
+    if (current) {
+      updateMetadata(current, state.index);
     }
 
     const url = new URL(location.href);
@@ -286,7 +291,35 @@
     if (node) node.textContent = value;
   }
 
-  function loadImage(src) {
+  function trimImageCache() {
+    /*
+      iPad/Safari can become unstable if all large decoded sneaker PNGs
+      stay alive for the entire exhibition. Keep a small rolling cache.
+    */
+    const MAX_DECODED_IMAGES = 5;
+
+    let guard = 0;
+
+    while (state.imageCache.size > MAX_DECODED_IMAGES && guard < 20) {
+      guard += 1;
+
+      const oldestKey = state.imageCache.keys().next().value;
+      if (!oldestKey) break;
+
+      const currentSrc = state.currentImage?.src || "";
+
+      if (oldestKey === currentSrc) {
+        const currentValue = state.imageCache.get(oldestKey);
+        state.imageCache.delete(oldestKey);
+        state.imageCache.set(oldestKey, currentValue);
+        continue;
+      }
+
+      state.imageCache.delete(oldestKey);
+    }
+  }
+
+  function loadImage(src, attempt = 0) {
     if (!src) return Promise.resolve(null);
 
     if (state.imageCache.has(src)) {
@@ -298,23 +331,53 @@
       img.decoding = "async";
       img.loading = "eager";
 
+      let settled = false;
+
       const finish = async () => {
+        if (settled) return;
+        settled = true;
+
         try {
           if (typeof img.decode === "function") {
             await img.decode();
           }
         } catch (_) {}
 
-        resolve(img);
+        if (img.naturalWidth > 0 && img.naturalHeight > 0) {
+          resolve(img);
+        } else {
+          resolve(null);
+        }
       };
 
       img.onload = finish;
-      img.onerror = () => resolve(null);
+
+      img.onerror = () => {
+        if (settled) return;
+        settled = true;
+        resolve(null);
+      };
+
       img.src = src;
 
       if (img.complete && img.naturalWidth > 0) {
         finish();
       }
+    }).then(async img => {
+      if (img) {
+        trimImageCache();
+        return img;
+      }
+
+      /* Never permanently cache a transient Safari image failure. */
+      state.imageCache.delete(src);
+
+      if (attempt < 2) {
+        await new Promise(resolve => setTimeout(resolve, 180 * (attempt + 1)));
+        return loadImage(src, attempt + 1);
+      }
+
+      return null;
     });
 
     state.imageCache.set(src, promise);
@@ -517,75 +580,60 @@
     );
   }
 
-  async function preparePair(item) {
-    const src = imageOf(item);
-    const img = await loadImage(src);
+  function rawImageOf(item) {
+    const raw = originalImageOf(item);
+    if (!raw) return "";
 
-    if (img) {
-      alphaBounds(img, src);
+    const separator = raw.includes("?") ? "&" : "?";
+    return `${raw}${separator}museumFallback=20261014-v27`;
+  }
+
+  async function preparePair(item) {
+    const primarySrc = imageOf(item);
+    const fallbackSrc = rawImageOf(item);
+    const candidates = [primarySrc];
+
+    if (fallbackSrc && fallbackSrc !== primarySrc) {
+      candidates.push(fallbackSrc);
     }
 
-    return { item, src, img };
+    for (const src of candidates) {
+      const img = await loadImage(src);
+      if (!img) continue;
+
+      const bbox = alphaBounds(img, src);
+      if (!bbox) continue;
+
+      return { item, src, img, bbox };
+    }
+
+    return {
+      item,
+      src: primarySrc || fallbackSrc,
+      img: null,
+      bbox: null
+    };
   }
 
   function preloadAround(index) {
     if (!state.pairs.length) return;
 
-    [index, index + 1, index + 2, index - 1].forEach(rawIndex => {
+    /*
+      Preload only adjacent bitmaps. Do not alpha-analyze multiple future
+      slides at once; this is much lighter on iPad/Safari memory and CPU.
+    */
+    [index + 1, index - 1].forEach(rawIndex => {
       const i = (rawIndex + state.pairs.length) % state.pairs.length;
-      preparePair(state.pairs[i]);
+      const src = imageOf(state.pairs[i]);
+
+      if (src) {
+        loadImage(src);
+      }
     });
   }
 
-  async function renderPair(nextIndex, { immediate = false, resetTimer = true } = {}) {
-    if (!state.pairs.length) {
-      title.textContent = COPY[state.lang].noPairs;
-      subtitle.textContent = "";
-      story.textContent = "";
-      counter.textContent = "00 / 00";
-
-      if (ctx) {
-        const sized = sizeCanvas();
-        if (sized) ctx.clearRect(0, 0, sized.cssW, sized.cssH);
-      }
-
-      return;
-    }
-
-    /*
-      Critical v26 lock:
-      when the timer reaches 100%, requestAnimationFrame fires many times
-      per second. v25 called nextPair() on every frame before resetCycle()
-      could run, continually invalidating the pending transition and leaving
-      the stage stuck. Only one transition may run at a time.
-    */
-    if (state.isTransitioning && !immediate) {
-      return;
-    }
-
-    state.isTransitioning = true;
-
-    const normalized =
-      (nextIndex + state.pairs.length) % state.pairs.length;
-
-    const token = ++state.transitionToken;
-    const item = state.pairs[normalized];
-
-    /*
-      Keep the current slide fully visible while the next image is loaded,
-      decoded, and alpha-measured. There is never a blank/black interval.
-    */
-    const prepared = await preparePair(item);
-
-    if (token !== state.transitionToken) {
-      return;
-    }
-
-    state.index = normalized;
-    state.currentItem = item;
-    state.currentImage = prepared;
-
-    drawFittedImage(prepared.img, prepared.src);
+  function updateMetadata(item, normalizedIndex) {
+    if (!item) return;
 
     if (canvas) {
       canvas.setAttribute(
@@ -604,28 +652,161 @@
     story.textContent = firstSubstantialStoryParagraph(item);
 
     counter.textContent =
-      `${String(normalized + 1).padStart(2, "0")} / ${String(state.pairs.length).padStart(2, "0")}`;
+      `${String(normalizedIndex + 1).padStart(2, "0")} / ${String(state.pairs.length).padStart(2, "0")}`;
+  }
 
-    /*
-      Do not fade the old slide to black. The prepared frame is swapped
-      directly, then the next neighbors are warmed in the background.
-    */
-    stage.classList.remove("is-changing", "is-entering");
-
-    preloadAround(normalized);
-
-    if (resetTimer) {
-      resetCycle();
+  function renderPreparedToBuffer(prepared) {
+    if (!prepared?.img || !prepared?.bbox || !frame) {
+      return null;
     }
 
-    state.isTransitioning = false;
+    const rect = frame.getBoundingClientRect();
+    const cssW = Math.max(1, rect.width);
+    const cssH = Math.max(1, rect.height);
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+
+    const buffer = document.createElement("canvas");
+    buffer.width = Math.max(1, Math.round(cssW * dpr));
+    buffer.height = Math.max(1, Math.round(cssH * dpr));
+
+    const bctx = buffer.getContext("2d", { alpha: true });
+    if (!bctx) return null;
+
+    bctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    bctx.imageSmoothingEnabled = true;
+    bctx.imageSmoothingQuality = "high";
+
+    const bbox = prepared.bbox;
+    const targetW = cssW * HOMEPAGE_GRID_TARGET.width;
+    const targetH = cssH * HOMEPAGE_GRID_TARGET.height;
+
+    const scale = Math.min(
+      targetW / bbox.width,
+      targetH / bbox.height
+    );
+
+    const naturalW = prepared.img.naturalWidth || prepared.img.width;
+    const naturalH = prepared.img.naturalHeight || prepared.img.height;
+
+    const drawW = naturalW * scale;
+    const drawH = naturalH * scale;
+
+    const visualCenterX =
+      (bbox.left + bbox.width / 2) * scale;
+
+    const visualCenterY =
+      (bbox.top + bbox.height / 2) * scale;
+
+    const dx = cssW / 2 - visualCenterX;
+    const dy = cssH / 2 - visualCenterY;
+
+    bctx.drawImage(prepared.img, dx, dy, drawW, drawH);
+
+    return { canvas: buffer, cssW, cssH };
+  }
+
+  function commitBufferedSlide(buffered, prepared, normalized) {
+    if (!buffered || !prepared?.img || !ctx || !canvas) {
+      return false;
+    }
+
+    /* Image + metadata commit in one synchronous step. */
+    canvas.width = buffered.canvas.width;
+    canvas.height = buffered.canvas.height;
+    canvas.style.width = `${buffered.cssW}px`;
+    canvas.style.height = `${buffered.cssH}px`;
+
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(buffered.canvas, 0, 0);
+
+    state.index = normalized;
+    state.currentItem = prepared.item;
+    state.currentImage = prepared;
+
+    updateMetadata(prepared.item, normalized);
+    return true;
+  }
+
+  async function renderPair(nextIndex, { immediate = false, resetTimer = true } = {}) {
+    if (!state.pairs.length) {
+      title.textContent = COPY[state.lang].noPairs;
+      subtitle.textContent = "";
+      story.textContent = "";
+      counter.textContent = "00 / 00";
+      return;
+    }
+
+    if (state.isTransitioning && !immediate) {
+      return;
+    }
+
+    state.isTransitioning = true;
+
+    const normalized =
+      (nextIndex + state.pairs.length) % state.pairs.length;
+
+    const token = ++state.transitionToken;
+    const item = state.pairs[normalized];
+
+    try {
+      /* Prepare the whole next slide before changing anything visible. */
+      const prepared = await preparePair(item);
+
+      if (token !== state.transitionToken) return;
+
+      if (!prepared.img || !prepared.bbox) {
+        /* Keep current image AND current metadata together on failure. */
+        if (resetTimer) resetCycle();
+        return;
+      }
+
+      const buffered = renderPreparedToBuffer(prepared);
+
+      if (token !== state.transitionToken) return;
+
+      if (!buffered) {
+        if (resetTimer) resetCycle();
+        return;
+      }
+
+      const committed =
+        commitBufferedSlide(buffered, prepared, normalized);
+
+      if (!committed) {
+        if (resetTimer) resetCycle();
+        return;
+      }
+
+      stage.classList.remove("is-changing", "is-entering");
+      preloadAround(normalized);
+
+      if (resetTimer) resetCycle();
+    } catch (_) {
+      /* Never let text advance without the matching sneaker image. */
+      if (resetTimer) resetCycle();
+    } finally {
+      if (token === state.transitionToken) {
+        state.isTransitioning = false;
+      }
+    }
   }
 
   function redrawCurrent() {
     const prepared = state.currentImage;
-    if (!prepared?.img) return;
+    if (!prepared?.img || !prepared?.bbox) return;
 
-    drawFittedImage(prepared.img, prepared.src);
+    const buffered = renderPreparedToBuffer(prepared);
+    if (!buffered || !ctx || !canvas) return;
+
+    canvas.width = buffered.canvas.width;
+    canvas.height = buffered.canvas.height;
+    canvas.style.width = `${buffered.cssW}px`;
+    canvas.style.height = `${buffered.cssH}px`;
+
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(buffered.canvas, 0, 0);
   }
 
   function nextPair() {
