@@ -145,7 +145,7 @@
 
 
 /* =========================================================
-   LỘC AN — HOMEPAGE OPENING v1
+   LỘC AN — HOMEPAGE OPENING v3
 
    LỘC AN
    PRIVATE COLLECTION
@@ -156,7 +156,7 @@
   "use strict";
 
   const INTRO_KEY =
-    "locan-home-opening-v1";
+    "locan-home-opening-v3";
 
   const LIVE_RESTORE_KEY =
     "locan-live-restore-v20";
@@ -299,13 +299,13 @@
   } catch (_) {}
 
   const activateDelay =
-    reducedMotion ? 20 : 45;
+    reducedMotion ? 20 : 90;
 
   const revealDelay =
-    reducedMotion ? 170 : 800;
+    reducedMotion ? 200 : 1180;
 
   const finishDelay =
-    reducedMotion ? 300 : 1430;
+    reducedMotion ? 340 : 2000;
 
   let finished =
     false;
@@ -355,6 +355,6 @@
   */
   window.setTimeout(
     finishOpening,
-    2400
+    3000
   );
 })();

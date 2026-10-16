@@ -104,7 +104,7 @@
 
 
 /* =========================================================
-   LỘC AN — HOMEPAGE OPENING v1
+   LỘC AN — HOMEPAGE OPENING v3
 
    Scope:
    - Homepage only (#sneaker-grid)
@@ -183,7 +183,7 @@ body:has(#sneaker-grid)::before {
   will-change: transform;
 
   transition:
-    transform 0.62s cubic-bezier(.76, 0, .24, 1);
+    transform 0.82s cubic-bezier(.76, 0, .24, 1);
 }
 
 .locan-home-opening-panel.left {
@@ -208,8 +208,8 @@ body:has(#sneaker-grid)::before {
   transform: translateY(6px);
 
   transition:
-    opacity 0.32s ease,
-    transform 0.40s cubic-bezier(.2,.7,.2,1);
+    opacity 0.42s ease,
+    transform 0.50s cubic-bezier(.2,.7,.2,1);
 }
 
 .locan-home-opening-brand {
@@ -239,8 +239,8 @@ body:has(#sneaker-grid)::before {
   transform: translateY(4px);
 
   transition:
-    opacity 0.26s ease 0.18s,
-    transform 0.30s ease 0.18s;
+    opacity 0.34s ease 0.30s,
+    transform 0.38s ease 0.30s;
 }
 
 
@@ -270,7 +270,7 @@ body:has(#sneaker-grid)::before {
   transform-origin: center;
 
   transition:
-    transform 0.40s cubic-bezier(.22,.75,.24,1) 0.31s;
+    transform 0.52s cubic-bezier(.22,.75,.24,1) 0.55s;
 }
 
 
@@ -300,7 +300,7 @@ body:has(#sneaker-grid)::before {
   transform: translateY(-5px);
 
   transition-delay: 0s;
-  transition-duration: 0.17s;
+  transition-duration: 0.24s;
 }
 
 .locan-home-opening.is-revealing
