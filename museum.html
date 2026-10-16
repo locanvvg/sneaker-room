@@ -12,16 +12,21 @@
   <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=20260914-brand-v8">
 
   <link rel="stylesheet" href="./museum.css?v=20261013-v26">
-  <link rel="stylesheet" href="./museum-direct-v29.css?v=20261016-v29">
+  <link rel="stylesheet" href="./museum-experience-v30.css?v=20261016-v30">
 </head>
 
 <body class="museum-body">
   <main class="museum-app" id="museum-app">
 
-    <a class="museum-back-fixed" id="museum-back-fixed" href="./index.html" aria-label="Back to collection">
+    <button
+      type="button"
+      class="museum-home-fixed"
+      id="museum-home-fixed"
+      aria-label="Museum home"
+    >
       <span aria-hidden="true">←</span>
-      <span id="museum-back-fixed-copy">BỘ SƯU TẬP</span>
-    </a>
+      <span id="museum-home-fixed-copy">MUSEUM HOME</span>
+    </button>
 
     <section class="museum-stage" id="museum-stage" aria-live="polite">
       <div class="museum-ambient" aria-hidden="true"></div>
@@ -109,29 +114,71 @@
       </div>
     </section>
 
-    <section class="museum-launch" id="museum-launch" aria-labelledby="museum-launch-title" hidden>
-      <div class="museum-launch-card">
-        <div class="museum-launch-kicker">LỘC AN SNEAKER COLLECTION</div>
-        <h2 id="museum-launch-title">MUSEUM MODE</h2>
-        <p id="museum-launch-text">
-          Trình chiếu tự động dành cho TV và màn hình trong phòng trưng bày.
+    <section class="museum-launch museum-entrance" id="museum-launch" aria-labelledby="museum-entry-title">
+      <div class="museum-entry-door museum-entry-door-left" aria-hidden="true"></div>
+      <div class="museum-entry-door museum-entry-door-right" aria-hidden="true"></div>
+      <div class="museum-entry-light" aria-hidden="true"></div>
+
+      <div class="museum-entry-language" aria-label="Language">
+        <button type="button" class="museum-entry-lang active" id="museum-entry-lang-vi">VI</button>
+        <span aria-hidden="true">/</span>
+        <button type="button" class="museum-entry-lang" id="museum-entry-lang-en">EN</button>
+      </div>
+
+      <div class="museum-entry-card">
+        <div class="museum-entry-kicker">LỘC AN SNEAKER COLLECTION</div>
+
+        <div class="museum-entry-rule" aria-hidden="true"></div>
+
+        <div class="museum-entry-eyebrow" id="museum-entry-eyebrow">
+          TRIỂN LÃM HIỆN TẠI
+        </div>
+
+        <h1 class="museum-entry-title" id="museum-entry-title">
+          BỘ SƯU TẬP CÁ NHÂN
+        </h1>
+
+        <div class="museum-entry-period" id="museum-entry-period">1999—2026</div>
+
+        <p class="museum-entry-statement" id="museum-entry-statement">
+          Một bảo tàng số cá nhân lưu trữ sneaker qua hành trình sở hữu,
+          nguồn gốc, thiết kế và bối cảnh văn hóa.
         </p>
 
-        <div class="museum-launch-actions">
-          <button type="button" class="museum-launch-primary" id="museum-launch-fullscreen">
-            <span aria-hidden="true">⛶</span>
-            <span id="museum-launch-fullscreen-copy">BẮT ĐẦU TOÀN MÀN HÌNH</span>
-          </button>
-
-          <button type="button" class="museum-launch-secondary" id="museum-launch-window">
-            <span id="museum-launch-window-copy">BẮT ĐẦU</span>
-          </button>
-
-          <a class="museum-launch-secondary museum-launch-home" id="museum-launch-home" href="./index.html">
-            <span aria-hidden="true">←</span>
-            <span id="museum-launch-home-copy">TRỞ VỀ TRANG CHÍNH</span>
-          </a>
+        <div class="museum-entry-meta">
+          <span id="museum-entry-object-count">— HIỆN VẬT</span>
+          <span class="museum-entry-dot" aria-hidden="true">•</span>
+          <span id="museum-entry-archive-label">PRIVATE DIGITAL ARCHIVE</span>
         </div>
+
+        <div class="museum-entry-actions">
+          <button type="button" class="museum-entry-primary" id="museum-entry-enter">
+            <span id="museum-entry-enter-copy">VÀO TRIỂN LÃM</span>
+            <span class="museum-entry-arrow" aria-hidden="true">→</span>
+          </button>
+
+          <button type="button" class="museum-entry-secondary" id="museum-entry-fullscreen">
+            <span aria-hidden="true">⛶</span>
+            <span id="museum-entry-fullscreen-copy">VÀO TOÀN MÀN HÌNH</span>
+          </button>
+        </div>
+
+        <a class="museum-entry-back" id="museum-entry-back" href="./index.html">
+          <span aria-hidden="true">←</span>
+          <span id="museum-entry-back-copy">TRỞ VỀ BỘ SƯU TẬP</span>
+        </a>
+
+        <div class="museum-entry-notice">PRIVATE COLLECTION — NOT FOR SALE</div>
+      </div>
+
+      <!-- Hidden bridge controls keep the existing museum.js start logic unchanged. -->
+      <div class="museum-start-bridge" aria-hidden="true">
+        <button type="button" id="museum-launch-window" tabindex="-1">
+          <span id="museum-launch-window-copy">BẮT ĐẦU</span>
+        </button>
+        <button type="button" id="museum-launch-fullscreen" tabindex="-1">
+          <span id="museum-launch-fullscreen-copy">BẮT ĐẦU TOÀN MÀN HÌNH</span>
+        </button>
       </div>
     </section>
 
@@ -146,7 +193,7 @@
   <script src="./current-site-adjustments.js?v=20261011-v4"></script>
   <script src="./pictures/normalized/manifest.js?v=20261010-standard-v4b-wide-sparse"></script>
 
-  <script src="./museum.js?v=20261016-v27-direct"></script>
-  <script src="./museum-direct-v29.js?v=20261016-v29"></script>
+  <script src="./museum.js?v=20261016-v27-stable"></script>
+  <script src="./museum-experience-v30.js?v=20261016-v30"></script>
 </body>
 </html>
