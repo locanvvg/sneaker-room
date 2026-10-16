@@ -101,3 +101,247 @@
     border-radius: 14px;
   }
 }
+
+
+/* =========================================================
+   LỘC AN — HOMEPAGE OPENING v1
+
+   Scope:
+   - Homepage only (#sneaker-grid)
+   - No Timeline / World Map / Museum interference
+   - First visit per browser tab/session
+========================================================= */
+
+/*
+  PRE-COVER:
+  This exists before the bottom scripts execute, so the homepage never
+  flashes on screen before the opening sequence is mounted.
+*/
+body:has(#sneaker-grid)::before {
+  content: "";
+
+  position: fixed;
+  inset: 0;
+  z-index: 2147482900;
+
+  display: block;
+
+  background: #050505;
+
+  pointer-events: none;
+}
+
+html.locan-home-opening-mounted
+body:has(#sneaker-grid)::before,
+html.locan-home-opening-skip
+body:has(#sneaker-grid)::before {
+  display: none !important;
+}
+
+
+/* Full opening shell */
+.locan-home-opening {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+
+  display: grid;
+  place-items: center;
+
+  overflow: hidden;
+
+  background: transparent;
+
+  isolation: isolate;
+  pointer-events: auto;
+}
+
+
+/* Two black panels reveal the actual homepage underneath. */
+.locan-home-opening-panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+
+  width: 50.1%;
+
+  z-index: 0;
+
+  background:
+    radial-gradient(
+      circle at 50% 46%,
+      rgba(255,255,255,0.018),
+      transparent 42%
+    ),
+    linear-gradient(
+      180deg,
+      #080809 0%,
+      #050505 55%,
+      #070708 100%
+    );
+
+  will-change: transform;
+
+  transition:
+    transform 0.62s cubic-bezier(.76, 0, .24, 1);
+}
+
+.locan-home-opening-panel.left {
+  left: 0;
+}
+
+.locan-home-opening-panel.right {
+  right: 0;
+}
+
+
+/* Center title block */
+.locan-home-opening-content {
+  position: relative;
+  z-index: 2;
+
+  width: min(88vw, 700px);
+
+  text-align: center;
+
+  opacity: 0;
+  transform: translateY(6px);
+
+  transition:
+    opacity 0.32s ease,
+    transform 0.40s cubic-bezier(.2,.7,.2,1);
+}
+
+.locan-home-opening-brand {
+  margin: 0;
+
+  color: #f7f7f8;
+
+  font-size: clamp(2.8rem, 7vw, 6rem);
+  font-weight: 950;
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+}
+
+.locan-home-opening-subtitle {
+  margin-top: 15px;
+
+  color: #77777f;
+
+  font-size: clamp(0.58rem, 1vw, 0.72rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 2.35px;
+
+  text-transform: uppercase;
+
+  opacity: 0;
+  transform: translateY(4px);
+
+  transition:
+    opacity 0.26s ease 0.18s,
+    transform 0.30s ease 0.18s;
+}
+
+
+/* One simple gold museum/archive line. */
+.locan-home-opening-line {
+  width: min(330px, 58vw);
+  height: 1px;
+
+  margin: 25px auto 0;
+
+  overflow: hidden;
+
+  background: rgba(255,255,255,0.055);
+}
+
+.locan-home-opening-line::after {
+  content: "";
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  background: #ffcc00;
+
+  transform: scaleX(0);
+  transform-origin: center;
+
+  transition:
+    transform 0.40s cubic-bezier(.22,.75,.24,1) 0.31s;
+}
+
+
+/* Opening title comes in. */
+.locan-home-opening.is-active
+.locan-home-opening-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.locan-home-opening.is-active
+.locan-home-opening-subtitle {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.locan-home-opening.is-active
+.locan-home-opening-line::after {
+  transform: scaleX(1);
+}
+
+
+/* Then the title disappears and the two panels open. */
+.locan-home-opening.is-revealing
+.locan-home-opening-content {
+  opacity: 0;
+  transform: translateY(-5px);
+
+  transition-delay: 0s;
+  transition-duration: 0.17s;
+}
+
+.locan-home-opening.is-revealing
+.locan-home-opening-panel.left {
+  transform: translateX(-101%);
+}
+
+.locan-home-opening.is-revealing
+.locan-home-opening-panel.right {
+  transform: translateX(101%);
+}
+
+
+/* Mobile */
+@media (max-width: 650px) {
+  .locan-home-opening-brand {
+    font-size: clamp(2.45rem, 15vw, 4.45rem);
+    letter-spacing: -0.035em;
+  }
+
+  .locan-home-opening-subtitle {
+    margin-top: 13px;
+
+    font-size: 0.56rem;
+    letter-spacing: 1.9px;
+  }
+
+  .locan-home-opening-line {
+    width: min(260px, 62vw);
+    margin-top: 21px;
+  }
+}
+
+
+/* Accessibility / low-motion devices */
+@media (prefers-reduced-motion: reduce) {
+  .locan-home-opening-panel,
+  .locan-home-opening-content,
+  .locan-home-opening-subtitle,
+  .locan-home-opening-line::after {
+    transition-duration: 0.08s !important;
+    transition-delay: 0s !important;
+  }
+}
