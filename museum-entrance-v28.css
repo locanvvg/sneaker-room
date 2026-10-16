@@ -1,0 +1,215 @@
+/* =========================================================
+   LỘC AN — MUSEUM ENTRANCE / FOYER v28
+   Presentation-only layer. Does not alter Museum renderer.
+========================================================= */
+
+.museum-launch {
+  background:
+    radial-gradient(circle at 50% 36%, rgba(255, 204, 0, 0.055), transparent 28%),
+    linear-gradient(180deg, rgba(8, 8, 9, 0.985), rgba(3, 3, 4, 0.99));
+}
+
+.museum-launch-card {
+  width: min(100%, 900px);
+  padding: clamp(24px, 5vw, 64px);
+  text-align: center;
+}
+
+.museum-foyer-rule {
+  width: min(420px, 62vw);
+  height: 1px;
+  margin: 22px auto 30px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.20) 18%,
+    rgba(255,204,0,0.52) 50%,
+    rgba(255,255,255,0.20) 82%,
+    transparent
+  );
+}
+
+.museum-foyer-eyebrow {
+  margin: 0;
+  color: #777780;
+  font-size: 0.64rem;
+  font-weight: 900;
+  letter-spacing: 2.1px;
+  text-transform: uppercase;
+}
+
+.museum-launch #museum-launch-title {
+  margin: 16px auto 0;
+  max-width: 840px;
+  color: #f7f7f8;
+  font-size: clamp(2.7rem, 7.5vw, 6.5rem);
+  line-height: 0.93;
+  letter-spacing: -0.05em;
+  font-weight: 950;
+  text-wrap: balance;
+}
+
+.museum-foyer-period {
+  margin: 18px 0 0;
+  color: var(--museum-yellow);
+  font-size: clamp(0.74rem, 1.15vw, 0.92rem);
+  font-weight: 900;
+  letter-spacing: 2.3px;
+  text-transform: uppercase;
+}
+
+.museum-launch #museum-launch-text {
+  margin: 30px auto 0;
+  max-width: 620px;
+  color: #aaaab1;
+  font-size: clamp(0.96rem, 1.45vw, 1.14rem);
+  line-height: 1.78;
+  font-weight: 450;
+  text-wrap: balance;
+}
+
+.museum-foyer-meta {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  color: #62626a;
+  font-size: 0.62rem;
+  font-weight: 850;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+}
+
+.museum-foyer-meta-dot {
+  color: #36363b;
+}
+
+.museum-launch-actions {
+  margin-top: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.museum-launch-primary,
+.museum-launch-secondary,
+.museum-launch-home {
+  min-height: 46px;
+  border-radius: 8px;
+  letter-spacing: 1px;
+}
+
+.museum-launch #museum-launch-window {
+  order: 1;
+  min-width: 188px;
+  padding: 13px 22px;
+  color: #050505;
+  background: var(--museum-yellow);
+  border-color: var(--museum-yellow);
+}
+
+.museum-launch #museum-launch-fullscreen {
+  order: 2;
+  min-width: 188px;
+  padding: 13px 20px;
+  color: #c9c9cf;
+  background: rgba(18,18,20,0.76);
+  border-color: #2c2c31;
+}
+
+.museum-launch #museum-launch-home {
+  order: 3;
+  min-width: 188px;
+  padding: 13px 20px;
+  color: #8c8c94;
+  background: transparent;
+  border-color: rgba(255,255,255,0.10);
+}
+
+.museum-launch #museum-launch-window:hover,
+.museum-launch #museum-launch-window:focus-visible {
+  background: #ffd633;
+  border-color: #ffd633;
+  color: #050505;
+  outline: none;
+}
+
+.museum-launch #museum-launch-fullscreen:hover,
+.museum-launch #museum-launch-home:hover,
+.museum-launch #museum-launch-fullscreen:focus-visible,
+.museum-launch #museum-launch-home:focus-visible {
+  border-color: #525259;
+  color: #fff;
+  outline: none;
+}
+
+.museum-foyer-notice {
+  margin-top: 34px;
+  color: #4f4f56;
+  font-size: 0.58rem;
+  font-weight: 850;
+  letter-spacing: 1.7px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 650px) {
+  .museum-launch {
+    padding: max(18px, env(safe-area-inset-top)) 18px
+      max(18px, env(safe-area-inset-bottom));
+  }
+
+  .museum-launch-card {
+    padding: 22px 0;
+  }
+
+  .museum-launch-kicker {
+    font-size: 0.60rem;
+    letter-spacing: 1.7px;
+  }
+
+  .museum-foyer-rule {
+    margin-top: 18px;
+    margin-bottom: 26px;
+  }
+
+  .museum-launch #museum-launch-title {
+    font-size: clamp(2.35rem, 13vw, 4.6rem);
+  }
+
+  .museum-launch #museum-launch-text {
+    margin-top: 24px;
+    max-width: 34rem;
+    font-size: 0.94rem;
+    line-height: 1.68;
+  }
+
+  .museum-foyer-meta {
+    margin-top: 21px;
+    font-size: 0.56rem;
+  }
+
+  .museum-launch-actions {
+    margin-top: 30px;
+    flex-direction: column;
+  }
+
+  .museum-launch #museum-launch-window,
+  .museum-launch #museum-launch-fullscreen,
+  .museum-launch #museum-launch-home {
+    width: 100%;
+  }
+
+  .museum-foyer-notice {
+    margin-top: 26px;
+    font-size: 0.54rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .museum-launch * {
+    transition: none !important;
+  }
+}
