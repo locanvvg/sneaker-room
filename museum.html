@@ -12,11 +12,16 @@
   <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=20260914-brand-v8">
 
   <link rel="stylesheet" href="./museum.css?v=20261013-v26">
-  <link rel="stylesheet" href="./museum-entrance-v28.css?v=20261015-v28">
+  <link rel="stylesheet" href="./museum-direct-v29.css?v=20261016-v29">
 </head>
 
 <body class="museum-body">
   <main class="museum-app" id="museum-app">
+
+    <a class="museum-back-fixed" id="museum-back-fixed" href="./index.html" aria-label="Back to collection">
+      <span aria-hidden="true">←</span>
+      <span id="museum-back-fixed-copy">BỘ SƯU TẬP</span>
+    </a>
 
     <section class="museum-stage" id="museum-stage" aria-live="polite">
       <div class="museum-ambient" aria-hidden="true"></div>
@@ -104,7 +109,7 @@
       </div>
     </section>
 
-    <section class="museum-launch" id="museum-launch" aria-labelledby="museum-launch-title">
+    <section class="museum-launch" id="museum-launch" aria-labelledby="museum-launch-title" hidden>
       <div class="museum-launch-card">
         <div class="museum-launch-kicker">LỘC AN SNEAKER COLLECTION</div>
         <h2 id="museum-launch-title">MUSEUM MODE</h2>
@@ -141,8 +146,7 @@
   <script src="./current-site-adjustments.js?v=20261011-v4"></script>
   <script src="./pictures/normalized/manifest.js?v=20261010-standard-v4b-wide-sparse"></script>
 
-  <!-- Museum foyer layer: presentation only; the existing renderer remains unchanged. -->
-  <script src="./museum-entrance-v28.js?v=20261015-v28"></script>
-  <script src="./museum.js?v=20261014-v27"></script>
+  <script src="./museum.js?v=20261016-v27-direct"></script>
+  <script src="./museum-direct-v29.js?v=20261016-v29"></script>
 </body>
 </html>
