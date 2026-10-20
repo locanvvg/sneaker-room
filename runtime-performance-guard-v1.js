@@ -2374,3 +2374,463 @@
     { once: true }
   );
 })();
+
+/* =========================================================
+   LỘC AN — COLLECTION RETURN STATE + HOME LABEL v1
+   2026-10-20
+
+   1) A SOLD sneaker detail returns to FORMERLY IN COLLECTION.
+   2) An OWN sneaker detail returns to IN COLLECTION.
+   3) Homepage restores ?collection=sold / own.
+   4) Homepage notice becomes:
+      VI: BỘ SƯU TẬP CÁ NHÂN
+      EN: PRIVATE COLLECTION
+========================================================= */
+(() => {
+  "use strict";
+
+  if (window.__locanCollectionReturnStateV1) return;
+  window.__locanCollectionReturnStateV1 = true;
+
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
+
+  const path =
+    String(
+      window.location.pathname || ""
+    ).toLowerCase();
+
+  const isHomepage =
+    /(?:\/|\/index\.html)$/.test(path) &&
+    Boolean(
+      document.getElementById(
+        "sneaker-grid"
+      )
+    );
+
+  const isShoeDetail =
+    /\/shoe\.html$/.test(path) ||
+    Boolean(
+      document.getElementById(
+        "shoe-detail"
+      )
+    );
+
+  function lang() {
+    return (
+      document.documentElement.lang === "en"
+    )
+      ? "en"
+      : "vi";
+  }
+
+  function catalog() {
+    return (
+      typeof sneakers !== "undefined" &&
+      Array.isArray(sneakers)
+    )
+      ? sneakers
+      : [];
+  }
+
+  function detailStatus() {
+    const id =
+      new URLSearchParams(
+        window.location.search
+      ).get("id");
+
+    const item =
+      catalog().find(
+        sneaker =>
+          String(
+            sneaker?.id || ""
+          ) ===
+          String(
+            id || ""
+          )
+      );
+
+    return (
+      String(
+        item?.collectionStatus || "own"
+      )
+        .trim()
+        .toLowerCase() === "sold"
+    )
+      ? "sold"
+      : "own";
+  }
+
+  function collectionURL(
+    status
+  ) {
+    const url =
+      new URL(
+        "./index.html",
+        window.location.href
+      );
+
+    url.searchParams.set(
+      "lang",
+      lang()
+    );
+
+    url.searchParams.set(
+      "collection",
+      status === "sold"
+        ? "sold"
+        : "own"
+    );
+
+    return (
+      url.pathname
+        .split("/")
+        .pop()
+      +
+      url.search
+    );
+  }
+
+
+  /* =====================================================
+     HOMEPAGE LABEL
+  ===================================================== */
+
+  function installHomepageLabel() {
+    if (!isHomepage) return;
+
+    if (
+      document.getElementById(
+        "locan-home-private-collection-label-v1"
+      )
+    ) {
+      return;
+    }
+
+    const style =
+      document.createElement(
+        "style"
+      );
+
+    style.id =
+      "locan-home-private-collection-label-v1";
+
+    style.textContent = `
+      html[lang="vi"] .home-header::after {
+        content: "BỘ SƯU TẬP CÁ NHÂN" !important;
+      }
+
+      html[lang="en"] .home-header::after {
+        content: "PRIVATE COLLECTION" !important;
+      }
+    `;
+
+    document.head
+      .appendChild(style);
+  }
+
+
+  /* =====================================================
+     DETAIL BACK TARGET
+  ===================================================== */
+
+  function updateDetailBack() {
+    if (!isShoeDetail) return;
+
+    const back =
+      document.getElementById(
+        "back-link"
+      );
+
+    if (!back) return;
+
+    const status =
+      detailStatus();
+
+    back.href =
+      collectionURL(status);
+
+    back.dataset
+      .collectionReturnStatus =
+        status;
+
+    back.textContent =
+      lang() === "vi"
+        ? "← QUAY LẠI BỘ SƯU TẬP"
+        : "← BACK TO COLLECTION";
+  }
+
+  function installDetailBackHandler() {
+    if (!isShoeDetail) return;
+
+    const back =
+      document.getElementById(
+        "back-link"
+      );
+
+    if (
+      !back ||
+      back.dataset
+        .collectionReturnBound ===
+        "true"
+    ) {
+      return;
+    }
+
+    back.dataset
+      .collectionReturnBound =
+        "true";
+
+    /*
+      Capture the click and calculate the target at click time.
+      This guarantees the correct destination even if another older
+      localization script has rewritten the href attribute.
+    */
+    back.addEventListener(
+      "click",
+      event => {
+        if (
+          event.button !== 0 ||
+          event.metaKey ||
+          event.ctrlKey ||
+          event.shiftKey ||
+          event.altKey
+        ) {
+          return;
+        }
+
+        event.preventDefault();
+
+        window.location.href =
+          collectionURL(
+            detailStatus()
+          );
+      },
+      true
+    );
+  }
+
+
+  /* =====================================================
+     HOMEPAGE STATUS RESTORE
+  ===================================================== */
+
+  let restoreFinished =
+    false;
+
+  function desiredHomepageStatus() {
+    const value =
+      new URLSearchParams(
+        window.location.search
+      ).get("collection");
+
+    return (
+      value === "sold"
+    )
+      ? "sold"
+      : (
+          value === "own"
+            ? "own"
+            : ""
+        );
+  }
+
+  function homepageMatches(
+    status
+  ) {
+    if (!document.body) {
+      return false;
+    }
+
+    return status === "sold"
+      ? document.body.classList
+          .contains(
+            "collection-status-sold"
+          )
+      : document.body.classList
+          .contains(
+            "collection-status-own"
+          );
+  }
+
+  function restoreHomepageStatus() {
+    if (
+      !isHomepage ||
+      restoreFinished
+    ) {
+      return;
+    }
+
+    const desired =
+      desiredHomepageStatus();
+
+    if (!desired) {
+      restoreFinished =
+        true;
+      return;
+    }
+
+    if (
+      homepageMatches(desired)
+    ) {
+      restoreFinished =
+        true;
+      return;
+    }
+
+    const button =
+      document.getElementById(
+        desired === "sold"
+          ? "collection-status-sold"
+          : "collection-status-own"
+      );
+
+    if (!button) {
+      return;
+    }
+
+    button.click();
+
+    /*
+      The status controller renders synchronously in normal operation,
+      but verify before declaring the restore complete.
+    */
+    if (
+      homepageMatches(desired)
+    ) {
+      restoreFinished =
+        true;
+    }
+  }
+
+  function keepHomepageURLInSync() {
+    if (!isHomepage) return;
+
+    document.addEventListener(
+      "click",
+      event => {
+        const button =
+          event.target?.closest?.(
+            "#collection-status-own, #collection-status-sold"
+          );
+
+        if (!button) return;
+
+        const status =
+          button.id ===
+            "collection-status-sold"
+            ? "sold"
+            : "own";
+
+        const url =
+          new URL(
+            window.location.href
+          );
+
+        url.searchParams.set(
+          "collection",
+          status
+        );
+
+        window.history
+          .replaceState(
+            {},
+            "",
+            url.pathname +
+            url.search +
+            url.hash
+          );
+      },
+      true
+    );
+  }
+
+
+  /* =====================================================
+     INIT
+  ===================================================== */
+
+  installHomepageLabel();
+  installDetailBackHandler();
+  updateDetailBack();
+  keepHomepageURLInSync();
+
+  if (isHomepage) {
+    /*
+      Runtime loads before the collection-status controller.
+      Multiple tiny attempts let that controller finish installing
+      without adding another permanent feedback observer.
+    */
+    [
+      0,
+      40,
+      120,
+      280,
+      600,
+      1000
+    ].forEach(
+      delay => {
+        window.setTimeout(
+          restoreHomepageStatus,
+          delay
+        );
+      }
+    );
+  }
+
+  if (isShoeDetail) {
+    /*
+      Existing localization code may update <html lang> after a VI/EN click.
+      Recalculate the Back URL after that change.
+    */
+    const root =
+      document.documentElement;
+
+    if (
+      root &&
+      root.dataset
+        .collectionReturnLangObserved !==
+        "true"
+    ) {
+      root.dataset
+        .collectionReturnLangObserved =
+          "true";
+
+      const observer =
+        new MutationObserver(
+          mutations => {
+            if (
+              mutations.some(
+                mutation =>
+                  mutation.type ===
+                    "attributes" &&
+                  mutation.attributeName ===
+                    "lang"
+              )
+            ) {
+              updateDetailBack();
+            }
+          }
+        );
+
+      observer.observe(
+        root,
+        {
+          attributes: true,
+          attributeFilter: ["lang"]
+        }
+      );
+    }
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      () => {
+        installDetailBackHandler();
+        updateDetailBack();
+      },
+      { once: true }
+    );
+  }
+})();
