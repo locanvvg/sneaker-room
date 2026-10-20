@@ -360,7 +360,7 @@
 })();
 
 /* =========================================================
-   LỘC AN — MUSEUM UI POLISH v4
+   LỘC AN — MUSEUM UI POLISH v5
    2026-10-20
 
    FINAL DISPLAY RULE
@@ -394,11 +394,11 @@
 (() => {
   "use strict";
 
-  if (window.__locanMuseumUiPolishV4) {
+  if (window.__locanMuseumUiPolishV5) {
     return;
   }
 
-  window.__locanMuseumUiPolishV4 = true;
+  window.__locanMuseumUiPolishV5 = true;
 
   const path =
     String(
@@ -1967,4 +1967,410 @@
     installObserver();
     patchVisibleUI();
   }
+})();
+
+/* =========================================================
+   LỘC AN — MOBILE IMAGE RECOVERY v1
+   2026-10-20
+========================================================= */
+(() => {
+  "use strict";
+
+  if (window.__locanMobileImageRecoveryV1) return;
+  window.__locanMobileImageRecoveryV1 = true;
+
+  const RETRY_REVISION = "20261020-mobile-image-v1";
+  let scanScheduled = false;
+
+  function catalog() {
+    return (
+      typeof sneakers !== "undefined" &&
+      Array.isArray(sneakers)
+    ) ? sneakers : [];
+  }
+
+  function cleanPath(value) {
+    return String(value || "")
+      .split("?")[0]
+      .split("#")[0]
+      .replace(/^\.\//, "")
+      .trim();
+  }
+
+  function addRetryParam(value) {
+    const raw = String(value || "").trim();
+    if (!raw) return "";
+
+    try {
+      const url = new URL(raw, window.location.href);
+      url.searchParams.set("mobile_retry", RETRY_REVISION);
+
+      if (url.origin === window.location.origin) {
+        const baseDir = window.location.pathname.replace(/[^/]*$/, "");
+        const relative = url.pathname.startsWith(baseDir)
+          ? url.pathname.slice(baseDir.length)
+          : url.pathname.replace(/^\/+/, "");
+
+        return relative + url.search;
+      }
+
+      return url.href;
+    } catch (_) {
+      return raw;
+    }
+  }
+
+  function itemForImage(img) {
+    if (!img) return null;
+
+    const id =
+      img.dataset?.sneakerId ||
+      img.dataset?.itemId ||
+      img.closest?.("[data-sneaker-id]")?.getAttribute("data-sneaker-id") ||
+      "";
+
+    if (id) {
+      const match = catalog().find(
+        item => String(item?.id || "") === String(id)
+      );
+
+      if (match) return match;
+    }
+
+    if (img.id === "shoe-image") {
+      const shoeId =
+        new URLSearchParams(window.location.search).get("id");
+
+      return catalog().find(
+        item => String(item?.id || "") === String(shoeId || "")
+      ) || null;
+    }
+
+    return null;
+  }
+
+  function originalImageFor(img) {
+    const item = itemForImage(img);
+    if (!item) return "";
+
+    const candidates = [
+      item.catalogOriginalImage,
+      item.originalImage,
+      Array.isArray(item.images) ? item.images[0] : "",
+      item.image
+    ];
+
+    for (const candidate of candidates) {
+      const value = String(candidate || "").trim();
+
+      if (
+        value &&
+        !cleanPath(value).startsWith("pictures/normalized/")
+      ) {
+        return value;
+      }
+    }
+
+    return "";
+  }
+
+  function currentImageUrl(img) {
+    return (
+      img.getAttribute("src") ||
+      img.dataset?.src ||
+      ""
+    );
+  }
+
+  function isNormalizedUrl(value) {
+    return cleanPath(value).includes("pictures/normalized/");
+  }
+
+  function recoverImage(img) {
+    if (!img) return;
+    if (img.dataset.mobileImageRecoveryActive === "true") return;
+
+    img.dataset.mobileImageRecoveryActive = "true";
+
+    const current = currentImageUrl(img);
+    const stage = Number(img.dataset.mobileImageRecoveryStage || 0);
+
+    // Stage 0: retry same file once with a fresh query.
+    if (stage === 0 && current) {
+      img.dataset.mobileImageRecoveryStage = "1";
+      img.dataset.mobileImageBroken = "true";
+
+      const retry = addRetryParam(current);
+
+      if (retry) {
+        img.src = retry;
+        img.dataset.mobileImageRecoveryActive = "false";
+        return;
+      }
+    }
+
+    // Stage 1: normalized derivative failed -> exact original sneaker image.
+    if (stage <= 1 && isNormalizedUrl(current)) {
+      const original = originalImageFor(img);
+
+      if (
+        original &&
+        cleanPath(original) !== cleanPath(current)
+      ) {
+        img.dataset.mobileImageRecoveryStage = "2";
+        img.dataset.mobileImageFallback = "original";
+        img.src = original;
+
+        if (img.dataset?.src) {
+          img.dataset.src = original;
+        }
+
+        img.dataset.mobileImageRecoveryActive = "false";
+        return;
+      }
+    }
+
+    img.dataset.mobileImageRecoveryStage = String(Math.max(stage, 2));
+    img.dataset.mobileImageBroken = "true";
+    img.dataset.mobileImageRecoveryActive = "false";
+  }
+
+  function bindImage(img) {
+    if (!img || img.dataset.mobileImageRecoveryBound === "true") return;
+
+    img.dataset.mobileImageRecoveryBound = "true";
+
+    img.addEventListener(
+      "load",
+      () => {
+        if (img.naturalWidth > 0 && img.naturalHeight > 0) {
+          img.dataset.mobileImageLoaded = "true";
+          img.dataset.mobileImageBroken = "false";
+
+          // Re-use the existing fit engine only; no new sizing logic.
+          window.CatalogDisplay?.prepareImage?.(img);
+        }
+      },
+      { passive: true }
+    );
+
+    img.addEventListener("error", () => {
+      img.dataset.mobileImageRecoveryActive = "false";
+      recoverImage(img);
+    });
+
+    // Image may already be in failed-complete state before listener binds.
+    if (
+      img.complete &&
+      img.getAttribute("src") &&
+      img.naturalWidth === 0
+    ) {
+      recoverImage(img);
+    }
+  }
+
+  function eligibleImages(root = document) {
+    if (!root?.querySelectorAll) return [];
+
+    return root.querySelectorAll([
+      "#sneaker-grid img",
+      "#shoe-image",
+      ".shoe-detail-thumbnail img",
+      ".timeline-artifact img",
+      ".globe-shoe-card img",
+      "#museum-app img",
+      ".sneaker-3d-card img"
+    ].join(","));
+  }
+
+  function scanImages(root = document) {
+    eligibleImages(root).forEach(bindImage);
+  }
+
+  function scheduleScan() {
+    if (scanScheduled) return;
+    scanScheduled = true;
+
+    requestAnimationFrame(() => {
+      scanScheduled = false;
+      scanImages(document);
+    });
+  }
+
+  function recheckBrokenImages() {
+    eligibleImages(document).forEach(img => {
+      bindImage(img);
+
+      if (
+        img.complete &&
+        img.getAttribute("src") &&
+        img.naturalWidth === 0
+      ) {
+        if (Number(img.dataset.mobileImageRecoveryStage || 0) >= 2) {
+          img.dataset.mobileImageRecoveryStage = "0";
+        }
+
+        img.dataset.mobileImageRecoveryActive = "false";
+        recoverImage(img);
+      }
+    });
+  }
+
+  scanImages(document);
+
+  function installImageObserver() {
+    if (
+      !document.body ||
+      document.body.dataset.mobileImageRecoveryObserved === "true"
+    ) {
+      return;
+    }
+
+    document.body.dataset.mobileImageRecoveryObserved = "true";
+
+    const observer = new MutationObserver(mutations => {
+      const hasAddedImages =
+        mutations.some(mutation =>
+          Array.from(mutation.addedNodes).some(node =>
+            node instanceof Element &&
+            (
+              node.matches?.("img") ||
+              node.querySelector?.("img")
+            )
+          )
+        );
+
+      if (hasAddedImages) scheduleScan();
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener(
+      "DOMContentLoaded",
+      () => {
+        scanImages(document);
+        installImageObserver();
+      },
+      { once: true }
+    );
+  } else {
+    installImageObserver();
+    scanImages(document);
+  }
+
+  // Mobile Safari often restores via BFCache after app/tab switching.
+  window.addEventListener(
+    "pageshow",
+    () => {
+      window.setTimeout(recheckBrokenImages, 80);
+    },
+    { passive: true }
+  );
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") {
+      window.setTimeout(recheckBrokenImages, 120);
+    }
+  });
+})();
+
+/* =========================================================
+   LỘC AN — PUMA x ROSÉ FORMERLY IN COLLECTION v1
+   2026-10-20
+
+   Requested scope:
+   - Move PUMA x ROSÉ Speedcat Leather 'Warm White' to SOLD.
+   - Use pictures/puma_rose.png.
+   - Shorten story to Formerly-in-Collection style.
+   - Auto-fit the new transparent cutout consistently in Grid + 3D.
+========================================================= */
+(() => {
+  "use strict";
+
+  const PUMA_ID =
+    "puma-rose-speedcat-leather-warm-white";
+
+  function patchPumaRose() {
+    if (
+      typeof sneakers === "undefined" ||
+      !Array.isArray(sneakers)
+    ) {
+      return false;
+    }
+
+    const puma =
+      sneakers.find(
+        item =>
+          item?.id === PUMA_ID
+      );
+
+    if (!puma) {
+      return false;
+    }
+
+    /*
+      Collection state:
+      Formerly In Collection / Đã từng trong bộ sưu tập.
+    */
+    puma.collectionStatus =
+      "sold";
+
+    /*
+      Same archive behavior used by existing sold pairs.
+    */
+    puma.archiveFit =
+      true;
+
+    /*
+      Exact requested website asset filename.
+    */
+    puma.image =
+      "pictures/puma_rose.png";
+
+    /*
+      Force the existing catalog auto-fit engine for Grid, 3D and mobile.
+      This uses the transparent-pixel bounding box of the new cutout, so
+      the shoe is optically normalized without hard-coding a new size.
+    */
+    puma.schemaVersion =
+      2;
+
+    puma.autoFit =
+      true;
+
+    puma.display =
+      "auto";
+
+    /*
+      Short Formerly-in-Collection story.
+      Keep metadata out of the story because the detail box already shows it.
+    */
+    puma.story = {
+      vi: `
+        <p><b>PUMA x ROSÉ Speedcat Leather 'Warm White'</b> tái diễn giải phom Speedcat lấy cảm hứng từ motorsport bằng bảng màu Warm White, các mảng đen tương phản và hệ dây wraparound đặc trưng. Thiết kế giữ dáng thấp, gọn của Speedcat nhưng đưa nó gần hơn với ngôn ngữ thời trang của ROSÉ.</p>
+      `,
+      en: `
+        <p><b>PUMA x ROSÉ Speedcat Leather 'Warm White'</b> reworks the motorsport-inspired Speedcat through a Warm White palette, contrasting black details, and its distinctive wraparound lacing. The design keeps the model's low-profile racing shape while shifting it toward ROSÉ's fashion language.</p>
+      `
+    };
+
+    return true;
+  }
+
+  patchPumaRose();
+
+  /*
+    Defensive re-apply after later catalog metadata scripts load.
+    This does not touch DOM, image dimensions, or any other sneaker.
+  */
+  document.addEventListener(
+    "DOMContentLoaded",
+    patchPumaRose,
+    { once: true }
+  );
 })();
