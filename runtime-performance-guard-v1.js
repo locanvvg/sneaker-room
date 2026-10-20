@@ -360,7 +360,7 @@
 })();
 
 /* =========================================================
-   LỘC AN — MUSEUM UI POLISH v3
+   LỘC AN — MUSEUM UI POLISH v4
    2026-10-20
 
    FINAL DISPLAY RULE
@@ -394,11 +394,11 @@
 (() => {
   "use strict";
 
-  if (window.__locanMuseumUiPolishV3) {
+  if (window.__locanMuseumUiPolishV4) {
     return;
   }
 
-  window.__locanMuseumUiPolishV3 = true;
+  window.__locanMuseumUiPolishV4 = true;
 
   const path =
     String(
@@ -682,6 +682,15 @@
       body.locan-detail-archive-ui
       .detail-under-header-back:active {
         transform: translateX(-1px);
+      }
+
+      body.locan-detail-archive-ui
+      #detail-about-link,
+      body.locan-detail-archive-ui
+      #back-link {
+        position: relative;
+        z-index: 20;
+        pointer-events: auto !important;
       }
 
       @media (max-width: 650px) {
@@ -1484,6 +1493,11 @@
     );
 
     /*
+      Structural setup is safe to call more than once, but every DOM move
+      below is idempotent. Never re-parent a node that is already correct.
+    */
+
+    /*
       Remove subtitle semantically as well as visually.
       shoe-page.js may still write into it later, but it remains hidden.
     */
@@ -1529,9 +1543,21 @@
       about.id =
         "detail-about-link";
 
-      headerLeft.appendChild(
-        about
-      );
+      /*
+        IMPORTANT:
+        appendChild() on an element already inside the same parent still
+        mutates the DOM. The v3 observer saw that mutation and ran this
+        function again forever, which could make the header links appear
+        unresponsive. Move the link only when its parent is actually wrong.
+      */
+      if (
+        about.parentElement !==
+        headerLeft
+      ) {
+        headerLeft.appendChild(
+          about
+        );
+      }
     }
 
     /*
@@ -1569,9 +1595,18 @@
         }
       }
 
-      underHeader.appendChild(
-        back
-      );
+      /*
+        Same idempotency rule as the About link:
+        do not mutate the DOM again once Back is already in place.
+      */
+      if (
+        back.parentElement !==
+        underHeader
+      ) {
+        underHeader.appendChild(
+          back
+        );
+      }
 
       document
         .querySelector(
@@ -1832,13 +1867,66 @@
     const observer =
       new MutationObserver(
         mutations => {
-          if (
+          const meaningful =
             mutations.some(
-              mutation =>
-                mutation.addedNodes
-                  .length > 0
-            )
-          ) {
+              mutation => {
+                if (
+                  mutation.addedNodes
+                    .length === 0
+                ) {
+                  return false;
+                }
+
+                const target =
+                  mutation.target;
+
+                /*
+                  Ignore changes generated inside the About split reader.
+                  They do not affect card/subtitle rules and must not wake
+                  the main page patcher.
+                */
+                if (
+                  target instanceof Element &&
+                  (
+                    target.closest(
+                      "#detail-about-split"
+                    ) ||
+                    target.matches(
+                      "#detail-about-split"
+                    )
+                  )
+                ) {
+                  return false;
+                }
+
+                /*
+                  Once the navigation nodes are placed, moving them should
+                  never be a trigger for another structural pass.
+                */
+                const onlyNavigationNodes =
+                  Array.from(
+                    mutation.addedNodes
+                  ).every(
+                    node =>
+                      node instanceof Element &&
+                      (
+                        node.id ===
+                          "detail-about-link" ||
+                        node.id ===
+                          "back-link" ||
+                        node.classList.contains(
+                          "detail-under-header-nav"
+                        )
+                      )
+                  );
+
+                return (
+                  !onlyNavigationNodes
+                );
+              }
+            );
+
+          if (meaningful) {
             schedulePatch();
           }
         }
