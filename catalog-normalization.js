@@ -1,24 +1,34 @@
 /* =========================================================
-   LỘC AN — HOMEPAGE CATALOG IMAGE STANDARDIZATION v4
+   LỘC AN — HOMEPAGE CATALOG IMAGE STANDARDIZATION v5
 
    PURPOSE
    -------
-   - Runs ONLY on the sneaker homepage (index.html).
-   - Uses build-time derivatives BEFORE first render.
-   - Grid and 3D may use different normalized derivatives because their
-     visual envelopes are different.
-   - Preserves original detail/gallery images unchanged.
-   - Applies automatically to every item whose collectionStatus is "own".
-   - Contains NO sneaker IDs and NO per-pair sizing constants.
+   - IN COLLECTION:
+       Grid + 3D keep using the existing normalized derivatives.
+   - FORMERLY IN COLLECTION:
+       Grid keeps the original archive image.
+       3D uses the normalized 3D derivative when one exists.
+   - Detail/gallery images remain untouched.
+   - A newly replaced source asset can opt out of an older normalized
+     derivative until that derivative is regenerated.
 ========================================================= */
 (() => {
   "use strict";
 
-  const BUILD = "20261010-standard-v4";
-  const ASSET_REVISION = "v4-rollback-20261010a";
+  const BUILD = "20261020-standard-v5";
+  const ASSET_REVISION = "v5-sold-3d-20261020";
   const NORMALIZED_PREFIX = "pictures/normalized/";
   const SOURCE_PREFIX = "pictures/source/";
   const PICTURES_PREFIX = "pictures/";
+
+  /*
+    The PUMA source image was replaced after the existing normalized
+    derivative was generated. Keep using the newly supplied source image
+    in sold 3D until a new normalized derivative is built from that source.
+  */
+  const SOLD_3D_SOURCE_ONLY_IDS = new Set([
+    "puma-rose-speedcat-leather-warm-white"
+  ]);
 
   const generatedMap =
     window.CATALOG_NORMALIZED_IMAGE_MAP &&
@@ -47,12 +57,14 @@
     return `${path}?asset=${encodeURIComponent(ASSET_REVISION)}`;
   }
 
-  function isOwned(item) {
+  function statusOf(item) {
     return String(
       item?.collectionStatus || "own"
     )
       .trim()
-      .toLowerCase() === "own";
+      .toLowerCase() === "sold"
+        ? "sold"
+        : "own";
   }
 
   function derivedNormalizedPath(value) {
@@ -103,10 +115,6 @@
       generatedMap[source] ||
       generatedMap[`./${source}`];
 
-    /*
-      v4 manifest:
-        { grid: ".../grid/foo.png", view3d: ".../foo.png" }
-    */
     if (
       direct &&
       typeof direct === "object" &&
@@ -134,13 +142,12 @@
       }
     }
 
-    /*
-      v3 compatibility during the short deployment window before the GitHub
-      Action regenerates manifest.js.  A string means both modes temporarily
-      use the existing v3 derivative; nothing breaks or disappears.
-    */
-    if (typeof direct === "string" && direct) {
-      const normalized = cleanPath(direct);
+    if (
+      typeof direct === "string" &&
+      direct
+    ) {
+      const normalized =
+        cleanPath(direct);
 
       return {
         grid: normalized,
@@ -149,7 +156,10 @@
     }
 
     if (!mapHasEntries) {
-      const derived = derivedNormalizedPath(source);
+      const derived =
+        derivedNormalizedPath(
+          source
+        );
 
       if (derived) {
         return {
@@ -162,51 +172,153 @@
     return null;
   }
 
-  function standardizeItem(item) {
-    if (!item || typeof item !== "object" || !isOwned(item)) {
-      return false;
-    }
-
-    const original = cleanPath(
-      item.catalogOriginalImage ||
-      item.originalImage ||
-      item.image ||
+  function originalImage(item) {
+    return cleanPath(
+      item?.catalogOriginalImage ||
+      item?.originalImage ||
+      item?.image ||
       (
-        Array.isArray(item.images)
+        Array.isArray(item?.images)
           ? item.images[0]
           : ""
       )
     );
+  }
+
+  function standardizeOwned(
+    item,
+    original,
+    assets
+  ) {
+    if (
+      !assets?.grid ||
+      !assets?.view3d
+    ) {
+      return false;
+    }
+
+    item.catalogOriginalImage =
+      original;
+
+    item.catalogGridImage =
+      revisionedAsset(
+        assets.grid
+      );
+
+    item.catalog3DImage =
+      revisionedAsset(
+        assets.view3d
+      );
+
+    item.catalogNormalizedImage =
+      true;
+
+    item.catalogNormalizedBuild =
+      BUILD;
+
+    /*
+      Grid renderer reads sneaker.image.
+    */
+    item.image =
+      item.catalogGridImage;
+
+    /*
+      Normalized bitmap is the sizing authority on the homepage.
+    */
+    item.autoFit =
+      false;
+
+    delete item.display;
+
+    return true;
+  }
+
+  function standardizeSold3D(
+    item,
+    original,
+    assets
+  ) {
+    /*
+      Never change the sold Grid source here.
+      Formerly Grid remains exactly as it was.
+    */
+    item.catalogOriginalImage =
+      original;
+
+    if (
+      SOLD_3D_SOURCE_ONLY_IDS.has(
+        String(item?.id || "")
+      )
+    ) {
+      /*
+        Explicitly remove any stale normalized target inherited from a
+        prior runtime so catalog-standardization-final.js cannot swap in
+        the old bitmap.
+      */
+      delete item.catalog3DImage;
+      item.catalogSold3DSourceOnly =
+        true;
+
+      return true;
+    }
+
+    if (!assets?.view3d) {
+      return false;
+    }
+
+    item.catalog3DImage =
+      revisionedAsset(
+        assets.view3d
+      );
+
+    item.catalogNormalized3DOnly =
+      true;
+
+    item.catalogNormalizedBuild =
+      BUILD;
+
+    /*
+      DO NOT:
+      - change item.image
+      - delete item.display
+      - touch Grid calibration
+    */
+    return true;
+  }
+
+  function standardizeItem(item) {
+    if (
+      !item ||
+      typeof item !== "object"
+    ) {
+      return false;
+    }
+
+    const original =
+      originalImage(item);
 
     if (!original) {
       return false;
     }
 
-    const assets = normalizedAssets(original);
+    const assets =
+      normalizedAssets(
+        original
+      );
 
-    if (!assets?.grid || !assets?.view3d) {
-      /* New asset not built yet: preserve the original safely. */
-      return false;
-    }
-
-    item.catalogOriginalImage = original;
-    item.catalogGridImage = revisionedAsset(assets.grid);
-    item.catalog3DImage = revisionedAsset(assets.view3d);
-    item.catalogNormalizedImage = true;
-    item.catalogNormalizedBuild = BUILD;
-
-    /* Grid renderer reads sneaker.image. */
-    item.image = item.catalogGridImage;
-
-    /*
-      Normalized derivatives own visual sizing.  Remove legacy per-pair
-      homepage calibration.  shoe.html does not load this script, so its
-      gallery/detail behavior remains untouched.
-    */
-    item.autoFit = false;
-    delete item.display;
-
-    return true;
+    return (
+      statusOf(item) === "sold"
+        ? standardizeSold3D(
+            item,
+            original,
+            assets
+          )
+        : standardizeOwned(
+            item,
+            original,
+            assets
+          )
+    );
   }
 
   function standardizeCollection() {
@@ -234,7 +346,8 @@
     };
   }
 
-  const result = standardizeCollection();
+  const result =
+    standardizeCollection();
 
   window.CatalogImageNormalization = {
     build: BUILD,
@@ -247,7 +360,7 @@
   };
 
   console.info(
-    `[Catalog Images] ${result.standardized} owned item(s) ` +
-    `standardized before first render (dual-mode v4).`
+    `[Catalog Images] ${result.standardized} item(s) prepared ` +
+    `for Grid/3D normalization (v5).`
   );
 })();
