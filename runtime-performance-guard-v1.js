@@ -2834,3 +2834,258 @@
     );
   }
 })();
+
+/* =========================================================
+   LỘC AN — FORMERLY IN COLLECTION 3D UNIFORM FIT v1
+   2026-10-20
+
+   Scope:
+   - SOLD / Formerly In Collection
+   - 3D mode ONLY
+   - Grid / Detail / In Collection remain unchanged
+
+   Strategy:
+   - Force every sold pair through CatalogDisplay's same auto-fit target.
+   - Keep aspect ratio; no stretching.
+   - Remove the old City of Flight 3D size exception so sold pairs share
+     one visual sizing rule.
+========================================================= */
+(() => {
+  "use strict";
+
+  if (window.__locanSold3DUniformFitV1) return;
+  window.__locanSold3DUniformFitV1 = true;
+
+  function catalog() {
+    return (
+      typeof sneakers !== "undefined" &&
+      Array.isArray(sneakers)
+    )
+      ? sneakers
+      : [];
+  }
+
+  function isSold(item) {
+    return (
+      String(
+        item?.collectionStatus || "own"
+      )
+        .trim()
+        .toLowerCase() === "sold"
+    );
+  }
+
+  function forceSold3DAutoFit() {
+    catalog().forEach(item => {
+      if (!isSold(item)) return;
+
+      /*
+        Preserve Grid behavior exactly as it currently is.
+        Only override 3D / mobile-3D mode settings.
+      */
+      if (
+        item.display &&
+        typeof item.display === "object" &&
+        !Array.isArray(item.display)
+      ) {
+        item.display = {
+          ...item.display,
+          view3d: "auto",
+          view3dMobile: "auto"
+        };
+      } else if (item.display === "auto") {
+        /*
+          Already automatic in all modes (e.g. the newly updated PUMA).
+          Nothing else is needed.
+        */
+      } else {
+        item.display = {
+          view3d: "auto",
+          view3dMobile: "auto"
+        };
+      }
+    });
+  }
+
+  function installSold3DStyleAuthority() {
+    if (
+      document.getElementById(
+        "locan-sold-3d-uniform-fit-v1"
+      )
+    ) {
+      return;
+    }
+
+    const style =
+      document.createElement(
+        "style"
+      );
+
+    style.id =
+      "locan-sold-3d-uniform-fit-v1";
+
+    style.textContent = `
+      /*
+        collection-view.js already applies one common optical multiplier
+        to sold 3D cards. Keep that common multiplier but neutralize the
+        historical City of Flight exception.
+      */
+      html body #sneaker-grid.locan-3d-view
+      .sneaker-3d-card.is-preowned-3d
+      .sneaker-3d-image
+      img[data-3d-calibration="jordan-1-city-of-flight"] {
+        scale: .82 .82 !important;
+      }
+
+      @media (max-width: 650px) {
+        html body #sneaker-grid.locan-3d-view
+        .sneaker-3d-card.is-preowned-3d
+        .sneaker-3d-image
+        img[data-3d-calibration="jordan-1-city-of-flight"] {
+          scale: .80 .80 !important;
+        }
+      }
+    `;
+
+    document.head.appendChild(style);
+  }
+
+  function refitVisibleSold3D() {
+    forceSold3DAutoFit();
+    installSold3DStyleAuthority();
+
+    const grid =
+      document.getElementById(
+        "sneaker-grid"
+      );
+
+    if (
+      !grid ||
+      !grid.classList.contains(
+        "locan-3d-view"
+      )
+    ) {
+      return;
+    }
+
+    /*
+      Re-run the site's existing CatalogDisplay fitter on the current
+      3D nodes. It uses one shared target:
+        desktop 3D: 80% width / 66% height
+        phone 3D:   66% width / 54% height
+      No new per-pair scale values are introduced.
+    */
+    window.CatalogDisplay
+      ?.prepareWithin?.(
+        grid
+      );
+  }
+
+  /*
+    Runtime file loads before catalog-display.js / collection-view.js.
+    Patch the data now, then again at DOMContentLoaded after all later
+    catalog adjustment scripts have completed.
+  */
+  forceSold3DAutoFit();
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+      forceSold3DAutoFit();
+      installSold3DStyleAuthority();
+
+      requestAnimationFrame(
+        refitVisibleSold3D
+      );
+    },
+    { once: true }
+  );
+
+  /*
+    If the user switches Grid -> 3D or Own -> Sold after page load,
+    cards are rebuilt dynamically. Refit only when new 3D cards appear.
+  */
+  function installObserver() {
+    const grid =
+      document.getElementById(
+        "sneaker-grid"
+      );
+
+    if (
+      !grid ||
+      grid.dataset
+        .sold3dUniformObserved ===
+        "true"
+    ) {
+      return;
+    }
+
+    grid.dataset
+      .sold3dUniformObserved =
+        "true";
+
+    let scheduled = false;
+
+    const observer =
+      new MutationObserver(
+        mutations => {
+          const added3D =
+            mutations.some(
+              mutation =>
+                Array.from(
+                  mutation.addedNodes
+                ).some(
+                  node =>
+                    node instanceof Element &&
+                    (
+                      node.matches?.(
+                        ".sneaker-3d-card.is-preowned-3d"
+                      ) ||
+                      node.querySelector?.(
+                        ".sneaker-3d-card.is-preowned-3d"
+                      )
+                    )
+                )
+            );
+
+          if (
+            !added3D ||
+            scheduled
+          ) {
+            return;
+          }
+
+          scheduled = true;
+
+          requestAnimationFrame(
+            () => {
+              scheduled = false;
+              refitVisibleSold3D();
+            }
+          );
+        }
+      );
+
+    observer.observe(
+      grid,
+      {
+        childList: true,
+        subtree: true
+      }
+    );
+  }
+
+  if (
+    document.readyState ===
+    "loading"
+  ) {
+    document.addEventListener(
+      "DOMContentLoaded",
+      installObserver,
+      { once: true }
+    );
+  } else {
+    installObserver();
+    refitVisibleSold3D();
+  }
+})();
