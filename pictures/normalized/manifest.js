@@ -64,6 +64,10 @@ window.CATALOG_NORMALIZED_IMAGE_MAP = Object.freeze({
     "grid": "pictures/normalized/v4b/grid/foamposite.png",
     "view3d": "pictures/normalized/v4b/foamposite.png"
   },
+  "pictures/ispa.png": {
+    "grid": "pictures/normalized/v4b/grid/ispa.png",
+    "view3d": "pictures/normalized/v4b/ispa.png"
+  },
   "pictures/jordan13_dmp.png": {
     "grid": "pictures/normalized/v4b/grid/jordan13_dmp.png",
     "view3d": "pictures/normalized/v4b/jordan13_dmp.png"

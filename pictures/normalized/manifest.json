@@ -16,8 +16,8 @@
     "minimumTransparentFraction": 0.005,
     "cropPaddingFraction": 0.018,
     "opaqueBackgroundDistance": 34,
-    "gridTargetVisiblePixels": 472189.4562437044,
-    "gridTargetBoxPixels": 874787.8839779005
+    "gridTargetVisiblePixels": 457187.1300631849,
+    "gridTargetBoxPixels": 868998
   },
   "images": {
     "pictures/normalized/v4b/adifom.png": {
@@ -34,10 +34,10 @@
       },
       "visiblePixels": 323924,
       "gridSubject": {
-        "width": 1311,
-        "height": 769,
-        "left": 145,
-        "top": 216
+        "width": 1290,
+        "height": 757,
+        "left": 155,
+        "top": 222
       },
       "view3dSubject": {
         "width": 1248,
@@ -60,10 +60,10 @@
       },
       "visiblePixels": 630623,
       "gridSubject": {
-        "width": 1325,
-        "height": 660,
-        "left": 138,
-        "top": 270
+        "width": 1320,
+        "height": 658,
+        "left": 140,
+        "top": 271
       },
       "view3dSubject": {
         "width": 1248,
@@ -86,10 +86,10 @@
       },
       "visiblePixels": 739701,
       "gridSubject": {
-        "width": 1215,
-        "height": 720,
-        "left": 193,
-        "top": 240
+        "width": 1211,
+        "height": 718,
+        "left": 195,
+        "top": 241
       },
       "view3dSubject": {
         "width": 1248,
@@ -112,10 +112,10 @@
       },
       "visiblePixels": 770053,
       "gridSubject": {
-        "width": 1232,
-        "height": 710,
-        "left": 184,
-        "top": 245
+        "width": 1228,
+        "height": 708,
+        "left": 186,
+        "top": 246
       },
       "view3dSubject": {
         "width": 1248,
@@ -164,10 +164,10 @@
       },
       "visiblePixels": 518207,
       "gridSubject": {
-        "width": 1376,
-        "height": 645,
-        "left": 112,
-        "top": 278
+        "width": 1361,
+        "height": 638,
+        "left": 120,
+        "top": 281
       },
       "view3dSubject": {
         "width": 1248,
@@ -190,10 +190,10 @@
       },
       "visiblePixels": 495824,
       "gridSubject": {
-        "width": 1434,
-        "height": 610,
-        "left": 83,
-        "top": 295
+        "width": 1429,
+        "height": 608,
+        "left": 86,
+        "top": 296
       },
       "view3dSubject": {
         "width": 1248,
@@ -216,10 +216,10 @@
       },
       "visiblePixels": 508380,
       "gridSubject": {
-        "width": 1360,
-        "height": 643,
-        "left": 120,
-        "top": 279
+        "width": 1355,
+        "height": 641,
+        "left": 123,
+        "top": 280
       },
       "view3dSubject": {
         "width": 1248,
@@ -242,10 +242,10 @@
       },
       "visiblePixels": 489908,
       "gridSubject": {
-        "width": 1422,
-        "height": 615,
-        "left": 89,
-        "top": 293
+        "width": 1418,
+        "height": 613,
+        "left": 91,
+        "top": 294
       },
       "view3dSubject": {
         "width": 1248,
@@ -294,10 +294,10 @@
       },
       "visiblePixels": 709954,
       "gridSubject": {
-        "width": 1229,
-        "height": 712,
-        "left": 186,
-        "top": 244
+        "width": 1225,
+        "height": 710,
+        "left": 188,
+        "top": 245
       },
       "view3dSubject": {
         "width": 1248,
@@ -320,10 +320,10 @@
       },
       "visiblePixels": 587399,
       "gridSubject": {
-        "width": 1387,
-        "height": 630,
-        "left": 107,
-        "top": 285
+        "width": 1383,
+        "height": 628,
+        "left": 109,
+        "top": 286
       },
       "view3dSubject": {
         "width": 1248,
@@ -346,10 +346,10 @@
       },
       "visiblePixels": 649542,
       "gridSubject": {
-        "width": 1185,
-        "height": 738,
-        "left": 208,
-        "top": 231
+        "width": 1181,
+        "height": 736,
+        "left": 210,
+        "top": 232
       },
       "view3dSubject": {
         "width": 1248,
@@ -372,10 +372,10 @@
       },
       "visiblePixels": 769347,
       "gridSubject": {
-        "width": 1163,
-        "height": 752,
-        "left": 219,
-        "top": 224
+        "width": 1159,
+        "height": 750,
+        "left": 221,
+        "top": 225
       },
       "view3dSubject": {
         "width": 1248,
@@ -398,10 +398,10 @@
       },
       "visiblePixels": 582859,
       "gridSubject": {
-        "width": 1349,
-        "height": 648,
-        "left": 126,
-        "top": 276
+        "width": 1345,
+        "height": 646,
+        "left": 128,
+        "top": 277
       },
       "view3dSubject": {
         "width": 1248,
@@ -424,16 +424,42 @@
       },
       "visiblePixels": 691013,
       "gridSubject": {
-        "width": 1202,
-        "height": 727,
-        "left": 199,
-        "top": 237
+        "width": 1199,
+        "height": 725,
+        "left": 201,
+        "top": 238
       },
       "view3dSubject": {
         "width": 1248,
         "height": 755,
         "left": 176,
         "top": 223
+      }
+    },
+    "pictures/normalized/v4b/ispa.png": {
+      "input": "pictures/ispa.png",
+      "catalogInput": "pictures/ispa.png",
+      "grid": "pictures/normalized/v4b/grid/ispa.png",
+      "view3d": "pictures/normalized/v4b/ispa.png",
+      "method": "alpha",
+      "crop": {
+        "left": 176,
+        "top": 280,
+        "width": 1258,
+        "height": 640
+      },
+      "visiblePixels": 393124,
+      "gridSubject": {
+        "width": 1357,
+        "height": 690,
+        "left": 122,
+        "top": 255
+      },
+      "view3dSubject": {
+        "width": 1248,
+        "height": 635,
+        "left": 176,
+        "top": 283
       }
     },
     "pictures/normalized/v4b/jordan13_dmp.png": {
@@ -450,10 +476,10 @@
       },
       "visiblePixels": 364033,
       "gridSubject": {
-        "width": 1237,
-        "height": 753,
-        "left": 182,
-        "top": 224
+        "width": 1217,
+        "height": 741,
+        "left": 192,
+        "top": 230
       },
       "view3dSubject": {
         "width": 1248,
@@ -476,10 +502,10 @@
       },
       "visiblePixels": 739617,
       "gridSubject": {
-        "width": 1180,
-        "height": 741,
-        "left": 210,
-        "top": 230
+        "width": 1176,
+        "height": 739,
+        "left": 212,
+        "top": 231
       },
       "view3dSubject": {
         "width": 1248,
@@ -502,10 +528,10 @@
       },
       "visiblePixels": 784648,
       "gridSubject": {
-        "width": 1181,
-        "height": 741,
-        "left": 210,
-        "top": 230
+        "width": 1177,
+        "height": 738,
+        "left": 212,
+        "top": 231
       },
       "view3dSubject": {
         "width": 1248,
@@ -528,10 +554,10 @@
       },
       "visiblePixels": 781239,
       "gridSubject": {
-        "width": 1158,
-        "height": 756,
-        "left": 221,
-        "top": 222
+        "width": 1154,
+        "height": 753,
+        "left": 223,
+        "top": 224
       },
       "view3dSubject": {
         "width": 1248,
@@ -554,10 +580,10 @@
       },
       "visiblePixels": 703037,
       "gridSubject": {
-        "width": 1195,
-        "height": 732,
-        "left": 203,
-        "top": 234
+        "width": 1191,
+        "height": 730,
+        "left": 205,
+        "top": 235
       },
       "view3dSubject": {
         "width": 1248,
@@ -580,10 +606,10 @@
       },
       "visiblePixels": 367112,
       "gridSubject": {
-        "width": 1232,
-        "height": 776,
-        "left": 184,
-        "top": 212
+        "width": 1212,
+        "height": 763,
+        "left": 194,
+        "top": 219
       },
       "view3dSubject": {
         "width": 1248,
@@ -606,10 +632,10 @@
       },
       "visiblePixels": 745785,
       "gridSubject": {
-        "width": 1189,
-        "height": 736,
-        "left": 206,
-        "top": 232
+        "width": 1185,
+        "height": 733,
+        "left": 208,
+        "top": 234
       },
       "view3dSubject": {
         "width": 1248,
@@ -632,10 +658,10 @@
       },
       "visiblePixels": 983907,
       "gridSubject": {
-        "width": 1142,
-        "height": 766,
-        "left": 229,
-        "top": 217
+        "width": 1138,
+        "height": 764,
+        "left": 231,
+        "top": 218
       },
       "view3dSubject": {
         "width": 1216,
@@ -658,10 +684,10 @@
       },
       "visiblePixels": 826640,
       "gridSubject": {
-        "width": 1345,
-        "height": 650,
-        "left": 128,
-        "top": 275
+        "width": 1341,
+        "height": 648,
+        "left": 130,
+        "top": 276
       },
       "view3dSubject": {
         "width": 1248,
@@ -684,10 +710,10 @@
       },
       "visiblePixels": 341742,
       "gridSubject": {
-        "width": 1277,
-        "height": 723,
-        "left": 162,
-        "top": 239
+        "width": 1256,
+        "height": 711,
+        "left": 172,
+        "top": 245
       },
       "view3dSubject": {
         "width": 1248,
@@ -710,10 +736,10 @@
       },
       "visiblePixels": 321272,
       "gridSubject": {
-        "width": 1317,
-        "height": 744,
-        "left": 142,
-        "top": 228
+        "width": 1296,
+        "height": 732,
+        "left": 152,
+        "top": 234
       },
       "view3dSubject": {
         "width": 1248,
@@ -736,10 +762,10 @@
       },
       "visiblePixels": 647245,
       "gridSubject": {
-        "width": 1312,
-        "height": 732,
-        "left": 144,
-        "top": 234
+        "width": 1291,
+        "height": 720,
+        "left": 155,
+        "top": 240
       },
       "view3dSubject": {
         "width": 1248,
@@ -762,10 +788,10 @@
       },
       "visiblePixels": 787763,
       "gridSubject": {
-        "width": 1146,
-        "height": 764,
-        "left": 227,
-        "top": 218
+        "width": 1142,
+        "height": 761,
+        "left": 229,
+        "top": 220
       },
       "view3dSubject": {
         "width": 1224,
@@ -788,10 +814,10 @@
       },
       "visiblePixels": 470517,
       "gridSubject": {
-        "width": 1292,
-        "height": 754,
-        "left": 154,
-        "top": 223
+        "width": 1272,
+        "height": 742,
+        "left": 164,
+        "top": 229
       },
       "view3dSubject": {
         "width": 1248,
@@ -814,10 +840,10 @@
       },
       "visiblePixels": 334078,
       "gridSubject": {
-        "width": 1291,
-        "height": 745,
-        "left": 155,
-        "top": 228
+        "width": 1270,
+        "height": 733,
+        "left": 165,
+        "top": 234
       },
       "view3dSubject": {
         "width": 1248,
@@ -840,10 +866,10 @@
       },
       "visiblePixels": 799649,
       "gridSubject": {
-        "width": 1147,
-        "height": 763,
-        "left": 227,
-        "top": 219
+        "width": 1143,
+        "height": 760,
+        "left": 229,
+        "top": 220
       },
       "view3dSubject": {
         "width": 1227,
@@ -866,10 +892,10 @@
       },
       "visiblePixels": 372903,
       "gridSubject": {
-        "width": 1222,
-        "height": 784,
-        "left": 189,
-        "top": 208
+        "width": 1202,
+        "height": 772,
+        "left": 199,
+        "top": 214
       },
       "view3dSubject": {
         "width": 1248,
@@ -892,10 +918,10 @@
       },
       "visiblePixels": 727901,
       "gridSubject": {
-        "width": 1177,
-        "height": 743,
-        "left": 212,
-        "top": 229
+        "width": 1173,
+        "height": 741,
+        "left": 214,
+        "top": 230
       },
       "view3dSubject": {
         "width": 1248,
@@ -918,10 +944,10 @@
       },
       "visiblePixels": 581093,
       "gridSubject": {
-        "width": 1305,
-        "height": 673,
-        "left": 148,
-        "top": 264
+        "width": 1298,
+        "height": 670,
+        "left": 151,
+        "top": 265
       },
       "view3dSubject": {
         "width": 1248,
@@ -944,10 +970,10 @@
       },
       "visiblePixels": 610419,
       "gridSubject": {
-        "width": 1298,
-        "height": 674,
-        "left": 151,
-        "top": 263
+        "width": 1294,
+        "height": 672,
+        "left": 153,
+        "top": 264
       },
       "view3dSubject": {
         "width": 1248,
@@ -970,10 +996,10 @@
       },
       "visiblePixels": 615463,
       "gridSubject": {
-        "width": 1279,
-        "height": 684,
-        "left": 161,
-        "top": 258
+        "width": 1275,
+        "height": 682,
+        "left": 163,
+        "top": 259
       },
       "view3dSubject": {
         "width": 1248,
@@ -996,10 +1022,10 @@
       },
       "visiblePixels": 378314,
       "gridSubject": {
-        "width": 1213,
-        "height": 753,
-        "left": 194,
-        "top": 224
+        "width": 1194,
+        "height": 741,
+        "left": 203,
+        "top": 230
       },
       "view3dSubject": {
         "width": 1248,
@@ -1022,10 +1048,10 @@
       },
       "visiblePixels": 725291,
       "gridSubject": {
-        "width": 1205,
-        "height": 726,
-        "left": 198,
-        "top": 237
+        "width": 1201,
+        "height": 723,
+        "left": 200,
+        "top": 239
       },
       "view3dSubject": {
         "width": 1248,
@@ -1048,10 +1074,10 @@
       },
       "visiblePixels": 727343,
       "gridSubject": {
-        "width": 1167,
-        "height": 750,
-        "left": 217,
-        "top": 225
+        "width": 1163,
+        "height": 747,
+        "left": 219,
+        "top": 227
       },
       "view3dSubject": {
         "width": 1248,
@@ -1074,10 +1100,10 @@
       },
       "visiblePixels": 690512,
       "gridSubject": {
-        "width": 1214,
-        "height": 721,
-        "left": 193,
-        "top": 240
+        "width": 1210,
+        "height": 718,
+        "left": 195,
+        "top": 241
       },
       "view3dSubject": {
         "width": 1248,
@@ -1100,10 +1126,10 @@
       },
       "visiblePixels": 754392,
       "gridSubject": {
-        "width": 1146,
-        "height": 775,
-        "left": 227,
-        "top": 213
+        "width": 1134,
+        "height": 767,
+        "left": 233,
+        "top": 217
       },
       "view3dSubject": {
         "width": 1207,
@@ -1126,10 +1152,10 @@
       },
       "visiblePixels": 555121,
       "gridSubject": {
-        "width": 1332,
-        "height": 700,
-        "left": 134,
-        "top": 250
+        "width": 1310,
+        "height": 689,
+        "left": 145,
+        "top": 256
       },
       "view3dSubject": {
         "width": 1248,
@@ -1152,10 +1178,10 @@
       },
       "visiblePixels": 582628,
       "gridSubject": {
-        "width": 1368,
-        "height": 670,
-        "left": 116,
-        "top": 265
+        "width": 1346,
+        "height": 659,
+        "left": 127,
+        "top": 271
       },
       "view3dSubject": {
         "width": 1248,
@@ -1178,10 +1204,10 @@
       },
       "visiblePixels": 611500,
       "gridSubject": {
-        "width": 1333,
-        "height": 656,
-        "left": 134,
-        "top": 272
+        "width": 1328,
+        "height": 654,
+        "left": 136,
+        "top": 273
       },
       "view3dSubject": {
         "width": 1248,
@@ -1204,10 +1230,10 @@
       },
       "visiblePixels": 842341,
       "gridSubject": {
-        "width": 1109,
-        "height": 789,
-        "left": 246,
-        "top": 206
+        "width": 1105,
+        "height": 786,
+        "left": 248,
+        "top": 207
       },
       "view3dSubject": {
         "width": 1147,
@@ -1230,10 +1256,10 @@
       },
       "visiblePixels": 666714,
       "gridSubject": {
-        "width": 1285,
-        "height": 681,
-        "left": 158,
-        "top": 260
+        "width": 1281,
+        "height": 678,
+        "left": 160,
+        "top": 261
       },
       "view3dSubject": {
         "width": 1248,
@@ -1256,10 +1282,10 @@
       },
       "visiblePixels": 881889,
       "gridSubject": {
-        "width": 1087,
-        "height": 805,
-        "left": 257,
-        "top": 198
+        "width": 1083,
+        "height": 802,
+        "left": 259,
+        "top": 199
       },
       "view3dSubject": {
         "width": 1101,
@@ -1328,22 +1354,22 @@
       "method": "alpha",
       "crop": {
         "left": 0,
-        "top": 407,
-        "width": 1086,
-        "height": 884
+        "top": 209,
+        "width": 1448,
+        "height": 703
       },
-      "visiblePixels": 580565,
+      "visiblePixels": 592624,
       "gridSubject": {
-        "width": 1037,
-        "height": 844,
-        "left": 282,
-        "top": 178
+        "width": 1338,
+        "height": 650,
+        "left": 131,
+        "top": 275
       },
       "view3dSubject": {
-        "width": 1002,
-        "height": 816,
-        "left": 299,
-        "top": 192
+        "width": 1248,
+        "height": 606,
+        "left": 176,
+        "top": 297
       }
     },
     "pictures/normalized/v4b/sb_raygun.png": {
@@ -1360,10 +1386,10 @@
       },
       "visiblePixels": 572773,
       "gridSubject": {
-        "width": 1395,
-        "height": 648,
-        "left": 103,
-        "top": 276
+        "width": 1372,
+        "height": 638,
+        "left": 114,
+        "top": 281
       },
       "view3dSubject": {
         "width": 1248,
@@ -1386,10 +1412,10 @@
       },
       "visiblePixels": 288849,
       "gridSubject": {
-        "width": 1389,
-        "height": 662,
-        "left": 106,
-        "top": 269
+        "width": 1366,
+        "height": 652,
+        "left": 117,
+        "top": 274
       },
       "view3dSubject": {
         "width": 1248,
@@ -1412,10 +1438,10 @@
       },
       "visiblePixels": 360391,
       "gridSubject": {
-        "width": 1331,
-        "height": 657,
-        "left": 135,
-        "top": 272
+        "width": 1327,
+        "height": 655,
+        "left": 137,
+        "top": 273
       },
       "view3dSubject": {
         "width": 1248,
@@ -1490,10 +1516,10 @@
       },
       "visiblePixels": 341615,
       "gridSubject": {
-        "width": 1319,
-        "height": 671,
-        "left": 141,
-        "top": 265
+        "width": 1307,
+        "height": 665,
+        "left": 147,
+        "top": 268
       },
       "view3dSubject": {
         "width": 1248,
@@ -1516,10 +1542,10 @@
       },
       "visiblePixels": 612983,
       "gridSubject": {
-        "width": 1278,
-        "height": 684,
-        "left": 161,
-        "top": 258
+        "width": 1274,
+        "height": 682,
+        "left": 163,
+        "top": 259
       },
       "view3dSubject": {
         "width": 1248,
@@ -1542,10 +1568,10 @@
       },
       "visiblePixels": 657391,
       "gridSubject": {
-        "width": 1277,
-        "height": 685,
-        "left": 162,
-        "top": 258
+        "width": 1273,
+        "height": 683,
+        "left": 164,
+        "top": 259
       },
       "view3dSubject": {
         "width": 1248,
@@ -1568,10 +1594,10 @@
       },
       "visiblePixels": 573966,
       "gridSubject": {
-        "width": 1381,
-        "height": 633,
-        "left": 110,
-        "top": 284
+        "width": 1377,
+        "height": 631,
+        "left": 112,
+        "top": 285
       },
       "view3dSubject": {
         "width": 1248,
@@ -1645,6 +1671,10 @@
     "pictures/foamposite.png": {
       "grid": "pictures/normalized/v4b/grid/foamposite.png",
       "view3d": "pictures/normalized/v4b/foamposite.png"
+    },
+    "pictures/ispa.png": {
+      "grid": "pictures/normalized/v4b/grid/ispa.png",
+      "view3d": "pictures/normalized/v4b/ispa.png"
     },
     "pictures/jordan13_dmp.png": {
       "grid": "pictures/normalized/v4b/grid/jordan13_dmp.png",
