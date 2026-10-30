@@ -2891,6 +2891,10 @@
   function applyFields(item) {
     item.id = NEW_ID;
     item.name = "Nike ISPA OverReact Sandal 'Black'";
+    item.title = {
+      vi: "Nike ISPA OverReact Sandal 'Black'",
+      en: "Nike ISPA OverReact Sandal 'Black'"
+    };
     item.brand = "Nike";
     item.sku = "CQ2230-001";
     item.colorway = "Black/Anthracite-Black";
@@ -2899,10 +2903,14 @@
     item.year = 2020;
     item.retailPrice = "$160 USD";
     item.size = "10 US";
-    item.condition = "Used";
+    item.condition = { vi: "Used", en: "Used" };
     item.edition = "GR";
+    item.editionType = { vi: "GR", en: "GR" };
     item.category = "GR";
-    item.subtitle = "ISPA Experimental Design (2020)";
+    item.subtitle = {
+      vi: "ISPA Experimental Design (2020)",
+      en: "ISPA Experimental Design (2020)"
+    };
     item.collectionStatus = "own";
     item.image = IMAGE_PATH;
     item.images = [IMAGE_PATH];
@@ -2932,6 +2940,10 @@
     } catch (_) {}
 
     // Re-assert source image so no later standardization swaps it away.
+    item.title = {
+      vi: "Nike ISPA OverReact Sandal 'Black'",
+      en: "Nike ISPA OverReact Sandal 'Black'"
+    };
     item.image = IMAGE_PATH;
     item.images = [IMAGE_PATH];
     item.catalogOriginalImage = IMAGE_PATH;
