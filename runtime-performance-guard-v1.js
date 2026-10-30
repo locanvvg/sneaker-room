@@ -2834,3 +2834,114 @@
     );
   }
 })();
+
+/* =========================================================
+   LỘC AN — NIKE ISPA OVERREACT SANDAL BLACK ADDITION v2
+   2026-10-30
+
+   Adds a new IN COLLECTION entry using the file name:
+   pictures/ispa.png
+========================================================= */
+(() => {
+  "use strict";
+
+  if (window.__locanIspaOverreactSandalBlackV2) return;
+  window.__locanIspaOverreactSandalBlackV2 = true;
+
+  const NEW_ID = "nike-ispa-overreact-sandal-black";
+  const IMAGE_PATH = "pictures/ispa.png";
+
+  function storyVI() {
+    return `
+      <p><b>Nike ISPA OverReact Sandal 'Black'</b> là một trong những thiết kế thể hiện rõ nhất tinh thần thử nghiệm của chương trình ISPA — viết tắt của <b>Improvise, Scavenge, Protect, Adapt</b>. Thay vì bắt đầu từ một cấu trúc sneaker truyền thống rồi thay đổi từng chi tiết, ISPA tiếp cận footwear như một bài toán về công năng, vật liệu và cách con người tương tác với môi trường đô thị.</p>
+      <p>OverReact Sandal đưa tư duy đó vào một silhouette nằm giữa sandal, sneaker và experimental footwear. Phần upper được giản lược thành cấu trúc mở với các lớp textile, webbing strap và hệ dây điều chỉnh, tạo cảm giác nhẹ, thoáng và gần với một hệ thống buộc chân hơn là một upper khép kín thông thường. Cách bố trí dây và strap khiến cấu trúc của đôi giày trở thành một phần trực tiếp của ngôn ngữ thiết kế thay vì chỉ đóng vai trò chức năng.</p>
+      <p>Phần đế React cỡ lớn là yếu tố tạo nên tỷ lệ đặc trưng nhất của OverReact. Midsole được mở rộng đáng kể, với các khối foam và outsole nhô ra ngoài upper, tạo cảm giác gần như một nền tảng cơ học nâng toàn bộ bàn chân. Cấu trúc này khiến đôi giày có visual weight lớn dù upper lại rất thoáng và tối giản, tạo nên sự đối lập giữa phần thân nhẹ và phần đế nặng về hình khối.</p>
+      <p>Phối màu Black/Anthracite làm cho kiến trúc của đôi giày nổi bật rõ hơn. Thay vì dùng màu sắc mạnh để thu hút sự chú ý, thiết kế dựa vào tỷ lệ, texture và cấu trúc vật liệu để tạo nhận diện. Các lớp đen và xám đậm giúp phần đế React, hệ dây và những khoảng hở trên upper trở thành yếu tố chính trong tổng thể.</p>
+      <p>Trong Lộc An Sneaker Collection, ISPA OverReact Sandal đại diện cho một giai đoạn Nike đẩy sneaker design ra ngoài giới hạn lifestyle và performance thông thường. Đây không phải một silhouette được tạo ra để trở nên dễ tiếp cận, mà là một thử nghiệm về cách footwear có thể được xây dựng lại từ những nguyên tắc cơ bản của sự thích nghi, bảo vệ và ứng biến.</p>
+    `;
+  }
+
+  function storyEN() {
+    return `
+      <p><b>Nike ISPA OverReact Sandal 'Black'</b> is one of the clearest expressions of the experimental philosophy behind Nike ISPA — <b>Improvise, Scavenge, Protect, Adapt</b>. Rather than beginning with a conventional sneaker and modifying individual components, ISPA approaches footwear as a problem of function, material use, and adaptation to urban environments.</p>
+      <p>The OverReact Sandal applies that philosophy to a silhouette positioned somewhere between a sandal, a sneaker, and a piece of experimental footwear. Its upper is reduced to an open structure built from layered textiles, webbing straps, and adjustable cord systems, creating a construction that feels closer to a foot-harness system than to a traditional enclosed sneaker upper. The straps and lacing are not hidden functional elements; they become a visible part of the design language.</p>
+      <p>The oversized React sole unit defines the shoe's proportions. The midsole extends well beyond the upper, with large foam volumes and an aggressive outsole structure producing a highly mechanical appearance. This creates a strong visual contrast: the upper feels light, open, and minimal, while the sole carries most of the shoe's visual weight and sculptural character.</p>
+      <p>The Black/Anthracite colorway emphasizes that architecture. Rather than relying on bright colors or heavy branding, the design uses proportion, texture, and material contrast to create identity. Dark tones allow the React sole, lacing system, and exposed spaces throughout the upper to remain the dominant visual elements.</p>
+      <p>Within the Lộc An Sneaker Collection, the ISPA OverReact Sandal represents a period when Nike pushed sneaker design beyond familiar lifestyle and performance categories. It is less a conventional commercial silhouette than an exploration of how footwear can be reconstructed around principles of adaptation, protection, and improvisation.</p>
+    `;
+  }
+
+  function normalizeDisplay(item) {
+    item.autoFit = true;
+    item.display = {
+      grid: "auto",
+      view3d: "auto",
+      view3dMobile: "auto"
+    };
+
+    item.catalogOriginalImage = IMAGE_PATH;
+    item.catalogGridImage = IMAGE_PATH;
+    item.catalog3DImage = IMAGE_PATH;
+    item.catalogNormalizedImage = false;
+    item.catalogNormalized3DOnly = false;
+    item.catalogSold3DSourceOnly = false;
+    item.schemaVersion = 2;
+  }
+
+  function applyFields(item) {
+    item.id = NEW_ID;
+    item.name = "Nike ISPA OverReact Sandal 'Black'";
+    item.brand = "Nike";
+    item.sku = "CQ2230-001";
+    item.colorway = "Black/Anthracite-Black";
+    item.releaseDate = "2020-07-31";
+    item.releaseYear = 2020;
+    item.year = 2020;
+    item.retailPrice = "$160 USD";
+    item.size = "10 US";
+    item.condition = "Used";
+    item.edition = "GR";
+    item.category = "GR";
+    item.subtitle = "ISPA Experimental Design (2020)";
+    item.collectionStatus = "own";
+    item.image = IMAGE_PATH;
+    item.images = [IMAGE_PATH];
+    item.story = {
+      vi: storyVI(),
+      en: storyEN()
+    };
+    normalizeDisplay(item);
+  }
+
+  function ensureItem() {
+    if (typeof sneakers === "undefined" || !Array.isArray(sneakers)) {
+      return false;
+    }
+
+    let item = sneakers.find(entry => String(entry?.id || "") === NEW_ID);
+
+    if (!item) {
+      item = {};
+      sneakers.push(item);
+    }
+
+    applyFields(item);
+
+    try {
+      window.CatalogImageNormalization?.standardizeItem?.(item);
+    } catch (_) {}
+
+    // Re-assert source image so no later standardization swaps it away.
+    item.image = IMAGE_PATH;
+    item.images = [IMAGE_PATH];
+    item.catalogOriginalImage = IMAGE_PATH;
+    item.catalogGridImage = IMAGE_PATH;
+    item.catalog3DImage = IMAGE_PATH;
+    normalizeDisplay(item);
+
+    return true;
+  }
+
+  ensureItem();
+  document.addEventListener("DOMContentLoaded", ensureItem, { once: true });
+})();
