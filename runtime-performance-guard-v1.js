@@ -2850,6 +2850,7 @@
 
   const NEW_ID = "nike-ispa-overreact-sandal-black";
   const IMAGE_PATH = "pictures/ispa.png";
+  const VIEW3D_IMAGE_PATH = "pictures/normalized/v4b/ispa.png";
 
   function storyVI() {
     return `
@@ -2881,7 +2882,7 @@
 
     item.catalogOriginalImage = IMAGE_PATH;
     item.catalogGridImage = IMAGE_PATH;
-    item.catalog3DImage = IMAGE_PATH;
+    item.catalog3DImage = VIEW3D_IMAGE_PATH;
     item.catalogNormalizedImage = false;
     item.catalogNormalized3DOnly = false;
     item.catalogSold3DSourceOnly = false;
@@ -2948,7 +2949,7 @@
     item.images = [IMAGE_PATH];
     item.catalogOriginalImage = IMAGE_PATH;
     item.catalogGridImage = IMAGE_PATH;
-    item.catalog3DImage = IMAGE_PATH;
+    item.catalog3DImage = VIEW3D_IMAGE_PATH;
     normalizeDisplay(item);
 
     return true;
