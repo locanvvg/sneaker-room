@@ -2836,21 +2836,24 @@
 })();
 
 /* =========================================================
-   LỘC AN — NIKE ISPA OVERREACT SANDAL BLACK ADDITION v2
-   2026-10-30
+   LỘC AN — NIKE ISPA OVERREACT SANDAL BLACK ADDITION v6
+   2026-11-01
 
-   Adds a new IN COLLECTION entry using the file name:
-   pictures/ispa.png
+   DATA ONLY.
+   No pair-specific Grid/3D scale, normalized path, or sizing override.
+   Homepage sizing is owned entirely by the global normalization pipeline.
 ========================================================= */
 (() => {
   "use strict";
 
-  if (window.__locanIspaOverreactSandalBlackV2) return;
-  window.__locanIspaOverreactSandalBlackV2 = true;
+  if (window.__locanIspaOverreactSandalBlackV6) return;
+  window.__locanIspaOverreactSandalBlackV6 = true;
 
-  const NEW_ID = "nike-ispa-overreact-sandal-black";
-  const IMAGE_PATH = "pictures/ispa.png";
-  const VIEW3D_IMAGE_PATH = "pictures/normalized/v4b/ispa.png";
+  const NEW_ID =
+    "nike-ispa-overreact-sandal-black";
+
+  const IMAGE_PATH =
+    "pictures/ispa.png";
 
   function storyVI() {
     return `
@@ -2872,89 +2875,84 @@
     `;
   }
 
-  function normalizeDisplay(item) {
-    item.autoFit = true;
-    item.display = {
-      grid: "auto",
-      view3d: "auto",
-      view3dMobile: "auto"
-    };
-
-    item.catalogOriginalImage = IMAGE_PATH;
-    item.catalogGridImage = IMAGE_PATH;
-    item.catalog3DImage = VIEW3D_IMAGE_PATH;
-    item.catalogNormalizedImage = false;
-    item.catalogNormalized3DOnly = false;
-    item.catalogSold3DSourceOnly = false;
-    item.schemaVersion = 2;
-  }
-
   function applyFields(item) {
     item.id = NEW_ID;
-    item.name = "Nike ISPA OverReact Sandal 'Black'";
+
     item.title = {
       vi: "Nike ISPA OverReact Sandal 'Black'",
       en: "Nike ISPA OverReact Sandal 'Black'"
     };
-    item.brand = "Nike";
-    item.sku = "CQ2230-001";
-    item.colorway = "Black/Anthracite-Black";
-    item.releaseDate = "2020-07-31";
-    item.releaseYear = 2020;
-    item.year = 2020;
-    item.retailPrice = "$160 USD";
-    item.size = "10 US";
-    item.condition = { vi: "Used", en: "Used" };
-    item.edition = "GR";
-    item.editionType = { vi: "GR", en: "GR" };
-    item.category = "GR";
+
     item.subtitle = {
       vi: "ISPA Experimental Design (2020)",
       en: "ISPA Experimental Design (2020)"
     };
+
+    item.brand = "Nike";
+    item.sku = "CQ2230-001";
+    item.colorway = "Black/Anthracite-Black";
+    item.retailPrice = "$160 USD";
+    item.releaseDate = "2020-07-31";
+
+    item.editionType = {
+      vi: "GR",
+      en: "GR"
+    };
+
+    item.condition = {
+      vi: "Used",
+      en: "Used"
+    };
+
+    item.size = "10 US";
     item.collectionStatus = "own";
+
     item.image = IMAGE_PATH;
-    item.images = [IMAGE_PATH];
+    item.images = [
+      IMAGE_PATH
+    ];
+
+    /*
+      Fallback only if the generated normalized manifest is temporarily
+      unavailable. No numeric size and no pair-specific mode calibration.
+    */
+    item.schemaVersion = 2;
+    item.autoFit = true;
+
     item.story = {
       vi: storyVI(),
       en: storyEN()
     };
-    normalizeDisplay(item);
   }
 
   function ensureItem() {
-    if (typeof sneakers === "undefined" || !Array.isArray(sneakers)) {
-      return false;
+    if (
+      typeof sneakers === "undefined" ||
+      !Array.isArray(sneakers)
+    ) {
+      return;
     }
 
-    let item = sneakers.find(entry => String(entry?.id || "") === NEW_ID);
+    let item =
+      sneakers.find(
+        entry =>
+          String(
+            entry?.id || ""
+          ) === NEW_ID
+      );
 
     if (!item) {
       item = {};
       sneakers.push(item);
     }
 
+    /*
+      Runtime is loaded directly after data.js and BEFORE the generated
+      normalization manifest/controller. Set catalog data once here and
+      let the global pipeline take over afterward.
+    */
     applyFields(item);
-
-    try {
-      window.CatalogImageNormalization?.standardizeItem?.(item);
-    } catch (_) {}
-
-    // Re-assert source image so no later standardization swaps it away.
-    item.title = {
-      vi: "Nike ISPA OverReact Sandal 'Black'",
-      en: "Nike ISPA OverReact Sandal 'Black'"
-    };
-    item.image = IMAGE_PATH;
-    item.images = [IMAGE_PATH];
-    item.catalogOriginalImage = IMAGE_PATH;
-    item.catalogGridImage = IMAGE_PATH;
-    item.catalog3DImage = VIEW3D_IMAGE_PATH;
-    normalizeDisplay(item);
-
-    return true;
   }
 
   ensureItem();
-  document.addEventListener("DOMContentLoaded", ensureItem, { once: true });
 })();
