@@ -1,13 +1,11 @@
 /* =========================================================
-   LỘC AN SNEAKER COLLECTION — STABLE RUNTIME CACHE v3
+   LỘC AN SNEAKER COLLECTION — STABLE RUNTIME CACHE v7
+   2026-11-01
 
-   Design rule:
-   - Never rewrite a requested image URL to another format/path.
-   - The page chooses its image source explicitly.
-   - Service worker only provides network-first caching/fallback.
+   Mobile cache reset for global normalized image authority.
 ========================================================= */
 const CACHE_VERSION =
-  "locan-sneaker-room-20261010-standard-v3";
+  "locan-sneaker-room-20261101-mobile-normalized-v7";
 
 const SHELL_CACHE =
   `${CACHE_VERSION}-shell`;
@@ -31,6 +29,7 @@ const SHELL = [
   "./unified-collection-ui.css",
   "./detail-layout.css",
   "./data.js",
+  "./runtime-performance-guard-v1.js",
   "./catalog-additions.js",
   "./catalog-engine.js",
   "./catalog-normalization.js",
@@ -52,108 +51,63 @@ const SHELL = [
   "./apple-touch-icon.png"
 ];
 
-self.addEventListener(
-  "install",
-  event => {
-    event.waitUntil(
-      caches
-        .open(SHELL_CACHE)
-        .then(cache =>
-          Promise.allSettled(
-            SHELL.map(url =>
-              cache.add(
-                new Request(url, {
-                  cache: "reload"
-                })
-              )
+self.addEventListener("install", event => {
+  event.waitUntil(
+    caches
+      .open(SHELL_CACHE)
+      .then(cache =>
+        Promise.allSettled(
+          SHELL.map(url =>
+            cache.add(
+              new Request(url, { cache: "reload" })
             )
           )
         )
-        .then(() =>
-          self.skipWaiting()
-        )
-    );
-  }
-);
+      )
+      .then(() => self.skipWaiting())
+  );
+});
 
-self.addEventListener(
-  "activate",
-  event => {
-    event.waitUntil(
-      caches
-        .keys()
-        .then(keys =>
-          Promise.all(
-            keys
-              .filter(key =>
-                key.startsWith(
-                  "locan-sneaker-room-"
-                ) &&
-                !key.startsWith(
-                  CACHE_VERSION
-                )
-              )
-              .map(key =>
-                caches.delete(key)
-              )
-          )
+self.addEventListener("activate", event => {
+  event.waitUntil(
+    caches
+      .keys()
+      .then(keys =>
+        Promise.all(
+          keys
+            .filter(key =>
+              key.startsWith("locan-sneaker-room-") &&
+              !key.startsWith(CACHE_VERSION)
+            )
+            .map(key => caches.delete(key))
         )
-        .then(() =>
-          self.clients.claim()
-        )
-    );
-  }
-);
+      )
+      .then(() => self.clients.claim())
+  );
+});
 
 async function cachedFallback(request) {
-  return caches.match(
-    request,
-    {
-      ignoreSearch: true
-    }
-  );
+  return caches.match(request, { ignoreSearch: true });
 }
 
 async function networkFirst(request) {
-  const runtime =
-    await caches.open(RUNTIME_CACHE);
+  const runtime = await caches.open(RUNTIME_CACHE);
 
   try {
-    const response =
-      await fetch(
-        new Request(
-          request,
-          {
-            cache: "no-cache"
-          }
-        )
-      );
+    const response = await fetch(
+      new Request(request, { cache: "no-cache" })
+    );
 
-    if (
-      response &&
-      response.ok
-    ) {
-      runtime
-        .put(
-          request,
-          response.clone()
-        )
-        .catch(() => {});
-
+    if (response && response.ok) {
+      runtime.put(request, response.clone()).catch(() => {});
       return response;
     }
 
-    const cached =
-      await cachedFallback(request);
-
+    const cached = await cachedFallback(request);
     return cached || response;
   } catch (error) {
-    const cached =
-      await cachedFallback(request);
-
-    if (cached) {
-      return cached;
-    }
+    const cached = await cachedFallback(request);
+    if (cached) return cached;
 
     if (request.mode === "navigate") {
       return (
@@ -166,40 +120,18 @@ async function networkFirst(request) {
   }
 }
 
-self.addEventListener(
-  "fetch",
-  event => {
-    const request =
-      event.request;
+self.addEventListener("fetch", event => {
+  const request = event.request;
+  if (request.method !== "GET") return;
 
-    if (request.method !== "GET") {
-      return;
-    }
+  const url = new URL(request.url);
+  if (url.origin !== self.location.origin) return;
 
-    const url =
-      new URL(request.url);
-
-    if (url.origin !== self.location.origin) {
-      return;
-    }
-
-    /*
-      IMPORTANT:
-      Images are fetched exactly at the URL requested by the page.
-      No PNG -> WebP replacement and no original -> normalized rewrite.
-    */
-    if (
-      request.destination === "image" ||
-      request.mode === "navigate" ||
-      [
-        "script",
-        "style",
-        "manifest"
-      ].includes(request.destination)
-    ) {
-      event.respondWith(
-        networkFirst(request)
-      );
-    }
+  if (
+    request.destination === "image" ||
+    request.mode === "navigate" ||
+    ["script", "style", "manifest"].includes(request.destination)
+  ) {
+    event.respondWith(networkFirst(request));
   }
-);
+});

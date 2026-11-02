@@ -1,63 +1,74 @@
 /* =========================================================
-   LỘC AN — FINAL NORMALIZED IMAGE AUTHORITY v4
+   LỘC AN — FINAL NORMALIZED IMAGE AUTHORITY v7
+   2026-11-01
 
-   PURPOSE
-   -------
-   - Loaded after collection-view.js.
-   - Grid uses the perceptual-area normalized Grid derivative.
-   - 3D keeps the already-approved v3 derivative.
-   - Neutralizes every legacy per-pair Grid/3D transform ONLY for OWN
-     normalized images.
-   - PRE-OWNED/original-source items remain untouched.
+   FINAL HOMEPAGE IMAGE RULE
+   -------------------------
+   - applies to ALL generated normalized sneaker images,
+   - Grid + 3D,
+   - In Collection + Formerly In Collection,
+   - desktop + mobile,
+   - no sneaker IDs,
+   - no per-pair scale/transform exceptions.
 ========================================================= */
 (() => {
   "use strict";
 
-  const BUILD = "20261010-standard-v4";
-  const CACHE_REVISION = "v4-sb-grid-20261010b";
-  const STYLE_ID = "locan-normalized-image-authority-v4";
+  const BUILD = "20261101-global-visual-v7";
+  const CACHE_REVISION = "20261101-mobile-normalized-v7";
+  const STYLE_ID = "locan-normalized-image-authority-v7";
+
+  const LEGACY_STYLE_IDS = [
+    "locan-normalized-image-authority-v3",
+    "locan-normalized-image-authority-v4",
+    "locan-direct-3d-calibration-v22"
+  ];
+
+  function catalog() {
+    return (
+      typeof sneakers !== "undefined" &&
+      Array.isArray(sneakers)
+    ) ? sneakers : [];
+  }
+
+  function sneakerById(id) {
+    const key = String(id || "");
+    if (!key) return null;
+
+    return catalog().find(
+      item => String(item?.id || "") === key
+    ) || null;
+  }
+
+  function cleanPath(value) {
+    return String(value || "")
+      .split("#")[0]
+      .replace(/^\.\//, "")
+      .trim();
+  }
+
+  function isNormalized(value) {
+    return cleanPath(value).includes("pictures/normalized/");
+  }
+
+  function removeLegacyStyles() {
+    LEGACY_STYLE_IDS.forEach(id => {
+      document.getElementById(id)?.remove();
+    });
+  }
 
   function installStyles() {
-    [
-      "locan-normalized-image-authority-v3",
-      STYLE_ID
-    ].forEach(id =>
-      document.getElementById(id)?.remove()
-    );
+    removeLegacyStyles();
+    document.getElementById(STYLE_ID)?.remove();
 
-    const style =
-      document.createElement("style");
-
+    const style = document.createElement("style");
     style.id = STYLE_ID;
 
     style.textContent = `
-      /* =====================================================
-         GRID — normalized OWN sneakers
-         Do not require #sneaker-grid.grid: the collection controller may
-         change classes while preserving the Grid card DOM.
-      ===================================================== */
       html body #sneaker-grid
       .card-img-wrapper
-      img[data-catalog-image="true"][src*="pictures/normalized/"] {
-        width: 100% !important;
-        height: 100% !important;
-        max-width: 100% !important;
-        max-height: 100% !important;
-        margin: 0 !important;
+      img[data-catalog-image="true"][src*="pictures/normalized/"],
 
-        object-fit: contain !important;
-        object-position: center center !important;
-
-        scale: 1 1 !important;
-        translate: 0 0 !important;
-        transform: none !important;
-        transform-origin: center center !important;
-      }
-
-      /* =====================================================
-         3D — normalized OWN sneakers
-         Covers both lazy data-src and loaded src states.
-      ===================================================== */
       html body #sneaker-grid
       .sneaker-3d-image
       img[data-catalog-image="true"][data-src*="pictures/normalized/"],
@@ -70,6 +81,7 @@
         max-width: 100% !important;
         max-height: 100% !important;
         margin: 0 !important;
+        padding: 0 !important;
 
         object-fit: contain !important;
         object-position: center center !important;
@@ -79,273 +91,194 @@
         transform: none !important;
         transform-origin: center center !important;
       }
+
+      @media (max-width: 760px) {
+        html body #sneaker-grid
+        .card-img-wrapper
+        img[data-catalog-image="true"][src*="pictures/normalized/"],
+
+        html body #sneaker-grid
+        .sneaker-3d-image
+        img[data-catalog-image="true"][data-src*="pictures/normalized/"],
+
+        html body #sneaker-grid
+        .sneaker-3d-image
+        img[data-catalog-image="true"][src*="pictures/normalized/"] {
+          width: 100% !important;
+          height: 100% !important;
+          max-width: 100% !important;
+          max-height: 100% !important;
+
+          object-fit: contain !important;
+          object-position: center center !important;
+
+          scale: 1 1 !important;
+          translate: 0 0 !important;
+          transform: none !important;
+          transform-origin: center center !important;
+        }
+      }
     `;
 
     document.head.appendChild(style);
   }
 
-  function sneakerById(id) {
-    if (
-      typeof sneakers === "undefined" ||
-      !Array.isArray(sneakers) ||
-      !id
-    ) {
-      return null;
-    }
+  function targetFor(img) {
+    const item = sneakerById(img?.dataset?.sneakerId || "");
+    if (!item) return "";
 
-    return sneakers.find(
-      item => String(item?.id || "") === String(id)
-    ) || null;
+    return img.closest(".sneaker-3d-image")
+      ? cleanPath(item.catalog3DImage || "")
+      : cleanPath(item.catalogGridImage || "");
   }
 
-  function cleanPath(value) {
-    return String(value || "")
-      .split("#")[0]
-      .replace(/^\.\//, "")
-      .trim();
+  function syncImageSource(img) {
+    const target = targetFor(img);
+    if (!target || !isNormalized(target)) return;
+
+    if (img.closest(".sneaker-3d-image")) {
+      if (cleanPath(img.dataset.src) !== target) {
+        img.dataset.src = target;
+      }
+
+      const current = cleanPath(img.getAttribute("src") || "");
+      if (current && current !== target) {
+        img.setAttribute("src", target);
+      }
+    } else if (img.closest(".card-img-wrapper")) {
+      const current = cleanPath(img.getAttribute("src") || "");
+      if (current !== target) {
+        img.setAttribute("src", target);
+      }
+    }
   }
 
-  function sync3DImage(img) {
-    if (
-      !(img instanceof HTMLImageElement) ||
-      !img.closest(".sneaker-3d-image")
-    ) {
-      return;
-    }
+  function neutralize(img) {
+    if (!(img instanceof HTMLImageElement)) return;
 
-    const item = sneakerById(
-      img.dataset.sneakerId || ""
-    );
+    syncImageSource(img);
 
-    const target = cleanPath(
-      item?.catalog3DImage || ""
-    );
-
-    if (!target) {
-      return;
-    }
-
-    /*
-      collection-view.js creates lazy 3D images with data-src first.
-      MutationObserver runs before its requestAnimationFrame lazy load, so
-      this replaces the source without a visible image swap.
-    */
-    if (cleanPath(img.dataset.src) !== target) {
-      img.dataset.src = target;
-    }
-
-    const currentSrc = cleanPath(
-      img.getAttribute("src") || ""
-    );
-
-    if (currentSrc && currentSrc !== target) {
-      img.src = target;
-    }
-
-    neutralizeNormalizedImage(img);
-  }
-
-  function sync3DAssets(root = document) {
-    root
-      .querySelectorAll?.(
-        '#sneaker-grid .sneaker-3d-image img[data-catalog-image="true"]'
-      )
-      .forEach(sync3DImage);
-  }
-
-  function neutralizeNormalizedImage(img) {
-    if (!(img instanceof HTMLImageElement)) {
-      return;
-    }
-
-    /*
-      Inline !important is deliberate here. Several historical calibration
-      selectors are extremely specific. For a generated normalized asset,
-      the bitmap itself is the sizing authority, so no old selector should
-      be able to shrink/stretch it again.
-    */
-    img.style.setProperty("width", "100%", "important");
-    img.style.setProperty("height", "100%", "important");
-    img.style.setProperty("max-width", "100%", "important");
-    img.style.setProperty("max-height", "100%", "important");
-    img.style.setProperty("margin", "0", "important");
-    img.style.setProperty("object-fit", "contain", "important");
-    img.style.setProperty("object-position", "center center", "important");
-    img.style.setProperty("scale", "1 1", "important");
-    img.style.setProperty("translate", "0 0", "important");
-    img.style.setProperty("transform", "none", "important");
-    img.style.setProperty("transform-origin", "center center", "important");
-
-    /*
-      FINAL GRID-ONLY MICRO ADJUSTMENT
-      --------------------------------
-      SB Raygun reads slightly larger than the neighboring cards and its
-      right shoe sits close to the card edge.  This correction applies only
-      to the Grid card image.  3D remains completely untouched.
-    */
-    const src = cleanPath(
+    const source = cleanPath(
       img.getAttribute("src") ||
       img.dataset.src ||
-      ""
+      targetFor(img)
     );
 
-    const isGridImage =
-      Boolean(img.closest(".card-img-wrapper")) &&
-      !img.closest(".sneaker-3d-image");
-
-    if (
-      isGridImage &&
-      src.includes("sb_raygun")
-    ) {
-      img.style.setProperty(
-        "transform",
-        "translateX(-2.5%) scale(0.96)",
-        "important"
-      );
-      img.style.setProperty(
-        "transform-origin",
-        "center center",
-        "important"
-      );
-      img.dataset.gridFineTune = "sb-raygun";
+    if (!isNormalized(source) && !isNormalized(targetFor(img))) {
+      return;
     }
+
+    const values = {
+      width: "100%",
+      height: "100%",
+      "max-width": "100%",
+      "max-height": "100%",
+      margin: "0",
+      padding: "0",
+      "object-fit": "contain",
+      "object-position": "center center",
+      scale: "1 1",
+      translate: "0 0",
+      transform: "none",
+      "transform-origin": "center center"
+    };
+
+    Object.entries(values).forEach(([name, value]) => {
+      img.style.setProperty(name, value, "important");
+    });
 
     img.dataset.normalizedStandard = "true";
     img.dataset.normalizedBuild = BUILD;
   }
 
-  function markNormalizedImages() {
-    document
-      .querySelectorAll(
-        '#sneaker-grid img[src*="pictures/normalized/"], ' +
-        '#sneaker-grid img[data-src*="pictures/normalized/"]'
-      )
-      .forEach(neutralizeNormalizedImage);
+  function syncWithin(root = document) {
+    root.querySelectorAll?.(
+      '#sneaker-grid img[data-catalog-image="true"]'
+    ).forEach(neutralize);
   }
 
   function observeCollection() {
-    const grid =
-      document.getElementById("sneaker-grid");
+    const grid = document.getElementById("sneaker-grid");
+    if (!grid || grid.dataset.standardV7Observed === "true") return;
 
-    if (!grid || grid.dataset.standardV4Observed === "true") {
-      return;
-    }
+    grid.dataset.standardV7Observed = "true";
 
-    grid.dataset.standardV4Observed = "true";
+    let scheduled = false;
 
-    const observer = new MutationObserver(mutations => {
-      for (const mutation of mutations) {
-        mutation.addedNodes.forEach(node => {
-          if (!(node instanceof Element)) return;
+    const schedule = () => {
+      if (scheduled) return;
+      scheduled = true;
 
-          if (
-            node.matches?.(
-              '.sneaker-3d-image img[data-catalog-image="true"]'
-            )
-          ) {
-            sync3DImage(node);
-          }
+      requestAnimationFrame(() => {
+        scheduled = false;
+        removeLegacyStyles();
+        installStyles();
+        syncWithin(grid);
+      });
+    };
 
-          sync3DAssets(node);
-        });
-      }
-
-      markNormalizedImages();
-    });
-
+    const observer = new MutationObserver(schedule);
     observer.observe(grid, {
       childList: true,
-      subtree: true
+      subtree: true,
+      attributes: true,
+      attributeFilter: ["src", "data-src"]
     });
   }
 
-  async function purgeStaleImageCaches() {
-    if (!("caches" in window)) {
-      return;
-    }
+  async function purgeStaleCaches() {
+    if (!("caches" in window)) return;
 
     const marker = `locan-cache-reset-${CACHE_REVISION}`;
 
     try {
-      if (localStorage.getItem(marker) === "done") {
-        return;
-      }
+      if (localStorage.getItem(marker) === "done") return;
 
       const keys = await caches.keys();
-
       await Promise.all(
         keys
-          .filter(key =>
-            key.startsWith("locan-sneaker-room-")
-          )
+          .filter(key => key.startsWith("locan-sneaker-room-"))
           .map(key => caches.delete(key))
       );
 
       localStorage.setItem(marker, "done");
-    } catch (_) {
-      /* Cache reset is best-effort only. */
-    }
+    } catch (_) {}
   }
 
-  function registerStableServiceWorker() {
-    if (
-      !("serviceWorker" in navigator) ||
-      !window.isSecureContext
-    ) {
-      return;
-    }
+  function registerServiceWorker() {
+    if (!("serviceWorker" in navigator) || !window.isSecureContext) return;
 
-    window.addEventListener(
-      "load",
-      () => {
-        navigator.serviceWorker
-          .register(
-            `./sw.js?v=${CACHE_REVISION}`,
-            {
-              updateViaCache: "none"
-            }
-          )
-          .then(registration =>
-            registration.update()
-          )
-          .catch(() => {});
-      },
-      { once: true }
-    );
+    window.addEventListener("load", () => {
+      navigator.serviceWorker
+        .register(`./sw.js?v=${CACHE_REVISION}`, { updateViaCache: "none" })
+        .then(registration => registration.update())
+        .catch(() => {});
+    }, { once: true });
   }
 
   function syncAll() {
+    removeLegacyStyles();
     installStyles();
-    sync3DAssets();
-    markNormalizedImages();
+    syncWithin();
     observeCollection();
   }
 
-  /*
-    Force one clean client-side rollback to the already-generated v4 assets.
-    This does NOT change their geometry; it only prevents a stale bitmap
-    that used the same filename from surviving in Cache Storage.
-  */
-  purgeStaleImageCaches();
-
-  /* Last-loaded authority: beat legacy per-pair rules without touching data. */
+  purgeStaleCaches();
   installStyles();
 
   if (document.readyState === "loading") {
-    document.addEventListener(
-      "DOMContentLoaded",
-      syncAll,
-      { once: true }
-    );
+    document.addEventListener("DOMContentLoaded", () => {
+      window.setTimeout(syncAll, 0);
+      window.setTimeout(syncAll, 100);
+    }, { once: true });
   } else {
     syncAll();
   }
 
-  window.addEventListener(
-    "load",
-    syncAll,
-    { once: true }
-  );
+  window.addEventListener("load", syncAll, { once: true });
+  window.addEventListener("pageshow", syncAll);
+  window.addEventListener("resize", () => requestAnimationFrame(syncAll), { passive: true });
+  window.addEventListener("orientationchange", () => window.setTimeout(syncAll, 120), { passive: true });
 
-  registerStableServiceWorker();
+  registerServiceWorker();
 })();

@@ -2956,3 +2956,333 @@
 
   ensureItem();
 })();
+
+/* =========================================================
+   LỘC AN — MOBILE NORMALIZED IMAGE AUTHORITY v7
+   2026-11-01
+
+   PURPOSE
+   -------
+   Desktop global normalization is already correct.
+   Mobile still had legacy responsive per-pair 3D rules and stale cache risk.
+
+   This final authority:
+   - removes the old direct-3D calibration stylesheet after it is injected,
+   - forces Grid + 3D to use each item's generated normalized asset,
+   - neutralizes ALL legacy image scale/translate/transform values,
+   - applies the exact same normalized-bitmap authority on desktop/mobile,
+   - contains NO sneaker IDs and NO per-pair numeric calibration.
+========================================================= */
+(() => {
+  "use strict";
+
+  if (window.__locanMobileNormalizedAuthorityV7) return;
+  window.__locanMobileNormalizedAuthorityV7 = true;
+
+  const LEGACY_STYLE_IDS = [
+    "locan-direct-3d-calibration-v22",
+    "locan-normalized-image-authority-v3",
+    "locan-normalized-image-authority-v4"
+  ];
+
+  const STYLE_ID =
+    "locan-mobile-normalized-authority-v7";
+
+  function catalog() {
+    return (
+      typeof sneakers !== "undefined" &&
+      Array.isArray(sneakers)
+    ) ? sneakers : [];
+  }
+
+  function itemById(id) {
+    const key = String(id || "");
+    if (!key) return null;
+
+    return catalog().find(
+      item => String(item?.id || "") === key
+    ) || null;
+  }
+
+  function clean(value) {
+    return String(value || "")
+      .split("#")[0]
+      .replace(/^\.\//, "")
+      .trim();
+  }
+
+  function isNormalized(value) {
+    return clean(value).includes("pictures/normalized/");
+  }
+
+  function removeLegacyStyles() {
+    LEGACY_STYLE_IDS.forEach(id => {
+      document.getElementById(id)?.remove();
+    });
+  }
+
+  function installFinalStyle() {
+    document.getElementById(STYLE_ID)?.remove();
+
+    const style = document.createElement("style");
+    style.id = STYLE_ID;
+
+    style.textContent = `
+      /*
+        One final rule for every generated normalized sneaker bitmap.
+        No per-pair selectors. No responsive pair exceptions.
+      */
+      html body #sneaker-grid
+      .card-img-wrapper
+      img[data-catalog-image="true"][src*="pictures/normalized/"],
+
+      html body #sneaker-grid
+      .sneaker-3d-image
+      img[data-catalog-image="true"][src*="pictures/normalized/"],
+
+      html body #sneaker-grid
+      .sneaker-3d-image
+      img[data-catalog-image="true"][data-src*="pictures/normalized/"] {
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+
+        object-fit: contain !important;
+        object-position: center center !important;
+
+        scale: 1 1 !important;
+        translate: 0 0 !important;
+        transform: none !important;
+        transform-origin: center center !important;
+      }
+
+      /*
+        Mobile uses the SAME bitmap authority as desktop.
+        The viewport/card may resize; the sneaker bitmap itself never gets
+        an extra mobile-only transform or sold multiplier.
+      */
+      @media (max-width: 760px) {
+        html body #sneaker-grid
+        .card-img-wrapper
+        img[data-catalog-image="true"][src*="pictures/normalized/"],
+
+        html body #sneaker-grid
+        .sneaker-3d-card.is-preowned-3d
+        .sneaker-3d-image
+        img[data-catalog-image="true"],
+
+        html body #sneaker-grid
+        .sneaker-3d-image
+        img[data-catalog-image="true"][src*="pictures/normalized/"],
+
+        html body #sneaker-grid
+        .sneaker-3d-image
+        img[data-catalog-image="true"][data-src*="pictures/normalized/"] {
+          width: 100% !important;
+          height: 100% !important;
+          max-width: 100% !important;
+          max-height: 100% !important;
+
+          object-fit: contain !important;
+          object-position: center center !important;
+
+          scale: 1 1 !important;
+          translate: 0 0 !important;
+          transform: none !important;
+          transform-origin: center center !important;
+        }
+      }
+    `;
+
+    document.head.appendChild(style);
+  }
+
+  function targetFor(img) {
+    const item = itemById(img?.dataset?.sneakerId || "");
+    if (!item) return "";
+
+    if (img.closest(".sneaker-3d-image")) {
+      return clean(item.catalog3DImage || "");
+    }
+
+    if (img.closest(".card-img-wrapper")) {
+      return clean(item.catalogGridImage || "");
+    }
+
+    return "";
+  }
+
+  function neutralize(img) {
+    if (!(img instanceof HTMLImageElement)) return;
+
+    const target = targetFor(img);
+
+    /*
+      If the catalog already has the generated normalized target, make the
+      DOM use it even if an older mobile renderer initially inserted the
+      original source path.
+    */
+    if (target && isNormalized(target)) {
+      if (img.closest(".sneaker-3d-image")) {
+        if (clean(img.dataset.src) !== target) {
+          img.dataset.src = target;
+        }
+
+        const current = clean(img.getAttribute("src") || "");
+        if (current && current !== target) {
+          img.setAttribute("src", target);
+        }
+      } else if (img.closest(".card-img-wrapper")) {
+        const current = clean(img.getAttribute("src") || "");
+        if (current !== target) {
+          img.setAttribute("src", target);
+        }
+      }
+    }
+
+    const source = clean(
+      img.getAttribute("src") ||
+      img.dataset.src ||
+      target
+    );
+
+    if (!isNormalized(source) && !isNormalized(target)) {
+      return;
+    }
+
+    /*
+      Inline !important is the final cascade authority.
+      This intentionally defeats old mobile media-query transforms.
+    */
+    const set = (name, value) => {
+      if (
+        img.style.getPropertyValue(name) !== value ||
+        img.style.getPropertyPriority(name) !== "important"
+      ) {
+        img.style.setProperty(name, value, "important");
+      }
+    };
+
+    set("width", "100%");
+    set("height", "100%");
+    set("max-width", "100%");
+    set("max-height", "100%");
+    set("margin", "0");
+    set("padding", "0");
+    set("object-fit", "contain");
+    set("object-position", "center center");
+    set("scale", "1 1");
+    set("translate", "0 0");
+    set("transform", "none");
+    set("transform-origin", "center center");
+
+    img.dataset.normalizedMobileAuthority = "v7";
+  }
+
+  function neutralizeAll(root = document) {
+    root.querySelectorAll?.(
+      '#sneaker-grid img[data-catalog-image="true"]'
+    ).forEach(neutralize);
+  }
+
+  function installHeadGuard() {
+    if (!document.head || document.head.dataset.mobileAuthorityV7Guard === "true") {
+      return;
+    }
+
+    document.head.dataset.mobileAuthorityV7Guard = "true";
+
+    const observer = new MutationObserver(() => {
+      let removed = false;
+
+      LEGACY_STYLE_IDS.forEach(id => {
+        const node = document.getElementById(id);
+        if (node) {
+          node.remove();
+          removed = true;
+        }
+      });
+
+      if (removed || !document.getElementById(STYLE_ID)) {
+        installFinalStyle();
+      }
+    });
+
+    observer.observe(document.head, {
+      childList: true,
+      subtree: false
+    });
+  }
+
+  function installGridGuard() {
+    const grid = document.getElementById("sneaker-grid");
+
+    if (!grid || grid.dataset.mobileAuthorityV7Observed === "true") {
+      return;
+    }
+
+    grid.dataset.mobileAuthorityV7Observed = "true";
+
+    let scheduled = false;
+
+    const schedule = () => {
+      if (scheduled) return;
+      scheduled = true;
+
+      requestAnimationFrame(() => {
+        scheduled = false;
+        removeLegacyStyles();
+        installFinalStyle();
+        neutralizeAll(grid);
+      });
+    };
+
+    const observer = new MutationObserver(schedule);
+
+    observer.observe(grid, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ["src", "data-src"]
+    });
+
+    schedule();
+  }
+
+  function sync() {
+    if (!document.getElementById("sneaker-grid")) return;
+
+    removeLegacyStyles();
+    installFinalStyle();
+    installHeadGuard();
+    installGridGuard();
+    neutralizeAll();
+  }
+
+  /*
+    Run AFTER later DOMContentLoaded listeners such as collection-view.js.
+    That guarantees its legacy style cannot remain the final authority.
+  */
+  const afterAllInitializers = () => {
+    window.setTimeout(sync, 0);
+    window.setTimeout(sync, 80);
+    window.setTimeout(sync, 300);
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener(
+      "DOMContentLoaded",
+      afterAllInitializers,
+      { once: true }
+    );
+  } else {
+    afterAllInitializers();
+  }
+
+  window.addEventListener("pageshow", sync);
+  window.addEventListener("resize", () => requestAnimationFrame(sync), { passive: true });
+  window.addEventListener("orientationchange", () => window.setTimeout(sync, 120), { passive: true });
+})();
