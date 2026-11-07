@@ -9,6 +9,58 @@
 
 const CATALOG_ADDITIONS = [
 
+  /* =====================================================
+     AIR JORDAN 1 RETRO HIGH OG 'PALOMINO' (2023)
+     Owner record: US 10 / Deadstock / In Collection
+     Product facts: StockX, Sneaker News, GOAT
+  ===================================================== */
+  {
+    schemaVersion: 2,
+    id: "jordan-1-retro-high-og-palomino-2023",
+    brand: "Jordan",
+    title: {
+      vi: "Jordan 1 Retro High OG 'Palomino'",
+      en: "Jordan 1 Retro High OG 'Palomino'"
+    },
+    subtitle: {
+      vi: "Bản phối Palomino — 2023",
+      en: "Palomino Colorway — 2023"
+    },
+    sku: "DZ5485-020",
+    colorway: "Black/Metallic Gold/Palomino/Sail",
+    retail: {
+      amount: 180,
+      currency: "USD"
+    },
+    releaseDate: "2023-09-02",
+    edition: "GR",
+    condition: "Deadstock",
+    size: "10 US",
+    collectionStatus: "own",
+    image: "pictures/jordan1_palomino_2023.png",
+    images: [
+      "pictures/jordan1_palomino_2023.png"
+    ],
+    display: {
+      grid: { scaleX: 0.89, scaleY: 0.89, x: 0, y: 0 },
+      view3d: { scaleX: 0.86, scaleY: 0.86, x: 0, y: 0 },
+      view3dMobile: { scaleX: 0.83, scaleY: 0.83, x: 0, y: 0 }
+    },
+    story: {
+      vi: `<p><b>Air Jordan 1 Retro High OG 'Palomino'</b> là phiên bản ra mắt ngày 2 tháng 9 năm 2023, đưa bảng màu đen và nâu trầm lên một trong những dáng giày có ảnh hưởng sâu rộng nhất trong lịch sử sneaker. Air Jordan 1 lần đầu xuất hiện vào năm 1985 và liên tục được tái diễn giải qua các thế hệ. Với Palomino, Jordan Brand không thay đổi cấu trúc quen thuộc của bản High OG, mà dùng chất liệu và cách phân chia màu để tạo nên cảm giác mới: kín đáo, trưởng thành và giàu chiều sâu hơn những phối màu tương phản mạnh.</p>
+<p>Điểm nổi bật nhất là sự kết hợp giữa <b>da màu đen</b> và các tấm <b>nubuck/suede nâu Palomino</b>. Phần mudguard, eyestay, quarter panel, dây giày và phần lớn lưỡi gà sử dụng sắc đen, trong khi toe box, Swoosh, heel và collar mang tông nâu có bề mặt nhám mềm. Khi đặt cạnh nhau, da đen có bề mặt tương đối phẳng và lớp nâu có kết cấu rõ hơn khiến các đường ghép panel đặc trưng của Jordan 1 trở nên dễ đọc mà không cần đến những màu sắc rực rỡ.</p>
+<p>Tên gọi <b>Palomino</b> gợi đến một sắc nâu ấm đặc trưng. Đây là một cách tiếp cận nằm trong xu hướng các Air Jordan 1 sử dụng tông đất, thường được đặt cạnh những phối màu 'Mocha' trong các cuộc thảo luận về thiết kế. Tuy nhiên, Palomino là một bản phát hành General Release của Jordan Brand, <b>không phải</b> một đôi hợp tác Travis Scott hay một phiên bản giới hạn Friends & Family. Giá trị của nó đến từ cách phối màu, chất liệu và sự cân bằng thị giác, không phải từ một câu chuyện khan hiếm được thêu dệt.</p>
+<p>Các chi tiết phụ giúp đôi giày giữ được nét cổ điển: dấu <b>Wings</b> màu đen ở cổ ngoài, nhãn <b>Nike Air Metallic Gold</b> trên lưỡi gà và bộ đế giữa màu <b>Sail</b> ngả kem. Đế ngoài nâu Palomino tiếp tục nhịp màu của upper. Phần midsole sáng tạo ra khoảng nghỉ thị giác giữa thân giày tối và nền đất, đồng thời gợi tinh thần retro thường thấy trên những bản Jordan 1 được yêu thích vì cảm giác 'đã có tuổi' ngay từ lúc mới phát hành.</p>
+<p>Trong <b>Lộc An Sneaker Collection</b>, đôi Palomino được ghi nhận ở kích cỡ <b>US 10</b>, tình trạng <b>Deadstock</b> theo thông tin chủ sở hữu cung cấp. Ảnh hiện vật cho thấy cặp giày được trưng bày cạnh nhau, một chiếc hướng chính diện và một chiếc nghiêng để thể hiện đầy đủ phần toe, Swoosh, cổ giày và bộ đế. Sự hiện diện của đôi này trong archive bổ sung một đại diện cho Air Jordan 1 giai đoạn 2020s: một thiết kế phát hành rộng rãi nhưng có ngôn ngữ vật liệu đủ tinh tế để đứng cạnh những phiên bản đặc biệt hơn trong bộ sưu tập.</p>`,
+      en: `<p>The <b>Air Jordan 1 Retro High OG 'Palomino'</b> released on September 2, 2023, translating a restrained black-and-brown palette onto one of sneaker culture's most enduring silhouettes. First introduced in 1985, the Air Jordan 1 has been reinterpreted across generations. Palomino keeps the recognizable High OG structure intact and instead uses material contrast and color placement to give the model a quieter, more mature visual character than many of its high-contrast counterparts.</p>
+<p>Its defining feature is the interplay between <b>black leather</b> and <b>Palomino brown nubuck/suede</b>. Black dominates the mudguard, eyestays, quarter panels, laces and much of the tongue, while the toe box, Swooshes, heels and collar overlays carry the textured brown treatment. The contrast between relatively smooth black leather and the softer-looking brown panels makes the Air Jordan 1's original panel architecture legible without relying on bright colors.</p>
+<p>The name <b>Palomino</b> evokes a warm, deep brown tone. The release belongs to the broader popularity of earthy Air Jordan 1 colorways and is often discussed alongside the 'Mocha' family of palettes. It is important, however, to distinguish it from collaborations or limited-distribution projects: Palomino is a <b>General Release</b> from Jordan Brand, not a Travis Scott collaboration or a Friends & Family exclusive. Its appeal rests on its materials, color balance and everyday versatility rather than a manufactured scarcity narrative.</p>
+<p>Classic details anchor the design: a black <b>Wings</b> emblem on the lateral collar, a <b>Metallic Gold Nike Air</b> tongue label, a cream-toned <b>Sail</b> midsole and a Palomino brown rubber outsole. The lighter midsole creates a visual break below the dark upper and lends the release a subtle retro attitude. Together these features deliver a composition that feels familiar to long-time Jordan collectors while still being distinct from earlier brown-based releases.</p>
+<p>Within the <b>Lộc An Sneaker Collection</b>, this pair is catalogued as <b>US 10</b> and <b>Deadstock</b>, based on the owner's supplied record. The collection photograph presents one shoe front-facing and the other in profile, documenting the toe-box texture, Swoosh, ankle construction and contrasting sole. Its place in the archive is as a considered example of the Air Jordan 1 in the 2020s: a widely released design whose material language gives it a distinctive presence beside rarer artifacts.</p>`
+    }
+  },
+
+
   {
     schemaVersion: 2,
 
@@ -289,6 +341,20 @@ if (
 
   if (!raygunExists) {
     sneakers.push(...CATALOG_ADDITIONS);
+  }
+
+  // Add Palomino even when the Raygun already exists in base data.
+  // Do not insert the same SKU more than once.
+  const palomino = CATALOG_ADDITIONS.find(
+    item => item.id === "jordan-1-retro-high-og-palomino-2023"
+  );
+  if (
+    palomino &&
+    !sneakers.some(item =>
+      item.id === palomino.id || item.sku === palomino.sku
+    )
+  ) {
+    sneakers.push(palomino);
   }
 
   sneakers.forEach(sneaker => {
