@@ -104,6 +104,10 @@ window.CATALOG_NORMALIZED_IMAGE_MAP = Object.freeze({
     "grid": "pictures/normalized/v6/grid/jordan1_low_reversebred.png",
     "view3d": "pictures/normalized/v6/jordan1_low_reversebred.png"
   },
+  "pictures/jordan1_palomino_2023.png": {
+    "grid": "pictures/normalized/v6/grid/jordan1_palomino_2023.png",
+    "view3d": "pictures/normalized/v6/jordan1_palomino_2023.png"
+  },
   "pictures/jordan1_pe_bloodline_friendsandfamily_sample.png": {
     "grid": "pictures/normalized/v6/grid/jordan1_pe_bloodline_friendsandfamily_sample.png",
     "view3d": "pictures/normalized/v6/jordan1_pe_bloodline_friendsandfamily_sample.png"

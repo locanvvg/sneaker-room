@@ -12,7 +12,7 @@
     "minimumTransparentFraction": 0.005,
     "cropPaddingFraction": 0.018,
     "opaqueBackgroundDistance": 34,
-    "targetVisualFootprint": 657607.0809614338
+    "targetVisualFootprint": 660089.4119532125
   },
   "images": {
     "pictures/normalized/v6/adifom.png": {
@@ -88,18 +88,18 @@
       "visiblePixels": 739701,
       "rawVisualFootprint": 958641.0627466361,
       "gridSubject": {
-        "width": 1199,
-        "height": 711,
-        "left": 201,
-        "top": 245,
-        "scale": 0.8282381416990632
+        "width": 1202,
+        "height": 712,
+        "left": 199,
+        "top": 244,
+        "scale": 0.8297998832870177
       },
       "view3dSubject": {
-        "width": 1199,
-        "height": 711,
-        "left": 201,
-        "top": 245,
-        "scale": 0.8282381416990632
+        "width": 1202,
+        "height": 712,
+        "left": 199,
+        "top": 244,
+        "scale": 0.8297998832870177
       }
     },
     "pictures/normalized/v6/balenciaga_defender.png": {
@@ -117,18 +117,18 @@
       "visiblePixels": 770053,
       "rawVisualFootprint": 1009191.8784527549,
       "gridSubject": {
-        "width": 1223,
-        "height": 705,
-        "left": 189,
-        "top": 248,
-        "scale": 0.807228277611523
+        "width": 1225,
+        "height": 706,
+        "left": 188,
+        "top": 247,
+        "scale": 0.8087504026002764
       },
       "view3dSubject": {
-        "width": 1223,
-        "height": 705,
-        "left": 189,
-        "top": 248,
-        "scale": 0.807228277611523
+        "width": 1225,
+        "height": 706,
+        "left": 188,
+        "top": 247,
+        "scale": 0.8087504026002764
       }
     },
     "pictures/normalized/v6/bapesta_stussy.png": {
@@ -320,18 +320,18 @@
       "visiblePixels": 709954,
       "rawVisualFootprint": 928710.5231922377,
       "gridSubject": {
-        "width": 1218,
-        "height": 706,
-        "left": 191,
+        "width": 1221,
+        "height": 707,
+        "left": 190,
         "top": 247,
-        "scale": 0.8414785640932727
+        "scale": 0.8430652720734447
       },
       "view3dSubject": {
-        "width": 1218,
-        "height": 706,
-        "left": 191,
+        "width": 1221,
+        "height": 707,
+        "left": 190,
         "top": 247,
-        "scale": 0.8414785640932727
+        "scale": 0.8430652720734447
       }
     },
     "pictures/normalized/v6/dunk_safari.png": {
@@ -378,18 +378,18 @@
       "visiblePixels": 649542,
       "rawVisualFootprint": 881435.6913331795,
       "gridSubject": {
-        "width": 1197,
-        "height": 745,
-        "left": 202,
-        "top": 228,
-        "scale": 0.863749729590514
+        "width": 1199,
+        "height": 747,
+        "left": 201,
+        "top": 227,
+        "scale": 0.8653784325038074
       },
       "view3dSubject": {
-        "width": 1197,
-        "height": 745,
-        "left": 202,
-        "top": 228,
-        "scale": 0.863749729590514
+        "width": 1199,
+        "height": 747,
+        "left": 201,
+        "top": 227,
+        "scale": 0.8653784325038074
       }
     },
     "pictures/normalized/v6/dunkiowa.png": {
@@ -407,18 +407,18 @@
       "visiblePixels": 769347,
       "rawVisualFootprint": 1021680.7452780933,
       "gridSubject": {
-        "width": 1162,
-        "height": 752,
-        "left": 219,
+        "width": 1164,
+        "height": 753,
+        "left": 218,
         "top": 224,
-        "scale": 0.8022793909280695
+        "scale": 0.8037921842019954
       },
       "view3dSubject": {
-        "width": 1162,
-        "height": 752,
-        "left": 219,
+        "width": 1164,
+        "height": 753,
+        "left": 218,
         "top": 224,
-        "scale": 0.8022793909280695
+        "scale": 0.8037921842019954
       }
     },
     "pictures/normalized/v6/dunkpanda.png": {
@@ -465,18 +465,18 @@
       "visiblePixels": 691013,
       "rawVisualFootprint": 936223.2948522484,
       "gridSubject": {
-        "width": 1214,
-        "height": 734,
-        "left": 193,
-        "top": 233,
-        "scale": 0.8380955197060528
+        "width": 1216,
+        "height": 736,
+        "left": 192,
+        "top": 232,
+        "scale": 0.8396758485534037
       },
       "view3dSubject": {
-        "width": 1214,
-        "height": 734,
-        "left": 193,
-        "top": 233,
-        "scale": 0.8380955197060528
+        "width": 1216,
+        "height": 736,
+        "left": 192,
+        "top": 232,
+        "scale": 0.8396758485534037
       }
     },
     "pictures/normalized/v6/ispa.png": {
@@ -523,18 +523,18 @@
       "visiblePixels": 364033,
       "rawVisualFootprint": 511194.3201151593,
       "gridSubject": {
-        "width": 1232,
-        "height": 750,
-        "left": 184,
+        "width": 1234,
+        "height": 751,
+        "left": 183,
         "top": 225,
-        "scale": 1.1342015347199772
+        "scale": 1.1363402066993433
       },
       "view3dSubject": {
-        "width": 1232,
-        "height": 750,
-        "left": 184,
+        "width": 1234,
+        "height": 751,
+        "left": 183,
         "top": 225,
-        "scale": 1.1342015347199772
+        "scale": 1.1363402066993433
       }
     },
     "pictures/normalized/v6/jordan1_brotherhood.png": {
@@ -552,18 +552,18 @@
       "visiblePixels": 739617,
       "rawVisualFootprint": 987207.4394776409,
       "gridSubject": {
-        "width": 1182,
-        "height": 743,
-        "left": 209,
-        "top": 229,
-        "scale": 0.8161669994688
+        "width": 1184,
+        "height": 744,
+        "left": 208,
+        "top": 228,
+        "scale": 0.8177059794814467
       },
       "view3dSubject": {
-        "width": 1182,
-        "height": 743,
-        "left": 209,
-        "top": 229,
-        "scale": 0.8161669994688
+        "width": 1184,
+        "height": 744,
+        "left": 208,
+        "top": 228,
+        "scale": 0.8177059794814467
       }
     },
     "pictures/normalized/v6/jordan1_cityofflight.png": {
@@ -581,18 +581,18 @@
       "visiblePixels": 784648,
       "rawVisualFootprint": 1028163.4872878924,
       "gridSubject": {
-        "width": 1172,
-        "height": 735,
-        "left": 214,
-        "top": 233,
-        "scale": 0.7997461388871673
+        "width": 1175,
+        "height": 736,
+        "left": 213,
+        "top": 232,
+        "scale": 0.801254155412878
       },
       "view3dSubject": {
-        "width": 1172,
-        "height": 735,
-        "left": 214,
-        "top": 233,
-        "scale": 0.7997461388871673
+        "width": 1175,
+        "height": 736,
+        "left": 213,
+        "top": 232,
+        "scale": 0.801254155412878
       }
     },
     "pictures/normalized/v6/jordan1_crimson.png": {
@@ -610,18 +610,18 @@
       "visiblePixels": 781239,
       "rawVisualFootprint": 1033932.3952947794,
       "gridSubject": {
-        "width": 1155,
-        "height": 754,
-        "left": 223,
+        "width": 1157,
+        "height": 755,
+        "left": 222,
         "top": 223,
-        "scale": 0.7975118944069499
+        "scale": 0.7990156979987872
       },
       "view3dSubject": {
-        "width": 1155,
-        "height": 754,
-        "left": 223,
+        "width": 1157,
+        "height": 755,
+        "left": 222,
         "top": 223,
-        "scale": 0.7975118944069499
+        "scale": 0.7990156979987872
       }
     },
     "pictures/normalized/v6/jordan1_diamond.png": {
@@ -639,18 +639,18 @@
       "visiblePixels": 703037,
       "rawVisualFootprint": 950244.100172161,
       "gridSubject": {
-        "width": 1205,
-        "height": 738,
-        "left": 198,
+        "width": 1207,
+        "height": 739,
+        "left": 197,
         "top": 231,
-        "scale": 0.8318895130577979
+        "scale": 0.833458139741013
       },
       "view3dSubject": {
-        "width": 1205,
-        "height": 738,
-        "left": 198,
+        "width": 1207,
+        "height": 739,
+        "left": 197,
         "top": 231,
-        "scale": 0.8318895130577979
+        "scale": 0.833458139741013
       }
     },
     "pictures/normalized/v6/jordan1_fragmentunion_sample.png": {
@@ -668,18 +668,18 @@
       "visiblePixels": 367112,
       "rawVisualFootprint": 522206.4766813985,
       "gridSubject": {
-        "width": 1219,
-        "height": 768,
-        "left": 191,
+        "width": 1221,
+        "height": 769,
+        "left": 190,
         "top": 216,
-        "scale": 1.1221789387638401
+        "scale": 1.1242949407076759
       },
       "view3dSubject": {
-        "width": 1219,
-        "height": 768,
-        "left": 191,
+        "width": 1221,
+        "height": 769,
+        "left": 190,
         "top": 216,
-        "scale": 1.1221789387638401
+        "scale": 1.1242949407076759
       }
     },
     "pictures/normalized/v6/jordan1_gymred.png": {
@@ -697,18 +697,18 @@
       "visiblePixels": 745785,
       "rawVisualFootprint": 983660.2184087755,
       "gridSubject": {
-        "width": 1184,
-        "height": 733,
-        "left": 208,
-        "top": 234,
-        "scale": 0.8176372832913721
+        "width": 1186,
+        "height": 734,
+        "left": 207,
+        "top": 233,
+        "scale": 0.8191790356991504
       },
       "view3dSubject": {
-        "width": 1184,
-        "height": 733,
-        "left": 208,
-        "top": 234,
-        "scale": 0.8176372832913721
+        "width": 1186,
+        "height": 734,
+        "left": 207,
+        "top": 233,
+        "scale": 0.8191790356991504
       }
     },
     "pictures/normalized/v6/jordan1_h2h.png": {
@@ -726,18 +726,18 @@
       "visiblePixels": 983907,
       "rawVisualFootprint": 1176777.7235281097,
       "gridSubject": {
-        "width": 1082,
-        "height": 727,
-        "left": 259,
-        "top": 237,
-        "scale": 0.7475427281704262
+        "width": 1084,
+        "height": 728,
+        "left": 258,
+        "top": 236,
+        "scale": 0.7489523089523035
       },
       "view3dSubject": {
-        "width": 1082,
-        "height": 727,
-        "left": 259,
-        "top": 237,
-        "scale": 0.7475427281704262
+        "width": 1084,
+        "height": 728,
+        "left": 258,
+        "top": 236,
+        "scale": 0.7489523089523035
       }
     },
     "pictures/normalized/v6/jordan1_low_reversebred.png": {
@@ -769,6 +769,35 @@
         "scale": 0.72480181200453
       }
     },
+    "pictures/normalized/v6/jordan1_palomino_2023.png": {
+      "input": "pictures/jordan1_palomino_2023.png",
+      "catalogInput": "pictures/jordan1_palomino_2023.png",
+      "grid": "pictures/normalized/v6/grid/jordan1_palomino_2023.png",
+      "view3d": "pictures/normalized/v6/jordan1_palomino_2023.png",
+      "method": "alpha",
+      "crop": {
+        "left": 1,
+        "top": 402,
+        "width": 1121,
+        "height": 678
+      },
+      "visiblePixels": 375568,
+      "rawVisualFootprint": 534271.4212682538,
+      "gridSubject": {
+        "width": 1246,
+        "height": 754,
+        "left": 177,
+        "top": 223,
+        "scale": 1.1115280103188547
+      },
+      "view3dSubject": {
+        "width": 1246,
+        "height": 754,
+        "left": 177,
+        "top": 223,
+        "scale": 1.1115280103188547
+      }
+    },
     "pictures/normalized/v6/jordan1_pe_bloodline_friendsandfamily_sample.png": {
       "input": "pictures/jordan1_pe_bloodline_friendsandfamily_sample.png",
       "catalogInput": "pictures/jordan1_pe_bloodline_friendsandfamily_sample.png",
@@ -784,18 +813,18 @@
       "visiblePixels": 341742,
       "rawVisualFootprint": 477751.0485388808,
       "gridSubject": {
-        "width": 1274,
-        "height": 722,
-        "left": 163,
+        "width": 1277,
+        "height": 723,
+        "left": 162,
         "top": 239,
-        "scale": 1.1732279913990245
+        "scale": 1.1754402524071463
       },
       "view3dSubject": {
-        "width": 1274,
-        "height": 722,
-        "left": 163,
+        "width": 1277,
+        "height": 723,
+        "left": 162,
         "top": 239,
-        "scale": 1.1732279913990245
+        "scale": 1.1754402524071463
       }
     },
     "pictures/normalized/v6/jordan1_quai54_ff_v2.png": {
@@ -871,18 +900,18 @@
       "visiblePixels": 787763,
       "rawVisualFootprint": 1049169.6693862246,
       "gridSubject": {
-        "width": 1146,
-        "height": 764,
-        "left": 227,
+        "width": 1149,
+        "height": 765,
+        "left": 226,
         "top": 218,
-        "scale": 0.7916995114928467
+        "scale": 0.7931923551449457
       },
       "view3dSubject": {
-        "width": 1146,
-        "height": 764,
-        "left": 227,
+        "width": 1149,
+        "height": 765,
+        "left": 226,
         "top": 218,
-        "scale": 0.7916995114928467
+        "scale": 0.7931923551449457
       }
     },
     "pictures/normalized/v6/jordan1_seafoam.png": {
@@ -900,18 +929,18 @@
       "visiblePixels": 470517,
       "rawVisualFootprint": 676051.8458594725,
       "gridSubject": {
-        "width": 1272,
-        "height": 743,
-        "left": 164,
-        "top": 229,
-        "scale": 0.9862641316105302
+        "width": 1275,
+        "height": 744,
+        "left": 163,
+        "top": 228,
+        "scale": 0.9881238500097388
       },
       "view3dSubject": {
-        "width": 1272,
-        "height": 743,
-        "left": 164,
-        "top": 229,
-        "scale": 0.9862641316105302
+        "width": 1275,
+        "height": 744,
+        "left": 163,
+        "top": 228,
+        "scale": 0.9881238500097388
       }
     },
     "pictures/normalized/v6/jordan1_shadow_2009.png": {
@@ -929,18 +958,18 @@
       "visiblePixels": 334078,
       "rawVisualFootprint": 476949.74569235276,
       "gridSubject": {
-        "width": 1275,
-        "height": 736,
-        "left": 163,
-        "top": 232,
-        "scale": 1.174213122860921
+        "width": 1278,
+        "height": 738,
+        "left": 161,
+        "top": 231,
+        "scale": 1.1764272414516588
       },
       "view3dSubject": {
-        "width": 1275,
-        "height": 736,
-        "left": 163,
-        "top": 232,
-        "scale": 1.174213122860921
+        "width": 1278,
+        "height": 738,
+        "left": 161,
+        "top": 231,
+        "scale": 1.1764272414516588
       }
     },
     "pictures/normalized/v6/jordan1_turbogreen.png": {
@@ -958,18 +987,18 @@
       "visiblePixels": 799649,
       "rawVisualFootprint": 1055959.164539993,
       "gridSubject": {
-        "width": 1143,
-        "height": 760,
-        "left": 229,
+        "width": 1145,
+        "height": 761,
+        "left": 228,
         "top": 220,
-        "scale": 0.7891502139656201
+        "scale": 0.7906382506138299
       },
       "view3dSubject": {
-        "width": 1143,
-        "height": 760,
-        "left": 229,
+        "width": 1145,
+        "height": 761,
+        "left": 228,
         "top": 220,
-        "scale": 0.7891502139656201
+        "scale": 0.7906382506138299
       }
     },
     "pictures/normalized/v6/jordan1_vaa_alaska_v2.png": {
@@ -987,18 +1016,18 @@
       "visiblePixels": 372903,
       "rawVisualFootprint": 531287.062355183,
       "gridSubject": {
-        "width": 1208,
-        "height": 775,
-        "left": 196,
-        "top": 213,
-        "scale": 1.1125476489583876
+        "width": 1211,
+        "height": 777,
+        "left": 195,
+        "top": 212,
+        "scale": 1.1146454899590388
       },
       "view3dSubject": {
-        "width": 1208,
-        "height": 775,
-        "left": 196,
-        "top": 213,
-        "scale": 1.1125476489583876
+        "width": 1211,
+        "height": 777,
+        "left": 195,
+        "top": 212,
+        "scale": 1.1146454899590388
       }
     },
     "pictures/normalized/v6/jordan1_yelloworche.png": {
@@ -1016,18 +1045,18 @@
       "visiblePixels": 727901,
       "rawVisualFootprint": 981507.3062754042,
       "gridSubject": {
-        "width": 1185,
-        "height": 748,
-        "left": 208,
-        "top": 226,
-        "scale": 0.8185335257235531
+        "width": 1187,
+        "height": 750,
+        "left": 207,
+        "top": 225,
+        "scale": 0.8200769681031024
       },
       "view3dSubject": {
-        "width": 1185,
-        "height": 748,
-        "left": 208,
-        "top": 226,
-        "scale": 0.8185335257235531
+        "width": 1187,
+        "height": 750,
+        "left": 207,
+        "top": 225,
+        "scale": 0.8200769681031024
       }
     },
     "pictures/normalized/v6/jordan1low_fuchsia.png": {
@@ -1132,18 +1161,18 @@
       "visiblePixels": 378314,
       "rawVisualFootprint": 526224.5040816704,
       "gridSubject": {
-        "width": 1214,
-        "height": 753,
-        "left": 193,
-        "top": 224,
-        "scale": 1.1178864877219896
+        "width": 1216,
+        "height": 755,
+        "left": 192,
+        "top": 223,
+        "scale": 1.119994395738525
       },
       "view3dSubject": {
-        "width": 1214,
-        "height": 753,
-        "left": 193,
-        "top": 224,
-        "scale": 1.1178864877219896
+        "width": 1216,
+        "height": 755,
+        "left": 192,
+        "top": 223,
+        "scale": 1.119994395738525
       }
     },
     "pictures/normalized/v6/jordan4_firered.png": {
@@ -1161,18 +1190,18 @@
       "visiblePixels": 725291,
       "rawVisualFootprint": 956970.7586420809,
       "gridSubject": {
-        "width": 1200,
-        "height": 723,
-        "left": 200,
-        "top": 239,
-        "scale": 0.8289606331795811
+        "width": 1203,
+        "height": 724,
+        "left": 199,
+        "top": 238,
+        "scale": 0.8305237371112086
       },
       "view3dSubject": {
-        "width": 1200,
-        "height": 723,
-        "left": 200,
-        "top": 239,
-        "scale": 0.8289606331795811
+        "width": 1203,
+        "height": 724,
+        "left": 199,
+        "top": 238,
+        "scale": 0.8305237371112086
       }
     },
     "pictures/normalized/v6/jordan4_ow.png": {
@@ -1190,18 +1219,18 @@
       "visiblePixels": 727343,
       "rawVisualFootprint": 989681.3515066352,
       "gridSubject": {
-        "width": 1180,
-        "height": 758,
-        "left": 210,
-        "top": 221,
-        "scale": 0.8151462725758136
+        "width": 1183,
+        "height": 760,
+        "left": 209,
+        "top": 220,
+        "scale": 0.8166833278864231
       },
       "view3dSubject": {
-        "width": 1180,
-        "height": 758,
-        "left": 210,
-        "top": 221,
-        "scale": 0.8151462725758136
+        "width": 1183,
+        "height": 760,
+        "left": 209,
+        "top": 220,
+        "scale": 0.8166833278864231
       }
     },
     "pictures/normalized/v6/jordan4_royalty.png": {
@@ -1219,18 +1248,18 @@
       "visiblePixels": 690512,
       "rawVisualFootprint": 927297.5700173057,
       "gridSubject": {
-        "width": 1219,
-        "height": 724,
-        "left": 191,
-        "top": 238,
-        "scale": 0.8421194140609842
+        "width": 1222,
+        "height": 726,
+        "left": 189,
+        "top": 237,
+        "scale": 0.8437073304400403
       },
       "view3dSubject": {
-        "width": 1219,
-        "height": 724,
-        "left": 191,
-        "top": 238,
-        "scale": 0.8421194140609842
+        "width": 1222,
+        "height": 726,
+        "left": 189,
+        "top": 237,
+        "scale": 0.8437073304400403
       }
     },
     "pictures/normalized/v6/jordan5_bronze.png": {
@@ -1248,18 +1277,18 @@
       "visiblePixels": 754392,
       "rawVisualFootprint": 1034127.6826697949,
       "gridSubject": {
-        "width": 1155,
-        "height": 781,
-        "left": 223,
-        "top": 210,
-        "scale": 0.797436588736053
+        "width": 1157,
+        "height": 782,
+        "left": 222,
+        "top": 209,
+        "scale": 0.7989402503300855
       },
       "view3dSubject": {
-        "width": 1155,
-        "height": 781,
-        "left": 223,
-        "top": 210,
-        "scale": 0.797436588736053
+        "width": 1157,
+        "height": 782,
+        "left": 222,
+        "top": 209,
+        "scale": 0.7989402503300855
       }
     },
     "pictures/normalized/v6/kiger_ow.png": {
@@ -1364,18 +1393,18 @@
       "visiblePixels": 842341,
       "rawVisualFootprint": 1120848.3666580417,
       "gridSubject": {
-        "width": 1109,
-        "height": 789,
-        "left": 246,
-        "top": 206,
-        "scale": 0.7659665580389495
+        "width": 1111,
+        "height": 790,
+        "left": 245,
+        "top": 205,
+        "scale": 0.7674108791447343
       },
       "view3dSubject": {
-        "width": 1109,
-        "height": 789,
-        "left": 246,
-        "top": 206,
-        "scale": 0.7659665580389495
+        "width": 1111,
+        "height": 790,
+        "left": 245,
+        "top": 205,
+        "scale": 0.7674108791447343
       }
     },
     "pictures/normalized/v6/nike_fog_skylon.png": {
@@ -1393,18 +1422,18 @@
       "visiblePixels": 666714,
       "rawVisualFootprint": 860501.7349337536,
       "gridSubject": {
-        "width": 1266,
-        "height": 671,
-        "left": 167,
-        "top": 265,
-        "scale": 0.8741930819726986
+        "width": 1268,
+        "height": 672,
+        "left": 166,
+        "top": 264,
+        "scale": 0.875841477069812
       },
       "view3dSubject": {
-        "width": 1266,
-        "height": 671,
-        "left": 167,
-        "top": 265,
-        "scale": 0.8741930819726986
+        "width": 1268,
+        "height": 672,
+        "left": 166,
+        "top": 264,
+        "scale": 0.875841477069812
       }
     },
     "pictures/normalized/v6/nike_lego1.png": {
@@ -1422,18 +1451,18 @@
       "visiblePixels": 881889,
       "rawVisualFootprint": 1170553.060248018,
       "gridSubject": {
-        "width": 1085,
-        "height": 804,
-        "left": 258,
-        "top": 198,
-        "scale": 0.7495277010117588
+        "width": 1087,
+        "height": 806,
+        "left": 257,
+        "top": 197,
+        "scale": 0.7509410246961677
       },
       "view3dSubject": {
-        "width": 1085,
-        "height": 804,
-        "left": 258,
-        "top": 198,
-        "scale": 0.7495277010117588
+        "width": 1087,
+        "height": 806,
+        "left": 257,
+        "top": 197,
+        "scale": 0.7509410246961677
       }
     },
     "pictures/normalized/v6/nike_lego2.png": {
@@ -1741,18 +1770,18 @@
       "visiblePixels": 657391,
       "rawVisualFootprint": 860016.2699251684,
       "gridSubject": {
-        "width": 1266,
-        "height": 679,
-        "left": 167,
-        "top": 261,
-        "scale": 0.8744397809558866
+        "width": 1269,
+        "height": 681,
+        "left": 166,
+        "top": 260,
+        "scale": 0.8760886412332933
       },
       "view3dSubject": {
-        "width": 1266,
-        "height": 679,
-        "left": 167,
-        "top": 261,
-        "scale": 0.8744397809558866
+        "width": 1269,
+        "height": 681,
+        "left": 166,
+        "top": 260,
+        "scale": 0.8760886412332933
       }
     },
     "pictures/normalized/v6/yz_fm_rnr.png": {
@@ -1889,6 +1918,10 @@
     "pictures/jordan1_low_reversebred.png": {
       "grid": "pictures/normalized/v6/grid/jordan1_low_reversebred.png",
       "view3d": "pictures/normalized/v6/jordan1_low_reversebred.png"
+    },
+    "pictures/jordan1_palomino_2023.png": {
+      "grid": "pictures/normalized/v6/grid/jordan1_palomino_2023.png",
+      "view3d": "pictures/normalized/v6/jordan1_palomino_2023.png"
     },
     "pictures/jordan1_pe_bloodline_friendsandfamily_sample.png": {
       "grid": "pictures/normalized/v6/grid/jordan1_pe_bloodline_friendsandfamily_sample.png",
