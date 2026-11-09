@@ -6,6 +6,7 @@
    - Adds MUSEUM MODE to existing archive feature rows.
    - No mutation observers / no polling.
    - Keeps Timeline total-count wording as PAIRS / ĐÔI GIÀY.
+   - ROOM links to the walkable Virtual Room experience.
 ========================================================= */
 (() => {
   "use strict";
@@ -98,23 +99,20 @@
     if (close) close.textContent = t.close;
     if (countLabel) countLabel.textContent = t.pairs;
 
+    // Keep the existing ROOM element, but make it a real link.
+    const roomLink = document.getElementById("room-feature-link");
+    if (roomLink) {
+      roomLink.href = "./virtual-room.html";
+      roomLink.setAttribute("aria-label", lang() === "vi" ? "Vào phòng 3D" : "Enter virtual room");
+    }
+
     syncMuseumLink();
   }
 
   function openRoom(event) {
+    // Navigate to the new room instead of showing the old Coming Soon overlay.
     event?.preventDefault();
-    syncCopy();
-
-    const node = overlay();
-    if (!node) return;
-
-    node.hidden = false;
-    node.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-
-    requestAnimationFrame(() => {
-      document.getElementById("room-coming-soon-close")?.focus();
-    });
+    window.location.assign("./virtual-room.html");
   }
 
   function closeRoom() {
