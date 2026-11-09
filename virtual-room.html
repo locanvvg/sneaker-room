@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#09090b">
-<meta name="description" content="Lộc An Virtual Room — bản thử nghiệm đi lại trong phòng 3D và nạp bản quét căn phòng thật.">
-<title>LỘC AN — Virtual Room / Walkthrough v1</title>
+<meta name="description" content="Loc An Sneaker Collection — khám phá căn phòng sneaker 3D qua góc nhìn thứ nhất hoặc thứ ba.">
+<title>Loc An Sneaker Collection — Virtual Room 3D</title>
 <style>
 :root{color-scheme:dark;--bg:#08080b;--panel:rgba(14,14,19,.88);--edge:rgba(255,255,255,.16);--fg:#f5f4ed;--muted:#a3a2a0;--yellow:#f5d77b;font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--fg)}button,input,a{font:inherit}button{cursor:pointer}a{color:var(--yellow)}#viewport{width:100vw;height:100dvh;display:block;outline:none;touch-action:none}canvas{display:block}#hud{position:fixed;inset:0;pointer-events:none;z-index:20}.active-pointer{cursor:crosshair}
-.topbar{position:absolute;top:0;left:0;right:0;display:flex;gap:14px;align-items:flex-start;justify-content:space-between;padding:calc(env(safe-area-inset-top,0px) + 22px) 24px 0;background:linear-gradient(180deg,rgba(0,0,0,.65),transparent);pointer-events:none}.brand .eyebrow{font-size:10px;letter-spacing:.29em;color:var(--yellow);font-weight:800}.brand h1{margin:5px 0 5px;font-size:clamp(20px,2.7vw,29px);letter-spacing:.15em;line-height:1;font-weight:850}.brand .caption{color:var(--muted);font-size:11px;letter-spacing:.09em}.actions{display:flex;flex-wrap:wrap;gap:7px;justify-content:flex-end;pointer-events:auto;max-width:62%}
+.topbar{position:absolute;top:0;left:0;right:0;display:flex;gap:14px;align-items:flex-start;justify-content:space-between;padding:calc(env(safe-area-inset-top,0px) + 22px) 24px 0;background:linear-gradient(180deg,rgba(0,0,0,.65),transparent);pointer-events:none}.brand .eyebrow{font-size:10px;letter-spacing:.29em;color:var(--yellow);font-weight:800}.brand h1{margin:5px 0 5px;font-size:clamp(17px,2.05vw,27px);letter-spacing:.05em;line-height:1.18;font-weight:850;max-width:590px}.brand .caption{color:var(--muted);font-size:11px;letter-spacing:.09em}.actions{display:flex;flex-wrap:wrap;gap:7px;justify-content:flex-end;pointer-events:auto;max-width:62%}
 .ui-btn{background:rgba(19,19,22,.82);color:var(--fg);border:1px solid rgba(255,255,255,.17);border-radius:9px;padding:10px 12px;font-size:12px;font-weight:650;letter-spacing:.02em;transition:background .2s}.ui-btn:hover{background:#2e2d2b}.ui-btn.gold{border-color:#e9cb75;background:#dfc16b;color:#1d1707}.ui-btn.gold:hover{background:#f2d78c}.ui-btn:focus-visible{outline:2px solid var(--yellow);outline-offset:3px}
 .notice{position:absolute;top:112px;left:24px;background:rgba(8,8,9,.68);border:1px solid var(--edge);border-radius:7px;padding:7px 10px;color:#d7d4ca;font-size:10px;letter-spacing:.08em;max-width:280px}.crosshair{position:absolute;left:50%;top:50%;width:8px;height:8px;border:1px solid rgba(255,255,255,.9);border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 4px #000}.tips{position:absolute;bottom:calc(env(safe-area-inset-bottom,0px) + 24px);left:24px;background:rgba(8,8,9,.68);padding:11px 13px;border:1px solid var(--edge);border-radius:9px;color:#c9c5bf;font-size:12px;letter-spacing:.015em}.tips kbd{font:inherit;color:#fff;font-weight:800}.mapwrap{position:absolute;right:24px;bottom:calc(env(safe-area-inset-bottom,0px) + 24px);width:162px;background:rgba(10,10,12,.72);border:1px solid var(--edge);border-radius:10px;padding:10px}.mapwrap .maptitle{font-size:10px;color:#bbb;letter-spacing:.15em;font-weight:750;margin-bottom:6px}#minimap{width:140px;height:128px;display:block}
 #start-screen{position:fixed;inset:0;z-index:50;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 42%,rgba(48,40,23,.66),rgba(4,4,5,.93) 70%);padding:22px;text-align:center}.start-box{width:min(550px,100%)}.start-brand{font-size:13px;letter-spacing:.52em;color:var(--yellow);font-weight:850}.start-title{font-size:clamp(46px,9vw,94px);letter-spacing:-.065em;line-height:.96;font-weight:850;margin:23px 0}.start-title span{display:block;color:var(--yellow)}.start-body{max-width:410px;margin:auto;color:#b8b6b1;font-size:15px;line-height:1.8}.start-meta{font-size:11px;letter-spacing:.15em;color:#ad9f7e;margin:23px 0}.start-buttons{display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap}.start-buttons button{padding:13px 18px;font-size:13px}.start-foot{margin-top:32px;color:#777;letter-spacing:.17em;font-size:10px}
@@ -17,7 +17,7 @@
 #toast{position:absolute;left:50%;top:calc(env(safe-area-inset-top,0px) + 100px);transform:translateX(-50%);padding:10px 15px;background:rgba(13,12,15,.9);border:1px solid #947d4e;border-radius:10px;color:#eee;font-size:12px;max-width:92vw;text-align:center;display:none;pointer-events:none}.busy{position:absolute;left:50%;bottom:92px;transform:translateX(-50%);color:#efdfa7;font-size:12px;display:none;background:#111b;border-radius:7px;padding:8px 12px}
 #mobile{display:none;position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 11px);height:150px;pointer-events:none}#pad{position:absolute;left:22px;bottom:0;width:122px;height:122px;border-radius:50%;background:rgba(0,0,0,.23);border:2px solid rgba(255,255,255,.32);pointer-events:auto;touch-action:none}#pad-knob{position:absolute;left:40px;top:40px;width:38px;height:38px;border-radius:50%;background:rgba(243,216,137,.84);box-shadow:0 0 20px #c8a85e55;pointer-events:none}#lookhint{position:absolute;right:20px;bottom:39px;color:#fff9;font-size:11px;letter-spacing:.04em;text-align:right}.mobile-use{position:absolute;right:23px;bottom:70px;pointer-events:auto}.mobile-use button{background:#171715d9;border:1px solid #7b6b47;color:#fff;border-radius:50%;width:46px;height:46px;font-size:18px}
 #fallback{position:fixed;inset:0;display:none;place-items:center;z-index:80;background:#080809;padding:30px;text-align:center;line-height:1.8}
-@media(max-width:720px){.topbar{padding:calc(env(safe-area-inset-top,0px) + 12px) 12px 0;display:block}.brand h1{font-size:19px}.brand .caption{font-size:9px}.actions{justify-content:flex-start;max-width:none;margin-top:14px}.actions .ui-btn{padding:8px 9px;font-size:10px}.notice{top:118px;left:12px;font-size:9px;max-width:265px}.tips{display:none}.mapwrap{top:175px;bottom:auto;right:10px;width:108px;padding:6px}.mapwrap .maptitle{font-size:9px}#minimap{width:94px;height:86px}#mobile{display:block}.crosshair{width:10px;height:10px}#settings{top:130px;right:10px}#info-panel{bottom:175px}.start-title{font-size:56px}.start-body{font-size:13px}.start-meta{font-size:10px}}
+@media(max-width:720px){.topbar{padding:calc(env(safe-area-inset-top,0px) + 12px) 12px 0;display:block}.brand h1{font-size:18px;max-width:none}.brand .caption{font-size:9px}.actions{justify-content:flex-start;max-width:none;margin-top:14px}.actions .ui-btn{padding:8px 9px;font-size:10px}.notice{top:166px;left:12px;font-size:9px;max-width:235px}.tips{display:none}.mapwrap{top:175px;bottom:auto;right:10px;width:108px;padding:6px}.mapwrap .maptitle{font-size:9px}#minimap{width:94px;height:86px}#mobile{display:block}.crosshair{width:10px;height:10px}#settings{top:194px;right:10px}#info-panel{bottom:175px}.start-title{font-size:56px}.start-body{font-size:13px}.start-meta{font-size:10px}}
 @media(max-height:580px){.notice,.mapwrap{display:none}.topbar{padding-top:9px}.start-title{font-size:50px;margin:10px 0}.start-body{line-height:1.5}.start-foot{margin-top:13px}}
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"}}</script>
@@ -25,9 +25,10 @@
 <body>
 <div id="viewport" tabindex="0" role="application" aria-label="Virtual Room 3D"></div>
 <div id="hud">
-  <div class="topbar"><div class="brand"><div class="eyebrow">PRIVATE COLLECTION — NOT FOR SALE</div><h1>LỘC AN <span style="color:var(--yellow)">/ ROOM</span></h1><div class="caption" id="subtitle">WALKTHROUGH · FIRST PERSON · V1</div></div>
+  <div class="topbar"><div class="brand"><div class="eyebrow">PRIVATE COLLECTION — NOT FOR SALE</div><h1>LOC AN <span style="color:var(--yellow)">SNEAKER COLLECTION</span></h1><div class="caption" id="subtitle">VIRTUAL ROOM · FIRST PERSON · V3</div></div>
     <div class="actions">
       <button class="ui-btn" id="home-btn">← COLLECTION</button>
+      <button class="ui-btn" id="view-btn" type="button" title="Chuyển góc nhìn (V)" aria-label="Chuyển góc nhìn thứ nhất hoặc thứ ba">GÓC NHÌN 1</button>
       <button class="ui-btn" id="settings-btn" data-i18n="layout">KÍCH THƯỚC</button>
       <button class="ui-btn" id="scan-btn" data-i18n="load">NẠP QUÉT 3D</button>
       <button class="ui-btn" id="reset-btn" data-i18n="reset">ĐẶT LẠI</button>
@@ -35,13 +36,13 @@
     </div>
   </div>
   <div class="notice" id="demo-label">BẢN MẪU 3D · CHƯA PHẢI PHÒNG THẬT</div>
-  <div class="crosshair"></div><div class="tips" id="tips">Click vào phòng để khóa chuột · <kbd>W A S D</kbd> di chuyển · <kbd>Shift</kbd> chạy · <kbd>E</kbd> xem vật thể · <kbd>Esc</kbd> mở chuột</div>
+  <div class="crosshair"></div><div class="tips" id="tips">Click vào phòng để khóa chuột · <kbd>W A S D</kbd> di chuyển · <kbd>Shift</kbd> chạy · <kbd>E</kbd> xem vật thể · <kbd>V</kbd> đổi góc nhìn · <kbd>Esc</kbd> mở chuột</div>
   <div class="mapwrap"><div class="maptitle">ROOM POSITION</div><canvas id="minimap" width="280" height="256"></canvas></div>
   <div id="mobile"><div id="pad" aria-label="Di chuyển"><div id="pad-knob"></div></div><div class="mobile-use"><button id="interact-mobile" aria-label="Xem vật thể">◎</button></div><div id="lookhint">VUỐT BÊN PHẢI<br>ĐỂ XOAY NHÌN</div></div>
   <div id="toast"></div><div class="busy" id="busy">Đang tải mô hình 3D…</div>
 </div>
 <div id="start-screen">
-  <div class="start-box"><div class="start-brand">LỘC AN SNEAKER COLLECTION</div><div class="start-title">YOUR ROOM.<span>YOUR WORLD.</span></div><div class="start-body" id="start-body">Thử di chuyển trong phòng 3D. Đây là bố cục minh họa; sau khi có ảnh hoặc bản quét LiDAR, chúng ta sẽ dựng lại đúng căn phòng của bạn.</div><div class="start-meta">VIRTUAL ROOM / WALKTHROUGH PREVIEW / 01</div><div class="start-buttons"><button id="start-btn" class="ui-btn gold">ENTER THE ROOM →</button><button id="start-scan-btn" class="ui-btn">NẠP FILE QUÉT 3D</button></div><div class="start-foot">DESKTOP · MOBILE · NO ACCOUNT REQUIRED</div></div>
+  <div class="start-box"><div class="start-brand">LOC AN SNEAKER COLLECTION</div><div class="start-title">YOUR ROOM.<span>YOUR WORLD.</span></div><div class="start-body" id="start-body">Thử di chuyển trong phòng 3D. Đây là bố cục minh họa; sau khi có ảnh hoặc bản quét LiDAR, chúng ta sẽ dựng lại đúng căn phòng của bạn.</div><div class="start-meta">VIRTUAL ROOM / WALKTHROUGH PREVIEW / 01</div><div class="start-buttons"><button id="start-btn" class="ui-btn gold">ENTER THE ROOM →</button><button id="start-scan-btn" class="ui-btn">NẠP FILE QUÉT 3D</button></div><div class="start-foot">DESKTOP · MOBILE · NO ACCOUNT REQUIRED</div></div>
 </div>
 <div id="settings"><div class="panel-title" id="settings-title">BỐ CỤC PHÒNG MẪU</div><div class="panel-note" id="settings-note">Nhập kích thước phòng thật bằng mét. Bản demo sẽ đổi kích thước; đồ nội thất vẫn chỉ là minh họa.</div><div class="fieldset"><label id="w-label">Rộng (m)<input id="room-w" type="number" min="3" max="12" step="0.1" value="5.2" inputmode="decimal"></label><label id="l-label">Dài (m)<input id="room-l" type="number" min="3.5" max="15" step="0.1" value="7.2" inputmode="decimal"></label><label id="h-label">Cao (m)<input id="room-h" type="number" min="2.2" max="4.5" step="0.1" value="2.8" inputmode="decimal"></label></div><div class="panel-actions"><button id="apply-dims" class="ui-btn gold">ÁP DỤNG</button><button id="close-settings" class="ui-btn">ĐÓNG</button></div></div>
 <div id="info-panel"><button class="close" id="close-info" aria-label="Close">×</button><div id="info-title"></div><div id="info-body"></div><div class="link-row" id="info-link"></div></div>
@@ -53,9 +54,11 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 
 const $ = id => document.getElementById(id);
 const isTouch = matchMedia('(pointer:coarse)').matches;
-const language = {vi:{layout:'KÍCH THƯỚC',load:'NẠP QUÉT 3D',reset:'ĐẶT LẠI',demo:'BẢN MẪU 3D · CHƯA PHẢI PHÒNG THẬT',real:'ĐANG XEM BẢN QUÉT 3D · XEM TRÊN MÁY NÀY',welcome:'Click để điều khiển · WASD đi lại · E xem vật thể',scanPrompt:'Chọn .glb hoặc nhiều file gồm .gltf + .bin + ảnh',invalid:'Không tìm thấy file .glb hoặc .gltf.',scanSuccess:'Đã nạp mô hình! Bố cục demo được ẩn.',scanFail:'Không đọc được mô hình. Kiểm tra các file .bin/texture hoặc dùng GLB.',apply:'ÁP DỤNG',close:'ĐÓNG',settingsTitle:'BỐ CỤC PHÒNG MẪU',settingsNote:'Nhập kích thước phòng thật bằng mét. Bản demo sẽ đổi kích thước; đồ nội thất vẫn chỉ là minh họa.',startBody:'Thử di chuyển trong phòng 3D. Đây là bố cục minh họa; sau khi có ảnh hoặc bản quét LiDAR, chúng ta sẽ dựng lại đúng căn phòng của bạn.',startScan:'NẠP FILE QUÉT 3D',enter:'VÀO PHÒNG →',look:'VUỐT BÊN PHẢI<br>ĐỂ XOAY NHÌN',w:'Rộng',l:'Dài',h:'Cao',info:'Xem thêm',hidden:'Tắt demo và hiển thị bản quét thật. Mô hình chỉ nằm trong trình duyệt; chưa upload lên website.',resetDemo:'Đã quay về bố cục demo.',noWebgl:'Trình duyệt không hỗ trợ WebGL.'},en:{layout:'ROOM SIZE',load:'LOAD 3D SCAN',reset:'RESET',demo:'3D DEMO · NOT YOUR ACTUAL ROOM YET',real:'LOCAL 3D SCAN · BROWSER PREVIEW',welcome:'Click to look · WASD walk · E inspect',scanPrompt:'Select a .glb or .gltf with .bin and textures',invalid:'No .glb or .gltf found.',scanSuccess:'3D scan loaded! Demo room hidden.',scanFail:'Could not load model. Check its textures/binary or use GLB.',apply:'APPLY',close:'CLOSE',settingsTitle:'DEMO ROOM DIMENSIONS',settingsNote:'Enter the actual room measurements in metres. Only the illustrative demo geometry is resized.',startBody:'Explore a walkable 3D prototype. This is only a demonstration until you provide room photos or a LiDAR scan.',startScan:'IMPORT 3D SCAN',enter:'ENTER THE ROOM →',look:'SWIPE ON THE RIGHT<br>TO LOOK AROUND',w:'Width',l:'Length',h:'Height',info:'Read more',hidden:'This is an on-device preview. It has not been uploaded to the public website.',resetDemo:'Demo room restored.',noWebgl:'WebGL unavailable.'}};
+const language = {vi:{viewFirst:'GÓC NHÌN 1',viewThird:'GÓC NHÌN 3',modeFirst:'GÓC NHÌN THỨ NHẤT',modeThird:'GÓC NHÌN THỨ BA',modeChangedFirst:'Đã chuyển sang góc nhìn thứ nhất.',modeChangedThird:'Đã chuyển sang góc nhìn thứ ba. Đây là nhân vật minh họa.',layout:'KÍCH THƯỚC',load:'NẠP QUÉT 3D',reset:'ĐẶT LẠI',demo:'BẢN MẪU 3D · CHƯA PHẢI PHÒNG THẬT',real:'ĐANG XEM BẢN QUÉT 3D · XEM TRÊN MÁY NÀY',welcome:'Click để điều khiển · WASD đi lại · E xem vật thể',scanPrompt:'Chọn .glb hoặc nhiều file gồm .gltf + .bin + ảnh',invalid:'Không tìm thấy file .glb hoặc .gltf.',scanSuccess:'Đã nạp mô hình! Bố cục demo được ẩn.',scanFail:'Không đọc được mô hình. Kiểm tra các file .bin/texture hoặc dùng GLB.',apply:'ÁP DỤNG',close:'ĐÓNG',settingsTitle:'BỐ CỤC PHÒNG MẪU',settingsNote:'Nhập kích thước phòng thật bằng mét. Bản demo sẽ đổi kích thước; đồ nội thất vẫn chỉ là minh họa.',startBody:'Thử di chuyển trong phòng 3D. Đây là bố cục minh họa; sau khi có ảnh hoặc bản quét LiDAR, chúng ta sẽ dựng lại đúng căn phòng của bạn.',startScan:'NẠP FILE QUÉT 3D',enter:'VÀO PHÒNG →',look:'VUỐT BÊN PHẢI<br>ĐỂ XOAY NHÌN',w:'Rộng',l:'Dài',h:'Cao',info:'Xem thêm',hidden:'Tắt demo và hiển thị bản quét thật. Mô hình chỉ nằm trong trình duyệt; chưa upload lên website.',resetDemo:'Đã quay về bố cục demo.',noWebgl:'Trình duyệt không hỗ trợ WebGL.'},en:{viewFirst:'1ST PERSON',viewThird:'3RD PERSON',modeFirst:'FIRST PERSON',modeThird:'THIRD PERSON',modeChangedFirst:'First-person camera enabled.',modeChangedThird:'Third-person camera enabled. Avatar is a placeholder.',layout:'ROOM SIZE',load:'LOAD 3D SCAN',reset:'RESET',demo:'3D DEMO · NOT YOUR ACTUAL ROOM YET',real:'LOCAL 3D SCAN · BROWSER PREVIEW',welcome:'Click to look · WASD walk · E inspect',scanPrompt:'Select a .glb or .gltf with .bin and textures',invalid:'No .glb or .gltf found.',scanSuccess:'3D scan loaded! Demo room hidden.',scanFail:'Could not load model. Check its textures/binary or use GLB.',apply:'APPLY',close:'CLOSE',settingsTitle:'DEMO ROOM DIMENSIONS',settingsNote:'Enter the actual room measurements in metres. Only the illustrative demo geometry is resized.',startBody:'Explore a walkable 3D prototype. This is only a demonstration until you provide room photos or a LiDAR scan.',startScan:'IMPORT 3D SCAN',enter:'ENTER THE ROOM →',look:'SWIPE ON THE RIGHT<br>TO LOOK AROUND',w:'Width',l:'Length',h:'Height',info:'Read more',hidden:'This is an on-device preview. It has not been uploaded to the public website.',resetDemo:'Demo room restored.',noWebgl:'WebGL unavailable.'}};
 let lang='vi', mode='demo', dims={w:5.2,l:7.2,h:2.8}, demoGroup=null, scanGroup=null, scanSize=null;
 let yaw=0,pitch=0, walking=false, lookPointer=null, lastPointer=null, activeTouch=false;
+let cameraMode='first', cameraDistance=2.25, eyeHeight=1.65, avatar=null, avatarParts=null, stepPhase=0;
+const playerPosition=new THREE.Vector3();
 const keys=new Set(); const joy={x:0,y:0}; const collisionBoxes=[];
 const view=$('viewport'); let renderer,scene,camera,clock,raycaster,nearInteract=[];
 const ambientMat=(color,roughness=.85,metalness=.0)=>new THREE.MeshStandardMaterial({color,roughness,metalness});
@@ -105,31 +108,153 @@ let sx=W*.29,sz=L*.30;box(g,1.38,.35,.67,sx,.29,sz,MAT.grey);box(g,1.35,.47,.17,
 // Decorative golden plaque and thin art strips.
 label(g,'PRIVATE COLLECTION',1.2,.18,0,.39,-L/2+.155);
 for(let i=0;i<4;i++){let zz=-L/2+1.3+i*.38;box(g,.02,.5,.17,W/2-.075,1.25,zz,MAT.edge)}
-roomBounds={w:W,l:L};camera.position.set(0,1.65,L/2-.9);yaw=0;pitch=0;syncCamera();$('demo-label').textContent=language[lang].demo;mode='demo';$('settings-btn').disabled=false;}
+roomBounds={w:W,l:L};eyeHeight=1.65;playerPosition.set(0,0,L/2-1.30);yaw=0;pitch=0;syncCamera();$('demo-label').textContent=language[lang].demo;mode='demo';$('settings-btn').disabled=false;}
 let roomBounds={w:5.2,l:7.2};
-function syncCamera(){camera.rotation.order='YXZ';camera.rotation.y=yaw;camera.rotation.x=pitch}
+function syncCamera(){
+  if(cameraMode==='first'){
+    camera.rotation.order='YXZ';camera.rotation.y=yaw;camera.rotation.x=pitch;
+  }
+}
+function makeAvatar(){
+  // Original, deliberately anonymous low-poly visitor; not an image or likeness of the owner.
+  const root=new THREE.Group();root.name='virtual-room-visitor';scene.add(root);
+  const coat=new THREE.MeshStandardMaterial({color:'#18191d',roughness:.87});
+  const trousers=new THREE.MeshStandardMaterial({color:'#313238',roughness:.94});
+  const skin=new THREE.MeshStandardMaterial({color:'#bda68b',roughness:.91});
+  const accent=new THREE.MeshStandardMaterial({color:'#e2be65',roughness:.58,metalness:.15});
+  const sole=new THREE.MeshStandardMaterial({color:'#d8d2c3',roughness:.82});
+  const visor=new THREE.MeshStandardMaterial({color:'#292c36',roughness:.47});
+  box(root,.52,.61,.32,0,1.08,0,coat);
+  box(root,.35,.05,.018,0,1.18,-.172,accent);
+  box(root,.09,.29,.018,0,1.03,-.178,accent);
+  box(root,.38,.12,.27,0,.76,0,coat);
+  const head=new THREE.Mesh(new THREE.SphereGeometry(.166,16,12),skin);head.position.set(0,1.58,0);root.add(head);
+  box(root,.36,.085,.24,0,1.715,-.017,visor);
+  box(root,.4,.038,.26,0,1.685,-.115,accent);
+  const arms=[],legs=[];
+  for(const sign of [-1,1]){
+    const arm=new THREE.Group();arm.position.set(sign*.36,1.34,0);root.add(arm);
+    box(arm,.16,.50,.22,0,-.265,0,coat);arms.push(arm);
+    const leg=new THREE.Group();leg.position.set(sign*.142,.735,0);root.add(leg);
+    box(leg,.20,.58,.24,0,-.3,0,trousers);
+    box(leg,.23,.10,.34,0,-.64,-.085,sole);
+    box(leg,.22,.095,.30,0,-.69,-.105,coat);legs.push(leg);
+  }
+  const shadow=new THREE.Mesh(new THREE.CircleGeometry(.31,24),new THREE.MeshBasicMaterial({color:0x000000,transparent:true,opacity:.22,depthWrite:false}));
+  shadow.rotation.x=-Math.PI/2;shadow.position.y=.009;root.add(shadow);
+  root.visible=false;
+  avatar=root;avatarParts={arms,legs};
+}
+function updateViewLabel(){
+  const t=language[lang];
+  $('view-btn').textContent=cameraMode==='first'?t.viewFirst:t.viewThird;
+  $('view-btn').setAttribute('aria-pressed',String(cameraMode==='third'));
+  $('view-btn').title=lang==='vi'?'Chuyển góc nhìn (V)':'Switch camera (V)';
+  $('subtitle').textContent=`VIRTUAL ROOM · ${cameraMode==='first'?t.modeFirst:t.modeThird} · V3`;
+  if(avatar)avatar.visible=cameraMode==='third';
+}
+function setCameraMode(next){
+  if(next!=='first'&&next!=='third')return;
+  cameraMode=next;
+  camera.fov=cameraMode==='third'?(isTouch?76:72):(isTouch?75:69);
+  camera.updateProjectionMatrix();
+  updateViewLabel();
+  updateCamera(0,true);
+  toast(language[lang][cameraMode==='first'?'modeChangedFirst':'modeChangedThird']);
+}
+function updateCamera(dt=0,snap=false){
+  if(!camera)return;
+  if(avatar){avatar.position.set(playerPosition.x,0,playerPosition.z);avatar.visible=cameraMode==='third';}
+  if(cameraMode==='first'){
+    camera.position.set(playerPosition.x,eyeHeight,playerPosition.z);
+    camera.rotation.order='YXZ';camera.rotation.y=yaw;camera.rotation.x=pitch;
+    return;
+  }
+  // Third-person follow: orbit behind the walking visitor, independently of the player collision body.
+  const focus=new THREE.Vector3(playerPosition.x,Math.max(1.08,eyeHeight-.28),playerPosition.z);
+  const reach=cameraDistance*Math.max(.52,Math.cos(pitch));
+  const wanted=new THREE.Vector3(
+    focus.x+Math.sin(yaw)*reach,
+    focus.y+.55-Math.sin(pitch)*cameraDistance,
+    focus.z+Math.cos(yaw)*reach
+  );
+  const edge=.16;
+  wanted.x=THREE.MathUtils.clamp(wanted.x,-roomBounds.w/2+edge,roomBounds.w/2-edge);
+  wanted.z=THREE.MathUtils.clamp(wanted.z,-roomBounds.l/2+edge,roomBounds.l/2-edge);
+  const ceiling=mode==='scan'?Math.max(2.2,scanSize?.y||2.8):dims.h;
+  wanted.y=THREE.MathUtils.clamp(wanted.y,.73,Math.max(.9,ceiling-.18));
+  if(mode==='demo'){
+    // Don't park the follow camera inside one of the furniture collision boxes.
+    const isBlocked=p=>collisionBoxes.some(b=>p.x>b.minX-.12&&p.x<b.maxX+.12&&p.z>b.minZ-.12&&p.z<b.maxZ+.12);
+    if(isBlocked(wanted)){
+      const delta=wanted.clone().sub(focus);
+      for(let frac=.92;frac>=.12;frac-=.08){
+        const test=focus.clone().addScaledVector(delta,frac);
+        if(!isBlocked(test)){wanted.copy(test);break;}
+      }
+    }
+  }
+  if(snap)camera.position.copy(wanted);
+  else camera.position.lerp(wanted,1-Math.exp(-dt*13));
+  camera.lookAt(focus);
+}
 function clampMove(target){let pad=.29;target.x=THREE.MathUtils.clamp(target.x,-roomBounds.w/2+pad,roomBounds.w/2-pad);target.z=THREE.MathUtils.clamp(target.z,-roomBounds.l/2+pad,roomBounds.l/2-pad);if(mode==='demo'){for(let b of collisionBoxes){let cpX=THREE.MathUtils.clamp(target.x,b.minX,b.maxX),cpZ=THREE.MathUtils.clamp(target.z,b.minZ,b.maxZ);let dx=target.x-cpX,dz=target.z-cpZ;if(dx*dx+dz*dz<pad*pad){if(Math.abs(dx)>Math.abs(dz))target.x=dx<0?b.minX-pad:b.maxX+pad;else target.z=dz<0?b.minZ-pad:b.maxZ+pad}}}return target}
-function createWorld(){renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:'high-performance',alpha:false,preserveDrawingBuffer:true});renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.25;renderer.setPixelRatio(Math.min(devicePixelRatio,isTouch?1.4:1.8));renderer.setSize(innerWidth,innerHeight);view.appendChild(renderer.domElement);scene=new THREE.Scene();scene.background=new THREE.Color('#09090b');scene.fog=new THREE.Fog('#09090b',14,40);camera=new THREE.PerspectiveCamera(isTouch?75:69,innerWidth/innerHeight,.045,180);clock=new THREE.Clock();raycaster=new THREE.Raycaster();scene.add(new THREE.HemisphereLight('#f8f0e2','#68696a',2.2));let a=new THREE.AmbientLight('#ffffff',.35);scene.add(a);buildDemo();addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});}
-function setLang(next){lang=next;$('lang-btn').textContent=lang==='vi'?'EN':'VI';for(let el of document.querySelectorAll('[data-i18n]'))el.textContent=language[lang][el.dataset.i18n];$('demo-label').textContent=language[lang][mode==='demo'?'demo':'real'];$('apply-dims').textContent=language[lang].apply;$('close-settings').textContent=language[lang].close;$('settings-title').textContent=language[lang].settingsTitle;$('settings-note').textContent=language[lang].settingsNote;$('start-body').textContent=language[lang].startBody;$('start-scan-btn').textContent=language[lang].startScan;$('start-btn').textContent=language[lang].enter;$('lookhint').innerHTML=language[lang].look;$('w-label').firstChild.nodeValue=language[lang].w+' (m)';$('l-label').firstChild.nodeValue=language[lang].l+' (m)';$('h-label').firstChild.nodeValue=language[lang].h+' (m)';}
+function createWorld(){renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:'high-performance',alpha:false,preserveDrawingBuffer:true});renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.25;renderer.setPixelRatio(Math.min(devicePixelRatio,isTouch?1.4:1.8));renderer.setSize(innerWidth,innerHeight);view.appendChild(renderer.domElement);scene=new THREE.Scene();scene.background=new THREE.Color('#09090b');scene.fog=new THREE.Fog('#09090b',14,40);camera=new THREE.PerspectiveCamera(isTouch?75:69,innerWidth/innerHeight,.045,180);clock=new THREE.Clock();raycaster=new THREE.Raycaster();scene.add(new THREE.HemisphereLight('#f8f0e2','#68696a',2.2));let a=new THREE.AmbientLight('#ffffff',.35);scene.add(a);makeAvatar();buildDemo();updateCamera(0,true);addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});}
+function setLang(next){lang=next;$('lang-btn').textContent=lang==='vi'?'EN':'VI';for(let el of document.querySelectorAll('[data-i18n]'))el.textContent=language[lang][el.dataset.i18n];$('demo-label').textContent=language[lang][mode==='demo'?'demo':'real'];$('apply-dims').textContent=language[lang].apply;$('close-settings').textContent=language[lang].close;$('settings-title').textContent=language[lang].settingsTitle;$('settings-note').textContent=language[lang].settingsNote;$('start-body').textContent=language[lang].startBody;$('start-scan-btn').textContent=language[lang].startScan;$('start-btn').textContent=language[lang].enter;$('lookhint').innerHTML=language[lang].look;$('w-label').firstChild.nodeValue=language[lang].w+' (m)';$('l-label').firstChild.nodeValue=language[lang].l+' (m)';$('h-label').firstChild.nodeValue=language[lang].h+' (m)';updateViewLabel();}
 function toast(message){let el=$('toast');el.textContent=message;el.style.display='block';clearTimeout(toast._t);toast._t=setTimeout(()=>el.style.display='none',4500)}
 function info(id){const data={archive:{vi:['Sneaker Gallery','Đây là kệ giày minh họa. Khi bạn gửi bản quét hoặc ảnh phòng thật, chúng ta sẽ thay bằng hệ tủ đúng kích thước và gắn các đôi từ catalog.'],en:['Sneaker Gallery','The shelves are placeholders. Once you provide a real scan or room photos, we can replace them with the actual room and link your sneaker catalog.']},desk:{vi:['Gaming Corner','Bàn máy tính trong bản mẫu. Đây chưa phải thiết bị hoặc vị trí trong phòng thật của bạn.'],en:['Gaming Corner','Demo desk only. This is not a scan of your actual equipment or layout.']},lounge:{vi:['Lounge','Khu ngồi nghỉ mẫu. Chúng ta sẽ thay bằng sofa và bố cục thật sau khi nhận dữ liệu phòng.'],en:['Lounge','Illustrative lounge. Furnishings and positions will be reconstructed from your real room.']}};let d=data[id];if(!d)return;$('info-title').textContent=d[lang][0];$('info-body').textContent=d[lang][1];$('info-link').innerHTML=id==='archive'?'<a href="./" target="_blank" rel="noopener">LỘC AN SNEAKER COLLECTION ↗</a>':'';$('info-panel').style.display='block';if(document.pointerLockElement)document.exitPointerLock();}
-function inspect(){raycaster.setFromCamera({x:0,y:0},camera);let hits=raycaster.intersectObjects(nearInteract,false);if(hits.length && hits[0].distance<3.0)info(hits[0].object.userData.hotspot);else toast(lang==='vi'?'Tiến gần dấu vàng (◎) rồi bấm E để xem.':'Walk closer to a golden marker (◎), then press E.');}
-function drawMap(){let c=$('minimap'),g=c.getContext('2d');if(!g)return;const W=c.width,H=c.height;g.clearRect(0,0,W,H);g.fillStyle='#0d0c0b';g.fillRect(0,0,W,H);const scale=Math.min((W-26)/roomBounds.w,(H-26)/roomBounds.l);let ox=W/2,oy=H/2;g.strokeStyle='#d5bc7e';g.lineWidth=3;g.strokeRect(ox-roomBounds.w*scale/2,oy-roomBounds.l*scale/2,roomBounds.w*scale,roomBounds.l*scale);if(mode==='demo'){for(let o of collisionBoxes){g.fillStyle='#645640';g.fillRect(ox+o.minX*scale,oy+o.minZ*scale,(o.maxX-o.minX)*scale,(o.maxZ-o.minZ)*scale)}}let px=ox+camera.position.x*scale,py=oy+camera.position.z*scale;g.fillStyle='#f6d984';g.beginPath();g.arc(px,py,6,0,Math.PI*2);g.fill();g.strokeStyle='#f6d984';g.lineWidth=3;g.beginPath();g.moveTo(px,py);g.lineTo(px-Math.sin(yaw)*18,py-Math.cos(yaw)*18);g.stroke()}
-function animate(){requestAnimationFrame(animate);let dt=Math.min(clock.getDelta(),.05);if(walking){const f=(keys.has('KeyW')||keys.has('ArrowUp')?1:0)-(keys.has('KeyS')||keys.has('ArrowDown')?1:0)-joy.y;const r=(keys.has('KeyD')||keys.has('ArrowRight')?1:0)-(keys.has('KeyA')||keys.has('ArrowLeft')?1:0)+joy.x;let norm=Math.hypot(f,r);if(norm>.035){let speed=keys.has('ShiftLeft')?4.1:2.35;let fx=f/norm*speed*dt,rx=r/norm*speed*dt;let dst=camera.position.clone();dst.x+=-Math.sin(yaw)*fx+Math.cos(yaw)*rx;dst.z+=-Math.cos(yaw)*fx-Math.sin(yaw)*rx;clampMove(dst);camera.position.x=dst.x;camera.position.z=dst.z}}drawMap();renderer.render(scene,camera)}
+function inspect(){if(cameraMode==='third'){const aim=new THREE.Vector3(-Math.sin(yaw)*Math.cos(pitch),Math.sin(pitch),-Math.cos(yaw)*Math.cos(pitch)).normalize();raycaster.set(new THREE.Vector3(playerPosition.x,eyeHeight,playerPosition.z),aim)}else{raycaster.setFromCamera({x:0,y:0},camera)}let hits=raycaster.intersectObjects(nearInteract,false);if(hits.length && hits[0].distance<3.0)info(hits[0].object.userData.hotspot);else toast(lang==='vi'?'Tiến gần dấu vàng (◎) rồi bấm E để xem.':'Walk closer to a golden marker (◎), then press E.');}
+function drawMap(){let c=$('minimap'),g=c.getContext('2d');if(!g)return;const W=c.width,H=c.height;g.clearRect(0,0,W,H);g.fillStyle='#0d0c0b';g.fillRect(0,0,W,H);const scale=Math.min((W-26)/roomBounds.w,(H-26)/roomBounds.l);let ox=W/2,oy=H/2;g.strokeStyle='#d5bc7e';g.lineWidth=3;g.strokeRect(ox-roomBounds.w*scale/2,oy-roomBounds.l*scale/2,roomBounds.w*scale,roomBounds.l*scale);if(mode==='demo'){for(let o of collisionBoxes){g.fillStyle='#645640';g.fillRect(ox+o.minX*scale,oy+o.minZ*scale,(o.maxX-o.minX)*scale,(o.maxZ-o.minZ)*scale)}}let px=ox+playerPosition.x*scale,py=oy+playerPosition.z*scale;g.fillStyle='#f6d984';g.beginPath();g.arc(px,py,6,0,Math.PI*2);g.fill();g.strokeStyle='#f6d984';g.lineWidth=3;g.beginPath();g.moveTo(px,py);g.lineTo(px-Math.sin(yaw)*18,py-Math.cos(yaw)*18);g.stroke()}
+function animate(){
+  requestAnimationFrame(animate);
+  const dt=Math.min(clock.getDelta(),.05);
+  let motion=0;
+  if(walking){
+    const f=(keys.has('KeyW')||keys.has('ArrowUp')?1:0)-(keys.has('KeyS')||keys.has('ArrowDown')?1:0)-joy.y;
+    const r=(keys.has('KeyD')||keys.has('ArrowRight')?1:0)-(keys.has('KeyA')||keys.has('ArrowLeft')?1:0)+joy.x;
+    const norm=Math.hypot(f,r);
+    if(norm>.035){
+      const speed=keys.has('ShiftLeft')?4.1:2.35;
+      const fx=f/norm*speed*dt,rx=r/norm*speed*dt;
+      const dst=playerPosition.clone();
+      dst.x+=-Math.sin(yaw)*fx+Math.cos(yaw)*rx;
+      dst.z+=-Math.cos(yaw)*fx-Math.sin(yaw)*rx;
+      clampMove(dst);
+      motion=Math.hypot(dst.x-playerPosition.x,dst.z-playerPosition.z);
+      if(avatar&&motion>.0001){
+        const direction=Math.atan2(-(dst.x-playerPosition.x),-(dst.z-playerPosition.z));
+        const angle=Math.atan2(Math.sin(direction-avatar.rotation.y),Math.cos(direction-avatar.rotation.y));
+        avatar.rotation.y+=angle*Math.min(1,dt*12);
+      }
+      playerPosition.copy(dst);
+    }
+  }
+  if(avatarParts){
+    if(motion>.0001)stepPhase+=dt*(keys.has('ShiftLeft')?13:9);
+    const swing=motion>.0001?Math.sin(stepPhase)*.34:0;
+    avatarParts.legs[0].rotation.x=THREE.MathUtils.lerp(avatarParts.legs[0].rotation.x,swing,Math.min(1,dt*12));
+    avatarParts.legs[1].rotation.x=THREE.MathUtils.lerp(avatarParts.legs[1].rotation.x,-swing,Math.min(1,dt*12));
+    avatarParts.arms[0].rotation.x=-avatarParts.legs[0].rotation.x*.7;
+    avatarParts.arms[1].rotation.x=-avatarParts.legs[1].rotation.x*.7;
+  }
+  updateCamera(dt);
+  drawMap();
+  renderer.render(scene,camera);
+}
 function hideStart(){walking=true;$('start-screen').style.display='none';if(!isTouch){renderer.domElement.requestPointerLock?.().catch(()=>{});}toast(language[lang].welcome)}
 function touchEvents(){const pad=$('pad'),knob=$('pad-knob');let padId=null;pad.addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();padId=e.pointerId;pad.setPointerCapture(e.pointerId);movePad(e)});function movePad(e){let rect=pad.getBoundingClientRect(),cx=rect.left+rect.width/2,cy=rect.top+rect.height/2;let x=e.clientX-cx,y=e.clientY-cy;let len=Math.max(1,Math.hypot(x,y));let max=39;let mult=Math.min(max,len)/len;let tx=x*mult,ty=y*mult;joy.x=tx/max;joy.y=ty/max;knob.style.transform=`translate(${tx}px,${ty}px)`}pad.addEventListener('pointermove',e=>{if(e.pointerId===padId)movePad(e)});function release(e){if(e.pointerId!==padId)return;padId=null;joy.x=joy.y=0;knob.style.transform='translate(0px,0px)'}pad.addEventListener('pointerup',release);pad.addEventListener('pointercancel',release);
 let area=renderer.domElement;area.addEventListener('pointerdown',e=>{if(!walking)return;if(e.pointerType==='mouse'){if(document.pointerLockElement!==area&&e.button===0)area.requestPointerLock?.().catch(()=>{});return}if(lookPointer!==null)return;lookPointer=e.pointerId;lastPointer={x:e.clientX,y:e.clientY};area.setPointerCapture(e.pointerId)});
 area.addEventListener('pointermove',e=>{if(e.pointerId!==lookPointer||!lastPointer)return;const dx=e.clientX-lastPointer.x,dy=e.clientY-lastPointer.y;lastPointer={x:e.clientX,y:e.clientY};yaw-=dx*.006;pitch=THREE.MathUtils.clamp(pitch-dy*.006,-1.42,1.42);syncCamera()});area.addEventListener('pointerup',e=>{if(e.pointerId===lookPointer){lookPointer=null;lastPointer=null}});area.addEventListener('pointercancel',()=>{lookPointer=null;lastPointer=null});}
 function normalizeImported(model){const bbox=new THREE.Box3().setFromObject(model);const bbSize=bbox.getSize(new THREE.Vector3()),center=bbox.getCenter(new THREE.Vector3());if(!Number.isFinite(bbSize.x)||Math.max(bbSize.x,bbSize.y,bbSize.z)<.01)throw Error('Empty model');let scale=1;const extent=Math.max(bbSize.x,bbSize.y,bbSize.z);if(extent>70)scale=8/extent; // Handle wildly scaled exports, without pretending calibrated accuracy.
 model.scale.setScalar(scale);model.position.set(-center.x*scale,-bbox.min.y*scale,-center.z*scale);const measured=new THREE.Box3().setFromObject(model),q=measured.getSize(new THREE.Vector3());scanSize=q;roomBounds={w:Math.max(q.x,2),l:Math.max(q.z,2)};
-if(demoGroup)demoGroup.visible=false;if(scanGroup){scene.remove(scanGroup);scanGroup.traverse(o=>{if(o.geometry)o.geometry.dispose();})};scanGroup=model;scene.add(model);camera.position.set(0,Math.min(1.65,Math.max(1.25,q.y*.62)),Math.max(.3,q.z*.32));yaw=0;pitch=0;syncCamera();mode='scan';$('demo-label').textContent=language[lang].real;$('settings-btn').disabled=true;
+if(demoGroup)demoGroup.visible=false;if(scanGroup){scene.remove(scanGroup);scanGroup.traverse(o=>{if(o.geometry)o.geometry.dispose();})};scanGroup=model;scene.add(model);eyeHeight=Math.min(1.65,Math.max(1.25,q.y*.62));playerPosition.set(0,0,Math.max(.3,q.z*.32));yaw=0;pitch=0;syncCamera();mode='scan';$('demo-label').textContent=language[lang].real;$('settings-btn').disabled=true;
 }
 async function importFiles(fileList){let files=Array.from(fileList);let main=files.find(f=>/\.glb$/i.test(f.name))||files.find(f=>/\.gltf$/i.test(f.name));if(!main){toast(language[lang].invalid);return;}
 $('busy').style.display='block';$('start-screen').style.display='none';walking=true;
 let urls=[];try{let map=new Map();for(let f of files){const u=URL.createObjectURL(f);urls.push(u);map.set(f.name.toLowerCase(),u)}let manager=new THREE.LoadingManager();manager.setURLModifier(url=>{let basename=decodeURIComponent(url.split(/[?#]/)[0].split('/').pop()).toLowerCase();return map.get(basename)||url});let loader=new GLTFLoader(manager);let data=/\.glb$/i.test(main.name)?await main.arrayBuffer():await main.text();let gltf=await new Promise((ok,fail)=>loader.parse(data,'',ok,fail));normalizeImported(gltf.scene);toast(language[lang].scanSuccess)}catch(err){console.error('[Loc An Virtual Room] scan import',err);toast(language[lang].scanFail)}finally{$('busy').style.display='none';for(let u of urls)URL.revokeObjectURL(u);$('scan-input').value=''}
 }
-function registerUI(){let showScan=()=>{if(document.pointerLockElement)document.exitPointerLock();$('scan-input').click()};$('scan-btn').onclick=showScan;$('start-scan-btn').onclick=showScan;$('scan-input').addEventListener('change',e=>importFiles(e.target.files));$('start-btn').onclick=hideStart;$('home-btn').onclick=()=>{location.href='./'};$('reset-btn').onclick=()=>{if(scanGroup){scene.remove(scanGroup);scanGroup=null}if(demoGroup)demoGroup.visible=true;roomBounds={w:dims.w,l:dims.l};mode='demo';$('settings-btn').disabled=false;camera.position.set(0,1.65,dims.l/2-.9);yaw=pitch=0;syncCamera();$('demo-label').textContent=language[lang].demo;toast(language[lang].resetDemo)};
-$('settings-btn').onclick=()=>{if(document.pointerLockElement)document.exitPointerLock();$('settings').style.display='block'};$('close-settings').onclick=()=>$('settings').style.display='none';$('apply-dims').onclick=()=>{const w=+$('room-w').value,l=+$('room-l').value,h=+$('room-h').value;if(![w,l,h].every(Number.isFinite)||w<3||w>12||l<3.5||l>15||h<2.2||h>4.5){toast('3–12 m × 3.5–15 m × 2.2–4.5 m');return;}dims={w,l,h};buildDemo();$('settings').style.display='none';toast(lang==='vi'?'Đã cập nhật kích thước bản mẫu.':'Demo room dimensions updated.')};$('close-info').onclick=()=>$('info-panel').style.display='none';$('lang-btn').onclick=()=>setLang(lang==='vi'?'en':'vi');$('interact-mobile').onclick=inspect;document.addEventListener('keydown',e=>{if(['INPUT','TEXTAREA'].includes(document.activeElement?.tagName))return;keys.add(e.code);if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space'].includes(e.code))e.preventDefault();if(e.code==='KeyE'&&walking)inspect();if(e.code==='Escape'){$('settings').style.display='none';$('info-panel').style.display='none'}});document.addEventListener('keyup',e=>keys.delete(e.code));document.addEventListener('mousemove',e=>{if(document.pointerLockElement!==renderer.domElement||!walking)return;yaw-=e.movementX*.0022;pitch=THREE.MathUtils.clamp(pitch-e.movementY*.0022,-1.42,1.42);syncCamera()});document.addEventListener('visibilitychange',()=>{if(document.hidden)keys.clear()});renderer.domElement.addEventListener('click',()=>{if(document.pointerLockElement===renderer.domElement)inspect()});
+function registerUI(){let showScan=()=>{if(document.pointerLockElement)document.exitPointerLock();$('scan-input').click()};$('scan-btn').onclick=showScan;$('start-scan-btn').onclick=showScan;$('scan-input').addEventListener('change',e=>importFiles(e.target.files));$('start-btn').onclick=hideStart;$('home-btn').onclick=()=>{location.href='./'};$('reset-btn').onclick=()=>{if(scanGroup){scene.remove(scanGroup);scanGroup=null}if(demoGroup)demoGroup.visible=true;roomBounds={w:dims.w,l:dims.l};mode='demo';$('settings-btn').disabled=false;eyeHeight=1.65;playerPosition.set(0,0,dims.l/2-1.30);yaw=pitch=0;syncCamera();updateCamera(0,true);$('demo-label').textContent=language[lang].demo;toast(language[lang].resetDemo)};
+$('settings-btn').onclick=()=>{if(document.pointerLockElement)document.exitPointerLock();$('settings').style.display='block'};$('close-settings').onclick=()=>$('settings').style.display='none';$('apply-dims').onclick=()=>{const w=+$('room-w').value,l=+$('room-l').value,h=+$('room-h').value;if(![w,l,h].every(Number.isFinite)||w<3||w>12||l<3.5||l>15||h<2.2||h>4.5){toast('3–12 m × 3.5–15 m × 2.2–4.5 m');return;}dims={w,l,h};buildDemo();$('settings').style.display='none';toast(lang==='vi'?'Đã cập nhật kích thước bản mẫu.':'Demo room dimensions updated.')};$('close-info').onclick=()=>$('info-panel').style.display='none';$('lang-btn').onclick=()=>setLang(lang==='vi'?'en':'vi');$('view-btn').onclick=()=>setCameraMode(cameraMode==='first'?'third':'first');$('interact-mobile').onclick=inspect;document.addEventListener('keydown',e=>{if(['INPUT','TEXTAREA'].includes(document.activeElement?.tagName))return;keys.add(e.code);if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space'].includes(e.code))e.preventDefault();if(e.code==='KeyE'&&walking)inspect();if(e.code==='KeyV'&&!e.repeat)setCameraMode(cameraMode==='first'?'third':'first');if(e.code==='Escape'){$('settings').style.display='none';$('info-panel').style.display='none'}});document.addEventListener('keyup',e=>keys.delete(e.code));document.addEventListener('mousemove',e=>{if(document.pointerLockElement!==renderer.domElement||!walking)return;yaw-=e.movementX*.0022;pitch=THREE.MathUtils.clamp(pitch-e.movementY*.0022,-1.42,1.42);syncCamera()});document.addEventListener('visibilitychange',()=>{if(document.hidden)keys.clear()});renderer.domElement.addEventListener('click',()=>{if(document.pointerLockElement===renderer.domElement)inspect()});renderer.domElement.addEventListener('wheel',e=>{if(cameraMode==='third'){e.preventDefault();cameraDistance=THREE.MathUtils.clamp(cameraDistance+Math.sign(e.deltaY)*.18,1.3,3.4);updateCamera(0,true)}},{passive:false});
 // Allow dropping a GLB or a .gltf together with bin/textures.
 view.addEventListener('dragover',e=>e.preventDefault());view.addEventListener('drop',e=>{e.preventDefault();if(e.dataTransfer?.files?.length)importFiles(e.dataTransfer.files)});
 touchEvents();}
