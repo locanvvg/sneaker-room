@@ -25,7 +25,7 @@
 <body>
 <div id="viewport" tabindex="0" role="application" aria-label="Virtual Room 3D"></div>
 <div id="hud">
-  <div class="topbar"><div class="brand"><div class="eyebrow">PRIVATE COLLECTION — NOT FOR SALE</div><h1>LOC AN <span style="color:var(--yellow)">SNEAKER COLLECTION</span></h1><div class="caption" id="subtitle">VIRTUAL ROOM · FIRST PERSON · V3</div></div>
+  <div class="topbar"><div class="brand"><div class="eyebrow">PRIVATE COLLECTION — NOT FOR SALE</div><h1>LOC AN <span style="color:var(--yellow)">SNEAKER COLLECTION</span></h1><div class="caption" id="subtitle">.1</div></div>
     <div class="actions">
       <button class="ui-btn" id="home-btn">← COLLECTION</button>
       <button class="ui-btn" id="view-btn" type="button" title="Chuyển góc nhìn (V)" aria-label="Chuyển góc nhìn thứ nhất hoặc thứ ba">GÓC NHÌN 1</button>
@@ -100,7 +100,7 @@ rack(g,rackW,Math.min(2.1,H-.45),.36,0,1.22,-L/2+.38,6,3,0);
 let sideLen=Math.min(2.7,L*.44);
 rack(g,sideLen,Math.min(1.94,H-.6),.32,-W/2+.33,1.22,-.90,5,3,Math.PI/2);
 rack(g,sideLen,Math.min(1.94,H-.6),.32,W/2-.33,1.22,-.90,5,3,-Math.PI/2);
-label(g,'L O C  A N  /  A R C H I V E',Math.min(3,W-.8),.27,0,H-.31,-L/2+.135);addHotspot(g,0,1.75,-L/2+.7,'archive');
+label(g,'LOC AN SNEAKER COLLECTION',Math.min(3.6,W-.7),.27,0,H-.31,-L/2+.135);addHotspot(g,0,1.75,-L/2+.7,'archive');
 // Desk preview on left front, block as furnishings not the user's actual room.
 const dx=-W*.32,dz=L*.28;box(g,1.25,.075,.66,dx,.76,dz,MAT.wood);box(g,.055,.74,.55,dx-.54,.37,dz,MAT.dark);box(g,.055,.74,.55,dx+.54,.37,dz,MAT.dark);box(g,.75,.44,.065,dx,1.12,dz-.20,MAT.black);box(g,.66,.32,.012,dx,1.12,dz-.164,new THREE.MeshBasicMaterial({color:'#243c4a'}));box(g,.05,.22,.05,dx,.92,dz-.24,MAT.edge);box(g,.45,.025,.17,dx,.80,dz+.13,MAT.black);box(g,.25,.33,.25,dx,.39,dz+.72,MAT.grey);box(g,.35,.08,.34,dx,.59,dz+.72,MAT.dark);addHotspot(g,dx,1.48,dz-.15,'desk');obstacles(dx,dz,1.4,.9);
 // Compact lounge / display area at opposite side.
@@ -142,6 +142,7 @@ function makeAvatar(){
   }
   const shadow=new THREE.Mesh(new THREE.CircleGeometry(.31,24),new THREE.MeshBasicMaterial({color:0x000000,transparent:true,opacity:.22,depthWrite:false}));
   shadow.rotation.x=-Math.PI/2;shadow.position.y=.009;root.add(shadow);
+  root.scale.setScalar(.78);
   root.visible=false;
   avatar=root;avatarParts={arms,legs};
 }
