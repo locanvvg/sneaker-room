@@ -85,7 +85,7 @@ body.photo-mode .topbar,body.photo-mode .feature-dock,body.photo-mode .notice,bo
   <div id="focus-hint" aria-live="polite"></div>
   <div class="mode-hint" id="mode-hint" hidden></div>
   <div id="catalog-status" aria-live="polite"></div>
-  <div class="crosshair"></div><div class="tips" id="tips">Click vào phòng để khóa chuột · <kbd>W A S D</kbd> di chuyển · <kbd>Shift</kbd> chạy · <kbd>E</kbd> xem vật thể · <kbd>V</kbd> đổi góc nhìn · <kbd>Esc</kbd> mở chuột</div>
+  <div class="crosshair"></div><div class="tips" id="tips">Kéo chuột để xoay · Bấm ảnh giày để xem · <kbd>W A S D</kbd> di chuyển · <kbd>Shift</kbd> chạy · <kbd>V</kbd> đổi góc nhìn</div>
   <div class="mapwrap"><div class="maptitle">ROOM POSITION</div><canvas id="minimap" width="280" height="256"></canvas></div>
   <div id="mobile"><div id="pad" aria-label="Di chuyển"><div id="pad-knob"></div></div><div class="mobile-use"><button id="interact-mobile" aria-label="Xem vật thể">◎</button></div><div id="lookhint">VUỐT BÊN PHẢI<br>ĐỂ XOAY NHÌN</div></div>
   <div id="toast"></div><div class="busy" id="busy">Đang tải mô hình 3D…</div>
@@ -186,7 +186,7 @@ let roomWalls=[],roomCeiling=null;
 let galleryHover=null, textureLoading=false;
 let lastControlsMode='first';
 const GALLERY_CAPACITY=48; // 6×3 + 5×3 + 5×3, with future pages for 200+ pairs.
-const UI4={vi:{doll:'⌗ TOÀN CẢNH',light:'◐ ÁNH SÁNG',photo:'◎ ẢNH',tour:'▶ TOUR',gallery:'◈ KỆ',outfit:'♙ ĐỒ',help:'? HELP',enter:'TRỞ VỀ PHÒNG',shoebox:'XEM HỒ SƠ ĐÔI GIÀY ↗',close:'ĐÓNG',next:'TIẾP →',stop:'DỪNG TOUR',save:'↓ LƯU ẢNH PNG',caption:'Chỉ giày đang sở hữu · ảnh được chuẩn hóa kích thước',missing:'Chưa tải được ảnh giày. Phòng mẫu vẫn hoạt động.',noCatalog:'Không tìm thấy đôi In Collection. Hãy mở trang qua GitHub Pages để tải catalog.',tourScan:'Tour hiện dành cho phòng mẫu; bản quét chưa có tuyến đường an toàn.',galleryScan:'Kệ giày thuộc phòng mẫu; có thể quay về bản mẫu bằng ĐẶT LẠI.',shoeHint:'E / BẤM ẢNH GIÀY ĐỂ MỞ HỘP',dollHint:'KÉO ĐỂ XOAY · CUỘN ĐỂ PHÓNG TO · BẤM SÀN ĐỂ DI CHUYỂN',photoHint:'PHOTO MODE · P ĐỂ THOÁT',helpDesc:'WASD di chuyển · chuột xoay nhìn · đến gần kệ và nhấn E hoặc chạm ảnh giày. Trên điện thoại dùng joystick và vuốt màn hình.',keys:[['W A S D','Di chuyển'],['SHIFT','Chạy'],['V','Góc nhìn 1 / 3'],['O','Toàn cảnh dollhouse'],['P','Photo Mode'],['T','Tour tự động'],['E','Mở hồ sơ sneaker'],['C','Đổi trang phục'],['L','Đổi ánh sáng'],['ESC','Thoát hộp / menu']]},en:{doll:'⌗ DOLLHOUSE',light:'◐ LIGHTING',photo:'◎ PHOTO',tour:'▶ TOUR',gallery:'◈ SHELVES',outfit:'♙ OUTFITS',help:'? HELP',enter:'RETURN TO ROOM',shoebox:'VIEW SNEAKER PROFILE ↗',close:'CLOSE',next:'NEXT →',stop:'STOP TOUR',save:'↓ SAVE PNG',caption:'Owned pairs only · equally sized normalized photos',missing:'Shoe images did not load. The demonstration still works.',noCatalog:'No In Collection pairs found. Open via GitHub Pages to load the catalog.',tourScan:'Tour is available in the demo room; the scan has no verified safe path.',galleryScan:'The sneaker gallery is in the demo room; RESET restores it.',shoeHint:'E / TAP A SHOE PHOTO TO OPEN THE SHOEBOX',dollHint:'DRAG TO ORBIT · SCROLL TO ZOOM · TAP FLOOR TO TELEPORT',photoHint:'PHOTO MODE · P TO EXIT',helpDesc:'WASD to walk, mouse to look. Approach a shoe and press E or tap the photo. On mobile use the joystick and swipe.',keys:[['W A S D','Walk'],['SHIFT','Run'],['V','1st / 3rd person'],['O','Dollhouse view'],['P','Photo mode'],['T','Guided tour'],['E','Open sneaker card'],['C','Change outfit'],['L','Change lighting'],['ESC','Close menus']]}};
+const UI4={vi:{doll:'⌗ TOÀN CẢNH',light:'◐ ÁNH SÁNG',photo:'◎ ẢNH',tour:'▶ TOUR',gallery:'◈ KỆ',outfit:'♙ ĐỒ',help:'? HELP',enter:'TRỞ VỀ PHÒNG',shoebox:'XEM HỒ SƠ ĐÔI GIÀY ↗',close:'ĐÓNG',next:'TIẾP →',stop:'DỪNG TOUR',save:'↓ LƯU ẢNH PNG',caption:'Chỉ giày đang sở hữu · ảnh được chuẩn hóa kích thước',missing:'Chưa tải được ảnh giày. Phòng mẫu vẫn hoạt động.',noCatalog:'Không tìm thấy đôi In Collection. Hãy mở trang qua GitHub Pages để tải catalog.',tourScan:'Tour hiện dành cho phòng mẫu; bản quét chưa có tuyến đường an toàn.',galleryScan:'Kệ giày thuộc phòng mẫu; có thể quay về bản mẫu bằng ĐẶT LẠI.',shoeHint:'E / BẤM ẢNH GIÀY ĐỂ MỞ HỘP',dollHint:'KÉO ĐỂ XOAY · CUỘN ĐỂ PHÓNG TO · BẤM SÀN ĐỂ DI CHUYỂN',photoHint:'PHOTO MODE · P ĐỂ THOÁT',helpDesc:'WASD di chuyển · kéo chuột để xoay · bấm trực tiếp vào ảnh giày để xem. Có thể nhấn E khi ngắm vào đôi giày. Trên điện thoại dùng joystick và vuốt màn hình.',keys:[['W A S D','Di chuyển'],['SHIFT','Chạy'],['V','Góc nhìn 1 / 3'],['O','Toàn cảnh dollhouse'],['P','Photo Mode'],['T','Tour tự động'],['E','Mở hồ sơ sneaker'],['C','Đổi trang phục'],['L','Đổi ánh sáng'],['ESC','Thoát hộp / menu']]},en:{doll:'⌗ DOLLHOUSE',light:'◐ LIGHTING',photo:'◎ PHOTO',tour:'▶ TOUR',gallery:'◈ SHELVES',outfit:'♙ OUTFITS',help:'? HELP',enter:'RETURN TO ROOM',shoebox:'VIEW SNEAKER PROFILE ↗',close:'CLOSE',next:'NEXT →',stop:'STOP TOUR',save:'↓ SAVE PNG',caption:'Owned pairs only · equally sized normalized photos',missing:'Shoe images did not load. The demonstration still works.',noCatalog:'No In Collection pairs found. Open via GitHub Pages to load the catalog.',tourScan:'Tour is available in the demo room; the scan has no verified safe path.',galleryScan:'The sneaker gallery is in the demo room; RESET restores it.',shoeHint:'E / TAP A SHOE PHOTO TO OPEN THE SHOEBOX',dollHint:'DRAG TO ORBIT · SCROLL TO ZOOM · TAP FLOOR TO TELEPORT',photoHint:'PHOTO MODE · P TO EXIT',helpDesc:'WASD to walk, drag the mouse to look around, and click any sneaker photo to open its card. You can also aim and press E. On mobile use the joystick and swipe.',keys:[['W A S D','Walk'],['SHIFT','Run'],['V','1st / 3rd person'],['O','Dollhouse view'],['P','Photo mode'],['T','Guided tour'],['E','Open sneaker card'],['C','Change outfit'],['L','Change lighting'],['ESC','Close menus']]}};
 
 const ambientMat=(color,roughness=.85,metalness=.0)=>new THREE.MeshStandardMaterial({color,roughness,metalness});
 const MAT={wood:ambientMat('#7b6048'),dark:ambientMat('#1b1b1c',.6),black:ambientMat('#121316',.65),edge:ambientMat('#9e8860',.45,.5),wall:ambientMat('#414147',.96),wall2:ambientMat('#27272d'),soft:ambientMat('#a69c8b'),gold:ambientMat('#d8b46b',.5,.35),grey:ambientMat('#55565a'),paper:ambientMat('#dfddcf'),led:new THREE.MeshBasicMaterial({color:'#ffe5b4'})};
@@ -407,7 +407,7 @@ function updateViewLabel(){
   $('view-btn').textContent=cameraMode==='first'?t.viewFirst:cameraMode==='third'?t.viewThird:(lang==='vi'?'TOÀN CẢNH':'DOLLHOUSE');
   $('view-btn').setAttribute('aria-pressed',String(cameraMode!=='first'));
   $('view-btn').title=lang==='vi'?'Chuyển góc nhìn (V)':'Switch camera (V)';
-  $('subtitle').textContent=`VIRTUAL ROOM · ${cameraMode==='first'?t.modeFirst:cameraMode==='third'?t.modeThird:(lang==='vi'?'TOÀN CẢNH':'DOLLHOUSE')} · V4.3`;
+  $('subtitle').textContent=`VIRTUAL ROOM · ${cameraMode==='first'?t.modeFirst:cameraMode==='third'?t.modeThird:(lang==='vi'?'TOÀN CẢNH':'DOLLHOUSE')} · V4.4`;
   if(avatar)avatar.visible=cameraMode!=='first';
 }
 function setCameraMode(next,quiet=false){
@@ -672,16 +672,21 @@ function openShoebox(indexOrItem=0){
   return true;
 }
 function shoeIndexAtPointer(clientX,clientY,fromCamera=true){
-  if(!galleryMeshes.length)return -1;
-  if(fromCamera){const rect=renderer.domElement.getBoundingClientRect();raycaster.setFromCamera(new THREE.Vector2((clientX-rect.left)/rect.width*2-1,-((clientY-rect.top)/rect.height*2-1)),camera)}
-  else if(cameraMode==='third'){
-    const aim=new THREE.Vector3(-Math.sin(yaw)*Math.cos(pitch),Math.sin(pitch),-Math.cos(yaw)*Math.cos(pitch)).normalize();
-    raycaster.set(new THREE.Vector3(playerPosition.x,eyeHeight,playerPosition.z),aim);
-  }else raycaster.setFromCamera({x:0,y:0},camera);
-  const hits=raycaster.intersectObjects(galleryMeshes.map(x=>x.mesh),false);
-  const range=cameraMode==='dollhouse'?50:fromCamera?(cameraMode==='third'?6.4:4.0):4.0;
-  if(!hits.length||hits[0].distance>range)return -1;
-  return galleryMeshes.findIndex(x=>x.mesh===hits[0].object);
+  if(mode!=='demo'||!galleryMeshes.length)return -1;
+  // Use the same camera that renders the photo; do not raycast from the
+  // third-person avatar's head, which points somewhere else on the screen.
+  let ndcX=0,ndcY=0;
+  if(fromCamera&&Number.isFinite(clientX)&&Number.isFinite(clientY)){
+    const rect=renderer.domElement.getBoundingClientRect();
+    if(!rect.width||!rect.height)return -1;
+    ndcX=(clientX-rect.left)/rect.width*2-1;
+    ndcY=-((clientY-rect.top)/rect.height*2-1);
+    if(Math.abs(ndcX)>1||Math.abs(ndcY)>1)return -1;
+  }
+  raycaster.setFromCamera(new THREE.Vector2(ndcX,ndcY),camera);
+  const hits=raycaster.intersectObjects(galleryMeshes.map(entry=>entry.mesh),false);
+  if(!hits.length||hits[0].distance>50)return -1;
+  return galleryMeshes.findIndex(entry=>entry.mesh===hits[0].object);
 }
 function inspect(clientX=null,clientY=null,quiet=false){
   if(mode==='demo'){
@@ -849,10 +854,53 @@ function animate(){
   drawMap();
   renderer.render(scene,camera);
 }
-function hideStart(){walking=true;$('start-screen').style.display='none';if(!isTouch){renderer.domElement.requestPointerLock?.().catch(()=>{});}toast(language[lang].welcome)}
+function hideStart(){walking=true;$('start-screen').style.display='none';/* Desktop: drag to look and click to inspect; no automatic browser pointer-lock banner. */}
 function touchEvents(){const pad=$('pad'),knob=$('pad-knob');let padId=null;pad.addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();padId=e.pointerId;pad.setPointerCapture(e.pointerId);movePad(e)});function movePad(e){let rect=pad.getBoundingClientRect(),cx=rect.left+rect.width/2,cy=rect.top+rect.height/2;let x=e.clientX-cx,y=e.clientY-cy;let len=Math.max(1,Math.hypot(x,y));let max=39;let mult=Math.min(max,len)/len;let tx=x*mult,ty=y*mult;joy.x=tx/max;joy.y=ty/max;knob.style.transform=`translate(${tx}px,${ty}px)`}pad.addEventListener('pointermove',e=>{if(e.pointerId===padId)movePad(e)});function release(e){if(e.pointerId!==padId)return;padId=null;joy.x=joy.y=0;knob.style.transform='translate(0px,0px)'}pad.addEventListener('pointerup',release);pad.addEventListener('pointercancel',release);
-let area=renderer.domElement;area.addEventListener('pointerdown',e=>{if(!walking)return;if(cameraMode==='dollhouse'){if(lookPointer!==null)return;lookPointer=e.pointerId;lastPointer={x:e.clientX,y:e.clientY};lastTouchStart={x:e.clientX,y:e.clientY,moved:false};area.setPointerCapture(e.pointerId);return;}if(e.pointerType==='mouse'){if(document.pointerLockElement!==area&&e.button===0)area.requestPointerLock?.().catch(()=>{});return}if(lookPointer!==null)return;lookPointer=e.pointerId;lastPointer={x:e.clientX,y:e.clientY};lastTouchStart={x:e.clientX,y:e.clientY,moved:false};area.setPointerCapture(e.pointerId)});
-area.addEventListener('pointermove',e=>{if(e.pointerId!==lookPointer||!lastPointer)return;const dx=e.clientX-lastPointer.x,dy=e.clientY-lastPointer.y;if(lastTouchStart&&Math.hypot(e.clientX-lastTouchStart.x,e.clientY-lastTouchStart.y)>9)lastTouchStart.moved=true;lastPointer={x:e.clientX,y:e.clientY};if(cameraMode==='dollhouse'){dollhouse.azimuth-=dx*.006;dollhouse.elevation=THREE.MathUtils.clamp(dollhouse.elevation+dy*.004,.35,1.43);updateCamera(0,true);return;}yaw-=dx*.006;pitch=THREE.MathUtils.clamp(pitch-dy*.006,-1.42,1.42);syncCamera()});area.addEventListener('pointerup',e=>{if(e.pointerId===lookPointer){const tap=!lastTouchStart?.moved;if(tap){if(cameraMode==='dollhouse'){if(!inspect(e.clientX,e.clientY,true))enterDollhouseAt(e.clientX,e.clientY);}else if(e.pointerType!=='mouse')inspect(e.clientX,e.clientY,true);}lookPointer=null;lastPointer=null;lastTouchStart=null}});area.addEventListener('pointercancel',()=>{lookPointer=null;lastPointer=null});}
+let area=renderer.domElement;
+area.addEventListener('pointerdown',e=>{
+  if(!walking||!$('shoebox-modal').hidden||!$('help-overlay').hidden||photoMode)return;
+  if(e.pointerType==='mouse'&&e.button!==0)return;
+  if(lookPointer!==null)return;
+  lookPointer=e.pointerId;
+  lastPointer={x:e.clientX,y:e.clientY};
+  lastTouchStart={x:e.clientX,y:e.clientY,moved:false};
+  area.setPointerCapture(e.pointerId);
+});
+area.addEventListener('pointermove',e=>{
+  if(!walking||lookPointer!==e.pointerId||!lastPointer)return;
+  const dx=e.clientX-lastPointer.x,dy=e.clientY-lastPointer.y;
+  if(lastTouchStart&&Math.hypot(e.clientX-lastTouchStart.x,e.clientY-lastTouchStart.y)>7)lastTouchStart.moved=true;
+  lastPointer={x:e.clientX,y:e.clientY};
+  // Tiny mouse movement should not rotate the scene before a normal click.
+  if(!lastTouchStart?.moved)return;
+  if(cameraMode==='dollhouse'){
+    dollhouse.azimuth-=dx*.006;
+    dollhouse.elevation=THREE.MathUtils.clamp(dollhouse.elevation+dy*.004,.35,1.43);
+    updateCamera(0,true);
+  }else{
+    yaw-=dx*(e.pointerType==='mouse'?.0045:.006);
+    pitch=THREE.MathUtils.clamp(pitch-dy*(e.pointerType==='mouse'?.0045:.006),-1.42,1.42);
+    syncCamera();
+  }
+});
+area.addEventListener('pointerup',e=>{
+  if(e.pointerId!==lookPointer)return;
+  const tap=!lastTouchStart?.moved;
+  lookPointer=null;lastPointer=null;lastTouchStart=null;
+  if(tap){
+    const opened=inspect(e.clientX,e.clientY,true);
+    if(cameraMode==='dollhouse'&&!opened)enterDollhouseAt(e.clientX,e.clientY);
+  }
+  try{if(area.hasPointerCapture(e.pointerId))area.releasePointerCapture(e.pointerId);}catch(_){}
+});
+area.addEventListener('pointercancel',()=>{lookPointer=null;lastPointer=null;lastTouchStart=null});
+let lastHoverCheck=0;
+area.addEventListener('pointermove',e=>{
+  if(e.pointerType!=='mouse'||!walking||lookPointer!==null||cameraMode==='dollhouse'&&tour?.active)return;
+  const now=performance.now();if(now-lastHoverCheck<45)return;lastHoverCheck=now;
+  area.style.cursor=shoeIndexAtPointer(e.clientX,e.clientY,true)>=0?'pointer':'grab';
+});
+}
 function normalizeImported(model){if(tour?.active)stopTour();if(photoMode)togglePhoto(false);const bbox=new THREE.Box3().setFromObject(model);const bbSize=bbox.getSize(new THREE.Vector3()),center=bbox.getCenter(new THREE.Vector3());if(!Number.isFinite(bbSize.x)||Math.max(bbSize.x,bbSize.y,bbSize.z)<.01)throw Error('Empty model');let scale=1;const extent=Math.max(bbSize.x,bbSize.y,bbSize.z);if(extent>70)scale=8/extent; // Handle wildly scaled exports, without pretending calibrated accuracy.
 model.scale.setScalar(scale);model.position.set(-center.x*scale,-bbox.min.y*scale,-center.z*scale);const measured=new THREE.Box3().setFromObject(model),q=measured.getSize(new THREE.Vector3());scanSize=q;roomBounds={w:Math.max(q.x,2),l:Math.max(q.z,2)};
 if(demoGroup)demoGroup.visible=false;if(scanGroup){scene.remove(scanGroup);scanGroup.traverse(o=>{if(o.geometry)o.geometry.dispose();})};scanGroup=model;scene.add(model);eyeHeight=Math.min(1.65,Math.max(1.25,q.y*.62));playerPosition.set(0,0,Math.max(.3,q.z*.32));yaw=0;pitch=0;syncCamera();mode='scan';if(cameraMode==='dollhouse')setCameraMode('first',true);$('demo-label').textContent=language[lang].real;$('settings-btn').disabled=true;
@@ -862,7 +910,7 @@ $('busy').style.display='block';$('start-screen').style.display='none';walking=t
 let urls=[];try{let map=new Map();for(let f of files){const u=URL.createObjectURL(f);urls.push(u);map.set(f.name.toLowerCase(),u)}let manager=new THREE.LoadingManager();manager.setURLModifier(url=>{let basename=decodeURIComponent(url.split(/[?#]/)[0].split('/').pop()).toLowerCase();return map.get(basename)||url});let loader=new GLTFLoader(manager);let data=/\.glb$/i.test(main.name)?await main.arrayBuffer():await main.text();let gltf=await new Promise((ok,fail)=>loader.parse(data,'',ok,fail));normalizeImported(gltf.scene);toast(language[lang].scanSuccess)}catch(err){console.error('[Loc An Virtual Room] scan import',err);toast(language[lang].scanFail)}finally{$('busy').style.display='none';for(let u of urls)URL.revokeObjectURL(u);$('scan-input').value=''}
 }
 function registerUI(){let showScan=()=>{if(document.pointerLockElement)document.exitPointerLock();$('scan-input').click()};$('scan-btn').onclick=showScan;$('start-scan-btn').onclick=showScan;$('scan-input').addEventListener('change',e=>importFiles(e.target.files));$('start-btn').onclick=hideStart;$('home-btn').onclick=()=>{location.href='./'};$('reset-btn').onclick=()=>{if(tour?.active)stopTour();if(photoMode)togglePhoto(false);closeShoebox();if(scanGroup){scene.remove(scanGroup);scanGroup=null}if(demoGroup)demoGroup.visible=true;roomBounds={w:dims.w,l:dims.l};mode='demo';if(cameraMode==='dollhouse')setCameraMode('first',true);$('settings-btn').disabled=false;eyeHeight=1.65;playerPosition.set(0,0,dims.l/2-1.30);yaw=pitch=0;syncCamera();updateCamera(0,true);$('demo-label').textContent=language[lang].demo;toast(language[lang].resetDemo)};
-$('settings-btn').onclick=()=>{if(document.pointerLockElement)document.exitPointerLock();$('settings').style.display='block'};$('close-settings').onclick=()=>$('settings').style.display='none';$('apply-dims').onclick=()=>{const w=+$('room-w').value,l=+$('room-l').value,h=+$('room-h').value;if(![w,l,h].every(Number.isFinite)||w<3||w>12||l<3.5||l>15||h<2.2||h>4.5){toast('3–12 m × 3.5–15 m × 2.2–4.5 m');return;}dims={w,l,h};buildDemo();$('settings').style.display='none';toast(lang==='vi'?'Đã cập nhật kích thước bản mẫu.':'Demo room dimensions updated.')};$('close-info').onclick=()=>$('info-panel').style.display='none';$('lang-btn').onclick=()=>setLang(lang==='vi'?'en':'vi');$('view-btn').onclick=()=>setCameraMode(cameraMode==='first'?'third':cameraMode==='third'?'first':'third');$('interact-mobile').onclick=inspect;document.addEventListener('keydown',e=>{if(['INPUT','TEXTAREA'].includes(document.activeElement?.tagName))return;if(!$('shoebox-modal').hidden||!$('help-overlay').hidden){if(e.code==='Escape')closeTopUI();return;}keys.add(e.code);if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space'].includes(e.code))e.preventDefault();if(e.code==='Escape'){closeTopUI();$('settings').style.display='none';$('info-panel').style.display='none';return;}if(!$('shoebox-modal').hidden||!$('help-overlay').hidden)return;if(e.code==='KeyE'&&walking)inspect();if(e.code==='KeyV'&&!e.repeat)setCameraMode(cameraMode==='first'?'third':'first');if(e.code==='KeyO'&&!e.repeat)toggleDollhouse();if(e.code==='KeyP'&&!e.repeat)togglePhoto();if(e.code==='KeyT'&&!e.repeat)(tour?.active?stopTour():startTour());if(e.code==='KeyL'&&!e.repeat)cycleLighting();if(e.code==='KeyC'&&!e.repeat)changeOutfit();});document.addEventListener('keyup',e=>keys.delete(e.code));document.addEventListener('mousemove',e=>{if(document.pointerLockElement!==renderer.domElement||!walking)return;yaw-=e.movementX*.0022;pitch=THREE.MathUtils.clamp(pitch-e.movementY*.0022,-1.42,1.42);syncCamera()});document.addEventListener('visibilitychange',()=>{if(document.hidden)keys.clear()});renderer.domElement.addEventListener('click',()=>{if(document.pointerLockElement===renderer.domElement)inspect()});renderer.domElement.addEventListener('wheel',e=>{if(cameraMode==='third'){e.preventDefault();cameraDistance=THREE.MathUtils.clamp(cameraDistance+Math.sign(e.deltaY)*.18,1.3,3.4);updateCamera(0,true)}else if(cameraMode==='dollhouse'){e.preventDefault();dollhouse.distance=THREE.MathUtils.clamp(dollhouse.distance+Math.sign(e.deltaY)*.48,5.0,23.0);updateCamera(0,true)}},{passive:false});
+$('settings-btn').onclick=()=>{if(document.pointerLockElement)document.exitPointerLock();$('settings').style.display='block'};$('close-settings').onclick=()=>$('settings').style.display='none';$('apply-dims').onclick=()=>{const w=+$('room-w').value,l=+$('room-l').value,h=+$('room-h').value;if(![w,l,h].every(Number.isFinite)||w<3||w>12||l<3.5||l>15||h<2.2||h>4.5){toast('3–12 m × 3.5–15 m × 2.2–4.5 m');return;}dims={w,l,h};buildDemo();$('settings').style.display='none';toast(lang==='vi'?'Đã cập nhật kích thước bản mẫu.':'Demo room dimensions updated.')};$('close-info').onclick=()=>$('info-panel').style.display='none';$('lang-btn').onclick=()=>setLang(lang==='vi'?'en':'vi');$('view-btn').onclick=()=>setCameraMode(cameraMode==='first'?'third':cameraMode==='third'?'first':'third');$('interact-mobile').onclick=inspect;document.addEventListener('keydown',e=>{if(['INPUT','TEXTAREA'].includes(document.activeElement?.tagName))return;if(!$('shoebox-modal').hidden||!$('help-overlay').hidden){if(e.code==='Escape')closeTopUI();return;}keys.add(e.code);if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space'].includes(e.code))e.preventDefault();if(e.code==='Escape'){closeTopUI();$('settings').style.display='none';$('info-panel').style.display='none';return;}if(!$('shoebox-modal').hidden||!$('help-overlay').hidden)return;if(e.code==='KeyE'&&walking)inspect();if(e.code==='KeyV'&&!e.repeat)setCameraMode(cameraMode==='first'?'third':'first');if(e.code==='KeyO'&&!e.repeat)toggleDollhouse();if(e.code==='KeyP'&&!e.repeat)togglePhoto();if(e.code==='KeyT'&&!e.repeat)(tour?.active?stopTour():startTour());if(e.code==='KeyL'&&!e.repeat)cycleLighting();if(e.code==='KeyC'&&!e.repeat)changeOutfit();});document.addEventListener('keyup',e=>keys.delete(e.code));document.addEventListener('mousemove',e=>{if(document.pointerLockElement!==renderer.domElement||!walking)return;yaw-=e.movementX*.0022;pitch=THREE.MathUtils.clamp(pitch-e.movementY*.0022,-1.42,1.42);syncCamera()});document.addEventListener('visibilitychange',()=>{if(document.hidden)keys.clear()});// Mouse and touch click-to-select are handled by pointerup in touchEvents().renderer.domElement.addEventListener('wheel',e=>{if(cameraMode==='third'){e.preventDefault();cameraDistance=THREE.MathUtils.clamp(cameraDistance+Math.sign(e.deltaY)*.18,1.3,3.4);updateCamera(0,true)}else if(cameraMode==='dollhouse'){e.preventDefault();dollhouse.distance=THREE.MathUtils.clamp(dollhouse.distance+Math.sign(e.deltaY)*.48,5.0,23.0);updateCamera(0,true)}},{passive:false});
 // Allow dropping a GLB or a .gltf together with bin/textures.
 view.addEventListener('dragover',e=>e.preventDefault());view.addEventListener('drop',e=>{e.preventDefault();if(e.dataTransfer?.files?.length)importFiles(e.dataTransfer.files)});
 touchEvents();registerV4UI();}
