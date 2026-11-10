@@ -20,7 +20,7 @@
 @media(max-width:720px){.topbar{padding:calc(env(safe-area-inset-top,0px) + 12px) 12px 0;display:block}.brand h1{font-size:18px;max-width:none}.brand .caption{font-size:9px}.actions{justify-content:flex-start;max-width:none;margin-top:14px}.actions .ui-btn{padding:8px 9px;font-size:10px}.notice{top:166px;left:12px;font-size:9px;max-width:235px}.tips{display:none}.mapwrap{top:175px;bottom:auto;right:10px;width:108px;padding:6px}.mapwrap .maptitle{font-size:9px}#minimap{width:94px;height:86px}#mobile{display:block}.crosshair{width:10px;height:10px}#settings{top:194px;right:10px}#info-panel{bottom:175px}.start-title{font-size:56px}.start-body{font-size:13px}.start-meta{font-size:10px}}
 @media(max-height:580px){.notice,.mapwrap{display:none}.topbar{padding-top:9px}.start-title{font-size:50px;margin:10px 0}.start-body{line-height:1.5}.start-foot{margin-top:13px}}
 
-/* ===== LỘC AN VIRTUAL ROOM V4: interactive archive experience ===== */
+/* ===== LỘC AN VIRTUAL ROOM V4.5: interactive archive experience ===== */
 .feature-dock{position:absolute;top:138px;right:24px;left:auto;transform:none;display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:5px;pointer-events:auto;width:auto;max-width:min(560px,calc(100vw - 40px));padding:4px;background:#101114b8;border:1px solid #ffffff12;border-radius:12px;backdrop-filter:blur(10px)}
 .feature-dock .ui-btn{white-space:nowrap;padding:8px 10px;font-size:10px;border-radius:8px;background:#111b}
 .feature-dock .ui-btn[aria-pressed=true]{background:#aa8e4e;color:#110f0b;border-color:#f1d98d}
@@ -154,6 +154,26 @@ body.photo-mode .topbar,body.photo-mode .feature-dock,body.photo-mode .notice,bo
         return true;
       })
     : [];
+  // Synchronize this room's gallery with the 17 owned cards visible on the
+  // collector's earlier homepage screenshot. The ISPA photo exists in /pictures,
+  // but the current data.js has no product record for it. Avoid duplicate IDs.
+  if (!window.LOCAN_ROOM_CATALOG.some(pair =>
+    String(pair?.id||'').toLowerCase() === 'nike-ispa-overreact-sandal-black-2020'
+  )) {
+    window.LOCAN_ROOM_CATALOG.push({
+      id: 'nike-ispa-overreact-sandal-black-2020',
+      brand: 'Nike',
+      title: {vi: "Nike ISPA OverReact Sandal 'Black'", en: "Nike ISPA OverReact Sandal 'Black'"},
+      subtitle: {vi: 'Nike ISPA · 2020', en: 'Nike ISPA · 2020'},
+      sku: 'CQ2230-001',
+      releaseDate: '2020-07-31',
+      editionType: {vi: 'GR', en: 'GR'},
+      size: '10 US',
+      collectionStatus: 'own',
+      image: 'pictures/ispa.png',
+      images: ['pictures/ispa.png']
+    });
+  }
 </script>
 <script type="module">
 import * as THREE from 'three';
@@ -174,7 +194,8 @@ const collectionCatalog=(window.LOCAN_ROOM_CATALOG || []).slice().filter(Boolean
   const brand=String(item?.brand||'').toLowerCase();
   const id=String(item?.id||item?.sku||'').toLowerCase();
   // Force-remove pairs already sold, including the Balenciaga pair the collector flagged.
-  if(title.includes('balenciaga')||brand.includes('balenciaga')||id.includes('balenciaga')) return false;
+  // Ownership overrides reported by collector: both pairs have been sold.
+  if(title.includes('balenciaga')||brand.includes('balenciaga')||id.includes('balenciaga')||id==='puma-rose-speedcat-leather-warm-white'||String(item?.sku||'').trim()==='404390-01') return false;
   return String(item?.collectionStatus||'').trim().toLowerCase()==='own';
 }).sort((a,b)=>String(b.releaseDate||'').localeCompare(String(a.releaseDate||'')));
 let galleryPage=0, rackSlot=0, gallerySlots=[], galleryMeshes=[], galleryTextureRefs=[], galleryImageMap=null, galleryGeneration=0;
