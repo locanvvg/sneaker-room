@@ -55,8 +55,14 @@
   }
 
   function revisionedAsset(value) {
-    const path =
-      cleanPath(value);
+    const source = cleanPath(value);
+    // GitHub Pages publishes the existing WebP derivatives, not the 148 MB
+    // redundant PNG exports in pictures/normalized/v6. Preserve originals
+    // for detail pages and leave all other image paths untouched.
+    const path = /^pictures\/normalized\/v6\/.+\.(png|jpe?g)$/i.test(source)
+      ? source.replace(/^pictures\/normalized\//i, "pictures/optimized/normalized/")
+          .replace(/\.(png|jpe?g)$/i, ".webp")
+      : source;
 
     if (!path) {
       return "";

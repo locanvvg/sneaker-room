@@ -1,0 +1,7 @@
+# Loc An Sneaker Collection — GitHub Pages slim deploy.
+# Keep all source images, optimized WebP images and share previews.
+# Only the 124 redundant raw normalized PNG files are omitted;
+# their WebP derivatives are already present in pictures/optimized/normalized/v6.
+exclude:
+  - pictures/normalized/v6
+  - tools
