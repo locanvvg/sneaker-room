@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#09090b">
 <meta name="description" content="Loc An Sneaker Collection — khám phá căn phòng sneaker 3D qua góc nhìn thứ nhất hoặc thứ ba.">
-<title>Loc An Sneaker Collection — Virtual Room 3D</title>
+<title>Loc An Sneaker Collection — Virtual Room V4</title>
 <style>
 :root{color-scheme:dark;--bg:#08080b;--panel:rgba(14,14,19,.88);--edge:rgba(255,255,255,.16);--fg:#f5f4ed;--muted:#a3a2a0;--yellow:#f5d77b;font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--fg)}button,input,a{font:inherit}button{cursor:pointer}a{color:var(--yellow)}#viewport{width:100vw;height:100dvh;display:block;outline:none;touch-action:none}canvas{display:block}#hud{position:fixed;inset:0;pointer-events:none;z-index:20}.active-pointer{cursor:crosshair}
@@ -19,13 +19,50 @@
 #fallback{position:fixed;inset:0;display:none;place-items:center;z-index:80;background:#080809;padding:30px;text-align:center;line-height:1.8}
 @media(max-width:720px){.topbar{padding:calc(env(safe-area-inset-top,0px) + 12px) 12px 0;display:block}.brand h1{font-size:18px;max-width:none}.brand .caption{font-size:9px}.actions{justify-content:flex-start;max-width:none;margin-top:14px}.actions .ui-btn{padding:8px 9px;font-size:10px}.notice{top:166px;left:12px;font-size:9px;max-width:235px}.tips{display:none}.mapwrap{top:175px;bottom:auto;right:10px;width:108px;padding:6px}.mapwrap .maptitle{font-size:9px}#minimap{width:94px;height:86px}#mobile{display:block}.crosshair{width:10px;height:10px}#settings{top:194px;right:10px}#info-panel{bottom:175px}.start-title{font-size:56px}.start-body{font-size:13px}.start-meta{font-size:10px}}
 @media(max-height:580px){.notice,.mapwrap{display:none}.topbar{padding-top:9px}.start-title{font-size:50px;margin:10px 0}.start-body{line-height:1.5}.start-foot{margin-top:13px}}
+
+/* ===== LỘC AN VIRTUAL ROOM V4: interactive archive experience ===== */
+.feature-dock{position:absolute;top:100px;left:50%;transform:translateX(-50%);display:flex;flex-wrap:nowrap;align-items:center;justify-content:center;gap:6px;pointer-events:auto;width:max-content;max-width:calc(100vw - 28px);overflow-x:auto;scrollbar-width:thin;padding:5px 6px;background:#11111394;border:1px solid #ffffff14;border-radius:13px;backdrop-filter:blur(12px)}
+.feature-dock .ui-btn{white-space:nowrap;padding:8px 10px;font-size:10px;border-radius:8px;background:#111b}
+.feature-dock .ui-btn[aria-pressed=true]{background:#aa8e4e;color:#110f0b;border-color:#f1d98d}
+#catalog-status{position:absolute;left:24px;top:178px;max-width:340px;color:#e8d49a;font-size:10px;letter-spacing:.045em;pointer-events:none;text-shadow:0 1px 4px #000}
+#focus-hint{position:absolute;left:50%;bottom:100px;transform:translateX(-50%);padding:8px 13px;max-width:75vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border:1px solid #b9a16d55;border-radius:7px;background:#111c;color:#e9ddb8;font-size:12px;display:none;pointer-events:none}
+.mode-hint{position:absolute;left:50%;bottom:80px;transform:translateX(-50%);max-width:95vw;padding:8px 13px;text-align:center;background:#111c;color:#e9d49f;border:1px solid #ac905588;border-radius:9px;font-size:11px;pointer-events:none}
+.feature-panel{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:75;width:min(510px,calc(100vw - 26px));background:#0e0e11f5;color:#f4f0e5;border:1px solid #9a814d88;border-radius:14px;box-shadow:0 16px 55px #000c;padding:17px;pointer-events:auto}
+.feature-panel[hidden],.v4-overlay[hidden],.mode-hint[hidden]{display:none!important}
+.feature-panel-title{font-size:11px;font-weight:850;letter-spacing:.16em;color:#edcc84;margin:0 0 14px}.feature-panel-title small{color:#afafa8;font-size:10px;letter-spacing:normal;margin-left:8px}
+.panel-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:12px}.feature-panel p{color:#bcb9b1;font-size:12px;line-height:1.65}
+body.photo-mode .topbar,body.photo-mode .feature-dock,body.photo-mode .notice,body.photo-mode #catalog-status,body.photo-mode .mapwrap,body.photo-mode .crosshair,body.photo-mode .tips,body.photo-mode #mobile,body.photo-mode #focus-hint,body.photo-mode #mode-hint{display:none!important}
+.v4-overlay{position:fixed;inset:0;z-index:85;background:rgba(3,3,5,.86);backdrop-filter:blur(9px);display:flex;justify-content:center;align-items:center;padding:18px;color:#fff;pointer-events:auto}
+.shoebox-dialog,.help-dialog{position:relative;background:#111114;border:1px solid #746644;border-radius:18px;width:min(1050px,98vw);max-height:94dvh;overflow:auto;box-shadow:0 30px 100px #000d;padding:25px}
+.v4-close{position:absolute;z-index:4;right:16px;top:12px;background:#28262b;border:1px solid #ffffff2b;border-radius:50%;color:#fff;width:35px;height:35px;font-size:23px;line-height:25px;cursor:pointer}
+.shoebox-eyebrow{font-size:10px;font-weight:900;letter-spacing:.3em;color:#cbb276;margin-bottom:20px}
+.shoebox-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:28px}
+.shoebox-stage{min-width:0;display:flex;flex-direction:column;justify-content:center;align-items:center;background:radial-gradient(ellipse at 55% 40%,#33312b,#161618 66%);border-radius:12px;min-height:365px;perspective:850px;padding:20px}
+.shoebox-scene{position:relative;transform-style:preserve-3d;width:min(420px,100%);height:245px;transform:rotateX(9deg)}
+.shoebox-bottom{position:absolute;inset:45px 8px 12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(130deg,#26232a,#0d0c0e);border:13px solid #252328;border-top:9px solid #a48a54;border-radius:9px;box-shadow:0 18px 32px #0009,inset 0 0 15px #0008}
+.shoebox-bottom img{max-width:92%;max-height:100%;width:auto;height:auto;object-fit:contain;filter:drop-shadow(0 14px 11px #0008)}
+.shoebox-lid{position:absolute;inset:18px 0 15px;z-index:2;border:4px solid #a48a54;border-radius:10px;background:linear-gradient(125deg,#262228,#131215);display:flex;align-items:center;justify-content:center;transform-origin:top center;box-shadow:0 16px 30px #000b;transition:transform 900ms cubic-bezier(.19,.8,.21,1),opacity .65s}
+.shoebox-lid span{font-size:clamp(15px,2.3vw,23px);font-weight:950;letter-spacing:.17em;color:#e6cb82;text-align:center;padding:18px}
+.shoebox-scene.is-open .shoebox-lid{transform:rotateX(112deg) translateY(-6px);opacity:.45}
+.shoebox-stamp{position:absolute;bottom:7px;right:11px;font-size:8px;letter-spacing:.11em;color:#ccb78b}
+.shoebox-caption{font-size:10px;letter-spacing:.18em;color:#d5bf80;margin-top:22px}
+.shoebox-details{min-width:0;padding:12px 5px}.shoebox-details h2{font-size:clamp(20px,3vw,32px);line-height:1.14;letter-spacing:-.02em;margin:0 0 11px}
+#shoebox-subtitle{color:#b8b2a6;font-size:13px;margin-bottom:14px}.shoe-facts{display:grid;grid-template-columns:1fr 1fr;gap:10px;border-top:1px solid #44423e;padding:16px 0}.shoe-fact{display:flex;flex-direction:column;gap:4px}.shoe-fact b{font-size:9px;letter-spacing:.13em;color:#9f9a90}.shoe-fact span{font-size:12px;color:#f4e8c8}
+.shoebox-story{font-size:12px;color:#bbb9b1;line-height:1.75;max-height:168px;overflow-y:auto;border-top:1px solid #333;padding:13px 1px}.shoebox-story p{margin:0 0 12px}
+.shoebox-details a.ui-btn{text-decoration:none;display:inline-flex;align-items:center}
+.help-dialog{width:min(590px,100%);padding:28px}.help-dialog p{color:#b9b7b2;font-size:13px;line-height:1.7}.help-keys{display:grid;grid-template-columns:1fr 1fr;gap:10px;color:#e7e4dc;font-size:12px}.help-keys div{padding:10px;background:#222126;border:1px solid #363333;border-radius:9px}
+.help-keys kbd{color:#eccb7c;font-weight:800;font-family:inherit}
+@media(max-width:800px){.feature-dock{top:147px;left:12px;right:12px;transform:none;justify-content:flex-start;max-width:none}.feature-dock .ui-btn{padding:8px 9px}.notice{top:208px;left:12px;max-width:255px}.mapwrap{top:235px;right:10px;bottom:auto}#catalog-status{top:246px;left:12px;max-width:calc(100vw - 145px)}.shoebox-grid{grid-template-columns:1fr;gap:10px}.shoebox-stage{min-height:255px}.shoebox-scene{height:190px}.shoebox-dialog{padding:17px}.shoe-facts{gap:9px}.shoebox-story{max-height:105px}.feature-panel{bottom:155px}.help-keys{grid-template-columns:1fr}.tips{display:none}.feature-dock{scrollbar-width:none}}
+@media(max-width:460px){.feature-dock{top:153px}.notice{top:205px}.mapwrap{top:245px}.shoebox-stage{min-height:225px}.shoebox-scene{height:165px}.shoebox-bottom{inset:38px 8px 8px}.shoebox-lid{inset:14px 0 9px}.shoebox-dialog{max-height:96dvh}.feature-panel .ui-btn{font-size:10px;padding:8px}}
+@media(prefers-reduced-motion:reduce){.shoebox-lid,.ui-btn{transition:none!important}}
+
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"}}</script>
 </head>
 <body>
 <div id="viewport" tabindex="0" role="application" aria-label="Virtual Room 3D"></div>
 <div id="hud">
-  <div class="topbar"><div class="brand"><div class="eyebrow">PRIVATE COLLECTION — NOT FOR SALE</div><h1>LOC AN <span style="color:var(--yellow)">SNEAKER COLLECTION</span></h1><div class="caption" id="subtitle">.1</div></div>
+  <div class="topbar"><div class="brand"><div class="eyebrow">PRIVATE COLLECTION — NOT FOR SALE</div><h1>LOC AN <span style="color:var(--yellow)">SNEAKER COLLECTION</span></h1><div class="caption" id="subtitle">VIRTUAL ROOM · FIRST PERSON · V4</div></div>
     <div class="actions">
       <button class="ui-btn" id="home-btn">← COLLECTION</button>
       <button class="ui-btn" id="view-btn" type="button" title="Chuyển góc nhìn (V)" aria-label="Chuyển góc nhìn thứ nhất hoặc thứ ba">GÓC NHÌN 1</button>
@@ -35,19 +72,80 @@
       <button class="ui-btn" id="lang-btn">EN</button>
     </div>
   </div>
+  <div class="feature-dock" id="feature-dock" role="toolbar" aria-label="Virtual Room features">
+    <button class="ui-btn" id="dollhouse-btn" type="button">⌗ TOÀN CẢNH</button>
+    <button class="ui-btn" id="lighting-btn" type="button">◐ ÁNH SÁNG</button>
+    <button class="ui-btn" id="photo-btn" type="button">◎ CHỤP ẢNH</button>
+    <button class="ui-btn" id="tour-btn" type="button">▶ THAM QUAN</button>
+    <button class="ui-btn" id="gallery-btn" type="button">◈ KỆ GIÀY</button>
+    <button class="ui-btn" id="outfit-btn" type="button">♙ TRANG PHỤC</button>
+    <button class="ui-btn" id="help-btn" type="button">? HƯỚNG DẪN</button>
+  </div>
   <div class="notice" id="demo-label">BẢN MẪU 3D · CHƯA PHẢI PHÒNG THẬT</div>
+  <div id="focus-hint" aria-live="polite"></div>
+  <div class="mode-hint" id="mode-hint" hidden></div>
+  <div id="catalog-status" aria-live="polite"></div>
   <div class="crosshair"></div><div class="tips" id="tips">Click vào phòng để khóa chuột · <kbd>W A S D</kbd> di chuyển · <kbd>Shift</kbd> chạy · <kbd>E</kbd> xem vật thể · <kbd>V</kbd> đổi góc nhìn · <kbd>Esc</kbd> mở chuột</div>
   <div class="mapwrap"><div class="maptitle">ROOM POSITION</div><canvas id="minimap" width="280" height="256"></canvas></div>
   <div id="mobile"><div id="pad" aria-label="Di chuyển"><div id="pad-knob"></div></div><div class="mobile-use"><button id="interact-mobile" aria-label="Xem vật thể">◎</button></div><div id="lookhint">VUỐT BÊN PHẢI<br>ĐỂ XOAY NHÌN</div></div>
   <div id="toast"></div><div class="busy" id="busy">Đang tải mô hình 3D…</div>
 </div>
 <div id="start-screen">
-  <div class="start-box"><div class="start-brand">LOC AN SNEAKER COLLECTION</div><div class="start-title">YOUR ROOM.<span>YOUR WORLD.</span></div><div class="start-body" id="start-body">Thử di chuyển trong phòng 3D. Đây là bố cục minh họa; sau khi có ảnh hoặc bản quét LiDAR, chúng ta sẽ dựng lại đúng căn phòng của bạn.</div><div class="start-meta">VIRTUAL ROOM / WALKTHROUGH PREVIEW / 01</div><div class="start-buttons"><button id="start-btn" class="ui-btn gold">ENTER THE ROOM →</button><button id="start-scan-btn" class="ui-btn">NẠP FILE QUÉT 3D</button></div><div class="start-foot">DESKTOP · MOBILE · NO ACCOUNT REQUIRED</div></div>
+  <div class="start-box"><div class="start-brand">LOC AN SNEAKER COLLECTION</div><div class="start-title">YOUR ROOM.<span>YOUR WORLD.</span></div><div class="start-body" id="start-body">Thử di chuyển trong phòng 3D. Đây là bố cục minh họa; sau khi có ảnh hoặc bản quét LiDAR, chúng ta sẽ dựng lại đúng căn phòng của bạn.</div><div class="start-meta">VIRTUAL ROOM / INTERACTIVE ARCHIVE / V4</div><div class="start-buttons"><button id="start-btn" class="ui-btn gold">ENTER THE ROOM →</button><button id="start-scan-btn" class="ui-btn">NẠP FILE QUÉT 3D</button></div><div class="start-foot">DESKTOP · MOBILE · NO ACCOUNT REQUIRED</div></div>
+</div>
+<!-- Photo Mode: canvas capture excludes the interface automatically. -->
+<div id="photo-panel" class="feature-panel" hidden>
+  <div class="feature-panel-title">PHOTO MODE <small id="photo-mode-hint">Ảnh không có giao diện</small></div>
+  <div class="panel-row"><button class="ui-btn" id="photo-wide">TOÀN PHÒNG</button><button class="ui-btn" id="photo-display">KỆ GIÀY</button><button class="ui-btn" id="photo-visitor">NHÂN VẬT</button></div>
+  <div class="panel-row"><button class="ui-btn gold" id="photo-save">↓ LƯU ẢNH PNG</button><button class="ui-btn" id="photo-close">ĐÓNG (P)</button></div>
+</div>
+<div id="tour-panel" class="feature-panel" hidden>
+  <div class="feature-panel-title">GUIDED TOUR <span id="tour-counter"></span></div>
+  <strong id="tour-title"></strong><p id="tour-description"></p>
+  <div class="panel-row"><button class="ui-btn gold" id="tour-next">TIẾP →</button><button class="ui-btn" id="tour-close">DỪNG TOUR</button></div>
+</div>
+<div id="help-overlay" class="v4-overlay" hidden>
+  <div class="help-dialog" role="dialog" aria-modal="true" aria-labelledby="help-title">
+    <button class="v4-close" id="help-close" aria-label="Close">×</button>
+    <div class="feature-panel-title" id="help-title">HƯỚNG DẪN KHÁM PHÁ</div>
+    <p id="help-description"></p><div id="help-keys"></div>
+  </div>
+</div>
+<div id="shoebox-modal" class="v4-overlay" hidden>
+  <div class="shoebox-dialog" role="dialog" aria-modal="true" aria-labelledby="shoebox-title">
+    <button class="v4-close" id="shoebox-close" aria-label="Close">×</button>
+    <div class="shoebox-eyebrow">LOC AN SNEAKER COLLECTION / ARCHIVE</div>
+    <div class="shoebox-grid">
+      <div class="shoebox-stage">
+        <div class="shoebox-scene" id="shoebox-scene">
+          <div class="shoebox-lid"><span id="shoebox-lid-label">PRIVATE COLLECTION</span></div>
+          <div class="shoebox-bottom"><img id="shoebox-image" alt="Sneaker in collection" loading="lazy"><span class="shoebox-stamp">NOT FOR SALE</span></div>
+        </div>
+        <div class="shoebox-caption" id="shoebox-caption">VIRTUAL SHOEBOX</div>
+      </div>
+      <div class="shoebox-details">
+        <div class="feature-panel-title">ARCHIVE CARD · <span id="shoebox-index"></span></div>
+        <h2 id="shoebox-title"></h2>
+        <div id="shoebox-subtitle"></div><div class="shoe-facts" id="shoebox-facts"></div>
+        <div class="shoebox-story" id="shoebox-story"></div>
+        <div class="panel-row"><button class="ui-btn" id="shoebox-prev">←</button><button class="ui-btn" id="shoebox-next">→</button><a class="ui-btn gold" id="shoebox-link" href="./">XEM HỒ SƠ ĐÔI GIÀY ↗</a></div>
+      </div>
+    </div>
+  </div>
 </div>
 <div id="settings"><div class="panel-title" id="settings-title">BỐ CỤC PHÒNG MẪU</div><div class="panel-note" id="settings-note">Nhập kích thước phòng thật bằng mét. Bản demo sẽ đổi kích thước; đồ nội thất vẫn chỉ là minh họa.</div><div class="fieldset"><label id="w-label">Rộng (m)<input id="room-w" type="number" min="3" max="12" step="0.1" value="5.2" inputmode="decimal"></label><label id="l-label">Dài (m)<input id="room-l" type="number" min="3.5" max="15" step="0.1" value="7.2" inputmode="decimal"></label><label id="h-label">Cao (m)<input id="room-h" type="number" min="2.2" max="4.5" step="0.1" value="2.8" inputmode="decimal"></label></div><div class="panel-actions"><button id="apply-dims" class="ui-btn gold">ÁP DỤNG</button><button id="close-settings" class="ui-btn">ĐÓNG</button></div></div>
 <div id="info-panel"><button class="close" id="close-info" aria-label="Close">×</button><div id="info-title"></div><div id="info-body"></div><div class="link-row" id="info-link"></div></div>
 <div id="fallback"><div><h2>Virtual Room không khởi động được</h2><p>Hãy mở file trên website HTTPS (GitHub Pages), bật WebGL, và kiểm tra kết nối Internet để tải thư viện Three.js.</p><p><a href="https://locanvvg.github.io/sneaker-room/">Quay về bộ sưu tập</a></p></div></div>
 <input id="scan-input" type="file" accept=".glb,.gltf,.bin,.png,.jpg,.jpeg,.webp,.ktx2" multiple hidden>
+<!-- The same canonical sneaker catalog already used by the collection website. -->
+<script src="./data.js?v=20261109-room-v4"></script>
+<script src="./catalog-additions.js?v=20261109-room-v4"></script>
+<script src="./catalog-engine.js?v=20261109-room-v4"></script>
+<script>
+  window.LOCAN_ROOM_CATALOG = (typeof sneakers !== 'undefined' && Array.isArray(sneakers))
+    ? sneakers.filter(pair => String(pair?.collectionStatus || '').trim().toLowerCase() === 'own')
+    : [];
+</script>
 <script type="module">
 import * as THREE from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
@@ -61,12 +159,25 @@ let cameraMode='first', cameraDistance=2.25, eyeHeight=1.65, avatar=null, avatar
 const playerPosition=new THREE.Vector3();
 const keys=new Set(); const joy={x:0,y:0}; const collisionBoxes=[];
 const view=$('viewport'); let renderer,scene,camera,clock,raycaster,nearInteract=[];
+// V4 gallery: selected photos from actual collection metadata, not downloaded stock images.
+const collectionCatalog=(window.LOCAN_ROOM_CATALOG || []).slice().filter(Boolean).sort((a,b)=>String(b.releaseDate||'').localeCompare(String(a.releaseDate||'')));
+let galleryPage=0, rackSlot=0, galleryMeshes=[], galleryTextureRefs=[], galleryImageMap=null, galleryGeneration=0;
+let lights=[], hemisphereLight=null, ambientLight=null, sunLight=null, lightMode='museum';
+let photoMode=false, tour=null, photoPreset='none', outfitIndex=0, avatarMats=null;
+const dollhouse={azimuth:.64,elevation:.98,distance:11.0};let savedCameraMode='third';
+let roomHotspotTarget=null, lastTouchStart=null;
+let roomWalls=[],roomCeiling=null;
+let galleryHover=null, textureLoading=false;
+let lastControlsMode='first';
+const GALLERY_CAPACITY=48; // 6×3 + 5×3 + 5×3, with future pages for 200+ pairs.
+const UI4={vi:{doll:'⌗ TOÀN CẢNH',light:'◐ ÁNH SÁNG',photo:'◎ CHỤP ẢNH',tour:'▶ THAM QUAN',gallery:'◈ KỆ GIÀY',outfit:'♙ TRANG PHỤC',help:'? HƯỚNG DẪN',enter:'TRỞ VỀ PHÒNG',shoebox:'XEM HỒ SƠ ĐÔI GIÀY ↗',close:'ĐÓNG',next:'TIẾP →',stop:'DỪNG TOUR',save:'↓ LƯU ẢNH PNG',caption:'Ảnh giày thật từ catalog · mô hình kệ 3D minh họa',missing:'Chưa tải được ảnh giày. Phòng mẫu vẫn hoạt động.',noCatalog:'Đang dùng giày mẫu: mở trang qua GitHub Pages để tải catalog.',tourScan:'Tour hiện dành cho phòng mẫu; bản quét chưa có tuyến đường an toàn.',galleryScan:'Kệ giày thuộc phòng mẫu; có thể quay về bản mẫu bằng ĐẶT LẠI.',shoeHint:'E / BẤM ĐỂ MỞ HỘP GIÀY',dollHint:'KÉO ĐỂ XOAY · CUỘN ĐỂ PHÓNG TO · BẤM SÀN ĐỂ DI CHUYỂN',photoHint:'PHOTO MODE · P ĐỂ THOÁT',helpDesc:'WASD di chuyển · chuột xoay nhìn · đến gần kệ và nhấn E hoặc chạm ảnh giày. Trên điện thoại dùng joystick và vuốt màn hình.',keys:[['W A S D','Di chuyển'],['SHIFT','Chạy'],['V','Góc nhìn 1 / 3'],['O','Toàn cảnh dollhouse'],['P','Photo Mode'],['T','Tour tự động'],['E','Mở hồ sơ sneaker'],['C','Đổi trang phục'],['L','Đổi ánh sáng'],['ESC','Thoát hộp / menu']]},en:{doll:'⌗ DOLLHOUSE',light:'◐ LIGHTING',photo:'◎ PHOTO MODE',tour:'▶ GUIDED TOUR',gallery:'◈ GALLERY',outfit:'♙ OUTFIT',help:'? HELP',enter:'RETURN TO ROOM',shoebox:'VIEW SNEAKER PROFILE ↗',close:'CLOSE',next:'NEXT →',stop:'STOP TOUR',save:'↓ SAVE PNG',caption:'Real collection photos · illustrative 3D shelves',missing:'Shoe images did not load. The demonstration still works.',noCatalog:'Demo sneakers only: open on GitHub Pages to load the catalog.',tourScan:'Tour is available in the demo room; the scan has no verified safe path.',galleryScan:'The sneaker gallery is in the demo room; RESET restores it.',shoeHint:'E / TAP TO OPEN SHOEBOX',dollHint:'DRAG TO ORBIT · SCROLL TO ZOOM · TAP FLOOR TO TELEPORT',photoHint:'PHOTO MODE · P TO EXIT',helpDesc:'WASD to walk, mouse to look. Approach a shoe and press E or tap the photo. On mobile use the joystick and swipe.',keys:[['W A S D','Walk'],['SHIFT','Run'],['V','1st / 3rd person'],['O','Dollhouse view'],['P','Photo mode'],['T','Guided tour'],['E','Open sneaker card'],['C','Change outfit'],['L','Change lighting'],['ESC','Close menus']]}};
+
 const ambientMat=(color,roughness=.85,metalness=.0)=>new THREE.MeshStandardMaterial({color,roughness,metalness});
 const MAT={wood:ambientMat('#7b6048'),dark:ambientMat('#1b1b1c',.6),black:ambientMat('#121316',.65),edge:ambientMat('#9e8860',.45,.5),wall:ambientMat('#414147',.96),wall2:ambientMat('#27272d'),soft:ambientMat('#a69c8b'),gold:ambientMat('#d8b46b',.5,.35),grey:ambientMat('#55565a'),paper:ambientMat('#dfddcf'),led:new THREE.MeshBasicMaterial({color:'#ffe5b4'})};
 function box(parent,w,h,d,x,y,z,mat){const o=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);o.position.set(x,y,z);o.castShadow=true;o.receiveShadow=true;parent.add(o);return o}
 function plane(parent,w,h,x,y,z,mat,rx=0,ry=0){const o=new THREE.Mesh(new THREE.PlaneGeometry(w,h),mat);o.rotation.set(rx,ry,0);o.position.set(x,y,z);o.receiveShadow=true;parent.add(o);return o}
-function light(parent,x,y,z,color='#ffe1aa',power=5,range=8){let p=new THREE.PointLight(color,power,range);p.position.set(x,y,z);parent.add(p)}
-function labelTexture(text,fg='#f3d895',bg='#161518'){const c=document.createElement('canvas');c.width=768;c.height=160;let x=c.getContext('2d');x.fillStyle=bg;x.fillRect(0,0,c.width,c.height);x.fillStyle=fg;x.textAlign='center';x.textBaseline='middle';x.font='bold 54px Arial';x.fillText(text,384,80);return new THREE.CanvasTexture(c)}
+function light(parent,x,y,z,color='#ffe1aa',power=5,range=8){let p=new THREE.PointLight(color,power,range);p.position.set(x,y,z);p.userData.basePower=power;parent.add(p);lights.push(p)}
+function labelTexture(text,fg='#f3d895',bg='#161518'){const c=document.createElement('canvas');c.width=768;c.height=160;let x=c.getContext('2d');x.fillStyle=bg;x.fillRect(0,0,c.width,c.height);x.fillStyle=fg;x.textAlign='center';x.textBaseline='middle';let fontSize=54;x.font=`bold ${fontSize}px Arial`;while(fontSize>22&&x.measureText(text).width>724){fontSize-=2;x.font=`bold ${fontSize}px Arial`;}x.fillText(text,384,80);return new THREE.CanvasTexture(c)}
 function label(parent,text,w,h,x,y,z,rotationY=0){let m=new THREE.MeshBasicMaterial({map:labelTexture(text),side:THREE.DoubleSide});let b=plane(parent,w,h,x,y,z,m,0,rotationY);return b}
 function woodTexture(){let c=document.createElement('canvas');c.width=1024;c.height=1024;let g=c.getContext('2d');g.fillStyle='#685749';g.fillRect(0,0,1024,1024);for(let row=0;row<16;row++){for(let col=0;col<16;col++){let x=col*64,y=row*64;let n=(row*29+col*13)%24;g.fillStyle=`rgb(${105+n},${83+n},${67+n})`;g.fillRect(x+1,y+1,62,62);g.strokeStyle='rgba(25,17,11,.13)';g.lineWidth=1;for(let j=0;j<5;j++){g.beginPath();g.moveTo(x+5,y+8+j*10);g.bezierCurveTo(x+30,y+9+j*9,x+45,y+7+j*11,x+59,y+8+j*10);g.stroke()}}}let t=new THREE.CanvasTexture(c);t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(1.1,1.4);t.colorSpace=THREE.SRGBColorSpace;return t}
 function sneaker(parent,x,y,z,colors=['#151515','#7a5b3c'],scale=.21,angle=0){const group=new THREE.Group();group.position.set(x,y,z);group.rotation.y=angle;parent.add(group);let sole=ambientMat('#d9d2bf');let upper=ambientMat(colors[0]);let side=ambientMat(colors[1]);let s=scale;
@@ -77,18 +188,28 @@ box(g,w+.08,h+.12,d,0,0,0,MAT.dark);box(g,w+.13,.05,d+.1,0,h/2+.035,0,MAT.edge);
 for(let c=1;c<cols;c++)box(g,.028,h,d+.04,-w/2+c*cellW,0,.015,MAT.edge);
 for(let r=1;r<rows;r++)box(g,w,.025,d+.05,0,-h/2+r*cellH,.025,MAT.edge);
 let palette=[['#1a1b20','#b49361'],['#e8e3d7','#a73330'],['#24252a','#79899d'],['#91704f','#eee5d1'],['#c3bfb1','#1c1d1f'],['#ecdfcf','#daac45'],['#40342d','#6a4b3f'],['#101011','#a6abb0']];
-for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){let px=-w/2+cellW*(c+.5),py=-h/2+cellH*(r+.27),zz=d/2+.02;let pal=palette[(r*cols+c)%palette.length];sneaker(g,px,py,zz,pal,Math.min(cellW*.44,.27),c%2?.1:-.1);
-  box(g,cellW*.84,.012,.015,px,-h/2+r*cellH+.095,d/2+.025,MAT.led)
+for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){
+  let px=-w/2+cellW*(c+.5),py=-h/2+cellH*(r+.27),zz=d/2+.02;
+  let item=collectionCatalog[galleryPage*GALLERY_CAPACITY + rackSlot++];
+  let pal=palette[(r*cols+c)%palette.length];
+  if(item)makeGalleryItem(g,item,px,py,zz,cellW,cellH);
+  else sneaker(g,px,py,zz,pal,Math.min(cellW*.44,.27),c%2?.1:-.1);
+  box(g,cellW*.84,.012,.015,px,-h/2+r*cellH+.095,d/2+.025,MAT.led);
 }return g}
 function addHotspot(parent,x,y,z,id){let g=new THREE.Group();g.position.set(x,y,z);let sphere=new THREE.Mesh(new THREE.SphereGeometry(.12,18,12),new THREE.MeshStandardMaterial({color:'#f4d67d',emissive:'#947a2a',emissiveIntensity:.35,metalness:.25,roughness:.4}));g.add(sphere);sphere.userData.hotspot=id;let ring=new THREE.Mesh(new THREE.TorusGeometry(.17,.014,8,36),new THREE.MeshBasicMaterial({color:'#fff0ba'}));g.add(ring);ring.userData.hotspot=id;parent.add(g);nearInteract.push(sphere,ring);return g}
 function obstacles(x,z,w,d){collisionBoxes.push({minX:x-w/2,maxX:x+w/2,minZ:z-d/2,maxZ:z+d/2})}
-function buildDemo(){if(demoGroup){scene.remove(demoGroup);demoGroup.traverse(o=>{if(o.geometry)o.geometry.dispose();if(o.material){for(let m of (Array.isArray(o.material)?o.material:[o.material])){if(m.map&&m.map!==MAT.wood.map)m.map.dispose()}}})}nearInteract=[];collisionBoxes.length=0;let g=demoGroup=new THREE.Group();scene.add(g);
+function buildDemo(){clearGallery();rackSlot=0;lights=[];if(demoGroup){scene.remove(demoGroup);demoGroup.traverse(o=>{if(o.geometry)o.geometry.dispose();if(o.material){for(let m of (Array.isArray(o.material)?o.material:[o.material])){if(m.map&&m.map!==MAT.wood.map)m.map.dispose()}}})}nearInteract=[];collisionBoxes.length=0;let g=demoGroup=new THREE.Group();scene.add(g);
 let W=dims.w,L=dims.l,H=dims.h;
 let floorMat=new THREE.MeshStandardMaterial({map:woodTexture(),roughness:.78});box(g,W,.12,L,0,-.065,0,floorMat);
 // Four real walls, lower trim, ceiling and warm accent panels.
-box(g,W,H,.10,0,H/2,-L/2-.05,MAT.wall2);box(g,W,H,.10,0,H/2,L/2+.05,MAT.wall);
-box(g,.10,H,L,-W/2-.05,H/2,0,MAT.wall);box(g,.10,H,L,W/2+.05,H/2,0,MAT.wall2);
-box(g,W,.08,L,0,H+.04,0,MAT.wall2);
+roomWalls=[
+  box(g,W,H,.10,0,H/2,-L/2-.05,MAT.wall2),
+  box(g,W,H,.10,0,H/2,L/2+.05,MAT.wall),
+  box(g,.10,H,L,-W/2-.05,H/2,0,MAT.wall),
+  box(g,.10,H,L,W/2+.05,H/2,0,MAT.wall2)
+];
+roomCeiling=box(g,W,.08,L,0,H+.04,0,MAT.wall2);
+applyWallVisibility();
 box(g,W,.095,.05,0,.05,-L/2+.025,MAT.edge);box(g,W,.095,.05,0,.05,L/2-.025,MAT.edge);
 // Door opposite sneaker gallery.
 box(g,.99,2.12,.028,W*.24,1.06,L/2-.11,MAT.dark);box(g,.9,1.97,.016,W*.24,1.06,L/2-.137,MAT.grey);box(g,.085,.022,.065,W*.24-.29,1.0,L/2-.165,MAT.edge);
@@ -108,7 +229,8 @@ let sx=W*.29,sz=L*.30;box(g,1.38,.35,.67,sx,.29,sz,MAT.grey);box(g,1.35,.47,.17,
 // Decorative golden plaque and thin art strips.
 label(g,'PRIVATE COLLECTION',1.2,.18,0,.39,-L/2+.155);
 for(let i=0;i<4;i++){let zz=-L/2+1.3+i*.38;box(g,.02,.5,.17,W/2-.075,1.25,zz,MAT.edge)}
-roomBounds={w:W,l:L};eyeHeight=1.65;playerPosition.set(0,0,L/2-1.30);yaw=0;pitch=0;syncCamera();$('demo-label').textContent=language[lang].demo;mode='demo';$('settings-btn').disabled=false;}
+roomBounds={w:W,l:L};eyeHeight=1.65;playerPosition.set(0,0,L/2-1.30);yaw=0;pitch=0;syncCamera();$('demo-label').textContent=language[lang].demo;mode='demo';$('settings-btn').disabled=false;
+applyWallVisibility();applyLighting();queueGalleryPhotos();updateCatalogStatus();}
 let roomBounds={w:5.2,l:7.2};
 function syncCamera(){
   if(cameraMode==='first'){
@@ -144,28 +266,33 @@ function makeAvatar(){
   shadow.rotation.x=-Math.PI/2;shadow.position.y=.009;root.add(shadow);
   root.scale.setScalar(.78);
   root.visible=false;
-  avatar=root;avatarParts={arms,legs};
+  avatar=root;avatarParts={arms,legs};avatarMats={coat,trousers,accent,sole,visor};
 }
 function updateViewLabel(){
   const t=language[lang];
-  $('view-btn').textContent=cameraMode==='first'?t.viewFirst:t.viewThird;
-  $('view-btn').setAttribute('aria-pressed',String(cameraMode==='third'));
+  $('view-btn').textContent=cameraMode==='first'?t.viewFirst:cameraMode==='third'?t.viewThird:(lang==='vi'?'TOÀN CẢNH':'DOLLHOUSE');
+  $('view-btn').setAttribute('aria-pressed',String(cameraMode!=='first'));
   $('view-btn').title=lang==='vi'?'Chuyển góc nhìn (V)':'Switch camera (V)';
-  $('subtitle').textContent=`VIRTUAL ROOM · ${cameraMode==='first'?t.modeFirst:t.modeThird} · V3`;
-  if(avatar)avatar.visible=cameraMode==='third';
+  $('subtitle').textContent=`VIRTUAL ROOM · ${cameraMode==='first'?t.modeFirst:cameraMode==='third'?t.modeThird:(lang==='vi'?'TOÀN CẢNH':'DOLLHOUSE')} · V4`;
+  if(avatar)avatar.visible=cameraMode!=='first';
 }
-function setCameraMode(next){
-  if(next!=='first'&&next!=='third')return;
+function setCameraMode(next,quiet=false){
+  if(!['first','third','dollhouse'].includes(next))return;
+  if(tour?.active && !quiet)stopTour();
+  if(cameraMode==='dollhouse' && next!=='dollhouse')lastControlsMode=next;
+  if(next==='dollhouse'&&cameraMode!=='dollhouse')lastControlsMode=cameraMode;
   cameraMode=next;
-  camera.fov=cameraMode==='third'?(isTouch?76:72):(isTouch?75:69);
+  camera.fov=cameraMode==='third'?(isTouch?76:72):cameraMode==='dollhouse'?55:(isTouch?75:69);
   camera.updateProjectionMatrix();
-  updateViewLabel();
-  updateCamera(0,true);
-  toast(language[lang][cameraMode==='first'?'modeChangedFirst':'modeChangedThird']);
+  applyWallVisibility();updateViewLabel();updateCamera(0,true);updateFeatureLabels();
+  if(document.pointerLockElement&&cameraMode==='dollhouse')document.exitPointerLock();
+  if(!quiet)toast(cameraMode==='dollhouse'?(lang==='vi'?'Góc nhìn toàn cảnh: kéo để xoay, bấm sàn để di chuyển.':'Dollhouse: drag to orbit; select a spot to move.'):
+    language[lang][cameraMode==='first'?'modeChangedFirst':'modeChangedThird']);
 }
 function updateCamera(dt=0,snap=false){
   if(!camera)return;
-  if(avatar){avatar.position.set(playerPosition.x,0,playerPosition.z);avatar.visible=cameraMode==='third';}
+  if(avatar){avatar.position.set(playerPosition.x,0,playerPosition.z);avatar.visible=cameraMode!=='first';}
+  if(cameraMode==='dollhouse'){const focus=new THREE.Vector3(0,Math.min(1.0,dims.h*.33),0);const a=dollhouse.azimuth,e=dollhouse.elevation;const d=dollhouse.distance;const pos=new THREE.Vector3(focus.x+Math.sin(a)*Math.cos(e)*d,focus.y+Math.sin(e)*d,focus.z+Math.cos(a)*Math.cos(e)*d);if(snap)camera.position.copy(pos);else camera.position.lerp(pos,1-Math.exp(-dt*9));camera.lookAt(focus);return;}
   if(cameraMode==='first'){
     camera.position.set(playerPosition.x,eyeHeight,playerPosition.z);
     camera.rotation.order='YXZ';camera.rotation.y=yaw;camera.rotation.x=pitch;
@@ -200,17 +327,323 @@ function updateCamera(dt=0,snap=false){
   camera.lookAt(focus);
 }
 function clampMove(target){let pad=.29;target.x=THREE.MathUtils.clamp(target.x,-roomBounds.w/2+pad,roomBounds.w/2-pad);target.z=THREE.MathUtils.clamp(target.z,-roomBounds.l/2+pad,roomBounds.l/2-pad);if(mode==='demo'){for(let b of collisionBoxes){let cpX=THREE.MathUtils.clamp(target.x,b.minX,b.maxX),cpZ=THREE.MathUtils.clamp(target.z,b.minZ,b.maxZ);let dx=target.x-cpX,dz=target.z-cpZ;if(dx*dx+dz*dz<pad*pad){if(Math.abs(dx)>Math.abs(dz))target.x=dx<0?b.minX-pad:b.maxX+pad;else target.z=dz<0?b.minZ-pad:b.maxZ+pad}}}return target}
-function createWorld(){renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:'high-performance',alpha:false,preserveDrawingBuffer:true});renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.25;renderer.setPixelRatio(Math.min(devicePixelRatio,isTouch?1.4:1.8));renderer.setSize(innerWidth,innerHeight);view.appendChild(renderer.domElement);scene=new THREE.Scene();scene.background=new THREE.Color('#09090b');scene.fog=new THREE.Fog('#09090b',14,40);camera=new THREE.PerspectiveCamera(isTouch?75:69,innerWidth/innerHeight,.045,180);clock=new THREE.Clock();raycaster=new THREE.Raycaster();scene.add(new THREE.HemisphereLight('#f8f0e2','#68696a',2.2));let a=new THREE.AmbientLight('#ffffff',.35);scene.add(a);makeAvatar();buildDemo();updateCamera(0,true);addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});}
-function setLang(next){lang=next;$('lang-btn').textContent=lang==='vi'?'EN':'VI';for(let el of document.querySelectorAll('[data-i18n]'))el.textContent=language[lang][el.dataset.i18n];$('demo-label').textContent=language[lang][mode==='demo'?'demo':'real'];$('apply-dims').textContent=language[lang].apply;$('close-settings').textContent=language[lang].close;$('settings-title').textContent=language[lang].settingsTitle;$('settings-note').textContent=language[lang].settingsNote;$('start-body').textContent=language[lang].startBody;$('start-scan-btn').textContent=language[lang].startScan;$('start-btn').textContent=language[lang].enter;$('lookhint').innerHTML=language[lang].look;$('w-label').firstChild.nodeValue=language[lang].w+' (m)';$('l-label').firstChild.nodeValue=language[lang].l+' (m)';$('h-label').firstChild.nodeValue=language[lang].h+' (m)';updateViewLabel();}
+
+function itemText(value){if(value==null)return '';if(typeof value==='object')return String(value[lang]??value.en??value.vi??'');return String(value)}
+function safeText(value){return String(value??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;')}
+function itemImage(item){return String(item?.image||item?.images?.[0]||'').replace(/^\.\//,'')}
+function itemTitle(item){return itemText(item?.title)||'Sneaker'}
+function clearGallery(){
+  galleryGeneration++;
+  for(const tex of galleryTextureRefs)tex.dispose();
+  galleryTextureRefs.length=0;galleryMeshes.length=0;galleryHover=null;
+}
+function makeGalleryItem(parent,item,x,y,z,cellW,cellH){
+  // A true photo from the private catalog, presented as an interactive cutout.
+  // It is not a fabricated 3D scan of the sneaker itself.
+  const front=z+.045;
+  box(parent,cellW*.87,cellH*.63,.014,x,y+.185,front-.018,new THREE.MeshStandardMaterial({color:'#201f21',roughness:.65,metalness:.12}));
+  const picture=plane(parent,cellW*.79,cellH*.51,x,y+.20,front+.002,
+    new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:0,side:THREE.DoubleSide,depthWrite:false}));
+  picture.userData={item,kind:'sneaker'};
+  galleryMeshes.push({mesh:picture,item});
+  const plaque=itemTitle(item).replace(/Jordan 1 Retro High OG|Jordan 1 Retro High|Nike SB Dunk Low/g,'').replace(/['’]/g,'').trim().slice(0,21) || 'ARCHIVE';
+  label(parent,plaque,cellW*.82,Math.min(.085,cellH*.12),x,y-cellH*.17,front+.008);
+}
+function updateCatalogStatus(){
+  const c=$('catalog-status');if(!c)return;
+  c.textContent=collectionCatalog.length?`${collectionCatalog.length} ${lang==='vi'?'ĐÔI ĐANG SỞ HỮU':'OWNED PAIRS'} · ${Math.min(GALLERY_CAPACITY,Math.max(0,collectionCatalog.length-galleryPage*GALLERY_CAPACITY))} ${lang==='vi'?'TRÊN KỆ':'ON DISPLAY'}`:
+    UI4[lang].noCatalog;
+  $('gallery-btn').textContent=collectionCatalog.length>GALLERY_CAPACITY?`${UI4[lang].gallery} ${galleryPage+1}/${Math.ceil(collectionCatalog.length/GALLERY_CAPACITY)}`:UI4[lang].gallery;
+}
+async function queueGalleryPhotos(){
+  if(!galleryMeshes.length)return;
+  const generation=galleryGeneration;
+  // Load the optimized WebP manifest before any large source PNG; 4 concurrent textures.
+  if(!galleryImageMap){try{const r=await fetch('./pictures/optimized/manifest.json');if(r.ok)galleryImageMap=await r.json();}catch(_){galleryImageMap={}}}
+  if(!galleryImageMap)galleryImageMap={};
+  const entries=galleryMeshes.slice();const loader=new THREE.TextureLoader();let cursor=0;
+  async function loadTexture(path){return await new Promise((resolve,reject)=>loader.load(path,resolve,undefined,reject))}
+  async function worker(){while(cursor<entries.length){const ix=cursor++;const {mesh,item}=entries[ix];const raw=itemImage(item);if(!raw)continue;
+    let tex=null;try{tex=await loadTexture(galleryImageMap[raw]||raw)}catch(_){if((galleryImageMap[raw]||raw)!==raw){try{tex=await loadTexture(raw)}catch(_2){}}}
+    if(!tex)continue;
+    if(generation!==galleryGeneration){tex.dispose();return;}
+    tex.colorSpace=THREE.SRGBColorSpace;tex.anisotropy=isTouch?2:4;
+    tex.minFilter=THREE.LinearMipmapLinearFilter;tex.generateMipmaps=true;
+    // Preserve the original sneaker photo aspect ratio: no stretched or squashed shoes.
+    const imageW=tex.image?.naturalWidth||tex.image?.width||1;
+    const imageH=tex.image?.naturalHeight||tex.image?.height||1;
+    const ratio=imageW/imageH;
+    const planeRatio=mesh.geometry.parameters.width/mesh.geometry.parameters.height;
+    mesh.scale.x=ratio<planeRatio?Math.max(.15,ratio/planeRatio):1;
+    mesh.scale.y=ratio>planeRatio?Math.max(.15,planeRatio/ratio):1;
+    mesh.material.map=tex;mesh.material.opacity=1;mesh.material.needsUpdate=true;galleryTextureRefs.push(tex);
+  }}
+  await Promise.all(Array.from({length:Math.min(4,entries.length)},()=>worker()));
+}
+function cycleGallery(){
+  if(mode==='scan'){toast(UI4[lang].galleryScan);return;}
+  if(collectionCatalog.length<=GALLERY_CAPACITY){openShoebox(0);return;}
+  const pos=playerPosition.clone(),a=yaw,b=pitch;
+  galleryPage=(galleryPage+1)%Math.ceil(collectionCatalog.length/GALLERY_CAPACITY);
+  buildDemo();playerPosition.copy(pos);yaw=a;pitch=b;updateCamera(0,true);
+  toast(lang==='vi'?`Đã mở trang kệ ${galleryPage+1}.`:`Display page ${galleryPage+1}.`);
+}
+function applyWallVisibility(){
+  const doll=cameraMode==='dollhouse'&&mode==='demo';
+  if(roomCeiling)roomCeiling.visible=!doll;
+  // Cutaway back and left walls remain; near right/front walls hide only in dollhouse.
+  roomWalls.forEach((mesh,i)=>{mesh.visible=!doll||i===0||i===2});
+}
+function applyLighting(){
+  if(!renderer||!scene)return;
+  const presets={museum:{hemi:1.75,ambient:.32,sun:.72,points:1,exposure:1.27,bg:'#09090b'},day:{hemi:2.55,ambient:.52,sun:2.0,points:.60,exposure:1.42,bg:'#1a1a20'},night:{hemi:.62,ambient:.12,sun:.12,points:1.50,exposure:1.0,bg:'#050506'}};
+  const p=presets[lightMode];
+  hemisphereLight.intensity=p.hemi;ambientLight.intensity=p.ambient;sunLight.intensity=p.sun;
+  for(const l of lights)l.intensity=l.userData.basePower*p.points;
+  renderer.toneMappingExposure=p.exposure;scene.background.set(p.bg);if(scene.fog)scene.fog.color.set(p.bg);
+}
+function cycleLighting(){const modes=['museum','day','night'];lightMode=modes[(modes.indexOf(lightMode)+1)%modes.length];applyLighting();updateFeatureLabels();toast((lang==='vi'?'Ánh sáng':'Lighting')+': '+({museum:'Museum',day:'Day',night:'Night'}[lightMode]));}
+function changeOutfit(){if(!avatarMats)return;outfitIndex=(outfitIndex+1)%4;
+  const looks=[{coat:'#18191d',trousers:'#313238',accent:'#e2be65',sole:'#d8d2c3'},
+    {coat:'#e9e6dc',trousers:'#16181c',accent:'#b42024',sole:'#f2ebe0'},
+    {coat:'#4e4035',trousers:'#212127',accent:'#d9a24d',sole:'#d0bca4'},
+    {coat:'#244954',trousers:'#20262b',accent:'#dde5de',sole:'#9faeb6'}];
+  const p=looks[outfitIndex];for(const [key,color] of Object.entries(p))avatarMats[key].color.set(color);
+  toast(lang==='vi'?`Trang phục ${outfitIndex+1}/4`:`Outfit ${outfitIndex+1}/4`);
+}
+function toggleDollhouse(){if(mode==='scan'){toast(lang==='vi'?'Góc toàn cảnh hiện dành cho phòng mẫu; bản quét có thể bị trần che.':'Dollhouse is currently available for the demonstration; scan ceilings may obscure it.');return;}
+  setCameraMode(cameraMode==='dollhouse'?(lastControlsMode==='dollhouse'?'third':lastControlsMode):'dollhouse');
+}
+function updateFeatureLabels(){const t=UI4[lang];
+  for(const [id,value] of [['dollhouse-btn',cameraMode==='dollhouse'?t.enter:t.doll],['lighting-btn',t.light+' · '+({museum:'MUSEUM',day:'DAY',night:'NIGHT'}[lightMode])],['photo-btn',t.photo],['tour-btn',t.tour],['outfit-btn',t.outfit],['help-btn',t.help]])$(id).textContent=value;
+  $('dollhouse-btn').setAttribute('aria-pressed',String(cameraMode==='dollhouse'));
+  $('photo-btn').setAttribute('aria-pressed',String(photoMode));
+  $('tour-btn').setAttribute('aria-pressed',String(Boolean(tour?.active)));
+  $('photo-save').textContent=t.save;$('photo-close').textContent=t.close+' (P)';
+  $('tour-next').textContent=t.next;$('tour-close').textContent=t.stop;
+  $('shoebox-link').textContent=t.shoebox;
+  $('help-title').textContent=t.help;$('help-description').textContent=t.helpDesc;
+  $('help-keys').className='help-keys';$('help-keys').replaceChildren(...t.keys.map(([key,desc])=>{const div=document.createElement('div');const k=document.createElement('kbd');k.textContent=key;div.append(k,document.createTextNode(' — '+desc));return div;}));
+  updateCatalogStatus();
+}
+function enterDollhouseAt(clientX,clientY){
+  if(cameraMode!=='dollhouse')return;
+  const rect=renderer.domElement.getBoundingClientRect();
+  const pointer=new THREE.Vector2(((clientX-rect.left)/rect.width)*2-1,-((clientY-rect.top)/rect.height)*2+1);
+  raycaster.setFromCamera(pointer,camera);
+  const point=new THREE.Vector3();
+  if(!raycaster.ray.intersectPlane(new THREE.Plane(new THREE.Vector3(0,1,0),0),point))return;
+  const target=new THREE.Vector3(point.x,0,point.z);clampMove(target);playerPosition.copy(target);
+  setCameraMode('third',true);updateCamera(0,true);toast(lang==='vi'?'Đã di chuyển đến vị trí đã chọn.':'Moved to selected position.');
+}
+
+function createWorld(){
+  renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:'high-performance',alpha:false,preserveDrawingBuffer:true});
+  renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;
+  renderer.setPixelRatio(Math.min(devicePixelRatio,isTouch?1.15:1.65));renderer.setSize(innerWidth,innerHeight);
+  renderer.shadowMap.enabled=!isTouch;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+  view.appendChild(renderer.domElement);scene=new THREE.Scene();scene.background=new THREE.Color('#09090b');scene.fog=new THREE.Fog('#09090b',14,40);
+  camera=new THREE.PerspectiveCamera(69,innerWidth/innerHeight,.045,180);clock=new THREE.Clock();raycaster=new THREE.Raycaster();
+  hemisphereLight=new THREE.HemisphereLight('#f8f0e2','#68696a',1.5);scene.add(hemisphereLight);
+  ambientLight=new THREE.AmbientLight('#ffffff',.3);scene.add(ambientLight);
+  sunLight=new THREE.DirectionalLight('#ffe8c0',.8);sunLight.position.set(-2.8,5.8,2.3);sunLight.castShadow=!isTouch;sunLight.shadow.mapSize.set(1024,1024);sunLight.shadow.camera.left=-8;sunLight.shadow.camera.right=8;sunLight.shadow.camera.top=8;sunLight.shadow.camera.bottom=-8;sunLight.shadow.normalBias=.055;scene.add(sunLight);
+  makeAvatar();buildDemo();applyLighting();updateCamera(0,true);
+  addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
+}
+function setLang(next){lang=next;$('lang-btn').textContent=lang==='vi'?'EN':'VI';for(let el of document.querySelectorAll('[data-i18n]'))el.textContent=language[lang][el.dataset.i18n];$('demo-label').textContent=language[lang][mode==='demo'?'demo':'real'];$('apply-dims').textContent=language[lang].apply;$('close-settings').textContent=language[lang].close;$('settings-title').textContent=language[lang].settingsTitle;$('settings-note').textContent=language[lang].settingsNote;$('start-body').textContent=language[lang].startBody;$('start-scan-btn').textContent=language[lang].startScan;$('start-btn').textContent=language[lang].enter;$('lookhint').innerHTML=language[lang].look;$('w-label').firstChild.nodeValue=language[lang].w+' (m)';$('l-label').firstChild.nodeValue=language[lang].l+' (m)';$('h-label').firstChild.nodeValue=language[lang].h+' (m)';updateViewLabel();updateFeatureLabels();syncModalLanguage();}
 function toast(message){let el=$('toast');el.textContent=message;el.style.display='block';clearTimeout(toast._t);toast._t=setTimeout(()=>el.style.display='none',4500)}
 function info(id){const data={archive:{vi:['Sneaker Gallery','Đây là kệ giày minh họa. Khi bạn gửi bản quét hoặc ảnh phòng thật, chúng ta sẽ thay bằng hệ tủ đúng kích thước và gắn các đôi từ catalog.'],en:['Sneaker Gallery','The shelves are placeholders. Once you provide a real scan or room photos, we can replace them with the actual room and link your sneaker catalog.']},desk:{vi:['Gaming Corner','Bàn máy tính trong bản mẫu. Đây chưa phải thiết bị hoặc vị trí trong phòng thật của bạn.'],en:['Gaming Corner','Demo desk only. This is not a scan of your actual equipment or layout.']},lounge:{vi:['Lounge','Khu ngồi nghỉ mẫu. Chúng ta sẽ thay bằng sofa và bố cục thật sau khi nhận dữ liệu phòng.'],en:['Lounge','Illustrative lounge. Furnishings and positions will be reconstructed from your real room.']}};let d=data[id];if(!d)return;$('info-title').textContent=d[lang][0];$('info-body').textContent=d[lang][1];$('info-link').innerHTML=id==='archive'?'<a href="./" target="_blank" rel="noopener">LỘC AN SNEAKER COLLECTION ↗</a>':'';$('info-panel').style.display='block';if(document.pointerLockElement)document.exitPointerLock();}
-function inspect(){if(cameraMode==='third'){const aim=new THREE.Vector3(-Math.sin(yaw)*Math.cos(pitch),Math.sin(pitch),-Math.cos(yaw)*Math.cos(pitch)).normalize();raycaster.set(new THREE.Vector3(playerPosition.x,eyeHeight,playerPosition.z),aim)}else{raycaster.setFromCamera({x:0,y:0},camera)}let hits=raycaster.intersectObjects(nearInteract,false);if(hits.length && hits[0].distance<3.0)info(hits[0].object.userData.hotspot);else toast(lang==='vi'?'Tiến gần dấu vàng (◎) rồi bấm E để xem.':'Walk closer to a golden marker (◎), then press E.');}
+
+let activeShoeIndex=0;
+function displayPageItems(){return galleryMeshes.map(x=>x.item)}
+function closeShoebox(){
+  $('shoebox-modal').hidden=true;$('shoebox-scene').classList.remove('is-open');
+  if(!tour?.active&&$('start-screen').style.display==='none')walking=true;
+}
+function openShoebox(indexOrItem=0){
+  if(mode==='scan'){toast(UI4[lang].galleryScan);return false;}
+  const items=displayPageItems();
+  if(!items.length){toast(UI4[lang].noCatalog);return false;}
+  if(tour?.active)stopTour();
+  if(typeof indexOrItem==='number')activeShoeIndex=((indexOrItem%items.length)+items.length)%items.length;
+  else{const n=items.findIndex(x=>x?.id===indexOrItem?.id);activeShoeIndex=n>=0?n:0;}
+  const item=items[activeShoeIndex];
+  if(document.pointerLockElement)document.exitPointerLock();
+  walking=false;
+  const image=itemImage(item);
+  $('shoebox-image').src=galleryImageMap?.[image]||image;
+  $('shoebox-image').onerror=()=>{if($('shoebox-image').src.endsWith(image))return;$('shoebox-image').src=image;};
+  $('shoebox-title').textContent=itemTitle(item);
+  $('shoebox-subtitle').textContent=itemText(item.subtitle)||'';
+  $('shoebox-index').textContent=String(activeShoeIndex+1).padStart(2,'0')+'/'+String(items.length).padStart(2,'0');
+  const getRetail=()=>item?.retail?.amount?`${item.retail.amount} ${item.retail.currency||'USD'}`:item?.retailPrice||'—';
+  const facts=[['SKU',item.sku||'—'],[lang==='vi'?'NĂM PHÁT HÀNH':'RELEASE',String(item.releaseDate||'—').slice(0,10)],
+    ['SIZE',item.size||'—'],[lang==='vi'?'TÌNH TRẠNG':'CONDITION',itemText(item.condition)||'—'],
+    ['RETAIL',getRetail()],[lang==='vi'?'PHÂN LOẠI':'EDITION',itemText(item.editionType)||item.edition||'GR']];
+  const host=$('shoebox-facts');host.replaceChildren(...facts.map(([key,value])=>{
+    const cell=document.createElement('div');cell.className='shoe-fact';
+    const b=document.createElement('b');b.textContent=key;const span=document.createElement('span');span.textContent=String(value);
+    cell.append(b,span);return cell;
+  }));
+  const storyValue=item.story?.[lang]||item.story?.en||item.story?.vi||'';
+  const storyHost=$('shoebox-story');storyHost.replaceChildren();
+  if(storyValue){
+    const holder=document.createElement('div');holder.innerHTML=String(storyValue);
+    const paragraphs=[...holder.querySelectorAll('p')];
+    if(paragraphs.length){for(const p of paragraphs.slice(0,12)){const el=document.createElement('p');el.textContent=p.textContent||'';storyHost.appendChild(el)}}
+    else storyHost.textContent=holder.textContent||'';
+  }else storyHost.textContent=lang==='vi'?'Khám phá thông tin đầy đủ trong hồ sơ đôi giày.':'Open the full sneaker profile for further details.';
+  $('shoebox-link').href=`./shoe.html?id=${encodeURIComponent(item.id||'')}&lang=${encodeURIComponent(lang)}`;
+  $('shoebox-caption').textContent=UI4[lang].caption;
+  $('shoebox-link').textContent=UI4[lang].shoebox;
+  $('shoebox-modal').hidden=false;
+  $('shoebox-scene').classList.remove('is-open');
+  requestAnimationFrame(()=>requestAnimationFrame(()=>$('shoebox-scene').classList.add('is-open')));
+  return true;
+}
+function shoeIndexAtPointer(clientX,clientY,fromCamera=true){
+  if(!galleryMeshes.length)return -1;
+  if(fromCamera){const rect=renderer.domElement.getBoundingClientRect();raycaster.setFromCamera(new THREE.Vector2((clientX-rect.left)/rect.width*2-1,-((clientY-rect.top)/rect.height*2-1)),camera)}
+  else if(cameraMode==='third'){
+    const aim=new THREE.Vector3(-Math.sin(yaw)*Math.cos(pitch),Math.sin(pitch),-Math.cos(yaw)*Math.cos(pitch)).normalize();
+    raycaster.set(new THREE.Vector3(playerPosition.x,eyeHeight,playerPosition.z),aim);
+  }else raycaster.setFromCamera({x:0,y:0},camera);
+  const hits=raycaster.intersectObjects(galleryMeshes.map(x=>x.mesh),false);
+  const range=cameraMode==='dollhouse'?50:fromCamera?(cameraMode==='third'?6.4:4.0):4.0;
+  if(!hits.length||hits[0].distance>range)return -1;
+  return galleryMeshes.findIndex(x=>x.mesh===hits[0].object);
+}
+function inspect(clientX=null,clientY=null,quiet=false){
+  if(mode==='demo'){
+    const n=(typeof clientX==='number'&&typeof clientY==='number')?shoeIndexAtPointer(clientX,clientY,true):shoeIndexAtPointer(0,0,false);
+    if(n>=0){openShoebox(n);return true;}
+  }
+  if(cameraMode==='dollhouse')return false;
+  if(cameraMode==='third'){
+    const aim=new THREE.Vector3(-Math.sin(yaw)*Math.cos(pitch),Math.sin(pitch),-Math.cos(yaw)*Math.cos(pitch)).normalize();
+    raycaster.set(new THREE.Vector3(playerPosition.x,eyeHeight,playerPosition.z),aim);
+  }else raycaster.setFromCamera({x:0,y:0},camera);
+  const hits=raycaster.intersectObjects(nearInteract,false);
+  if(hits.length&&hits[0].distance<3.2){info(hits[0].object.userData.hotspot);return true;}
+  if(!quiet)toast(lang==='vi'?'Nhìn vào ảnh sneaker và nhấn E, hoặc tiến gần dấu vàng (◎).':'Aim at a sneaker photo and press E, or approach a gold marker.');
+  return false;
+}
+function updateFocusHint(){
+  const el=$('focus-hint');
+  if(!walking||photoMode||tour?.active||mode==='scan'||cameraMode==='dollhouse'||!$('shoebox-modal').hidden){el.style.display='none';return;}
+  const n=shoeIndexAtPointer(0,0,false);
+  if(n<0){el.style.display='none';return;}
+  el.textContent=itemTitle(galleryMeshes[n].item)+' · '+UI4[lang].shoeHint;
+  el.style.display='block';
+}
+function closeHelp(){$('help-overlay').hidden=true;if($('start-screen').style.display==='none')walking=true;}
+function showHelp(){if(document.pointerLockElement)document.exitPointerLock();walking=false;updateFeatureLabels();$('help-overlay').hidden=false;}
+function togglePhoto(force){
+  photoMode=typeof force==='boolean'?force:!photoMode;
+  if(photoMode){if(tour?.active)stopTour();if(document.pointerLockElement)document.exitPointerLock();}
+  document.body.classList.toggle('photo-mode',photoMode);$('photo-panel').hidden=!photoMode;
+  $('photo-mode-hint').textContent=UI4[lang].photoHint;updateFeatureLabels();
+}
+function photoView(preset){
+  photoPreset=preset;
+  if(preset==='wide'){if(mode==='demo')setCameraMode('dollhouse',true);dollhouse.distance=Math.max(dims.w,dims.l)*1.6;dollhouse.elevation=.99;dollhouse.azimuth=.64;}
+  if(preset==='display'){setCameraMode('first',true);playerPosition.set(0,0,-dims.l/2+2.05);yaw=0;pitch=.04;}
+  if(preset==='visitor'){setCameraMode('third',true);playerPosition.set(0,0,dims.l/2-2);yaw=0;pitch=-.12;}
+  updateCamera(0,true);
+}
+function saveRoomPhoto(){
+  if(!renderer)return;
+  const w=innerWidth,h=innerHeight,dpr=renderer.getPixelRatio();
+  const factor=isTouch?1.25:Math.min(2.0,2800/Math.max(w,h));
+  const rw=Math.floor(w*factor),rh=Math.floor(h*factor);
+  try{
+    renderer.setPixelRatio(1);renderer.setSize(rw,rh,false);
+    camera.aspect=rw/rh;camera.updateProjectionMatrix();renderer.render(scene,camera);
+    const png=renderer.domElement.toDataURL('image/png');
+    if(!png||png==='data:,')throw Error('The screenshot canvas was unavailable');
+    const a=document.createElement('a');a.href=png;
+    a.download='Loc-An-Sneaker-Collection-Room-'+new Date().toISOString().slice(0,10)+'.png';
+    document.body.append(a);a.click();a.remove();
+    toast(lang==='vi'?'Đã xuất ảnh PNG.':'PNG exported.');
+  }catch(err){console.error('Photo Mode export',err);toast(lang==='vi'?'Không thể xuất ảnh trên trình duyệt này.':'Could not export image in this browser.');}
+  finally{renderer.setPixelRatio(dpr);renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();}
+}
+function tourStops(){const W=dims.w,L=dims.l;return [
+  {title:{vi:'KHỞI ĐẦU',en:'WELCOME'},text:{vi:'Bắt đầu từ lối vào và khám phá không gian lưu trữ sneaker.',en:'Enter the collection and explore the sneaker archive.'},x:0,z:L/2-1.25,a:0},
+  {title:{vi:'BỨC TƯỜNG SNEAKER',en:'SNEAKER GALLERY'},text:{vi:'Những đôi đang sở hữu được trình bày từ catalog thực tế. Chọn một ảnh trên kệ để xem Archive Card.',en:'Owned sneakers are displayed from the actual catalog. Choose a shelf photo to open its Archive Card.'},x:0,z:-L/2+1.75,a:0},
+  {title:{vi:'KỆ BÊN TRÁI',en:'LEFT DISPLAY'},text:{vi:'Hệ kệ bên trái tạo chiều sâu cho phòng sưu tầm.',en:'The left gallery creates a second display zone.'},x:-W/2+1.65,z:-.9,a:Math.PI/2},
+  {title:{vi:'KỆ BÊN PHẢI',en:'RIGHT DISPLAY'},text:{vi:'Khám phá thêm các đôi giày và câu chuyện lịch sử của chúng.',en:'Explore more shoes and their archival stories.'},x:W/2-1.6,z:-.9,a:-Math.PI/2},
+  {title:{vi:'KHU GAMING',en:'GAMING CORNER'},text:{vi:'Một góc làm việc và giải trí trong bản thiết kế mẫu.',en:'A workspace and gaming corner in the demonstration room.'},x:-W*.18,z:L*.25-1.25,a:-.35},
+  {title:{vi:'KHU NGỒI NGHỈ',en:'LOUNGE'},text:{vi:'Kết thúc chuyến tham quan tại khu sofa và nghỉ ngơi.',en:'Finish the tour at the lounge.'},x:W*.12,z:L*.22-1.15,a:-.55}
+]}
+function startTour(){
+  if(mode!=='demo'){toast(UI4[lang].tourScan);return;}
+  closeShoebox();if(photoMode)togglePhoto(false);
+  $('start-screen').style.display='none';
+  if(document.pointerLockElement)document.exitPointerLock();
+  setCameraMode('first',true);
+  walking=false;
+  tour={active:true,index:-1,time:0,from:playerPosition.clone(),fromAngle:yaw,to:playerPosition.clone(),toAngle:yaw,stops:tourStops()};
+  nextTourStop();updateFeatureLabels();
+}
+function nextTourStop(){
+  if(!tour?.active)return;
+  if(tour.index+1>=tour.stops.length){stopTour();toast(lang==='vi'?'Đã hoàn thành chuyến tham quan!':'Tour complete!');return;}
+  tour.index++;tour.time=0;tour.from=playerPosition.clone();tour.fromAngle=yaw;
+  const st=tour.stops[tour.index];tour.to=new THREE.Vector3(st.x,0,st.z);tour.toAngle=st.a;
+  $('tour-title').textContent=st.title[lang];$('tour-description').textContent=st.text[lang];$('tour-counter').textContent=`${tour.index+1}/${tour.stops.length}`;
+  $('tour-panel').hidden=false;
+}
+function advanceTour(dt){
+  if(!tour?.active)return;
+  tour.time+=dt;const moveTime=2.5;
+  const t=Math.min(1,tour.time/moveTime);const smooth=t*t*(3-2*t);
+  playerPosition.copy(tour.from).lerp(tour.to,smooth);
+  const diff=Math.atan2(Math.sin(tour.toAngle-tour.fromAngle),Math.cos(tour.toAngle-tour.fromAngle));yaw=tour.fromAngle+diff*smooth;
+  pitch=THREE.MathUtils.lerp(pitch,0,Math.min(1,dt*2));
+  if(tour.time>6.0)nextTourStop();
+}
+function stopTour(){if(!tour?.active)return;tour=null;$('tour-panel').hidden=true;walking=true;updateFeatureLabels();}
+function syncModalLanguage(){if(!$('shoebox-modal').hidden)openShoebox(activeShoeIndex);if(tour?.active){const st=tour.stops[tour.index];$('tour-title').textContent=st.title[lang];$('tour-description').textContent=st.text[lang];}}
+function closeTopUI(){
+  if(!$('shoebox-modal').hidden){closeShoebox();return true;}
+  if(!$('help-overlay').hidden){closeHelp();return true;}
+  if(tour?.active){stopTour();return true;}
+  if(photoMode){togglePhoto(false);return true;}
+  return false;
+}
+function registerV4UI(){
+  $('dollhouse-btn').onclick=toggleDollhouse;
+  $('lighting-btn').onclick=cycleLighting;
+  $('photo-btn').onclick=()=>togglePhoto();
+  $('photo-close').onclick=()=>togglePhoto(false);
+  $('photo-save').onclick=saveRoomPhoto;
+  $('photo-wide').onclick=()=>photoView('wide');
+  $('photo-display').onclick=()=>photoView('display');
+  $('photo-visitor').onclick=()=>photoView('visitor');
+  $('tour-btn').onclick=()=>tour?.active?stopTour():startTour();
+  $('tour-close').onclick=stopTour;
+  $('tour-next').onclick=nextTourStop;
+  $('gallery-btn').onclick=cycleGallery;
+  $('outfit-btn').onclick=changeOutfit;
+  $('help-btn').onclick=showHelp;
+  $('help-close').onclick=closeHelp;
+  $('help-overlay').addEventListener('click',e=>{if(e.target===$('help-overlay'))closeHelp()});
+  $('shoebox-close').onclick=closeShoebox;
+  $('shoebox-modal').addEventListener('click',e=>{if(e.target===$('shoebox-modal'))closeShoebox()});
+  $('shoebox-prev').onclick=()=>openShoebox(activeShoeIndex-1);
+  $('shoebox-next').onclick=()=>openShoebox(activeShoeIndex+1);
+  $('room-help')?.addEventListener('click',showHelp);
+  updateFeatureLabels();
+}
+
 function drawMap(){let c=$('minimap'),g=c.getContext('2d');if(!g)return;const W=c.width,H=c.height;g.clearRect(0,0,W,H);g.fillStyle='#0d0c0b';g.fillRect(0,0,W,H);const scale=Math.min((W-26)/roomBounds.w,(H-26)/roomBounds.l);let ox=W/2,oy=H/2;g.strokeStyle='#d5bc7e';g.lineWidth=3;g.strokeRect(ox-roomBounds.w*scale/2,oy-roomBounds.l*scale/2,roomBounds.w*scale,roomBounds.l*scale);if(mode==='demo'){for(let o of collisionBoxes){g.fillStyle='#645640';g.fillRect(ox+o.minX*scale,oy+o.minZ*scale,(o.maxX-o.minX)*scale,(o.maxZ-o.minZ)*scale)}}let px=ox+playerPosition.x*scale,py=oy+playerPosition.z*scale;g.fillStyle='#f6d984';g.beginPath();g.arc(px,py,6,0,Math.PI*2);g.fill();g.strokeStyle='#f6d984';g.lineWidth=3;g.beginPath();g.moveTo(px,py);g.lineTo(px-Math.sin(yaw)*18,py-Math.cos(yaw)*18);g.stroke()}
 function animate(){
   requestAnimationFrame(animate);
   const dt=Math.min(clock.getDelta(),.05);
   let motion=0;
-  if(walking){
+  if(tour?.active)advanceTour(dt);
+  if(walking&&cameraMode!=='dollhouse'&&!tour?.active&&$('shoebox-modal').hidden&&$('help-overlay').hidden){
     const f=(keys.has('KeyW')||keys.has('ArrowUp')?1:0)-(keys.has('KeyS')||keys.has('ArrowDown')?1:0)-joy.y;
     const r=(keys.has('KeyD')||keys.has('ArrowRight')?1:0)-(keys.has('KeyA')||keys.has('ArrowLeft')?1:0)+joy.x;
     const norm=Math.hypot(f,r);
@@ -239,27 +672,41 @@ function animate(){
     avatarParts.arms[1].rotation.x=-avatarParts.legs[1].rotation.x*.7;
   }
   updateCamera(dt);
+  if((Math.floor(performance.now()/200)!==animate.lastFocus)){animate.lastFocus=Math.floor(performance.now()/200);updateFocusHint();}
+  if(cameraMode==='dollhouse'&&!photoMode){$('mode-hint').hidden=false;$('mode-hint').textContent=UI4[lang].dollHint;}
+  else if(photoMode){$('mode-hint').hidden=true;}
+  else $('mode-hint').hidden=true;
   drawMap();
   renderer.render(scene,camera);
 }
 function hideStart(){walking=true;$('start-screen').style.display='none';if(!isTouch){renderer.domElement.requestPointerLock?.().catch(()=>{});}toast(language[lang].welcome)}
 function touchEvents(){const pad=$('pad'),knob=$('pad-knob');let padId=null;pad.addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();padId=e.pointerId;pad.setPointerCapture(e.pointerId);movePad(e)});function movePad(e){let rect=pad.getBoundingClientRect(),cx=rect.left+rect.width/2,cy=rect.top+rect.height/2;let x=e.clientX-cx,y=e.clientY-cy;let len=Math.max(1,Math.hypot(x,y));let max=39;let mult=Math.min(max,len)/len;let tx=x*mult,ty=y*mult;joy.x=tx/max;joy.y=ty/max;knob.style.transform=`translate(${tx}px,${ty}px)`}pad.addEventListener('pointermove',e=>{if(e.pointerId===padId)movePad(e)});function release(e){if(e.pointerId!==padId)return;padId=null;joy.x=joy.y=0;knob.style.transform='translate(0px,0px)'}pad.addEventListener('pointerup',release);pad.addEventListener('pointercancel',release);
-let area=renderer.domElement;area.addEventListener('pointerdown',e=>{if(!walking)return;if(e.pointerType==='mouse'){if(document.pointerLockElement!==area&&e.button===0)area.requestPointerLock?.().catch(()=>{});return}if(lookPointer!==null)return;lookPointer=e.pointerId;lastPointer={x:e.clientX,y:e.clientY};area.setPointerCapture(e.pointerId)});
-area.addEventListener('pointermove',e=>{if(e.pointerId!==lookPointer||!lastPointer)return;const dx=e.clientX-lastPointer.x,dy=e.clientY-lastPointer.y;lastPointer={x:e.clientX,y:e.clientY};yaw-=dx*.006;pitch=THREE.MathUtils.clamp(pitch-dy*.006,-1.42,1.42);syncCamera()});area.addEventListener('pointerup',e=>{if(e.pointerId===lookPointer){lookPointer=null;lastPointer=null}});area.addEventListener('pointercancel',()=>{lookPointer=null;lastPointer=null});}
-function normalizeImported(model){const bbox=new THREE.Box3().setFromObject(model);const bbSize=bbox.getSize(new THREE.Vector3()),center=bbox.getCenter(new THREE.Vector3());if(!Number.isFinite(bbSize.x)||Math.max(bbSize.x,bbSize.y,bbSize.z)<.01)throw Error('Empty model');let scale=1;const extent=Math.max(bbSize.x,bbSize.y,bbSize.z);if(extent>70)scale=8/extent; // Handle wildly scaled exports, without pretending calibrated accuracy.
+let area=renderer.domElement;area.addEventListener('pointerdown',e=>{if(!walking)return;if(cameraMode==='dollhouse'){if(lookPointer!==null)return;lookPointer=e.pointerId;lastPointer={x:e.clientX,y:e.clientY};lastTouchStart={x:e.clientX,y:e.clientY,moved:false};area.setPointerCapture(e.pointerId);return;}if(e.pointerType==='mouse'){if(document.pointerLockElement!==area&&e.button===0)area.requestPointerLock?.().catch(()=>{});return}if(lookPointer!==null)return;lookPointer=e.pointerId;lastPointer={x:e.clientX,y:e.clientY};lastTouchStart={x:e.clientX,y:e.clientY,moved:false};area.setPointerCapture(e.pointerId)});
+area.addEventListener('pointermove',e=>{if(e.pointerId!==lookPointer||!lastPointer)return;const dx=e.clientX-lastPointer.x,dy=e.clientY-lastPointer.y;if(lastTouchStart&&Math.hypot(e.clientX-lastTouchStart.x,e.clientY-lastTouchStart.y)>9)lastTouchStart.moved=true;lastPointer={x:e.clientX,y:e.clientY};if(cameraMode==='dollhouse'){dollhouse.azimuth-=dx*.006;dollhouse.elevation=THREE.MathUtils.clamp(dollhouse.elevation+dy*.004,.35,1.43);updateCamera(0,true);return;}yaw-=dx*.006;pitch=THREE.MathUtils.clamp(pitch-dy*.006,-1.42,1.42);syncCamera()});area.addEventListener('pointerup',e=>{if(e.pointerId===lookPointer){const tap=!lastTouchStart?.moved;if(tap){if(cameraMode==='dollhouse'){if(!inspect(e.clientX,e.clientY,true))enterDollhouseAt(e.clientX,e.clientY);}else if(e.pointerType!=='mouse')inspect(e.clientX,e.clientY,true);}lookPointer=null;lastPointer=null;lastTouchStart=null}});area.addEventListener('pointercancel',()=>{lookPointer=null;lastPointer=null});}
+function normalizeImported(model){if(tour?.active)stopTour();if(photoMode)togglePhoto(false);const bbox=new THREE.Box3().setFromObject(model);const bbSize=bbox.getSize(new THREE.Vector3()),center=bbox.getCenter(new THREE.Vector3());if(!Number.isFinite(bbSize.x)||Math.max(bbSize.x,bbSize.y,bbSize.z)<.01)throw Error('Empty model');let scale=1;const extent=Math.max(bbSize.x,bbSize.y,bbSize.z);if(extent>70)scale=8/extent; // Handle wildly scaled exports, without pretending calibrated accuracy.
 model.scale.setScalar(scale);model.position.set(-center.x*scale,-bbox.min.y*scale,-center.z*scale);const measured=new THREE.Box3().setFromObject(model),q=measured.getSize(new THREE.Vector3());scanSize=q;roomBounds={w:Math.max(q.x,2),l:Math.max(q.z,2)};
-if(demoGroup)demoGroup.visible=false;if(scanGroup){scene.remove(scanGroup);scanGroup.traverse(o=>{if(o.geometry)o.geometry.dispose();})};scanGroup=model;scene.add(model);eyeHeight=Math.min(1.65,Math.max(1.25,q.y*.62));playerPosition.set(0,0,Math.max(.3,q.z*.32));yaw=0;pitch=0;syncCamera();mode='scan';$('demo-label').textContent=language[lang].real;$('settings-btn').disabled=true;
+if(demoGroup)demoGroup.visible=false;if(scanGroup){scene.remove(scanGroup);scanGroup.traverse(o=>{if(o.geometry)o.geometry.dispose();})};scanGroup=model;scene.add(model);eyeHeight=Math.min(1.65,Math.max(1.25,q.y*.62));playerPosition.set(0,0,Math.max(.3,q.z*.32));yaw=0;pitch=0;syncCamera();mode='scan';if(cameraMode==='dollhouse')setCameraMode('first',true);$('demo-label').textContent=language[lang].real;$('settings-btn').disabled=true;
 }
 async function importFiles(fileList){let files=Array.from(fileList);let main=files.find(f=>/\.glb$/i.test(f.name))||files.find(f=>/\.gltf$/i.test(f.name));if(!main){toast(language[lang].invalid);return;}
 $('busy').style.display='block';$('start-screen').style.display='none';walking=true;
 let urls=[];try{let map=new Map();for(let f of files){const u=URL.createObjectURL(f);urls.push(u);map.set(f.name.toLowerCase(),u)}let manager=new THREE.LoadingManager();manager.setURLModifier(url=>{let basename=decodeURIComponent(url.split(/[?#]/)[0].split('/').pop()).toLowerCase();return map.get(basename)||url});let loader=new GLTFLoader(manager);let data=/\.glb$/i.test(main.name)?await main.arrayBuffer():await main.text();let gltf=await new Promise((ok,fail)=>loader.parse(data,'',ok,fail));normalizeImported(gltf.scene);toast(language[lang].scanSuccess)}catch(err){console.error('[Loc An Virtual Room] scan import',err);toast(language[lang].scanFail)}finally{$('busy').style.display='none';for(let u of urls)URL.revokeObjectURL(u);$('scan-input').value=''}
 }
-function registerUI(){let showScan=()=>{if(document.pointerLockElement)document.exitPointerLock();$('scan-input').click()};$('scan-btn').onclick=showScan;$('start-scan-btn').onclick=showScan;$('scan-input').addEventListener('change',e=>importFiles(e.target.files));$('start-btn').onclick=hideStart;$('home-btn').onclick=()=>{location.href='./'};$('reset-btn').onclick=()=>{if(scanGroup){scene.remove(scanGroup);scanGroup=null}if(demoGroup)demoGroup.visible=true;roomBounds={w:dims.w,l:dims.l};mode='demo';$('settings-btn').disabled=false;eyeHeight=1.65;playerPosition.set(0,0,dims.l/2-1.30);yaw=pitch=0;syncCamera();updateCamera(0,true);$('demo-label').textContent=language[lang].demo;toast(language[lang].resetDemo)};
-$('settings-btn').onclick=()=>{if(document.pointerLockElement)document.exitPointerLock();$('settings').style.display='block'};$('close-settings').onclick=()=>$('settings').style.display='none';$('apply-dims').onclick=()=>{const w=+$('room-w').value,l=+$('room-l').value,h=+$('room-h').value;if(![w,l,h].every(Number.isFinite)||w<3||w>12||l<3.5||l>15||h<2.2||h>4.5){toast('3–12 m × 3.5–15 m × 2.2–4.5 m');return;}dims={w,l,h};buildDemo();$('settings').style.display='none';toast(lang==='vi'?'Đã cập nhật kích thước bản mẫu.':'Demo room dimensions updated.')};$('close-info').onclick=()=>$('info-panel').style.display='none';$('lang-btn').onclick=()=>setLang(lang==='vi'?'en':'vi');$('view-btn').onclick=()=>setCameraMode(cameraMode==='first'?'third':'first');$('interact-mobile').onclick=inspect;document.addEventListener('keydown',e=>{if(['INPUT','TEXTAREA'].includes(document.activeElement?.tagName))return;keys.add(e.code);if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space'].includes(e.code))e.preventDefault();if(e.code==='KeyE'&&walking)inspect();if(e.code==='KeyV'&&!e.repeat)setCameraMode(cameraMode==='first'?'third':'first');if(e.code==='Escape'){$('settings').style.display='none';$('info-panel').style.display='none'}});document.addEventListener('keyup',e=>keys.delete(e.code));document.addEventListener('mousemove',e=>{if(document.pointerLockElement!==renderer.domElement||!walking)return;yaw-=e.movementX*.0022;pitch=THREE.MathUtils.clamp(pitch-e.movementY*.0022,-1.42,1.42);syncCamera()});document.addEventListener('visibilitychange',()=>{if(document.hidden)keys.clear()});renderer.domElement.addEventListener('click',()=>{if(document.pointerLockElement===renderer.domElement)inspect()});renderer.domElement.addEventListener('wheel',e=>{if(cameraMode==='third'){e.preventDefault();cameraDistance=THREE.MathUtils.clamp(cameraDistance+Math.sign(e.deltaY)*.18,1.3,3.4);updateCamera(0,true)}},{passive:false});
+function registerUI(){let showScan=()=>{if(document.pointerLockElement)document.exitPointerLock();$('scan-input').click()};$('scan-btn').onclick=showScan;$('start-scan-btn').onclick=showScan;$('scan-input').addEventListener('change',e=>importFiles(e.target.files));$('start-btn').onclick=hideStart;$('home-btn').onclick=()=>{location.href='./'};$('reset-btn').onclick=()=>{if(tour?.active)stopTour();if(photoMode)togglePhoto(false);closeShoebox();if(scanGroup){scene.remove(scanGroup);scanGroup=null}if(demoGroup)demoGroup.visible=true;roomBounds={w:dims.w,l:dims.l};mode='demo';if(cameraMode==='dollhouse')setCameraMode('first',true);$('settings-btn').disabled=false;eyeHeight=1.65;playerPosition.set(0,0,dims.l/2-1.30);yaw=pitch=0;syncCamera();updateCamera(0,true);$('demo-label').textContent=language[lang].demo;toast(language[lang].resetDemo)};
+$('settings-btn').onclick=()=>{if(document.pointerLockElement)document.exitPointerLock();$('settings').style.display='block'};$('close-settings').onclick=()=>$('settings').style.display='none';$('apply-dims').onclick=()=>{const w=+$('room-w').value,l=+$('room-l').value,h=+$('room-h').value;if(![w,l,h].every(Number.isFinite)||w<3||w>12||l<3.5||l>15||h<2.2||h>4.5){toast('3–12 m × 3.5–15 m × 2.2–4.5 m');return;}dims={w,l,h};buildDemo();$('settings').style.display='none';toast(lang==='vi'?'Đã cập nhật kích thước bản mẫu.':'Demo room dimensions updated.')};$('close-info').onclick=()=>$('info-panel').style.display='none';$('lang-btn').onclick=()=>setLang(lang==='vi'?'en':'vi');$('view-btn').onclick=()=>setCameraMode(cameraMode==='first'?'third':cameraMode==='third'?'first':'third');$('interact-mobile').onclick=inspect;document.addEventListener('keydown',e=>{if(['INPUT','TEXTAREA'].includes(document.activeElement?.tagName))return;if(!$('shoebox-modal').hidden||!$('help-overlay').hidden){if(e.code==='Escape')closeTopUI();return;}keys.add(e.code);if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space'].includes(e.code))e.preventDefault();if(e.code==='Escape'){closeTopUI();$('settings').style.display='none';$('info-panel').style.display='none';return;}if(!$('shoebox-modal').hidden||!$('help-overlay').hidden)return;if(e.code==='KeyE'&&walking)inspect();if(e.code==='KeyV'&&!e.repeat)setCameraMode(cameraMode==='first'?'third':'first');if(e.code==='KeyO'&&!e.repeat)toggleDollhouse();if(e.code==='KeyP'&&!e.repeat)togglePhoto();if(e.code==='KeyT'&&!e.repeat)(tour?.active?stopTour():startTour());if(e.code==='KeyL'&&!e.repeat)cycleLighting();if(e.code==='KeyC'&&!e.repeat)changeOutfit();});document.addEventListener('keyup',e=>keys.delete(e.code));document.addEventListener('mousemove',e=>{if(document.pointerLockElement!==renderer.domElement||!walking)return;yaw-=e.movementX*.0022;pitch=THREE.MathUtils.clamp(pitch-e.movementY*.0022,-1.42,1.42);syncCamera()});document.addEventListener('visibilitychange',()=>{if(document.hidden)keys.clear()});renderer.domElement.addEventListener('click',()=>{if(document.pointerLockElement===renderer.domElement)inspect()});renderer.domElement.addEventListener('wheel',e=>{if(cameraMode==='third'){e.preventDefault();cameraDistance=THREE.MathUtils.clamp(cameraDistance+Math.sign(e.deltaY)*.18,1.3,3.4);updateCamera(0,true)}else if(cameraMode==='dollhouse'){e.preventDefault();dollhouse.distance=THREE.MathUtils.clamp(dollhouse.distance+Math.sign(e.deltaY)*.48,5.0,23.0);updateCamera(0,true)}},{passive:false});
 // Allow dropping a GLB or a .gltf together with bin/textures.
 view.addEventListener('dragover',e=>e.preventDefault());view.addEventListener('drop',e=>{e.preventDefault();if(e.dataTransfer?.files?.length)importFiles(e.dataTransfer.files)});
-touchEvents();}
+touchEvents();registerV4UI();}
 try{createWorld();registerUI();animate();setLang('vi')}catch(e){console.error('Virtual Room initialization',e);$('fallback').style.display='grid';$('start-screen').style.display='none'}
+</script>
+<script>
+window.addEventListener('load',()=>setTimeout(()=>{
+  if(!document.querySelector('#viewport canvas')){
+    const fallback=document.getElementById('fallback');
+    const splash=document.getElementById('start-screen');
+    if(fallback)fallback.style.display='grid';
+    if(splash)splash.style.display='none';
+  }
+},18000));
 </script>
 </body>
 </html>
