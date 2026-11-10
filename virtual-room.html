@@ -142,8 +142,17 @@ body.photo-mode .topbar,body.photo-mode .feature-dock,body.photo-mode .notice,bo
 <script src="./catalog-additions.js?v=20261109-room-v4"></script>
 <script src="./catalog-engine.js?v=20261109-room-v4"></script>
 <script>
+  // A visitor can never see former/sold pairs in the physical gallery.
+  // Do not infer ownership from missing status or display duplicate IDs.
+  const locanSeenPairs = new Set();
   window.LOCAN_ROOM_CATALOG = (typeof sneakers !== 'undefined' && Array.isArray(sneakers))
-    ? sneakers.filter(pair => String(pair?.collectionStatus || '').trim().toLowerCase() === 'own')
+    ? sneakers.filter(pair => {
+        if (!pair || String(pair.collectionStatus || '').trim().toLowerCase() !== 'own') return false;
+        const key = String(pair.id || pair.sku || '').trim();
+        if (!key || locanSeenPairs.has(key)) return false;
+        locanSeenPairs.add(key);
+        return true;
+      })
     : [];
 </script>
 <script type="module">
@@ -161,7 +170,7 @@ const keys=new Set(); const joy={x:0,y:0}; const collisionBoxes=[];
 const view=$('viewport'); let renderer,scene,camera,clock,raycaster,nearInteract=[];
 // V4 gallery: selected photos from actual collection metadata, not downloaded stock images.
 const collectionCatalog=(window.LOCAN_ROOM_CATALOG || []).slice().filter(Boolean).sort((a,b)=>String(b.releaseDate||'').localeCompare(String(a.releaseDate||'')));
-let galleryPage=0, rackSlot=0, galleryMeshes=[], galleryTextureRefs=[], galleryImageMap=null, galleryGeneration=0;
+let galleryPage=0, rackSlot=0, gallerySlots=[], galleryMeshes=[], galleryTextureRefs=[], galleryImageMap=null, galleryGeneration=0;
 let lights=[], hemisphereLight=null, ambientLight=null, sunLight=null, lightMode='museum';
 let photoMode=false, tour=null, photoPreset='none', outfitIndex=0, avatarMats=null;
 const dollhouse={azimuth:.64,elevation:.98,distance:11.0};let savedCameraMode='third';
@@ -170,7 +179,7 @@ let roomWalls=[],roomCeiling=null;
 let galleryHover=null, textureLoading=false;
 let lastControlsMode='first';
 const GALLERY_CAPACITY=48; // 6×3 + 5×3 + 5×3, with future pages for 200+ pairs.
-const UI4={vi:{doll:'⌗ TOÀN CẢNH',light:'◐ ÁNH SÁNG',photo:'◎ CHỤP ẢNH',tour:'▶ THAM QUAN',gallery:'◈ KỆ GIÀY',outfit:'♙ TRANG PHỤC',help:'? HƯỚNG DẪN',enter:'TRỞ VỀ PHÒNG',shoebox:'XEM HỒ SƠ ĐÔI GIÀY ↗',close:'ĐÓNG',next:'TIẾP →',stop:'DỪNG TOUR',save:'↓ LƯU ẢNH PNG',caption:'Ảnh giày thật từ catalog · mô hình kệ 3D minh họa',missing:'Chưa tải được ảnh giày. Phòng mẫu vẫn hoạt động.',noCatalog:'Đang dùng giày mẫu: mở trang qua GitHub Pages để tải catalog.',tourScan:'Tour hiện dành cho phòng mẫu; bản quét chưa có tuyến đường an toàn.',galleryScan:'Kệ giày thuộc phòng mẫu; có thể quay về bản mẫu bằng ĐẶT LẠI.',shoeHint:'E / BẤM ĐỂ MỞ HỘP GIÀY',dollHint:'KÉO ĐỂ XOAY · CUỘN ĐỂ PHÓNG TO · BẤM SÀN ĐỂ DI CHUYỂN',photoHint:'PHOTO MODE · P ĐỂ THOÁT',helpDesc:'WASD di chuyển · chuột xoay nhìn · đến gần kệ và nhấn E hoặc chạm ảnh giày. Trên điện thoại dùng joystick và vuốt màn hình.',keys:[['W A S D','Di chuyển'],['SHIFT','Chạy'],['V','Góc nhìn 1 / 3'],['O','Toàn cảnh dollhouse'],['P','Photo Mode'],['T','Tour tự động'],['E','Mở hồ sơ sneaker'],['C','Đổi trang phục'],['L','Đổi ánh sáng'],['ESC','Thoát hộp / menu']]},en:{doll:'⌗ DOLLHOUSE',light:'◐ LIGHTING',photo:'◎ PHOTO MODE',tour:'▶ GUIDED TOUR',gallery:'◈ GALLERY',outfit:'♙ OUTFIT',help:'? HELP',enter:'RETURN TO ROOM',shoebox:'VIEW SNEAKER PROFILE ↗',close:'CLOSE',next:'NEXT →',stop:'STOP TOUR',save:'↓ SAVE PNG',caption:'Real collection photos · illustrative 3D shelves',missing:'Shoe images did not load. The demonstration still works.',noCatalog:'Demo sneakers only: open on GitHub Pages to load the catalog.',tourScan:'Tour is available in the demo room; the scan has no verified safe path.',galleryScan:'The sneaker gallery is in the demo room; RESET restores it.',shoeHint:'E / TAP TO OPEN SHOEBOX',dollHint:'DRAG TO ORBIT · SCROLL TO ZOOM · TAP FLOOR TO TELEPORT',photoHint:'PHOTO MODE · P TO EXIT',helpDesc:'WASD to walk, mouse to look. Approach a shoe and press E or tap the photo. On mobile use the joystick and swipe.',keys:[['W A S D','Walk'],['SHIFT','Run'],['V','1st / 3rd person'],['O','Dollhouse view'],['P','Photo mode'],['T','Guided tour'],['E','Open sneaker card'],['C','Change outfit'],['L','Change lighting'],['ESC','Close menus']]}};
+const UI4={vi:{doll:'⌗ TOÀN CẢNH',light:'◐ ÁNH SÁNG',photo:'◎ CHỤP ẢNH',tour:'▶ THAM QUAN',gallery:'◈ KỆ GIÀY',outfit:'♙ PHỐI ĐỒ 98TGC',help:'? HƯỚNG DẪN',enter:'TRỞ VỀ PHÒNG',shoebox:'XEM HỒ SƠ ĐÔI GIÀY ↗',close:'ĐÓNG',next:'TIẾP →',stop:'DỪNG TOUR',save:'↓ LƯU ẢNH PNG',caption:'Chỉ giày đang sở hữu · ảnh được chuẩn hóa kích thước',missing:'Chưa tải được ảnh giày. Phòng mẫu vẫn hoạt động.',noCatalog:'Không tìm thấy đôi In Collection. Hãy mở trang qua GitHub Pages để tải catalog.',tourScan:'Tour hiện dành cho phòng mẫu; bản quét chưa có tuyến đường an toàn.',galleryScan:'Kệ giày thuộc phòng mẫu; có thể quay về bản mẫu bằng ĐẶT LẠI.',shoeHint:'E / BẤM ĐỂ MỞ HỘP GIÀY',dollHint:'KÉO ĐỂ XOAY · CUỘN ĐỂ PHÓNG TO · BẤM SÀN ĐỂ DI CHUYỂN',photoHint:'PHOTO MODE · P ĐỂ THOÁT',helpDesc:'WASD di chuyển · chuột xoay nhìn · đến gần kệ và nhấn E hoặc chạm ảnh giày. Trên điện thoại dùng joystick và vuốt màn hình.',keys:[['W A S D','Di chuyển'],['SHIFT','Chạy'],['V','Góc nhìn 1 / 3'],['O','Toàn cảnh dollhouse'],['P','Photo Mode'],['T','Tour tự động'],['E','Mở hồ sơ sneaker'],['C','Đổi trang phục'],['L','Đổi ánh sáng'],['ESC','Thoát hộp / menu']]},en:{doll:'⌗ DOLLHOUSE',light:'◐ LIGHTING',photo:'◎ PHOTO MODE',tour:'▶ GUIDED TOUR',gallery:'◈ GALLERY',outfit:'♙ 98TGC STYLE',help:'? HELP',enter:'RETURN TO ROOM',shoebox:'VIEW SNEAKER PROFILE ↗',close:'CLOSE',next:'NEXT →',stop:'STOP TOUR',save:'↓ SAVE PNG',caption:'Owned pairs only · equally sized normalized photos',missing:'Shoe images did not load. The demonstration still works.',noCatalog:'No In Collection pairs found. Open via GitHub Pages to load the catalog.',tourScan:'Tour is available in the demo room; the scan has no verified safe path.',galleryScan:'The sneaker gallery is in the demo room; RESET restores it.',shoeHint:'E / TAP TO OPEN SHOEBOX',dollHint:'DRAG TO ORBIT · SCROLL TO ZOOM · TAP FLOOR TO TELEPORT',photoHint:'PHOTO MODE · P TO EXIT',helpDesc:'WASD to walk, mouse to look. Approach a shoe and press E or tap the photo. On mobile use the joystick and swipe.',keys:[['W A S D','Walk'],['SHIFT','Run'],['V','1st / 3rd person'],['O','Dollhouse view'],['P','Photo mode'],['T','Guided tour'],['E','Open sneaker card'],['C','Change outfit'],['L','Change lighting'],['ESC','Close menus']]}};
 
 const ambientMat=(color,roughness=.85,metalness=.0)=>new THREE.MeshStandardMaterial({color,roughness,metalness});
 const MAT={wood:ambientMat('#7b6048'),dark:ambientMat('#1b1b1c',.6),black:ambientMat('#121316',.65),edge:ambientMat('#9e8860',.45,.5),wall:ambientMat('#414147',.96),wall2:ambientMat('#27272d'),soft:ambientMat('#a69c8b'),gold:ambientMat('#d8b46b',.5,.35),grey:ambientMat('#55565a'),paper:ambientMat('#dfddcf'),led:new THREE.MeshBasicMaterial({color:'#ffe5b4'})};
@@ -187,18 +196,27 @@ const cellW=w/cols,cellH=h/rows;
 box(g,w+.08,h+.12,d,0,0,0,MAT.dark);box(g,w+.13,.05,d+.1,0,h/2+.035,0,MAT.edge);box(g,w+.13,.05,d+.1,0,-h/2-.035,0,MAT.edge);
 for(let c=1;c<cols;c++)box(g,.028,h,d+.04,-w/2+c*cellW,0,.015,MAT.edge);
 for(let r=1;r<rows;r++)box(g,w,.025,d+.05,0,-h/2+r*cellH,.025,MAT.edge);
-let palette=[['#1a1b20','#b49361'],['#e8e3d7','#a73330'],['#24252a','#79899d'],['#91704f','#eee5d1'],['#c3bfb1','#1c1d1f'],['#ecdfcf','#daac45'],['#40342d','#6a4b3f'],['#101011','#a6abb0']];
 for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){
   let px=-w/2+cellW*(c+.5),py=-h/2+cellH*(r+.27),zz=d/2+.02;
-  let item=collectionCatalog[galleryPage*GALLERY_CAPACITY + rackSlot++];
-  let pal=palette[(r*cols+c)%palette.length];
+  // Unoccupied cells stay EMPTY: never render fake shoes (which resemble sold pairs).
+  const item=gallerySlots[rackSlot++] || null;
   if(item)makeGalleryItem(g,item,px,py,zz,cellW,cellH);
-  else sneaker(g,px,py,zz,pal,Math.min(cellW*.44,.27),c%2?.1:-.1);
   box(g,cellW*.84,.012,.015,px,-h/2+r*cellH+.095,d/2+.025,MAT.led);
 }return g}
 function addHotspot(parent,x,y,z,id){let g=new THREE.Group();g.position.set(x,y,z);let sphere=new THREE.Mesh(new THREE.SphereGeometry(.12,18,12),new THREE.MeshStandardMaterial({color:'#f4d67d',emissive:'#947a2a',emissiveIntensity:.35,metalness:.25,roughness:.4}));g.add(sphere);sphere.userData.hotspot=id;let ring=new THREE.Mesh(new THREE.TorusGeometry(.17,.014,8,36),new THREE.MeshBasicMaterial({color:'#fff0ba'}));g.add(ring);ring.userData.hotspot=id;parent.add(g);nearInteract.push(sphere,ring);return g}
 function obstacles(x,z,w,d){collisionBoxes.push({minX:x-w/2,maxX:x+w/2,minZ:z-d/2,maxZ:z+d/2})}
-function buildDemo(){clearGallery();rackSlot=0;lights=[];if(demoGroup){scene.remove(demoGroup);demoGroup.traverse(o=>{if(o.geometry)o.geometry.dispose();if(o.material){for(let m of (Array.isArray(o.material)?o.material:[o.material])){if(m.map&&m.map!==MAT.wood.map)m.map.dispose()}}})}nearInteract=[];collisionBoxes.length=0;let g=demoGroup=new THREE.Group();scene.add(g);
+function buildDemo(){
+  clearGallery();rackSlot=0;lights=[];
+  // Spread only the owned collection evenly over all 48 cabinets.
+  // A sparse collection uses empty shelves rather than placeholder sneakers.
+  const items=collectionCatalog.slice(galleryPage*GALLERY_CAPACITY,(galleryPage+1)*GALLERY_CAPACITY);
+  gallerySlots=Array(GALLERY_CAPACITY).fill(null);
+  for(let i=0;i<items.length;i++) {
+    let at=Math.min(GALLERY_CAPACITY-1,Math.floor((i+.5)*GALLERY_CAPACITY/items.length));
+    while(gallerySlots[at]) at=(at+1)%GALLERY_CAPACITY;
+    gallerySlots[at]=items[i];
+  }
+if(demoGroup){scene.remove(demoGroup);demoGroup.traverse(o=>{if(o.geometry)o.geometry.dispose();if(o.material){for(let m of (Array.isArray(o.material)?o.material:[o.material])){if(m.map&&m.map!==MAT.wood.map)m.map.dispose()}}})}nearInteract=[];collisionBoxes.length=0;let g=demoGroup=new THREE.Group();scene.add(g);
 let W=dims.w,L=dims.l,H=dims.h;
 let floorMat=new THREE.MeshStandardMaterial({map:woodTexture(),roughness:.78});box(g,W,.12,L,0,-.065,0,floorMat);
 // Four real walls, lower trim, ceiling and warm accent panels.
@@ -237,34 +255,105 @@ function syncCamera(){
     camera.rotation.order='YXZ';camera.rotation.y=yaw;camera.rotation.x=pitch;
   }
 }
+/* 98TGC Black / White / Green jersey — digital low-poly recreation of the
+ * product linked by the collector. Self-contained CanvasTextures; no CDN
+ * hotlink and no change to the owner's personal appearance/identity.
+ */
+function draw98(ctx,cx,cy,sz,white=true){
+  ctx.save();ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.font=`900 ${sz}px Impact, "Arial Black", sans-serif`;
+  ctx.lineJoin='round';ctx.miterLimit=2;
+  ctx.lineWidth=Math.max(8,sz*.025);ctx.strokeStyle=white?'#28d73a':'#effbef';
+  ctx.strokeText('98',cx,cy);
+  ctx.fillStyle=white?'#f4f5f0':'#37e34b';ctx.fillText('98',cx,cy);
+  ctx.restore();
+}
+function draw98Clover(ctx,cx,cy,r,stroke='#e7e7e1',width=8){
+  ctx.save();ctx.strokeStyle=stroke;ctx.lineWidth=width;ctx.lineJoin='round';
+  // Four softly interlocking clover lobes like the 98TGC back emblem.
+  ctx.beginPath();
+  const n=144;
+  for(let k=0;k<=n;k++){
+    const a=-Math.PI/2+k/n*Math.PI*2;
+    const rad=r*(.72+.26*Math.cos(4*(a+Math.PI/4)));
+    const x=cx+rad*Math.cos(a),y=cy+rad*Math.sin(a);
+    if(k===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+  }
+  ctx.closePath();ctx.stroke();ctx.restore();
+}
+function jerseyArtwork(side='front'){
+  const c=document.createElement('canvas');c.width=768;c.height=900;
+  const g=c.getContext('2d');
+  g.fillStyle='#090b0e';g.fillRect(0,0,768,900);
+  // Subtle sports-mesh knit. Tiny low-contrast dots avoid visible grid noise.
+  g.fillStyle='rgba(125,134,132,.065)';
+  for(let y=6;y<900;y+=13)for(let x=7;x<768;x+=13){g.beginPath();g.arc(x+(y%2)*2,y,1.35,0,Math.PI*2);g.fill();}
+  g.strokeStyle='rgba(192,203,198,.17)';g.lineWidth=4;
+  g.beginPath();g.moveTo(20,100);g.lineTo(748,100);g.stroke();
+  if(side==='front'){
+    g.fillStyle='#f7f7f3';g.font='italic bold 95px Georgia,serif';g.textAlign='left';g.fillText('tgc',85,220);
+    draw98Clover(g,618,167,62,'#36d344',8);
+    g.fillStyle='#45eb52';g.font='italic 46px Georgia,serif';g.textAlign='center';g.fillText('98',618,183);
+    draw98(g,383,568,416,true);
+  }else{
+    draw98Clover(g,384,490,266,'#f4f5f0',10);
+    draw98Clover(g,384,490,223,'#f4f5f0',5);
+    g.fillStyle='#41d84a';g.textAlign='center';g.font='italic bold 245px Georgia,serif';g.fillText('98',384,556);
+  }
+  const tex=new THREE.CanvasTexture(c);tex.colorSpace=THREE.SRGBColorSpace;tex.anisotropy=isTouch?2:8;
+  tex.generateMipmaps=true;tex.minFilter=THREE.LinearMipmapLinearFilter;
+  return tex;
+}
+function sleeve98Texture(){
+  const c=document.createElement('canvas');c.width=384;c.height=300;
+  const g=c.getContext('2d');g.fillStyle='#0a0c0e';g.fillRect(0,0,384,300);
+  draw98(g,192,165,220,true);
+  const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;return t;
+}
 function makeAvatar(){
-  // Original, deliberately anonymous low-poly visitor; not an image or likeness of the owner.
+  // Small stylized collector wearing the requested 98TGC jersey in every outfit.
   const root=new THREE.Group();root.name='virtual-room-visitor';scene.add(root);
-  const coat=new THREE.MeshStandardMaterial({color:'#18191d',roughness:.87});
-  const trousers=new THREE.MeshStandardMaterial({color:'#313238',roughness:.94});
+  const coat=new THREE.MeshStandardMaterial({color:'#090b0e',roughness:.84});
+  const trousers=new THREE.MeshStandardMaterial({color:'#1d2023',roughness:.91});
   const skin=new THREE.MeshStandardMaterial({color:'#bda68b',roughness:.91});
-  const accent=new THREE.MeshStandardMaterial({color:'#e2be65',roughness:.58,metalness:.15});
-  const sole=new THREE.MeshStandardMaterial({color:'#d8d2c3',roughness:.82});
-  const visor=new THREE.MeshStandardMaterial({color:'#292c36',roughness:.47});
-  box(root,.52,.61,.32,0,1.08,0,coat);
-  box(root,.35,.05,.018,0,1.18,-.172,accent);
-  box(root,.09,.29,.018,0,1.03,-.178,accent);
-  box(root,.38,.12,.27,0,.76,0,coat);
+  const accent=new THREE.MeshStandardMaterial({color:'#37d647',roughness:.62,metalness:.08});
+  const sole=new THREE.MeshStandardMaterial({color:'#edece5',roughness:.78});
+  const visor=new THREE.MeshStandardMaterial({color:'#111318',roughness:.55});
+  // Boxy cropped short-sleeve football jersey (no long sleeve coat).
+  box(root,.55,.66,.34,0,1.09,0,coat);
+  const frontMat=new THREE.MeshBasicMaterial({map:jerseyArtwork('front'),side:THREE.DoubleSide,toneMapped:false});
+  const backMat=new THREE.MeshBasicMaterial({map:jerseyArtwork('back'),side:THREE.DoubleSide,toneMapped:false});
+  // Rotated front faces -Z. Back faces +Z so the graphics are visible on orbit.
+  plane(root,.544,.646,0,1.09,-.175,frontMat,0,Math.PI);
+  plane(root,.544,.646,0,1.09,.175,backMat);
+  // Ribbed round neck and green trim near the upper chest.
+  const collar=new THREE.Mesh(new THREE.TorusGeometry(.144,.029,9,30,Math.PI),coat);
+  collar.position.set(0,1.414,-.015);collar.rotation.x=Math.PI/2;root.add(collar);
+  box(root,.40,.10,.27,0,.748,0,coat);
   const head=new THREE.Mesh(new THREE.SphereGeometry(.166,16,12),skin);head.position.set(0,1.58,0);root.add(head);
   box(root,.36,.085,.24,0,1.715,-.017,visor);
-  box(root,.4,.038,.26,0,1.685,-.115,accent);
+  box(root,.40,.034,.26,0,1.685,-.115,accent);
   const arms=[],legs=[];
+  const sleevePrint=new THREE.MeshBasicMaterial({map:sleeve98Texture(),side:THREE.DoubleSide,toneMapped:false});
   for(const sign of [-1,1]){
-    const arm=new THREE.Group();arm.position.set(sign*.36,1.34,0);root.add(arm);
-    box(arm,.16,.50,.22,0,-.265,0,coat);arms.push(arm);
+    const arm=new THREE.Group();arm.position.set(sign*.385,1.34,0);root.add(arm);
+    box(arm,.235,.27,.33,0,-.135,0,coat);
+    plane(arm,.212,.206,0,-.125,-.172,sleevePrint,0,Math.PI);
+    plane(arm,.212,.206,0,-.125,.172,sleevePrint);
+    // Short-sleeve cut means the forearms remain visible.
+    box(arm,.145,.29,.208,0,-.399,0,skin);
+    arms.push(arm);
     const leg=new THREE.Group();leg.position.set(sign*.142,.735,0);root.add(leg);
     box(leg,.20,.58,.24,0,-.3,0,trousers);
-    box(leg,.23,.10,.34,0,-.64,-.085,sole);
-    box(leg,.22,.095,.30,0,-.69,-.105,coat);legs.push(leg);
+    box(leg,.24,.10,.35,0,-.64,-.085,sole);
+    box(leg,.22,.095,.30,0,-.69,-.105,coat);
+    // Thin green stripe on the sneakers for the jersey's matching colourway.
+    box(leg,.22,.017,.28,0,-.665,-.105,accent);
+    legs.push(leg);
   }
   const shadow=new THREE.Mesh(new THREE.CircleGeometry(.31,24),new THREE.MeshBasicMaterial({color:0x000000,transparent:true,opacity:.22,depthWrite:false}));
   shadow.rotation.x=-Math.PI/2;shadow.position.y=.009;root.add(shadow);
-  root.scale.setScalar(.78);
+  root.scale.setScalar(.78); // Preserve the smaller V3.1 avatar.
   root.visible=false;
   avatar=root;avatarParts={arms,legs};avatarMats={coat,trousers,accent,sole,visor};
 }
@@ -273,7 +362,7 @@ function updateViewLabel(){
   $('view-btn').textContent=cameraMode==='first'?t.viewFirst:cameraMode==='third'?t.viewThird:(lang==='vi'?'TOÀN CẢNH':'DOLLHOUSE');
   $('view-btn').setAttribute('aria-pressed',String(cameraMode!=='first'));
   $('view-btn').title=lang==='vi'?'Chuyển góc nhìn (V)':'Switch camera (V)';
-  $('subtitle').textContent=`VIRTUAL ROOM · ${cameraMode==='first'?t.modeFirst:cameraMode==='third'?t.modeThird:(lang==='vi'?'TOÀN CẢNH':'DOLLHOUSE')} · V4`;
+  $('subtitle').textContent=`VIRTUAL ROOM · ${cameraMode==='first'?t.modeFirst:cameraMode==='third'?t.modeThird:(lang==='vi'?'TOÀN CẢNH':'DOLLHOUSE')} · V4.1`;
   if(avatar)avatar.visible=cameraMode!=='first';
 }
 function setCameraMode(next,quiet=false){
@@ -330,7 +419,25 @@ function clampMove(target){let pad=.29;target.x=THREE.MathUtils.clamp(target.x,-
 
 function itemText(value){if(value==null)return '';if(typeof value==='object')return String(value[lang]??value.en??value.vi??'');return String(value)}
 function safeText(value){return String(value??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;')}
-function itemImage(item){return String(item?.image||item?.images?.[0]||'').replace(/^\.\//,'')}
+function itemImage(item){return String(item?.catalogOriginalImage||item?.originalImage||item?.image||item?.images?.[0]||'').replace(/^\.\//,'').split('?')[0].split('#')[0]}
+// Use the SAME 1600 x 1200 normalized gallery images used by the public
+// catalog. Each shoe has the same visual footprint and same transparent frame.
+function galleryPhotoCandidates(item){
+  const raw=itemImage(item);
+  if(!raw)return [];
+  const normalizeSource=raw.replace(/^pictures\/source\//,'pictures/');
+  const normalized=normalizeSource.startsWith('pictures/normalized/v6/')
+    ? normalizeSource
+    : normalizeSource.startsWith('pictures/')
+      ? 'pictures/normalized/v6/'+normalizeSource.slice('pictures/'.length).replace(/\.(png|jpe?g|webp)$/i,'.png')
+      : '';
+  const paths=[];
+  if(normalized && galleryImageMap?.[normalized]) paths.push(galleryImageMap[normalized]);
+  if(galleryImageMap?.[raw])paths.push(galleryImageMap[raw]);
+  if(galleryImageMap?.[normalizeSource])paths.push(galleryImageMap[normalizeSource]);
+  paths.push(raw);
+  return [...new Set(paths.filter(Boolean))];
+}
 function itemTitle(item){return itemText(item?.title)||'Sneaker'}
 function clearGallery(){
   galleryGeneration++;
@@ -341,8 +448,8 @@ function makeGalleryItem(parent,item,x,y,z,cellW,cellH){
   // A true photo from the private catalog, presented as an interactive cutout.
   // It is not a fabricated 3D scan of the sneaker itself.
   const front=z+.045;
-  box(parent,cellW*.87,cellH*.63,.014,x,y+.185,front-.018,new THREE.MeshStandardMaterial({color:'#201f21',roughness:.65,metalness:.12}));
-  const picture=plane(parent,cellW*.79,cellH*.51,x,y+.20,front+.002,
+  box(parent,cellW*.88,cellH*.64,.014,x,y+.185,front-.018,new THREE.MeshStandardMaterial({color:'#201f21',roughness:.65,metalness:.12}));
+  const picture=plane(parent,cellW*.83,cellH*.54,x,y+.20,front+.002,
     new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:0,side:THREE.DoubleSide,depthWrite:false}));
   picture.userData={item,kind:'sneaker'};
   galleryMeshes.push({mesh:picture,item});
@@ -363,8 +470,11 @@ async function queueGalleryPhotos(){
   if(!galleryImageMap)galleryImageMap={};
   const entries=galleryMeshes.slice();const loader=new THREE.TextureLoader();let cursor=0;
   async function loadTexture(path){return await new Promise((resolve,reject)=>loader.load(path,resolve,undefined,reject))}
-  async function worker(){while(cursor<entries.length){const ix=cursor++;const {mesh,item}=entries[ix];const raw=itemImage(item);if(!raw)continue;
-    let tex=null;try{tex=await loadTexture(galleryImageMap[raw]||raw)}catch(_){if((galleryImageMap[raw]||raw)!==raw){try{tex=await loadTexture(raw)}catch(_2){}}}
+  async function worker(){while(cursor<entries.length){const ix=cursor++;const {mesh,item}=entries[ix];
+    let tex=null;
+    for(const path of galleryPhotoCandidates(item)){
+      try{tex=await loadTexture(path);break;}catch(_){/* fall back to a source photo only if needed */}
+    }
     if(!tex)continue;
     if(generation!==galleryGeneration){tex.dispose();return;}
     tex.colorSpace=THREE.SRGBColorSpace;tex.anisotropy=isTouch?2:4;
@@ -404,12 +514,13 @@ function applyLighting(){
 }
 function cycleLighting(){const modes=['museum','day','night'];lightMode=modes[(modes.indexOf(lightMode)+1)%modes.length];applyLighting();updateFeatureLabels();toast((lang==='vi'?'Ánh sáng':'Lighting')+': '+({museum:'Museum',day:'Day',night:'Night'}[lightMode]));}
 function changeOutfit(){if(!avatarMats)return;outfitIndex=(outfitIndex+1)%4;
-  const looks=[{coat:'#18191d',trousers:'#313238',accent:'#e2be65',sole:'#d8d2c3'},
-    {coat:'#e9e6dc',trousers:'#16181c',accent:'#b42024',sole:'#f2ebe0'},
-    {coat:'#4e4035',trousers:'#212127',accent:'#d9a24d',sole:'#d0bca4'},
-    {coat:'#244954',trousers:'#20262b',accent:'#dde5de',sole:'#9faeb6'}];
+  // The reference 98TGC jersey stays on the character; only styling changes.
+  const looks=[{trousers:'#1d2023',sole:'#edece5'},
+    {trousers:'#131819',sole:'#e7e6dd'},
+    {trousers:'#373839',sole:'#eeeee7'},
+    {trousers:'#232b2c',sole:'#faf9f0'}];
   const p=looks[outfitIndex];for(const [key,color] of Object.entries(p))avatarMats[key].color.set(color);
-  toast(lang==='vi'?`Trang phục ${outfitIndex+1}/4`:`Outfit ${outfitIndex+1}/4`);
+  toast(lang==='vi'?`Phối đồ 98TGC ${outfitIndex+1}/4`:`98TGC styling ${outfitIndex+1}/4`);
 }
 function toggleDollhouse(){if(mode==='scan'){toast(lang==='vi'?'Góc toàn cảnh hiện dành cho phòng mẫu; bản quét có thể bị trần che.':'Dollhouse is currently available for the demonstration; scan ceilings may obscure it.');return;}
   setCameraMode(cameraMode==='dollhouse'?(lastControlsMode==='dollhouse'?'third':lastControlsMode):'dollhouse');
