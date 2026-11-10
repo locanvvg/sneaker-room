@@ -5,3 +5,6 @@
 exclude:
   - pictures/normalized/v6
   - tools
+
+# Safe no-op marker: trigger a NEW GitHub Pages build/deploy after syncing_files timeout.
+# 2026-11-10 V5 fresh deployment; no site configuration changes.
