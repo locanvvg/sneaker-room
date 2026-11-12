@@ -232,6 +232,10 @@ window.CATALOG_NORMALIZED_IMAGE_MAP = Object.freeze({
     "grid": "pictures/normalized/v6/grid/sneaker_mask2.png",
     "view3d": "pictures/normalized/v6/sneaker_mask2.png"
   },
+  "pictures/vans_knu_skool_sold_cutout.png": {
+    "grid": "pictures/normalized/v6/grid/vans_knu_skool_sold_cutout.png",
+    "view3d": "pictures/normalized/v6/vans_knu_skool_sold_cutout.png"
+  },
   "pictures/vans_knuskool.png": {
     "grid": "pictures/normalized/v6/grid/vans_knuskool.png",
     "view3d": "pictures/normalized/v6/vans_knuskool.png"
