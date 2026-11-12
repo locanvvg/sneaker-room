@@ -1614,6 +1614,49 @@ if (
 })();
 
 /* =========================================================
+   SOLD ARCHIVE UPDATE — 2026-11-12
+   ---------------------------------------------------------
+   Source-of-truth status adapter for catalog-driven pages.
+   - Vans Knu Skool: newly sold; use the owner's supplied photo
+     with its white background removed.
+   - PUMA x ROSE Speedcat: previously confirmed sold.
+   - No other sneakers, approved stories, or website features are changed.
+
+   The existing homepage, detail, Timeline, World Map, Museum Mode,
+   and Statistics pages all load catalog-additions.js after data.js.
+========================================================= */
+(() => {
+  "use strict";
+  if (typeof sneakers === "undefined" || !Array.isArray(sneakers)) return;
+
+  const applySold = id => {
+    const item = sneakers.find(pair => pair && pair.id === id);
+    if (!item) {
+      console.warn("[LOC AN Sold Archive] Missing catalog pair:", id);
+      return null;
+    }
+    item.collectionStatus = "sold";
+    item.archiveFit = true;
+    return item;
+  };
+
+  // Previously sold: keep existing photographs and all metadata unchanged.
+  applySold("puma-rose-speedcat-leather-warm-white");
+
+  // Newly sold: direct this pair to its new transparent 1600 x 1200 image.
+  const vans = applySold("vans-knu-skool-black-true-white-rope-lace");
+  if (vans) {
+    const asset = "pictures/vans_knu_skool_sold_cutout.png";
+    vans.image = asset;
+    vans.images = [asset];
+    vans.catalogOriginalImage = asset;
+    vans.catalogGridImage = asset;
+    vans.catalog3DImage = asset;
+    vans.catalogNormalizedImage = false;
+  }
+})();
+
+/* =========================================================
    UNIFIED CATALOG IMAGE NORMALIZATION LOADER — 2026-10-10
    ---------------------------------------------------------
    Loaded LAST on the homepage so the normalized image layer wins
