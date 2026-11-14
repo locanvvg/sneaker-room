@@ -63,6 +63,29 @@
       .archive-feature-nav { gap:20px; margin-top:16px; }
       .archive-feature-link { font-size:.68rem; }
     }
+
+    /* =============================================================
+       WORLD MAP — Waffle Racer / New Balance 2002R thumbnail sizing
+       2026-11-13. Card images ONLY; keep original image assets.
+       Both use the approved Raygun-sized footprint (70% / 66px).
+    ============================================================== */
+    .globe-shoe-card[data-story-id="nike-off-white-waffle-racer-white"] .globe-shoe-image img,
+    .globe-shoe-card[data-story-id="new-balance-2002r-custom"] .globe-shoe-image img {
+      width: 70%;
+      max-width: 70%;
+      height: 66px;
+      max-height: 66px;
+      object-fit: contain;
+      object-position: center center;
+    }
+
+    @media (max-width: 650px) {
+      .globe-shoe-card[data-story-id="nike-off-white-waffle-racer-white"] .globe-shoe-image img,
+      .globe-shoe-card[data-story-id="new-balance-2002r-custom"] .globe-shoe-image img {
+        height: 58px;
+        max-height: 58px;
+      }
+    }
   </style>
 </head>
 <body class="globe-page">
